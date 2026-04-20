@@ -45,10 +45,10 @@ const we = (n) => new be(typeof n == "string" ? n : n + "", void 0, K), L = (n, 
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const { is: ue, defineProperty: ge, getOwnPropertyDescriptor: _e, getOwnPropertyNames: $e, getOwnPropertySymbols: ye, getPrototypeOf: ve } = Object, p = globalThis, X = p.trustedTypes, Ae = X ? X.emptyScript : "", B = p.reactiveElementPolyfillSupport, C = (n, e) => n, I = { toAttribute(n, e) {
+const { is: ue, defineProperty: ge, getOwnPropertyDescriptor: _e, getOwnPropertyNames: $e, getOwnPropertySymbols: ye, getPrototypeOf: xe } = Object, p = globalThis, X = p.trustedTypes, ve = X ? X.emptyScript : "", F = p.reactiveElementPolyfillSupport, C = (n, e) => n, I = { toAttribute(n, e) {
   switch (e) {
     case Boolean:
-      n = n ? Ae : null;
+      n = n ? ve : null;
       break;
     case Object:
     case Array:
@@ -75,7 +75,7 @@ const { is: ue, defineProperty: ge, getOwnPropertyDescriptor: _e, getOwnProperty
   return t;
 } }, G = (n, e) => !ue(n, e), ee = { attribute: !0, type: String, converter: I, reflect: !1, useDefault: !1, hasChanged: G };
 Symbol.metadata ?? (Symbol.metadata = Symbol("metadata")), p.litPropertyMetadata ?? (p.litPropertyMetadata = /* @__PURE__ */ new WeakMap());
-let v = class extends HTMLElement {
+let x = class extends HTMLElement {
   static addInitializer(e) {
     this._$Ei(), (this.l ?? (this.l = [])).push(e);
   }
@@ -104,7 +104,7 @@ let v = class extends HTMLElement {
   }
   static _$Ei() {
     if (this.hasOwnProperty(C("elementProperties"))) return;
-    const e = ve(this);
+    const e = xe(this);
     e.finalize(), e.l !== void 0 && (this.l = [...e.l]), this.elementProperties = new Map(e.elementProperties);
   }
   static finalize() {
@@ -278,15 +278,15 @@ let v = class extends HTMLElement {
   firstUpdated(e) {
   }
 };
-v.elementStyles = [], v.shadowRootOptions = { mode: "open" }, v[C("elementProperties")] = /* @__PURE__ */ new Map(), v[C("finalized")] = /* @__PURE__ */ new Map(), B == null || B({ ReactiveElement: v }), (p.reactiveElementVersions ?? (p.reactiveElementVersions = [])).push("2.1.2");
+x.elementStyles = [], x.shadowRootOptions = { mode: "open" }, x[C("elementProperties")] = /* @__PURE__ */ new Map(), x[C("finalized")] = /* @__PURE__ */ new Map(), F == null || F({ ReactiveElement: x }), (p.reactiveElementVersions ?? (p.reactiveElementVersions = [])).push("2.1.2");
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const E = globalThis, te = (n) => n, j = E.trustedTypes, ie = j ? j.createPolicy("lit-html", { createHTML: (n) => n }) : void 0, fe = "$lit$", w = `lit$${Math.random().toFixed(9).slice(2)}$`, me = "?" + w, xe = `<${me}>`, y = document, P = () => y.createComment(""), z = (n) => n === null || typeof n != "object" && typeof n != "function", J = Array.isArray, Se = (n) => J(n) || typeof (n == null ? void 0 : n[Symbol.iterator]) == "function", F = `[ 	
-\f\r]`, S = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, oe = /-->/g, ne = />/g, g = RegExp(`>|${F}(?:([^\\s"'>=/]+)(${F}*=${F}*(?:[^ 	
-\f\r"'\`<>=]|("|')|))|$)`, "g"), se = /'/g, re = /"/g, he = /^(?:script|style|textarea|title)$/i, Ce = (n) => (e, ...t) => ({ _$litType$: n, strings: e, values: t }), N = Ce(1), A = Symbol.for("lit-noChange"), f = Symbol.for("lit-nothing"), ce = /* @__PURE__ */ new WeakMap(), _ = y.createTreeWalker(y, 129);
+const E = globalThis, te = (n) => n, j = E.trustedTypes, ie = j ? j.createPolicy("lit-html", { createHTML: (n) => n }) : void 0, fe = "$lit$", w = `lit$${Math.random().toFixed(9).slice(2)}$`, me = "?" + w, Ae = `<${me}>`, y = document, P = () => y.createComment(""), z = (n) => n === null || typeof n != "object" && typeof n != "function", J = Array.isArray, Se = (n) => J(n) || typeof (n == null ? void 0 : n[Symbol.iterator]) == "function", B = `[ 	
+\f\r]`, S = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, oe = /-->/g, ne = />/g, g = RegExp(`>|${B}(?:([^\\s"'>=/]+)(${B}*=${B}*(?:[^ 	
+\f\r"'\`<>=]|("|')|))|$)`, "g"), se = /'/g, re = /"/g, he = /^(?:script|style|textarea|title)$/i, Ce = (n) => (e, ...t) => ({ _$litType$: n, strings: e, values: t }), N = Ce(1), v = Symbol.for("lit-noChange"), f = Symbol.for("lit-nothing"), ce = /* @__PURE__ */ new WeakMap(), _ = y.createTreeWalker(y, 129);
 function de(n, e) {
   if (!J(n) || !n.hasOwnProperty("raw")) throw Error("invalid template strings array");
   return ie !== void 0 ? ie.createHTML(e) : e;
@@ -299,7 +299,7 @@ const Ee = (n, e) => {
     let b, m, a = -1, h = 0;
     for (; h < c.length && (r.lastIndex = h, m = r.exec(c), m !== null); ) h = r.lastIndex, r === S ? m[1] === "!--" ? r = oe : m[1] !== void 0 ? r = ne : m[2] !== void 0 ? (he.test(m[2]) && (o = RegExp("</" + m[2], "g")), r = g) : m[3] !== void 0 && (r = g) : r === g ? m[0] === ">" ? (r = o ?? S, a = -1) : m[1] === void 0 ? a = -2 : (a = r.lastIndex - m[2].length, b = m[1], r = m[3] === void 0 ? g : m[3] === '"' ? re : se) : r === re || r === se ? r = g : r === oe || r === ne ? r = S : (r = g, o = void 0);
     const d = r === g && n[l + 1].startsWith("/>") ? " " : "";
-    s += r === S ? c + xe : a >= 0 ? (i.push(b), c.slice(0, a) + fe + c.slice(a) + w + d) : c + w + (a === -2 ? l : d);
+    s += r === S ? c + Ae : a >= 0 ? (i.push(b), c.slice(0, a) + fe + c.slice(a) + w + d) : c + w + (a === -2 ? l : d);
   }
   return [de(n, s + (n[t] || "<?>") + (e === 2 ? "</svg>" : e === 3 ? "</math>" : "")), i];
 };
@@ -340,12 +340,12 @@ class O {
     return i.innerHTML = e, i;
   }
 }
-function x(n, e, t = n, i) {
+function A(n, e, t = n, i) {
   var r, l;
-  if (e === A) return e;
+  if (e === v) return e;
   let o = i !== void 0 ? (r = t._$Co) == null ? void 0 : r[i] : t._$Cl;
   const s = z(e) ? void 0 : e._$litDirective$;
-  return (o == null ? void 0 : o.constructor) !== s && ((l = o == null ? void 0 : o._$AO) == null || l.call(o, !1), s === void 0 ? o = void 0 : (o = new s(n), o._$AT(n, t, i)), i !== void 0 ? (t._$Co ?? (t._$Co = []))[i] = o : t._$Cl = o), o !== void 0 && (e = x(n, o._$AS(n, e.values), o, i)), e;
+  return (o == null ? void 0 : o.constructor) !== s && ((l = o == null ? void 0 : o._$AO) == null || l.call(o, !1), s === void 0 ? o = void 0 : (o = new s(n), o._$AT(n, t, i)), i !== void 0 ? (t._$Co ?? (t._$Co = []))[i] = o : t._$Cl = o), o !== void 0 && (e = A(n, o._$AS(n, e.values), o, i)), e;
 }
 class ke {
   constructor(e, t) {
@@ -395,7 +395,7 @@ class M {
     return this._$AB;
   }
   _$AI(e, t = this) {
-    e = x(this, e, t), z(e) ? e === f || e == null || e === "" ? (this._$AH !== f && this._$AR(), this._$AH = f) : e !== this._$AH && e !== A && this._(e) : e._$litType$ !== void 0 ? this.$(e) : e.nodeType !== void 0 ? this.T(e) : Se(e) ? this.k(e) : this._(e);
+    e = A(this, e, t), z(e) ? e === f || e == null || e === "" ? (this._$AH !== f && this._$AR(), this._$AH = f) : e !== this._$AH && e !== v && this._(e) : e._$litType$ !== void 0 ? this.$(e) : e.nodeType !== void 0 ? this.T(e) : Se(e) ? this.k(e) : this._(e);
   }
   O(e) {
     return this._$AA.parentNode.insertBefore(e, this._$AB);
@@ -451,11 +451,11 @@ class D {
   _$AI(e, t = this, i, o) {
     const s = this.strings;
     let r = !1;
-    if (s === void 0) e = x(this, e, t, 0), r = !z(e) || e !== this._$AH && e !== A, r && (this._$AH = e);
+    if (s === void 0) e = A(this, e, t, 0), r = !z(e) || e !== this._$AH && e !== v, r && (this._$AH = e);
     else {
       const l = e;
       let c, b;
-      for (e = s[0], c = 0; c < s.length - 1; c++) b = x(this, l[i + c], t, c), b === A && (b = this._$AH[c]), r || (r = !z(b) || b !== this._$AH[c]), b === f ? e = f : e !== f && (e += (b ?? "") + s[c + 1]), this._$AH[c] = b;
+      for (e = s[0], c = 0; c < s.length - 1; c++) b = A(this, l[i + c], t, c), b === v && (b = this._$AH[c]), r || (r = !z(b) || b !== this._$AH[c]), b === f ? e = f : e !== f && (e += (b ?? "") + s[c + 1]), this._$AH[c] = b;
     }
     r && !o && this.j(e);
   }
@@ -484,7 +484,7 @@ class Oe extends D {
     super(e, t, i, o, s), this.type = 5;
   }
   _$AI(e, t = this) {
-    if ((e = x(this, e, t, 0) ?? f) === A) return;
+    if ((e = A(this, e, t, 0) ?? f) === v) return;
     const i = this._$AH, o = e === f && i !== f || e.capture !== i.capture || e.once !== i.once || e.passive !== i.passive, s = e !== f && (i === f || o);
     o && this.element.removeEventListener(this.name, this, i), s && this.element.addEventListener(this.name, this, e), this._$AH = e;
   }
@@ -501,7 +501,7 @@ class Me {
     return this._$AM._$AU;
   }
   _$AI(e) {
-    x(this, e);
+    A(this, e);
   }
 }
 const q = E.litHtmlPolyfillSupport;
@@ -521,7 +521,7 @@ const Te = (n, e, t) => {
  * SPDX-License-Identifier: BSD-3-Clause
  */
 const $ = globalThis;
-class k extends v {
+class k extends x {
   constructor() {
     super(...arguments), this.renderOptions = { host: this }, this._$Do = void 0;
   }
@@ -543,7 +543,7 @@ class k extends v {
     super.disconnectedCallback(), (e = this._$Do) == null || e.setConnected(!1);
   }
   render() {
-    return A;
+    return v;
   }
 }
 var ae;
@@ -716,35 +716,52 @@ const Re = L`
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
 
-    /* Spacing */
-    --spacing-0: 0;
+    /* Spacing — aligned with ngx-ui layouts/_vars.scss */
+    --spacing-0: 0px;
     --spacing-2: 2px;
     --spacing-4: 4px;
+    --spacing-6: 6px;
     --spacing-8: 8px;
     --spacing-10: 10px;
     --spacing-12: 12px;
+    --spacing-14: 14px;
     --spacing-16: 16px;
+    --spacing-18: 18px;
     --spacing-20: 20px;
     --spacing-24: 24px;
-    --spacing-32: 32px;
+    --spacing-30: 30px;
+    --spacing-36: 36px;
+    --spacing-40: 40px;
+    --spacing-48: 48px;
 
-    /* Border Radius */
-    --radius-0: 0;
+    /* Border radius — aligned with ngx-ui layouts/_vars.scss */
+    --radius-0: 0px;
     --radius-2: 2px;
     --radius-4: 4px;
     --radius-6: 6px;
     --radius-8: 8px;
+    --radius-12: 12px;
     --radius-16: 16px;
+    --radius-24: 24px;
+    --radius-32: 32px;
     --radius-64: 64px;
+    --radius-1000: 1000px;
 
     /* Semantic colors */
     --color-error: var(--red-500);
     --color-success: #b0e53c;
 
-    /* Shadows */
-    --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.3);
-    --shadow-2: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    /* Shadows — aligned with ngx-ui shadow-variables.scss (Material-style key/penumbra/ambient) */
+    --shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
+    --shadow-2: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);
     --shadow-3: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);
+
+    /* Modal / large-format surface (ngx gradient-variables $bg-linear-3) */
+    --bg-linear-3: linear-gradient(180deg, #252a37 0%, #212631 100%);
+    /* Figma modal panel (filter: dy=2, stdDeviation=3.5, alpha 0.2) */
+    --shadow-dialog-panel: 0 2px 7px rgba(0, 0, 0, 0.2);
+    /* Diffuse halo (ngx large-format legacy); override with --shadow-dialog-panel for Figma parity */
+    --shadow-dialog-glow: 0 0 100px rgba(0, 0, 0, 0.25);
   }
 `;
 L`
@@ -2039,8 +2056,13 @@ const Ie = L`
   }
 `, je = L`
   :host {
-    display: inline-block;
-    vertical-align: baseline;
+    /* inline-flex keeps the host box tight to the glyph and centers the shadow icon in contexts
+       (e.g. swim-button) where inherited line-height would otherwise grow the line box asymmetrically */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    line-height: 1;
   }
 
   :host svg {
@@ -2106,7 +2128,7 @@ const Ie = L`
   /* Font icon base (glyphs in icon-font-glyphs.ts); uses same font as ngx-ui ('ngx-icon'). */
   .swim-icon,
   .swim-icon__i.swim-icon {
-    display: inline-block;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 1em;
@@ -2118,10 +2140,14 @@ const Ie = L`
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Center the glyph regardless of font metrics (fixes vertical misalignment) */
+  /* Center the glyph in the em box; many ngx-icon glyphs sit high with display:block alone */
   .swim-icon::before,
   .swim-icon__i.swim-icon::before {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
     line-height: 1;
   }
 
@@ -2184,11 +2210,11 @@ class De {
     return e.split(" ").map((i) => i.includes(":") ? i : `${t}:${i}`);
   }
 }
-const Be = new De();
-var Fe = Object.defineProperty, U = (n, e, t, i) => {
+const Fe = new De();
+var Be = Object.defineProperty, U = (n, e, t, i) => {
   for (var o = void 0, s = n.length - 1, r; s >= 0; s--)
     (r = n[s]) && (o = r(e, t, o) || o);
-  return o && Fe(e, t, o), o;
+  return o && Be(e, t, o), o;
 };
 const le = "swim-icon", Z = class Z extends k {
   constructor() {
@@ -2224,7 +2250,7 @@ const le = "swim-icon", Z = class Z extends k {
       this._cssClasses = [];
       return;
     }
-    this._cssClasses = Be.get(e, this.fontSet);
+    this._cssClasses = Fe.get(e, this.fontSet);
   }
   render() {
     var s;

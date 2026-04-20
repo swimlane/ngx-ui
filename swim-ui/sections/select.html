@@ -14,12 +14,25 @@
     <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
       <swim-select id="requiredSelect" label="Attack Type" required placeholder="Please select..."></swim-select>
     </div>
+    <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--grey-300)">Disabled</h4>
+    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+      <swim-select
+        id="singleSelectDisabled"
+        label="Attack Type"
+        disabled
+        placeholder="Select..."
+        value="breach"
+      ></swim-select>
+    </div>
     <pre class="demo-pre"
     ><code>&lt;!-- Basic --&gt;
 &lt;swim-select label="Attack Type" placeholder="Select..."&gt;&lt;/swim-select&gt;
 
 &lt;!-- Required --&gt;
 &lt;swim-select label="Attack Type" required placeholder="Please select..."&gt;&lt;/swim-select&gt;
+
+&lt;!-- Disabled (with pre-selected value) --&gt;
+&lt;swim-select label="Attack Type" disabled placeholder="Select..." value="breach"&gt;&lt;/swim-select&gt;
 
 &lt;script&gt;
   const options = [
@@ -65,6 +78,112 @@
   &lt;swim-option name="DDOS" value="ddos"&gt;&lt;/swim-option&gt;
   &lt;swim-option name="Physical" value="physical"&gt;&lt;/swim-option&gt;
 &lt;/swim-select&gt;</code></pre>
+  </swim-section>
+</section>
+
+<!-- Grouped options: group -->
+<section class="section">
+  <swim-section section-title="Grouped options">
+    <p style="color: var(--grey-300); margin-bottom: 1.25rem">
+      Set <code>grouped</code> on <code>&lt;swim-select&gt;</code> to show section headers from each option’s
+      <code>group</code>. Omit <code>grouped</code> and the same data renders as a flat list
+      (metadata is still on each option). With <code>grouped</code> and filtering on, typing a section name (e.g.
+      “Pantry”) matches options in that section.
+    </p>
+
+    <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--grey-300)">
+      Programmatic, with <code>grouped</code>
+    </h4>
+    <div style="max-width: 500px; margin-bottom: 1rem">
+      <swim-select
+        id="groupedSelectProgrammatic"
+        grouped
+        label="Food by aisle"
+        placeholder="Pick an item…"
+        hint="Open the list and try filtering by Produce, Dairy, or Pantry"
+      ></swim-select>
+    </div>
+    <pre class="demo-pre"
+    ><code>&lt;swim-select id="groupedSelectProgrammatic" grouped label="Food by aisle"&gt;&lt;/swim-select&gt;
+&lt;script type="module"&gt;
+  document.getElementById('groupedSelectProgrammatic').options = [
+    { name: 'Apples', value: 'apples', group: 'Produce' },
+    { name: 'Carrots', value: 'carrots', group: 'Produce' },
+    { name: 'Spinach', value: 'spinach', group: 'Produce' },
+    { name: 'Milk', value: 'milk', group: 'Dairy' },
+    { name: 'Cheddar', value: 'cheddar', group: 'Dairy' },
+    { name: 'Yogurt', value: 'yogurt', group: 'Dairy' },
+    { name: 'Chips', value: 'chips', group: 'Pantry' },
+    { name: 'Rice', value: 'rice', group: 'Pantry' },
+  ];
+&lt;/script&gt;</code></pre>
+
+    <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--grey-300)">
+      Same options without <code>grouped</code> (flat list)
+    </h4>
+    <div style="max-width: 500px; margin-bottom: 1rem">
+      <swim-select
+        id="groupedSelectFlat"
+        label="Food (flat)"
+        placeholder="Same data, no section headers…"
+        hint="Identical .options as above; group is ignored for layout"
+      ></swim-select>
+    </div>
+    <pre class="demo-pre"
+    ><code>&lt;!-- No `grouped` attribute — flat dropdown --&gt;
+&lt;swim-select id="groupedSelectFlat" label="Food (flat)"&gt;&lt;/swim-select&gt;
+&lt;script type="module"&gt;
+  document.getElementById('groupedSelectFlat').options = [
+    { name: 'Apples', value: 'apples', group: 'Produce' },
+    { name: 'Carrots', value: 'carrots', group: 'Produce' },
+    { name: 'Spinach', value: 'spinach', group: 'Produce' },
+    { name: 'Milk', value: 'milk', group: 'Dairy' },
+    { name: 'Cheddar', value: 'cheddar', group: 'Dairy' },
+    { name: 'Yogurt', value: 'yogurt', group: 'Dairy' },
+    { name: 'Chips', value: 'chips', group: 'Pantry' },
+    { name: 'Rice', value: 'rice', group: 'Pantry' },
+  ];
+&lt;/script&gt;</code></pre>
+
+    <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--grey-300)">Declarative</h4>
+    <div style="max-width: 500px; margin-bottom: 1rem">
+      <swim-select grouped label="Drinks (declarative)" placeholder="Select…" filterable="false">
+        <swim-option group="Cold" name="Iced tea" value="iced-tea"></swim-option>
+        <swim-option group="Cold" name="Soda" value="soda"></swim-option>
+        <swim-option group="Hot" name="Coffee" value="coffee"></swim-option>
+        <swim-option group="Hot" name="Tea" value="hot-tea"></swim-option>
+      </swim-select>
+    </div>
+    <pre class="demo-pre"
+    ><code>&lt;swim-select grouped label="Drinks" placeholder="Select…" filterable="false"&gt;
+  &lt;swim-option group="Cold" name="Iced tea" value="iced-tea"&gt;&lt;/swim-option&gt;
+  &lt;swim-option group="Cold" name="Soda" value="soda"&gt;&lt;/swim-option&gt;
+  &lt;swim-option group="Hot" name="Coffee" value="coffee"&gt;&lt;/swim-option&gt;
+  &lt;swim-option group="Hot" name="Tea" value="hot-tea"&gt;&lt;/swim-option&gt;
+&lt;/swim-select&gt;</code></pre>
+
+    <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--grey-300)">Multi-select</h4>
+    <div style="max-width: 500px; margin-bottom: 1rem">
+      <swim-select
+        id="groupedSelectMulti"
+        grouped
+        label="Multi-select with groups"
+        placeholder="Choose tools…"
+        multiple
+        hint="Section headers work the same with multiple"
+      ></swim-select>
+    </div>
+    <pre class="demo-pre"
+    ><code>&lt;swim-select id="groupedSelectMulti" grouped multiple label="Multi-select with groups"&gt;
+&lt;/swim-select&gt;
+&lt;script type="module"&gt;
+  document.getElementById('groupedSelectMulti').options = [
+    { name: 'Drill', value: 'drill', group: 'Power tools' },
+    { name: 'Sander', value: 'sander', group: 'Power tools' },
+    { name: 'Hammer', value: 'hammer', group: 'Hand tools' },
+    { name: 'Wrench', value: 'wrench', group: 'Hand tools' },
+  ];
+&lt;/script&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -132,6 +251,68 @@
     { name: 'Green', value: 'green' },
     { name: 'Yellow', value: 'yellow' }
   ];
+&lt;/script&gt;</code></pre>
+  </swim-section>
+</section>
+
+<!-- Remote search: GitHub users -->
+<section class="section">
+  <swim-section section-title="Remote search (GitHub users)">
+    <p style="color: var(--grey-300); margin-bottom: 1rem">
+      Type at least <strong>2 characters</strong> to search public GitHub users via the
+      <a href="https://docs.github.com/en/rest/search/search#search-users" style="color: var(--blue-400)"
+        >Search users</a
+      >
+      API. Results load after the default <strong>500ms</strong> debounce on <code>filter-change</code>.
+    </p>
+    <div style="display: flex; flex-direction: column; gap: 0.75rem; max-width: 500px">
+      <swim-select
+        id="githubUserSelect"
+        label="GitHub user"
+        placeholder="Pick a user…"
+        filter-placeholder="Search by login…"
+        empty-placeholder="Open the list and type to search GitHub users."
+        filter-empty-placeholder="No users match that search."
+        filter-searching-placeholder="Searching GitHub…"
+        async-filter
+        filter-min-length="2"
+        dropdown-align="center"
+        hint="Uses https://api.github.com/search/users (rate limits apply without auth)."
+      ></swim-select>
+      <p style="font-size: var(--font-size-s); color: var(--grey-350); margin: 0">
+        Selected: <code id="githubUserSelectValue" style="color: var(--grey-200)">—</code>
+      </p>
+    </div>
+    <pre class="demo-pre"
+    ><code>&lt;swim-select
+  id="githubUserSelect"
+  label="GitHub user"
+  placeholder="Pick a user…"
+  async-filter
+  filter-min-length="2"
+  dropdown-align="center"
+  loading
+&gt;&lt;/swim-select&gt;
+
+&lt;script type="module"&gt;
+  const el = document.getElementById('githubUserSelect');
+  el.addEventListener('filter-change', async (e) => {
+    const q = e.detail.query;
+    if (!q) { el.options = []; el.loading = false; return; }
+    el.loading = true;
+    const res = await fetch(
+      `https://api.github.com/search/users?q=${encodeURIComponent(q)}&amp;per_page=15`,
+      { headers: { Accept: 'application/vnd.github+json' } }
+    );
+    const data = await res.json();
+    el.options = (data.items ?? []).map((u) => ({
+      name: u.login,
+      value: u.login,
+      title: u.login,
+      description: u.type === 'Organization' ? 'Organization' : 'User',
+    }));
+    el.loading = false;
+  });
 &lt;/script&gt;</code></pre>
   </swim-section>
 </section>
@@ -291,9 +472,11 @@
             <tr><td><code>label</code></td><td><code>string</code></td><td><code>''</code></td><td>Label text</td></tr>
             <tr><td><code>placeholder</code></td><td><code>string</code></td><td><code>'Select...'</code></td><td>Placeholder when no value selected</td></tr>
             <tr><td><code>hint</code></td><td><code>string</code></td><td><code>''</code></td><td>Hint text below the select</td></tr>
-            <tr><td><code>.options</code></td><td><code>Array&lt;{name, value}&gt;</code></td><td><code>[]</code></td><td>Array of selectable options</td></tr>
+            <tr><td><code>.options</code></td><td><code>Array&lt;SelectOption&gt;</code></td><td><code>[]</code></td><td>Options; may include <code>group</code> when <code>grouped</code> is set</td></tr>
             <tr><td><code>multiple</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Enable multi-select mode</td></tr>
             <tr><td><code>filterable</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Enable type-to-filter</td></tr>
+            <tr><td><code>dropdown-align</code></td><td><code>'start' | 'center'</code></td><td><code>'start'</code></td><td>With popover layer: <code>center</code> sizes and anchors the panel to the host (centered columns / dialogs)</td></tr>
+            <tr><td><code>grouped</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Show section headers from each option’s <code>group</code></td></tr>
             <tr><td><code>allow-clear</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Show clear button when value selected</td></tr>
             <tr><td><code>appearance</code></td><td><code>'legacy' | 'fill'</code></td><td><code>'legacy'</code></td><td>Visual appearance style</td></tr>
             <tr><td><code>size</code></td><td><code>'sm' | 'md' | 'lg'</code></td><td><code>'sm'</code></td><td>Select size</td></tr>
@@ -312,6 +495,7 @@
             <tr><td><code>value</code></td><td><code>any</code></td><td><code>undefined</code></td><td>Value of the option (defaults to name if not set)</td></tr>
             <tr><td><code>disabled</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Whether the option is disabled</td></tr>
             <tr><td><code>hidden</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Whether the option is hidden from the list</td></tr>
+            <tr><td><code>group</code></td><td><code>string</code></td><td><code>''</code></td><td>Section label (with parent <code>grouped</code> on <code>swim-select</code>)</td></tr>
           </tbody>
         </table>
       </div>
@@ -323,6 +507,7 @@
             <tr><td><code>change</code></td><td><code>any | any[]</code></td><td>Fired when the selection changes</td></tr>
             <tr><td><code>open</code></td><td>—</td><td>Fired when the dropdown opens</td></tr>
             <tr><td><code>close</code></td><td>—</td><td>Fired when the dropdown closes</td></tr>
+            <tr><td><code>filter-change</code></td><td><code>{ query: string }</code></td><td>With <code>async-filter</code>: debounced search text (empty below min length)</td></tr>
           </tbody>
         </table>
       </div>

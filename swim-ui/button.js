@@ -45,7 +45,7 @@ const $e = (n) => new pe(typeof n == "string" ? n : n + "", void 0, X), R = (n, 
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const { is: Ae, defineProperty: ke, getOwnPropertyDescriptor: Se, getOwnPropertyNames: Ce, getOwnPropertySymbols: Ee, getPrototypeOf: Pe } = Object, v = globalThis, ne = v.trustedTypes, ze = ne ? ne.emptyScript : "", G = v.reactiveElementPolyfillSupport, O = (n, e) => n, L = { toAttribute(n, e) {
+const { is: ke, defineProperty: Ae, getOwnPropertyDescriptor: Se, getOwnPropertyNames: Ce, getOwnPropertySymbols: Ee, getPrototypeOf: Pe } = Object, y = globalThis, ne = y.trustedTypes, ze = ne ? ne.emptyScript : "", G = y.reactiveElementPolyfillSupport, O = (n, e) => n, L = { toAttribute(n, e) {
   switch (e) {
     case Boolean:
       n = n ? ze : null;
@@ -73,8 +73,8 @@ const { is: Ae, defineProperty: ke, getOwnPropertyDescriptor: Se, getOwnProperty
       }
   }
   return t;
-} }, Y = (n, e) => !Ae(n, e), re = { attribute: !0, type: String, converter: L, reflect: !1, useDefault: !1, hasChanged: Y };
-Symbol.metadata ?? (Symbol.metadata = Symbol("metadata")), v.litPropertyMetadata ?? (v.litPropertyMetadata = /* @__PURE__ */ new WeakMap());
+} }, Y = (n, e) => !ke(n, e), re = { attribute: !0, type: String, converter: L, reflect: !1, useDefault: !1, hasChanged: Y };
+Symbol.metadata ?? (Symbol.metadata = Symbol("metadata")), y.litPropertyMetadata ?? (y.litPropertyMetadata = /* @__PURE__ */ new WeakMap());
 let C = class extends HTMLElement {
   static addInitializer(e) {
     this._$Ei(), (this.l ?? (this.l = [])).push(e);
@@ -85,7 +85,7 @@ let C = class extends HTMLElement {
   static createProperty(e, t = re) {
     if (t.state && (t.attribute = !1), this._$Ei(), this.prototype.hasOwnProperty(e) && ((t = Object.create(t)).wrapped = !0), this.elementProperties.set(e, t), !t.noAccessor) {
       const i = Symbol(), o = this.getPropertyDescriptor(e, i, t);
-      o !== void 0 && ke(this.prototype, e, o);
+      o !== void 0 && Ae(this.prototype, e, o);
     }
   }
   static getPropertyDescriptor(e, t, i) {
@@ -278,16 +278,16 @@ let C = class extends HTMLElement {
   firstUpdated(e) {
   }
 };
-C.elementStyles = [], C.shadowRootOptions = { mode: "open" }, C[O("elementProperties")] = /* @__PURE__ */ new Map(), C[O("finalized")] = /* @__PURE__ */ new Map(), G == null || G({ ReactiveElement: C }), (v.reactiveElementVersions ?? (v.reactiveElementVersions = [])).push("2.1.2");
+C.elementStyles = [], C.shadowRootOptions = { mode: "open" }, C[O("elementProperties")] = /* @__PURE__ */ new Map(), C[O("finalized")] = /* @__PURE__ */ new Map(), G == null || G({ ReactiveElement: C }), (y.reactiveElementVersions ?? (y.reactiveElementVersions = [])).push("2.1.2");
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const U = globalThis, se = (n) => n, q = U.trustedTypes, ce = q ? q.createPolicy("lit-html", { createHTML: (n) => n }) : void 0, we = "$lit$", _ = `lit$${Math.random().toFixed(9).slice(2)}$`, ge = "?" + _, Te = `<${ge}>`, S = document, M = () => S.createComment(""), N = (n) => n === null || typeof n != "object" && typeof n != "function", ee = Array.isArray, Oe = (n) => ee(n) || typeof (n == null ? void 0 : n[Symbol.iterator]) == "function", K = `[ 	
+const U = globalThis, se = (n) => n, B = U.trustedTypes, ce = B ? B.createPolicy("lit-html", { createHTML: (n) => n }) : void 0, ue = "$lit$", v = `lit$${Math.random().toFixed(9).slice(2)}$`, ge = "?" + v, Te = `<${ge}>`, S = document, M = () => S.createComment(""), N = (n) => n === null || typeof n != "object" && typeof n != "function", ee = Array.isArray, Oe = (n) => ee(n) || typeof (n == null ? void 0 : n[Symbol.iterator]) == "function", K = `[ 	
 \f\r]`, T = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, ae = /-->/g, le = />/g, x = RegExp(`>|${K}(?:([^\\s"'>=/]+)(${K}*=${K}*(?:[^ 	
-\f\r"'\`<>=]|("|')|))|$)`, "g"), be = /'/g, fe = /"/g, _e = /^(?:script|style|textarea|title)$/i, Ue = (n) => (e, ...t) => ({ _$litType$: n, strings: e, values: t }), y = Ue(1), P = Symbol.for("lit-noChange"), b = Symbol.for("lit-nothing"), me = /* @__PURE__ */ new WeakMap(), A = S.createTreeWalker(S, 129);
-function ye(n, e) {
+\f\r"'\`<>=]|("|')|))|$)`, "g"), be = /'/g, fe = /"/g, _e = /^(?:script|style|textarea|title)$/i, Ue = (n) => (e, ...t) => ({ _$litType$: n, strings: e, values: t }), g = Ue(1), P = Symbol.for("lit-noChange"), b = Symbol.for("lit-nothing"), me = /* @__PURE__ */ new WeakMap(), k = S.createTreeWalker(S, 129);
+function ve(n, e) {
   if (!ee(n) || !n.hasOwnProperty("raw")) throw Error("invalid template strings array");
   return ce !== void 0 ? ce.createHTML(e) : e;
 }
@@ -296,12 +296,12 @@ const Me = (n, e) => {
   let o, r = e === 2 ? "<svg>" : e === 3 ? "<math>" : "", s = T;
   for (let a = 0; a < t; a++) {
     const c = n[a];
-    let f, m, l = -1, w = 0;
-    for (; w < c.length && (s.lastIndex = w, m = s.exec(c), m !== null); ) w = s.lastIndex, s === T ? m[1] === "!--" ? s = ae : m[1] !== void 0 ? s = le : m[2] !== void 0 ? (_e.test(m[2]) && (o = RegExp("</" + m[2], "g")), s = x) : m[3] !== void 0 && (s = x) : s === x ? m[0] === ">" ? (s = o ?? T, l = -1) : m[1] === void 0 ? l = -2 : (l = s.lastIndex - m[2].length, f = m[1], s = m[3] === void 0 ? x : m[3] === '"' ? fe : be) : s === fe || s === be ? s = x : s === ae || s === le ? s = T : (s = x, o = void 0);
-    const g = s === x && n[a + 1].startsWith("/>") ? " " : "";
-    r += s === T ? c + Te : l >= 0 ? (i.push(f), c.slice(0, l) + we + c.slice(l) + _ + g) : c + _ + (l === -2 ? a : g);
+    let f, m, l = -1, u = 0;
+    for (; u < c.length && (s.lastIndex = u, m = s.exec(c), m !== null); ) u = s.lastIndex, s === T ? m[1] === "!--" ? s = ae : m[1] !== void 0 ? s = le : m[2] !== void 0 ? (_e.test(m[2]) && (o = RegExp("</" + m[2], "g")), s = x) : m[3] !== void 0 && (s = x) : s === x ? m[0] === ">" ? (s = o ?? T, l = -1) : m[1] === void 0 ? l = -2 : (l = s.lastIndex - m[2].length, f = m[1], s = m[3] === void 0 ? x : m[3] === '"' ? fe : be) : s === fe || s === be ? s = x : s === ae || s === le ? s = T : (s = x, o = void 0);
+    const _ = s === x && n[a + 1].startsWith("/>") ? " " : "";
+    r += s === T ? c + Te : l >= 0 ? (i.push(f), c.slice(0, l) + ue + c.slice(l) + v + _) : c + v + (l === -2 ? a : _);
   }
-  return [ye(n, r + (n[t] || "<?>") + (e === 2 ? "</svg>" : e === 3 ? "</math>" : "")), i];
+  return [ve(n, r + (n[t] || "<?>") + (e === 2 ? "</svg>" : e === 3 ? "</math>" : "")), i];
 };
 class H {
   constructor({ strings: e, _$litType$: t }, i) {
@@ -309,28 +309,28 @@ class H {
     this.parts = [];
     let r = 0, s = 0;
     const a = e.length - 1, c = this.parts, [f, m] = Me(e, t);
-    if (this.el = H.createElement(f, i), A.currentNode = this.el.content, t === 2 || t === 3) {
+    if (this.el = H.createElement(f, i), k.currentNode = this.el.content, t === 2 || t === 3) {
       const l = this.el.content.firstChild;
       l.replaceWith(...l.childNodes);
     }
-    for (; (o = A.nextNode()) !== null && c.length < a; ) {
+    for (; (o = k.nextNode()) !== null && c.length < a; ) {
       if (o.nodeType === 1) {
-        if (o.hasAttributes()) for (const l of o.getAttributeNames()) if (l.endsWith(we)) {
-          const w = m[s++], g = o.getAttribute(l).split(_), D = /([.?@])?(.*)/.exec(w);
-          c.push({ type: 1, index: r, name: D[2], strings: g, ctor: D[1] === "." ? He : D[1] === "?" ? Re : D[1] === "@" ? Ie : V }), o.removeAttribute(l);
-        } else l.startsWith(_) && (c.push({ type: 6, index: r }), o.removeAttribute(l));
+        if (o.hasAttributes()) for (const l of o.getAttributeNames()) if (l.endsWith(ue)) {
+          const u = m[s++], _ = o.getAttribute(l).split(v), D = /([.?@])?(.*)/.exec(u);
+          c.push({ type: 1, index: r, name: D[2], strings: _, ctor: D[1] === "." ? He : D[1] === "?" ? Re : D[1] === "@" ? je : W }), o.removeAttribute(l);
+        } else l.startsWith(v) && (c.push({ type: 6, index: r }), o.removeAttribute(l));
         if (_e.test(o.tagName)) {
-          const l = o.textContent.split(_), w = l.length - 1;
-          if (w > 0) {
-            o.textContent = q ? q.emptyScript : "";
-            for (let g = 0; g < w; g++) o.append(l[g], M()), A.nextNode(), c.push({ type: 2, index: ++r });
-            o.append(l[w], M());
+          const l = o.textContent.split(v), u = l.length - 1;
+          if (u > 0) {
+            o.textContent = B ? B.emptyScript : "";
+            for (let _ = 0; _ < u; _++) o.append(l[_], M()), k.nextNode(), c.push({ type: 2, index: ++r });
+            o.append(l[u], M());
           }
         }
       } else if (o.nodeType === 8) if (o.data === ge) c.push({ type: 2, index: r });
       else {
         let l = -1;
-        for (; (l = o.data.indexOf(_, l + 1)) !== -1; ) c.push({ type: 7, index: r }), l += _.length - 1;
+        for (; (l = o.data.indexOf(v, l + 1)) !== -1; ) c.push({ type: 7, index: r }), l += v.length - 1;
       }
       r++;
     }
@@ -359,23 +359,23 @@ class Ne {
   }
   u(e) {
     const { el: { content: t }, parts: i } = this._$AD, o = ((e == null ? void 0 : e.creationScope) ?? S).importNode(t, !0);
-    A.currentNode = o;
-    let r = A.nextNode(), s = 0, a = 0, c = i[0];
+    k.currentNode = o;
+    let r = k.nextNode(), s = 0, a = 0, c = i[0];
     for (; c !== void 0; ) {
       if (s === c.index) {
         let f;
-        c.type === 2 ? f = new I(r, r.nextSibling, this, e) : c.type === 1 ? f = new c.ctor(r, c.name, c.strings, this, e) : c.type === 6 && (f = new je(r, this, e)), this._$AV.push(f), c = i[++a];
+        c.type === 2 ? f = new j(r, r.nextSibling, this, e) : c.type === 1 ? f = new c.ctor(r, c.name, c.strings, this, e) : c.type === 6 && (f = new Ie(r, this, e)), this._$AV.push(f), c = i[++a];
       }
-      s !== (c == null ? void 0 : c.index) && (r = A.nextNode(), s++);
+      s !== (c == null ? void 0 : c.index) && (r = k.nextNode(), s++);
     }
-    return A.currentNode = S, o;
+    return k.currentNode = S, o;
   }
   p(e) {
     let t = 0;
     for (const i of this._$AV) i !== void 0 && (i.strings !== void 0 ? (i._$AI(e, i, t), t += i.strings.length - 2) : i._$AI(e[t])), t++;
   }
 }
-class I {
+class j {
   get _$AU() {
     var e;
     return ((e = this._$AM) == null ? void 0 : e._$AU) ?? this._$Cv;
@@ -408,7 +408,7 @@ class I {
   }
   $(e) {
     var r;
-    const { values: t, _$litType$: i } = e, o = typeof i == "number" ? this._$AC(e) : (i.el === void 0 && (i.el = H.createElement(ye(i.h, i.h[0]), this.options)), i);
+    const { values: t, _$litType$: i } = e, o = typeof i == "number" ? this._$AC(e) : (i.el === void 0 && (i.el = H.createElement(ve(i.h, i.h[0]), this.options)), i);
     if (((r = this._$AH) == null ? void 0 : r._$AD) === o) this._$AH.p(t);
     else {
       const s = new Ne(o, this), a = s.u(this.options);
@@ -423,7 +423,7 @@ class I {
     ee(this._$AH) || (this._$AH = [], this._$AR());
     const t = this._$AH;
     let i, o = 0;
-    for (const r of e) o === t.length ? t.push(i = new I(this.O(M()), this.O(M()), this, this.options)) : i = t[o], i._$AI(r), o++;
+    for (const r of e) o === t.length ? t.push(i = new j(this.O(M()), this.O(M()), this, this.options)) : i = t[o], i._$AI(r), o++;
     o < t.length && (this._$AR(i && i._$AB.nextSibling, o), t.length = o);
   }
   _$AR(e = this._$AA.nextSibling, t) {
@@ -438,7 +438,7 @@ class I {
     this._$AM === void 0 && (this._$Cv = e, (t = this._$AP) == null || t.call(this, e));
   }
 }
-class V {
+class W {
   get tagName() {
     return this.element.tagName;
   }
@@ -463,7 +463,7 @@ class V {
     e === b ? this.element.removeAttribute(this.name) : this.element.setAttribute(this.name, e ?? "");
   }
 }
-class He extends V {
+class He extends W {
   constructor() {
     super(...arguments), this.type = 3;
   }
@@ -471,7 +471,7 @@ class He extends V {
     this.element[this.name] = e === b ? void 0 : e;
   }
 }
-class Re extends V {
+class Re extends W {
   constructor() {
     super(...arguments), this.type = 4;
   }
@@ -479,7 +479,7 @@ class Re extends V {
     this.element.toggleAttribute(this.name, !!e && e !== b);
   }
 }
-class Ie extends V {
+class je extends W {
   constructor(e, t, i, o, r) {
     super(e, t, i, o, r), this.type = 5;
   }
@@ -493,7 +493,7 @@ class Ie extends V {
     typeof this._$AH == "function" ? this._$AH.call(((t = this.options) == null ? void 0 : t.host) ?? this.element, e) : this._$AH.handleEvent(e);
   }
 }
-class je {
+class Ie {
   constructor(e, t, i) {
     this.element = e, this.type = 6, this._$AN = void 0, this._$AM = t, this.options = i;
   }
@@ -505,13 +505,13 @@ class je {
   }
 }
 const J = U.litHtmlPolyfillSupport;
-J == null || J(H, I), (U.litHtmlVersions ?? (U.litHtmlVersions = [])).push("3.3.2");
+J == null || J(H, j), (U.litHtmlVersions ?? (U.litHtmlVersions = [])).push("3.3.2");
 const De = (n, e, t) => {
   const i = (t == null ? void 0 : t.renderBefore) ?? e;
   let o = i._$litPart$;
   if (o === void 0) {
     const r = (t == null ? void 0 : t.renderBefore) ?? null;
-    i._$litPart$ = o = new I(e.insertBefore(M(), r), r, void 0, t ?? {});
+    i._$litPart$ = o = new j(e.insertBefore(M(), r), r, void 0, t ?? {});
   }
   return o._$AI(n), o;
 };
@@ -520,7 +520,7 @@ const De = (n, e, t) => {
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const k = globalThis;
+const A = globalThis;
 class E extends C {
   constructor() {
     super(...arguments), this.renderOptions = { host: this }, this._$Do = void 0;
@@ -546,11 +546,11 @@ class E extends C {
     return P;
   }
 }
-var ue;
-E._$litElement$ = !0, E.finalized = !0, (ue = k.litElementHydrateSupport) == null || ue.call(k, { LitElement: E });
-const Z = k.litElementPolyfillSupport;
+var we;
+E._$litElement$ = !0, E.finalized = !0, (we = A.litElementHydrateSupport) == null || we.call(A, { LitElement: E });
+const Z = A.litElementPolyfillSupport;
 Z == null || Z({ LitElement: E });
-(k.litElementVersions ?? (k.litElementVersions = [])).push("4.2.2");
+(A.litElementVersions ?? (A.litElementVersions = [])).push("4.2.2");
 /**
  * @license
  * Copyright 2017 Google LLC
@@ -588,10 +588,10 @@ function d(n) {
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-function W(n) {
+function V(n) {
   return d({ ...n, state: !0, attribute: !1 });
 }
-const ve = R`
+const ye = R`
   :host {
     /* Colors - Blue */
     --blue-100: rgb(224, 239, 255);
@@ -716,35 +716,52 @@ const ve = R`
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
 
-    /* Spacing */
-    --spacing-0: 0;
+    /* Spacing — aligned with ngx-ui layouts/_vars.scss */
+    --spacing-0: 0px;
     --spacing-2: 2px;
     --spacing-4: 4px;
+    --spacing-6: 6px;
     --spacing-8: 8px;
     --spacing-10: 10px;
     --spacing-12: 12px;
+    --spacing-14: 14px;
     --spacing-16: 16px;
+    --spacing-18: 18px;
     --spacing-20: 20px;
     --spacing-24: 24px;
-    --spacing-32: 32px;
+    --spacing-30: 30px;
+    --spacing-36: 36px;
+    --spacing-40: 40px;
+    --spacing-48: 48px;
 
-    /* Border Radius */
-    --radius-0: 0;
+    /* Border radius — aligned with ngx-ui layouts/_vars.scss */
+    --radius-0: 0px;
     --radius-2: 2px;
     --radius-4: 4px;
     --radius-6: 6px;
     --radius-8: 8px;
+    --radius-12: 12px;
     --radius-16: 16px;
+    --radius-24: 24px;
+    --radius-32: 32px;
     --radius-64: 64px;
+    --radius-1000: 1000px;
 
     /* Semantic colors */
     --color-error: var(--red-500);
     --color-success: #b0e53c;
 
-    /* Shadows */
-    --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.3);
-    --shadow-2: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    /* Shadows — aligned with ngx-ui shadow-variables.scss (Material-style key/penumbra/ambient) */
+    --shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
+    --shadow-2: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);
     --shadow-3: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);
+
+    /* Modal / large-format surface (ngx gradient-variables $bg-linear-3) */
+    --bg-linear-3: linear-gradient(180deg, #252a37 0%, #212631 100%);
+    /* Figma modal panel (filter: dy=2, stdDeviation=3.5, alpha 0.2) */
+    --shadow-dialog-panel: 0 2px 7px rgba(0, 0, 0, 0.2);
+    /* Diffuse halo (ngx large-format legacy); override with --shadow-dialog-panel for Figma parity */
+    --shadow-dialog-glow: 0 0 100px rgba(0, 0, 0, 0.25);
   }
 `;
 R`
@@ -752,10 +769,92 @@ R`
     box-sizing: border-box;
   }
 `;
-const qe = R`
+const Be = R`
   :host {
     display: inline-block;
     cursor: pointer;
+    /* Allow constrained layouts (flex/grid) to shrink below label intrinsic width so ellipsis can apply */
+    min-width: 0;
+
+    /* Private fallbacks — overridden per [variant] with higher specificity */
+    --_swim-fallback-bg: var(--grey-600);
+    --_swim-fallback-hover-bg: var(--grey-700);
+    --_swim-fallback-border-color: transparent;
+    --_swim-fallback-hover-border-color: transparent;
+    --_swim-fallback-color: var(--white);
+    --_swim-fallback-hover-color: var(--white);
+    --_swim-fallback-shadow: var(--shadow-1);
+    --_swim-fallback-outline: var(--grey-600);
+
+    /* Slotted nodes (e.g. swim-icon) inherit color from this host, not from the shadow button. */
+    color: var(--swim-button-color, var(--_swim-fallback-color));
+  }
+
+  :host([variant='primary']:not([bordered])) {
+    --_swim-fallback-bg: var(--blue-400);
+    --_swim-fallback-hover-bg: var(--blue-500);
+    --_swim-fallback-border-color: var(--blue-400);
+    --_swim-fallback-hover-border-color: var(--blue-500);
+    --_swim-fallback-color: var(--white);
+    --_swim-fallback-hover-color: var(--white);
+    --_swim-fallback-outline: var(--blue-500);
+  }
+
+  :host([variant='primary'][bordered]) {
+    --_swim-fallback-bg: transparent;
+    --_swim-fallback-hover-bg: var(--blue-500);
+    --_swim-fallback-border-color: var(--blue-400);
+    --_swim-fallback-hover-border-color: var(--blue-200);
+    --_swim-fallback-color: var(--blue-400);
+    --_swim-fallback-hover-color: var(--blue-200);
+    --_swim-fallback-shadow: none;
+    --_swim-fallback-outline: var(--blue-400);
+  }
+
+  :host([variant='bordered']) {
+    --_swim-fallback-bg: transparent;
+    --_swim-fallback-hover-bg: transparent;
+    --_swim-fallback-border-color: var(--blue-400);
+    --_swim-fallback-hover-border-color: var(--blue-200);
+    --_swim-fallback-color: var(--blue-400);
+    --_swim-fallback-hover-color: var(--blue-200);
+    --_swim-fallback-shadow: none;
+    --_swim-fallback-outline: var(--blue-400);
+  }
+
+  :host([variant='warning']) {
+    --_swim-fallback-bg: var(--orange-400);
+    --_swim-fallback-hover-bg: var(--orange-500);
+    --_swim-fallback-border-color: transparent;
+    --_swim-fallback-hover-border-color: transparent;
+    --_swim-fallback-color: var(--grey-900);
+    --_swim-fallback-hover-color: var(--grey-900);
+    --_swim-fallback-outline: var(--orange-500);
+  }
+
+  :host([variant='danger']) {
+    --_swim-fallback-bg: var(--red-400);
+    --_swim-fallback-hover-bg: var(--red-500);
+    --_swim-fallback-border-color: transparent;
+    --_swim-fallback-hover-border-color: transparent;
+    --_swim-fallback-color: var(--white);
+    --_swim-fallback-hover-color: var(--white);
+    --_swim-fallback-outline: var(--red-400);
+  }
+
+  :host([variant='link']) {
+    --_swim-fallback-bg: transparent;
+    --_swim-fallback-hover-bg: transparent;
+    --_swim-fallback-border-color: transparent;
+    --_swim-fallback-hover-border-color: transparent;
+    --_swim-fallback-color: var(--white);
+    --_swim-fallback-hover-color: var(--white);
+    --_swim-fallback-shadow: none;
+    --_swim-fallback-outline: var(--grey-600);
+  }
+
+  :host(:not([disabled]):hover) {
+    color: var(--swim-button-hover-color, var(--_swim-fallback-hover-color));
   }
 
   :host([disabled]) {
@@ -770,27 +869,33 @@ const qe = R`
 
   button {
     box-sizing: border-box;
-    color: var(--button-text, var(--white));
-    display: inline-block;
-    padding: 0.35em 0.55em;
+    color: var(--swim-button-color, var(--_swim-fallback-color));
+    display: inline-grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    justify-items: stretch;
+    align-items: center;
+    padding: var(--swim-button-padding, 0.35em 0.55em);
     position: relative;
     text-align: center;
     text-decoration: none;
     user-select: none;
     font: inherit;
     font-size: var(--font-size-m);
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--swim-button-font-weight, var(--font-weight-bold));
     outline: none;
     line-height: var(--font-line-height-100);
     outline-offset: 2px;
     cursor: inherit;
     width: 100%;
+    min-width: 0;
 
-    background: var(--button-bg, var(--grey-600));
-    border: solid 1px transparent;
-    border-color: var(--button-border, transparent);
+    background: var(--swim-button-background, var(--_swim-fallback-bg));
+    border-width: var(--swim-button-border-width, 1px);
+    border-style: var(--swim-button-border-style, solid);
+    border-color: var(--swim-button-border-color, var(--_swim-fallback-border-color));
     border-radius: var(--radius-4);
-    box-shadow: var(--button-shadow, var(--shadow-1));
+    box-shadow: var(--swim-button-shadow, var(--_swim-fallback-shadow));
     transition: background-color 200ms, box-shadow 200ms;
     text-shadow: 1px 1px rgba(0, 0, 0, 0.07);
   }
@@ -801,14 +906,19 @@ const qe = R`
   }
 
   button:focus-visible {
-    outline: 2px solid var(--grey-600);
+    outline: 2px solid var(--swim-button-outline-color, var(--_swim-fallback-outline));
   }
 
-  /* Hover states (--button-hover set by swim-button-group when used inside a group) */
+  /* One hover layer so generic grey hover never leaks into bordered / link / etc. */
   :host(:not([disabled])) button:hover {
     cursor: pointer;
-    background: var(--button-hover, var(--grey-700));
-    outline-color: var(--button-hover, var(--grey-700));
+    background: var(--swim-button-hover-background, var(--_swim-fallback-hover-bg));
+    border-color: var(--swim-button-hover-border-color, var(--_swim-fallback-hover-border-color));
+    color: var(--swim-button-hover-color, var(--_swim-fallback-hover-color));
+    outline-color: var(
+      --swim-button-hover-outline-color,
+      var(--swim-button-hover-background, var(--_swim-fallback-hover-bg))
+    );
   }
 
   /* Size variants */
@@ -820,102 +930,65 @@ const qe = R`
     font-size: 1.3em;
   }
 
-  /* Variant: Primary (--button-* overrides when inside swim-button-group) */
-  :host([variant='primary']) button {
-    background-color: var(--button-bg, var(--blue-400));
-    border-color: var(--button-border, var(--blue-400));
-    color: var(--button-text, var(--white));
-    outline-color: var(--button-border, var(--blue-500));
+  /* Slotted swim-icon: 1em sizing + vertical center with label text (flex on .content). */
+  slot::slotted(swim-icon) {
+    font-size: inherit;
+    flex-shrink: 0;
+    align-self: center;
+    line-height: 1;
   }
 
-  :host([variant='primary']) button:focus-visible {
-    outline-color: var(--button-border, var(--blue-500));
-  }
-
-  :host([variant='primary']:not([disabled])) button:hover {
-    background-color: var(--button-hover, var(--blue-500));
-    border-color: var(--button-hover, var(--blue-500));
-  }
-
-  /* Variant: Warning */
-  :host([variant='warning']) button {
-    background-color: var(--orange-400);
-    color: var(--grey-900);
-    outline-color: var(--orange-500);
-  }
-
-  :host([variant='warning']) button:focus-visible {
-    outline-color: var(--orange-500);
-  }
-
-  :host([variant='warning']:not([disabled])) button:hover {
-    background-color: var(--orange-500);
-  }
-
-  /* Variant: Danger */
-  :host([variant='danger']) button {
-    background-color: var(--red-400);
-    outline-color: var(--red-400);
-  }
-
-  :host([variant='danger']) button:focus-visible {
-    outline-color: var(--red-400);
-  }
-
-  :host([variant='danger']:not([disabled])) button:hover {
-    background-color: var(--red-500);
-  }
-
-  /* Variant: Link */
-  :host([variant='link']) button {
-    background-color: transparent;
-    box-shadow: none;
-  }
-
-  :host([variant='link']:not([disabled])) button:hover {
-    background-color: transparent;
-  }
-
-  /* Variant: Bordered */
-  :host([variant='bordered']) button,
-  :host([variant='primary'][bordered]) button {
-    border: 1px solid var(--blue-400);
-    color: var(--blue-400);
-    background-color: transparent;
-    box-shadow: none;
-    outline-color: var(--blue-400);
-  }
-
-  :host([variant='bordered']) button:focus-visible,
-  :host([variant='primary'][bordered]) button:focus-visible {
-    outline-color: var(--blue-400);
-  }
-
-  :host([variant='bordered']:not([disabled])) button:hover,
-  :host([variant='primary'][bordered]:not([disabled])) button:hover {
-    border-color: var(--blue-200);
-    color: var(--blue-200);
-  }
-
-  /* Button content and state icon container */
+  /* Button content and state icon: same grid cell so intrinsic width is max(label, state) */
   .content {
-    text-overflow: ellipsis;
-    overflow-x: clip;
-    overflow-y: visible;
+    grid-area: 1 / 1;
+    min-width: 0;
+    max-width: 100%;
     width: 100%;
-    display: block;
-    white-space: nowrap;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
     transition: opacity 0.25s ease-out;
   }
 
+  /* Single-line + ellipsis: wrap-text="false" (wrap-text attribute omitted when wrapping is on) */
+  :host([wrap-text='false']) .content {
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: normal;
+    overflow-wrap: normal;
+  }
+
   .state-icon {
-    position: absolute;
-    inset: 0;
+    grid-area: 1 / 1;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    justify-self: center;
+    width: max-content;
+    box-sizing: border-box;
     opacity: 0;
     pointer-events: none;
+  }
+
+  .state-icon-group {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35em;
+    box-sizing: border-box;
+    padding: 0 0.35em;
+  }
+
+  .state-loading-text {
+    white-space: nowrap;
   }
 
   /* State: In Progress */
@@ -928,6 +1001,10 @@ const qe = R`
   :host([state='in-progress']) button {
     opacity: 1;
     pointer-events: none;
+    /* Loading + host disabled: UA button:disabled grays out inherited color (hurts loading-text).
+ Re-apply variant foreground; !important aligns with ngx-ui .in-progress vs. UA.
+ Override with --swim-button-in-progress-color on :host. */
+    color: var(--swim-button-in-progress-color, var(--swim-button-color, var(--_swim-fallback-color))) !important;
   }
 
   :host([state='in-progress']) .content {
@@ -936,6 +1013,14 @@ const qe = R`
 
   :host([state='in-progress']) .state-icon {
     opacity: 1;
+  }
+
+  /* Loading glyph: same var chain as in-progress button color (explicit so it does not rely on currentColor / stale builds). */
+  :host([state='in-progress']) swim-icon.icon {
+    color: var(
+      --swim-button-loading-icon-color,
+      var(--swim-button-in-progress-color, var(--swim-button-color, var(--_swim-fallback-color)))
+    );
   }
 
   /* State: Success */
@@ -982,12 +1067,11 @@ const qe = R`
     color: var(--white);
   }
 
-  /* Icon styles */
+  /* Loading swim-icon sizing (color set on :host([state='in-progress']) swim-icon.icon) */
   .icon {
     height: 1em;
     width: 1em;
     font-weight: var(--font-weight-bold);
-    color: var(--white);
     overflow: hidden;
     font-size: var(--font-size-m);
     display: inline-block;
@@ -1007,14 +1091,26 @@ const qe = R`
     animation: spin 1s linear infinite;
   }
 `;
-var u = /* @__PURE__ */ ((n) => (n.Active = "active", n.InProgress = "in-progress", n.Success = "success", n.Fail = "fail", n))(u || {});
-function Be(n) {
+var p = /* @__PURE__ */ ((n) => (n.Active = "active", n.InProgress = "in-progress", n.Success = "success", n.Fail = "fail", n))(p || {});
+function qe(n) {
   return n != null && `${n}` != "false";
 }
-function Ve(n, e = null) {
+function We(n, e = null) {
   return isNaN(parseFloat(n)) || isNaN(Number(n)) ? e : Number(n);
 }
-const We = R`
+const Ve = {
+  fromAttribute: (n) => n !== "false",
+  /** Omit attribute when true (default); set explicit `="false"` only when off. */
+  toAttribute: (n) => n ? null : "false"
+}, Ge = {
+  fromAttribute: (n) => n !== null && n !== "false" && n !== "0",
+  /**
+   * Use empty string when true so the boolean attribute is present; remove when false.
+   * Serializing false as `attr="false"` leaves the attribute in the DOM, so selectors like
+   * `[disabled]` / `[loading]` (common in resets and lazy-load styles) still match the host.
+   */
+  toAttribute: (n) => n ? "" : null
+}, Ke = R`
   .swim-icon.lit-3d-rotate::before {
     content: '\\ea01';
   }
@@ -2299,10 +2395,15 @@ const We = R`
   .swim-icon.lit-x-small::before {
     content: '\\ebac';
   }
-`, Ge = R`
+`, Je = R`
   :host {
-    display: inline-block;
-    vertical-align: baseline;
+    /* inline-flex keeps the host box tight to the glyph and centers the shadow icon in contexts
+       (e.g. swim-button) where inherited line-height would otherwise grow the line box asymmetrically */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    line-height: 1;
   }
 
   :host svg {
@@ -2368,7 +2469,7 @@ const We = R`
   /* Font icon base (glyphs in icon-font-glyphs.ts); uses same font as ngx-ui ('ngx-icon'). */
   .swim-icon,
   .swim-icon__i.swim-icon {
-    display: inline-block;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 1em;
@@ -2380,10 +2481,14 @@ const We = R`
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Center the glyph regardless of font metrics (fixes vertical misalignment) */
+  /* Center the glyph in the em box; many ngx-icon glyphs sit high with display:block alone */
   .swim-icon::before,
   .swim-icon__i.swim-icon::before {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
     line-height: 1;
   }
 
@@ -2413,12 +2518,12 @@ const We = R`
     animation: swim-icon-spin 1s linear infinite;
   }
 
-  ${We}
-`, Ke = (n) => `swim-icon ${n.trim().split(" ").map((t) => {
+  ${Ke}
+`, Ze = (n) => `swim-icon ${n.trim().split(" ").map((t) => {
   const [i, o] = t.split(":");
   return i.length ? `${i} ${i}-${o}` : o;
 }).join(" ")}`;
-class Je {
+class Qe {
   constructor() {
     this._defaultFontSetClass = "lit", this._iconMap = /* @__PURE__ */ new Map();
   }
@@ -2426,7 +2531,7 @@ class Je {
     return this._defaultFontSetClass = e, this._defaultFontSetClass;
   }
   get(e, t) {
-    return this.lookup(e, t).map((i) => Ke(i));
+    return this.lookup(e, t).map((i) => Ze(i));
   }
   lookup(e, t) {
     const i = t ?? this._defaultFontSetClass;
@@ -2446,11 +2551,11 @@ class Je {
     return e.split(" ").map((i) => i.includes(":") ? i : `${t}:${i}`);
   }
 }
-const Ze = new Je();
-var Qe = Object.defineProperty, j = (n, e, t, i) => {
+const Xe = new Qe();
+var Ye = Object.defineProperty, I = (n, e, t, i) => {
   for (var o = void 0, r = n.length - 1, s; r >= 0; r--)
     (s = n[r]) && (o = s(e, t, o) || o);
-  return o && Qe(e, t, o), o;
+  return o && Ye(e, t, o), o;
 };
 const he = "swim-icon", te = class te extends E {
   constructor() {
@@ -2486,12 +2591,12 @@ const he = "swim-icon", te = class te extends E {
       this._cssClasses = [];
       return;
     }
-    this._cssClasses = Ze.get(e, this.fontSet);
+    this._cssClasses = Xe.get(e, this.fontSet);
   }
   render() {
     var r;
     const e = this._cssClasses, t = !!this.alt, i = ((r = this.iconClass) == null ? void 0 : r.trim()) ?? "", o = i ? ` ${i}` : "";
-    return !e || e.length === 0 ? y`
+    return !e || e.length === 0 ? g`
         <span
           part="icon"
           class="${i}"
@@ -2501,7 +2606,7 @@ const he = "swim-icon", te = class te extends E {
         >
           <slot></slot>
         </span>
-      ` : e.length === 1 ? y`
+      ` : e.length === 1 ? g`
         <i
           part="icon"
           class="swim-icon__i ${e[0]}${o}"
@@ -2509,7 +2614,7 @@ const he = "swim-icon", te = class te extends E {
           aria-label="${t ? this.alt : b}"
           aria-hidden="${t ? "false" : "true"}"
         ></i>
-      ` : y`
+      ` : g`
       <span
         class="swim-icon__stack"
         role="${t ? "img" : "presentation"}"
@@ -2517,44 +2622,44 @@ const he = "swim-icon", te = class te extends E {
         aria-hidden="${t ? "false" : "true"}"
       >
         ${e.map(
-      (s, a) => y`<i part="icon icon-${a}" class="swim-icon__i swim-icon__i--${a} ${s}${o}"></i>`
+      (s, a) => g`<i part="icon icon-${a}" class="swim-icon__i swim-icon__i--${a} ${s}${o}"></i>`
     )}
       </span>
     `;
   }
 };
-te.styles = [ve, Ge];
+te.styles = [ye, Je];
 let $ = te;
-j([
+I([
   d({ type: String, attribute: "font-icon" })
 ], $.prototype, "fontIcon");
-j([
+I([
   d({ type: String })
 ], $.prototype, "alt");
-j([
+I([
   d({ type: String, attribute: "font-set" })
 ], $.prototype, "fontSet");
-j([
+I([
   d({ type: String, attribute: "icon-class" })
 ], $.prototype, "iconClass");
-j([
-  W()
+I([
+  V()
 ], $.prototype, "_cssClasses");
 customElements.get(he) || customElements.define(he, $);
-var Xe = Object.defineProperty, Ye = Object.getOwnPropertyDescriptor, p = (n, e, t, i) => {
-  for (var o = i > 1 ? void 0 : i ? Ye(e, t) : e, r = n.length - 1, s; r >= 0; r--)
+var et = Object.defineProperty, tt = Object.getOwnPropertyDescriptor, w = (n, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? tt(e, t) : e, r = n.length - 1, s; r >= 0; r--)
     (s = n[r]) && (o = (i ? s(e, t, o) : s(o)) || o);
-  return i && o && Xe(e, t, o), o;
+  return i && o && et(e, t, o), o;
 };
-const de = "swim-button", B = class B extends E {
+const de = "swim-button", q = class q extends E {
   constructor() {
-    super(), this.variant = "default", this.size = "medium", this._disabled = !1, this._state = u.Active, this.type = "button", this._inProgress = !1, this._success = !1, this._fail = !1, this._internals = this.attachInternals();
+    super(), this.variant = "default", this.size = "medium", this._disabled = !1, this._state = p.Active, this.type = "button", this.loadingText = "", this.wrapText = !0, this._inProgress = !1, this._success = !1, this._fail = !1, this._internals = this.attachInternals();
   }
   get disabled() {
     return this._disabled;
   }
   set disabled(e) {
-    this._disabled = Be(e);
+    this._disabled = qe(e);
   }
   get state() {
     return this._state;
@@ -2566,7 +2671,7 @@ const de = "swim-button", B = class B extends E {
     return this._timeout;
   }
   set timeout(e) {
-    this._timeout = e === void 0 ? void 0 : Ve(e);
+    this._timeout = e === void 0 ? void 0 : We(e);
   }
   get promise() {
     return this._promise;
@@ -2581,9 +2686,15 @@ const de = "swim-button", B = class B extends E {
     super.disconnectedCallback(), this._clearTimer();
   }
   render() {
-    return y`
-      <button part="button" type="button" ?disabled="${this.disabled}" @click="${this._handleClick}">
-        <span class="content">
+    return g`
+      <button
+        part="button"
+        type="button"
+        ?disabled="${this.disabled}"
+        ?aria-busy="${this._inProgress}"
+        @click="${this._handleClick}"
+      >
+        <span class="content" ?aria-hidden="${this._inProgress || this._success || this._fail}">
           <slot></slot>
         </span>
         <span class="state-icon">${this._renderStateIcon()}</span>
@@ -2591,7 +2702,12 @@ const de = "swim-button", B = class B extends E {
     `;
   }
   _renderStateIcon() {
-    return this._inProgress ? y`<swim-icon class="state-icon" font-icon="loading"></swim-icon>` : this._success ? y`<swim-icon class="state-icon" font-icon="check"></swim-icon>` : this._fail ? y`<swim-icon class="state-icon" font-icon="x"></swim-icon>` : b;
+    return this._inProgress ? g`
+        <span class="state-icon-group">
+          <swim-icon class="icon" font-icon="loading"></swim-icon>
+          ${this.loadingText ? g`<span class="state-loading-text">${this.loadingText}</span>` : b}
+        </span>
+      ` : this._success ? g`<swim-icon class="state-icon" font-icon="check"></swim-icon>` : this._fail ? g`<swim-icon class="state-icon" font-icon="x"></swim-icon>` : b;
   }
   _handleClick(e) {
     if (this.disabled) {
@@ -2602,62 +2718,68 @@ const de = "swim-button", B = class B extends E {
     t && (this.type === "submit" ? t.requestSubmit() : this.type === "reset" && t.reset());
   }
   _updateStateFlags() {
-    this._inProgress = this._state === u.InProgress, this._success = this._state === u.Success, this._fail = this._state === u.Fail;
+    this._inProgress = this._state === p.InProgress, this._success = this._state === p.Success, this._fail = this._state === p.Fail;
   }
   _updateState() {
-    this._state || (this.state = u.Active);
+    this._state || (this.state = p.Active);
   }
   _scheduleReturnToActive() {
     const e = this.timeout ?? 3e3;
     e <= 0 || (this._clearTimer(), this._timer = window.setTimeout(() => {
-      this.state = u.Active;
+      this.state = p.Active;
     }, e));
   }
   _handlePromise() {
-    this._promise && (this.state = u.InProgress, this._promise.then(() => {
-      this.state = u.Success, this._scheduleReturnToActive();
+    this._promise && (this.state = p.InProgress, this._promise.then(() => {
+      this.state = p.Success, this._scheduleReturnToActive();
     }).catch(() => {
-      this.state = u.Fail, this._scheduleReturnToActive();
+      this.state = p.Fail, this._scheduleReturnToActive();
     }));
   }
   _clearTimer() {
     this._timer !== void 0 && (clearTimeout(this._timer), this._timer = void 0);
   }
 };
-B.styles = [ve, qe], B.formAssociated = !0;
-let h = B;
-p([
+q.styles = [ye, Be], q.formAssociated = !0;
+let h = q;
+w([
   d({ type: String, reflect: !0 })
 ], h.prototype, "variant", 2);
-p([
+w([
   d({ type: String, reflect: !0 })
 ], h.prototype, "size", 2);
-p([
-  d({ type: Boolean, reflect: !0 })
+w([
+  d({ type: Boolean, reflect: !0, converter: Ge })
 ], h.prototype, "disabled", 1);
-p([
+w([
   d({ type: String, reflect: !0 })
 ], h.prototype, "state", 1);
-p([
+w([
   d({ type: String })
 ], h.prototype, "type", 2);
-p([
+w([
   d({ type: Number })
 ], h.prototype, "timeout", 1);
-p([
+w([
+  d({ type: String, attribute: "loading-text" })
+], h.prototype, "loadingText", 2);
+w([
+  d({ type: Boolean, reflect: !0, attribute: "wrap-text", converter: Ve })
+], h.prototype, "wrapText", 2);
+w([
   d({ attribute: !1 })
 ], h.prototype, "promise", 1);
-p([
-  W()
+w([
+  V()
 ], h.prototype, "_inProgress", 2);
-p([
-  W()
+w([
+  V()
 ], h.prototype, "_success", 2);
-p([
-  W()
+w([
+  V()
 ], h.prototype, "_fail", 2);
 customElements.get(de) || customElements.define(de, h);
 export {
-  u as ButtonState,
+  p as ButtonState,
   h as SwimButton
 };

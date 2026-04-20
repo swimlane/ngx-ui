@@ -3,8 +3,8 @@
  * Copyright 2019 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const I = globalThis, te = I.ShadowRoot && (I.ShadyCSS === void 0 || I.ShadyCSS.nativeShadow) && "adoptedStyleSheets" in Document.prototype && "replace" in CSSStyleSheet.prototype, ie = Symbol(), ce = /* @__PURE__ */ new WeakMap();
-let xe = class {
+const I = globalThis, te = I.ShadowRoot && (I.ShadyCSS === void 0 || I.ShadyCSS.nativeShadow) && "adoptedStyleSheets" in Document.prototype && "replace" in CSSStyleSheet.prototype, ie = Symbol(), ae = /* @__PURE__ */ new WeakMap();
+let De = class {
   constructor(e, t, i) {
     if (this._$cssResult$ = !0, i !== ie) throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");
     this.cssText = e, this.t = t;
@@ -14,7 +14,7 @@ let xe = class {
     const t = this.t;
     if (te && e === void 0) {
       const i = t !== void 0 && t.length === 1;
-      i && (e = ce.get(t)), e === void 0 && ((this.o = e = new CSSStyleSheet()).replaceSync(this.cssText), i && ce.set(t, e));
+      i && (e = ae.get(t)), e === void 0 && ((this.o = e = new CSSStyleSheet()).replaceSync(this.cssText), i && ae.set(t, e));
     }
     return e;
   }
@@ -22,20 +22,20 @@ let xe = class {
     return this.cssText;
   }
 };
-const Se = (n) => new xe(typeof n == "string" ? n : n + "", void 0, ie), H = (n, ...e) => {
+const Se = (n) => new De(typeof n == "string" ? n : n + "", void 0, ie), H = (n, ...e) => {
   const t = n.length === 1 ? n[0] : e.reduce((i, o, r) => i + ((s) => {
     if (s._$cssResult$ === !0) return s.cssText;
     if (typeof s == "number") return s;
     throw Error("Value passed to 'css' function must be a 'css' function result: " + s + ". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.");
   })(o) + n[r + 1], n[0]);
-  return new xe(t, n, ie);
+  return new De(t, n, ie);
 }, Fe = (n, e) => {
   if (te) n.adoptedStyleSheets = e.map((t) => t instanceof CSSStyleSheet ? t : t.styleSheet);
   else for (const t of e) {
     const i = document.createElement("style"), o = I.litNonce;
     o !== void 0 && i.setAttribute("nonce", o), i.textContent = t.cssText, n.appendChild(i);
   }
-}, ae = te ? (n) => n : (n) => n instanceof CSSStyleSheet ? ((e) => {
+}, ce = te ? (n) => n : (n) => n instanceof CSSStyleSheet ? ((e) => {
   let t = "";
   for (const i of e.cssRules) t += i.cssText;
   return Se(t);
@@ -95,8 +95,8 @@ let M = class extends HTMLElement {
       this[t] = s;
     } };
     return { get: o, set(s) {
-      const c = o == null ? void 0 : o.call(this);
-      r == null || r.call(this, s), this.requestUpdate(e, c, i);
+      const a = o == null ? void 0 : o.call(this);
+      r == null || r.call(this, s), this.requestUpdate(e, a, i);
     }, configurable: !0, enumerable: !0 };
   }
   static getPropertyOptions(e) {
@@ -129,8 +129,8 @@ let M = class extends HTMLElement {
     const t = [];
     if (Array.isArray(e)) {
       const i = new Set(e.flat(1 / 0).reverse());
-      for (const o of i) t.unshift(ae(o));
-    } else e !== void 0 && t.push(ae(e));
+      for (const o of i) t.unshift(ce(o));
+    } else e !== void 0 && t.push(ce(e));
     return t;
   }
   static _$Eu(e, t) {
@@ -192,17 +192,17 @@ let M = class extends HTMLElement {
     var r, s;
     const i = this.constructor, o = i._$Eh.get(e);
     if (o !== void 0 && this._$Em !== o) {
-      const c = i.getPropertyOptions(o), a = typeof c.converter == "function" ? { fromAttribute: c.converter } : ((r = c.converter) == null ? void 0 : r.fromAttribute) !== void 0 ? c.converter : L;
+      const a = i.getPropertyOptions(o), c = typeof a.converter == "function" ? { fromAttribute: a.converter } : ((r = a.converter) == null ? void 0 : r.fromAttribute) !== void 0 ? a.converter : L;
       this._$Em = o;
-      const l = a.fromAttribute(t, c.type);
+      const l = c.fromAttribute(t, a.type);
       this[o] = l ?? ((s = this._$Ej) == null ? void 0 : s.get(o)) ?? l, this._$Em = null;
     }
   }
   requestUpdate(e, t, i, o = !1, r) {
     var s;
     if (e !== void 0) {
-      const c = this.constructor;
-      if (o === !1 && (r = this[e]), i ?? (i = c.getPropertyOptions(e)), !((i.hasChanged ?? oe)(r, t) || i.useDefault && i.reflect && r === ((s = this._$Ej) == null ? void 0 : s.get(e)) && !this.hasAttribute(c._$Eu(e, i)))) return;
+      const a = this.constructor;
+      if (o === !1 && (r = this[e]), i ?? (i = a.getPropertyOptions(e)), !((i.hasChanged ?? oe)(r, t) || i.useDefault && i.reflect && r === ((s = this._$Ej) == null ? void 0 : s.get(e)) && !this.hasAttribute(a._$Eu(e, i)))) return;
       this.C(e, t, i);
     }
     this.isUpdatePending === !1 && (this._$ES = this._$EP());
@@ -233,8 +233,8 @@ let M = class extends HTMLElement {
       }
       const o = this.constructor.elementProperties;
       if (o.size > 0) for (const [r, s] of o) {
-        const { wrapped: c } = s, a = this[r];
-        c !== !0 || this._$AL.has(r) || a === void 0 || this.C(r, void 0, s, a);
+        const { wrapped: a } = s, c = this[r];
+        a !== !0 || this._$AL.has(r) || c === void 0 || this.C(r, void 0, s, c);
       }
     }
     let e = !1;
@@ -284,9 +284,9 @@ M.elementStyles = [], M.shadowRootOptions = { mode: "open" }, M[P("elementProper
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const z = globalThis, he = (n) => n, q = z.trustedTypes, fe = q ? q.createPolicy("lit-html", { createHTML: (n) => n }) : void 0, ke = "$lit$", y = `lit$${Math.random().toFixed(9).slice(2)}$`, Ae = "?" + y, Ne = `<${Ae}>`, A = document, T = () => A.createComment(""), O = (n) => n === null || typeof n != "object" && typeof n != "function", ne = Array.isArray, Ve = (n) => ne(n) || typeof (n == null ? void 0 : n[Symbol.iterator]) == "function", W = `[ 	
-\f\r]`, Y = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, ue = /-->/g, de = />/g, D = RegExp(`>|${W}(?:([^\\s"'>=/]+)(${W}*=${W}*(?:[^ 	
-\f\r"'\`<>=]|("|')|))|$)`, "g"), me = /'/g, we = /"/g, Me = /^(?:script|style|textarea|title)$/i, Re = (n) => (e, ...t) => ({ _$litType$: n, strings: e, values: t }), u = Re(1), S = Symbol.for("lit-noChange"), f = Symbol.for("lit-nothing"), pe = /* @__PURE__ */ new WeakMap(), x = A.createTreeWalker(A, 129);
+const z = globalThis, he = (n) => n, q = z.trustedTypes, fe = q ? q.createPolicy("lit-html", { createHTML: (n) => n }) : void 0, Ae = "$lit$", y = `lit$${Math.random().toFixed(9).slice(2)}$`, ke = "?" + y, Ne = `<${ke}>`, k = document, T = () => k.createComment(""), O = (n) => n === null || typeof n != "object" && typeof n != "function", ne = Array.isArray, Ve = (n) => ne(n) || typeof (n == null ? void 0 : n[Symbol.iterator]) == "function", W = `[ 	
+\f\r]`, Y = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, de = /-->/g, ue = />/g, x = RegExp(`>|${W}(?:([^\\s"'>=/]+)(${W}*=${W}*(?:[^ 	
+\f\r"'\`<>=]|("|')|))|$)`, "g"), me = /'/g, we = /"/g, Me = /^(?:script|style|textarea|title)$/i, Re = (n) => (e, ...t) => ({ _$litType$: n, strings: e, values: t }), d = Re(1), S = Symbol.for("lit-noChange"), f = Symbol.for("lit-nothing"), pe = /* @__PURE__ */ new WeakMap(), D = k.createTreeWalker(k, 129);
 function Ce(n, e) {
   if (!ne(n) || !n.hasOwnProperty("raw")) throw Error("invalid template strings array");
   return fe !== void 0 ? fe.createHTML(e) : e;
@@ -294,12 +294,12 @@ function Ce(n, e) {
 const je = (n, e) => {
   const t = n.length - 1, i = [];
   let o, r = e === 2 ? "<svg>" : e === 3 ? "<math>" : "", s = Y;
-  for (let c = 0; c < t; c++) {
-    const a = n[c];
+  for (let a = 0; a < t; a++) {
+    const c = n[a];
     let l, h, b = -1, g = 0;
-    for (; g < a.length && (s.lastIndex = g, h = s.exec(a), h !== null); ) g = s.lastIndex, s === Y ? h[1] === "!--" ? s = ue : h[1] !== void 0 ? s = de : h[2] !== void 0 ? (Me.test(h[2]) && (o = RegExp("</" + h[2], "g")), s = D) : h[3] !== void 0 && (s = D) : s === D ? h[0] === ">" ? (s = o ?? Y, b = -1) : h[1] === void 0 ? b = -2 : (b = s.lastIndex - h[2].length, l = h[1], s = h[3] === void 0 ? D : h[3] === '"' ? we : me) : s === we || s === me ? s = D : s === ue || s === de ? s = Y : (s = D, o = void 0);
-    const _ = s === D && n[c + 1].startsWith("/>") ? " " : "";
-    r += s === Y ? a + Ne : b >= 0 ? (i.push(l), a.slice(0, b) + ke + a.slice(b) + y + _) : a + y + (b === -2 ? c : _);
+    for (; g < c.length && (s.lastIndex = g, h = s.exec(c), h !== null); ) g = s.lastIndex, s === Y ? h[1] === "!--" ? s = de : h[1] !== void 0 ? s = ue : h[2] !== void 0 ? (Me.test(h[2]) && (o = RegExp("</" + h[2], "g")), s = x) : h[3] !== void 0 && (s = x) : s === x ? h[0] === ">" ? (s = o ?? Y, b = -1) : h[1] === void 0 ? b = -2 : (b = s.lastIndex - h[2].length, l = h[1], s = h[3] === void 0 ? x : h[3] === '"' ? we : me) : s === we || s === me ? s = x : s === de || s === ue ? s = Y : (s = x, o = void 0);
+    const _ = s === x && n[a + 1].startsWith("/>") ? " " : "";
+    r += s === Y ? c + Ne : b >= 0 ? (i.push(l), c.slice(0, b) + Ae + c.slice(b) + y + _) : c + y + (b === -2 ? a : _);
   }
   return [Ce(n, r + (n[t] || "<?>") + (e === 2 ? "</svg>" : e === 3 ? "</math>" : "")), i];
 };
@@ -308,44 +308,44 @@ class U {
     let o;
     this.parts = [];
     let r = 0, s = 0;
-    const c = e.length - 1, a = this.parts, [l, h] = je(e, t);
-    if (this.el = U.createElement(l, i), x.currentNode = this.el.content, t === 2 || t === 3) {
+    const a = e.length - 1, c = this.parts, [l, h] = je(e, t);
+    if (this.el = U.createElement(l, i), D.currentNode = this.el.content, t === 2 || t === 3) {
       const b = this.el.content.firstChild;
       b.replaceWith(...b.childNodes);
     }
-    for (; (o = x.nextNode()) !== null && a.length < c; ) {
+    for (; (o = D.nextNode()) !== null && c.length < a; ) {
       if (o.nodeType === 1) {
-        if (o.hasAttributes()) for (const b of o.getAttributeNames()) if (b.endsWith(ke)) {
+        if (o.hasAttributes()) for (const b of o.getAttributeNames()) if (b.endsWith(Ae)) {
           const g = h[s++], _ = o.getAttribute(b).split(y), j = /([.?@])?(.*)/.exec(g);
-          a.push({ type: 1, index: r, name: j[2], strings: _, ctor: j[1] === "." ? Le : j[1] === "?" ? qe : j[1] === "@" ? Be : B }), o.removeAttribute(b);
-        } else b.startsWith(y) && (a.push({ type: 6, index: r }), o.removeAttribute(b));
+          c.push({ type: 1, index: r, name: j[2], strings: _, ctor: j[1] === "." ? Le : j[1] === "?" ? qe : j[1] === "@" ? Be : B }), o.removeAttribute(b);
+        } else b.startsWith(y) && (c.push({ type: 6, index: r }), o.removeAttribute(b));
         if (Me.test(o.tagName)) {
           const b = o.textContent.split(y), g = b.length - 1;
           if (g > 0) {
             o.textContent = q ? q.emptyScript : "";
-            for (let _ = 0; _ < g; _++) o.append(b[_], T()), x.nextNode(), a.push({ type: 2, index: ++r });
+            for (let _ = 0; _ < g; _++) o.append(b[_], T()), D.nextNode(), c.push({ type: 2, index: ++r });
             o.append(b[g], T());
           }
         }
-      } else if (o.nodeType === 8) if (o.data === Ae) a.push({ type: 2, index: r });
+      } else if (o.nodeType === 8) if (o.data === ke) c.push({ type: 2, index: r });
       else {
         let b = -1;
-        for (; (b = o.data.indexOf(y, b + 1)) !== -1; ) a.push({ type: 7, index: r }), b += y.length - 1;
+        for (; (b = o.data.indexOf(y, b + 1)) !== -1; ) c.push({ type: 7, index: r }), b += y.length - 1;
       }
       r++;
     }
   }
   static createElement(e, t) {
-    const i = A.createElement("template");
+    const i = k.createElement("template");
     return i.innerHTML = e, i;
   }
 }
 function F(n, e, t = n, i) {
-  var s, c;
+  var s, a;
   if (e === S) return e;
   let o = i !== void 0 ? (s = t._$Co) == null ? void 0 : s[i] : t._$Cl;
   const r = O(e) ? void 0 : e._$litDirective$;
-  return (o == null ? void 0 : o.constructor) !== r && ((c = o == null ? void 0 : o._$AO) == null || c.call(o, !1), r === void 0 ? o = void 0 : (o = new r(n), o._$AT(n, t, i)), i !== void 0 ? (t._$Co ?? (t._$Co = []))[i] = o : t._$Cl = o), o !== void 0 && (e = F(n, o._$AS(n, e.values), o, i)), e;
+  return (o == null ? void 0 : o.constructor) !== r && ((a = o == null ? void 0 : o._$AO) == null || a.call(o, !1), r === void 0 ? o = void 0 : (o = new r(n), o._$AT(n, t, i)), i !== void 0 ? (t._$Co ?? (t._$Co = []))[i] = o : t._$Cl = o), o !== void 0 && (e = F(n, o._$AS(n, e.values), o, i)), e;
 }
 class Ie {
   constructor(e, t) {
@@ -358,17 +358,17 @@ class Ie {
     return this._$AM._$AU;
   }
   u(e) {
-    const { el: { content: t }, parts: i } = this._$AD, o = ((e == null ? void 0 : e.creationScope) ?? A).importNode(t, !0);
-    x.currentNode = o;
-    let r = x.nextNode(), s = 0, c = 0, a = i[0];
-    for (; a !== void 0; ) {
-      if (s === a.index) {
+    const { el: { content: t }, parts: i } = this._$AD, o = ((e == null ? void 0 : e.creationScope) ?? k).importNode(t, !0);
+    D.currentNode = o;
+    let r = D.nextNode(), s = 0, a = 0, c = i[0];
+    for (; c !== void 0; ) {
+      if (s === c.index) {
         let l;
-        a.type === 2 ? l = new N(r, r.nextSibling, this, e) : a.type === 1 ? l = new a.ctor(r, a.name, a.strings, this, e) : a.type === 6 && (l = new Ke(r, this, e)), this._$AV.push(l), a = i[++c];
+        c.type === 2 ? l = new N(r, r.nextSibling, this, e) : c.type === 1 ? l = new c.ctor(r, c.name, c.strings, this, e) : c.type === 6 && (l = new Ke(r, this, e)), this._$AV.push(l), c = i[++a];
       }
-      s !== (a == null ? void 0 : a.index) && (r = x.nextNode(), s++);
+      s !== (c == null ? void 0 : c.index) && (r = D.nextNode(), s++);
     }
-    return x.currentNode = A, o;
+    return D.currentNode = k, o;
   }
   p(e) {
     let t = 0;
@@ -404,15 +404,15 @@ class N {
     this._$AH !== e && (this._$AR(), this._$AH = this.O(e));
   }
   _(e) {
-    this._$AH !== f && O(this._$AH) ? this._$AA.nextSibling.data = e : this.T(A.createTextNode(e)), this._$AH = e;
+    this._$AH !== f && O(this._$AH) ? this._$AA.nextSibling.data = e : this.T(k.createTextNode(e)), this._$AH = e;
   }
   $(e) {
     var r;
     const { values: t, _$litType$: i } = e, o = typeof i == "number" ? this._$AC(e) : (i.el === void 0 && (i.el = U.createElement(Ce(i.h, i.h[0]), this.options)), i);
     if (((r = this._$AH) == null ? void 0 : r._$AD) === o) this._$AH.p(t);
     else {
-      const s = new Ie(o, this), c = s.u(this.options);
-      s.p(t), this.T(c), this._$AH = s;
+      const s = new Ie(o, this), a = s.u(this.options);
+      s.p(t), this.T(a), this._$AH = s;
     }
   }
   _$AC(e) {
@@ -453,9 +453,9 @@ class B {
     let s = !1;
     if (r === void 0) e = F(this, e, t, 0), s = !O(e) || e !== this._$AH && e !== S, s && (this._$AH = e);
     else {
-      const c = e;
-      let a, l;
-      for (e = r[0], a = 0; a < r.length - 1; a++) l = F(this, c[i + a], t, a), l === S && (l = this._$AH[a]), s || (s = !O(l) || l !== this._$AH[a]), l === f ? e = f : e !== f && (e += (l ?? "") + r[a + 1]), this._$AH[a] = l;
+      const a = e;
+      let c, l;
+      for (e = r[0], c = 0; c < r.length - 1; c++) l = F(this, a[i + c], t, c), l === S && (l = this._$AH[c]), s || (s = !O(l) || l !== this._$AH[c]), l === f ? e = f : e !== f && (e += (l ?? "") + r[c + 1]), this._$AH[c] = l;
     }
     s && !o && this.j(e);
   }
@@ -520,7 +520,7 @@ const We = (n, e, t) => {
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const k = globalThis;
+const A = globalThis;
 class E extends M {
   constructor() {
     super(...arguments), this.renderOptions = { host: this }, this._$Do = void 0;
@@ -546,11 +546,11 @@ class E extends M {
     return S;
   }
 }
-var De;
-E._$litElement$ = !0, E.finalized = !0, (De = k.litElementHydrateSupport) == null || De.call(k, { LitElement: E });
-const G = k.litElementPolyfillSupport;
+var xe;
+E._$litElement$ = !0, E.finalized = !0, (xe = A.litElementHydrateSupport) == null || xe.call(A, { LitElement: E });
+const G = A.litElementPolyfillSupport;
 G == null || G({ LitElement: E });
-(k.litElementVersions ?? (k.litElementVersions = [])).push("4.2.2");
+(A.litElementVersions ?? (A.litElementVersions = [])).push("4.2.2");
 /**
  * @license
  * Copyright 2017 Google LLC
@@ -561,18 +561,18 @@ const Je = { attribute: !0, type: String, converter: L, reflect: !1, hasChanged:
   let r = globalThis.litPropertyMetadata.get(o);
   if (r === void 0 && globalThis.litPropertyMetadata.set(o, r = /* @__PURE__ */ new Map()), i === "setter" && ((n = Object.create(n)).wrapped = !0), r.set(t.name, n), i === "accessor") {
     const { name: s } = t;
-    return { set(c) {
-      const a = e.get.call(this);
-      e.set.call(this, c), this.requestUpdate(s, a, n, !0, c);
-    }, init(c) {
-      return c !== void 0 && this.C(s, void 0, n, c), c;
+    return { set(a) {
+      const c = e.get.call(this);
+      e.set.call(this, a), this.requestUpdate(s, c, n, !0, a);
+    }, init(a) {
+      return a !== void 0 && this.C(s, void 0, n, a), a;
     } };
   }
   if (i === "setter") {
     const { name: s } = t;
-    return function(c) {
-      const a = this[s];
-      e.call(this, c), this.requestUpdate(s, a, n, !0, c);
+    return function(a) {
+      const c = this[s];
+      e.call(this, a), this.requestUpdate(s, c, n, !0, a);
     };
   }
   throw Error("Unsupported decorator location: " + i);
@@ -716,35 +716,52 @@ const Ee = H`
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
 
-    /* Spacing */
-    --spacing-0: 0;
+    /* Spacing — aligned with ngx-ui layouts/_vars.scss */
+    --spacing-0: 0px;
     --spacing-2: 2px;
     --spacing-4: 4px;
+    --spacing-6: 6px;
     --spacing-8: 8px;
     --spacing-10: 10px;
     --spacing-12: 12px;
+    --spacing-14: 14px;
     --spacing-16: 16px;
+    --spacing-18: 18px;
     --spacing-20: 20px;
     --spacing-24: 24px;
-    --spacing-32: 32px;
+    --spacing-30: 30px;
+    --spacing-36: 36px;
+    --spacing-40: 40px;
+    --spacing-48: 48px;
 
-    /* Border Radius */
-    --radius-0: 0;
+    /* Border radius — aligned with ngx-ui layouts/_vars.scss */
+    --radius-0: 0px;
     --radius-2: 2px;
     --radius-4: 4px;
     --radius-6: 6px;
     --radius-8: 8px;
+    --radius-12: 12px;
     --radius-16: 16px;
+    --radius-24: 24px;
+    --radius-32: 32px;
     --radius-64: 64px;
+    --radius-1000: 1000px;
 
     /* Semantic colors */
     --color-error: var(--red-500);
     --color-success: #b0e53c;
 
-    /* Shadows */
-    --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.3);
-    --shadow-2: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    /* Shadows — aligned with ngx-ui shadow-variables.scss (Material-style key/penumbra/ambient) */
+    --shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
+    --shadow-2: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);
     --shadow-3: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);
+
+    /* Modal / large-format surface (ngx gradient-variables $bg-linear-3) */
+    --bg-linear-3: linear-gradient(180deg, #252a37 0%, #212631 100%);
+    /* Figma modal panel (filter: dy=2, stdDeviation=3.5, alpha 0.2) */
+    --shadow-dialog-panel: 0 2px 7px rgba(0, 0, 0, 0.2);
+    /* Diffuse halo (ngx large-format legacy); override with --shadow-dialog-panel for Figma parity */
+    --shadow-dialog-glow: 0 0 100px rgba(0, 0, 0, 0.25);
   }
 `;
 H`
@@ -2039,8 +2056,13 @@ const Ze = H`
   }
 `, Qe = H`
   :host {
-    display: inline-block;
-    vertical-align: baseline;
+    /* inline-flex keeps the host box tight to the glyph and centers the shadow icon in contexts
+       (e.g. swim-button) where inherited line-height would otherwise grow the line box asymmetrically */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    line-height: 1;
   }
 
   :host svg {
@@ -2106,7 +2128,7 @@ const Ze = H`
   /* Font icon base (glyphs in icon-font-glyphs.ts); uses same font as ngx-ui ('ngx-icon'). */
   .swim-icon,
   .swim-icon__i.swim-icon {
-    display: inline-block;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 1em;
@@ -2118,10 +2140,14 @@ const Ze = H`
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Center the glyph regardless of font metrics (fixes vertical misalignment) */
+  /* Center the glyph in the em box; many ngx-icon glyphs sit high with display:block alone */
   .swim-icon::before,
   .swim-icon__i.swim-icon::before {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
     line-height: 1;
   }
 
@@ -2169,9 +2195,9 @@ class et {
   lookup(e, t) {
     const i = t ?? this._defaultFontSetClass;
     return (Array.isArray(e) ? e : [e]).reduce((o, r) => {
-      const s = this._expandKeys(r, i).map((c) => {
-        const a = this._iconMap.get(c);
-        return a && a.length === 1 ? a[0] : c;
+      const s = this._expandKeys(r, i).map((a) => {
+        const c = this._iconMap.get(a);
+        return c && c.length === 1 ? c[0] : a;
       }).join(" ");
       return o.concat(this._iconMap.get(s) || [s]);
     }, []);
@@ -2229,7 +2255,7 @@ const ge = "swim-icon", se = class se extends E {
   render() {
     var r;
     const e = this._cssClasses, t = !!this.alt, i = ((r = this.iconClass) == null ? void 0 : r.trim()) ?? "", o = i ? ` ${i}` : "";
-    return !e || e.length === 0 ? u`
+    return !e || e.length === 0 ? d`
         <span
           part="icon"
           class="${i}"
@@ -2239,7 +2265,7 @@ const ge = "swim-icon", se = class se extends E {
         >
           <slot></slot>
         </span>
-      ` : e.length === 1 ? u`
+      ` : e.length === 1 ? d`
         <i
           part="icon"
           class="swim-icon__i ${e[0]}${o}"
@@ -2247,7 +2273,7 @@ const ge = "swim-icon", se = class se extends E {
           aria-label="${t ? this.alt : f}"
           aria-hidden="${t ? "false" : "true"}"
         ></i>
-      ` : u`
+      ` : d`
       <span
         class="swim-icon__stack"
         role="${t ? "img" : "presentation"}"
@@ -2255,7 +2281,7 @@ const ge = "swim-icon", se = class se extends E {
         aria-hidden="${t ? "false" : "true"}"
       >
         ${e.map(
-      (s, c) => u`<i part="icon icon-${c}" class="swim-icon__i swim-icon__i--${c} ${s}${o}"></i>`
+      (s, a) => d`<i part="icon icon-${a}" class="swim-icon__i swim-icon__i--${a} ${s}${o}"></i>`
     )}
       </span>
     `;
@@ -2569,7 +2595,7 @@ const ot = H`
 function ee(n, e) {
   return n.getFullYear() === e.getFullYear() && n.getMonth() === e.getMonth() && n.getDate() === e.getDate();
 }
-function ht(n, e) {
+function ft(n, e) {
   return n.getFullYear() === e.getFullYear() && n.getMonth() === e.getMonth();
 }
 function rt(n, e) {
@@ -2599,16 +2625,16 @@ function m(n) {
   }
   for (let l = 1; l <= o; l++)
     s.push(Z(new Date(t, i, l), i, e));
-  const c = s.length % 7;
-  if (c > 0) {
-    const l = 7 - c;
+  const a = s.length % 7;
+  if (a > 0) {
+    const l = 7 - a;
     for (let h = 1; h <= l; h++)
       s.push(Z(new Date(t, i + 1, h), i, e));
   }
-  const a = [];
+  const c = [];
   for (let l = 0; l < s.length; l += 7)
-    a.push(s.slice(l, l + 7));
-  return a;
+    c.push(s.slice(l, l + 7));
+  return c;
 }
 function ye(n) {
   return Math.floor(n / 20) * 20;
@@ -2662,8 +2688,17 @@ function ve(n) {
 function C(n) {
   return n instanceof Date && !isNaN(n.getTime());
 }
-var ct = Object.defineProperty, at = Object.getOwnPropertyDescriptor, p = (n, e, t, i) => {
-  for (var o = i > 1 ? void 0 : i ? at(e, t) : e, r = n.length - 1, s; r >= 0; r--)
+const at = {
+  fromAttribute: (n) => n !== null && n !== "false" && n !== "0",
+  /**
+   * Use empty string when true so the boolean attribute is present; remove when false.
+   * Serializing false as `attr="false"` leaves the attribute in the DOM, so selectors like
+   * `[disabled]` / `[loading]` (common in resets and lazy-load styles) still match the host.
+   */
+  toAttribute: (n) => n ? "" : null
+};
+var ct = Object.defineProperty, lt = Object.getOwnPropertyDescriptor, p = (n, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? lt(e, t) : e, r = n.length - 1, s; r >= 0; r--)
     (s = n[r]) && (o = (i ? s(e, t, o) : s(o)) || o);
   return i && o && ct(e, t, o), o;
 };
@@ -2702,7 +2737,7 @@ const $e = "swim-calendar", re = class re extends E {
         }
         case "Enter":
           setTimeout(() => {
-            this.dispatchEvent(new CustomEvent("day-key-enter", { bubbles: !0, composed: !0 }));
+            this.dispatchEvent(new CustomEvent("day-key-enter", { bubbles: !1, composed: !1 }));
           }, 200);
           break;
       }
@@ -2730,7 +2765,7 @@ const $e = "swim-calendar", re = class re extends E {
           break;
         case "Enter":
           setTimeout(() => {
-            this.dispatchEvent(new CustomEvent("day-key-enter", { bubbles: !0, composed: !0 }));
+            this.dispatchEvent(new CustomEvent("day-key-enter", { bubbles: !1, composed: !1 }));
           }, 200);
           break;
       }
@@ -2758,7 +2793,7 @@ const $e = "swim-calendar", re = class re extends E {
           break;
         case "Enter":
           setTimeout(() => {
-            this.dispatchEvent(new CustomEvent("day-key-enter", { bubbles: !0, composed: !0 }));
+            this.dispatchEvent(new CustomEvent("day-key-enter", { bubbles: !1, composed: !1 }));
           }, 200);
           break;
       }
@@ -2812,7 +2847,7 @@ const $e = "swim-calendar", re = class re extends E {
   }
   _renderDateView() {
     const e = this._formatMonthYear(this._focusDate);
-    return u`
+    return d`
       <div class="text-center">
         <div class="title-row">
           <button
@@ -2835,20 +2870,20 @@ const $e = "swim-calendar", re = class re extends E {
             <swim-icon font-icon="arrow-right"></swim-icon>
           </button>
         </div>
-        <div class="day-name-row">${st.map((t) => u`<div class="day-name text-center">${t}</div>`)}</div>
+        <div class="day-name-row">${st.map((t) => d`<div class="day-name text-center">${t}</div>`)}</div>
         <table class="day-container" role="grid">
           ${this._weeks.map(
-      (t) => u`
+      (t) => d`
               <tr class="day-row" role="row">
                 ${t.map((i) => {
         if (!i.num)
-          return u`<td class="day-cell text-center" role="gridcell"></td>`;
-        const o = this._value ? ee(i.date, this._value) : !1, r = ee(i.date, this._focusDate), s = this.disabled || this._isDayDisabled(i.date), c = ["day"];
-        return i.prevMonth && c.push("prev-month"), i.nextMonth && c.push("next-month"), i.today && c.push("today"), o && c.push("active"), r && !s && c.push("focus"), u`
+          return d`<td class="day-cell text-center" role="gridcell"></td>`;
+        const o = this._value ? ee(i.date, this._value) : !1, r = ee(i.date, this._focusDate), s = this.disabled || this._isDayDisabled(i.date), a = ["day"];
+        return i.prevMonth && a.push("prev-month"), i.nextMonth && a.push("next-month"), i.today && a.push("today"), o && a.push("active"), r && !s && a.push("focus"), d`
                     <td class="day-cell text-center" role="gridcell">
                       <button
                         type="button"
-                        class="${c.join(" ")}"
+                        class="${a.join(" ")}"
                         ?disabled="${s}"
                         tabindex="${r && !s ? 0 : -1}"
                         @click="${() => this._onDayClick(i)}"
@@ -2868,7 +2903,7 @@ const $e = "swim-calendar", re = class re extends E {
   }
   _renderMonthView() {
     const e = String(this._focusDate.getFullYear());
-    return u`
+    return d`
       <div class="text-center">
         <div class="title-row">
           <button
@@ -2894,14 +2929,14 @@ const $e = "swim-calendar", re = class re extends E {
         <table class="months-container" role="grid">
           <tr class="months-row" role="row">
             ${nt.map((t, i) => {
-      const o = this._isMonthActive(i), r = this._isCurrentMonth(i), s = this._focusDate.getMonth() === i && rt(this._focusDate, this._focusDate), c = this.disabled || this._isMonthDisabled(i), a = ["month"];
-      return o && a.push("active"), r && a.push("current"), s && a.push("focus"), u`
+      const o = this._isMonthActive(i), r = this._isCurrentMonth(i), s = this._focusDate.getMonth() === i && rt(this._focusDate, this._focusDate), a = this.disabled || this._isMonthDisabled(i), c = ["month"];
+      return o && c.push("active"), r && c.push("current"), s && c.push("focus"), d`
                 <td class="month-cell text-center" role="gridcell">
                   <button
                     type="button"
-                    class="${a.join(" ")}"
-                    ?disabled="${c}"
-                    tabindex="${s && !c ? 0 : -1}"
+                    class="${c.join(" ")}"
+                    ?disabled="${a}"
+                    tabindex="${s && !a ? 0 : -1}"
                     @click="${() => this._onMonthClick(i)}"
                     @keydown="${this._onMonthKeyDown}"
                   >
@@ -2917,7 +2952,7 @@ const $e = "swim-calendar", re = class re extends E {
   }
   _renderYearView() {
     const e = Array.from({ length: 20 }, (t, i) => this._startYear + i);
-    return u`
+    return d`
       <div class="text-center">
         <div class="title-row">
           <button
@@ -2945,12 +2980,12 @@ const $e = "swim-calendar", re = class re extends E {
         <table class="years-container" role="grid">
           <tr class="years-row" role="row">
             ${e.map((t) => {
-      const i = this._isYearActive(t), o = t === this._currentDate.getFullYear(), r = t === this._focusDate.getFullYear(), s = this.disabled || this._isYearDisabled(t), c = ["year"];
-      return i && c.push("active"), o && c.push("current"), r && c.push("focus"), u`
+      const i = this._isYearActive(t), o = t === this._currentDate.getFullYear(), r = t === this._focusDate.getFullYear(), s = this.disabled || this._isYearDisabled(t), a = ["year"];
+      return i && a.push("active"), o && a.push("current"), r && a.push("focus"), d`
                 <td class="year-cell text-center" role="gridcell">
                   <button
                     type="button"
-                    class="${c.join(" ")}"
+                    class="${a.join(" ")}"
                     ?disabled="${s}"
                     tabindex="${r && !s ? 0 : -1}"
                     @click="${() => this._onYearClick(t)}"
@@ -3057,15 +3092,15 @@ const $e = "swim-calendar", re = class re extends E {
   // Day interaction
   // ---------------------------------------------------------------------------
   _onDayClick(e) {
-    this._focusDate = new Date(e.date), this._value = new Date(e.date), (e.prevMonth || e.nextMonth) && (this._weeks = m(this._focusDate)), this.requestUpdate(), this.dispatchEvent(new CustomEvent("change", { detail: this._value, bubbles: !0, composed: !0 }));
+    this._focusDate = new Date(e.date), this._value = new Date(e.date), (e.prevMonth || e.nextMonth) && (this._weeks = m(this._focusDate)), this.requestUpdate(), this.dispatchEvent(new CustomEvent("change", { detail: this._value, bubbles: !1, composed: !1 }));
   }
   _onMonthClick(e) {
     const t = new Date(this._focusDate);
-    t.setMonth(e), this._focusDate = t, this._value = new Date(t), (this._minView || "date") !== "month" && (this._currentView = "date", this._weeks = m(this._focusDate)), this.requestUpdate(), this.dispatchEvent(new CustomEvent("change", { detail: this._value, bubbles: !0, composed: !0 }));
+    t.setMonth(e), this._focusDate = t, this._value = new Date(t), (this._minView || "date") !== "month" && (this._currentView = "date", this._weeks = m(this._focusDate)), this.requestUpdate(), this.dispatchEvent(new CustomEvent("change", { detail: this._value, bubbles: !1, composed: !1 }));
   }
   _onYearClick(e) {
     const t = new Date(this._focusDate);
-    t.setFullYear(e), this._focusDate = t, this._value = new Date(t), (this._minView || "date") !== "year" && (this._currentView = "month", this._weeks = m(this._focusDate)), this.requestUpdate(), this.dispatchEvent(new CustomEvent("change", { detail: this._value, bubbles: !0, composed: !0 }));
+    t.setFullYear(e), this._focusDate = t, this._value = new Date(t), (this._minView || "date") !== "year" && (this._currentView = "month", this._weeks = m(this._focusDate)), this.requestUpdate(), this.dispatchEvent(new CustomEvent("change", { detail: this._value, bubbles: !1, composed: !1 }));
   }
   // ---------------------------------------------------------------------------
   // Keyboard navigation
@@ -3090,47 +3125,47 @@ const $e = "swim-calendar", re = class re extends E {
   }
 };
 re.styles = [Ee, ot];
-let d = re;
+let u = re;
 p([
   w({ attribute: !1 })
-], d.prototype, "value", 1);
+], u.prototype, "value", 1);
 p([
   w({ attribute: "min-date" })
-], d.prototype, "minDate", 2);
+], u.prototype, "minDate", 2);
 p([
   w({ attribute: "max-date" })
-], d.prototype, "maxDate", 2);
+], u.prototype, "maxDate", 2);
 p([
-  w({ type: Boolean, reflect: !0 })
-], d.prototype, "disabled", 2);
+  w({ type: Boolean, reflect: !0, converter: at })
+], u.prototype, "disabled", 2);
 p([
   w({ type: String })
-], d.prototype, "timezone", 2);
+], u.prototype, "timezone", 2);
 p([
   w({ type: String, attribute: "min-view" })
-], d.prototype, "minView", 1);
+], u.prototype, "minView", 1);
 p([
   V()
-], d.prototype, "_currentView", 2);
+], u.prototype, "_currentView", 2);
 p([
   V()
-], d.prototype, "_focusDate", 2);
+], u.prototype, "_focusDate", 2);
 p([
   V()
-], d.prototype, "_weeks", 2);
+], u.prototype, "_weeks", 2);
 p([
   V()
-], d.prototype, "_startYear", 2);
-customElements.get($e) || customElements.define($e, d);
+], u.prototype, "_startYear", 2);
+customElements.get($e) || customElements.define($e, u);
 export {
   st as DAYS_OF_WEEK,
   nt as MONTHS_SHORT,
-  d as SwimCalendar,
+  u as SwimCalendar,
   ye as getDecadeStartYear,
   m as getMonth,
   X as isAfterDate,
   Q as isBeforeDate,
   ee as isSameDay,
-  ht as isSameMonth,
+  ft as isSameMonth,
   rt as isSameYear
 };

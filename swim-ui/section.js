@@ -3,7 +3,7 @@
  * Copyright 2019 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const L = globalThis, X = L.ShadowRoot && (L.ShadyCSS === void 0 || L.ShadyCSS.nativeShadow) && "adoptedStyleSheets" in Document.prototype && "replace" in CSSStyleSheet.prototype, Q = Symbol(), ne = /* @__PURE__ */ new WeakMap();
+const D = globalThis, X = D.ShadowRoot && (D.ShadyCSS === void 0 || D.ShadyCSS.nativeShadow) && "adoptedStyleSheets" in Document.prototype && "replace" in CSSStyleSheet.prototype, Q = Symbol(), ne = /* @__PURE__ */ new WeakMap();
 let ye = class {
   constructor(e, t, i) {
     if (this._$cssResult$ = !0, i !== Q) throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");
@@ -32,7 +32,7 @@ const Te = (n) => new ye(typeof n == "string" ? n : n + "", void 0, Q), z = (n, 
 }, ze = (n, e) => {
   if (X) n.adoptedStyleSheets = e.map((t) => t instanceof CSSStyleSheet ? t : t.styleSheet);
   else for (const t of e) {
-    const i = document.createElement("style"), o = L.litNonce;
+    const i = document.createElement("style"), o = D.litNonce;
     o !== void 0 && i.setAttribute("nonce", o), i.textContent = t.cssText, n.appendChild(i);
   }
 }, se = X ? (n) => n : (n) => n instanceof CSSStyleSheet ? ((e) => {
@@ -286,20 +286,20 @@ E.elementStyles = [], E.shadowRootOptions = { mode: "open" }, E[O("elementProper
  */
 const H = globalThis, le = (n) => n, F = H.trustedTypes, ae = F ? F.createPolicy("lit-html", { createHTML: (n) => n }) : void 0, $e = "$lit$", _ = `lit$${Math.random().toFixed(9).slice(2)}$`, ve = "?" + _, je = `<${ve}>`, S = document, M = () => S.createComment(""), U = (n) => n === null || typeof n != "object" && typeof n != "function", ee = Array.isArray, Ie = (n) => ee(n) || typeof (n == null ? void 0 : n[Symbol.iterator]) == "function", V = `[ 	
 \f\r]`, P = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, be = /-->/g, de = />/g, v = RegExp(`>|${V}(?:([^\\s"'>=/]+)(${V}*=${V}*(?:[^ 	
-\f\r"'\`<>=]|("|')|))|$)`, "g"), fe = /'/g, he = /"/g, xe = /^(?:script|style|textarea|title)$/i, Le = (n) => (e, ...t) => ({ _$litType$: n, strings: e, values: t }), u = Le(1), k = Symbol.for("lit-noChange"), b = Symbol.for("lit-nothing"), me = /* @__PURE__ */ new WeakMap(), x = S.createTreeWalker(S, 129);
+\f\r"'\`<>=]|("|')|))|$)`, "g"), he = /'/g, fe = /"/g, xe = /^(?:script|style|textarea|title)$/i, De = (n) => (e, ...t) => ({ _$litType$: n, strings: e, values: t }), g = De(1), k = Symbol.for("lit-noChange"), b = Symbol.for("lit-nothing"), me = /* @__PURE__ */ new WeakMap(), x = S.createTreeWalker(S, 129);
 function Ae(n, e) {
   if (!ee(n) || !n.hasOwnProperty("raw")) throw Error("invalid template strings array");
   return ae !== void 0 ? ae.createHTML(e) : e;
 }
-const De = (n, e) => {
+const Le = (n, e) => {
   const t = n.length - 1, i = [];
   let o, s = e === 2 ? "<svg>" : e === 3 ? "<math>" : "", r = P;
   for (let c = 0; c < t; c++) {
     const l = n[c];
-    let d, f, a = -1, w = 0;
-    for (; w < l.length && (r.lastIndex = w, f = r.exec(l), f !== null); ) w = r.lastIndex, r === P ? f[1] === "!--" ? r = be : f[1] !== void 0 ? r = de : f[2] !== void 0 ? (xe.test(f[2]) && (o = RegExp("</" + f[2], "g")), r = v) : f[3] !== void 0 && (r = v) : r === v ? f[0] === ">" ? (r = o ?? P, a = -1) : f[1] === void 0 ? a = -2 : (a = r.lastIndex - f[2].length, d = f[1], r = f[3] === void 0 ? v : f[3] === '"' ? he : fe) : r === he || r === fe ? r = v : r === be || r === de ? r = P : (r = v, o = void 0);
-    const g = r === v && n[c + 1].startsWith("/>") ? " " : "";
-    s += r === P ? l + je : a >= 0 ? (i.push(d), l.slice(0, a) + $e + l.slice(a) + _ + g) : l + _ + (a === -2 ? c : g);
+    let d, h, a = -1, w = 0;
+    for (; w < l.length && (r.lastIndex = w, h = r.exec(l), h !== null); ) w = r.lastIndex, r === P ? h[1] === "!--" ? r = be : h[1] !== void 0 ? r = de : h[2] !== void 0 ? (xe.test(h[2]) && (o = RegExp("</" + h[2], "g")), r = v) : h[3] !== void 0 && (r = v) : r === v ? h[0] === ">" ? (r = o ?? P, a = -1) : h[1] === void 0 ? a = -2 : (a = r.lastIndex - h[2].length, d = h[1], r = h[3] === void 0 ? v : h[3] === '"' ? fe : he) : r === fe || r === he ? r = v : r === be || r === de ? r = P : (r = v, o = void 0);
+    const u = r === v && n[c + 1].startsWith("/>") ? " " : "";
+    s += r === P ? l + je : a >= 0 ? (i.push(d), l.slice(0, a) + $e + l.slice(a) + _ + u) : l + _ + (a === -2 ? c : u);
   }
   return [Ae(n, s + (n[t] || "<?>") + (e === 2 ? "</svg>" : e === 3 ? "</math>" : "")), i];
 };
@@ -308,7 +308,7 @@ class N {
     let o;
     this.parts = [];
     let s = 0, r = 0;
-    const c = e.length - 1, l = this.parts, [d, f] = De(e, t);
+    const c = e.length - 1, l = this.parts, [d, h] = Le(e, t);
     if (this.el = N.createElement(d, i), x.currentNode = this.el.content, t === 2 || t === 3) {
       const a = this.el.content.firstChild;
       a.replaceWith(...a.childNodes);
@@ -316,14 +316,14 @@ class N {
     for (; (o = x.nextNode()) !== null && l.length < c; ) {
       if (o.nodeType === 1) {
         if (o.hasAttributes()) for (const a of o.getAttributeNames()) if (a.endsWith($e)) {
-          const w = f[r++], g = o.getAttribute(a).split(_), I = /([.?@])?(.*)/.exec(w);
-          l.push({ type: 1, index: s, name: I[2], strings: g, ctor: I[1] === "." ? Fe : I[1] === "?" ? qe : I[1] === "@" ? We : q }), o.removeAttribute(a);
+          const w = h[r++], u = o.getAttribute(a).split(_), I = /([.?@])?(.*)/.exec(w);
+          l.push({ type: 1, index: s, name: I[2], strings: u, ctor: I[1] === "." ? Fe : I[1] === "?" ? qe : I[1] === "@" ? We : q }), o.removeAttribute(a);
         } else a.startsWith(_) && (l.push({ type: 6, index: s }), o.removeAttribute(a));
         if (xe.test(o.tagName)) {
           const a = o.textContent.split(_), w = a.length - 1;
           if (w > 0) {
             o.textContent = F ? F.emptyScript : "";
-            for (let g = 0; g < w; g++) o.append(a[g], M()), x.nextNode(), l.push({ type: 2, index: ++s });
+            for (let u = 0; u < w; u++) o.append(a[u], M()), x.nextNode(), l.push({ type: 2, index: ++s });
             o.append(a[w], M());
           }
         }
@@ -738,35 +738,52 @@ const Se = z`
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
 
-    /* Spacing */
-    --spacing-0: 0;
+    /* Spacing — aligned with ngx-ui layouts/_vars.scss */
+    --spacing-0: 0px;
     --spacing-2: 2px;
     --spacing-4: 4px;
+    --spacing-6: 6px;
     --spacing-8: 8px;
     --spacing-10: 10px;
     --spacing-12: 12px;
+    --spacing-14: 14px;
     --spacing-16: 16px;
+    --spacing-18: 18px;
     --spacing-20: 20px;
     --spacing-24: 24px;
-    --spacing-32: 32px;
+    --spacing-30: 30px;
+    --spacing-36: 36px;
+    --spacing-40: 40px;
+    --spacing-48: 48px;
 
-    /* Border Radius */
-    --radius-0: 0;
+    /* Border radius — aligned with ngx-ui layouts/_vars.scss */
+    --radius-0: 0px;
     --radius-2: 2px;
     --radius-4: 4px;
     --radius-6: 6px;
     --radius-8: 8px;
+    --radius-12: 12px;
     --radius-16: 16px;
+    --radius-24: 24px;
+    --radius-32: 32px;
     --radius-64: 64px;
+    --radius-1000: 1000px;
 
     /* Semantic colors */
     --color-error: var(--red-500);
     --color-success: #b0e53c;
 
-    /* Shadows */
-    --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.3);
-    --shadow-2: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    /* Shadows — aligned with ngx-ui shadow-variables.scss (Material-style key/penumbra/ambient) */
+    --shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
+    --shadow-2: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);
     --shadow-3: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);
+
+    /* Modal / large-format surface (ngx gradient-variables $bg-linear-3) */
+    --bg-linear-3: linear-gradient(180deg, #252a37 0%, #212631 100%);
+    /* Figma modal panel (filter: dy=2, stdDeviation=3.5, alpha 0.2) */
+    --shadow-dialog-panel: 0 2px 7px rgba(0, 0, 0, 0.2);
+    /* Diffuse halo (ngx large-format legacy); override with --shadow-dialog-panel for Figma parity */
+    --shadow-dialog-glow: 0 0 100px rgba(0, 0, 0, 0.25);
   }
 `;
 z`
@@ -1015,11 +1032,23 @@ const Qe = z`
     border-radius: var(--radius-0) var(--radius-0) var(--radius-8) var(--radius-8);
   }
 `, Ye = [Se, Qe];
-var Ee = /* @__PURE__ */ ((n) => (n.Legacy = "legacy", n.Outline = "outline", n.Light = "light", n.Minimal = "minimal", n))(Ee || {}), D = /* @__PURE__ */ ((n) => (n.Left = "left", n.Right = "right", n.None = "none", n))(D || {});
+var Ee = /* @__PURE__ */ ((n) => (n.Legacy = "legacy", n.Outline = "outline", n.Light = "light", n.Minimal = "minimal", n))(Ee || {}), L = /* @__PURE__ */ ((n) => (n.Left = "left", n.Right = "right", n.None = "none", n))(L || {});
 function J(n) {
   return n != null && `${n}` != "false";
 }
-const et = z`
+const et = {
+  fromAttribute: (n) => n !== "false",
+  /** Omit attribute when true (default); set explicit `="false"` only when off. */
+  toAttribute: (n) => n ? null : "false"
+}, ke = {
+  fromAttribute: (n) => n !== null && n !== "false" && n !== "0",
+  /**
+   * Use empty string when true so the boolean attribute is present; remove when false.
+   * Serializing false as `attr="false"` leaves the attribute in the DOM, so selectors like
+   * `[disabled]` / `[loading]` (common in resets and lazy-load styles) still match the host.
+   */
+  toAttribute: (n) => n ? "" : null
+}, tt = z`
   .swim-icon.lit-3d-rotate::before {
     content: '\\ea01';
   }
@@ -2304,10 +2333,15 @@ const et = z`
   .swim-icon.lit-x-small::before {
     content: '\\ebac';
   }
-`, tt = z`
+`, it = z`
   :host {
-    display: inline-block;
-    vertical-align: baseline;
+    /* inline-flex keeps the host box tight to the glyph and centers the shadow icon in contexts
+       (e.g. swim-button) where inherited line-height would otherwise grow the line box asymmetrically */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    line-height: 1;
   }
 
   :host svg {
@@ -2373,7 +2407,7 @@ const et = z`
   /* Font icon base (glyphs in icon-font-glyphs.ts); uses same font as ngx-ui ('ngx-icon'). */
   .swim-icon,
   .swim-icon__i.swim-icon {
-    display: inline-block;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 1em;
@@ -2385,10 +2419,14 @@ const et = z`
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Center the glyph regardless of font metrics (fixes vertical misalignment) */
+  /* Center the glyph in the em box; many ngx-icon glyphs sit high with display:block alone */
   .swim-icon::before,
   .swim-icon__i.swim-icon::before {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
     line-height: 1;
   }
 
@@ -2418,12 +2456,12 @@ const et = z`
     animation: swim-icon-spin 1s linear infinite;
   }
 
-  ${et}
-`, it = (n) => `swim-icon ${n.trim().split(" ").map((t) => {
+  ${tt}
+`, ot = (n) => `swim-icon ${n.trim().split(" ").map((t) => {
   const [i, o] = t.split(":");
   return i.length ? `${i} ${i}-${o}` : o;
 }).join(" ")}`;
-class ot {
+class nt {
   constructor() {
     this._defaultFontSetClass = "lit", this._iconMap = /* @__PURE__ */ new Map();
   }
@@ -2431,7 +2469,7 @@ class ot {
     return this._defaultFontSetClass = e, this._defaultFontSetClass;
   }
   get(e, t) {
-    return this.lookup(e, t).map((i) => it(i));
+    return this.lookup(e, t).map((i) => ot(i));
   }
   lookup(e, t) {
     const i = t ?? this._defaultFontSetClass;
@@ -2451,11 +2489,11 @@ class ot {
     return e.split(" ").map((i) => i.includes(":") ? i : `${t}:${i}`);
   }
 }
-const nt = new ot();
-var st = Object.defineProperty, j = (n, e, t, i) => {
+const st = new nt();
+var rt = Object.defineProperty, j = (n, e, t, i) => {
   for (var o = void 0, s = n.length - 1, r; s >= 0; s--)
     (r = n[s]) && (o = r(e, t, o) || o);
-  return o && st(e, t, o), o;
+  return o && rt(e, t, o), o;
 };
 const pe = "swim-icon", te = class te extends C {
   constructor() {
@@ -2491,12 +2529,12 @@ const pe = "swim-icon", te = class te extends C {
       this._cssClasses = [];
       return;
     }
-    this._cssClasses = nt.get(e, this.fontSet);
+    this._cssClasses = st.get(e, this.fontSet);
   }
   render() {
     var s;
     const e = this._cssClasses, t = !!this.alt, i = ((s = this.iconClass) == null ? void 0 : s.trim()) ?? "", o = i ? ` ${i}` : "";
-    return !e || e.length === 0 ? u`
+    return !e || e.length === 0 ? g`
         <span
           part="icon"
           class="${i}"
@@ -2506,7 +2544,7 @@ const pe = "swim-icon", te = class te extends C {
         >
           <slot></slot>
         </span>
-      ` : e.length === 1 ? u`
+      ` : e.length === 1 ? g`
         <i
           part="icon"
           class="swim-icon__i ${e[0]}${o}"
@@ -2514,7 +2552,7 @@ const pe = "swim-icon", te = class te extends C {
           aria-label="${t ? this.alt : b}"
           aria-hidden="${t ? "false" : "true"}"
         ></i>
-      ` : u`
+      ` : g`
       <span
         class="swim-icon__stack"
         role="${t ? "img" : "presentation"}"
@@ -2522,13 +2560,13 @@ const pe = "swim-icon", te = class te extends C {
         aria-hidden="${t ? "false" : "true"}"
       >
         ${e.map(
-      (r, c) => u`<i part="icon icon-${c}" class="swim-icon__i swim-icon__i--${c} ${r}${o}"></i>`
+      (r, c) => g`<i part="icon icon-${c}" class="swim-icon__i swim-icon__i--${c} ${r}${o}"></i>`
     )}
       </span>
     `;
   }
 };
-te.styles = [Se, tt];
+te.styles = [Se, it];
 let $ = te;
 j([
   m({ type: String, attribute: "font-icon" })
@@ -2546,22 +2584,15 @@ j([
   Ce()
 ], $.prototype, "_cssClasses");
 customElements.get(pe) || customElements.define(pe, $);
-var rt = Object.defineProperty, ct = Object.getOwnPropertyDescriptor, p = (n, e, t, i) => {
-  for (var o = i > 1 ? void 0 : i ? ct(e, t) : e, s = n.length - 1, r; s >= 0; s--)
+var ct = Object.defineProperty, lt = Object.getOwnPropertyDescriptor, p = (n, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? lt(e, t) : e, s = n.length - 1, r; s >= 0; s--)
     (r = n[s]) && (o = (i ? r(e, t, o) : r(o)) || o);
-  return i && o && rt(e, t, o), o;
-};
-const lt = {
-  fromAttribute: (n) => n !== "false" && n !== "",
-  toAttribute: (n) => n ? "true" : "false"
-}, ke = {
-  fromAttribute: (n) => n !== null && n !== "false",
-  toAttribute: (n) => n ? "true" : "false"
+  return i && o && ct(e, t, o), o;
 };
 let we = 0;
-const ue = "swim-section", ie = class ie extends C {
+const ge = "swim-section", ie = class ie extends C {
   constructor() {
-    super(...arguments), this._id = `section-${++we}`, this._sectionCollapsed = !1, this._sectionCollapsible = !0, this._headerToggle = !1, this.sectionTitle = "", this.padding = "1.8em", this.appearance = Ee.Legacy, this.togglePosition = D.Left, this._hasHeaderSlot = !1, this._headerSlotChangeBound = () => this._checkHeaderSlot();
+    super(...arguments), this._id = `section-${++we}`, this._sectionCollapsed = !1, this._sectionCollapsible = !0, this._headerToggle = !1, this.sectionTitle = "", this.padding = "1.8em", this.appearance = Ee.Legacy, this.togglePosition = L.Left, this._hasHeaderSlot = !1, this._headerSlotChangeBound = () => this._checkHeaderSlot();
   }
   get id() {
     return this._id;
@@ -2625,8 +2656,8 @@ const ue = "swim-section", ie = class ie extends C {
     this.sectionCollapsed = t, this.dispatchEvent(
       new CustomEvent("toggle", {
         detail: t,
-        bubbles: !0,
-        composed: !0
+        bubbles: !1,
+        composed: !1
       })
     );
   }
@@ -2638,14 +2669,14 @@ const ue = "swim-section", ie = class ie extends C {
   }
   render() {
     var r;
-    const e = this.sectionCollapsible, t = e && this.togglePosition !== D.None, i = this.togglePosition === D.Right, o = [
+    const e = this.sectionCollapsible, t = e && this.togglePosition !== L.None, i = this.togglePosition === L.Right, o = [
       "swim-section__header",
       this.sectionCollapsed ? "swim-section__header--collapsed" : "",
       e ? "swim-section__header--collapsible" : "",
       this.headerToggle ? "swim-section__header--header-toggle" : "",
       i ? "swim-section__header--toggle-right" : ""
     ].filter(Boolean).join(" "), s = this._headerIsEmpty();
-    return u`
+    return g`
       <div class="swim-section__inner">
         <header
           class="${o}${s ? " swim-section__header--empty" : ""}"
@@ -2656,7 +2687,7 @@ const ue = "swim-section", ie = class ie extends C {
           @click="${this._onHeaderClick}"
           @keydown="${this._onHeaderKeydown}"
         >
-          ${t && !s ? u`
+          ${t && !s ? g`
                 <button
                   type="button"
                   class="swim-section__toggle"
@@ -2676,11 +2707,11 @@ const ue = "swim-section", ie = class ie extends C {
                 </button>
               ` : b}
           <div class="swim-section__header-content">
-            ${(r = this.sectionTitle) != null && r.trim() ? u`<h1 class="swim-section__header-title">${this.sectionTitle}</h1>` : b}
+            ${(r = this.sectionTitle) != null && r.trim() ? g`<h1 class="swim-section__header-title">${this.sectionTitle}</h1>` : b}
             <slot name="header"></slot>
           </div>
         </header>
-        ${this.sectionCollapsed ? b : u`
+        ${this.sectionCollapsed ? b : g`
               <div
                 id="${this._contentId}"
                 class="swim-section__content"
@@ -2696,65 +2727,65 @@ const ue = "swim-section", ie = class ie extends C {
   }
 };
 ie.styles = Ye;
-let h = ie;
+let f = ie;
 p([
   m({ type: String, reflect: !0 })
-], h.prototype, "id", 1);
+], f.prototype, "id", 1);
 p([
   m({
     reflect: !0,
     attribute: "section-collapsed",
     converter: ke
   })
-], h.prototype, "sectionCollapsed", 1);
+], f.prototype, "sectionCollapsed", 1);
 p([
   m({
     reflect: !0,
     attribute: "section-collapsible",
-    converter: lt
+    converter: et
   })
-], h.prototype, "sectionCollapsible", 1);
+], f.prototype, "sectionCollapsible", 1);
 p([
   m({
     reflect: !0,
     attribute: "header-toggle",
     converter: ke
   })
-], h.prototype, "headerToggle", 1);
+], f.prototype, "headerToggle", 1);
 p([
   m({ type: String, reflect: !0, attribute: "section-title" })
-], h.prototype, "sectionTitle", 2);
+], f.prototype, "sectionTitle", 2);
 p([
   m({ type: String })
-], h.prototype, "padding", 2);
+], f.prototype, "padding", 2);
 p([
   m({ type: String, reflect: !0 })
-], h.prototype, "appearance", 2);
+], f.prototype, "appearance", 2);
 p([
   m({ type: String, reflect: !0, attribute: "toggle-position" })
-], h.prototype, "togglePosition", 2);
+], f.prototype, "togglePosition", 2);
 p([
   Ce()
-], h.prototype, "_hasHeaderSlot", 2);
+], f.prototype, "_hasHeaderSlot", 2);
 p([
   Xe('slot[name="header"]')
-], h.prototype, "_headerSlot", 2);
-customElements.get(ue) || customElements.define(ue, h);
+], f.prototype, "_headerSlot", 2);
+customElements.get(ge) || customElements.define(ge, f);
 const at = z`
   :host {
     display: contents;
   }
-`, ge = "swim-section-header", oe = class oe extends C {
+`, ue = "swim-section-header", oe = class oe extends C {
   render() {
-    return u`<slot></slot>`;
+    return g`<slot></slot>`;
   }
 };
 oe.styles = at;
 let Z = oe;
-customElements.get(ge) || customElements.define(ge, Z);
+customElements.get(ue) || customElements.define(ue, Z);
 export {
   Ee as SectionAppearance,
-  h as SwimSection,
+  f as SwimSection,
   Z as SwimSectionHeader,
-  D as TogglePosition
+  L as TogglePosition
 };

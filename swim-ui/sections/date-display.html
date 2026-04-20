@@ -1,0 +1,103 @@
+<hr class="section-divider" />
+<h1 id="date-display" class="page-title">Date/Time Display</h1>
+<p class="subtitle">Read-only date and time with formats, relative mode, time zones, and optional multi-zone tooltip (ngx-time parity).</p>
+
+<section class="section">
+  <swim-section section-title="Basic">
+    <h4 class="demo-label">Default Date-Time</h4>
+    <swim-date-display id="dateDisplayBasic" datetime="2011-03-11T05:46:24Z"></swim-date-display>
+    <pre class="demo-pre"><code>&lt;swim-date-display datetime="2011-03-11T05:46:24Z"&gt;&lt;/swim-date-display&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Formats">
+    <h4 class="demo-label">Format</h4>
+    <swim-date-display datetime="2011-03-11T05:46:24Z" format="dateTime"></swim-date-display>
+    <pre class="demo-pre"><code>&lt;swim-date-display datetime="2011-03-11T05:46:24Z" format="dateTime"&gt;&lt;/swim-date-display&gt;</code></pre>
+
+    <h4 class="demo-label demo-label--after">Custom format</h4>
+    <swim-date-display datetime="2011-03-11T05:46:24Z" format="YYYY MMM"></swim-date-display>
+    <pre class="demo-pre"><code>&lt;swim-date-display datetime="2011-03-11T05:46:24Z" format="YYYY MMM"&gt;&lt;/swim-date-display&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Modes">
+    <h4 class="demo-label">Human Readable Date-Time</h4>
+    <swim-date-display datetime="2011-03-11T05:46:24Z" mode="human"></swim-date-display>
+    <pre class="demo-pre"><code>&lt;swim-date-display datetime="2011-03-11T05:46:24Z" mode="human"&gt;&lt;/swim-date-display&gt;</code></pre>
+
+    <h4 class="demo-label demo-label--after">Local</h4>
+    <swim-date-display datetime="2011-03-11T05:46:24Z" mode="local"></swim-date-display>
+    <pre class="demo-pre"><code>&lt;swim-date-display datetime="2011-03-11T05:46:24Z" mode="local"&gt;&lt;/swim-date-display&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Types">
+    <h4 class="demo-label">Time</h4>
+    <swim-date-display datetime="2011-03-11T05:46:24Z" type="time"></swim-date-display>
+    <pre class="demo-pre"><code>&lt;swim-date-display datetime="2011-03-11T05:46:24Z" type="time"&gt;&lt;/swim-date-display&gt;</code></pre>
+
+    <h4 class="demo-label demo-label--after">Date</h4>
+    <swim-date-display datetime="2011-03-11T05:46:24Z" type="date"></swim-date-display>
+    <pre class="demo-pre"><code>&lt;swim-date-display datetime="2011-03-11T05:46:24Z" type="date"&gt;&lt;/swim-date-display&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section" id="dateDisplayDemoRoot">
+  <swim-section section-title="Time Zones">
+    <p class="demo-label">Local string (demo): <output id="dateDisplayLocalString"></output></p>
+
+    <h4 class="demo-label demo-label--after">Input and display TZ can be defined</h4>
+    <swim-date-display datetime="March 11, 2011 2:46:24 PM" timezone="Asia/Tokyo"></swim-date-display>
+    <pre class="demo-pre"><code>&lt;swim-date-display datetime="March 11, 2011 2:46:24 PM" timezone="Asia/Tokyo"&gt;&lt;/swim-date-display&gt;</code></pre>
+
+    <h4 class="demo-label demo-label--after">Default input timezone can be specified separately from display</h4>
+    <swim-date-display datetime="March 11, 2011 2:46:24 PM" default-input-time-zone="Asia/Tokyo"></swim-date-display>
+    <pre class="demo-pre"><code>&lt;swim-date-display datetime="March 11, 2011 2:46:24 PM" default-input-time-zone="Asia/Tokyo"&gt;&lt;/swim-date-display&gt;</code></pre>
+
+    <h4 class="demo-label demo-label--after">Explicit timezone in input value overrides default input timezone</h4>
+    <swim-date-display datetime="03/10/2011 9:46:24 PM -08:00" default-input-time-zone="Asia/Tokyo"></swim-date-display>
+    <pre class="demo-pre"><code>&lt;swim-date-display datetime="03/10/2011 9:46:24 PM -08:00" default-input-time-zone="Asia/Tokyo"&gt;&lt;/swim-date-display&gt;</code></pre>
+  </swim-section>
+
+  <swim-section section-title="Popup">
+    <h4 class="demo-label">Native Tooltip</h4>
+    <swim-date-display datetime="2011-03-11T05:46:24Z" tooltip-disabled="true"></swim-date-display>
+    <pre class="demo-pre"><code>&lt;swim-date-display datetime="2011-03-11T05:46:24Z" tooltip-disabled="true"&gt;&lt;/swim-date-display&gt;</code></pre>
+
+    <h4 class="demo-label demo-label--after">Defined Timezones</h4>
+    <swim-date-display id="dateDisplayTimezonesCustom" datetime="2011-03-11T05:46:24Z"></swim-date-display>
+    <pre class="demo-pre"><code>&lt;!-- set .timezones in JS or bind in Lit --&gt;
+&lt;swim-date-display id="ex" datetime="2011-03-11T05:46:24Z"&gt;&lt;/swim-date-display&gt;
+&lt;script&gt;
+  ex.timezones = { Local: '', GMT: 'Etc/UTC', Tokyo: 'Asia/Tokyo' };
+&lt;/script&gt;</code></pre>
+
+    <h4 class="demo-label demo-label--after">Popup Format</h4>
+    <swim-date-display datetime="2011-03-11T05:46:24Z" tooltip-format="localeTime"></swim-date-display>
+    <pre class="demo-pre"><code>&lt;swim-date-display datetime="2011-03-11T05:46:24Z" tooltip-format="localeTime"&gt;&lt;/swim-date-display&gt;</code></pre>
+
+    <h4 class="demo-label demo-label--after">Custom Popup Format</h4>
+    <swim-date-display datetime="2011-03-11T05:46:24Z" tooltip-format="YYYY MMM"></swim-date-display>
+    <pre class="demo-pre"><code>&lt;swim-date-display datetime="2011-03-11T05:46:24Z" tooltip-format="YYYY MMM"&gt;&lt;/swim-date-display&gt;</code></pre>
+
+    <p class="demo-label demo-label--after">Last copy (from row button or primary click): <output id="dateDisplayCopyLog">—</output></p>
+  </swim-section>
+
+  <swim-section section-title="Invalid">
+    <swim-date-display datetime="1/1/1/1970"></swim-date-display>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Usage">
+    <pre class="demo-pre"><code>import '@swimlane/swim-ui/date-display.js';
+
+&lt;swim-date-display datetime="2011-03-11T05:46:24Z"&gt;&lt;/swim-date-display&gt;
+&lt;swim-date-display datetime="2011-03-11T05:46:24Z" mode="human"&gt;&lt;/swim-date-display&gt;
+&lt;swim-date-display datetime="2011-03-11T05:46:24Z" mode="local"&gt;&lt;/swim-date-display&gt;</code></pre>
+  </swim-section>
+</section>

@@ -3,18 +3,18 @@
  * Copyright 2019 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const yt = globalThis, ni = yt.ShadowRoot && (yt.ShadyCSS === void 0 || yt.ShadyCSS.nativeShadow) && "adoptedStyleSheets" in Document.prototype && "replace" in CSSStyleSheet.prototype, ai = Symbol(), ji = /* @__PURE__ */ new WeakMap();
-let lo = class {
+const Tt = globalThis, bi = Tt.ShadowRoot && (Tt.ShadyCSS === void 0 || Tt.ShadyCSS.nativeShadow) && "adoptedStyleSheets" in Document.prototype && "replace" in CSSStyleSheet.prototype, fi = Symbol(), is = /* @__PURE__ */ new WeakMap();
+let vo = class {
   constructor(e, t, i) {
-    if (this._$cssResult$ = !0, i !== ai) throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");
+    if (this._$cssResult$ = !0, i !== fi) throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");
     this.cssText = e, this.t = t;
   }
   get styleSheet() {
     let e = this.o;
     const t = this.t;
-    if (ni && e === void 0) {
+    if (bi && e === void 0) {
       const i = t !== void 0 && t.length === 1;
-      i && (e = ji.get(t)), e === void 0 && ((this.o = e = new CSSStyleSheet()).replaceSync(this.cssText), i && ji.set(t, e));
+      i && (e = is.get(t)), e === void 0 && ((this.o = e = new CSSStyleSheet()).replaceSync(this.cssText), i && is.set(t, e));
     }
     return e;
   }
@@ -22,106 +22,106 @@ let lo = class {
     return this.cssText;
   }
 };
-const Mo = (o) => new lo(typeof o == "string" ? o : o + "", void 0, ai), w = (o, ...e) => {
-  const t = o.length === 1 ? o[0] : e.reduce((i, s, r) => i + ((n) => {
+const Uo = (s) => new vo(typeof s == "string" ? s : s + "", void 0, fi), v = (s, ...e) => {
+  const t = s.length === 1 ? s[0] : e.reduce((i, o, r) => i + ((n) => {
     if (n._$cssResult$ === !0) return n.cssText;
     if (typeof n == "number") return n;
     throw Error("Value passed to 'css' function must be a 'css' function result: " + n + ". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.");
-  })(s) + o[r + 1], o[0]);
-  return new lo(t, o, ai);
-}, Oo = (o, e) => {
-  if (ni) o.adoptedStyleSheets = e.map((t) => t instanceof CSSStyleSheet ? t : t.styleSheet);
+  })(o) + s[r + 1], s[0]);
+  return new vo(t, s, fi);
+}, qo = (s, e) => {
+  if (bi) s.adoptedStyleSheets = e.map((t) => t instanceof CSSStyleSheet ? t : t.styleSheet);
   else for (const t of e) {
-    const i = document.createElement("style"), s = yt.litNonce;
-    s !== void 0 && i.setAttribute("nonce", s), i.textContent = t.cssText, o.appendChild(i);
+    const i = document.createElement("style"), o = Tt.litNonce;
+    o !== void 0 && i.setAttribute("nonce", o), i.textContent = t.cssText, s.appendChild(i);
   }
-}, Gi = ni ? (o) => o : (o) => o instanceof CSSStyleSheet ? ((e) => {
+}, ss = bi ? (s) => s : (s) => s instanceof CSSStyleSheet ? ((e) => {
   let t = "";
   for (const i of e.cssRules) t += i.cssText;
-  return Mo(t);
-})(o) : o;
+  return Uo(t);
+})(s) : s;
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const { is: Io, defineProperty: Po, getOwnPropertyDescriptor: Lo, getOwnPropertyNames: Fo, getOwnPropertySymbols: Bo, getPrototypeOf: Ro } = Object, Se = globalThis, Wi = Se.trustedTypes, Ho = Wi ? Wi.emptyScript : "", qt = Se.reactiveElementPolyfillSupport, ct = (o, e) => o, kt = { toAttribute(o, e) {
+const { is: Go, defineProperty: Wo, getOwnPropertyDescriptor: Ko, getOwnPropertyNames: Zo, getOwnPropertySymbols: Xo, getPrototypeOf: Jo } = Object, Oe = globalThis, os = Oe.trustedTypes, Qo = os ? os.emptyScript : "", Qt = Oe.reactiveElementPolyfillSupport, bt = (s, e) => s, Ot = { toAttribute(s, e) {
   switch (e) {
     case Boolean:
-      o = o ? Ho : null;
+      s = s ? Qo : null;
       break;
     case Object:
     case Array:
-      o = o == null ? o : JSON.stringify(o);
+      s = s == null ? s : JSON.stringify(s);
   }
-  return o;
-}, fromAttribute(o, e) {
-  let t = o;
+  return s;
+}, fromAttribute(s, e) {
+  let t = s;
   switch (e) {
     case Boolean:
-      t = o !== null;
+      t = s !== null;
       break;
     case Number:
-      t = o === null ? null : Number(o);
+      t = s === null ? null : Number(s);
       break;
     case Object:
     case Array:
       try {
-        t = JSON.parse(o);
+        t = JSON.parse(s);
       } catch {
         t = null;
       }
   }
   return t;
-} }, li = (o, e) => !Io(o, e), Ki = { attribute: !0, type: String, converter: kt, reflect: !1, useDefault: !1, hasChanged: li };
-Symbol.metadata ?? (Symbol.metadata = Symbol("metadata")), Se.litPropertyMetadata ?? (Se.litPropertyMetadata = /* @__PURE__ */ new WeakMap());
-let He = class extends HTMLElement {
+} }, gi = (s, e) => !Go(s, e), rs = { attribute: !0, type: String, converter: Ot, reflect: !1, useDefault: !1, hasChanged: gi };
+Symbol.metadata ?? (Symbol.metadata = Symbol("metadata")), Oe.litPropertyMetadata ?? (Oe.litPropertyMetadata = /* @__PURE__ */ new WeakMap());
+let Ke = class extends HTMLElement {
   static addInitializer(e) {
     this._$Ei(), (this.l ?? (this.l = [])).push(e);
   }
   static get observedAttributes() {
     return this.finalize(), this._$Eh && [...this._$Eh.keys()];
   }
-  static createProperty(e, t = Ki) {
+  static createProperty(e, t = rs) {
     if (t.state && (t.attribute = !1), this._$Ei(), this.prototype.hasOwnProperty(e) && ((t = Object.create(t)).wrapped = !0), this.elementProperties.set(e, t), !t.noAccessor) {
-      const i = Symbol(), s = this.getPropertyDescriptor(e, i, t);
-      s !== void 0 && Po(this.prototype, e, s);
+      const i = Symbol(), o = this.getPropertyDescriptor(e, i, t);
+      o !== void 0 && Wo(this.prototype, e, o);
     }
   }
   static getPropertyDescriptor(e, t, i) {
-    const { get: s, set: r } = Lo(this.prototype, e) ?? { get() {
+    const { get: o, set: r } = Ko(this.prototype, e) ?? { get() {
       return this[t];
     }, set(n) {
       this[t] = n;
     } };
-    return { get: s, set(n) {
-      const l = s == null ? void 0 : s.call(this);
+    return { get: o, set(n) {
+      const l = o == null ? void 0 : o.call(this);
       r == null || r.call(this, n), this.requestUpdate(e, l, i);
     }, configurable: !0, enumerable: !0 };
   }
   static getPropertyOptions(e) {
-    return this.elementProperties.get(e) ?? Ki;
+    return this.elementProperties.get(e) ?? rs;
   }
   static _$Ei() {
-    if (this.hasOwnProperty(ct("elementProperties"))) return;
-    const e = Ro(this);
+    if (this.hasOwnProperty(bt("elementProperties"))) return;
+    const e = Jo(this);
     e.finalize(), e.l !== void 0 && (this.l = [...e.l]), this.elementProperties = new Map(e.elementProperties);
   }
   static finalize() {
-    if (this.hasOwnProperty(ct("finalized"))) return;
-    if (this.finalized = !0, this._$Ei(), this.hasOwnProperty(ct("properties"))) {
-      const t = this.properties, i = [...Fo(t), ...Bo(t)];
-      for (const s of i) this.createProperty(s, t[s]);
+    if (this.hasOwnProperty(bt("finalized"))) return;
+    if (this.finalized = !0, this._$Ei(), this.hasOwnProperty(bt("properties"))) {
+      const t = this.properties, i = [...Zo(t), ...Xo(t)];
+      for (const o of i) this.createProperty(o, t[o]);
     }
     const e = this[Symbol.metadata];
     if (e !== null) {
       const t = litPropertyMetadata.get(e);
-      if (t !== void 0) for (const [i, s] of t) this.elementProperties.set(i, s);
+      if (t !== void 0) for (const [i, o] of t) this.elementProperties.set(i, o);
     }
     this._$Eh = /* @__PURE__ */ new Map();
     for (const [t, i] of this.elementProperties) {
-      const s = this._$Eu(t, i);
-      s !== void 0 && this._$Eh.set(s, t);
+      const o = this._$Eu(t, i);
+      o !== void 0 && this._$Eh.set(o, t);
     }
     this.elementStyles = this.finalizeStyles(this.styles);
   }
@@ -129,8 +129,8 @@ let He = class extends HTMLElement {
     const t = [];
     if (Array.isArray(e)) {
       const i = new Set(e.flat(1 / 0).reverse());
-      for (const s of i) t.unshift(Gi(s));
-    } else e !== void 0 && t.push(Gi(e));
+      for (const o of i) t.unshift(ss(o));
+    } else e !== void 0 && t.push(ss(e));
     return t;
   }
   static _$Eu(e, t) {
@@ -159,7 +159,7 @@ let He = class extends HTMLElement {
   }
   createRenderRoot() {
     const e = this.shadowRoot ?? this.attachShadow(this.constructor.shadowRootOptions);
-    return Oo(e, this.constructor.elementStyles), e;
+    return qo(e, this.constructor.elementStyles), e;
   }
   connectedCallback() {
     var e;
@@ -182,33 +182,33 @@ let He = class extends HTMLElement {
   }
   _$ET(e, t) {
     var r;
-    const i = this.constructor.elementProperties.get(e), s = this.constructor._$Eu(e, i);
-    if (s !== void 0 && i.reflect === !0) {
-      const n = (((r = i.converter) == null ? void 0 : r.toAttribute) !== void 0 ? i.converter : kt).toAttribute(t, i.type);
-      this._$Em = e, n == null ? this.removeAttribute(s) : this.setAttribute(s, n), this._$Em = null;
+    const i = this.constructor.elementProperties.get(e), o = this.constructor._$Eu(e, i);
+    if (o !== void 0 && i.reflect === !0) {
+      const n = (((r = i.converter) == null ? void 0 : r.toAttribute) !== void 0 ? i.converter : Ot).toAttribute(t, i.type);
+      this._$Em = e, n == null ? this.removeAttribute(o) : this.setAttribute(o, n), this._$Em = null;
     }
   }
   _$AK(e, t) {
     var r, n;
-    const i = this.constructor, s = i._$Eh.get(e);
-    if (s !== void 0 && this._$Em !== s) {
-      const l = i.getPropertyOptions(s), d = typeof l.converter == "function" ? { fromAttribute: l.converter } : ((r = l.converter) == null ? void 0 : r.fromAttribute) !== void 0 ? l.converter : kt;
-      this._$Em = s;
+    const i = this.constructor, o = i._$Eh.get(e);
+    if (o !== void 0 && this._$Em !== o) {
+      const l = i.getPropertyOptions(o), d = typeof l.converter == "function" ? { fromAttribute: l.converter } : ((r = l.converter) == null ? void 0 : r.fromAttribute) !== void 0 ? l.converter : Ot;
+      this._$Em = o;
       const h = d.fromAttribute(t, l.type);
-      this[s] = h ?? ((n = this._$Ej) == null ? void 0 : n.get(s)) ?? h, this._$Em = null;
+      this[o] = h ?? ((n = this._$Ej) == null ? void 0 : n.get(o)) ?? h, this._$Em = null;
     }
   }
-  requestUpdate(e, t, i, s = !1, r) {
+  requestUpdate(e, t, i, o = !1, r) {
     var n;
     if (e !== void 0) {
       const l = this.constructor;
-      if (s === !1 && (r = this[e]), i ?? (i = l.getPropertyOptions(e)), !((i.hasChanged ?? li)(r, t) || i.useDefault && i.reflect && r === ((n = this._$Ej) == null ? void 0 : n.get(e)) && !this.hasAttribute(l._$Eu(e, i)))) return;
+      if (o === !1 && (r = this[e]), i ?? (i = l.getPropertyOptions(e)), !((i.hasChanged ?? gi)(r, t) || i.useDefault && i.reflect && r === ((n = this._$Ej) == null ? void 0 : n.get(e)) && !this.hasAttribute(l._$Eu(e, i)))) return;
       this.C(e, t, i);
     }
     this.isUpdatePending === !1 && (this._$ES = this._$EP());
   }
-  C(e, t, { useDefault: i, reflect: s, wrapped: r }, n) {
-    i && !(this._$Ej ?? (this._$Ej = /* @__PURE__ */ new Map())).has(e) && (this._$Ej.set(e, n ?? t ?? this[e]), r !== !0 || n !== void 0) || (this._$AL.has(e) || (this.hasUpdated || i || (t = void 0), this._$AL.set(e, t)), s === !0 && this._$Em !== e && (this._$Eq ?? (this._$Eq = /* @__PURE__ */ new Set())).add(e));
+  C(e, t, { useDefault: i, reflect: o, wrapped: r }, n) {
+    i && !(this._$Ej ?? (this._$Ej = /* @__PURE__ */ new Map())).has(e) && (this._$Ej.set(e, n ?? t ?? this[e]), r !== !0 || n !== void 0) || (this._$AL.has(e) || (this.hasUpdated || i || (t = void 0), this._$AL.set(e, t)), o === !0 && this._$Em !== e && (this._$Eq ?? (this._$Eq = /* @__PURE__ */ new Set())).add(e));
   }
   async _$EP() {
     this.isUpdatePending = !0;
@@ -231,8 +231,8 @@ let He = class extends HTMLElement {
         for (const [r, n] of this._$Ep) this[r] = n;
         this._$Ep = void 0;
       }
-      const s = this.constructor.elementProperties;
-      if (s.size > 0) for (const [r, n] of s) {
+      const o = this.constructor.elementProperties;
+      if (o.size > 0) for (const [r, n] of o) {
         const { wrapped: l } = n, d = this[r];
         l !== !0 || this._$AL.has(r) || d === void 0 || this.C(r, void 0, n, d);
       }
@@ -240,12 +240,12 @@ let He = class extends HTMLElement {
     let e = !1;
     const t = this._$AL;
     try {
-      e = this.shouldUpdate(t), e ? (this.willUpdate(t), (i = this._$EO) == null || i.forEach((s) => {
+      e = this.shouldUpdate(t), e ? (this.willUpdate(t), (i = this._$EO) == null || i.forEach((o) => {
         var r;
-        return (r = s.hostUpdate) == null ? void 0 : r.call(s);
+        return (r = o.hostUpdate) == null ? void 0 : r.call(o);
       }), this.update(t)) : this._$EM();
-    } catch (s) {
-      throw e = !1, this._$EM(), s;
+    } catch (o) {
+      throw e = !1, this._$EM(), o;
     }
     e && this._$AE(t);
   }
@@ -254,8 +254,8 @@ let He = class extends HTMLElement {
   _$AE(e) {
     var t;
     (t = this._$EO) == null || t.forEach((i) => {
-      var s;
-      return (s = i.hostUpdated) == null ? void 0 : s.call(i);
+      var o;
+      return (o = i.hostUpdated) == null ? void 0 : o.call(i);
     }), this.hasUpdated || (this.hasUpdated = !0, this.firstUpdated(e)), this.updated(e);
   }
   _$EM() {
@@ -278,76 +278,76 @@ let He = class extends HTMLElement {
   firstUpdated(e) {
   }
 };
-He.elementStyles = [], He.shadowRootOptions = { mode: "open" }, He[ct("elementProperties")] = /* @__PURE__ */ new Map(), He[ct("finalized")] = /* @__PURE__ */ new Map(), qt == null || qt({ ReactiveElement: He }), (Se.reactiveElementVersions ?? (Se.reactiveElementVersions = [])).push("2.1.2");
+Ke.elementStyles = [], Ke.shadowRootOptions = { mode: "open" }, Ke[bt("elementProperties")] = /* @__PURE__ */ new Map(), Ke[bt("finalized")] = /* @__PURE__ */ new Map(), Qt == null || Qt({ ReactiveElement: Ke }), (Oe.reactiveElementVersions ?? (Oe.reactiveElementVersions = [])).push("2.1.2");
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const dt = globalThis, Zi = (o) => o, Ct = dt.trustedTypes, Xi = Ct ? Ct.createPolicy("lit-html", { createHTML: (o) => o }) : void 0, co = "$lit$", Ee = `lit$${Math.random().toFixed(9).slice(2)}$`, ho = "?" + Ee, Yo = `<${ho}>`, Ie = document, ht = () => Ie.createComment(""), ut = (o) => o === null || typeof o != "object" && typeof o != "function", ci = Array.isArray, Vo = (o) => ci(o) || typeof (o == null ? void 0 : o[Symbol.iterator]) == "function", jt = `[ 	
-\f\r]`, st = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, Ji = /-->/g, Qi = />/g, ze = RegExp(`>|${jt}(?:([^\\s"'>=/]+)(${jt}*=${jt}*(?:[^ 	
-\f\r"'\`<>=]|("|')|))|$)`, "g"), es = /'/g, ts = /"/g, uo = /^(?:script|style|textarea|title)$/i, No = (o) => (e, ...t) => ({ _$litType$: o, strings: e, values: t }), c = No(1), Z = Symbol.for("lit-noChange"), u = Symbol.for("lit-nothing"), is = /* @__PURE__ */ new WeakMap(), Me = Ie.createTreeWalker(Ie, 129);
-function po(o, e) {
-  if (!ci(o) || !o.hasOwnProperty("raw")) throw Error("invalid template strings array");
-  return Xi !== void 0 ? Xi.createHTML(e) : e;
+const ft = globalThis, ns = (s) => s, Pt = ft.trustedTypes, as = Pt ? Pt.createPolicy("lit-html", { createHTML: (s) => s }) : void 0, yo = "$lit$", Me = `lit$${Math.random().toFixed(9).slice(2)}$`, xo = "?" + Me, er = `<${xo}>`, Ve = document, gt = () => Ve.createComment(""), _t = (s) => s === null || typeof s != "object" && typeof s != "function", _i = Array.isArray, tr = (s) => _i(s) || typeof (s == null ? void 0 : s[Symbol.iterator]) == "function", ei = `[ 	
+\f\r]`, dt = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, ls = /-->/g, cs = />/g, Fe = RegExp(`>|${ei}(?:([^\\s"'>=/]+)(${ei}*=${ei}*(?:[^ 	
+\f\r"'\`<>=]|("|')|))|$)`, "g"), ds = /'/g, hs = /"/g, $o = /^(?:script|style|textarea|title)$/i, ir = (s) => (e, ...t) => ({ _$litType$: s, strings: e, values: t }), c = ir(1), te = Symbol.for("lit-noChange"), u = Symbol.for("lit-nothing"), us = /* @__PURE__ */ new WeakMap(), Re = Ve.createTreeWalker(Ve, 129);
+function ko(s, e) {
+  if (!_i(s) || !s.hasOwnProperty("raw")) throw Error("invalid template strings array");
+  return as !== void 0 ? as.createHTML(e) : e;
 }
-const Uo = (o, e) => {
-  const t = o.length - 1, i = [];
-  let s, r = e === 2 ? "<svg>" : e === 3 ? "<math>" : "", n = st;
+const sr = (s, e) => {
+  const t = s.length - 1, i = [];
+  let o, r = e === 2 ? "<svg>" : e === 3 ? "<math>" : "", n = dt;
   for (let l = 0; l < t; l++) {
-    const d = o[l];
-    let h, _, p = -1, b = 0;
-    for (; b < d.length && (n.lastIndex = b, _ = n.exec(d), _ !== null); ) b = n.lastIndex, n === st ? _[1] === "!--" ? n = Ji : _[1] !== void 0 ? n = Qi : _[2] !== void 0 ? (uo.test(_[2]) && (s = RegExp("</" + _[2], "g")), n = ze) : _[3] !== void 0 && (n = ze) : n === ze ? _[0] === ">" ? (n = s ?? st, p = -1) : _[1] === void 0 ? p = -2 : (p = n.lastIndex - _[2].length, h = _[1], n = _[3] === void 0 ? ze : _[3] === '"' ? ts : es) : n === ts || n === es ? n = ze : n === Ji || n === Qi ? n = st : (n = ze, s = void 0);
-    const f = n === ze && o[l + 1].startsWith("/>") ? " " : "";
-    r += n === st ? d + Yo : p >= 0 ? (i.push(h), d.slice(0, p) + co + d.slice(p) + Ee + f) : d + Ee + (p === -2 ? l : f);
+    const d = s[l];
+    let h, w, m = -1, f = 0;
+    for (; f < d.length && (n.lastIndex = f, w = n.exec(d), w !== null); ) f = n.lastIndex, n === dt ? w[1] === "!--" ? n = ls : w[1] !== void 0 ? n = cs : w[2] !== void 0 ? ($o.test(w[2]) && (o = RegExp("</" + w[2], "g")), n = Fe) : w[3] !== void 0 && (n = Fe) : n === Fe ? w[0] === ">" ? (n = o ?? dt, m = -1) : w[1] === void 0 ? m = -2 : (m = n.lastIndex - w[2].length, h = w[1], n = w[3] === void 0 ? Fe : w[3] === '"' ? hs : ds) : n === hs || n === ds ? n = Fe : n === ls || n === cs ? n = dt : (n = Fe, o = void 0);
+    const _ = n === Fe && s[l + 1].startsWith("/>") ? " " : "";
+    r += n === dt ? d + er : m >= 0 ? (i.push(h), d.slice(0, m) + yo + d.slice(m) + Me + _) : d + Me + (m === -2 ? l : _);
   }
-  return [po(o, r + (o[t] || "<?>") + (e === 2 ? "</svg>" : e === 3 ? "</math>" : "")), i];
+  return [ko(s, r + (s[t] || "<?>") + (e === 2 ? "</svg>" : e === 3 ? "</math>" : "")), i];
 };
-class pt {
+class wt {
   constructor({ strings: e, _$litType$: t }, i) {
-    let s;
+    let o;
     this.parts = [];
     let r = 0, n = 0;
-    const l = e.length - 1, d = this.parts, [h, _] = Uo(e, t);
-    if (this.el = pt.createElement(h, i), Me.currentNode = this.el.content, t === 2 || t === 3) {
-      const p = this.el.content.firstChild;
-      p.replaceWith(...p.childNodes);
+    const l = e.length - 1, d = this.parts, [h, w] = sr(e, t);
+    if (this.el = wt.createElement(h, i), Re.currentNode = this.el.content, t === 2 || t === 3) {
+      const m = this.el.content.firstChild;
+      m.replaceWith(...m.childNodes);
     }
-    for (; (s = Me.nextNode()) !== null && d.length < l; ) {
-      if (s.nodeType === 1) {
-        if (s.hasAttributes()) for (const p of s.getAttributeNames()) if (p.endsWith(co)) {
-          const b = _[n++], f = s.getAttribute(p).split(Ee), D = /([.?@])?(.*)/.exec(b);
-          d.push({ type: 1, index: r, name: D[2], strings: f, ctor: D[1] === "." ? jo : D[1] === "?" ? Go : D[1] === "@" ? Wo : Ht }), s.removeAttribute(p);
-        } else p.startsWith(Ee) && (d.push({ type: 6, index: r }), s.removeAttribute(p));
-        if (uo.test(s.tagName)) {
-          const p = s.textContent.split(Ee), b = p.length - 1;
-          if (b > 0) {
-            s.textContent = Ct ? Ct.emptyScript : "";
-            for (let f = 0; f < b; f++) s.append(p[f], ht()), Me.nextNode(), d.push({ type: 2, index: ++r });
-            s.append(p[b], ht());
+    for (; (o = Re.nextNode()) !== null && d.length < l; ) {
+      if (o.nodeType === 1) {
+        if (o.hasAttributes()) for (const m of o.getAttributeNames()) if (m.endsWith(yo)) {
+          const f = w[n++], _ = o.getAttribute(m).split(Me), O = /([.?@])?(.*)/.exec(f);
+          d.push({ type: 1, index: r, name: O[2], strings: _, ctor: O[1] === "." ? rr : O[1] === "?" ? nr : O[1] === "@" ? ar : Kt }), o.removeAttribute(m);
+        } else m.startsWith(Me) && (d.push({ type: 6, index: r }), o.removeAttribute(m));
+        if ($o.test(o.tagName)) {
+          const m = o.textContent.split(Me), f = m.length - 1;
+          if (f > 0) {
+            o.textContent = Pt ? Pt.emptyScript : "";
+            for (let _ = 0; _ < f; _++) o.append(m[_], gt()), Re.nextNode(), d.push({ type: 2, index: ++r });
+            o.append(m[f], gt());
           }
         }
-      } else if (s.nodeType === 8) if (s.data === ho) d.push({ type: 2, index: r });
+      } else if (o.nodeType === 8) if (o.data === xo) d.push({ type: 2, index: r });
       else {
-        let p = -1;
-        for (; (p = s.data.indexOf(Ee, p + 1)) !== -1; ) d.push({ type: 7, index: r }), p += Ee.length - 1;
+        let m = -1;
+        for (; (m = o.data.indexOf(Me, m + 1)) !== -1; ) d.push({ type: 7, index: r }), m += Me.length - 1;
       }
       r++;
     }
   }
   static createElement(e, t) {
-    const i = Ie.createElement("template");
+    const i = Ve.createElement("template");
     return i.innerHTML = e, i;
   }
 }
-function je(o, e, t = o, i) {
+function tt(s, e, t = s, i) {
   var n, l;
-  if (e === Z) return e;
-  let s = i !== void 0 ? (n = t._$Co) == null ? void 0 : n[i] : t._$Cl;
-  const r = ut(e) ? void 0 : e._$litDirective$;
-  return (s == null ? void 0 : s.constructor) !== r && ((l = s == null ? void 0 : s._$AO) == null || l.call(s, !1), r === void 0 ? s = void 0 : (s = new r(o), s._$AT(o, t, i)), i !== void 0 ? (t._$Co ?? (t._$Co = []))[i] = s : t._$Cl = s), s !== void 0 && (e = je(o, s._$AS(o, e.values), s, i)), e;
+  if (e === te) return e;
+  let o = i !== void 0 ? (n = t._$Co) == null ? void 0 : n[i] : t._$Cl;
+  const r = _t(e) ? void 0 : e._$litDirective$;
+  return (o == null ? void 0 : o.constructor) !== r && ((l = o == null ? void 0 : o._$AO) == null || l.call(o, !1), r === void 0 ? o = void 0 : (o = new r(s), o._$AT(s, t, i)), i !== void 0 ? (t._$Co ?? (t._$Co = []))[i] = o : t._$Cl = o), o !== void 0 && (e = tt(s, o._$AS(s, e.values), o, i)), e;
 }
-class qo {
+class or {
   constructor(e, t) {
     this._$AV = [], this._$AN = void 0, this._$AD = e, this._$AM = t;
   }
@@ -358,30 +358,30 @@ class qo {
     return this._$AM._$AU;
   }
   u(e) {
-    const { el: { content: t }, parts: i } = this._$AD, s = ((e == null ? void 0 : e.creationScope) ?? Ie).importNode(t, !0);
-    Me.currentNode = s;
-    let r = Me.nextNode(), n = 0, l = 0, d = i[0];
+    const { el: { content: t }, parts: i } = this._$AD, o = ((e == null ? void 0 : e.creationScope) ?? Ve).importNode(t, !0);
+    Re.currentNode = o;
+    let r = Re.nextNode(), n = 0, l = 0, d = i[0];
     for (; d !== void 0; ) {
       if (n === d.index) {
         let h;
-        d.type === 2 ? h = new Xe(r, r.nextSibling, this, e) : d.type === 1 ? h = new d.ctor(r, d.name, d.strings, this, e) : d.type === 6 && (h = new Ko(r, this, e)), this._$AV.push(h), d = i[++l];
+        d.type === 2 ? h = new rt(r, r.nextSibling, this, e) : d.type === 1 ? h = new d.ctor(r, d.name, d.strings, this, e) : d.type === 6 && (h = new lr(r, this, e)), this._$AV.push(h), d = i[++l];
       }
-      n !== (d == null ? void 0 : d.index) && (r = Me.nextNode(), n++);
+      n !== (d == null ? void 0 : d.index) && (r = Re.nextNode(), n++);
     }
-    return Me.currentNode = Ie, s;
+    return Re.currentNode = Ve, o;
   }
   p(e) {
     let t = 0;
     for (const i of this._$AV) i !== void 0 && (i.strings !== void 0 ? (i._$AI(e, i, t), t += i.strings.length - 2) : i._$AI(e[t])), t++;
   }
 }
-class Xe {
+class rt {
   get _$AU() {
     var e;
     return ((e = this._$AM) == null ? void 0 : e._$AU) ?? this._$Cv;
   }
-  constructor(e, t, i, s) {
-    this.type = 2, this._$AH = u, this._$AN = void 0, this._$AA = e, this._$AB = t, this._$AM = i, this.options = s, this._$Cv = (s == null ? void 0 : s.isConnected) ?? !0;
+  constructor(e, t, i, o) {
+    this.type = 2, this._$AH = u, this._$AN = void 0, this._$AA = e, this._$AB = t, this._$AM = i, this.options = o, this._$Cv = (o == null ? void 0 : o.isConnected) ?? !0;
   }
   get parentNode() {
     let e = this._$AA.parentNode;
@@ -395,7 +395,7 @@ class Xe {
     return this._$AB;
   }
   _$AI(e, t = this) {
-    e = je(this, e, t), ut(e) ? e === u || e == null || e === "" ? (this._$AH !== u && this._$AR(), this._$AH = u) : e !== this._$AH && e !== Z && this._(e) : e._$litType$ !== void 0 ? this.$(e) : e.nodeType !== void 0 ? this.T(e) : Vo(e) ? this.k(e) : this._(e);
+    e = tt(this, e, t), _t(e) ? e === u || e == null || e === "" ? (this._$AH !== u && this._$AR(), this._$AH = u) : e !== this._$AH && e !== te && this._(e) : e._$litType$ !== void 0 ? this.$(e) : e.nodeType !== void 0 ? this.T(e) : tr(e) ? this.k(e) : this._(e);
   }
   O(e) {
     return this._$AA.parentNode.insertBefore(e, this._$AB);
@@ -404,33 +404,33 @@ class Xe {
     this._$AH !== e && (this._$AR(), this._$AH = this.O(e));
   }
   _(e) {
-    this._$AH !== u && ut(this._$AH) ? this._$AA.nextSibling.data = e : this.T(Ie.createTextNode(e)), this._$AH = e;
+    this._$AH !== u && _t(this._$AH) ? this._$AA.nextSibling.data = e : this.T(Ve.createTextNode(e)), this._$AH = e;
   }
   $(e) {
     var r;
-    const { values: t, _$litType$: i } = e, s = typeof i == "number" ? this._$AC(e) : (i.el === void 0 && (i.el = pt.createElement(po(i.h, i.h[0]), this.options)), i);
-    if (((r = this._$AH) == null ? void 0 : r._$AD) === s) this._$AH.p(t);
+    const { values: t, _$litType$: i } = e, o = typeof i == "number" ? this._$AC(e) : (i.el === void 0 && (i.el = wt.createElement(ko(i.h, i.h[0]), this.options)), i);
+    if (((r = this._$AH) == null ? void 0 : r._$AD) === o) this._$AH.p(t);
     else {
-      const n = new qo(s, this), l = n.u(this.options);
+      const n = new or(o, this), l = n.u(this.options);
       n.p(t), this.T(l), this._$AH = n;
     }
   }
   _$AC(e) {
-    let t = is.get(e.strings);
-    return t === void 0 && is.set(e.strings, t = new pt(e)), t;
+    let t = us.get(e.strings);
+    return t === void 0 && us.set(e.strings, t = new wt(e)), t;
   }
   k(e) {
-    ci(this._$AH) || (this._$AH = [], this._$AR());
+    _i(this._$AH) || (this._$AH = [], this._$AR());
     const t = this._$AH;
-    let i, s = 0;
-    for (const r of e) s === t.length ? t.push(i = new Xe(this.O(ht()), this.O(ht()), this, this.options)) : i = t[s], i._$AI(r), s++;
-    s < t.length && (this._$AR(i && i._$AB.nextSibling, s), t.length = s);
+    let i, o = 0;
+    for (const r of e) o === t.length ? t.push(i = new rt(this.O(gt()), this.O(gt()), this, this.options)) : i = t[o], i._$AI(r), o++;
+    o < t.length && (this._$AR(i && i._$AB.nextSibling, o), t.length = o);
   }
   _$AR(e = this._$AA.nextSibling, t) {
     var i;
     for ((i = this._$AP) == null ? void 0 : i.call(this, !1, !0, t); e !== this._$AB; ) {
-      const s = Zi(e).nextSibling;
-      Zi(e).remove(), e = s;
+      const o = ns(e).nextSibling;
+      ns(e).remove(), e = o;
     }
   }
   setConnected(e) {
@@ -438,32 +438,32 @@ class Xe {
     this._$AM === void 0 && (this._$Cv = e, (t = this._$AP) == null || t.call(this, e));
   }
 }
-class Ht {
+class Kt {
   get tagName() {
     return this.element.tagName;
   }
   get _$AU() {
     return this._$AM._$AU;
   }
-  constructor(e, t, i, s, r) {
-    this.type = 1, this._$AH = u, this._$AN = void 0, this.element = e, this.name = t, this._$AM = s, this.options = r, i.length > 2 || i[0] !== "" || i[1] !== "" ? (this._$AH = Array(i.length - 1).fill(new String()), this.strings = i) : this._$AH = u;
+  constructor(e, t, i, o, r) {
+    this.type = 1, this._$AH = u, this._$AN = void 0, this.element = e, this.name = t, this._$AM = o, this.options = r, i.length > 2 || i[0] !== "" || i[1] !== "" ? (this._$AH = Array(i.length - 1).fill(new String()), this.strings = i) : this._$AH = u;
   }
-  _$AI(e, t = this, i, s) {
+  _$AI(e, t = this, i, o) {
     const r = this.strings;
     let n = !1;
-    if (r === void 0) e = je(this, e, t, 0), n = !ut(e) || e !== this._$AH && e !== Z, n && (this._$AH = e);
+    if (r === void 0) e = tt(this, e, t, 0), n = !_t(e) || e !== this._$AH && e !== te, n && (this._$AH = e);
     else {
       const l = e;
       let d, h;
-      for (e = r[0], d = 0; d < r.length - 1; d++) h = je(this, l[i + d], t, d), h === Z && (h = this._$AH[d]), n || (n = !ut(h) || h !== this._$AH[d]), h === u ? e = u : e !== u && (e += (h ?? "") + r[d + 1]), this._$AH[d] = h;
+      for (e = r[0], d = 0; d < r.length - 1; d++) h = tt(this, l[i + d], t, d), h === te && (h = this._$AH[d]), n || (n = !_t(h) || h !== this._$AH[d]), h === u ? e = u : e !== u && (e += (h ?? "") + r[d + 1]), this._$AH[d] = h;
     }
-    n && !s && this.j(e);
+    n && !o && this.j(e);
   }
   j(e) {
     e === u ? this.element.removeAttribute(this.name) : this.element.setAttribute(this.name, e ?? "");
   }
 }
-class jo extends Ht {
+class rr extends Kt {
   constructor() {
     super(...arguments), this.type = 3;
   }
@@ -471,7 +471,7 @@ class jo extends Ht {
     this.element[this.name] = e === u ? void 0 : e;
   }
 }
-class Go extends Ht {
+class nr extends Kt {
   constructor() {
     super(...arguments), this.type = 4;
   }
@@ -479,21 +479,21 @@ class Go extends Ht {
     this.element.toggleAttribute(this.name, !!e && e !== u);
   }
 }
-class Wo extends Ht {
-  constructor(e, t, i, s, r) {
-    super(e, t, i, s, r), this.type = 5;
+class ar extends Kt {
+  constructor(e, t, i, o, r) {
+    super(e, t, i, o, r), this.type = 5;
   }
   _$AI(e, t = this) {
-    if ((e = je(this, e, t, 0) ?? u) === Z) return;
-    const i = this._$AH, s = e === u && i !== u || e.capture !== i.capture || e.once !== i.once || e.passive !== i.passive, r = e !== u && (i === u || s);
-    s && this.element.removeEventListener(this.name, this, i), r && this.element.addEventListener(this.name, this, e), this._$AH = e;
+    if ((e = tt(this, e, t, 0) ?? u) === te) return;
+    const i = this._$AH, o = e === u && i !== u || e.capture !== i.capture || e.once !== i.once || e.passive !== i.passive, r = e !== u && (i === u || o);
+    o && this.element.removeEventListener(this.name, this, i), r && this.element.addEventListener(this.name, this, e), this._$AH = e;
   }
   handleEvent(e) {
     var t;
     typeof this._$AH == "function" ? this._$AH.call(((t = this.options) == null ? void 0 : t.host) ?? this.element, e) : this._$AH.handleEvent(e);
   }
 }
-class Ko {
+class lr {
   constructor(e, t, i) {
     this.element = e, this.type = 6, this._$AN = void 0, this._$AM = t, this.options = i;
   }
@@ -501,27 +501,27 @@ class Ko {
     return this._$AM._$AU;
   }
   _$AI(e) {
-    je(this, e);
+    tt(this, e);
   }
 }
-const Zo = { I: Xe }, Gt = dt.litHtmlPolyfillSupport;
-Gt == null || Gt(pt, Xe), (dt.litHtmlVersions ?? (dt.litHtmlVersions = [])).push("3.3.2");
-const Xo = (o, e, t) => {
+const cr = { I: rt }, ti = ft.litHtmlPolyfillSupport;
+ti == null || ti(wt, rt), (ft.litHtmlVersions ?? (ft.litHtmlVersions = [])).push("3.3.2");
+const dr = (s, e, t) => {
   const i = (t == null ? void 0 : t.renderBefore) ?? e;
-  let s = i._$litPart$;
-  if (s === void 0) {
+  let o = i._$litPart$;
+  if (o === void 0) {
     const r = (t == null ? void 0 : t.renderBefore) ?? null;
-    i._$litPart$ = s = new Xe(e.insertBefore(ht(), r), r, void 0, t ?? {});
+    i._$litPart$ = o = new rt(e.insertBefore(gt(), r), r, void 0, t ?? {});
   }
-  return s._$AI(o), s;
+  return o._$AI(s), o;
 };
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const Oe = globalThis;
-let v = class extends He {
+const He = globalThis;
+let y = class extends Ke {
   constructor() {
     super(...arguments), this.renderOptions = { host: this }, this._$Do = void 0;
   }
@@ -532,7 +532,7 @@ let v = class extends He {
   }
   update(e) {
     const t = this.render();
-    this.hasUpdated || (this.renderOptions.isConnected = this.isConnected), super.update(e), this._$Do = Xo(t, this.renderRoot, this.renderOptions);
+    this.hasUpdated || (this.renderOptions.isConnected = this.isConnected), super.update(e), this._$Do = dr(t, this.renderRoot, this.renderOptions);
   }
   connectedCallback() {
     var e;
@@ -543,77 +543,87 @@ let v = class extends He {
     super.disconnectedCallback(), (e = this._$Do) == null || e.setConnected(!1);
   }
   render() {
-    return Z;
+    return te;
   }
 };
-var ao;
-v._$litElement$ = !0, v.finalized = !0, (ao = Oe.litElementHydrateSupport) == null || ao.call(Oe, { LitElement: v });
-const Wt = Oe.litElementPolyfillSupport;
-Wt == null || Wt({ LitElement: v });
-(Oe.litElementVersions ?? (Oe.litElementVersions = [])).push("4.2.2");
+var wo;
+y._$litElement$ = !0, y.finalized = !0, (wo = He.litElementHydrateSupport) == null || wo.call(He, { LitElement: y });
+const ii = He.litElementPolyfillSupport;
+ii == null || ii({ LitElement: y });
+(He.litElementVersions ?? (He.litElementVersions = [])).push("4.2.2");
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const Jo = { attribute: !0, type: String, converter: kt, reflect: !1, hasChanged: li }, Qo = (o = Jo, e, t) => {
-  const { kind: i, metadata: s } = t;
-  let r = globalThis.litPropertyMetadata.get(s);
-  if (r === void 0 && globalThis.litPropertyMetadata.set(s, r = /* @__PURE__ */ new Map()), i === "setter" && ((o = Object.create(o)).wrapped = !0), r.set(t.name, o), i === "accessor") {
+const hr = (s) => (e, t) => {
+  t !== void 0 ? t.addInitializer(() => {
+    customElements.define(s, e);
+  }) : customElements.define(s, e);
+};
+/**
+ * @license
+ * Copyright 2017 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+const ur = { attribute: !0, type: String, converter: Ot, reflect: !1, hasChanged: gi }, pr = (s = ur, e, t) => {
+  const { kind: i, metadata: o } = t;
+  let r = globalThis.litPropertyMetadata.get(o);
+  if (r === void 0 && globalThis.litPropertyMetadata.set(o, r = /* @__PURE__ */ new Map()), i === "setter" && ((s = Object.create(s)).wrapped = !0), r.set(t.name, s), i === "accessor") {
     const { name: n } = t;
     return { set(l) {
       const d = e.get.call(this);
-      e.set.call(this, l), this.requestUpdate(n, d, o, !0, l);
+      e.set.call(this, l), this.requestUpdate(n, d, s, !0, l);
     }, init(l) {
-      return l !== void 0 && this.C(n, void 0, o, l), l;
+      return l !== void 0 && this.C(n, void 0, s, l), l;
     } };
   }
   if (i === "setter") {
     const { name: n } = t;
     return function(l) {
       const d = this[n];
-      e.call(this, l), this.requestUpdate(n, d, o, !0, l);
+      e.call(this, l), this.requestUpdate(n, d, s, !0, l);
     };
   }
   throw Error("Unsupported decorator location: " + i);
 };
-function a(o) {
-  return (e, t) => typeof t == "object" ? Qo(o, e, t) : ((i, s, r) => {
-    const n = s.hasOwnProperty(r);
-    return s.constructor.createProperty(r, i), n ? Object.getOwnPropertyDescriptor(s, r) : void 0;
-  })(o, e, t);
+function a(s) {
+  return (e, t) => typeof t == "object" ? pr(s, e, t) : ((i, o, r) => {
+    const n = o.hasOwnProperty(r);
+    return o.constructor.createProperty(r, i), n ? Object.getOwnPropertyDescriptor(o, r) : void 0;
+  })(s, e, t);
 }
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-function g(o) {
-  return a({ ...o, state: !0, attribute: !1 });
+function b(s) {
+  return a({ ...s, state: !0, attribute: !1 });
 }
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const er = (o, e, t) => (t.configurable = !0, t.enumerable = !0, Reflect.decorate && typeof e != "object" && Object.defineProperty(o, e, t), t);
+const mr = (s, e, t) => (t.configurable = !0, t.enumerable = !0, Reflect.decorate && typeof e != "object" && Object.defineProperty(s, e, t), t);
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-function R(o, e) {
-  return (t, i, s) => {
+function N(s, e) {
+  return (t, i, o) => {
     const r = (n) => {
       var l;
-      return ((l = n.renderRoot) == null ? void 0 : l.querySelector(o)) ?? null;
+      return ((l = n.renderRoot) == null ? void 0 : l.querySelector(s)) ?? null;
     };
-    return er(t, i, { get() {
+    return mr(t, i, { get() {
       return r(this);
     } });
   };
 }
-const x = w`
+const C = v`
   :host {
     /* Colors - Blue */
     --blue-100: rgb(224, 239, 255);
@@ -738,44 +748,143 @@ const x = w`
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
 
-    /* Spacing */
-    --spacing-0: 0;
+    /* Spacing — aligned with ngx-ui layouts/_vars.scss */
+    --spacing-0: 0px;
     --spacing-2: 2px;
     --spacing-4: 4px;
+    --spacing-6: 6px;
     --spacing-8: 8px;
     --spacing-10: 10px;
     --spacing-12: 12px;
+    --spacing-14: 14px;
     --spacing-16: 16px;
+    --spacing-18: 18px;
     --spacing-20: 20px;
     --spacing-24: 24px;
-    --spacing-32: 32px;
+    --spacing-30: 30px;
+    --spacing-36: 36px;
+    --spacing-40: 40px;
+    --spacing-48: 48px;
 
-    /* Border Radius */
-    --radius-0: 0;
+    /* Border radius — aligned with ngx-ui layouts/_vars.scss */
+    --radius-0: 0px;
     --radius-2: 2px;
     --radius-4: 4px;
     --radius-6: 6px;
     --radius-8: 8px;
+    --radius-12: 12px;
     --radius-16: 16px;
+    --radius-24: 24px;
+    --radius-32: 32px;
     --radius-64: 64px;
+    --radius-1000: 1000px;
 
     /* Semantic colors */
     --color-error: var(--red-500);
     --color-success: #b0e53c;
 
-    /* Shadows */
-    --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.3);
-    --shadow-2: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    /* Shadows — aligned with ngx-ui shadow-variables.scss (Material-style key/penumbra/ambient) */
+    --shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
+    --shadow-2: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);
     --shadow-3: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);
+
+    /* Modal / large-format surface (ngx gradient-variables $bg-linear-3) */
+    --bg-linear-3: linear-gradient(180deg, #252a37 0%, #212631 100%);
+    /* Figma modal panel (filter: dy=2, stdDeviation=3.5, alpha 0.2) */
+    --shadow-dialog-panel: 0 2px 7px rgba(0, 0, 0, 0.2);
+    /* Diffuse halo (ngx large-format legacy); override with --shadow-dialog-panel for Figma parity */
+    --shadow-dialog-glow: 0 0 100px rgba(0, 0, 0, 0.25);
   }
-`, pl = w`
+`, zl = v`
   * {
     box-sizing: border-box;
   }
-`, tr = w`
+`, br = v`
   :host {
     display: inline-block;
     cursor: pointer;
+    /* Allow constrained layouts (flex/grid) to shrink below label intrinsic width so ellipsis can apply */
+    min-width: 0;
+
+    /* Private fallbacks — overridden per [variant] with higher specificity */
+    --_swim-fallback-bg: var(--grey-600);
+    --_swim-fallback-hover-bg: var(--grey-700);
+    --_swim-fallback-border-color: transparent;
+    --_swim-fallback-hover-border-color: transparent;
+    --_swim-fallback-color: var(--white);
+    --_swim-fallback-hover-color: var(--white);
+    --_swim-fallback-shadow: var(--shadow-1);
+    --_swim-fallback-outline: var(--grey-600);
+
+    /* Slotted nodes (e.g. swim-icon) inherit color from this host, not from the shadow button. */
+    color: var(--swim-button-color, var(--_swim-fallback-color));
+  }
+
+  :host([variant='primary']:not([bordered])) {
+    --_swim-fallback-bg: var(--blue-400);
+    --_swim-fallback-hover-bg: var(--blue-500);
+    --_swim-fallback-border-color: var(--blue-400);
+    --_swim-fallback-hover-border-color: var(--blue-500);
+    --_swim-fallback-color: var(--white);
+    --_swim-fallback-hover-color: var(--white);
+    --_swim-fallback-outline: var(--blue-500);
+  }
+
+  :host([variant='primary'][bordered]) {
+    --_swim-fallback-bg: transparent;
+    --_swim-fallback-hover-bg: var(--blue-500);
+    --_swim-fallback-border-color: var(--blue-400);
+    --_swim-fallback-hover-border-color: var(--blue-200);
+    --_swim-fallback-color: var(--blue-400);
+    --_swim-fallback-hover-color: var(--blue-200);
+    --_swim-fallback-shadow: none;
+    --_swim-fallback-outline: var(--blue-400);
+  }
+
+  :host([variant='bordered']) {
+    --_swim-fallback-bg: transparent;
+    --_swim-fallback-hover-bg: transparent;
+    --_swim-fallback-border-color: var(--blue-400);
+    --_swim-fallback-hover-border-color: var(--blue-200);
+    --_swim-fallback-color: var(--blue-400);
+    --_swim-fallback-hover-color: var(--blue-200);
+    --_swim-fallback-shadow: none;
+    --_swim-fallback-outline: var(--blue-400);
+  }
+
+  :host([variant='warning']) {
+    --_swim-fallback-bg: var(--orange-400);
+    --_swim-fallback-hover-bg: var(--orange-500);
+    --_swim-fallback-border-color: transparent;
+    --_swim-fallback-hover-border-color: transparent;
+    --_swim-fallback-color: var(--grey-900);
+    --_swim-fallback-hover-color: var(--grey-900);
+    --_swim-fallback-outline: var(--orange-500);
+  }
+
+  :host([variant='danger']) {
+    --_swim-fallback-bg: var(--red-400);
+    --_swim-fallback-hover-bg: var(--red-500);
+    --_swim-fallback-border-color: transparent;
+    --_swim-fallback-hover-border-color: transparent;
+    --_swim-fallback-color: var(--white);
+    --_swim-fallback-hover-color: var(--white);
+    --_swim-fallback-outline: var(--red-400);
+  }
+
+  :host([variant='link']) {
+    --_swim-fallback-bg: transparent;
+    --_swim-fallback-hover-bg: transparent;
+    --_swim-fallback-border-color: transparent;
+    --_swim-fallback-hover-border-color: transparent;
+    --_swim-fallback-color: var(--white);
+    --_swim-fallback-hover-color: var(--white);
+    --_swim-fallback-shadow: none;
+    --_swim-fallback-outline: var(--grey-600);
+  }
+
+  :host(:not([disabled]):hover) {
+    color: var(--swim-button-hover-color, var(--_swim-fallback-hover-color));
   }
 
   :host([disabled]) {
@@ -790,27 +899,33 @@ const x = w`
 
   button {
     box-sizing: border-box;
-    color: var(--button-text, var(--white));
-    display: inline-block;
-    padding: 0.35em 0.55em;
+    color: var(--swim-button-color, var(--_swim-fallback-color));
+    display: inline-grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    justify-items: stretch;
+    align-items: center;
+    padding: var(--swim-button-padding, 0.35em 0.55em);
     position: relative;
     text-align: center;
     text-decoration: none;
     user-select: none;
     font: inherit;
     font-size: var(--font-size-m);
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--swim-button-font-weight, var(--font-weight-bold));
     outline: none;
     line-height: var(--font-line-height-100);
     outline-offset: 2px;
     cursor: inherit;
     width: 100%;
+    min-width: 0;
 
-    background: var(--button-bg, var(--grey-600));
-    border: solid 1px transparent;
-    border-color: var(--button-border, transparent);
+    background: var(--swim-button-background, var(--_swim-fallback-bg));
+    border-width: var(--swim-button-border-width, 1px);
+    border-style: var(--swim-button-border-style, solid);
+    border-color: var(--swim-button-border-color, var(--_swim-fallback-border-color));
     border-radius: var(--radius-4);
-    box-shadow: var(--button-shadow, var(--shadow-1));
+    box-shadow: var(--swim-button-shadow, var(--_swim-fallback-shadow));
     transition: background-color 200ms, box-shadow 200ms;
     text-shadow: 1px 1px rgba(0, 0, 0, 0.07);
   }
@@ -821,14 +936,19 @@ const x = w`
   }
 
   button:focus-visible {
-    outline: 2px solid var(--grey-600);
+    outline: 2px solid var(--swim-button-outline-color, var(--_swim-fallback-outline));
   }
 
-  /* Hover states (--button-hover set by swim-button-group when used inside a group) */
+  /* One hover layer so generic grey hover never leaks into bordered / link / etc. */
   :host(:not([disabled])) button:hover {
     cursor: pointer;
-    background: var(--button-hover, var(--grey-700));
-    outline-color: var(--button-hover, var(--grey-700));
+    background: var(--swim-button-hover-background, var(--_swim-fallback-hover-bg));
+    border-color: var(--swim-button-hover-border-color, var(--_swim-fallback-hover-border-color));
+    color: var(--swim-button-hover-color, var(--_swim-fallback-hover-color));
+    outline-color: var(
+      --swim-button-hover-outline-color,
+      var(--swim-button-hover-background, var(--_swim-fallback-hover-bg))
+    );
   }
 
   /* Size variants */
@@ -840,102 +960,65 @@ const x = w`
     font-size: 1.3em;
   }
 
-  /* Variant: Primary (--button-* overrides when inside swim-button-group) */
-  :host([variant='primary']) button {
-    background-color: var(--button-bg, var(--blue-400));
-    border-color: var(--button-border, var(--blue-400));
-    color: var(--button-text, var(--white));
-    outline-color: var(--button-border, var(--blue-500));
+  /* Slotted swim-icon: 1em sizing + vertical center with label text (flex on .content). */
+  slot::slotted(swim-icon) {
+    font-size: inherit;
+    flex-shrink: 0;
+    align-self: center;
+    line-height: 1;
   }
 
-  :host([variant='primary']) button:focus-visible {
-    outline-color: var(--button-border, var(--blue-500));
-  }
-
-  :host([variant='primary']:not([disabled])) button:hover {
-    background-color: var(--button-hover, var(--blue-500));
-    border-color: var(--button-hover, var(--blue-500));
-  }
-
-  /* Variant: Warning */
-  :host([variant='warning']) button {
-    background-color: var(--orange-400);
-    color: var(--grey-900);
-    outline-color: var(--orange-500);
-  }
-
-  :host([variant='warning']) button:focus-visible {
-    outline-color: var(--orange-500);
-  }
-
-  :host([variant='warning']:not([disabled])) button:hover {
-    background-color: var(--orange-500);
-  }
-
-  /* Variant: Danger */
-  :host([variant='danger']) button {
-    background-color: var(--red-400);
-    outline-color: var(--red-400);
-  }
-
-  :host([variant='danger']) button:focus-visible {
-    outline-color: var(--red-400);
-  }
-
-  :host([variant='danger']:not([disabled])) button:hover {
-    background-color: var(--red-500);
-  }
-
-  /* Variant: Link */
-  :host([variant='link']) button {
-    background-color: transparent;
-    box-shadow: none;
-  }
-
-  :host([variant='link']:not([disabled])) button:hover {
-    background-color: transparent;
-  }
-
-  /* Variant: Bordered */
-  :host([variant='bordered']) button,
-  :host([variant='primary'][bordered]) button {
-    border: 1px solid var(--blue-400);
-    color: var(--blue-400);
-    background-color: transparent;
-    box-shadow: none;
-    outline-color: var(--blue-400);
-  }
-
-  :host([variant='bordered']) button:focus-visible,
-  :host([variant='primary'][bordered]) button:focus-visible {
-    outline-color: var(--blue-400);
-  }
-
-  :host([variant='bordered']:not([disabled])) button:hover,
-  :host([variant='primary'][bordered]:not([disabled])) button:hover {
-    border-color: var(--blue-200);
-    color: var(--blue-200);
-  }
-
-  /* Button content and state icon container */
+  /* Button content and state icon: same grid cell so intrinsic width is max(label, state) */
   .content {
-    text-overflow: ellipsis;
-    overflow-x: clip;
-    overflow-y: visible;
+    grid-area: 1 / 1;
+    min-width: 0;
+    max-width: 100%;
     width: 100%;
-    display: block;
-    white-space: nowrap;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
     transition: opacity 0.25s ease-out;
   }
 
+  /* Single-line + ellipsis: wrap-text="false" (wrap-text attribute omitted when wrapping is on) */
+  :host([wrap-text='false']) .content {
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: normal;
+    overflow-wrap: normal;
+  }
+
   .state-icon {
-    position: absolute;
-    inset: 0;
+    grid-area: 1 / 1;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    justify-self: center;
+    width: max-content;
+    box-sizing: border-box;
     opacity: 0;
     pointer-events: none;
+  }
+
+  .state-icon-group {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35em;
+    box-sizing: border-box;
+    padding: 0 0.35em;
+  }
+
+  .state-loading-text {
+    white-space: nowrap;
   }
 
   /* State: In Progress */
@@ -948,6 +1031,10 @@ const x = w`
   :host([state='in-progress']) button {
     opacity: 1;
     pointer-events: none;
+    /* Loading + host disabled: UA button:disabled grays out inherited color (hurts loading-text).
+ Re-apply variant foreground; !important aligns with ngx-ui .in-progress vs. UA.
+ Override with --swim-button-in-progress-color on :host. */
+    color: var(--swim-button-in-progress-color, var(--swim-button-color, var(--_swim-fallback-color))) !important;
   }
 
   :host([state='in-progress']) .content {
@@ -956,6 +1043,14 @@ const x = w`
 
   :host([state='in-progress']) .state-icon {
     opacity: 1;
+  }
+
+  /* Loading glyph: same var chain as in-progress button color (explicit so it does not rely on currentColor / stale builds). */
+  :host([state='in-progress']) swim-icon.icon {
+    color: var(
+      --swim-button-loading-icon-color,
+      var(--swim-button-in-progress-color, var(--swim-button-color, var(--_swim-fallback-color)))
+    );
   }
 
   /* State: Success */
@@ -1002,12 +1097,11 @@ const x = w`
     color: var(--white);
   }
 
-  /* Icon styles */
+  /* Loading swim-icon sizing (color set on :host([state='in-progress']) swim-icon.icon) */
   .icon {
     height: 1em;
     width: 1em;
     font-weight: var(--font-weight-bold);
-    color: var(--white);
     overflow: hidden;
     font-size: var(--font-size-m);
     display: inline-block;
@@ -1027,14 +1121,26 @@ const x = w`
     animation: spin 1s linear infinite;
   }
 `;
-var oe = /* @__PURE__ */ ((o) => (o.Active = "active", o.InProgress = "in-progress", o.Success = "success", o.Fail = "fail", o))(oe || {});
-function m(o) {
-  return o != null && `${o}` != "false";
+var ce = /* @__PURE__ */ ((s) => (s.Active = "active", s.InProgress = "in-progress", s.Success = "success", s.Fail = "fail", s))(ce || {});
+function p(s) {
+  return s != null && `${s}` != "false";
 }
-function A(o, e = null) {
-  return isNaN(parseFloat(o)) || isNaN(Number(o)) ? e : Number(o);
+function z(s, e = null) {
+  return isNaN(parseFloat(s)) || isNaN(Number(s)) ? e : Number(s);
 }
-const ir = w`
+const Q = {
+  fromAttribute: (s) => s !== "false",
+  /** Omit attribute when true (default); set explicit `="false"` only when off. */
+  toAttribute: (s) => s ? null : "false"
+}, g = {
+  fromAttribute: (s) => s !== null && s !== "false" && s !== "0",
+  /**
+   * Use empty string when true so the boolean attribute is present; remove when false.
+   * Serializing false as `attr="false"` leaves the attribute in the DOM, so selectors like
+   * `[disabled]` / `[loading]` (common in resets and lazy-load styles) still match the host.
+   */
+  toAttribute: (s) => s ? "" : null
+}, fr = v`
   .swim-icon.lit-3d-rotate::before {
     content: '\\ea01';
   }
@@ -2319,10 +2425,15 @@ const ir = w`
   .swim-icon.lit-x-small::before {
     content: '\\ebac';
   }
-`, sr = w`
+`, gr = v`
   :host {
-    display: inline-block;
-    vertical-align: baseline;
+    /* inline-flex keeps the host box tight to the glyph and centers the shadow icon in contexts
+       (e.g. swim-button) where inherited line-height would otherwise grow the line box asymmetrically */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    line-height: 1;
   }
 
   :host svg {
@@ -2388,7 +2499,7 @@ const ir = w`
   /* Font icon base (glyphs in icon-font-glyphs.ts); uses same font as ngx-ui ('ngx-icon'). */
   .swim-icon,
   .swim-icon__i.swim-icon {
-    display: inline-block;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 1em;
@@ -2400,10 +2511,14 @@ const ir = w`
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Center the glyph regardless of font metrics (fixes vertical misalignment) */
+  /* Center the glyph in the em box; many ngx-icon glyphs sit high with display:block alone */
   .swim-icon::before,
   .swim-icon__i.swim-icon::before {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
     line-height: 1;
   }
 
@@ -2433,12 +2548,12 @@ const ir = w`
     animation: swim-icon-spin 1s linear infinite;
   }
 
-  ${ir}
-`, or = (o) => `swim-icon ${o.trim().split(" ").map((t) => {
-  const [i, s] = t.split(":");
-  return i.length ? `${i} ${i}-${s}` : s;
+  ${fr}
+`, _r = (s) => `swim-icon ${s.trim().split(" ").map((t) => {
+  const [i, o] = t.split(":");
+  return i.length ? `${i} ${i}-${o}` : o;
 }).join(" ")}`;
-class rr {
+class wr {
   constructor() {
     this._defaultFontSetClass = "lit", this._iconMap = /* @__PURE__ */ new Map();
   }
@@ -2446,33 +2561,33 @@ class rr {
     return this._defaultFontSetClass = e, this._defaultFontSetClass;
   }
   get(e, t) {
-    return this.lookup(e, t).map((i) => or(i));
+    return this.lookup(e, t).map((i) => _r(i));
   }
   lookup(e, t) {
     const i = t ?? this._defaultFontSetClass;
-    return (Array.isArray(e) ? e : [e]).reduce((s, r) => {
+    return (Array.isArray(e) ? e : [e]).reduce((o, r) => {
       const n = this._expandKeys(r, i).map((l) => {
         const d = this._iconMap.get(l);
         return d && d.length === 1 ? d[0] : l;
       }).join(" ");
-      return s.concat(this._iconMap.get(n) || [n]);
+      return o.concat(this._iconMap.get(n) || [n]);
     }, []);
   }
   add(e, t) {
-    const i = this._expandKeys(e, this._defaultFontSetClass).join(" "), s = this.lookup(t);
-    this._iconMap.set(i, s);
+    const i = this._expandKeys(e, this._defaultFontSetClass).join(" "), o = this.lookup(t);
+    this._iconMap.set(i, o);
   }
   _expandKeys(e, t) {
     return e.split(" ").map((i) => i.includes(":") ? i : `${t}:${i}`);
   }
 }
-const nr = new rr();
-var ar = Object.defineProperty, ft = (o, e, t, i) => {
-  for (var s = void 0, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = n(e, t, s) || s);
-  return s && ar(e, t, s), s;
+const vr = new wr();
+var yr = Object.defineProperty, Ct = (s, e, t, i) => {
+  for (var o = void 0, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = n(e, t, o) || o);
+  return o && yr(e, t, o), o;
 };
-const ss = "swim-icon", _i = class _i extends v {
+const ps = "swim-icon", Ai = class Ai extends y {
   constructor() {
     super(...arguments), this.fontIcon = "", this.alt = "", this.fontSet = "lit", this.iconClass = "", this._cssClasses = [], this._iconClassTokensOnHost = [];
   }
@@ -2506,11 +2621,11 @@ const ss = "swim-icon", _i = class _i extends v {
       this._cssClasses = [];
       return;
     }
-    this._cssClasses = nr.get(e, this.fontSet);
+    this._cssClasses = vr.get(e, this.fontSet);
   }
   render() {
     var r;
-    const e = this._cssClasses, t = !!this.alt, i = ((r = this.iconClass) == null ? void 0 : r.trim()) ?? "", s = i ? ` ${i}` : "";
+    const e = this._cssClasses, t = !!this.alt, i = ((r = this.iconClass) == null ? void 0 : r.trim()) ?? "", o = i ? ` ${i}` : "";
     return !e || e.length === 0 ? c`
         <span
           part="icon"
@@ -2524,7 +2639,7 @@ const ss = "swim-icon", _i = class _i extends v {
       ` : e.length === 1 ? c`
         <i
           part="icon"
-          class="swim-icon__i ${e[0]}${s}"
+          class="swim-icon__i ${e[0]}${o}"
           role="${t ? "img" : "presentation"}"
           aria-label="${t ? this.alt : u}"
           aria-hidden="${t ? "false" : "true"}"
@@ -2537,44 +2652,44 @@ const ss = "swim-icon", _i = class _i extends v {
         aria-hidden="${t ? "false" : "true"}"
       >
         ${e.map(
-      (n, l) => c`<i part="icon icon-${l}" class="swim-icon__i swim-icon__i--${l} ${n}${s}"></i>`
+      (n, l) => c`<i part="icon icon-${l}" class="swim-icon__i swim-icon__i--${l} ${n}${o}"></i>`
     )}
       </span>
     `;
   }
 };
-_i.styles = [x, sr];
-let Ae = _i;
-ft([
+Ai.styles = [C, gr];
+let Pe = Ai;
+Ct([
   a({ type: String, attribute: "font-icon" })
-], Ae.prototype, "fontIcon");
-ft([
+], Pe.prototype, "fontIcon");
+Ct([
   a({ type: String })
-], Ae.prototype, "alt");
-ft([
+], Pe.prototype, "alt");
+Ct([
   a({ type: String, attribute: "font-set" })
-], Ae.prototype, "fontSet");
-ft([
+], Pe.prototype, "fontSet");
+Ct([
   a({ type: String, attribute: "icon-class" })
-], Ae.prototype, "iconClass");
-ft([
-  g()
-], Ae.prototype, "_cssClasses");
-customElements.get(ss) || customElements.define(ss, Ae);
-var lr = Object.defineProperty, cr = Object.getOwnPropertyDescriptor, de = (o, e, t, i) => {
-  for (var s = i > 1 ? void 0 : i ? cr(e, t) : e, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = (i ? n(e, t, s) : n(s)) || s);
-  return i && s && lr(e, t, s), s;
+], Pe.prototype, "iconClass");
+Ct([
+  b()
+], Pe.prototype, "_cssClasses");
+customElements.get(ps) || customElements.define(ps, Pe);
+var xr = Object.defineProperty, $r = Object.getOwnPropertyDescriptor, re = (s, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? $r(e, t) : e, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = (i ? n(e, t, o) : n(o)) || o);
+  return i && o && xr(e, t, o), o;
 };
-const os = "swim-button", Dt = class Dt extends v {
+const ms = "swim-button", Ht = class Ht extends y {
   constructor() {
-    super(), this.variant = "default", this.size = "medium", this._disabled = !1, this._state = oe.Active, this.type = "button", this._inProgress = !1, this._success = !1, this._fail = !1, this._internals = this.attachInternals();
+    super(), this.variant = "default", this.size = "medium", this._disabled = !1, this._state = ce.Active, this.type = "button", this.loadingText = "", this.wrapText = !0, this._inProgress = !1, this._success = !1, this._fail = !1, this._internals = this.attachInternals();
   }
   get disabled() {
     return this._disabled;
   }
   set disabled(e) {
-    this._disabled = m(e);
+    this._disabled = p(e);
   }
   get state() {
     return this._state;
@@ -2586,7 +2701,7 @@ const os = "swim-button", Dt = class Dt extends v {
     return this._timeout;
   }
   set timeout(e) {
-    this._timeout = e === void 0 ? void 0 : A(e);
+    this._timeout = e === void 0 ? void 0 : z(e);
   }
   get promise() {
     return this._promise;
@@ -2602,8 +2717,14 @@ const os = "swim-button", Dt = class Dt extends v {
   }
   render() {
     return c`
-      <button part="button" type="button" ?disabled="${this.disabled}" @click="${this._handleClick}">
-        <span class="content">
+      <button
+        part="button"
+        type="button"
+        ?disabled="${this.disabled}"
+        ?aria-busy="${this._inProgress}"
+        @click="${this._handleClick}"
+      >
+        <span class="content" ?aria-hidden="${this._inProgress || this._success || this._fail}">
           <slot></slot>
         </span>
         <span class="state-icon">${this._renderStateIcon()}</span>
@@ -2611,7 +2732,12 @@ const os = "swim-button", Dt = class Dt extends v {
     `;
   }
   _renderStateIcon() {
-    return this._inProgress ? c`<swim-icon class="state-icon" font-icon="loading"></swim-icon>` : this._success ? c`<swim-icon class="state-icon" font-icon="check"></swim-icon>` : this._fail ? c`<swim-icon class="state-icon" font-icon="x"></swim-icon>` : u;
+    return this._inProgress ? c`
+        <span class="state-icon-group">
+          <swim-icon class="icon" font-icon="loading"></swim-icon>
+          ${this.loadingText ? c`<span class="state-loading-text">${this.loadingText}</span>` : u}
+        </span>
+      ` : this._success ? c`<swim-icon class="state-icon" font-icon="check"></swim-icon>` : this._fail ? c`<swim-icon class="state-icon" font-icon="x"></swim-icon>` : u;
   }
   _handleClick(e) {
     if (this.disabled) {
@@ -2622,84 +2748,90 @@ const os = "swim-button", Dt = class Dt extends v {
     t && (this.type === "submit" ? t.requestSubmit() : this.type === "reset" && t.reset());
   }
   _updateStateFlags() {
-    this._inProgress = this._state === oe.InProgress, this._success = this._state === oe.Success, this._fail = this._state === oe.Fail;
+    this._inProgress = this._state === ce.InProgress, this._success = this._state === ce.Success, this._fail = this._state === ce.Fail;
   }
   _updateState() {
-    this._state || (this.state = oe.Active);
+    this._state || (this.state = ce.Active);
   }
   _scheduleReturnToActive() {
     const e = this.timeout ?? 3e3;
     e <= 0 || (this._clearTimer(), this._timer = window.setTimeout(() => {
-      this.state = oe.Active;
+      this.state = ce.Active;
     }, e));
   }
   _handlePromise() {
-    this._promise && (this.state = oe.InProgress, this._promise.then(() => {
-      this.state = oe.Success, this._scheduleReturnToActive();
+    this._promise && (this.state = ce.InProgress, this._promise.then(() => {
+      this.state = ce.Success, this._scheduleReturnToActive();
     }).catch(() => {
-      this.state = oe.Fail, this._scheduleReturnToActive();
+      this.state = ce.Fail, this._scheduleReturnToActive();
     }));
   }
   _clearTimer() {
     this._timer !== void 0 && (clearTimeout(this._timer), this._timer = void 0);
   }
 };
-Dt.styles = [x, tr], Dt.formAssociated = !0;
-let N = Dt;
-de([
+Ht.styles = [C, br], Ht.formAssociated = !0;
+let U = Ht;
+re([
   a({ type: String, reflect: !0 })
-], N.prototype, "variant", 2);
-de([
+], U.prototype, "variant", 2);
+re([
   a({ type: String, reflect: !0 })
-], N.prototype, "size", 2);
-de([
-  a({ type: Boolean, reflect: !0 })
-], N.prototype, "disabled", 1);
-de([
+], U.prototype, "size", 2);
+re([
+  a({ type: Boolean, reflect: !0, converter: g })
+], U.prototype, "disabled", 1);
+re([
   a({ type: String, reflect: !0 })
-], N.prototype, "state", 1);
-de([
+], U.prototype, "state", 1);
+re([
   a({ type: String })
-], N.prototype, "type", 2);
-de([
+], U.prototype, "type", 2);
+re([
   a({ type: Number })
-], N.prototype, "timeout", 1);
-de([
+], U.prototype, "timeout", 1);
+re([
+  a({ type: String, attribute: "loading-text" })
+], U.prototype, "loadingText", 2);
+re([
+  a({ type: Boolean, reflect: !0, attribute: "wrap-text", converter: Q })
+], U.prototype, "wrapText", 2);
+re([
   a({ attribute: !1 })
-], N.prototype, "promise", 1);
-de([
-  g()
-], N.prototype, "_inProgress", 2);
-de([
-  g()
-], N.prototype, "_success", 2);
-de([
-  g()
-], N.prototype, "_fail", 2);
-customElements.get(os) || customElements.define(os, N);
-const dr = w`
+], U.prototype, "promise", 1);
+re([
+  b()
+], U.prototype, "_inProgress", 2);
+re([
+  b()
+], U.prototype, "_success", 2);
+re([
+  b()
+], U.prototype, "_fail", 2);
+customElements.get(ms) || customElements.define(ms, U);
+const kr = v`
   :host {
     display: inline-flex;
     position: relative;
     box-sizing: border-box;
 
-    /* Default colors - slotted buttons inherit via --button-* (swim-button uses these with fallbacks) */
-    --button-bg: var(--grey-600);
-    --button-border: var(--grey-600);
-    --button-text: var(--white);
-    --button-hover: var(--grey-700);
+    /* Default colors - slotted swim-button inherits via --swim-button-* */
+    --swim-button-background: var(--grey-600);
+    --swim-button-border-color: var(--grey-600);
+    --swim-button-color: var(--white);
+    --swim-button-hover-background: var(--grey-700);
   }
 
   :host([button-group-style='primary']) {
-    --button-bg: var(--blue-400);
-    --button-border: var(--blue-400);
-    --button-text: var(--white);
-    --button-hover: var(--blue-500);
+    --swim-button-background: var(--blue-400);
+    --swim-button-border-color: var(--blue-400);
+    --swim-button-color: var(--white);
+    --swim-button-hover-background: var(--blue-500);
   }
 
   /* Contained group: slotted buttons use group colors and no individual shadow */
   :host([variant='contained']) {
-    --button-shadow: none;
+    --swim-button-shadow: none;
   }
 
   /* Horizontal: align items */
@@ -2785,32 +2917,32 @@ const dr = w`
     border-bottom: 1px solid var(--white);
   }
 `;
-var mo = /* @__PURE__ */ ((o) => (o.Horizontal = "horizontal", o.Vertical = "vertical", o))(mo || {}), bo = /* @__PURE__ */ ((o) => (o.Contained = "contained", o.Text = "text", o))(bo || {}), go = /* @__PURE__ */ ((o) => (o.Default = "default", o.Primary = "primary", o))(go || {}), hr = Object.defineProperty, di = (o, e, t, i) => {
-  for (var s = void 0, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = n(e, t, s) || s);
-  return s && hr(e, t, s), s;
+var Co = /* @__PURE__ */ ((s) => (s.Horizontal = "horizontal", s.Vertical = "vertical", s))(Co || {}), Eo = /* @__PURE__ */ ((s) => (s.Contained = "contained", s.Text = "text", s))(Eo || {}), So = /* @__PURE__ */ ((s) => (s.Default = "default", s.Primary = "primary", s))(So || {}), Cr = Object.defineProperty, wi = (s, e, t, i) => {
+  for (var o = void 0, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = n(e, t, o) || o);
+  return o && Cr(e, t, o), o;
 };
-const rs = "swim-button-group", wi = class wi extends v {
+const bs = "swim-button-group", Ti = class Ti extends y {
   constructor() {
-    super(...arguments), this.orientation = mo.Horizontal, this.variant = bo.Contained, this.buttonGroupStyle = go.Default;
+    super(...arguments), this.orientation = Co.Horizontal, this.variant = Eo.Contained, this.buttonGroupStyle = So.Default;
   }
   render() {
     return c`<slot></slot>`;
   }
 };
-wi.styles = [x, dr];
-let Ge = wi;
-di([
+Ti.styles = [C, kr];
+let it = Ti;
+wi([
   a({ type: String, reflect: !0 })
-], Ge.prototype, "orientation");
-di([
+], it.prototype, "orientation");
+wi([
   a({ type: String, reflect: !0 })
-], Ge.prototype, "variant");
-di([
+], it.prototype, "variant");
+wi([
   a({ attribute: "button-group-style", type: String, reflect: !0 })
-], Ge.prototype, "buttonGroupStyle");
-customElements.get(rs) || customElements.define(rs, Ge);
-const ur = w`
+], it.prototype, "buttonGroupStyle");
+customElements.get(bs) || customElements.define(bs, it);
+const Er = v`
   :host {
     display: inline-block;
     cursor: pointer;
@@ -2860,15 +2992,15 @@ const ur = w`
     display: block;
   }
 `;
-var pr = Object.defineProperty, mr = Object.getOwnPropertyDescriptor, Je = (o, e, t, i) => {
-  for (var s = i > 1 ? void 0 : i ? mr(e, t) : e, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = (i ? n(e, t, s) : n(s)) || s);
-  return i && s && pr(e, t, s), s;
+var Sr = Object.defineProperty, Ar = Object.getOwnPropertyDescriptor, nt = (s, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? Ar(e, t) : e, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = (i ? n(e, t, o) : n(o)) || o);
+  return i && o && Sr(e, t, o), o;
 };
-let br = 0;
-const ns = "swim-button-toggle", vi = class vi extends v {
+let Tr = 0;
+const fs = "swim-button-toggle", Di = class Di extends y {
   constructor() {
-    super(...arguments), this._uniqueId = `swim-button-toggle-${++br}`, this.name = this._uniqueId, this.value = !1, this._checked = !1, this._disabled = !1;
+    super(...arguments), this._uniqueId = `swim-button-toggle-${++Tr}`, this.name = this._uniqueId, this.value = !1, this._checked = !1, this._disabled = !1;
   }
   get id() {
     return this._id ?? this._uniqueId;
@@ -2880,14 +3012,14 @@ const ns = "swim-button-toggle", vi = class vi extends v {
     return this._checked;
   }
   set checked(e) {
-    const t = m(e);
+    const t = p(e);
     this._checked !== t && (this._checked = t, this.requestUpdate("checked"));
   }
   get disabled() {
     return this._disabled;
   }
   set disabled(e) {
-    this._disabled = m(e);
+    this._disabled = p(e);
   }
   render() {
     return c`
@@ -2910,34 +3042,35 @@ const ns = "swim-button-toggle", vi = class vi extends v {
     e.preventDefault(), e.stopPropagation(), !(this.disabled || this.checked) && (this._checked = !0, this.dispatchEvent(
       new CustomEvent("value-change", {
         detail: this.value,
+        // Must bubble so swim-button-toggle-group (light-DOM parent) receives selection.
         bubbles: !0,
         composed: !0
       })
     ));
   }
 };
-vi.styles = [x, ur];
-let ve = vi;
-Je([
+Di.styles = [C, Er];
+let Ee = Di;
+nt([
   a({ type: String })
-], ve.prototype, "id", 1);
-Je([
+], Ee.prototype, "id", 1);
+nt([
   a({ type: String })
-], ve.prototype, "name", 2);
-Je([
+], Ee.prototype, "name", 2);
+nt([
   a()
-], ve.prototype, "value", 2);
-Je([
-  a({ type: Boolean, reflect: !0 })
-], ve.prototype, "checked", 1);
-Je([
-  g()
-], ve.prototype, "_checked", 2);
-Je([
-  a({ type: Boolean, reflect: !0 })
-], ve.prototype, "disabled", 1);
-customElements.get(ns) || customElements.define(ns, ve);
-const gr = w`
+], Ee.prototype, "value", 2);
+nt([
+  a({ type: Boolean, reflect: !0, converter: g })
+], Ee.prototype, "checked", 1);
+nt([
+  b()
+], Ee.prototype, "_checked", 2);
+nt([
+  a({ type: Boolean, reflect: !0, converter: g })
+], Ee.prototype, "disabled", 1);
+customElements.get(fs) || customElements.define(fs, Ee);
+const Dr = v`
   :host {
     display: inline-flex;
     transition: all 0.25s ease;
@@ -2985,16 +3118,16 @@ const gr = w`
     display: none;
   }
 `;
-var fr = Object.defineProperty, _r = Object.getOwnPropertyDescriptor, Re = (o, e, t, i) => {
-  for (var s = i > 1 ? void 0 : i ? _r(e, t) : e, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = (i ? n(e, t, s) : n(s)) || s);
-  return i && s && fr(e, t, s), s;
+var zr = Object.defineProperty, Mr = Object.getOwnPropertyDescriptor, Ge = (s, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? Mr(e, t) : e, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = (i ? n(e, t, o) : n(o)) || o);
+  return i && o && zr(e, t, o), o;
 };
-let wr = 0;
-const as = "swim-button-toggle-group", Mt = class Mt extends v {
+let Or = 0;
+const gs = "swim-button-toggle-group", Vt = class Vt extends y {
   constructor() {
     var e;
-    super(), this._uniqueId = `swim-button-toggle-group-${++wr}`, this._animationHolderLeft = 0, this._animationHolderWidth = 0, this.label = "", this._value = void 0, this._disabled = !1, this._slotChangeBound = () => this._onSlotChange(), this._slotForCleanup = null, this._internals = ((e = this.attachInternals) == null ? void 0 : e.call(this)) ?? {}, this.setAttribute("role", "group"), this._boundValueChange = this._onValueChangeEvent.bind(this);
+    super(), this._uniqueId = `swim-button-toggle-group-${++Or}`, this._animationHolderLeft = 0, this._animationHolderWidth = 0, this.label = "", this._value = void 0, this._disabled = !1, this._slotChangeBound = () => this._onSlotChange(), this._slotForCleanup = null, this._internals = ((e = this.attachInternals) == null ? void 0 : e.call(this)) ?? {}, this.setAttribute("role", "group"), this._boundValueChange = this._onValueChangeEvent.bind(this);
   }
   get id() {
     return this._id ?? this._uniqueId;
@@ -3012,7 +3145,7 @@ const as = "swim-button-toggle-group", Mt = class Mt extends v {
     return this._disabled;
   }
   set disabled(e) {
-    this._disabled = m(e), this._syncDisabled();
+    this._disabled = p(e), this._syncDisabled();
   }
   connectedCallback() {
     super.connectedCallback(), this.addEventListener("value-change", this._boundValueChange), this._internals.setFormValue && this._internals.setFormValue(this._value != null ? String(this._value) : "");
@@ -3071,8 +3204,8 @@ const as = "swim-button-toggle-group", Mt = class Mt extends v {
     this._value !== i && (this._value = i, this._internals.setFormValue(i != null ? String(i) : ""), this._syncSelection(), this.dispatchEvent(
       new CustomEvent("value-change", {
         detail: i,
-        bubbles: !0,
-        composed: !0
+        bubbles: !1,
+        composed: !1
       })
     ));
   }
@@ -3098,31 +3231,31 @@ const as = "swim-button-toggle-group", Mt = class Mt extends v {
     `;
   }
 };
-Mt.styles = [x, gr], Mt.formAssociated = !0;
-let ne = Mt;
-Re([
-  R("slot")
-], ne.prototype, "_slot", 2);
-Re([
-  g()
-], ne.prototype, "_animationHolderLeft", 2);
-Re([
-  g()
-], ne.prototype, "_animationHolderWidth", 2);
-Re([
+Vt.styles = [C, Dr], Vt.formAssociated = !0;
+let pe = Vt;
+Ge([
+  N("slot")
+], pe.prototype, "_slot", 2);
+Ge([
+  b()
+], pe.prototype, "_animationHolderLeft", 2);
+Ge([
+  b()
+], pe.prototype, "_animationHolderWidth", 2);
+Ge([
   a({ type: String })
-], ne.prototype, "id", 1);
-Re([
+], pe.prototype, "id", 1);
+Ge([
   a({ type: String })
-], ne.prototype, "label", 2);
-Re([
+], pe.prototype, "label", 2);
+Ge([
   a()
-], ne.prototype, "value", 1);
-Re([
-  a({ type: Boolean, reflect: !0 })
-], ne.prototype, "disabled", 1);
-customElements.get(as) || customElements.define(as, ne);
-const vr = w`
+], pe.prototype, "value", 1);
+Ge([
+  a({ type: Boolean, reflect: !0, converter: g })
+], pe.prototype, "disabled", 1);
+customElements.get(gs) || customElements.define(gs, pe);
+const Pr = v`
   :host {
     position: relative;
     font-size: var(--font-size-m);
@@ -3408,78 +3541,78 @@ const vr = w`
     opacity: 0.3;
     cursor: not-allowed;
   }
-`, yr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], xr = ["S", "M", "T", "W", "T", "F", "S"];
-function ei(o, e) {
-  return o.getFullYear() === e.getFullYear() && o.getMonth() === e.getMonth() && o.getDate() === e.getDate();
+`, Ir = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], Lr = ["S", "M", "T", "W", "T", "F", "S"];
+function li(s, e) {
+  return s.getFullYear() === e.getFullYear() && s.getMonth() === e.getMonth() && s.getDate() === e.getDate();
 }
-function ml(o, e) {
-  return o.getFullYear() === e.getFullYear() && o.getMonth() === e.getMonth();
+function Ml(s, e) {
+  return s.getFullYear() === e.getFullYear() && s.getMonth() === e.getMonth();
 }
-function $r(o, e) {
-  return o.getFullYear() === e.getFullYear();
+function Fr(s, e) {
+  return s.getFullYear() === e.getFullYear();
 }
-function ls(o, e) {
-  return new Date(o, e + 1, 0).getDate();
+function _s(s, e) {
+  return new Date(s, e + 1, 0).getDate();
 }
-function Kt(o, e, t) {
+function si(s, e, t) {
   return {
-    num: o.getDate(),
-    dayOfWeek: o.getDay(),
-    date: new Date(o),
-    today: ei(o, t),
-    prevMonth: o.getMonth() < e || o.getMonth() === 11 && e === 0,
-    nextMonth: o.getMonth() > e || o.getMonth() === 0 && e === 11
+    num: s.getDate(),
+    dayOfWeek: s.getDay(),
+    date: new Date(s),
+    today: li(s, t),
+    prevMonth: s.getMonth() < e || s.getMonth() === 11 && e === 0,
+    nextMonth: s.getMonth() > e || s.getMonth() === 0 && e === 11
   };
 }
-function te(o) {
-  const e = /* @__PURE__ */ new Date(), t = o.getFullYear(), i = o.getMonth(), s = ls(t, i), r = new Date(t, i, 1).getDay(), n = [];
+function ae(s) {
+  const e = /* @__PURE__ */ new Date(), t = s.getFullYear(), i = s.getMonth(), o = _s(t, i), r = new Date(t, i, 1).getDay(), n = [];
   if (r > 0) {
-    const h = ls(t, i - 1);
-    for (let _ = r - 1; _ >= 0; _--) {
-      const p = new Date(t, i - 1, h - _);
-      n.push(Kt(p, i, e));
+    const h = _s(t, i - 1);
+    for (let w = r - 1; w >= 0; w--) {
+      const m = new Date(t, i - 1, h - w);
+      n.push(si(m, i, e));
     }
   }
-  for (let h = 1; h <= s; h++)
-    n.push(Kt(new Date(t, i, h), i, e));
+  for (let h = 1; h <= o; h++)
+    n.push(si(new Date(t, i, h), i, e));
   const l = n.length % 7;
   if (l > 0) {
     const h = 7 - l;
-    for (let _ = 1; _ <= h; _++)
-      n.push(Kt(new Date(t, i + 1, _), i, e));
+    for (let w = 1; w <= h; w++)
+      n.push(si(new Date(t, i + 1, w), i, e));
   }
   const d = [];
   for (let h = 0; h < n.length; h += 7)
     d.push(n.slice(h, h + 7));
   return d;
 }
-function cs(o) {
-  return Math.floor(o / 20) * 20;
+function ws(s) {
+  return Math.floor(s / 20) * 20;
 }
-function Zt(o, e, t = "day") {
+function oi(s, e, t = "day") {
   if (!e) return !1;
   switch (t) {
     case "year":
-      return o.getFullYear() < e.getFullYear();
+      return s.getFullYear() < e.getFullYear();
     case "month":
-      return o.getFullYear() < e.getFullYear() || o.getFullYear() === e.getFullYear() && o.getMonth() < e.getMonth();
+      return s.getFullYear() < e.getFullYear() || s.getFullYear() === e.getFullYear() && s.getMonth() < e.getMonth();
     default:
-      return new Date(o.getFullYear(), o.getMonth(), o.getDate()) < new Date(e.getFullYear(), e.getMonth(), e.getDate());
+      return new Date(s.getFullYear(), s.getMonth(), s.getDate()) < new Date(e.getFullYear(), e.getMonth(), e.getDate());
   }
 }
-function Xt(o, e, t = "day") {
+function ri(s, e, t = "day") {
   if (!e) return !1;
   switch (t) {
     case "year":
-      return o.getFullYear() > e.getFullYear();
+      return s.getFullYear() > e.getFullYear();
     case "month":
-      return o.getFullYear() > e.getFullYear() || o.getFullYear() === e.getFullYear() && o.getMonth() > e.getMonth();
+      return s.getFullYear() > e.getFullYear() || s.getFullYear() === e.getFullYear() && s.getMonth() > e.getMonth();
     default:
-      return new Date(o.getFullYear(), o.getMonth(), o.getDate()) > new Date(e.getFullYear(), e.getMonth(), e.getDate());
+      return new Date(s.getFullYear(), s.getMonth(), s.getDate()) > new Date(e.getFullYear(), e.getMonth(), e.getDate());
   }
 }
-var z = /* @__PURE__ */ ((o) => (o.date = "date", o.time = "time", o.datetime = "datetime", o))(z || {}), ie = /* @__PURE__ */ ((o) => (o.HUMAN = "human", o.TIMEZONE = "timezone", o.LOCAL = "local", o.CUSTOM = "custom", o))(ie || {});
-const kr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], Cr = [
+var T = /* @__PURE__ */ ((s) => (s.date = "date", s.time = "time", s.datetime = "datetime", s))(T || {}), L = /* @__PURE__ */ ((s) => (s.HUMAN = "human", s.TIMEZONE = "timezone", s.LOCAL = "local", s.CUSTOM = "custom", s))(L || {});
+const Br = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], Rr = [
   "January",
   "February",
   "March",
@@ -3492,7 +3625,7 @@ const kr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"
   "October",
   "November",
   "December"
-], Er = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], Sr = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], ds = {
+], Hr = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], Vr = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], vs = {
   L: "MM/DD/YYYY",
   l: "M/D/YYYY",
   LL: "MMMM D, YYYY",
@@ -3503,7 +3636,7 @@ const kr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"
   llll: "ddd, MMM D, YYYY h:mm A",
   LT: "h:mm A",
   LTS: "h:mm:ss A"
-}, k = {
+}, S = {
   shortDate: "l",
   shortTime: "LT",
   shortDateTime: "l LT",
@@ -3532,20 +3665,20 @@ const kr = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"
   shortLocale: "LL",
   fullLocale: "LLLL"
 };
-function H(o, e = 2) {
-  return String(o).padStart(e, "0");
+function q(s, e = 2) {
+  return String(s).padStart(e, "0");
 }
-function fo(o, e) {
+function Ao(s, e) {
   if (!e)
     return {
-      year: o.getFullYear(),
-      month: o.getMonth(),
-      day: o.getDate(),
-      hour: o.getHours(),
-      minute: o.getMinutes(),
-      second: o.getSeconds(),
-      ms: o.getMilliseconds(),
-      dow: o.getDay()
+      year: s.getFullYear(),
+      month: s.getMonth(),
+      day: s.getDate(),
+      hour: s.getHours(),
+      minute: s.getMinutes(),
+      second: s.getSeconds(),
+      ms: s.getMilliseconds(),
+      dow: s.getDay()
     };
   try {
     const i = new Intl.DateTimeFormat("en-US", {
@@ -3558,182 +3691,182 @@ function fo(o, e) {
       minute: "numeric",
       second: "numeric",
       hour12: !1
-    }).formatToParts(o), s = (n) => {
+    }).formatToParts(s), o = (n) => {
       var l;
       return ((l = i.find((d) => d.type === n)) == null ? void 0 : l.value) ?? "";
     }, r = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
     return {
-      year: parseInt(s("year"), 10),
-      month: parseInt(s("month"), 10) - 1,
-      day: parseInt(s("day"), 10),
-      hour: parseInt(s("hour"), 10) % 24,
-      minute: parseInt(s("minute"), 10),
-      second: parseInt(s("second"), 10),
-      ms: o.getMilliseconds(),
-      dow: r[s("weekday")] ?? 0
+      year: parseInt(o("year"), 10),
+      month: parseInt(o("month"), 10) - 1,
+      day: parseInt(o("day"), 10),
+      hour: parseInt(o("hour"), 10) % 24,
+      minute: parseInt(o("minute"), 10),
+      second: parseInt(o("second"), 10),
+      ms: s.getMilliseconds(),
+      dow: r[o("weekday")] ?? 0
     };
   } catch {
-    return fo(o);
+    return Ao(s);
   }
 }
-function hs(o, e) {
+function ys(s, e) {
   if (!e) {
-    const t = -o.getTimezoneOffset();
-    return us(t);
+    const t = -s.getTimezoneOffset();
+    return xs(t);
   }
   try {
-    const t = o.toLocaleString("en-US", { timeZone: "UTC" }), i = o.toLocaleString("en-US", { timeZone: e }), s = new Date(i).getTime() - new Date(t).getTime(), r = Math.round(s / 6e4);
-    return us(r);
+    const t = s.toLocaleString("en-US", { timeZone: "UTC" }), i = s.toLocaleString("en-US", { timeZone: e }), o = new Date(i).getTime() - new Date(t).getTime(), r = Math.round(o / 6e4);
+    return xs(r);
   } catch {
     return "+00:00";
   }
 }
-function us(o) {
-  const e = o >= 0 ? "+" : "-", t = Math.abs(o);
-  return `${e}${H(Math.floor(t / 60))}:${H(t % 60)}`;
+function xs(s) {
+  const e = s >= 0 ? "+" : "-", t = Math.abs(s);
+  return `${e}${q(Math.floor(t / 60))}:${q(t % 60)}`;
 }
-function Ar(o, e) {
+function Yr(s, e) {
   var t;
   try {
     return ((t = new Intl.DateTimeFormat("en-US", {
       timeZone: e || void 0,
       timeZoneName: "short"
-    }).formatToParts(o).find((s) => s.type === "timeZoneName")) == null ? void 0 : t.value) ?? "";
+    }).formatToParts(s).find((o) => o.type === "timeZoneName")) == null ? void 0 : t.value) ?? "";
   } catch {
     return "";
   }
 }
-function Tr(o) {
+function Nr(s) {
   const e = ["LLLL", "llll", "LLL", "lll", "LTS", "LL", "ll", "LT", "L", "l"];
-  let t = o;
+  let t = s;
   for (const i of e)
-    ds[i] && (t = t.split(i).join(ds[i]));
+    vs[i] && (t = t.split(i).join(vs[i]));
   return t;
 }
-const zr = /(MMMM|YYYY|dddd|MMM|ddd|SSS|MM|DD|HH|hh|mm|ss|YY|ZZ|zz|M|D|H|h|A|a|Z|z)/g;
-function Dr(o, e, t, i) {
-  switch (o) {
+const jr = /(MMMM|YYYY|dddd|MMM|ddd|SSS|MM|DD|HH|hh|mm|ss|YY|ZZ|zz|M|D|H|h|A|a|Z|z)/g;
+function Ur(s, e, t, i) {
+  switch (s) {
     case "YYYY":
       return String(e.year);
     case "YY":
       return String(e.year).slice(-2);
     case "MMMM":
-      return Cr[e.month];
+      return Rr[e.month];
     case "MMM":
-      return kr[e.month];
+      return Br[e.month];
     case "MM":
-      return H(e.month + 1);
+      return q(e.month + 1);
     case "M":
       return String(e.month + 1);
     case "DD":
-      return H(e.day);
+      return q(e.day);
     case "D":
       return String(e.day);
     case "dddd":
-      return Sr[e.dow];
+      return Vr[e.dow];
     case "ddd":
-      return Er[e.dow];
+      return Hr[e.dow];
     case "HH":
-      return H(e.hour);
+      return q(e.hour);
     case "H":
       return String(e.hour);
     case "hh":
-      return H(e.hour % 12 || 12);
+      return q(e.hour % 12 || 12);
     case "h":
       return String(e.hour % 12 || 12);
     case "mm":
-      return H(e.minute);
+      return q(e.minute);
     case "ss":
-      return H(e.second);
+      return q(e.second);
     case "SSS":
-      return H(e.ms, 3);
+      return q(e.ms, 3);
     case "A":
       return e.hour >= 12 ? "PM" : "AM";
     case "a":
       return e.hour >= 12 ? "pm" : "am";
     case "Z":
-      return hs(t, i);
+      return ys(t, i);
     case "ZZ":
-      return hs(t, i).replace(":", "");
+      return ys(t, i).replace(":", "");
     case "zz":
     case "z":
-      return Ar(t, i);
+      return Yr(t, i);
     default:
-      return o;
+      return s;
   }
 }
-function Mr(o) {
-  return k[o] || o;
+function Dt(s) {
+  return S[s] || s;
 }
-function ot(o, e, t) {
-  const i = ti(t);
-  let s = Tr(e);
+function he(s, e, t) {
+  const i = vt(t);
+  let o = Nr(e);
   const r = [];
   let n = 0, l = "";
-  for (; n < s.length; ) {
-    const b = s.indexOf("[", n);
-    if (b === -1) {
-      l += s.slice(n);
-      break;
-    }
-    l += s.slice(n, b);
-    const f = s.indexOf("]", b + 1);
+  for (; n < o.length; ) {
+    const f = o.indexOf("[", n);
     if (f === -1) {
-      l += s.slice(b);
+      l += o.slice(n);
       break;
     }
-    r.push(s.slice(b + 1, f)), l += `\0${r.length - 1}\0`, n = f + 1;
+    l += o.slice(n, f);
+    const _ = o.indexOf("]", f + 1);
+    if (_ === -1) {
+      l += o.slice(f);
+      break;
+    }
+    r.push(o.slice(f + 1, _)), l += `\0${r.length - 1}\0`, n = _ + 1;
   }
-  s = l;
-  const d = fo(o, i), h = s.replace(zr, (b) => Dr(b, d, o, i));
-  let _ = "", p = 0;
-  for (; p < h.length; ) {
-    const b = h.indexOf("\0", p);
-    if (b === -1) {
-      _ += h.slice(p);
+  o = l;
+  const d = Ao(s, i), h = o.replace(jr, (f) => Ur(f, d, s, i));
+  let w = "", m = 0;
+  for (; m < h.length; ) {
+    const f = h.indexOf("\0", m);
+    if (f === -1) {
+      w += h.slice(m);
       break;
     }
-    _ += h.slice(p, b);
-    let f = b + 1;
-    for (; f < h.length && h[f] >= "0" && h[f] <= "9"; ) f++;
-    if (h[f] === "\0" && f > b + 1) {
-      const D = parseInt(h.slice(b + 1, f), 10);
-      _ += r[D] ?? "", p = f + 1;
+    w += h.slice(m, f);
+    let _ = f + 1;
+    for (; _ < h.length && h[_] >= "0" && h[_] <= "9"; ) _++;
+    if (h[_] === "\0" && _ > f + 1) {
+      const O = parseInt(h.slice(f + 1, _), 10);
+      w += r[O] ?? "", m = _ + 1;
     } else
-      _ += h.slice(b, f || b + 1), p = f || b + 1;
+      w += h.slice(f, _ || f + 1), m = _ || f + 1;
   }
-  return _;
+  return w;
 }
-function We(o) {
-  if (o instanceof Date) return F(o) ? o : null;
-  if (!o || typeof o != "string") return null;
-  const e = o.trim();
+function Ye(s) {
+  if (s instanceof Date) return H(s) ? s : null;
+  if (!s || typeof s != "string") return null;
+  const e = s.trim();
   if (!e) return null;
   const t = new Date(e);
-  if (F(t)) return t;
+  if (H(t)) return t;
   const i = e.match(/^(\d{1,2})\/(\d{4})$/);
   if (i) {
     const n = new Date(parseInt(i[2], 10), parseInt(i[1], 10) - 1, 1);
-    if (F(n)) return n;
+    if (H(n)) return n;
   }
-  const s = e.match(/^(\d{4})$/);
-  if (s) {
-    const n = new Date(parseInt(s[1], 10), 0, 1);
-    if (F(n)) return n;
+  const o = e.match(/^(\d{4})$/);
+  if (o) {
+    const n = new Date(parseInt(o[1], 10), 0, 1);
+    if (H(n)) return n;
   }
   const r = e.match(/^(\w{3,})\s+(\d{4})$/);
   if (r) {
     const n = /* @__PURE__ */ new Date(`${r[1]} 1, ${r[2]}`);
-    if (F(n)) return n;
+    if (H(n)) return n;
   }
   return null;
 }
-function F(o) {
-  return o instanceof Date && !isNaN(o.getTime());
+function H(s) {
+  return s instanceof Date && !isNaN(s.getTime());
 }
-function ps(o, e) {
-  if (!e || !F(o)) return o;
-  const t = new Date(o), i = [
+function ci(s, e) {
+  if (!e || !H(s)) return s;
+  const t = new Date(s), i = [
     ["millisecond", () => {
     }],
     ["second", () => t.setMilliseconds(0)],
@@ -3767,107 +3900,107 @@ function ps(o, e) {
         t.setMilliseconds(0), t.setSeconds(0), t.setMinutes(0), t.setHours(0), t.setDate(1), t.setMonth(0);
       }
     ]
-  ], s = i.findIndex(([r]) => r === e);
-  return s >= 0 && i[s][1](), t;
+  ], o = i.findIndex(([r]) => r === e);
+  return o >= 0 && i[o][1](), t;
 }
-function Or(o, e, t) {
-  switch (o) {
-    case ie.HUMAN:
-    case ie.TIMEZONE:
+function To(s, e, t) {
+  switch (s) {
+    case L.HUMAN:
+    case L.TIMEZONE:
       switch (e) {
-        case z.date:
-          return t === "month" ? k.timezoneDateMonth : t === "year" ? k.timezoneDateYear : k.timezoneDate;
-        case z.time:
-          return k.timezoneTime;
+        case T.date:
+          return t === "month" ? S.timezoneDateMonth : t === "year" ? S.timezoneDateYear : S.timezoneDate;
+        case T.time:
+          return S.timezoneTime;
         default:
-          return k.timezoneDateTime;
+          return S.timezoneDateTime;
       }
-    case ie.LOCAL:
+    case L.LOCAL:
       switch (e) {
-        case z.date:
-          return t === "month" ? k.dateMonth : t === "year" ? k.dateYear : k.localeDate;
-        case z.time:
-          return k.localeTime;
+        case T.date:
+          return t === "month" ? S.dateMonth : t === "year" ? S.dateYear : S.localeDate;
+        case T.time:
+          return S.localeTime;
         default:
-          return k.localeDateTime;
+          return S.localeDateTime;
       }
-    case ie.CUSTOM:
+    case L.CUSTOM:
       switch (e) {
-        case z.date:
-          return t === "month" ? k.dateMonth : t === "year" ? k.dateYear : k.date;
-        case z.time:
-          return k.time;
+        case T.date:
+          return t === "month" ? S.dateMonth : t === "year" ? S.dateYear : S.date;
+        case T.time:
+          return S.time;
         default:
-          return k.dateTime;
+          return S.dateTime;
       }
     default:
-      return k.localeDate;
+      return S.localeDate;
   }
 }
-function bl(o, e, t) {
-  switch (o) {
-    case ie.HUMAN:
-    case ie.TIMEZONE:
+function qr(s, e, t) {
+  switch (s) {
+    case L.HUMAN:
+    case L.TIMEZONE:
       switch (e) {
-        case z.date:
-          return t === "month" ? k.fullDateMonth : t === "year" ? k.fullDateYear : k.fullDate;
-        case z.time:
-          return k.fullTime;
+        case T.date:
+          return t === "month" ? S.fullDateMonth : t === "year" ? S.fullDateYear : S.fullDate;
+        case T.time:
+          return S.fullTime;
         default:
-          return k.fullDateTime;
+          return S.fullDateTime;
       }
-    case ie.LOCAL:
+    case L.LOCAL:
       switch (e) {
-        case z.date:
-          return t === "month" ? k.dateMonth : t === "year" ? k.dateYear : k.localeDate;
-        case z.time:
-          return k.localeTime;
+        case T.date:
+          return t === "month" ? S.dateMonth : t === "year" ? S.dateYear : S.localeDate;
+        case T.time:
+          return S.localeTime;
         default:
-          return k.localeDateTime;
+          return S.localeDateTime;
       }
-    case ie.CUSTOM:
+    case L.CUSTOM:
       switch (e) {
-        case z.date:
-          return t === "month" ? k.dateMonth : t === "year" ? k.dateYear : k.date;
-        case z.time:
-          return k.time;
+        case T.date:
+          return t === "month" ? S.dateMonth : t === "year" ? S.dateYear : S.date;
+        case T.time:
+          return S.time;
         default:
-          return k.dateTime;
+          return S.dateTime;
       }
     default:
-      return k.localeDate;
+      return S.localeDate;
   }
 }
-function ti(o) {
-  if (o)
-    return o.toLowerCase() === "utc" ? "UTC" : o;
+function vt(s) {
+  if (s)
+    return s.toLowerCase() === "utc" ? "UTC" : s;
 }
-function gl(o, e) {
-  if (!o || !F(o)) return "";
-  const t = o.getFullYear(), i = H(o.getMonth() + 1), s = H(o.getDate()), r = H(o.getHours()), n = H(o.getMinutes()), l = H(o.getSeconds());
+function Ol(s, e) {
+  if (!s || !H(s)) return "";
+  const t = s.getFullYear(), i = q(s.getMonth() + 1), o = q(s.getDate()), r = q(s.getHours()), n = q(s.getMinutes()), l = q(s.getSeconds());
   switch (e) {
     case "time":
       return `${r}:${n}:${l}`;
     case "datetime":
     case "datetime-local":
-      return `${t}-${i}-${s}T${r}:${n}:${l}`;
+      return `${t}-${i}-${o}T${r}:${n}:${l}`;
     case "month":
       return `${t}-${i}`;
     default:
-      return `${t}-${i}-${s}`;
+      return `${t}-${i}-${o}`;
   }
 }
-function ms(o, e, t) {
-  if (!F(o)) return !1;
-  const i = e ? We(e) : null, s = t ? We(t) : null;
-  return !!(i && F(i) && o < i || s && F(s) && o > s);
+function $s(s, e, t) {
+  if (!H(s)) return !1;
+  const i = e ? Ye(e) : null, o = t ? Ye(t) : null;
+  return !!(i && H(i) && s < i || o && H(o) && s > o);
 }
-var Ir = Object.defineProperty, Pr = Object.getOwnPropertyDescriptor, he = (o, e, t, i) => {
-  for (var s = i > 1 ? void 0 : i ? Pr(e, t) : e, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = (i ? n(e, t, s) : n(s)) || s);
-  return i && s && Ir(e, t, s), s;
+var Gr = Object.defineProperty, Wr = Object.getOwnPropertyDescriptor, _e = (s, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? Wr(e, t) : e, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = (i ? n(e, t, o) : n(o)) || o);
+  return i && o && Gr(e, t, o), o;
 };
-const bs = "swim-calendar", yi = class yi extends v {
+const ks = "swim-calendar", zi = class zi extends y {
   constructor() {
     super(...arguments), this._value = null, this.disabled = !1, this._currentView = "date", this._focusDate = /* @__PURE__ */ new Date(), this._weeks = [], this._startYear = 0, this._currentDate = /* @__PURE__ */ new Date(), this._onDayKeyDown = (e) => {
       let t = !1;
@@ -3892,17 +4025,17 @@ const bs = "swim-calendar", yi = class yi extends v {
           break;
         case "Home": {
           const i = new Date(this._focusDate);
-          e.altKey ? i.setDate(1) : i.setDate(i.getDate() - i.getDay()), this._focusDate = i, this._weeks = te(this._focusDate), this.requestUpdate(), this.updateComplete.then(() => this.focusDay()), t = !0;
+          e.altKey ? i.setDate(1) : i.setDate(i.getDate() - i.getDay()), this._focusDate = i, this._weeks = ae(this._focusDate), this.requestUpdate(), this.updateComplete.then(() => this.focusDay()), t = !0;
           break;
         }
         case "End": {
           const i = new Date(this._focusDate);
-          e.altKey ? i.setMonth(i.getMonth() + 1, 0) : i.setDate(i.getDate() + (6 - i.getDay())), this._focusDate = i, this._weeks = te(this._focusDate), this.requestUpdate(), this.updateComplete.then(() => this.focusDay()), t = !0;
+          e.altKey ? i.setMonth(i.getMonth() + 1, 0) : i.setDate(i.getDate() + (6 - i.getDay())), this._focusDate = i, this._weeks = ae(this._focusDate), this.requestUpdate(), this.updateComplete.then(() => this.focusDay()), t = !0;
           break;
         }
         case "Enter":
           setTimeout(() => {
-            this.dispatchEvent(new CustomEvent("day-key-enter", { bubbles: !0, composed: !0 }));
+            this.dispatchEvent(new CustomEvent("day-key-enter", { bubbles: !1, composed: !1 }));
           }, 200);
           break;
       }
@@ -3930,7 +4063,7 @@ const bs = "swim-calendar", yi = class yi extends v {
           break;
         case "Enter":
           setTimeout(() => {
-            this.dispatchEvent(new CustomEvent("day-key-enter", { bubbles: !0, composed: !0 }));
+            this.dispatchEvent(new CustomEvent("day-key-enter", { bubbles: !1, composed: !1 }));
           }, 200);
           break;
       }
@@ -3958,7 +4091,7 @@ const bs = "swim-calendar", yi = class yi extends v {
           break;
         case "Enter":
           setTimeout(() => {
-            this.dispatchEvent(new CustomEvent("day-key-enter", { bubbles: !0, composed: !0 }));
+            this.dispatchEvent(new CustomEvent("day-key-enter", { bubbles: !1, composed: !1 }));
           }, 200);
           break;
       }
@@ -3970,7 +4103,7 @@ const bs = "swim-calendar", yi = class yi extends v {
   }
   set value(e) {
     const t = this._value;
-    e && F(e) ? this._value = new Date(e) : this._value = null, this.requestUpdate("value", t);
+    e && H(e) ? this._value = new Date(e) : this._value = null, this.requestUpdate("value", t);
   }
   set minView(e) {
     this._minView = e, this._validateView(), this.requestUpdate();
@@ -3986,7 +4119,7 @@ const bs = "swim-calendar", yi = class yi extends v {
     super.connectedCallback(), this._init();
   }
   updated(e) {
-    super.updated(e), e.has("value") && this._value && (this._focusDate = new Date(this._value), this._weeks = te(this._focusDate), this._startYear = cs(this._focusDate.getFullYear()));
+    super.updated(e), e.has("value") && this._value && (this._focusDate = new Date(this._value), this._weeks = ae(this._focusDate), this._startYear = ws(this._focusDate.getFullYear()));
   }
   // ---------------------------------------------------------------------------
   // Public methods
@@ -4035,7 +4168,7 @@ const bs = "swim-calendar", yi = class yi extends v {
             <swim-icon font-icon="arrow-right"></swim-icon>
           </button>
         </div>
-        <div class="day-name-row">${xr.map((t) => c`<div class="day-name text-center">${t}</div>`)}</div>
+        <div class="day-name-row">${Lr.map((t) => c`<div class="day-name text-center">${t}</div>`)}</div>
         <table class="day-container" role="grid">
           ${this._weeks.map(
       (t) => c`
@@ -4043,8 +4176,8 @@ const bs = "swim-calendar", yi = class yi extends v {
                 ${t.map((i) => {
         if (!i.num)
           return c`<td class="day-cell text-center" role="gridcell"></td>`;
-        const s = this._value ? ei(i.date, this._value) : !1, r = ei(i.date, this._focusDate), n = this.disabled || this._isDayDisabled(i.date), l = ["day"];
-        return i.prevMonth && l.push("prev-month"), i.nextMonth && l.push("next-month"), i.today && l.push("today"), s && l.push("active"), r && !n && l.push("focus"), c`
+        const o = this._value ? li(i.date, this._value) : !1, r = li(i.date, this._focusDate), n = this.disabled || this._isDayDisabled(i.date), l = ["day"];
+        return i.prevMonth && l.push("prev-month"), i.nextMonth && l.push("next-month"), i.today && l.push("today"), o && l.push("active"), r && !n && l.push("focus"), c`
                     <td class="day-cell text-center" role="gridcell">
                       <button
                         type="button"
@@ -4093,9 +4226,9 @@ const bs = "swim-calendar", yi = class yi extends v {
         </div>
         <table class="months-container" role="grid">
           <tr class="months-row" role="row">
-            ${yr.map((t, i) => {
-      const s = this._isMonthActive(i), r = this._isCurrentMonth(i), n = this._focusDate.getMonth() === i && $r(this._focusDate, this._focusDate), l = this.disabled || this._isMonthDisabled(i), d = ["month"];
-      return s && d.push("active"), r && d.push("current"), n && d.push("focus"), c`
+            ${Ir.map((t, i) => {
+      const o = this._isMonthActive(i), r = this._isCurrentMonth(i), n = this._focusDate.getMonth() === i && Fr(this._focusDate, this._focusDate), l = this.disabled || this._isMonthDisabled(i), d = ["month"];
+      return o && d.push("active"), r && d.push("current"), n && d.push("focus"), c`
                 <td class="month-cell text-center" role="gridcell">
                   <button
                     type="button"
@@ -4145,8 +4278,8 @@ const bs = "swim-calendar", yi = class yi extends v {
         <table class="years-container" role="grid">
           <tr class="years-row" role="row">
             ${e.map((t) => {
-      const i = this._isYearActive(t), s = t === this._currentDate.getFullYear(), r = t === this._focusDate.getFullYear(), n = this.disabled || this._isYearDisabled(t), l = ["year"];
-      return i && l.push("active"), s && l.push("current"), r && l.push("focus"), c`
+      const i = this._isYearActive(t), o = t === this._currentDate.getFullYear(), r = t === this._focusDate.getFullYear(), n = this.disabled || this._isYearDisabled(t), l = ["year"];
+      return i && l.push("active"), o && l.push("current"), r && l.push("focus"), c`
                 <td class="year-cell text-center" role="gridcell">
                   <button
                     type="button"
@@ -4170,7 +4303,7 @@ const bs = "swim-calendar", yi = class yi extends v {
   // Internal helpers
   // ---------------------------------------------------------------------------
   _init() {
-    this._value && (this._focusDate = new Date(this._value)), this._weeks = te(this._focusDate), this._currentDate = /* @__PURE__ */ new Date(), this._startYear = cs(this._focusDate.getFullYear()), this._validateView();
+    this._value && (this._focusDate = new Date(this._value)), this._weeks = ae(this._focusDate), this._currentDate = /* @__PURE__ */ new Date(), this._startYear = ws(this._focusDate.getFullYear()), this._validateView();
   }
   _validateView() {
     [
@@ -4200,21 +4333,21 @@ const bs = "swim-calendar", yi = class yi extends v {
     ][e.getMonth()]} ${e.getFullYear()}`;
   }
   _resolveMin() {
-    return this.minDate ? this.minDate instanceof Date ? this.minDate : We(this.minDate) : null;
+    return this.minDate ? this.minDate instanceof Date ? this.minDate : Ye(this.minDate) : null;
   }
   _resolveMax() {
-    return this.maxDate ? this.maxDate instanceof Date ? this.maxDate : We(this.maxDate) : null;
+    return this.maxDate ? this.maxDate instanceof Date ? this.maxDate : Ye(this.maxDate) : null;
   }
   _isDayDisabled(e) {
-    return Zt(e, this._resolveMin(), "day") || Xt(e, this._resolveMax(), "day");
+    return oi(e, this._resolveMin(), "day") || ri(e, this._resolveMax(), "day");
   }
   _isMonthDisabled(e) {
     const t = new Date(this._focusDate.getFullYear(), e, 1);
-    return Zt(t, this._resolveMin(), "month") || Xt(t, this._resolveMax(), "month");
+    return oi(t, this._resolveMin(), "month") || ri(t, this._resolveMax(), "month");
   }
   _isYearDisabled(e) {
     const t = new Date(e, 0, 1);
-    return Zt(t, this._resolveMin(), "year") || Xt(t, this._resolveMax(), "year");
+    return oi(t, this._resolveMin(), "year") || ri(t, this._resolveMax(), "year");
   }
   _isMonthActive(e) {
     return this._value ? this._value.getMonth() === e && this._value.getFullYear() === this._focusDate.getFullYear() : !1;
@@ -4230,11 +4363,11 @@ const bs = "swim-calendar", yi = class yi extends v {
   // ---------------------------------------------------------------------------
   _prevMonth() {
     const e = new Date(this._focusDate);
-    e.setMonth(e.getMonth() - 1), this._focusDate = e, this._weeks = te(this._focusDate);
+    e.setMonth(e.getMonth() - 1), this._focusDate = e, this._weeks = ae(this._focusDate);
   }
   _nextMonth() {
     const e = new Date(this._focusDate);
-    e.setMonth(e.getMonth() + 1), this._focusDate = e, this._weeks = te(this._focusDate);
+    e.setMonth(e.getMonth() + 1), this._focusDate = e, this._weeks = ae(this._focusDate);
   }
   _prevYear() {
     const e = new Date(this._focusDate);
@@ -4251,21 +4384,21 @@ const bs = "swim-calendar", yi = class yi extends v {
     this._startYear += 20;
   }
   _changeViews() {
-    this._currentView === "date" ? this._currentView = "month" : this._currentView === "month" ? this._currentView = "year" : this._currentView = this._minView || "date", this._weeks = te(this._focusDate);
+    this._currentView === "date" ? this._currentView = "month" : this._currentView === "month" ? this._currentView = "year" : this._currentView = this._minView || "date", this._weeks = ae(this._focusDate);
   }
   // ---------------------------------------------------------------------------
   // Day interaction
   // ---------------------------------------------------------------------------
   _onDayClick(e) {
-    this._focusDate = new Date(e.date), this._value = new Date(e.date), (e.prevMonth || e.nextMonth) && (this._weeks = te(this._focusDate)), this.requestUpdate(), this.dispatchEvent(new CustomEvent("change", { detail: this._value, bubbles: !0, composed: !0 }));
+    this._focusDate = new Date(e.date), this._value = new Date(e.date), (e.prevMonth || e.nextMonth) && (this._weeks = ae(this._focusDate)), this.requestUpdate(), this.dispatchEvent(new CustomEvent("change", { detail: this._value, bubbles: !1, composed: !1 }));
   }
   _onMonthClick(e) {
     const t = new Date(this._focusDate);
-    t.setMonth(e), this._focusDate = t, this._value = new Date(t), (this._minView || "date") !== "month" && (this._currentView = "date", this._weeks = te(this._focusDate)), this.requestUpdate(), this.dispatchEvent(new CustomEvent("change", { detail: this._value, bubbles: !0, composed: !0 }));
+    t.setMonth(e), this._focusDate = t, this._value = new Date(t), (this._minView || "date") !== "month" && (this._currentView = "date", this._weeks = ae(this._focusDate)), this.requestUpdate(), this.dispatchEvent(new CustomEvent("change", { detail: this._value, bubbles: !1, composed: !1 }));
   }
   _onYearClick(e) {
     const t = new Date(this._focusDate);
-    t.setFullYear(e), this._focusDate = t, this._value = new Date(t), (this._minView || "date") !== "year" && (this._currentView = "month", this._weeks = te(this._focusDate)), this.requestUpdate(), this.dispatchEvent(new CustomEvent("change", { detail: this._value, bubbles: !0, composed: !0 }));
+    t.setFullYear(e), this._focusDate = t, this._value = new Date(t), (this._minView || "date") !== "year" && (this._currentView = "month", this._weeks = ae(this._focusDate)), this.requestUpdate(), this.dispatchEvent(new CustomEvent("change", { detail: this._value, bubbles: !1, composed: !1 }));
   }
   // ---------------------------------------------------------------------------
   // Keyboard navigation
@@ -4286,43 +4419,43 @@ const bs = "swim-calendar", yi = class yi extends v {
         i.setFullYear(i.getFullYear() + e);
         break;
     }
-    this._focusDate = i, this._weeks = te(this._focusDate), this._focusDate.getFullYear() < this._startYear ? this._prevTwoDecades() : this._focusDate.getFullYear() > this._startYear + 20 && this._nextTwoDecades(), this.requestUpdate(), this.updateComplete.then(() => this.focusDay());
+    this._focusDate = i, this._weeks = ae(this._focusDate), this._focusDate.getFullYear() < this._startYear ? this._prevTwoDecades() : this._focusDate.getFullYear() > this._startYear + 20 && this._nextTwoDecades(), this.requestUpdate(), this.updateComplete.then(() => this.focusDay());
   }
 };
-yi.styles = [x, vr];
-let U = yi;
-he([
+zi.styles = [C, Pr];
+let W = zi;
+_e([
   a({ attribute: !1 })
-], U.prototype, "value", 1);
-he([
+], W.prototype, "value", 1);
+_e([
   a({ attribute: "min-date" })
-], U.prototype, "minDate", 2);
-he([
+], W.prototype, "minDate", 2);
+_e([
   a({ attribute: "max-date" })
-], U.prototype, "maxDate", 2);
-he([
-  a({ type: Boolean, reflect: !0 })
-], U.prototype, "disabled", 2);
-he([
+], W.prototype, "maxDate", 2);
+_e([
+  a({ type: Boolean, reflect: !0, converter: g })
+], W.prototype, "disabled", 2);
+_e([
   a({ type: String })
-], U.prototype, "timezone", 2);
-he([
+], W.prototype, "timezone", 2);
+_e([
   a({ type: String, attribute: "min-view" })
-], U.prototype, "minView", 1);
-he([
-  g()
-], U.prototype, "_currentView", 2);
-he([
-  g()
-], U.prototype, "_focusDate", 2);
-he([
-  g()
-], U.prototype, "_weeks", 2);
-he([
-  g()
-], U.prototype, "_startYear", 2);
-customElements.get(bs) || customElements.define(bs, U);
-const Et = 4, Jt = 3, gs = 25, Lr = 30, Fr = 15, fs = 27, Br = w`
+], W.prototype, "minView", 1);
+_e([
+  b()
+], W.prototype, "_currentView", 2);
+_e([
+  b()
+], W.prototype, "_focusDate", 2);
+_e([
+  b()
+], W.prototype, "_weeks", 2);
+_e([
+  b()
+], W.prototype, "_startYear", 2);
+customElements.get(ks) || customElements.define(ks, W);
+const It = 4, ni = 3, Cs = 25, Kr = 30, Zr = 15, Es = 27, Xr = v`
   @keyframes cardSlideIn {
     0% {
       opacity: 0;
@@ -4393,7 +4526,7 @@ const Et = 4, Jt = 3, gs = 25, Lr = 30, Fr = 15, fs = 27, Br = w`
     right: -5px;
     left: -5px;
     bottom: -5px;
-    border: ${Jt}px solid var(--blue-400);
+    border: ${ni}px solid var(--blue-400);
     border-radius: var(--radius-6);
   }
 
@@ -4410,7 +4543,7 @@ const Et = 4, Jt = 3, gs = 25, Lr = 30, Fr = 15, fs = 27, Br = w`
     right: -5px;
     left: -5px;
     bottom: -5px;
-    border: ${Jt}px solid var(--blue-400);
+    border: ${ni}px solid var(--blue-400);
     border-bottom: 0;
     border-radius: var(--radius-6);
   }
@@ -4435,7 +4568,7 @@ const Et = 4, Jt = 3, gs = 25, Lr = 30, Fr = 15, fs = 27, Br = w`
   .swim-card__outline-text-inner::before,
   .swim-card__outline-text-inner::after {
     content: '';
-    height: ${Jt}px;
+    height: ${ni}px;
     background: var(--blue-400);
   }
 
@@ -4470,7 +4603,7 @@ const Et = 4, Jt = 3, gs = 25, Lr = 30, Fr = 15, fs = 27, Br = w`
   .swim-card__select swim-checkbox::part(box) {
     margin-right: 0;
   }
-`, Rr = w`
+`, Jr = v`
   :host([orientation='horizontal']) {
     position: relative;
     width: 100%;
@@ -4487,13 +4620,13 @@ const Et = 4, Jt = 3, gs = 25, Lr = 30, Fr = 15, fs = 27, Br = w`
   }
 
   :host([orientation='horizontal']) .swim-card__select {
-    margin-left: ${gs}px;
+    margin-left: ${Cs}px;
   }
 
   :host([orientation='horizontal']) .swim-card__accent {
     position: absolute;
-    width: ${Et}px;
-    min-width: ${Et}px;
+    width: ${It}px;
+    min-width: ${It}px;
     right: 0;
     height: 100%;
     border-radius: var(--radius-0) var(--radius-2) var(--radius-2) var(--radius-0);
@@ -4502,7 +4635,7 @@ const Et = 4, Jt = 3, gs = 25, Lr = 30, Fr = 15, fs = 27, Br = w`
   :host([orientation='horizontal']) ::slotted(swim-card-header) {
     display: flex;
     align-items: center;
-    padding: var(--spacing-0) ${gs}px;
+    padding: var(--spacing-0) ${Cs}px;
     flex-grow: 1;
     overflow: hidden;
     cursor: pointer;
@@ -4517,7 +4650,7 @@ const Et = 4, Jt = 3, gs = 25, Lr = 30, Fr = 15, fs = 27, Br = w`
     align-items: center;
     justify-content: center;
     height: 100%;
-    padding: var(--spacing-0) ${Lr}px;
+    padding: var(--spacing-0) ${Kr}px;
   }
 
   :host([orientation='horizontal']) .swim-card__outline,
@@ -4527,7 +4660,7 @@ const Et = 4, Jt = 3, gs = 25, Lr = 30, Fr = 15, fs = 27, Br = w`
     left: -5px;
     bottom: -5px;
   }
-`, Hr = w`
+`, Qr = v`
   :host([orientation='vertical']) {
     position: relative;
     flex-direction: column;
@@ -4538,14 +4671,14 @@ const Et = 4, Jt = 3, gs = 25, Lr = 30, Fr = 15, fs = 27, Br = w`
   }
 
   :host([orientation='vertical']) .swim-card__status {
-    margin: ${Fr}px auto var(--spacing-0) auto;
+    margin: ${Zr}px auto var(--spacing-0) auto;
   }
 
   :host([orientation='vertical']) .swim-card__accent {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: ${Et}px;
+    height: ${It}px;
     border-radius: var(--radius-0) var(--radius-0) var(--radius-6) var(--radius-6);
   }
 
@@ -4566,8 +4699,8 @@ const Et = 4, Jt = 3, gs = 25, Lr = 30, Fr = 15, fs = 27, Br = w`
     align-items: center;
     flex-grow: 1;
     padding: var(--spacing-20) var(--spacing-0);
-    padding-left: ${fs}px;
-    padding-right: ${fs}px;
+    padding-left: ${Es}px;
+    padding-right: ${Es}px;
   }
 
   :host([orientation='vertical']) ::slotted(swim-card-footer) {
@@ -4577,14 +4710,14 @@ const Et = 4, Jt = 3, gs = 25, Lr = 30, Fr = 15, fs = 27, Br = w`
     height: 50px;
     padding: var(--spacing-20) var(--spacing-0);
     margin-top: 15px;
-    margin-bottom: ${Et}px;
+    margin-bottom: ${It}px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-`, Yr = [x, Br, Rr, Hr];
-var Ue = /* @__PURE__ */ ((o) => (o.Success = "success", o.Error = "error", o.Disabled = "disabled", o))(Ue || {}), _o = /* @__PURE__ */ ((o) => (o.Horizontal = "horizontal", o.Vertical = "vertical", o))(_o || {}), wo = /* @__PURE__ */ ((o) => (o.Normal = "normal", o.Flat = "flat", o))(wo || {});
-const Vr = w`
+`, en = [C, Xr, Jr, Qr];
+var Qe = /* @__PURE__ */ ((s) => (s.Success = "success", s.Error = "error", s.Disabled = "disabled", s))(Qe || {}), Do = /* @__PURE__ */ ((s) => (s.Horizontal = "horizontal", s.Vertical = "vertical", s))(Do || {}), zo = /* @__PURE__ */ ((s) => (s.Normal = "normal", s.Flat = "flat", s))(zo || {});
+const tn = v`
   :host {
     display: inline-flex;
   }
@@ -4682,33 +4815,33 @@ const Vr = w`
     line-height: var(--font-line-height-200);
   }
 `;
-var Nr = Object.defineProperty, Ur = Object.getOwnPropertyDescriptor, xe = (o, e, t, i) => {
-  for (var s = i > 1 ? void 0 : i ? Ur(e, t) : e, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = (i ? n(e, t, s) : n(s)) || s);
-  return i && s && Nr(e, t, s), s;
+var sn = Object.defineProperty, on = Object.getOwnPropertyDescriptor, Se = (s, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? on(e, t) : e, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = (i ? n(e, t, o) : n(o)) || o);
+  return i && o && sn(e, t, o), o;
 };
-let qr = 0;
-const _s = "swim-checkbox", Ot = class Ot extends v {
+let rn = 0;
+const Ss = "swim-checkbox", Yt = class Yt extends y {
   constructor() {
-    super(), this.id = `swim-checkbox-${++qr}`, this.name = "", this.diameter = "18px", this._checked = !1, this._indeterminate = !1, this._tabindex = 0, this._disabled = !1, this._round = !1, this._internals = this.attachInternals();
+    super(), this.id = `swim-checkbox-${++rn}`, this.name = "", this.diameter = "18px", this._checked = !1, this._indeterminate = !1, this._tabindex = 0, this._disabled = !1, this._round = !1, this._internals = this.attachInternals();
   }
   get checked() {
     return this._checked;
   }
   set checked(e) {
-    const t = m(e);
-    this._checked !== t && (this._checked = t, this._syncFormValue(), this.dispatchEvent(new CustomEvent("checked-change", { detail: this._checked, bubbles: !0, composed: !0 })));
+    const t = p(e);
+    this._checked !== t && (this._checked = t, this._syncFormValue(), this.dispatchEvent(new CustomEvent("checked-change", { detail: this._checked, bubbles: !1, composed: !1 })));
   }
   get indeterminate() {
     return this._indeterminate;
   }
   set indeterminate(e) {
-    const t = m(e);
+    const t = p(e);
     this._indeterminate !== t && (this._indeterminate = t, this.dispatchEvent(
       new CustomEvent("indeterminate-change", {
         detail: this._indeterminate,
-        bubbles: !0,
-        composed: !0
+        bubbles: !1,
+        composed: !1
       })
     ));
   }
@@ -4716,19 +4849,19 @@ const _s = "swim-checkbox", Ot = class Ot extends v {
     return this._tabindex;
   }
   set tabindex(e) {
-    this._tabindex = A(e, 0);
+    this._tabindex = z(e, 0);
   }
   get disabled() {
     return this._disabled;
   }
   set disabled(e) {
-    this._disabled = m(e);
+    this._disabled = p(e);
   }
   get round() {
     return this._round;
   }
   set round(e) {
-    this._round = m(e);
+    this._round = p(e);
   }
   connectedCallback() {
     super.connectedCallback(), this._syncFormValue();
@@ -4762,16 +4895,16 @@ const _s = "swim-checkbox", Ot = class Ot extends v {
           timeStamp: Date.now(),
           target: { checked: this._checked }
         },
-        bubbles: !0,
-        composed: !0
+        bubbles: !1,
+        composed: !1
       })
     );
   }
   _onFocus(e) {
-    this.dispatchEvent(new FocusEvent("focus", { ...e, bubbles: !0, composed: !0 }));
+    this.dispatchEvent(new FocusEvent("focus", { ...e, bubbles: !1, composed: !1 }));
   }
   _onBlur(e) {
-    this.dispatchEvent(new FocusEvent("blur", { ...e, bubbles: !0, composed: !0 }));
+    this.dispatchEvent(new FocusEvent("blur", { ...e, bubbles: !1, composed: !1 }));
   }
   render() {
     const e = `${this.id}-content`;
@@ -4800,87 +4933,87 @@ const _s = "swim-checkbox", Ot = class Ot extends v {
     `;
   }
 };
-Ot.styles = [x, Vr], Ot.formAssociated = !0;
-let X = Ot;
-xe([
-  R(".swim-checkbox__roving")
-], X.prototype, "_roving", 2);
-xe([
+Yt.styles = [C, tn], Yt.formAssociated = !0;
+let ie = Yt;
+Se([
+  N(".swim-checkbox__roving")
+], ie.prototype, "_roving", 2);
+Se([
   a({ type: String })
-], X.prototype, "id", 2);
-xe([
+], ie.prototype, "id", 2);
+Se([
   a({ type: String })
-], X.prototype, "name", 2);
-xe([
+], ie.prototype, "name", 2);
+Se([
   a({ type: String })
-], X.prototype, "diameter", 2);
-xe([
-  a({ type: Boolean, reflect: !0, attribute: "checked" })
-], X.prototype, "checked", 1);
-xe([
-  a({ type: Boolean, reflect: !0 })
-], X.prototype, "indeterminate", 1);
-xe([
+], ie.prototype, "diameter", 2);
+Se([
+  a({ type: Boolean, reflect: !0, attribute: "checked", converter: g })
+], ie.prototype, "checked", 1);
+Se([
+  a({ type: Boolean, reflect: !0, converter: g })
+], ie.prototype, "indeterminate", 1);
+Se([
   a({ type: Number })
-], X.prototype, "tabindex", 1);
-xe([
-  a({ type: Boolean, reflect: !0 })
-], X.prototype, "disabled", 1);
-xe([
-  a({ type: Boolean, reflect: !0 })
-], X.prototype, "round", 1);
-customElements.get(_s) || customElements.define(_s, X);
-var jr = Object.defineProperty, Gr = Object.getOwnPropertyDescriptor, ue = (o, e, t, i) => {
-  for (var s = i > 1 ? void 0 : i ? Gr(e, t) : e, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = (i ? n(e, t, s) : n(s)) || s);
-  return i && s && jr(e, t, s), s;
+], ie.prototype, "tabindex", 1);
+Se([
+  a({ type: Boolean, reflect: !0, converter: g })
+], ie.prototype, "disabled", 1);
+Se([
+  a({ type: Boolean, reflect: !0, converter: g })
+], ie.prototype, "round", 1);
+customElements.get(Ss) || customElements.define(Ss, ie);
+var nn = Object.defineProperty, an = Object.getOwnPropertyDescriptor, we = (s, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? an(e, t) : e, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = (i ? n(e, t, o) : n(o)) || o);
+  return i && o && nn(e, t, o), o;
 };
-const ws = "swim-card", xi = class xi extends v {
+const As = "swim-card", Mi = class Mi extends y {
   constructor() {
-    super(...arguments), this._disabled = !1, this.orientation = _o.Horizontal, this.statusTooltip = "", this._selectable = !1, this._selected = !1, this._error = !1, this.outlineText = "", this.appearance = wo.Normal, this._hideAccent = !1;
+    super(...arguments), this._disabled = !1, this.orientation = Do.Horizontal, this.statusTooltip = "", this._selectable = !1, this._selected = !1, this._error = !1, this.outlineText = "", this.appearance = zo.Normal, this._hideAccent = !1;
   }
   get disabled() {
     return this._disabled;
   }
   set disabled(e) {
-    this._disabled = m(e);
+    this._disabled = p(e);
   }
   get selectable() {
     return this._selectable;
   }
   set selectable(e) {
-    this._selectable = m(e);
+    this._selectable = p(e);
   }
   get selected() {
     return this._selected;
   }
   set selected(e) {
-    this._selected = m(e);
+    this._selected = p(e);
   }
   get error() {
     return this._error;
   }
   set error(e) {
-    this._error = m(e);
+    this._error = p(e);
   }
   get hideAccent() {
     return this._hideAccent;
   }
   set hideAccent(e) {
-    this._hideAccent = m(e);
+    this._hideAccent = p(e);
   }
   _onOutlineClick(e) {
-    e.stopPropagation(), this.dispatchEvent(new CustomEvent("outline-click", { bubbles: !0, composed: !0 }));
+    e.stopPropagation(), this.dispatchEvent(new CustomEvent("outline-click", { bubbles: !1, composed: !1 }));
   }
   _onSelectChange(e) {
-    var i, s;
+    var i, o;
     e.stopPropagation();
-    const t = ((s = (i = e.detail) == null ? void 0 : i.target) == null ? void 0 : s.checked) ?? !1;
+    const t = ((o = (i = e.detail) == null ? void 0 : i.target) == null ? void 0 : o.checked) ?? !1;
     this.selected = t, this.dispatchEvent(
       new CustomEvent("select", {
         detail: this.selected,
-        bubbles: !0,
-        composed: !0
+        bubbles: !1,
+        composed: !1
       })
     );
   }
@@ -4888,7 +5021,7 @@ const ws = "swim-card", xi = class xi extends v {
     e.stopPropagation();
   }
   render() {
-    const e = this.selected && !this.outlineText && !this.error, t = this.error && !this.outlineText, i = !!this.outlineText, s = !!this.status, r = this.status === Ue.Success ? "swim-card__status--success" : this.status === Ue.Error ? "swim-card__status--error" : "";
+    const e = this.selected && !this.outlineText && !this.error, t = this.error && !this.outlineText, i = !!this.outlineText, o = !!this.status, r = this.status === Qe.Success ? "swim-card__status--success" : this.status === Qe.Error ? "swim-card__status--error" : "";
     return c`
       ${e ? c`<div class="swim-card__outline" aria-hidden="true"></div>` : u}
       ${t ? c`<div class="swim-card__outline swim-card__outline--error" aria-hidden="true"></div>` : u}
@@ -4912,7 +5045,7 @@ const ws = "swim-card", xi = class xi extends v {
               </div>
             </div>
           ` : u}
-      ${s ? c`
+      ${o ? c`
             <div
               class="swim-card__status ${r}"
               title="${this.statusTooltip}"
@@ -4938,45 +5071,45 @@ const ws = "swim-card", xi = class xi extends v {
     `;
   }
 };
-xi.styles = Yr;
-let q = xi;
-ue([
-  a({ type: Boolean, reflect: !0 })
-], q.prototype, "disabled", 1);
-ue([
+Mi.styles = en;
+let K = Mi;
+we([
+  a({ type: Boolean, reflect: !0, converter: g })
+], K.prototype, "disabled", 1);
+we([
   a({ type: String, reflect: !0 })
-], q.prototype, "orientation", 2);
-ue([
+], K.prototype, "orientation", 2);
+we([
   a({ type: String, reflect: !0 })
-], q.prototype, "status", 2);
-ue([
+], K.prototype, "status", 2);
+we([
   a({ type: String, attribute: "status-tooltip" })
-], q.prototype, "statusTooltip", 2);
-ue([
-  a({ type: Boolean, reflect: !0 })
-], q.prototype, "selectable", 1);
-ue([
-  a({ type: Boolean, reflect: !0 })
-], q.prototype, "selected", 1);
-ue([
-  a({ type: Boolean, reflect: !0 })
-], q.prototype, "error", 1);
-ue([
+], K.prototype, "statusTooltip", 2);
+we([
+  a({ type: Boolean, reflect: !0, converter: g })
+], K.prototype, "selectable", 1);
+we([
+  a({ type: Boolean, reflect: !0, converter: g })
+], K.prototype, "selected", 1);
+we([
+  a({ type: Boolean, reflect: !0, converter: g })
+], K.prototype, "error", 1);
+we([
   a({ type: String, attribute: "outline-text" })
-], q.prototype, "outlineText", 2);
-ue([
+], K.prototype, "outlineText", 2);
+we([
   a({ type: String, reflect: !0 })
-], q.prototype, "appearance", 2);
-ue([
-  a({ type: Boolean, attribute: "hide-accent" })
-], q.prototype, "hideAccent", 1);
-customElements.get(ws) || customElements.define(ws, q);
-var vo = /* @__PURE__ */ ((o) => (o.Small = "small", o.Medium = "medium", o.Large = "large", o))(vo || {});
-const vs = 25, Wr = w`
+], K.prototype, "appearance", 2);
+we([
+  a({ type: Boolean, attribute: "hide-accent", converter: g })
+], K.prototype, "hideAccent", 1);
+customElements.get(As) || customElements.define(As, K);
+var Mo = /* @__PURE__ */ ((s) => (s.Small = "small", s.Medium = "medium", s.Large = "large", s))(Mo || {});
+const Ts = 25, ln = v`
   :host {
     display: flex;
     align-items: center;
-    padding: var(--spacing-0) ${vs}px;
+    padding: var(--spacing-0) ${Ts}px;
     flex-grow: 1;
     overflow: hidden;
     cursor: pointer;
@@ -5004,7 +5137,7 @@ const vs = 25, Wr = w`
   }
 
   .swim-card-header__title-group {
-    margin-left: ${vs}px;
+    margin-left: ${Ts}px;
     display: flex;
     flex-direction: column;
     width: calc(100% - 79px);
@@ -5082,13 +5215,13 @@ const vs = 25, Wr = w`
   .swim-card-header__label::after {
     margin-left: var(--spacing-20);
   }
-`, Kr = [x, Wr];
-var Zr = Object.defineProperty, yo = (o, e, t, i) => {
-  for (var s = void 0, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = n(e, t, s) || s);
-  return s && Zr(e, t, s), s;
+`, cn = [C, ln];
+var dn = Object.defineProperty, Oo = (s, e, t, i) => {
+  for (var o = void 0, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = n(e, t, o) || o);
+  return o && dn(e, t, o), o;
 };
-const ys = "swim-card-header", $i = class $i extends v {
+const Ds = "swim-card-header", Oi = class Oi extends y {
   constructor() {
     super(...arguments), this.label = "", this.orientation = "horizontal";
   }
@@ -5105,16 +5238,16 @@ const ys = "swim-card-header", $i = class $i extends v {
     `;
   }
 };
-$i.styles = Kr;
-let mt = $i;
-yo([
+Oi.styles = cn;
+let yt = Oi;
+Oo([
   a({ type: String })
-], mt.prototype, "label");
-yo([
+], yt.prototype, "label");
+Oo([
   a({ type: String, reflect: !0 })
-], mt.prototype, "orientation");
-customElements.get(ys) || customElements.define(ys, mt);
-const Xr = w`
+], yt.prototype, "orientation");
+customElements.get(Ds) || customElements.define(Ds, yt);
+const hn = v`
   :host {
     position: relative;
     display: flex;
@@ -5159,13 +5292,13 @@ const Xr = w`
   ::slotted(swim-button) {
     width: auto;
   }
-`, Jr = [x, Xr];
-var Qr = Object.defineProperty, en = (o, e, t, i) => {
-  for (var s = void 0, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = n(e, t, s) || s);
-  return s && Qr(e, t, s), s;
+`, un = [C, hn];
+var pn = Object.defineProperty, mn = (s, e, t, i) => {
+  for (var o = void 0, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = n(e, t, o) || o);
+  return o && pn(e, t, o), o;
 };
-const xs = "swim-card-footer", ki = class ki extends v {
+const zs = "swim-card-footer", Pi = class Pi extends y {
   constructor() {
     super(...arguments), this.label = "";
   }
@@ -5176,13 +5309,13 @@ const xs = "swim-card-footer", ki = class ki extends v {
     `;
   }
 };
-ki.styles = Jr;
-let St = ki;
-en([
+Pi.styles = un;
+let Lt = Pi;
+mn([
   a({ type: String })
-], St.prototype, "label");
-customElements.get(xs) || customElements.define(xs, St);
-const tn = 3, sn = w`
+], Lt.prototype, "label");
+customElements.get(zs) || customElements.define(zs, Lt);
+const bn = 3, fn = v`
   :host {
     width: 54px;
     height: 54px;
@@ -5225,7 +5358,7 @@ const tn = 3, sn = w`
     display: flex;
     height: 100%;
     width: 100%;
-    border: ${tn}px solid transparent;
+    border: ${bn}px solid transparent;
     border-radius: 100%;
     overflow: hidden;
     position: relative;
@@ -5248,18 +5381,18 @@ const tn = 3, sn = w`
     color: var(--grey-100);
     font-weight: var(--font-weight-bold);
   }
-`, on = [x, sn];
-var rn = Object.defineProperty, hi = (o, e, t, i) => {
-  for (var s = void 0, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = n(e, t, s) || s);
-  return s && rn(e, t, s), s;
+`, gn = [C, fn];
+var _n = Object.defineProperty, vi = (s, e, t, i) => {
+  for (var o = void 0, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = n(e, t, o) || o);
+  return o && _n(e, t, o), o;
 };
-const $s = "swim-card-avatar", Ci = class Ci extends v {
+const Ms = "swim-card-avatar", Ii = class Ii extends y {
   constructor() {
     super(...arguments), this.src = "", this.removeImageBackground = !1;
   }
   render() {
-    const e = this.status === Ue.Success ? "swim-card-avatar__avatar--success" : this.status === Ue.Error ? "swim-card-avatar__avatar--error" : this.status === Ue.Disabled ? "swim-card-avatar__avatar--disabled" : "";
+    const e = this.status === Qe.Success ? "swim-card-avatar__avatar--success" : this.status === Qe.Error ? "swim-card-avatar__avatar--error" : this.status === Qe.Disabled ? "swim-card-avatar__avatar--disabled" : "";
     return c`
       <div
         class="swim-card-avatar__avatar ${e}"
@@ -5281,19 +5414,19 @@ const $s = "swim-card-avatar", Ci = class Ci extends v {
     `;
   }
 };
-Ci.styles = on;
-let Ke = Ci;
-hi([
+Ii.styles = gn;
+let st = Ii;
+vi([
   a({ type: String })
-], Ke.prototype, "src");
-hi([
+], st.prototype, "src");
+vi([
   a({ type: String, reflect: !0 })
-], Ke.prototype, "status");
-hi([
-  a({ type: Boolean, attribute: "remove-image-background" })
-], Ke.prototype, "removeImageBackground");
-customElements.get($s) || customElements.define($s, Ke);
-const nn = w`
+], st.prototype, "status");
+vi([
+  a({ type: Boolean, attribute: "remove-image-background", converter: g })
+], st.prototype, "removeImageBackground");
+customElements.get(Ms) || customElements.define(Ms, st);
+const wn = v`
   :host {
     display: inline-block;
     background-color: var(--grey-750);
@@ -5319,33 +5452,33 @@ const nn = w`
     width: 50%;
     min-width: 150px;
   }
-`, an = [x, nn];
-var ln = Object.defineProperty, cn = (o, e, t, i) => {
-  for (var s = void 0, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = n(e, t, s) || s);
-  return s && ln(e, t, s), s;
+`, vn = [C, wn];
+var yn = Object.defineProperty, xn = (s, e, t, i) => {
+  for (var o = void 0, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = n(e, t, o) || o);
+  return o && yn(e, t, o), o;
 };
-const ks = "swim-card-placeholder", Ei = class Ei extends v {
+const Os = "swim-card-placeholder", Li = class Li extends y {
   constructor() {
-    super(...arguments), this.size = vo.Medium;
+    super(...arguments), this.size = Mo.Medium;
   }
   render() {
     return c``;
   }
 };
-Ei.styles = an;
-let At = Ei;
-cn([
+Li.styles = vn;
+let Ft = Li;
+xn([
   a({ type: String, reflect: !0 })
-], At.prototype, "size");
-customElements.get(ks) || customElements.define(ks, At);
-const dn = 27, hn = w`
+], Ft.prototype, "size");
+customElements.get(Os) || customElements.define(Os, Ft);
+const $n = 27, kn = v`
   :host {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     gap: var(--spacing-8);
-    padding: var(--spacing-16) ${dn}px;
+    padding: var(--spacing-16) ${$n}px;
     box-sizing: border-box;
     overflow: auto;
     line-height: 1.5;
@@ -5354,27 +5487,27 @@ const dn = 27, hn = w`
   ::slotted(*) {
     width: 100%;
   }
-`, un = [x, hn], Cs = "swim-card-body", Si = class Si extends v {
+`, Cn = [C, kn], Ps = "swim-card-body", Fi = class Fi extends y {
   render() {
     return c`<slot></slot>`;
   }
 };
-Si.styles = un;
-let ii = Si;
-customElements.get(Cs) || customElements.define(Cs, ii);
+Fi.styles = Cn;
+let di = Fi;
+customElements.get(Ps) || customElements.define(Ps, di);
 /**
  * @license
  * Copyright 2018 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const ge = (o) => o ?? u;
+const de = (s) => s ?? u;
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const Ce = { ATTRIBUTE: 1, CHILD: 2, PROPERTY: 3, BOOLEAN_ATTRIBUTE: 4 }, ui = (o) => (...e) => ({ _$litDirective$: o, values: e });
-let pi = class {
+const ze = { ATTRIBUTE: 1, CHILD: 2, PROPERTY: 3, BOOLEAN_ATTRIBUTE: 4 }, yi = (s) => (...e) => ({ _$litDirective$: s, values: e });
+let xi = class {
   constructor(e) {
   }
   get _$AU() {
@@ -5395,54 +5528,54 @@ let pi = class {
  * Copyright 2020 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const { I: pn } = Zo, Es = (o) => o, mn = (o) => o.strings === void 0, Ss = () => document.createComment(""), rt = (o, e, t) => {
+const { I: En } = cr, Is = (s) => s, Sn = (s) => s.strings === void 0, Ls = () => document.createComment(""), ht = (s, e, t) => {
   var r;
-  const i = o._$AA.parentNode, s = e === void 0 ? o._$AB : e._$AA;
+  const i = s._$AA.parentNode, o = e === void 0 ? s._$AB : e._$AA;
   if (t === void 0) {
-    const n = i.insertBefore(Ss(), s), l = i.insertBefore(Ss(), s);
-    t = new pn(n, l, o, o.options);
+    const n = i.insertBefore(Ls(), o), l = i.insertBefore(Ls(), o);
+    t = new En(n, l, s, s.options);
   } else {
-    const n = t._$AB.nextSibling, l = t._$AM, d = l !== o;
+    const n = t._$AB.nextSibling, l = t._$AM, d = l !== s;
     if (d) {
       let h;
-      (r = t._$AQ) == null || r.call(t, o), t._$AM = o, t._$AP !== void 0 && (h = o._$AU) !== l._$AU && t._$AP(h);
+      (r = t._$AQ) == null || r.call(t, s), t._$AM = s, t._$AP !== void 0 && (h = s._$AU) !== l._$AU && t._$AP(h);
     }
-    if (n !== s || d) {
+    if (n !== o || d) {
       let h = t._$AA;
       for (; h !== n; ) {
-        const _ = Es(h).nextSibling;
-        Es(i).insertBefore(h, s), h = _;
+        const w = Is(h).nextSibling;
+        Is(i).insertBefore(h, o), h = w;
       }
     }
   }
   return t;
-}, De = (o, e, t = o) => (o._$AI(e, t), o), bn = {}, xo = (o, e = bn) => o._$AH = e, gn = (o) => o._$AH, Qt = (o) => {
-  o._$AR(), o._$AA.remove();
+}, Be = (s, e, t = s) => (s._$AI(e, t), s), An = {}, Po = (s, e = An) => s._$AH = e, Tn = (s) => s._$AH, ai = (s) => {
+  s._$AR(), s._$AA.remove();
 };
 /**
  * @license
  * Copyright 2020 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const As = ui(class extends pi {
-  constructor(o) {
-    if (super(o), o.type !== Ce.PROPERTY && o.type !== Ce.ATTRIBUTE && o.type !== Ce.BOOLEAN_ATTRIBUTE) throw Error("The `live` directive is not allowed on child or event bindings");
-    if (!mn(o)) throw Error("`live` bindings can only contain a single expression");
+const Fs = yi(class extends xi {
+  constructor(s) {
+    if (super(s), s.type !== ze.PROPERTY && s.type !== ze.ATTRIBUTE && s.type !== ze.BOOLEAN_ATTRIBUTE) throw Error("The `live` directive is not allowed on child or event bindings");
+    if (!Sn(s)) throw Error("`live` bindings can only contain a single expression");
   }
-  render(o) {
-    return o;
+  render(s) {
+    return s;
   }
-  update(o, [e]) {
-    if (e === Z || e === u) return e;
-    const t = o.element, i = o.name;
-    if (o.type === Ce.PROPERTY) {
-      if (e === t[i]) return Z;
-    } else if (o.type === Ce.BOOLEAN_ATTRIBUTE) {
-      if (!!e === t.hasAttribute(i)) return Z;
-    } else if (o.type === Ce.ATTRIBUTE && t.getAttribute(i) === e + "") return Z;
-    return xo(o), e;
+  update(s, [e]) {
+    if (e === te || e === u) return e;
+    const t = s.element, i = s.name;
+    if (s.type === ze.PROPERTY) {
+      if (e === t[i]) return te;
+    } else if (s.type === ze.BOOLEAN_ATTRIBUTE) {
+      if (!!e === t.hasAttribute(i)) return te;
+    } else if (s.type === ze.ATTRIBUTE && t.getAttribute(i) === e + "") return te;
+    return Po(s), e;
   }
-}), _t = w`
+}), Et = v`
   /* Only set standard scrollbar props in browsers that don't support -webkit-scrollbar.
    * Chrome 121+ disables ::-webkit-scrollbar (and thumb :hover) when scrollbar-color/width are set. */
   @supports not selector(::-webkit-scrollbar) {
@@ -5560,7 +5693,7 @@ const As = ui(class extends pi {
   .swim-scroll-muted:hover::-webkit-scrollbar-thumb:hover {
     background-color: rgb(80, 92, 117);
   }
-`, fn = w`
+`, Dn = v`
   :host {
     display: block;
     max-width: 100%;
@@ -5901,14 +6034,14 @@ const As = ui(class extends pi {
     font-size: 1em;
   }
 `;
-var fe = /* @__PURE__ */ ((o) => (o.text = "text", o.password = "password", o.email = "email", o.number = "number", o.tel = "tel", o.url = "url", o.textarea = "textarea", o))(fe || {}), mi = /* @__PURE__ */ ((o) => (o.legacy = "legacy", o.fill = "fill", o))(mi || {}), bi = /* @__PURE__ */ ((o) => (o.sm = "sm", o.md = "md", o.lg = "lg", o))(bi || {}), _n = Object.defineProperty, wn = Object.getOwnPropertyDescriptor, S = (o, e, t, i) => {
-  for (var s = i > 1 ? void 0 : i ? wn(e, t) : e, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = (i ? n(e, t, s) : n(s)) || s);
-  return i && s && _n(e, t, s), s;
+var $e = /* @__PURE__ */ ((s) => (s.text = "text", s.password = "password", s.email = "email", s.number = "number", s.tel = "tel", s.url = "url", s.textarea = "textarea", s))($e || {}), $i = /* @__PURE__ */ ((s) => (s.legacy = "legacy", s.fill = "fill", s))($i || {}), ki = /* @__PURE__ */ ((s) => (s.sm = "sm", s.md = "md", s.lg = "lg", s))(ki || {}), zn = Object.defineProperty, Mn = Object.getOwnPropertyDescriptor, D = (s, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? Mn(e, t) : e, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = (i ? n(e, t, o) : n(o)) || o);
+  return i && o && zn(e, t, o), o;
 };
-const Ts = "swim-input", It = class It extends v {
+const Bs = "swim-input", Nt = class Nt extends y {
   constructor() {
-    super(), this.type = fe.text, this.label = "", this.placeholder = "", this.hint = "", this._value = "", this.name = "", this.id = `swim-input-${Math.random().toString(36).substr(2, 9)}`, this._disabled = !1, this._readonly = !1, this._required = !1, this._autofocus = !1, this.autocomplete = "off", this.appearance = mi.legacy, this.size = bi.sm, this._withMargin = !0, this._withHint = !0, this._passwordToggleEnabled = !1, this.textareaRows = 3, this.requiredIndicator = "*", this._focused = !1, this._passwordVisible = !1, this._touched = !1, this._dirty = !1, this._invalid = !1, this._internals = this.attachInternals();
+    super(), this.type = $e.text, this.label = "", this.placeholder = "", this.hint = "", this._value = "", this.name = "", this.id = `swim-input-${Math.random().toString(36).substr(2, 9)}`, this._disabled = !1, this._readonly = !1, this._required = !1, this._autofocus = !1, this.autocomplete = "off", this.appearance = $i.legacy, this.size = ki.sm, this._withMargin = !0, this._withHint = !0, this._passwordToggleEnabled = !1, this.textareaRows = 3, this.requiredIndicator = "*", this._focused = !1, this._passwordVisible = !1, this._touched = !1, this._dirty = !1, this._invalid = !1, this._internals = this.attachInternals();
   }
   get value() {
     return this._value;
@@ -5921,43 +6054,43 @@ const Ts = "swim-input", It = class It extends v {
     return this._disabled;
   }
   set disabled(e) {
-    this._disabled = m(e);
+    this._disabled = p(e);
   }
   get readonly() {
     return this._readonly;
   }
   set readonly(e) {
-    this._readonly = m(e);
+    this._readonly = p(e);
   }
   get required() {
     return this._required;
   }
   set required(e) {
-    this._required = m(e);
+    this._required = p(e);
   }
   get autofocus() {
     return this._autofocus;
   }
   set autofocus(e) {
-    this._autofocus = m(e);
+    this._autofocus = p(e);
   }
   get marginless() {
     return !this._withMargin;
   }
   set marginless(e) {
-    this._withMargin = !m(e);
+    this._withMargin = !p(e);
   }
   get withHint() {
     return this._withHint;
   }
   set withHint(e) {
-    this._withHint = m(e);
+    this._withHint = p(e);
   }
   get passwordToggleEnabled() {
     return this._passwordToggleEnabled;
   }
   set passwordToggleEnabled(e) {
-    this._passwordToggleEnabled = m(e);
+    this._passwordToggleEnabled = p(e);
   }
   connectedCallback() {
     super.connectedCallback(), this._updateActiveState();
@@ -5969,21 +6102,40 @@ const Ts = "swim-input", It = class It extends v {
   }
   /** Delegate focus to the internal input so form validation can focus invalid controls. */
   focus(e) {
-    var t;
-    (t = this.inputElement) == null || t.focus(e);
+    const t = this.inputElement;
+    if (t) {
+      t.focus(e);
+      return;
+    }
+    this.updateComplete.then(() => {
+      var i;
+      return (i = this.inputElement) == null ? void 0 : i.focus(e);
+    });
+  }
+  /** Delegate blur to the internal input. */
+  blur() {
+    const e = this.inputElement;
+    if (e) {
+      e.blur();
+      return;
+    }
+    this.updateComplete.then(() => {
+      var t;
+      return (t = this.inputElement) == null ? void 0 : t.blur();
+    });
   }
   updated(e) {
     super.updated(e), e.has("value") && this._updateActiveState(), (e.has("required") || e.has("min") || e.has("max")) && this._validate();
   }
   render() {
-    const e = this.type === fe.textarea, t = this.type === fe.password && this.passwordToggleEnabled && !this.disabled, i = this.type === fe.number && !this.disabled, s = this._passwordVisible ? fe.text : this.type;
+    const e = this.type === $e.textarea, t = this.type === $e.password && this.passwordToggleEnabled && !this.disabled, i = this.type === $e.number && !this.disabled, o = this._passwordVisible ? $e.text : this.type;
     return c`
       <div class="input-wrap">
         <div class="input-flex-wrap">
           <slot name="prefix"></slot>
           <div class="input-flex-wrap-inner">
             <div class="input-box-wrap">
-              ${e ? this._renderTextarea() : this._renderInput(s)}
+              ${e ? this._renderTextarea() : this._renderInput(o)}
               ${i ? c`
                     <div class="numeric-spinner">
                       <button
@@ -6042,16 +6194,16 @@ const Ts = "swim-input", It = class It extends v {
         type="${e}"
         id="${this.id}"
         name="${this.name}"
-        .value="${As(this.value)}"
+        .value="${Fs(this.value)}"
         placeholder="${this.placeholder}"
         ?disabled="${this.disabled}"
         ?readonly="${this.readonly}"
         ?required="${this.required}"
-        min="${ge(this.min)}"
-        max="${ge(this.max)}"
-        minlength="${ge(this.minlength)}"
-        maxlength="${ge(this.maxlength)}"
-        tabindex="${ge(this.tabindex)}"
+        min="${de(this.min)}"
+        max="${de(this.max)}"
+        minlength="${de(this.minlength)}"
+        maxlength="${de(this.maxlength)}"
+        tabindex="${de(this.tabindex)}"
         autocomplete="${this.autocomplete}"
         @input="${this._handleInput}"
         @change="${this._handleChange}"
@@ -6067,15 +6219,15 @@ const Ts = "swim-input", It = class It extends v {
         class="input-textarea swim-scroll"
         id="${this.id}"
         name="${this.name}"
-        .value="${As(this.value)}"
+        .value="${Fs(this.value)}"
         placeholder="${this.placeholder}"
         ?disabled="${this.disabled}"
         ?readonly="${this.readonly}"
         ?required="${this.required}"
         rows="${this.textareaRows}"
-        minlength="${ge(this.minlength)}"
-        maxlength="${ge(this.maxlength)}"
-        tabindex="${ge(this.tabindex)}"
+        minlength="${de(this.minlength)}"
+        maxlength="${de(this.maxlength)}"
+        tabindex="${de(this.tabindex)}"
         autocomplete="${this.autocomplete}"
         @input="${this._handleInput}"
         @change="${this._handleChange}"
@@ -6086,16 +6238,16 @@ const Ts = "swim-input", It = class It extends v {
   }
   _handleInput(e) {
     const t = e.target;
-    this.value = t.value, this._dirty || (this._dirty = !0, this.setAttribute("dirty", "")), this.dispatchEvent(new Event("input", { bubbles: !0, composed: !0 }));
+    this.value = t.value, this._dirty || (this._dirty = !0, this.setAttribute("dirty", "")), this.dispatchEvent(new Event("input", { bubbles: !1, composed: !1 }));
   }
   _handleChange(e) {
-    this._validate(), this.dispatchEvent(new Event("change", { bubbles: !0, composed: !0 }));
+    this._validate(), this.dispatchEvent(new Event("change", { bubbles: !1, composed: !1 }));
   }
   _handleFocus(e) {
-    this._focused = !0, this.setAttribute("focused", ""), this.dispatchEvent(new FocusEvent("focus", { bubbles: !0, composed: !0 }));
+    this._focused = !0, this.setAttribute("focused", ""), this.dispatchEvent(new FocusEvent("focus", { bubbles: !1, composed: !1 }));
   }
   _handleBlur(e) {
-    this._focused = !1, this.removeAttribute("focused"), this._touched || (this._touched = !0, this.setAttribute("touched", "")), this._validate(), this.dispatchEvent(new FocusEvent("blur", { bubbles: !0, composed: !0 }));
+    this._focused = !1, this.removeAttribute("focused"), this._touched || (this._touched = !0, this.setAttribute("touched", "")), this._validate(), this.dispatchEvent(new FocusEvent("blur", { bubbles: !1, composed: !1 }));
   }
   _togglePassword() {
     var e;
@@ -6118,24 +6270,24 @@ const Ts = "swim-input", It = class It extends v {
     this._spinnerTimeout !== void 0 && (clearTimeout(this._spinnerTimeout), this._spinnerTimeout = void 0), this._spinnerInterval !== void 0 && (clearInterval(this._spinnerInterval), this._spinnerInterval = void 0);
   }
   _increment() {
-    if (this.inputElement && this.type === fe.number) {
+    if (this.inputElement && this.type === $e.number) {
       const e = this.inputElement, t = parseFloat(e.value) || 0;
       if (this.max !== void 0 && t >= this.max) return;
       const i = t + 1;
-      this.value = i.toString(), this.dispatchEvent(new Event("change", { bubbles: !0, composed: !0 }));
+      this.value = i.toString(), this.dispatchEvent(new Event("change", { bubbles: !1, composed: !1 }));
     }
   }
   _decrement() {
-    if (this.inputElement && this.type === fe.number) {
+    if (this.inputElement && this.type === $e.number) {
       const e = this.inputElement, t = parseFloat(e.value) || 0;
       if (this.min !== void 0 && t <= this.min) return;
       const i = t - 1;
-      this.value = i.toString(), this.dispatchEvent(new Event("change", { bubbles: !0, composed: !0 }));
+      this.value = i.toString(), this.dispatchEvent(new Event("change", { bubbles: !1, composed: !1 }));
     }
   }
   _validate() {
     let e = !0;
-    if (this.required && !this.value && (e = !1), this.type === fe.number && this.value) {
+    if (this.required && !this.value && (e = !1), this.type === $e.number && this.value) {
       const t = parseFloat(this.value);
       this.min !== void 0 && t < this.min && (e = !1), this.max !== void 0 && t > this.max && (e = !1);
     }
@@ -6153,107 +6305,105 @@ const Ts = "swim-input", It = class It extends v {
     this.disabled = e;
   }
 };
-It.styles = [x, _t, fn], It.formAssociated = !0;
-let C = It;
-S([
-  R(".input-box, .input-textarea")
-], C.prototype, "inputElement", 2);
-S([
+Nt.styles = [C, Et, Dn], Nt.formAssociated = !0;
+let A = Nt;
+D([
+  N(".input-box, .input-textarea")
+], A.prototype, "inputElement", 2);
+D([
   a({ type: String })
-], C.prototype, "type", 2);
-S([
+], A.prototype, "type", 2);
+D([
   a({ type: String })
-], C.prototype, "label", 2);
-S([
+], A.prototype, "label", 2);
+D([
   a({ type: String })
-], C.prototype, "placeholder", 2);
-S([
+], A.prototype, "placeholder", 2);
+D([
   a({ type: String })
-], C.prototype, "hint", 2);
-S([
+], A.prototype, "hint", 2);
+D([
   a({ type: String })
-], C.prototype, "value", 1);
-S([
+], A.prototype, "value", 1);
+D([
   a({ type: String })
-], C.prototype, "name", 2);
-S([
+], A.prototype, "name", 2);
+D([
   a({ type: String })
-], C.prototype, "id", 2);
-S([
-  a({ type: Boolean, reflect: !0 })
-], C.prototype, "disabled", 1);
-S([
-  a({ type: Boolean, reflect: !0 })
-], C.prototype, "readonly", 1);
-S([
-  a({ type: Boolean, reflect: !0 })
-], C.prototype, "required", 1);
-S([
-  a({ type: Boolean })
-], C.prototype, "autofocus", 1);
-S([
+], A.prototype, "id", 2);
+D([
+  a({ type: Boolean, reflect: !0, converter: g })
+], A.prototype, "disabled", 1);
+D([
+  a({ type: Boolean, reflect: !0, converter: g })
+], A.prototype, "readonly", 1);
+D([
+  a({ type: Boolean, reflect: !0, converter: g })
+], A.prototype, "required", 1);
+D([
+  a({ type: Boolean, converter: g })
+], A.prototype, "autofocus", 1);
+D([
   a({ type: String })
-], C.prototype, "autocomplete", 2);
-S([
+], A.prototype, "autocomplete", 2);
+D([
   a({ type: String, reflect: !0 })
-], C.prototype, "appearance", 2);
-S([
+], A.prototype, "appearance", 2);
+D([
   a({ type: String, reflect: !0 })
-], C.prototype, "size", 2);
-S([
-  a({ type: Boolean, reflect: !0, attribute: "marginless" })
-], C.prototype, "marginless", 1);
-S([
-  a({ type: Boolean })
-], C.prototype, "withHint", 1);
-S([
-  a({ type: Boolean, attribute: "password-toggle-enabled" })
-], C.prototype, "passwordToggleEnabled", 1);
-S([
+], A.prototype, "size", 2);
+D([
+  a({ type: Boolean, reflect: !0, attribute: "marginless", converter: g })
+], A.prototype, "marginless", 1);
+D([
+  a({ type: Boolean, converter: Q })
+], A.prototype, "withHint", 1);
+D([
+  a({ type: Boolean, attribute: "password-toggle-enabled", converter: g })
+], A.prototype, "passwordToggleEnabled", 1);
+D([
   a({ type: Number })
-], C.prototype, "min", 2);
-S([
+], A.prototype, "min", 2);
+D([
   a({ type: Number })
-], C.prototype, "max", 2);
-S([
+], A.prototype, "max", 2);
+D([
   a({ type: Number })
-], C.prototype, "minlength", 2);
-S([
+], A.prototype, "minlength", 2);
+D([
   a({ type: Number })
-], C.prototype, "maxlength", 2);
-S([
+], A.prototype, "maxlength", 2);
+D([
   a({ type: Number, attribute: "textarea-rows" })
-], C.prototype, "textareaRows", 2);
-S([
+], A.prototype, "textareaRows", 2);
+D([
   a({ type: String, attribute: "required-indicator" })
-], C.prototype, "requiredIndicator", 2);
-S([
+], A.prototype, "requiredIndicator", 2);
+D([
   a({ type: Number })
-], C.prototype, "tabindex", 2);
-S([
-  g()
-], C.prototype, "_focused", 2);
-S([
-  g()
-], C.prototype, "_passwordVisible", 2);
-S([
-  g()
-], C.prototype, "_touched", 2);
-S([
-  g()
-], C.prototype, "_dirty", 2);
-S([
-  g()
-], C.prototype, "_invalid", 2);
-customElements.get(Ts) || customElements.define(Ts, C);
-const vn = [
-  x,
-  _t,
-  w`
+], A.prototype, "tabindex", 2);
+D([
+  b()
+], A.prototype, "_focused", 2);
+D([
+  b()
+], A.prototype, "_passwordVisible", 2);
+D([
+  b()
+], A.prototype, "_touched", 2);
+D([
+  b()
+], A.prototype, "_dirty", 2);
+D([
+  b()
+], A.prototype, "_invalid", 2);
+customElements.get(Bs) || customElements.define(Bs, A);
+const On = [
+  C,
+  Et,
+  v`
     :host {
-      --swim-dialog-bg: var(--grey-800);
-      --swim-dialog-header-color: var(--grey-100);
-      --swim-dialog-body-color: var(--grey-200);
+      outline: none;
     }
 
     .swim-dialog {
@@ -6288,33 +6438,52 @@ const vn = [
       cursor: default;
     }
 
+    /* ngx-dialog visibilityTransition void=>*: 0.2s ease-out, opacity 0→1, scale3d(1.2)→(1) */
+    @keyframes swim-dialog-content-enter {
+      from {
+        opacity: 0;
+        transform: scale3d(1.2, 1.2, 1.2);
+      }
+      to {
+        opacity: 1;
+        transform: scale3d(1, 1, 1);
+      }
+    }
+
     .swim-dialog__content {
+      outline: none;
       pointer-events: auto;
       position: relative;
       border-radius: var(--radius-8);
-      box-shadow: var(--shadow-3);
-      background: var(--swim-dialog-bg);
+      border: var(--swim-dialog-border, none);
+      box-shadow: var(--swim-dialog-box-shadow, var(--shadow-dialog-panel));
+      background: var(--swim-dialog-bg, var(--grey-725));
       padding: 1.4rem;
       min-width: 250px;
       font-size: var(--font-size-m);
-      color: var(--swim-dialog-body-color);
-      animation-fill-mode: forwards;
-      opacity: 0;
-      transform: scale3d(1.2, 1.2, 1);
-      transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+      color: var(--swim-dialog-body-color, var(--grey-200));
       z-index: calc(var(--swim-dialog-z, 991) + 1);
     }
 
     .swim-dialog.swim-dialog--open .swim-dialog__content {
-      opacity: 1;
-      transform: scale3d(1, 1, 1);
+      animation: swim-dialog-content-enter 0.2s ease-out forwards;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .swim-dialog.swim-dialog--open .swim-dialog__content {
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
     }
 
     .swim-dialog__content--large,
     .swim-dialog__content--medium {
       padding: var(--spacing-0);
       width: calc(100vw - 120px);
-      background-color: transparent;
+      background: transparent;
+      border: none;
+      box-shadow: none;
     }
 
     .swim-dialog__content--large {
@@ -6373,6 +6542,7 @@ const vn = [
 
     .swim-dialog__header {
       margin: 0 0 1.4rem 0;
+      text-align: var(--swim-dialog-header-text-align, start);
     }
 
     .swim-dialog__title,
@@ -6381,7 +6551,8 @@ const vn = [
       font-size: var(--font-size-3xl);
       font-weight: 400;
       margin: 0 0 1.4rem 0;
-      color: var(--swim-dialog-header-color);
+      color: var(--swim-dialog-header-color, var(--grey-050));
+      text-align: inherit;
     }
 
     .swim-dialog__content--medium .swim-dialog__header,
@@ -6421,6 +6592,7 @@ const vn = [
     :host(.swim-dialog--full-screen) .swim-dialog__content,
     .swim-dialog.swim-dialog--full-screen .swim-dialog__content {
       box-shadow: none;
+      border: none;
       box-sizing: border-box;
       width: 100%;
       min-height: 100%;
@@ -6460,14 +6632,14 @@ const vn = [
     }
   `
 ];
-var at = /* @__PURE__ */ ((o) => (o.Regular = "regular", o.Medium = "medium", o.Large = "large", o))(at || {}), yn = Object.defineProperty, xn = Object.getOwnPropertyDescriptor, Y = (o, e, t, i) => {
-  for (var s = i > 1 ? void 0 : i ? xn(e, t) : e, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = (i ? n(e, t, s) : n(s)) || s);
-  return i && s && yn(e, t, s), s;
+var pt = /* @__PURE__ */ ((s) => (s.Regular = "regular", s.Medium = "medium", s.Large = "large", s))(pt || {}), Pn = Object.defineProperty, In = Object.getOwnPropertyDescriptor, j = (s, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? In(e, t) : e, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = (i ? n(e, t, o) : n(o)) || o);
+  return i && o && Pn(e, t, o), o;
 };
-const zs = "swim-dialog", Ai = class Ai extends v {
+const Rs = "swim-dialog", Bi = class Bi extends y {
   constructor() {
-    super(...arguments), this.dialogTitle = "", this.content = "", this.class = "", this.cssClass = "", this.format = at.Regular, this.showBackdrop = !0, this._closeButton = !0, this._visible = !1, this._zIndex = 991, this._contentId = `swim-dialog-content-${Math.random().toString(36).slice(2, 11)}`, this._titleId = `swim-dialog-title-${Math.random().toString(36).slice(2, 11)}`, this._previousActiveElement = null;
+    super(...arguments), this.dialogTitle = "", this.content = "", this.class = "", this.cssClass = "", this.format = pt.Regular, this.showBackdrop = !0, this._closeButton = !0, this._closeOnBlur = !0, this._closeOnEscape = !0, this._visible = !1, this._zIndex = 991, this._contentId = `swim-dialog-content-${Math.random().toString(36).slice(2, 11)}`, this._titleId = `swim-dialog-title-${Math.random().toString(36).slice(2, 11)}`, this._previousActiveElement = null;
   }
   get title() {
     return this.dialogTitle;
@@ -6479,20 +6651,32 @@ const zs = "swim-dialog", Ai = class Ai extends v {
     return this._closeButton;
   }
   set closeButton(e) {
-    this._closeButton = m(e);
+    this._closeButton = p(e);
+  }
+  get closeOnBlur() {
+    return this._closeOnBlur;
+  }
+  set closeOnBlur(e) {
+    this._closeOnBlur = p(e);
+  }
+  get closeOnEscape() {
+    return this._closeOnEscape;
+  }
+  set closeOnEscape(e) {
+    this._closeOnEscape = p(e);
   }
   get visible() {
     return this._visible;
   }
   set visible(e) {
-    const t = m(e);
-    this._visible !== t && (this._visible = t, t ? (this._previousActiveElement = typeof document < "u" ? document.activeElement : null, this.dispatchEvent(new CustomEvent("open", { bubbles: !0 }))) : (this._restoreFocus(), this.dispatchEvent(new CustomEvent("close", { detail: void 0, bubbles: !0 }))));
+    const t = p(e);
+    this._visible !== t && (this._visible = t, t ? (this._previousActiveElement = typeof document < "u" ? document.activeElement : null, this.dispatchEvent(new CustomEvent("open", { bubbles: !1, composed: !1 }))) : (this._restoreFocus(), this.dispatchEvent(new CustomEvent("close", { detail: void 0, bubbles: !1, composed: !1 }))));
   }
   get zIndex() {
     return this._zIndex;
   }
   set zIndex(e) {
-    this._zIndex = A(e, 991);
+    this._zIndex = z(e, 991);
   }
   get _contentzIndex() {
     return this.zIndex + 1;
@@ -6512,23 +6696,33 @@ const zs = "swim-dialog", Ai = class Ai extends v {
     this._canClose && (this.visible = !1);
   }
   _onBackdropClick() {
-    this.hide();
+    this.closeOnBlur && this.hide();
   }
   _onKeydown(e) {
-    e.key === "Escape" && (e.stopPropagation(), this.hide());
+    if (e.key === "Escape") {
+      if (!this.closeOnEscape) return;
+      e.stopPropagation(), this.hide();
+    }
   }
-  firstUpdated() {
-    this.visible && this._contentEl && this._contentEl.focus({ preventScroll: !0 });
+  /** Large/medium slotted content reads `--swim-dialog-header-action-display` (inherited). */
+  _syncCloseButtonCustomProperty() {
+    this.closeButton ? this.style.removeProperty("--swim-dialog-header-action-display") : this.style.setProperty("--swim-dialog-header-action-display", "none");
+  }
+  connectedCallback() {
+    super.connectedCallback(), this._syncCloseButtonCustomProperty();
+  }
+  disconnectedCallback() {
+    this.style.removeProperty("--swim-dialog-header-action-display"), super.disconnectedCallback();
   }
   updated(e) {
-    e.has("visible") && this.visible && this._contentEl && requestAnimationFrame(() => {
+    e.has("closeButton") && this._syncCloseButtonCustomProperty(), e.has("visible") && this.visible && this._contentEl && requestAnimationFrame(() => {
       var t;
       (t = this._contentEl) == null || t.focus({ preventScroll: !0 });
     });
   }
   render() {
     if (!this.visible) return u;
-    const e = this.format === at.Regular || this.format === "regular", t = this.format === at.Large || this.format === "large", i = this.format === at.Medium || this.format === "medium", s = [
+    const e = this.format === pt.Regular || this.format === "regular", t = this.format === pt.Large || this.format === "large", i = this.format === pt.Medium || this.format === "medium", o = [
       "swim-dialog__content",
       this.cssClass,
       t ? "swim-dialog__content--large" : "",
@@ -6539,7 +6733,7 @@ const zs = "swim-dialog", Ai = class Ai extends v {
         ${this.showBackdrop ? c`<div class="swim-dialog__backdrop" aria-hidden="true" @click="${this._onBackdropClick}"></div>` : u}
         <div
           part="content"
-          class="${s}"
+          class="${o}"
           style="z-index: ${this._contentzIndex}"
           tabindex="-1"
           role="dialog"
@@ -6561,7 +6755,7 @@ const zs = "swim-dialog", Ai = class Ai extends v {
                       </button>
                     ` : u}
                 ${this.dialogTitle ? c`
-                      <div class="swim-dialog__header">
+                      <div class="swim-dialog__header" part="header">
                         <h2 id="${this._titleId}" class="swim-dialog__title">${this.dialogTitle}</h2>
                       </div>
                     ` : u}
@@ -6580,60 +6774,66 @@ const zs = "swim-dialog", Ai = class Ai extends v {
     `;
   }
 };
-Ai.styles = vn;
-let P = Ai;
-Y([
+Bi.styles = On;
+let R = Bi;
+j([
   a({ type: String, attribute: "dialog-title" })
-], P.prototype, "dialogTitle", 2);
-Y([
+], R.prototype, "dialogTitle", 2);
+j([
   a({ type: String })
-], P.prototype, "title", 1);
-Y([
+], R.prototype, "title", 1);
+j([
   a({ type: String })
-], P.prototype, "content", 2);
-Y([
+], R.prototype, "content", 2);
+j([
   a({ type: String })
-], P.prototype, "class", 2);
-Y([
+], R.prototype, "class", 2);
+j([
   a({ type: String, attribute: "css-class" })
-], P.prototype, "cssClass", 2);
-Y([
+], R.prototype, "cssClass", 2);
+j([
   a({ type: String, reflect: !0 })
-], P.prototype, "format", 2);
-Y([
+], R.prototype, "format", 2);
+j([
   a({
     type: Boolean,
     attribute: "show-backdrop",
     reflect: !0,
     converter: {
-      fromAttribute: (o) => o === null ? !0 : o !== "false" && o !== "0",
-      toAttribute: (o) => o ? "" : "false"
+      fromAttribute: (s) => s === null ? !0 : s !== "false" && s !== "0",
+      toAttribute: (s) => s ? "" : "false"
     }
   })
-], P.prototype, "showBackdrop", 2);
-Y([
-  a({ type: Boolean, attribute: "close-button" })
-], P.prototype, "closeButton", 1);
-Y([
-  a({ type: Boolean, reflect: !0 })
-], P.prototype, "visible", 1);
-Y([
+], R.prototype, "showBackdrop", 2);
+j([
+  a({ type: Boolean, attribute: "close-button", converter: Q })
+], R.prototype, "closeButton", 1);
+j([
+  a({ type: Boolean, attribute: "close-on-blur", converter: Q })
+], R.prototype, "closeOnBlur", 1);
+j([
+  a({ type: Boolean, attribute: "close-on-escape", converter: Q })
+], R.prototype, "closeOnEscape", 1);
+j([
+  a({ type: Boolean, reflect: !0, converter: g })
+], R.prototype, "visible", 1);
+j([
   a({ type: Number })
-], P.prototype, "zIndex", 1);
-Y([
+], R.prototype, "zIndex", 1);
+j([
   a({ attribute: !1 })
-], P.prototype, "beforeClose", 2);
-Y([
-  g()
-], P.prototype, "_contentId", 2);
-Y([
-  g()
-], P.prototype, "_titleId", 2);
-Y([
-  R(".swim-dialog__content")
-], P.prototype, "_contentEl", 2);
-customElements.get(zs) || customElements.define(zs, P);
-const $n = w`
+], R.prototype, "beforeClose", 2);
+j([
+  b()
+], R.prototype, "_contentId", 2);
+j([
+  b()
+], R.prototype, "_titleId", 2);
+j([
+  N(".swim-dialog__content")
+], R.prototype, "_contentEl", 2);
+customElements.get(Rs) || customElements.define(Rs, R);
+const Ln = v`
   :host {
     position: relative;
     display: block;
@@ -6965,21 +7165,23 @@ const $n = w`
     margin-right: 16px;
   }
 `;
-var kn = Object.defineProperty, Cn = Object.getOwnPropertyDescriptor, $ = (o, e, t, i) => {
-  for (var s = i > 1 ? void 0 : i ? Cn(e, t) : e, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = (i ? n(e, t, s) : n(s)) || s);
-  return i && s && kn(e, t, s), s;
+var Fn = Object.defineProperty, Bn = Object.getOwnPropertyDescriptor, E = (s, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? Bn(e, t) : e, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = (i ? n(e, t, o) : n(o)) || o);
+  return i && o && Fn(e, t, o), o;
 };
-let En = 0;
-const Ds = "swim-date-time", Pt = class Pt extends v {
+let Rn = 0;
+const Hs = "swim-date-time", jt = class jt extends y {
   // ---------------------------------------------------------------------------
   // Lifecycle
   // ---------------------------------------------------------------------------
   constructor() {
-    super(), this.id = `swim-date-time-${++En}`, this.name = "", this.label = "", this.hint = "", this.placeholder = "", this.size = "sm", this.appearance = "legacy", this._disabled = !1, this._required = !1, this.requiredIndicator = "*", this._autofocus = !1, this._autosize = !1, this._minWidth = 60, this._marginless = !1, this._value = null, this._displayValue = "", this._dateInvalid = !1, this._dateOutOfRange = !1, this._focused = !1, this._dialogOpen = !1, this._dialogModel = null, this._dialogHour = 12, this._dialogMinute = "00", this._dialogSecond = "00", this._dialogMillisecond = "000", this._dialogAmPm = "AM", this._modes = ["millisecond", "second", "minute", "hour", "date", "month", "year"], this._apply = () => {
-      this._dialogModel && (this.value = this._dialogModel, this._update(), this.dispatchEvent(new CustomEvent("date-time-selected", { detail: this.value, bubbles: !0, composed: !0 })), this.dispatchEvent(new CustomEvent("change", { detail: this.value, bubbles: !0, composed: !0 }))), this._close();
+    super(), this.id = `swim-date-time-${++Rn}`, this.name = "", this.label = "", this.hint = "", this.placeholder = "", this.size = "sm", this.appearance = "legacy", this._disabled = !1, this._required = !1, this.requiredIndicator = "*", this._autofocus = !1, this._autosize = !1, this._minWidth = 60, this._marginless = !1, this._value = null, this._displayValue = "", this._dateInvalid = !1, this._dateOutOfRange = !1, this._focused = !1, this._dialogOpen = !1, this._dialogModel = null, this._dialogHour = 12, this._dialogMinute = "00", this._dialogSecond = "00", this._dialogMillisecond = "000", this._dialogAmPm = "AM", this._modes = ["millisecond", "second", "minute", "hour", "date", "month", "year"], this._apply = () => {
+      this._dialogModel && (this.value = this._dialogModel, this._update(), this.dispatchEvent(
+        new CustomEvent("date-time-selected", { detail: this.value, bubbles: !1, composed: !1 })
+      ), this.dispatchEvent(new CustomEvent("change", { detail: this.value, bubbles: !1, composed: !1 }))), this._close();
     }, this._clear = () => {
-      this.value = void 0, this._update(), this.dispatchEvent(new CustomEvent("date-time-selected", { detail: void 0, bubbles: !0, composed: !0 })), this.dispatchEvent(new CustomEvent("change", { detail: void 0, bubbles: !0, composed: !0 })), this._close();
+      this.value = void 0, this._update(), this.dispatchEvent(new CustomEvent("date-time-selected", { detail: void 0, bubbles: !1, composed: !1 })), this.dispatchEvent(new CustomEvent("change", { detail: void 0, bubbles: !1, composed: !1 })), this._close();
     }, this._selectCurrent = () => {
       this._setDialogDate(/* @__PURE__ */ new Date());
     }, this._close = () => {
@@ -6987,7 +7189,7 @@ const Ds = "swim-date-time", Pt = class Pt extends v {
     }, this._onCalendarChange = (e) => {
       e.stopPropagation();
       const t = e.detail;
-      t && F(t) && (this._dialogModel && this._showTime && t.setHours(
+      t && H(t) && (this._dialogModel && this._showTime && t.setHours(
         this._dialogModel.getHours(),
         this._dialogModel.getMinutes(),
         this._dialogModel.getSeconds(),
@@ -6996,8 +7198,8 @@ const Ds = "swim-date-time", Pt = class Pt extends v {
     }, this._onHourChange = (e) => {
       const t = +e.target.value % 12, i = this._dialogAmPm === "PM" ? 12 + t : t;
       if (this._dialogModel) {
-        const s = new Date(this._dialogModel);
-        s.setHours(i), this._setDialogDate(s);
+        const o = new Date(this._dialogModel);
+        o.setHours(i), this._setDialogDate(o);
       }
     }, this._onMinuteChange = (e) => {
       const t = +e.target.value;
@@ -7026,33 +7228,33 @@ const Ds = "swim-date-time", Pt = class Pt extends v {
   }
   set disabled(e) {
     const t = this._disabled;
-    this._disabled = m(e), this.requestUpdate("disabled", t);
+    this._disabled = p(e), this.requestUpdate("disabled", t);
   }
   get required() {
     return this._required;
   }
   set required(e) {
     const t = this._required;
-    this._required = m(e), this.requestUpdate("required", t);
+    this._required = p(e), this.requestUpdate("required", t);
   }
   get autofocus() {
     return this._autofocus;
   }
   set autofocus(e) {
-    this._autofocus = m(e);
+    this._autofocus = p(e);
   }
   get autosize() {
     return this._autosize;
   }
   set autosize(e) {
     const t = this._autosize;
-    this._autosize = m(e), this.requestUpdate("autosize", t);
+    this._autosize = p(e), this.requestUpdate("autosize", t);
   }
   get minWidth() {
     return this._minWidth;
   }
   set minWidth(e) {
-    this._minWidth = A(e) ?? 60;
+    this._minWidth = z(e) ?? 60;
   }
   set inputType(e) {
     const t = this._inputType;
@@ -7073,7 +7275,7 @@ const Ds = "swim-date-time", Pt = class Pt extends v {
   }
   set marginless(e) {
     const t = this._marginless;
-    this._marginless = m(e), this.requestUpdate("marginless", t);
+    this._marginless = p(e), this.requestUpdate("marginless", t);
   }
   get value() {
     return this._value;
@@ -7085,14 +7287,14 @@ const Ds = "swim-date-time", Pt = class Pt extends v {
       return;
     }
     if (e === this._value) return;
-    let i = e instanceof Date && F(e);
+    let i = e instanceof Date && H(e);
     if (typeof e == "string") {
-      const s = We(e);
-      s && (e = s, i = !0);
+      const o = Ye(e);
+      o && (e = o, i = !0);
     }
-    if (i && e instanceof Date && this.precision && (e = ps(e, this.precision)), this._value = e, this._update(), this._internals) {
-      const s = this._value instanceof Date ? this._value.toISOString() : String(this._value ?? "");
-      this._internals.setFormValue(s);
+    if (i && e instanceof Date && this.precision && (e = ci(e, this.precision)), this._value = e, this._update(), this._internals) {
+      const o = this._value instanceof Date ? this._value.toISOString() : String(this._value ?? "");
+      this._internals.setFormValue(o);
     }
     this.requestUpdate("value", t);
   }
@@ -7100,13 +7302,13 @@ const Ds = "swim-date-time", Pt = class Pt extends v {
   // Computed helpers
   // ---------------------------------------------------------------------------
   get _effectiveInputType() {
-    return this._inputType ? this._inputType : this.precision === "hour" || this.precision === "minute" ? z.datetime : z.date;
+    return this._inputType ? this._inputType : this.precision === "hour" || this.precision === "minute" ? T.datetime : T.date;
   }
   get _effectiveDisplayMode() {
-    return this._displayMode ? this._displayMode : this.timezone ? ie.TIMEZONE : ie.LOCAL;
+    return this._displayMode ? this._displayMode : this.timezone ? L.TIMEZONE : L.LOCAL;
   }
   get _effectiveFormat() {
-    return this.format ? Mr(this.format) : Or(
+    return this.format ? Dt(this.format) : To(
       this._effectiveDisplayMode,
       this._effectiveInputType,
       this.precision
@@ -7114,19 +7316,19 @@ const Ds = "swim-date-time", Pt = class Pt extends v {
   }
   get _iconName() {
     switch (this._effectiveInputType) {
-      case z.time:
+      case T.time:
         return "clock";
-      case z.datetime:
+      case T.datetime:
         return "calendar-clock";
       default:
         return "calendar";
     }
   }
   get _showCalendar() {
-    return this._effectiveInputType === z.date || this._effectiveInputType === z.datetime;
+    return this._effectiveInputType === T.date || this._effectiveInputType === T.datetime;
   }
   get _showTime() {
-    return this._effectiveInputType === z.time || this._effectiveInputType === z.datetime;
+    return this._effectiveInputType === T.time || this._effectiveInputType === T.datetime;
   }
   connectedCallback() {
     super.connectedCallback(), this._update();
@@ -7168,7 +7370,7 @@ const Ds = "swim-date-time", Pt = class Pt extends v {
           .requiredIndicator="${String(this.requiredIndicator)}"
           .value="${this._displayValue}"
           ?marginless="${this.marginless}"
-          tabindex="${ge(this.tabindex)}"
+          tabindex="${de(this.tabindex)}"
           autocomplete="off"
           @input="${this._handleInput}"
           @focus="${this._handleFocus}"
@@ -7252,7 +7454,7 @@ const Ds = "swim-date-time", Pt = class Pt extends v {
     `;
   }
   _renderTimeRow() {
-    const e = this._isTimeDisabled("hour"), t = this._isTimeDisabled("minute"), i = this._isTimeDisabled("second"), s = this._isTimeDisabled("millisecond");
+    const e = this._isTimeDisabled("hour"), t = this._isTimeDisabled("minute"), i = this._isTimeDisabled("second"), o = this._isTimeDisabled("millisecond");
     return c`
       <div class="swim-date-time__time-row">
         <div class="swim-date-time__time-field">
@@ -7298,7 +7500,7 @@ const Ds = "swim-date-time", Pt = class Pt extends v {
             .value="${this._dialogMillisecond}"
             min="0"
             max="999"
-            ?disabled="${s}"
+            ?disabled="${o}"
             @change="${this._onMillisecondChange}"
           />
           <div class="swim-date-time__time-hint">Millisecond</div>
@@ -7333,14 +7535,14 @@ const Ds = "swim-date-time", Pt = class Pt extends v {
   _getDialogHeaderText() {
     if (!this._dialogModel)
       return "No value";
-    const e = this._effectiveInputType, t = ti(this.timezone);
-    if (e === z.time)
-      return ot(this._dialogModel, "h:mm a", t);
-    if (e === z.datetime) {
-      const i = ot(this._dialogModel, "ddd, MMM D YYYY", t), s = ot(this._dialogModel, "h:mm a", t);
-      return c`${i} <small>${s}</small>`;
+    const e = this._effectiveInputType, t = vt(this.timezone);
+    if (e === T.time)
+      return he(this._dialogModel, "h:mm a", t);
+    if (e === T.datetime) {
+      const i = he(this._dialogModel, "ddd, MMM D YYYY", t), o = he(this._dialogModel, "h:mm a", t);
+      return c`${i} <small>${o}</small>`;
     }
-    return ot(this._dialogModel, "ddd, MMM D YYYY", t);
+    return he(this._dialogModel, "ddd, MMM D YYYY", t);
   }
   _setDialogDate(e) {
     this._dialogModel = new Date(e);
@@ -7353,14 +7555,14 @@ const Ds = "swim-date-time", Pt = class Pt extends v {
   _isCurrent() {
     if (!this._dialogModel) return !1;
     const e = /* @__PURE__ */ new Date(), t = this._effectiveInputType;
-    return t === z.time ? e.getHours() === this._dialogModel.getHours() && e.getMinutes() === this._dialogModel.getMinutes() && e.getSeconds() === this._dialogModel.getSeconds() && e.getMilliseconds() === this._dialogModel.getMilliseconds() : t === z.datetime ? e.getFullYear() === this._dialogModel.getFullYear() && e.getMonth() === this._dialogModel.getMonth() && e.getDate() === this._dialogModel.getDate() && e.getHours() === this._dialogModel.getHours() && e.getMinutes() === this._dialogModel.getMinutes() && e.getSeconds() === this._dialogModel.getSeconds() && e.getMilliseconds() === this._dialogModel.getMilliseconds() : e.getFullYear() === this._dialogModel.getFullYear() && e.getMonth() === this._dialogModel.getMonth() && e.getDate() === this._dialogModel.getDate();
+    return t === T.time ? e.getHours() === this._dialogModel.getHours() && e.getMinutes() === this._dialogModel.getMinutes() && e.getSeconds() === this._dialogModel.getSeconds() && e.getMilliseconds() === this._dialogModel.getMilliseconds() : t === T.datetime ? e.getFullYear() === this._dialogModel.getFullYear() && e.getMonth() === this._dialogModel.getMonth() && e.getDate() === this._dialogModel.getDate() && e.getHours() === this._dialogModel.getHours() && e.getMinutes() === this._dialogModel.getMinutes() && e.getSeconds() === this._dialogModel.getSeconds() && e.getMilliseconds() === this._dialogModel.getMilliseconds() : e.getFullYear() === this._dialogModel.getFullYear() && e.getMonth() === this._dialogModel.getMonth() && e.getDate() === this._dialogModel.getDate();
   }
   // ---------------------------------------------------------------------------
   // Dialog actions
   // ---------------------------------------------------------------------------
   _openPicker() {
     if (this.disabled || this._dialogOpen) return;
-    const e = this._value instanceof Date && F(this._value) ? this._value : /* @__PURE__ */ new Date();
+    const e = this._value instanceof Date && H(this._value) ? this._value : /* @__PURE__ */ new Date();
     this._setDialogDate(e), this._dialogOpen = !0;
   }
   _onAmPmChange(e) {
@@ -7375,18 +7577,18 @@ const Ds = "swim-date-time", Pt = class Pt extends v {
     e.stopPropagation();
     const i = e.target.value;
     this._displayValue = i;
-    const s = We(i), r = this._value;
-    if (s) {
-      const n = this.precision ? ps(s, this.precision) : s;
+    const o = Ye(i), r = this._value;
+    if (o) {
+      const n = this.precision ? ci(o, this.precision) : o;
       this._value = n, this._dateInvalid = !1;
     } else i ? (this._value = i, this._dateInvalid = !0) : (this._value = null, this._dateInvalid = !1);
-    this._dateOutOfRange = !this._dateInvalid && this._value instanceof Date ? ms(this._value, this.minDate, this.maxDate) : !1, this._updateFormValue(), this.dispatchEvent(new CustomEvent("input-change", { detail: this._value, bubbles: !0, composed: !0 })), this._value !== r && this.dispatchEvent(new CustomEvent("value-change", { detail: this._value, bubbles: !0, composed: !0 })), !this._dateInvalid && this._value !== r && this.dispatchEvent(new CustomEvent("change", { detail: this._value, bubbles: !0, composed: !0 }));
+    this._dateOutOfRange = !this._dateInvalid && this._value instanceof Date ? $s(this._value, this.minDate, this.maxDate) : !1, this._updateFormValue(), this.dispatchEvent(new CustomEvent("input-change", { detail: this._value, bubbles: !1, composed: !1 })), this._value !== r && this.dispatchEvent(new CustomEvent("value-change", { detail: this._value, bubbles: !1, composed: !1 })), !this._dateInvalid && this._value !== r && this.dispatchEvent(new CustomEvent("change", { detail: this._value, bubbles: !1, composed: !1 }));
   }
   _handleFocus(e) {
-    e.stopPropagation(), this._focused = !0, this.dispatchEvent(new FocusEvent("focus", { bubbles: !0, composed: !0 }));
+    e.stopPropagation(), this._focused = !0, this.dispatchEvent(new FocusEvent("focus", { bubbles: !1, composed: !1 }));
   }
   _handleBlur(e) {
-    e.stopPropagation(), this._focused = !1, this._update(), !this._dateInvalid && this._swimInput && this._swimInput.value !== this._displayValue && (this._swimInput.value = this._displayValue), this.dispatchEvent(new FocusEvent("blur", { bubbles: !0, composed: !0 }));
+    e.stopPropagation(), this._focused = !1, this._update(), !this._dateInvalid && this._swimInput && this._swimInput.value !== this._displayValue && (this._swimInput.value = this._displayValue), this.dispatchEvent(new FocusEvent("blur", { bubbles: !1, composed: !1 }));
   }
   _handleKeyDown(e) {
     e.code === "ArrowDown" ? (e.preventDefault(), this._openPicker()) : e.code === "Escape" && (this._dialogOpen && this._close(), e.stopPropagation());
@@ -7395,10 +7597,10 @@ const Ds = "swim-date-time", Pt = class Pt extends v {
   // Internal helpers
   // ---------------------------------------------------------------------------
   _update() {
-    const e = this._value, t = e instanceof Date && F(e);
+    const e = this._value, t = e instanceof Date && H(e);
     if (this._dateInvalid = !!e && !t, this._displayValue = e ? String(e) : "", this._dateOutOfRange = !1, !t) return;
-    const i = ti(this.timezone);
-    this._displayValue = ot(e, this._effectiveFormat, i), this._dateOutOfRange = ms(e, this.minDate, this.maxDate);
+    const i = vt(this.timezone);
+    this._displayValue = he(e, this._effectiveFormat, i), this._dateOutOfRange = $s(e, this.minDate, this.maxDate);
   }
   _validate() {
     let e = {}, t = "";
@@ -7407,7 +7609,7 @@ const Ds = "swim-date-time", Pt = class Pt extends v {
   _updateFormValue() {
     if (!this._internals) return;
     const e = this._value;
-    e instanceof Date && F(e) ? this._internals.setFormValue(e.toISOString()) : this._internals.setFormValue(String(e ?? "")), this._validate();
+    e instanceof Date && H(e) ? this._internals.setFormValue(e.toISOString()) : this._internals.setFormValue(String(e ?? "")), this._validate();
   }
   // ---------------------------------------------------------------------------
   // Form callbacks
@@ -7419,129 +7621,1000 @@ const Ds = "swim-date-time", Pt = class Pt extends v {
     this.disabled = e;
   }
 };
-Pt.styles = [x, $n], Pt.formAssociated = !0;
-let y = Pt;
-$([
-  R("swim-input")
-], y.prototype, "_swimInput", 2);
-$([
+jt.styles = [C, Ln], jt.formAssociated = !0;
+let $ = jt;
+E([
+  N("swim-input")
+], $.prototype, "_swimInput", 2);
+E([
   a({ type: String })
-], y.prototype, "id", 2);
-$([
+], $.prototype, "id", 2);
+E([
   a({ type: String })
-], y.prototype, "name", 2);
-$([
+], $.prototype, "name", 2);
+E([
   a({ type: String })
-], y.prototype, "label", 2);
-$([
+], $.prototype, "label", 2);
+E([
   a({ type: String })
-], y.prototype, "hint", 2);
-$([
+], $.prototype, "hint", 2);
+E([
   a({ type: String })
-], y.prototype, "placeholder", 2);
-$([
+], $.prototype, "placeholder", 2);
+E([
   a({ type: String, reflect: !0 })
-], y.prototype, "size", 2);
-$([
+], $.prototype, "size", 2);
+E([
   a({ type: String, reflect: !0 })
-], y.prototype, "appearance", 2);
-$([
-  a({ type: Boolean, reflect: !0 })
-], y.prototype, "disabled", 1);
-$([
-  a({ type: Boolean, reflect: !0 })
-], y.prototype, "required", 1);
-$([
+], $.prototype, "appearance", 2);
+E([
+  a({ type: Boolean, reflect: !0, converter: g })
+], $.prototype, "disabled", 1);
+E([
+  a({ type: Boolean, reflect: !0, converter: g })
+], $.prototype, "required", 1);
+E([
   a({ type: String, attribute: "required-indicator" })
-], y.prototype, "requiredIndicator", 2);
-$([
-  a({ type: Boolean })
-], y.prototype, "autofocus", 1);
-$([
-  a({ type: Boolean, reflect: !0 })
-], y.prototype, "autosize", 1);
-$([
+], $.prototype, "requiredIndicator", 2);
+E([
+  a({ type: Boolean, converter: g })
+], $.prototype, "autofocus", 1);
+E([
+  a({ type: Boolean, reflect: !0, converter: g })
+], $.prototype, "autosize", 1);
+E([
   a({ type: Number, attribute: "min-width" })
-], y.prototype, "minWidth", 1);
-$([
+], $.prototype, "minWidth", 1);
+E([
   a({ type: Number })
-], y.prototype, "tabindex", 2);
-$([
+], $.prototype, "tabindex", 2);
+E([
   a({ type: String, attribute: "input-type" })
-], y.prototype, "inputType", 1);
-$([
+], $.prototype, "inputType", 1);
+E([
   a({ type: String })
-], y.prototype, "precision", 2);
-$([
+], $.prototype, "precision", 2);
+E([
   a({ type: String })
-], y.prototype, "timezone", 2);
-$([
+], $.prototype, "timezone", 2);
+E([
   a({ type: String, attribute: "display-mode" })
-], y.prototype, "displayMode", 1);
-$([
+], $.prototype, "displayMode", 1);
+E([
   a({ type: String })
-], y.prototype, "format", 2);
-$([
-  a({ type: Boolean, reflect: !0 })
-], y.prototype, "marginless", 1);
-$([
+], $.prototype, "format", 2);
+E([
+  a({ type: Boolean, reflect: !0, converter: g })
+], $.prototype, "marginless", 1);
+E([
   a({ attribute: "min-date" })
-], y.prototype, "minDate", 2);
-$([
+], $.prototype, "minDate", 2);
+E([
   a({ attribute: "max-date" })
-], y.prototype, "maxDate", 2);
-$([
+], $.prototype, "maxDate", 2);
+E([
   a({ attribute: !1 })
-], y.prototype, "value", 1);
-$([
-  g()
-], y.prototype, "_displayValue", 2);
-$([
-  g()
-], y.prototype, "_dateInvalid", 2);
-$([
-  g()
-], y.prototype, "_dateOutOfRange", 2);
-$([
-  g()
-], y.prototype, "_focused", 2);
-$([
-  g()
-], y.prototype, "_dialogOpen", 2);
-$([
-  g()
-], y.prototype, "_dialogModel", 2);
-$([
-  g()
-], y.prototype, "_dialogHour", 2);
-$([
-  g()
-], y.prototype, "_dialogMinute", 2);
-$([
-  g()
-], y.prototype, "_dialogSecond", 2);
-$([
-  g()
-], y.prototype, "_dialogMillisecond", 2);
-$([
-  g()
-], y.prototype, "_dialogAmPm", 2);
-customElements.get(Ds) || customElements.define(Ds, y);
-const Sn = [
-  x,
-  w`
+], $.prototype, "value", 1);
+E([
+  b()
+], $.prototype, "_displayValue", 2);
+E([
+  b()
+], $.prototype, "_dateInvalid", 2);
+E([
+  b()
+], $.prototype, "_dateOutOfRange", 2);
+E([
+  b()
+], $.prototype, "_focused", 2);
+E([
+  b()
+], $.prototype, "_dialogOpen", 2);
+E([
+  b()
+], $.prototype, "_dialogModel", 2);
+E([
+  b()
+], $.prototype, "_dialogHour", 2);
+E([
+  b()
+], $.prototype, "_dialogMinute", 2);
+E([
+  b()
+], $.prototype, "_dialogSecond", 2);
+E([
+  b()
+], $.prototype, "_dialogMillisecond", 2);
+E([
+  b()
+], $.prototype, "_dialogAmPm", 2);
+customElements.get(Hs) || customElements.define(Hs, $);
+/**
+ * @license
+ * Copyright 2017 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+const Vs = (s, e, t) => {
+  const i = /* @__PURE__ */ new Map();
+  for (let o = e; o <= t; o++) i.set(s[o], o);
+  return i;
+}, Io = yi(class extends xi {
+  constructor(s) {
+    if (super(s), s.type !== ze.CHILD) throw Error("repeat() can only be used in text expressions");
+  }
+  dt(s, e, t) {
+    let i;
+    t === void 0 ? t = e : e !== void 0 && (i = e);
+    const o = [], r = [];
+    let n = 0;
+    for (const l of s) o[n] = i ? i(l, n) : n, r[n] = t(l, n), n++;
+    return { values: r, keys: o };
+  }
+  render(s, e, t) {
+    return this.dt(s, e, t).values;
+  }
+  update(s, [e, t, i]) {
+    const o = Tn(s), { values: r, keys: n } = this.dt(e, t, i);
+    if (!Array.isArray(o)) return this.ut = n, r;
+    const l = this.ut ?? (this.ut = []), d = [];
+    let h, w, m = 0, f = o.length - 1, _ = 0, O = r.length - 1;
+    for (; m <= f && _ <= O; ) if (o[m] === null) m++;
+    else if (o[f] === null) f--;
+    else if (l[m] === n[_]) d[_] = Be(o[m], r[_]), m++, _++;
+    else if (l[f] === n[O]) d[O] = Be(o[f], r[O]), f--, O--;
+    else if (l[m] === n[O]) d[O] = Be(o[m], r[O]), ht(s, d[O + 1], o[m]), m++, O--;
+    else if (l[f] === n[_]) d[_] = Be(o[f], r[_]), ht(s, o[m], o[f]), f--, _++;
+    else if (h === void 0 && (h = Vs(n, _, O), w = Vs(l, m, f)), h.has(l[m])) if (h.has(l[f])) {
+      const ne = w.get(n[_]), lt = ne !== void 0 ? o[ne] : null;
+      if (lt === null) {
+        const ct = ht(s, o[m]);
+        Be(ct, r[_]), d[_] = ct;
+      } else d[_] = Be(lt, r[_]), ht(s, o[m], lt), o[ne] = null;
+      _++;
+    } else ai(o[f]), f--;
+    else ai(o[m]), m++;
+    for (; _ <= O; ) {
+      const ne = ht(s, d[O + 1]);
+      Be(ne, r[_]), d[_++] = ne;
+    }
+    for (; m <= f; ) {
+      const ne = o[m++];
+      ne !== null && ai(ne);
+    }
+    return this.ut = n, Po(s, d), te;
+  }
+}), Hn = v`
+  :host {
+    display: inline;
+    vertical-align: baseline;
+  }
+
+  .swim-date-display__root {
+    display: inline;
+  }
+
+  .swim-date-display__time {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    border: none;
+    background: transparent;
+    text-align: inherit;
+  }
+
+  :host([invalid]) .swim-date-display__time {
+    color: var(--red-500);
+  }
+
+  .swim-date-display__time--popup {
+    text-decoration-line: underline;
+    text-decoration-style: dashed;
+    text-decoration-thickness: from-font;
+    cursor: copy;
+    color: inherit;
+  }
+
+  .swim-date-display__time--clickable {
+    cursor: pointer;
+  }
+
+  .swim-date-display__time--clickable:active {
+    transform: translate(1px, 1px);
+    color: var(--grey-600);
+  }
+
+  .swim-date-display__time--clickable:focus-visible {
+    outline: 2px solid var(--blue-500);
+    outline-offset: 2px;
+    border-radius: var(--radius-2);
+  }
+
+  swim-tooltip {
+    display: inline;
+  }
+
+  /* Tooltip panel content (swim-tooltip exposes part="content") */
+  swim-tooltip::part(content) {
+    padding: var(--spacing-2);
+  }
+
+  .swim-date-display__zone-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-2);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-m);
+    color: var(--grey-800);
+    margin-bottom: var(--spacing-2);
+  }
+
+  .swim-date-display__zone-row:last-child {
+    margin-bottom: 0;
+  }
+
+  .swim-date-display__zone-label {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .swim-date-display__copy-btn {
+    flex: 0 0 auto;
+    text-transform: uppercase;
+    font-size: var(--font-size-xs);
+    line-height: 1.25;
+    min-width: 4.5rem;
+    width: 30px;
+    --swim-button-background: var(--grey-200);
+    --swim-button-hover-background: var(--white);
+    --swim-button-border-color: var(--grey-400);
+    --swim-button-hover-border-color: var(--grey-350);
+    --swim-button-color: var(--grey-700);
+    --swim-button-hover-color: var(--grey-800);
+    --swim-button-outline-color: var(--blue-500);
+    --swim-button-hover-outline-color: var(--blue-500);
+    --swim-button-shadow: none;
+  }
+`;
+/**
+ * @license
+ * Copyright 2017 Google LLC
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+class hi extends xi {
+  constructor(e) {
+    if (super(e), this.it = u, e.type !== ze.CHILD) throw Error(this.constructor.directiveName + "() can only be used in child bindings");
+  }
+  render(e) {
+    if (e === u || e == null) return this._t = void 0, this.it = e;
+    if (e === te) return e;
+    if (typeof e != "string") throw Error(this.constructor.directiveName + "() called with a non-string value");
+    if (e === this.it) return this._t;
+    this.it = e;
+    const t = [e];
+    return t.raw = t, this._t = { _$litType$: this.constructor.resultType, strings: t, values: [] };
+  }
+}
+hi.directiveName = "unsafeHTML", hi.resultType = 1;
+const Vn = yi(hi), Yn = v`
+  :host {
+    display: inline-block;
+  }
+
+  .swim-tooltip__trigger {
+    display: inline-block;
+    cursor: inherit;
+  }
+
+  .swim-tooltip__panel {
+    position: fixed;
+    z-index: 5000;
+    display: block;
+    font-weight: normal;
+    opacity: 0;
+    max-width: 600px;
+    overflow-wrap: anywhere;
+    border-radius: var(--radius-4);
+    pointer-events: auto;
+  }
+
+  .swim-tooltip__panel--animate {
+    opacity: 1;
+    transition: opacity 0.3s, transform 0.3s;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .swim-tooltip__panel--narrow {
+    max-width: 300px;
+    text-align: center;
+  }
+
+  /* Placement transform (initial offset before animate) */
+  .swim-tooltip__panel--position-right {
+    transform: translate3d(10px, 0, 0);
+  }
+
+  .swim-tooltip__panel--position-left {
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  .swim-tooltip__panel--position-top {
+    transform: translate3d(0, -10px, 0);
+  }
+
+  .swim-tooltip__panel--position-bottom {
+    transform: translate3d(0, 10px, 0);
+  }
+
+  .swim-tooltip__panel--animate.swim-tooltip__panel--position-right,
+  .swim-tooltip__panel--animate.swim-tooltip__panel--position-left,
+  .swim-tooltip__panel--animate.swim-tooltip__panel--position-top,
+  .swim-tooltip__panel--animate.swim-tooltip__panel--position-bottom {
+    transform: translate3d(0, 0, 0);
+  }
+
+  /* Caret */
+  .swim-tooltip__caret {
+    position: absolute;
+    z-index: 5001;
+    width: 0;
+    height: 0;
+  }
+
+  .swim-tooltip__caret--position-left {
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 7px solid var(--swim-tooltip-caret-bg, var(--grey-200));
+  }
+
+  .swim-tooltip__caret--position-top {
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid var(--swim-tooltip-caret-bg, var(--grey-200));
+  }
+
+  .swim-tooltip__caret--position-right {
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-right: 7px solid var(--swim-tooltip-caret-bg, var(--grey-200));
+  }
+
+  .swim-tooltip__caret--position-bottom {
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid var(--swim-tooltip-caret-bg, var(--grey-200));
+  }
+
+  /* Type: tooltip (compact) */
+  .swim-tooltip__panel--type-tooltip {
+    color: var(--grey-700);
+    background: var(--grey-200);
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-4, 4px);
+    text-align: center;
+  }
+
+  /* Type: popover */
+  .swim-tooltip__panel--type-popover {
+    background: var(--grey-200);
+    color: var(--grey-700);
+    box-shadow: var(--shadow-2);
+    font-size: var(--font-size-s);
+    padding: var(--spacing-10, 10px);
+  }
+
+  .swim-tooltip__content {
+    display: block;
+  }
+`, Nn = [C, Yn];
+var F = /* @__PURE__ */ ((s) => (s.top = "top", s.bottom = "bottom", s.left = "left", s.right = "right", s))(F || {}), me = /* @__PURE__ */ ((s) => (s.top = "top", s.bottom = "bottom", s.left = "left", s.right = "right", s.center = "center", s))(me || {}), Ci = /* @__PURE__ */ ((s) => (s.popover = "popover", s.tooltip = "tooltip", s))(Ci || {}), ke = /* @__PURE__ */ ((s) => (s.all = "all", s.focus = "focus", s.click = "click", s.mouseover = "mouseover", s))(ke || {});
+const be = 7;
+function Bt(s, e, t) {
+  return t === me.left ? (s.left ?? 0) - be : t === me.right ? (s.left ?? 0) + (s.width ?? 0) - (e.width ?? 0) + be : (s.left ?? 0) + (s.width ?? 0) / 2 - (e.width ?? 0) / 2;
+}
+function Ei(s, e, t) {
+  return t === me.top ? (s.top ?? 0) - be : t === me.bottom ? (s.top ?? 0) + (s.height ?? 0) - (e.height ?? 0) + be : (s.top ?? 0) + (s.height ?? 0) / 2 - (e.height ?? 0) / 2;
+}
+function Ys(s, e, t) {
+  let i = Bt(s, e, t);
+  return i + (e.width ?? 0) > window.innerWidth && (i = window.innerWidth - (e.width ?? 0)), i;
+}
+function Ns(s, e, t) {
+  let i = Ei(s, e, t);
+  return i + (e.height ?? 0) > window.innerHeight && (i = window.innerHeight - (e.height ?? 0)), i;
+}
+function jn(s, e, t, i, o) {
+  return t === F.right ? Bt(s, e, i) + (e.width ?? 0) + o > window.innerWidth : t === F.left ? Bt(s, e, i) - o < 0 : t === F.top ? (s.top ?? 0) - (e.height ?? 0) - o < 0 : t === F.bottom ? Ei(s, e, i) + (e.height ?? 0) + o > window.innerHeight : !1;
+}
+function Un(s, e, t, i, o) {
+  return jn(t, e, s, o, i) ? s === F.right ? F.left : s === F.left ? F.right : s === F.top ? F.bottom : F.top : s;
+}
+function qn(s, e, t, i, o) {
+  let r = 0, n = 0;
+  return s === F.right ? (n = (t.left ?? 0) + (t.width ?? 0) + i, r = Ns(t, e, o)) : s === F.left ? (n = (t.left ?? 0) - (e.width ?? 0) - i, r = Ns(t, e, o)) : s === F.top ? (r = (t.top ?? 0) - (e.height ?? 0) - i, n = Ys(t, e, o)) : (r = (t.top ?? 0) + (t.height ?? 0) + i, n = Ys(t, e, o)), { top: r, left: n };
+}
+function js(s, e, t, i) {
+  let o;
+  i === me.left ? o = (s.width ?? 0) / 2 - (t.width ?? 0) / 2 + be : i === me.right ? o = (e.width ?? 0) - (s.width ?? 0) / 2 - (t.width ?? 0) / 2 - be : o = (e.width ?? 0) / 2 - (t.width ?? 0) / 2;
+  const r = Bt(s, e, i);
+  return r + (e.width ?? 0) > window.innerWidth && (o += r + (e.width ?? 0) - window.innerWidth), o;
+}
+function Us(s, e, t, i) {
+  let o;
+  i === me.top ? o = (s.height ?? 0) / 2 - (t.height ?? 0) / 2 + be : i === me.bottom ? o = (e.height ?? 0) - (s.height ?? 0) / 2 - (t.height ?? 0) / 2 - be : o = (e.height ?? 0) / 2 - (t.height ?? 0) / 2;
+  const r = Ei(s, e, i);
+  return r + (e.height ?? 0) > window.innerHeight && (o += r + (e.height ?? 0) - window.innerHeight), o;
+}
+function Gn(s, e, t, i, o) {
+  let r = 0, n = 0;
+  return s === F.right ? (n = -be, r = Us(t, e, i, o)) : s === F.left ? (n = e.width ?? 0, r = Us(t, e, i, o)) : s === F.top ? (r = e.height ?? 0, n = js(t, e, i, o)) : (r = -be, n = js(t, e, i, o)), { top: r, left: n };
+}
+var Wn = Object.defineProperty, Kn = Object.getOwnPropertyDescriptor, B = (s, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? Kn(e, t) : e, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = (i ? n(e, t, o) : n(o)) || o);
+  return i && o && Wn(e, t, o), o;
+};
+const qs = "swim-tooltip", Ri = class Ri extends y {
+  constructor() {
+    super(...arguments), this.content = "", this.placement = F.top, this.alignment = me.center, this.type = Ci.popover, this.showEvent = ke.all, this._spacing = 10, this._showCaret = !0, this._disabled = !1, this._closeOnClickOutside = !0, this._closeOnMouseLeave = !0, this._hideTimeout = 300, this._showTimeout = 100, this.cssClass = "", this._open = !1, this._panelTop = 0, this._panelLeft = 0, this._effectivePlacement = F.top, this._caretTop = 0, this._caretLeft = 0, this._animate = !1, this._triggerRef = null, this._panelRef = null, this._caretRef = null, this._boundDocumentClick = null, this._openFromClick = !1, this._tooltipId = `swim-tooltip-${Math.random().toString(36).slice(2, 11)}`, this._throttledPosition = () => {
+      this._throttleTimeout == null && (this._throttleTimeout = window.setTimeout(() => {
+        this._throttleTimeout = void 0, this._open && this._position();
+      }, 100));
+    }, this._panelForHideListeners = null, this._panelMouseEnterBound = () => this._clearHideTimer(), this._panelMouseLeaveBound = (e) => {
+      var i;
+      const t = e.relatedTarget;
+      t && ((i = this._triggerRef) != null && i.contains(t)) || this.hide();
+    }, this._onTriggerFocus = () => {
+      this._listensFocus && this.show();
+    }, this._onTriggerBlur = () => {
+      this._listensFocus && this.hide(!0);
+    }, this._onTriggerMouseEnter = () => {
+      this._listensHover && this.show();
+    }, this._onTriggerMouseLeave = (e) => {
+      var o;
+      const t = e.relatedTarget, i = this._panelRef ?? ((o = this.shadowRoot) == null ? void 0 : o.querySelector(".swim-tooltip__panel"));
+      i != null && i.contains(t) || (this._listensHover && this.closeOnMouseLeave && this.hide(), this._listensClick && this.hide());
+    }, this._onPanelMouseLeave = () => {
+      this.closeOnMouseLeave && this.hide();
+    }, this._onTriggerClick = () => {
+      if (this.showEvent === ke.mouseover) {
+        this.hide(!0);
+        return;
+      }
+      this._listensClick && (this._openFromClick ? this.hide(!0) : (this._openFromClick = !0, this.show(!0)));
+    };
+  }
+  get spacing() {
+    return this._spacing;
+  }
+  set spacing(e) {
+    this._spacing = z(e, 10);
+  }
+  get showCaret() {
+    return this._showCaret;
+  }
+  set showCaret(e) {
+    this._showCaret = p(e);
+  }
+  get disabled() {
+    return this._disabled;
+  }
+  set disabled(e) {
+    this._disabled = p(e);
+  }
+  get closeOnClickOutside() {
+    return this._closeOnClickOutside;
+  }
+  set closeOnClickOutside(e) {
+    this._closeOnClickOutside = p(e);
+  }
+  get closeOnMouseLeave() {
+    return this._closeOnMouseLeave;
+  }
+  set closeOnMouseLeave(e) {
+    this._closeOnMouseLeave = p(e);
+  }
+  get hideTimeout() {
+    return this._hideTimeout;
+  }
+  set hideTimeout(e) {
+    this._hideTimeout = z(e, 300);
+  }
+  get showTimeout() {
+    return this._showTimeout;
+  }
+  set showTimeout(e) {
+    this._showTimeout = z(e, 100);
+  }
+  connectedCallback() {
+    super.connectedCallback(), window.addEventListener("resize", this._throttledPosition);
+  }
+  disconnectedCallback() {
+    window.removeEventListener("resize", this._throttledPosition), this._throttleTimeout != null && (window.clearTimeout(this._throttleTimeout), this._throttleTimeout = void 0), this._clearShowTimer(), this._clearHideTimer(), this._removeDocumentClick(), this._removePanelHideListeners(), super.disconnectedCallback();
+  }
+  /** Whether the host has a child with slot="content" (detected from light DOM so we can open before panel is rendered). */
+  _hasContentSlot() {
+    return !!this.querySelector('[slot="content"]');
+  }
+  get _listensFocus() {
+    return this.showEvent === ke.all || this.showEvent === ke.focus;
+  }
+  get _listensHover() {
+    return this.showEvent === ke.all || this.showEvent === ke.mouseover;
+  }
+  get _listensClick() {
+    return this.showEvent === ke.all || this.showEvent === ke.click;
+  }
+  /** Opens the tooltip (optionally immediately, without show timeout). */
+  show(e = !1) {
+    if (this._open || this.disabled) return;
+    this._clearShowTimer(), this._clearHideTimer();
+    const t = () => {
+      this._open || this.disabled || !(this._hasContentSlot || this.content != null && this.content !== "") || (this._open = !0, this._effectivePlacement = this.placement, requestAnimationFrame(() => {
+        this._position(), requestAnimationFrame(() => {
+          this._animate = !0, this._addHideListeners();
+        });
+      }), this.dispatchEvent(new CustomEvent("show", { detail: !0, bubbles: !1, composed: !1 })));
+    };
+    e ? t() : this._showTimer = window.setTimeout(t, this.showTimeout);
+  }
+  /** Hides the tooltip (optionally immediately). */
+  hide(e = !1) {
+    if (!this._open) return;
+    this._clearShowTimer(), this._clearHideTimer();
+    const t = () => {
+      this._open && (this._open = !1, this._animate = !1, this._openFromClick = !1, this._removeDocumentClick(), this._removePanelHideListeners(), this.dispatchEvent(new CustomEvent("hide", { detail: !0, bubbles: !1, composed: !1 })));
+    };
+    e ? t() : this._hideTimer = window.setTimeout(t, this.hideTimeout);
+  }
+  _clearShowTimer() {
+    this._showTimer != null && (window.clearTimeout(this._showTimer), this._showTimer = void 0);
+  }
+  _clearHideTimer() {
+    this._hideTimer != null && (window.clearTimeout(this._hideTimer), this._hideTimer = void 0);
+  }
+  _removeDocumentClick() {
+    this._boundDocumentClick && (document.removeEventListener("click", this._boundDocumentClick, !0), this._boundDocumentClick = null);
+  }
+  _position() {
+    var d, h, w;
+    const e = this._triggerRef ?? ((d = this.shadowRoot) == null ? void 0 : d.querySelector(".swim-tooltip__trigger")), t = this._panelRef ?? ((h = this.shadowRoot) == null ? void 0 : h.querySelector(".swim-tooltip__panel")), i = this._caretRef ?? ((w = this.shadowRoot) == null ? void 0 : w.querySelector(".swim-tooltip__caret"));
+    if (!e || !t) return;
+    const o = e.getBoundingClientRect();
+    if (!o.height && !o.width) return;
+    const r = t.getBoundingClientRect();
+    this._effectivePlacement = Un(this.placement, r, o, this.spacing, this.alignment);
+    const { top: n, left: l } = qn(this._effectivePlacement, r, o, this.spacing, this.alignment);
+    if (this._panelTop = n, this._panelLeft = l, this.showCaret && i) {
+      const m = i.getBoundingClientRect(), f = Gn(this._effectivePlacement, r, o, m, this.alignment);
+      this._caretTop = f.top, this._caretLeft = f.left;
+    }
+  }
+  _removePanelHideListeners() {
+    this._panelForHideListeners && (this._panelForHideListeners.removeEventListener("mouseenter", this._panelMouseEnterBound), this._panelForHideListeners.removeEventListener("mouseleave", this._panelMouseLeaveBound), this._panelForHideListeners = null);
+  }
+  _addHideListeners() {
+    var t;
+    const e = this._panelRef ?? ((t = this.shadowRoot) == null ? void 0 : t.querySelector(".swim-tooltip__panel"));
+    e && (this._removePanelHideListeners(), this._panelForHideListeners = e, e.addEventListener("mouseenter", this._panelMouseEnterBound), this.closeOnMouseLeave && e.addEventListener("mouseleave", this._panelMouseLeaveBound), this.closeOnClickOutside && (this._boundDocumentClick = (i) => {
+      var r;
+      const o = i.target;
+      e.contains(o) || (r = this._triggerRef) != null && r.contains(o) || this.hide(!0);
+    }, setTimeout(() => document.addEventListener("click", this._boundDocumentClick, !0), 0)));
+  }
+  firstUpdated() {
+    var e, t, i;
+    this._triggerRef = (e = this.shadowRoot) == null ? void 0 : e.querySelector(".swim-tooltip__trigger"), this._panelRef = (t = this.shadowRoot) == null ? void 0 : t.querySelector(".swim-tooltip__panel"), this._caretRef = (i = this.shadowRoot) == null ? void 0 : i.querySelector(".swim-tooltip__caret");
+  }
+  updated(e) {
+    this._open && (e.has("placement") || e.has("alignment") || e.has("spacing")) && this._position();
+  }
+  render() {
+    const e = this._hasContentSlot(), t = e || this.content != null && this.content !== "", i = [
+      "swim-tooltip__panel",
+      `swim-tooltip__panel--type-${this.type}`,
+      `swim-tooltip__panel--position-${this._effectivePlacement}`,
+      this._animate ? "swim-tooltip__panel--animate" : "",
+      this.cssClass.includes("narrow") ? "swim-tooltip__panel--narrow" : ""
+    ].filter(Boolean).join(" ");
+    return c`
+      <div
+        part="trigger"
+        class="swim-tooltip__trigger"
+        aria-describedby="${this._open && t ? this._tooltipId : u}"
+        aria-expanded="${this._listensClick ? this._open ? "true" : "false" : u}"
+        @focusin="${this._onTriggerFocus}"
+        @focusout="${this._onTriggerBlur}"
+        @mouseenter="${this._onTriggerMouseEnter}"
+        @mouseleave="${this._onTriggerMouseLeave}"
+        @click="${this._onTriggerClick}"
+      >
+        <slot></slot>
+      </div>
+
+      ${this._open && t ? c`
+            <div
+              part="panel"
+              id="${this._tooltipId}"
+              class="${i}"
+              style="top: ${this._panelTop}px; left: ${this._panelLeft}px;"
+              role="tooltip"
+              aria-hidden="false"
+              @mouseenter="${() => this._clearHideTimer()}"
+              @mouseleave="${this._onPanelMouseLeave}"
+            >
+              ${this.showCaret ? c`
+                    <span
+                      part="caret"
+                      class="swim-tooltip__caret swim-tooltip__caret--position-${this._effectivePlacement}"
+                      style="top: ${this._caretTop}px; left: ${this._caretLeft}px;"
+                    ></span>
+                  ` : ""}
+              <div part="content" class="swim-tooltip__content">
+                ${e ? c`<slot name="content"></slot>` : c`${Vn(this.content)}`}
+              </div>
+            </div>
+          ` : ""}
+    `;
+  }
+};
+Ri.styles = Nn;
+let P = Ri;
+B([
+  a({ type: String })
+], P.prototype, "content", 2);
+B([
+  a({ type: String, reflect: !0, attribute: "placement" })
+], P.prototype, "placement", 2);
+B([
+  a({ type: String, reflect: !0, attribute: "alignment" })
+], P.prototype, "alignment", 2);
+B([
+  a({ type: String, reflect: !0, attribute: "type" })
+], P.prototype, "type", 2);
+B([
+  a({ type: String, attribute: "show-event" })
+], P.prototype, "showEvent", 2);
+B([
+  a({ type: Number, attribute: "spacing" })
+], P.prototype, "spacing", 1);
+B([
+  a({
+    type: Boolean,
+    attribute: "show-caret",
+    converter: Q
+  })
+], P.prototype, "showCaret", 1);
+B([
+  a({ type: Boolean, reflect: !0, converter: g })
+], P.prototype, "disabled", 1);
+B([
+  a({ type: Boolean, attribute: "close-on-click-outside", converter: Q })
+], P.prototype, "closeOnClickOutside", 1);
+B([
+  a({ type: Boolean, attribute: "close-on-mouse-leave", converter: Q })
+], P.prototype, "closeOnMouseLeave", 1);
+B([
+  a({ type: Number, attribute: "hide-timeout" })
+], P.prototype, "hideTimeout", 1);
+B([
+  a({ type: Number, attribute: "show-timeout" })
+], P.prototype, "showTimeout", 1);
+B([
+  a({ type: String, attribute: "css-class" })
+], P.prototype, "cssClass", 2);
+B([
+  b()
+], P.prototype, "_open", 2);
+B([
+  b()
+], P.prototype, "_panelTop", 2);
+B([
+  b()
+], P.prototype, "_panelLeft", 2);
+B([
+  b()
+], P.prototype, "_effectivePlacement", 2);
+B([
+  b()
+], P.prototype, "_caretTop", 2);
+B([
+  b()
+], P.prototype, "_caretLeft", 2);
+B([
+  b()
+], P.prototype, "_animate", 2);
+customElements.get(qs) || customElements.define(qs, P);
+var Zn = Object.defineProperty, Xn = Object.getOwnPropertyDescriptor, I = (s, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? Xn(e, t) : e, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = (i ? n(e, t, o) : n(o)) || o);
+  return i && o && Zn(e, t, o), o;
+};
+const Jn = "swim-date-display", Rt = Symbol("swim-date-display-clickable-auto");
+function Gs() {
+  try {
+    return Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
+  } catch {
+    return "UTC";
+  }
+}
+function Qn(s) {
+  const e = Math.round((s.getTime() - Date.now()) / 1e3), t = new Intl.RelativeTimeFormat("en", { numeric: "auto" }), i = Math.round(e / 60);
+  if (Math.abs(e) < 60) return t.format(e, "second");
+  const o = Math.round(i / 60);
+  if (Math.abs(i) < 60) return t.format(i, "minute");
+  const r = Math.round(o / 24);
+  if (Math.abs(o) < 24) return t.format(o, "hour");
+  const n = Math.round(r / 7);
+  if (Math.abs(r) < 7) return t.format(r, "day");
+  if (Math.abs(n) < 5) return t.format(n, "week");
+  const l = Math.round(r / 30);
+  if (Math.abs(l) < 12) return t.format(l, "month");
+  const d = Math.round(r / 365);
+  return t.format(d, "year");
+}
+function ea(s) {
+  return s == null ? null : s instanceof Date ? H(s) ? s : null : Ye(s);
+}
+function Ws(s) {
+  const e = (s ?? "").toLowerCase();
+  return e === L.HUMAN ? L.HUMAN : e === L.LOCAL ? L.LOCAL : e === L.CUSTOM ? L.CUSTOM : L.TIMEZONE;
+}
+function ta(s) {
+  const e = (s ?? "").toLowerCase();
+  return e === T.date ? T.date : e === T.time ? T.time : T.datetime;
+}
+let M = class extends y {
+  constructor() {
+    super(...arguments), this.timezone = "", this.defaultInputTimeZone = "", this.mode = L.TIMEZONE, this.type = T.datetime, this.format = "", this.tooltipFormat = "", this.clipFormat = "", this._timezones = {
+      UTC: "Etc/UTC",
+      Local: ""
+    }, this._tooltipDisabled = !1, this.tooltipCssClass = "date-tip-tooltip swim-date-display-tip", this.tooltipPlacement = F.top, this.defaultCopyKey = "Local", this.invalidDateMessage = "Invalid date", this.clickable = Rt, this._displayText = "", this._dateInvalid = !0, this._utcDatetimeAttr = "", this._zoneList = [], this._rawDatetimeEcho = "", this._titleValue = "", this._zoneValues = {};
+  }
+  get timezones() {
+    return this._timezones;
+  }
+  set timezones(s) {
+    s && typeof s == "object" && !Array.isArray(s) && (this._timezones = s);
+  }
+  get tooltipDisabled() {
+    return this._tooltipDisabled;
+  }
+  set tooltipDisabled(s) {
+    this._tooltipDisabled = p(s);
+  }
+  connectedCallback() {
+    super.connectedCallback(), this._recompute();
+  }
+  willUpdate(s) {
+    (s.has("datetime") || s.has("precision") || s.has("timezone") || s.has("defaultInputTimeZone") || s.has("mode") || s.has("type") || s.has("format") || s.has("tooltipFormat") || s.has("clipFormat") || s.has("timezones")) && this._recompute();
+  }
+  _effectiveTimezone() {
+    return vt(this.timezone) || Gs();
+  }
+  _recompute() {
+    if (this._rawDatetimeEcho = typeof this.datetime == "string" ? this.datetime : "", this._zoneValues = {}, this._zoneList = [], this._utcDatetimeAttr = "", this._titleValue = "", this._dateInvalid = !0, this._displayText = "", this.datetime == null || this.datetime === "")
+      return;
+    const s = ea(this.datetime);
+    if (!s) {
+      this._dateInvalid = !0, this._rawDatetimeEcho = String(this.datetime);
+      return;
+    }
+    const e = this.precision ? ci(s, this.precision) : s, t = Ws(this.mode), i = ta(this.type), o = this.format && Dt(this.format) || qr(t, i, this.precision), r = this.tooltipFormat && Dt(this.tooltipFormat) || o, n = this.clipFormat && Dt(this.clipFormat) || To(t, i, this.precision), l = this._effectiveTimezone();
+    if (this._dateInvalid = !1, t === L.LOCAL) {
+      this._utcDatetimeAttr = he(e, "YYYY-MM-DD[T]HH:mm:ss.SSS", void 0), this._displayText = he(e, o, l);
+      return;
+    }
+    this._utcDatetimeAttr = e.toISOString(), t === L.HUMAN ? this._displayText = Qn(e) : this._displayText = he(e, o, l), this._zoneValues = this._buildZoneValues(e, r, n), this._zoneList = Object.keys(this.timezones).map((d) => this._zoneValues[d]).filter((d) => !!d), this._titleValue = Object.keys(this.timezones).map((d) => {
+      const h = this._zoneValues[d];
+      return h ? `${h.display} [${d}]` : "";
+    }).filter(Boolean).join(`
+`);
+  }
+  _buildZoneValues(s, e, t) {
+    const i = {};
+    for (const o of Object.keys(this.timezones)) {
+      const r = this.timezones[o], n = vt(r) || Gs();
+      i[o] = {
+        key: o,
+        clip: he(s, t, n),
+        display: he(s, e, n)
+      };
+    }
+    return i;
+  }
+  get _displayMode() {
+    return Ws(this.mode);
+  }
+  /** ngx `hasPopup`: underline + zone tooltip (non-local, valid). */
+  get _hasPopup() {
+    return !this._dateInvalid && this._displayMode !== L.LOCAL;
+  }
+  get _showTooltipPanel() {
+    return this._hasPopup && !this.tooltipDisabled;
+  }
+  _effectiveClickable() {
+    if (this.clickable !== Rt)
+      return p(this.clickable);
+    const s = this._zoneValues[this.defaultCopyKey];
+    return !!this.defaultCopyKey && !!(s != null && s.clip);
+  }
+  _onTimeActivate(s) {
+    !this._effectiveClickable() || this._dateInvalid || (s.preventDefault(), s.stopPropagation(), this._copyRow(this.defaultCopyKey));
+  }
+  _onTimeKeyDown(s) {
+    !this._effectiveClickable() || this._dateInvalid || (s.key === "Enter" || s.key === " ") && (s.preventDefault(), this._copyRow(this.defaultCopyKey));
+  }
+  async _copyRow(s) {
+    const e = this._zoneValues[s];
+    if (e != null && e.clip) {
+      try {
+        await navigator.clipboard.writeText(e.clip);
+      } catch {
+      }
+      this.dispatchEvent(
+        new CustomEvent("date-copied", {
+          detail: { key: s, clip: e.clip, message: `${s} date copied to clipboard` },
+          bubbles: !0,
+          composed: !0
+        })
+      );
+    }
+  }
+  render() {
+    const s = this._dateInvalid, e = this._showTooltipPanel, t = this._hasPopup && !s, i = this._effectiveClickable() && !s, o = this.tooltipDisabled && t && this._titleValue ? this._titleValue : "", r = [
+      "swim-date-display__time",
+      t ? "swim-date-display__time--popup" : "",
+      i ? "swim-date-display__time--clickable" : ""
+    ].filter(Boolean).join(" "), n = c`
+      <time
+        class="${r}"
+        datetime="${de(s || !this._utcDatetimeAttr ? void 0 : this._utcDatetimeAttr)}"
+        title="${o}"
+        tabindex="${i ? 0 : u}"
+        role="${i ? "button" : u}"
+        aria-invalid="${s ? "true" : "false"}"
+        @click="${this._onTimeActivate}"
+        @keydown="${this._onTimeKeyDown}"
+      >
+        ${s ? c`${this.invalidDateMessage} &quot;${this._rawDatetimeEcho}&quot;` : this._displayText}
+      </time>
+    `;
+    return c`
+      <div class="swim-date-display__root">
+        ${e ? c`
+              <swim-tooltip
+                type="${Ci.popover}"
+                placement="${this.tooltipPlacement}"
+                css-class="${this.tooltipCssClass}"
+                show-timeout="400"
+                show-caret="true"
+              >
+                ${n}
+                <div slot="content" class="swim-date-display__tooltip-body">
+                  ${Io(
+      this._zoneList,
+      (l) => l.key,
+      (l) => c`
+                      <div class="swim-date-display__zone-row">
+                        <span class="swim-date-display__zone-label">${l.display}</span>
+                        <swim-button
+                          class="swim-date-display__copy-btn"
+                          variant="bordered"
+                          size="small"
+                          type="button"
+                          @click="${(d) => {
+        d.stopPropagation(), this._copyRow(l.key);
+      }}"
+                        >
+                          <swim-icon font-icon="copy"></swim-icon>
+                          ${l.key}
+                        </swim-button>
+                      </div>
+                    `
+    )}
+                </div>
+              </swim-tooltip>
+            ` : n}
+      </div>
+    `;
+  }
+  updated(s) {
+    super.updated(s), this.toggleAttribute("invalid", this._dateInvalid);
+  }
+};
+M.styles = [C, Hn];
+I([
+  a({ attribute: "datetime" })
+], M.prototype, "datetime", 2);
+I([
+  a({ type: String })
+], M.prototype, "precision", 2);
+I([
+  a({ type: String, reflect: !0 })
+], M.prototype, "timezone", 2);
+I([
+  a({ type: String, attribute: "default-input-time-zone" })
+], M.prototype, "defaultInputTimeZone", 2);
+I([
+  a({ type: String, reflect: !0 })
+], M.prototype, "mode", 2);
+I([
+  a({ type: String, reflect: !0 })
+], M.prototype, "type", 2);
+I([
+  a({ type: String })
+], M.prototype, "format", 2);
+I([
+  a({ type: String, attribute: "tooltip-format" })
+], M.prototype, "tooltipFormat", 2);
+I([
+  a({ type: String, attribute: "clip-format" })
+], M.prototype, "clipFormat", 2);
+I([
+  a({ type: Object, attribute: "timezones" })
+], M.prototype, "timezones", 1);
+I([
+  a({ type: Boolean, reflect: !0, attribute: "tooltip-disabled", converter: g })
+], M.prototype, "tooltipDisabled", 1);
+I([
+  a({ type: String, attribute: "tooltip-css-class" })
+], M.prototype, "tooltipCssClass", 2);
+I([
+  a({ type: String, attribute: "tooltip-placement" })
+], M.prototype, "tooltipPlacement", 2);
+I([
+  a({ type: String, attribute: "default-copy-key" })
+], M.prototype, "defaultCopyKey", 2);
+I([
+  a({ type: String, attribute: "invalid-date-message" })
+], M.prototype, "invalidDateMessage", 2);
+I([
+  a({
+    attribute: "clickable",
+    reflect: !0,
+    converter: {
+      fromAttribute(s) {
+        return s === null ? Rt : s !== "false";
+      },
+      toAttribute(s) {
+        return s === Rt ? null : s ? "" : "false";
+      }
+    }
+  })
+], M.prototype, "clickable", 2);
+I([
+  b()
+], M.prototype, "_displayText", 2);
+I([
+  b()
+], M.prototype, "_dateInvalid", 2);
+I([
+  b()
+], M.prototype, "_utcDatetimeAttr", 2);
+I([
+  b()
+], M.prototype, "_zoneList", 2);
+I([
+  b()
+], M.prototype, "_rawDatetimeEcho", 2);
+I([
+  b()
+], M.prototype, "_titleValue", 2);
+M = I([
+  hr(Jn)
+], M);
+const ia = [
+  C,
+  v`
     :host {
       display: block;
       width: 100%;
       height: 100%;
       position: relative;
       overflow: hidden;
-      --swim-format-dialog-bg: var(--grey-800);
-      --swim-format-header-height-large: 90px;
-      --swim-format-header-height-medium: 60px;
-      --swim-format-footer-height: 4rem;
-      --swim-format-body-padding: 2rem;
-      --swim-format-border: 2px solid var(--grey-700);
     }
 
     .format-dialog-container {
@@ -7549,42 +8622,52 @@ const Sn = [
       flex-direction: column;
       height: 100%;
       max-height: var(--swim-format-max-height, 75vh);
-      background: var(--swim-format-dialog-bg);
-      box-shadow: 0 0 100px rgba(0, 0, 0, 0.25);
-      border-radius: var(--radius-16);
+      background: var(--swim-format-dialog-bg, var(--grey-725));
+      box-shadow: var(--swim-format-dialog-shadow, var(--shadow-dialog-panel));
+      border-radius: var(--swim-format-border-radius, var(--radius-16, 16px));
       overflow: hidden;
     }
 
     :host([format='large']) .format-dialog-container {
-      --swim-format-max-height: calc(100vh - 7.25rem);
-      --swim-format-header-height: var(--swim-format-header-height-large);
+      max-height: var(--swim-format-max-height, calc(100vh - 7.25rem));
     }
 
     :host([format='medium']) .format-dialog-container {
-      --swim-format-max-height: 75vh;
-      --swim-format-header-height: var(--swim-format-header-height-medium);
-      --swim-format-body-max-height: calc(var(--swim-format-max-height) - var(--swim-format-header-height));
+      max-height: var(--swim-format-max-height, 75vh);
+      --swim-format-body-max-height-internal: calc(
+        var(--swim-format-max-height, 75vh) -
+          var(--swim-format-header-height, var(--swim-format-header-height-medium, 60px))
+      );
     }
 
     .format-dialog-container__header {
-      flex: 0 0 var(--swim-format-header-height, 90px);
-      height: var(--swim-format-header-height, 90px);
-      min-height: var(--swim-format-header-height, 90px);
-      border-bottom: var(--swim-format-border);
+      border-bottom: var(--swim-format-divider, var(--spacing-2, 2px) solid var(--grey-700));
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 var(--swim-format-body-padding);
-      padding-right: 2.5rem;
-      gap: 1.5rem;
+      padding: 0 var(--swim-format-header-padding-x, var(--spacing-32, 2rem));
+      padding-right: var(--swim-format-header-padding-end, var(--spacing-40, 2.5rem));
+      gap: var(--swim-format-header-gap, var(--spacing-24, 1.5rem));
       overflow: visible;
+    }
+
+    :host([format='large']) .format-dialog-container__header {
+      flex: 0 0 var(--swim-format-header-height, var(--swim-format-header-height-large, 90px));
+      height: var(--swim-format-header-height, var(--swim-format-header-height-large, 90px));
+      min-height: var(--swim-format-header-height, var(--swim-format-header-height-large, 90px));
+    }
+
+    :host([format='medium']) .format-dialog-container__header {
+      flex: 0 0 var(--swim-format-header-height, var(--swim-format-header-height-medium, 60px));
+      height: var(--swim-format-header-height, var(--swim-format-header-height-medium, 60px));
+      min-height: var(--swim-format-header-height, var(--swim-format-header-height-medium, 60px));
     }
 
     /* Match ngx-large-format-dialog-header-title__wrapper: flex 0 0 20%, height 100%, justify-content center */
     .format-dialog-container__header-title {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: var(--swim-format-header-title-stack-gap, var(--spacing-2, 2px));
       flex: 0 0 20%;
       height: 100%;
       min-width: 0;
@@ -7618,14 +8701,14 @@ const Sn = [
     }
 
     :host([format='medium']) .format-dialog-container__header-title h1 {
-      --swim-format-title-size: 1.375rem;
-      --swim-format-title-line: 1.625rem;
+      font-size: var(--swim-format-title-size, 1.375rem);
+      line-height: var(--swim-format-title-line, 1.625rem);
     }
 
     .format-dialog-container__header-action {
       flex: 0 0 auto;
       max-width: 50%;
-      display: flex;
+      display: var(--swim-dialog-header-action-display, flex);
       align-items: center;
       justify-content: flex-end;
     }
@@ -7640,7 +8723,7 @@ const Sn = [
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: var(--swim-format-header-close-gap, var(--spacing-8, 0.5rem));
     }
 
     .format-dialog-container__header-action__button swim-icon {
@@ -7654,52 +8737,90 @@ const Sn = [
     }
 
     .format-dialog-container__header-action__button:focus-visible {
-      outline: 2px solid var(--blue-500);
-      outline-offset: 2px;
+      outline: var(--swim-format-header-close-outline-width, var(--spacing-2, 2px)) solid var(--blue-500);
+      outline-offset: var(--swim-format-header-close-outline-width, var(--spacing-2, 2px));
     }
 
     .format-dialog-container__body {
       flex: 1 1 auto;
-      min-height: 215px;
-      padding: 0 var(--swim-format-body-padding);
+      min-height: var(--swim-format-body-min-height, 215px);
+      padding: var(--swim-format-body-padding, var(--spacing-32, 2rem));
       color: var(--grey-200);
     }
 
     :host([format='medium']) .format-dialog-container__body {
-      max-height: var(--swim-format-body-max-height, auto);
+      max-height: var(--swim-format-body-max-height, var(--swim-format-body-max-height-internal, auto));
     }
 
     .format-dialog-container__footer {
-      flex: 0 0 var(--swim-format-footer-height);
-      height: var(--swim-format-footer-height);
-      min-height: var(--swim-format-footer-height);
-      border-top: var(--swim-format-border);
+      flex: 0 0 var(--swim-format-footer-height, calc(var(--spacing-48, 48px) + var(--spacing-16, 16px)));
+      height: var(--swim-format-footer-height, calc(var(--spacing-48, 48px) + var(--spacing-16, 16px)));
+      min-height: var(--swim-format-footer-height, calc(var(--spacing-48, 48px) + var(--spacing-16, 16px)));
+      border-top: var(--swim-format-divider, var(--spacing-2, 2px) solid var(--grey-700));
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: var(--swim-format-footer-gap, 0.5rem);
-      padding: 0.75rem 2rem;
+      gap: var(--swim-format-footer-gap, var(--spacing-8, 0.5rem));
+      padding: var(--swim-format-footer-padding-y, var(--spacing-12, 0.75rem))
+        var(--swim-format-footer-padding-x, var(--spacing-32, 2rem));
       box-sizing: border-box;
+    }
+
+    .format-dialog-container__footer--hidden {
+      display: none;
+      flex: 0 0 0;
+      height: 0;
+      min-height: 0;
+      padding: 0;
+      border-top: none;
+      overflow: hidden;
+    }
+
+    /* Slotted footer host must span the row so inner justify-content (align) can take effect (ngx parity). */
+    .format-dialog-container__footer ::slotted(*) {
+      flex: 1 1 auto;
+      min-width: 0;
+      align-self: stretch;
     }
   `
 ];
-var An = Object.defineProperty, Qe = (o, e, t, i) => {
-  for (var s = void 0, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = n(e, t, s) || s);
-  return s && An(e, t, s), s;
+var sa = Object.defineProperty, We = (s, e, t, i) => {
+  for (var o = void 0, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = n(e, t, o) || o);
+  return o && sa(e, t, o), o;
 };
-const Ms = "swim-large-format-dialog-content", Ti = class Ti extends v {
+const Ks = "swim-large-format-dialog-content", Hi = class Hi extends y {
   constructor() {
-    super(...arguments), this.format = "large", this.dialogTitle = "", this.dialogSubtitle = "", this.dialogActionTitle = "Close", this.dialogDirtyActionTitle = "Cancel", this.dirty = !1;
+    super(...arguments), this.format = "large", this.dialogTitle = "", this.dialogSubtitle = "", this.dialogActionTitle = "Close", this.dialogDirtyActionTitle = "Cancel", this.dirty = !1, this._hasFooterSlot = !1, this._onFooterSlotChange = () => {
+      this._syncFooterSlotVisibility();
+    };
   }
   _onCloseOrCancel() {
-    this.dispatchEvent(new CustomEvent("close-or-cancel", { detail: this.dirty, bubbles: !0, composed: !0 }));
+    this.dispatchEvent(new CustomEvent("close-or-cancel", { detail: this.dirty, bubbles: !1, composed: !1 }));
+  }
+  firstUpdated() {
+    this._syncFooterSlotVisibility();
+  }
+  _syncFooterSlotVisibility() {
+    var o, r;
+    const e = (r = (o = this.renderRoot) == null ? void 0 : o.querySelector) == null ? void 0 : r.call(o, 'slot[name="footer"]');
+    if (!e) return;
+    const i = e.assignedNodes({ flatten: !0 }).some(
+      (n) => {
+        var l;
+        return n.nodeType === Node.ELEMENT_NODE || n.nodeType === Node.TEXT_NODE && (((l = n.textContent) == null ? void 0 : l.trim()) ?? "").length > 0;
+      }
+    );
+    this._hasFooterSlot !== i && (this._hasFooterSlot = i);
   }
   render() {
     const e = [
       "format-dialog-container__header-title",
       "format-dialog-container__header-title--with-subtitle"
-    ].join(" ");
+    ].join(" "), t = [
+      "format-dialog-container__footer",
+      this._hasFooterSlot ? "" : "format-dialog-container__footer--hidden"
+    ].filter(Boolean).join(" ");
     return c`
       <main class="format-dialog-container">
         <header class="format-dialog-container__header">
@@ -7722,74 +8843,106 @@ const Ms = "swim-large-format-dialog-content", Ti = class Ti extends v {
         <section class="format-dialog-container__body swim-scroll">
           <slot></slot>
         </section>
-        <footer class="format-dialog-container__footer">
-          <slot name="footer"></slot>
+        <footer class="${t}">
+          <slot name="footer" @slotchange="${this._onFooterSlotChange}"></slot>
         </footer>
       </main>
     `;
   }
 };
-Ti.styles = [_t, Sn];
-let ye = Ti;
-Qe([
+Hi.styles = [Et, ia];
+let fe = Hi;
+We([
   a({ type: String, reflect: !0 })
-], ye.prototype, "format");
-Qe([
+], fe.prototype, "format");
+We([
   a({ type: String, attribute: "dialog-title" })
-], ye.prototype, "dialogTitle");
-Qe([
+], fe.prototype, "dialogTitle");
+We([
   a({ type: String, attribute: "dialog-subtitle" })
-], ye.prototype, "dialogSubtitle");
-Qe([
+], fe.prototype, "dialogSubtitle");
+We([
   a({ type: String, attribute: "dialog-action-title" })
-], ye.prototype, "dialogActionTitle");
-Qe([
+], fe.prototype, "dialogActionTitle");
+We([
   a({ type: String, attribute: "dialog-dirty-action-title" })
-], ye.prototype, "dialogDirtyActionTitle");
-Qe([
-  a({ type: Boolean, reflect: !0 })
-], ye.prototype, "dirty");
-customElements.get(Ms) || customElements.define(Ms, ye);
-const Tn = [
-  x,
-  w`
+], fe.prototype, "dialogDirtyActionTitle");
+We([
+  a({ type: Boolean, reflect: !0, converter: g })
+], fe.prototype, "dirty");
+We([
+  b()
+], fe.prototype, "_hasFooterSlot");
+customElements.get(Ks) || customElements.define(Ks, fe);
+const oa = [
+  C,
+  v`
     :host {
-      --swim-format-footer-gap: 0.5rem;
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
     }
 
     .format-dialog-footer {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: var(--swim-format-footer-gap);
+      gap: var(--swim-format-footer-gap, var(--spacing-8, 0.5rem));
       width: 100%;
       height: 100%;
     }
+
+    :host([align='start']) .format-dialog-footer {
+      justify-content: flex-start;
+    }
+
+    :host([align='end']) .format-dialog-footer {
+      justify-content: flex-end;
+    }
+
+    :host([align='center']) .format-dialog-footer {
+      justify-content: center;
+    }
+
+    :host([align='space-between']) .format-dialog-footer {
+      justify-content: space-between;
+    }
+
+    :host([align='space-around']) .format-dialog-footer {
+      justify-content: space-around;
+    }
+
+    :host([align='space-evenly']) .format-dialog-footer {
+      justify-content: space-evenly;
+    }
   `
 ];
-var zn = Object.defineProperty, Dn = (o, e, t, i) => {
-  for (var s = void 0, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = n(e, t, s) || s);
-  return s && zn(e, t, s), s;
+var ra = Object.defineProperty, Lo = (s, e, t, i) => {
+  for (var o = void 0, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = n(e, t, o) || o);
+  return o && ra(e, t, o), o;
 };
-const Os = "swim-large-format-dialog-footer", zi = class zi extends v {
+const Zs = "swim-large-format-dialog-footer", Vi = class Vi extends y {
   constructor() {
-    super(...arguments), this.format = "large";
+    super(...arguments), this.format = "large", this.align = "center";
   }
   render() {
     return c` <div class="format-dialog-footer"><slot></slot></div> `;
   }
 };
-zi.styles = Tn;
-let Tt = zi;
-Dn([
+Vi.styles = oa;
+let xt = Vi;
+Lo([
   a({ type: String, reflect: !0 })
-], Tt.prototype, "format");
-customElements.get(Os) || customElements.define(Os, Tt);
-const Mn = [
-  x,
-  _t,
-  w`
+], xt.prototype, "format");
+Lo([
+  a({ type: String, reflect: !0 })
+], xt.prototype, "align");
+customElements.get(Zs) || customElements.define(Zs, xt);
+const na = [
+  C,
+  Et,
+  v`
     :host {
       --swim-drawer-bg: var(--grey-800);
       display: block;
@@ -7923,54 +9076,54 @@ const Mn = [
     }
   `
 ];
-var Ve = /* @__PURE__ */ ((o) => (o.Left = "left", o.Right = "right", o.Bottom = "bottom", o))(Ve || {}), On = Object.defineProperty, In = Object.getOwnPropertyDescriptor, pe = (o, e, t, i) => {
-  for (var s = i > 1 ? void 0 : i ? In(e, t) : e, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = (i ? n(e, t, s) : n(s)) || s);
-  return i && s && On(e, t, s), s;
+var Xe = /* @__PURE__ */ ((s) => (s.Left = "left", s.Right = "right", s.Bottom = "bottom", s))(Xe || {}), aa = Object.defineProperty, la = Object.getOwnPropertyDescriptor, ve = (s, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? la(e, t) : e, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = (i ? n(e, t, o) : n(o)) || o);
+  return i && o && aa(e, t, o), o;
 };
-const Is = "swim-drawer", Di = class Di extends v {
+const Xs = "swim-drawer", Yi = class Yi extends y {
   constructor() {
-    super(...arguments), this.cssClass = "", this.direction = Ve.Left, this._size = 80, this._zIndex = 998, this._closeOnOutsideClick = !0, this._isRoot = !0, this._open = !1, this._closing = !1, this._contentId = `swim-drawer-content-${Math.random().toString(36).slice(2, 11)}`, this._previousActiveElement = null, this._backdropClickBound = () => this._onBackdropClick(), this._keydownBound = (e) => this._onKeydown(e), this._portalTarget = null;
+    super(...arguments), this.cssClass = "", this.direction = Xe.Left, this._size = 80, this._zIndex = 998, this._closeOnOutsideClick = !0, this._isRoot = !0, this._open = !1, this._closing = !1, this._contentId = `swim-drawer-content-${Math.random().toString(36).slice(2, 11)}`, this._previousActiveElement = null, this._backdropClickBound = () => this._onBackdropClick(), this._keydownBound = (e) => this._onKeydown(e), this._portalTarget = null;
   }
   get size() {
     return this._size;
   }
   set size(e) {
-    this._size = A(e, 80);
+    this._size = z(e, 80);
   }
   get zIndex() {
     return this._zIndex;
   }
   set zIndex(e) {
-    this._zIndex = A(e, 998);
+    this._zIndex = z(e, 998);
   }
   get closeOnOutsideClick() {
     return this._closeOnOutsideClick;
   }
   set closeOnOutsideClick(e) {
-    this._closeOnOutsideClick = m(e);
+    this._closeOnOutsideClick = p(e);
   }
   get isRoot() {
     return this._isRoot;
   }
   set isRoot(e) {
-    this._isRoot = m(e);
+    this._isRoot = p(e);
   }
   get open() {
     return this._open;
   }
   set open(e) {
-    const t = m(e);
+    const t = p(e);
     this._open !== t && (this._open = t, this.requestUpdate(), t ? this._previousActiveElement = typeof document < "u" ? document.activeElement : null : this._restoreFocus());
   }
   get _isLeft() {
-    return this.direction === Ve.Left || this.direction === "left";
+    return this.direction === Xe.Left || this.direction === "left";
   }
   get _isRight() {
-    return this.direction === Ve.Right || this.direction === "right";
+    return this.direction === Xe.Right || this.direction === "right";
   }
   get _isBottom() {
-    return this.direction === Ve.Bottom || this.direction === "bottom";
+    return this.direction === Xe.Bottom || this.direction === "bottom";
   }
   get _widthSize() {
     return (this._isLeft || this._isRight) && this.size ? `${this.size}%` : "100%";
@@ -7985,7 +9138,7 @@ const Is = "swim-drawer", Di = class Di extends v {
     this._previousActiveElement && typeof this._previousActiveElement.focus == "function" && this._previousActiveElement.focus(), this._previousActiveElement = null;
   }
   _emitClose() {
-    this.dispatchEvent(new CustomEvent("close", { detail: !0, bubbles: !0 }));
+    this.dispatchEvent(new CustomEvent("close", { detail: !0, bubbles: !1, composed: !1 }));
   }
   _onBackdropClick() {
     this.closeOnOutsideClick && this.isRoot && this.hide();
@@ -8046,79 +9199,79 @@ const Is = "swim-drawer", Di = class Di extends v {
     ` : u;
   }
 };
-Di.styles = Mn;
-let j = Di;
-pe([
+Yi.styles = na;
+let Z = Yi;
+ve([
   a({ type: String, attribute: "css-class" })
-], j.prototype, "cssClass", 2);
-pe([
+], Z.prototype, "cssClass", 2);
+ve([
   a({ type: String, reflect: !0 })
-], j.prototype, "direction", 2);
-pe([
+], Z.prototype, "direction", 2);
+ve([
   a({ type: Number })
-], j.prototype, "size", 1);
-pe([
+], Z.prototype, "size", 1);
+ve([
   a({ type: Number })
-], j.prototype, "zIndex", 1);
-pe([
+], Z.prototype, "zIndex", 1);
+ve([
   a({
     type: Boolean,
     attribute: "close-on-outside-click",
     reflect: !0,
     converter: {
-      fromAttribute: (o) => o !== null && o !== "false" && o !== "0",
-      toAttribute: (o) => o ? "" : "false"
+      fromAttribute: (s) => s !== null && s !== "false" && s !== "0",
+      toAttribute: (s) => s ? "" : "false"
     }
   })
-], j.prototype, "closeOnOutsideClick", 1);
-pe([
+], Z.prototype, "closeOnOutsideClick", 1);
+ve([
   a({
     type: Boolean,
     attribute: "is-root",
     reflect: !0,
     converter: {
-      fromAttribute: (o) => o !== null && o !== "false" && o !== "0",
-      toAttribute: (o) => o ? "" : "false"
+      fromAttribute: (s) => s !== null && s !== "false" && s !== "0",
+      toAttribute: (s) => s ? "" : "false"
     }
   })
-], j.prototype, "isRoot", 1);
-pe([
-  a({ type: Boolean, reflect: !0 })
-], j.prototype, "open", 1);
-pe([
-  g()
-], j.prototype, "_closing", 2);
-pe([
-  g()
-], j.prototype, "_contentId", 2);
-pe([
-  R(".swim-drawer__content")
-], j.prototype, "_contentEl", 2);
-customElements.get(Is) || customElements.define(Is, j);
-var Pn = /* @__PURE__ */ ((o) => (o.Fixed = "fixed", o.Absolute = "absolute", o))(Pn || {});
-function _l(o) {
+], Z.prototype, "isRoot", 1);
+ve([
+  a({ type: Boolean, reflect: !0, converter: g })
+], Z.prototype, "open", 1);
+ve([
+  b()
+], Z.prototype, "_closing", 2);
+ve([
+  b()
+], Z.prototype, "_contentId", 2);
+ve([
+  N(".swim-drawer__content")
+], Z.prototype, "_contentEl", 2);
+customElements.get(Xs) || customElements.define(Xs, Z);
+var ca = /* @__PURE__ */ ((s) => (s.Fixed = "fixed", s.Absolute = "absolute", s))(ca || {});
+function Il(s) {
   const {
-    direction: e = Ve.Left,
+    direction: e = Xe.Left,
     size: t = 80,
     zIndex: i = 998,
-    closeOnOutsideClick: s = !0,
+    closeOnOutsideClick: o = !0,
     isRoot: r = !0,
     parentContainer: n,
     content: l,
     cssClass: d = ""
-  } = o, h = document.createElement("swim-drawer");
-  if (h.direction = e, h.size = t, h.zIndex = i, h.closeOnOutsideClick = s, h.isRoot = r, h.cssClass = d, l)
+  } = s, h = document.createElement("swim-drawer");
+  if (h.direction = e, h.size = t, h.zIndex = i, h.closeOnOutsideClick = o, h.isRoot = r, h.cssClass = d, l)
     if (typeof l == "string") {
-      const b = document.createElement("div");
-      for (b.innerHTML = l; b.firstChild; )
-        h.appendChild(b.firstChild);
+      const f = document.createElement("div");
+      for (f.innerHTML = l; f.firstChild; )
+        h.appendChild(f.firstChild);
     } else if (l instanceof DocumentFragment)
       for (; l.firstChild; )
         h.appendChild(l.firstChild);
     else
       h.appendChild(l);
   (r ? document.body : n ?? document.body).appendChild(h);
-  const p = () => {
+  const m = () => {
     h.hide();
   };
   return h.addEventListener(
@@ -8127,9 +9280,9 @@ function _l(o) {
       h.parentNode && h.parentNode.removeChild(h);
     },
     { once: !0 }
-  ), h.show(), { close: p, drawer: h };
+  ), h.show(), { close: m, drawer: h };
 }
-const wl = "ngx-icon", Ln = w`
+const Ll = "ngx-icon", da = v`
   :host {
     display: block;
     width: 100%;
@@ -8369,49 +9522,42 @@ const wl = "ngx-icon", Ln = w`
     background: var(--grey-775);
     border-radius: var(--radius-0) var(--radius-0) var(--radius-8) var(--radius-8);
   }
-`, Fn = [x, Ln];
-var $o = /* @__PURE__ */ ((o) => (o.Legacy = "legacy", o.Outline = "outline", o.Light = "light", o.Minimal = "minimal", o))($o || {}), xt = /* @__PURE__ */ ((o) => (o.Left = "left", o.Right = "right", o.None = "none", o))(xt || {}), Bn = Object.defineProperty, Rn = Object.getOwnPropertyDescriptor, me = (o, e, t, i) => {
-  for (var s = i > 1 ? void 0 : i ? Rn(e, t) : e, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = (i ? n(e, t, s) : n(s)) || s);
-  return i && s && Bn(e, t, s), s;
+`, ha = [C, da];
+var Fo = /* @__PURE__ */ ((s) => (s.Legacy = "legacy", s.Outline = "outline", s.Light = "light", s.Minimal = "minimal", s))(Fo || {}), zt = /* @__PURE__ */ ((s) => (s.Left = "left", s.Right = "right", s.None = "none", s))(zt || {}), ua = Object.defineProperty, pa = Object.getOwnPropertyDescriptor, ye = (s, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? pa(e, t) : e, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = (i ? n(e, t, o) : n(o)) || o);
+  return i && o && ua(e, t, o), o;
 };
-const Hn = {
-  fromAttribute: (o) => o !== "false" && o !== "",
-  toAttribute: (o) => o ? "true" : "false"
-}, ko = {
-  fromAttribute: (o) => o !== null && o !== "false",
-  toAttribute: (o) => o ? "true" : "false"
-};
-let Ps = 0;
-const Ls = "swim-section", Mi = class Mi extends v {
+let Js = 0;
+const Qs = "swim-section", Ni = class Ni extends y {
   constructor() {
-    super(...arguments), this._id = `section-${++Ps}`, this._sectionCollapsed = !1, this._sectionCollapsible = !0, this._headerToggle = !1, this.sectionTitle = "", this.padding = "1.8em", this.appearance = $o.Legacy, this.togglePosition = xt.Left, this._hasHeaderSlot = !1, this._headerSlotChangeBound = () => this._checkHeaderSlot();
+    super(...arguments), this._id = `section-${++Js}`, this._sectionCollapsed = !1, this._sectionCollapsible = !0, this._headerToggle = !1, this.sectionTitle = "", this.padding = "1.8em", this.appearance = Fo.Legacy, this.togglePosition = zt.Left, this._hasHeaderSlot = !1, this._headerSlotChangeBound = () => this._checkHeaderSlot();
   }
   get id() {
     return this._id;
   }
   set id(e) {
-    this._id = e || `section-${++Ps}`;
+    this._id = e || `section-${++Js}`;
   }
   get sectionCollapsed() {
     return this._sectionCollapsed;
   }
   set sectionCollapsed(e) {
-    const t = e != null ? m(e) : !1;
+    const t = e != null ? p(e) : !1;
     this._sectionCollapsed !== t && (this._sectionCollapsed = t);
   }
   get sectionCollapsible() {
     return this._sectionCollapsible;
   }
   set sectionCollapsible(e) {
-    const t = e != null ? m(e) : !0;
+    const t = e != null ? p(e) : !0;
     this._sectionCollapsible !== t && (this._sectionCollapsible = t);
   }
   get headerToggle() {
     return this._headerToggle;
   }
   set headerToggle(e) {
-    const t = e != null ? m(e) : !1;
+    const t = e != null ? p(e) : !1;
     this._headerToggle !== t && (this._headerToggle = t);
   }
   get _contentId() {
@@ -8449,8 +9595,8 @@ const Ls = "swim-section", Mi = class Mi extends v {
     this.sectionCollapsed = t, this.dispatchEvent(
       new CustomEvent("toggle", {
         detail: t,
-        bubbles: !0,
-        composed: !0
+        bubbles: !1,
+        composed: !1
       })
     );
   }
@@ -8462,7 +9608,7 @@ const Ls = "swim-section", Mi = class Mi extends v {
   }
   render() {
     var n;
-    const e = this.sectionCollapsible, t = e && this.togglePosition !== xt.None, i = this.togglePosition === xt.Right, s = [
+    const e = this.sectionCollapsible, t = e && this.togglePosition !== zt.None, i = this.togglePosition === zt.Right, o = [
       "swim-section__header",
       this.sectionCollapsed ? "swim-section__header--collapsed" : "",
       e ? "swim-section__header--collapsible" : "",
@@ -8472,7 +9618,7 @@ const Ls = "swim-section", Mi = class Mi extends v {
     return c`
       <div class="swim-section__inner">
         <header
-          class="${s}${r ? " swim-section__header--empty" : ""}"
+          class="${o}${r ? " swim-section__header--empty" : ""}"
           role="${this.headerToggle && e && !r ? "button" : "presentation"}"
           tabindex="${this.headerToggle && e && !r ? 0 : -1}"
           aria-expanded="${r ? void 0 : this.sectionCollapsed ? "false" : "true"}"
@@ -8519,64 +9665,64 @@ const Ls = "swim-section", Mi = class Mi extends v {
     `;
   }
 };
-Mi.styles = Fn;
-let G = Mi;
-me([
+Ni.styles = ha;
+let X = Ni;
+ye([
   a({ type: String, reflect: !0 })
-], G.prototype, "id", 1);
-me([
+], X.prototype, "id", 1);
+ye([
   a({
     reflect: !0,
     attribute: "section-collapsed",
-    converter: ko
+    converter: g
   })
-], G.prototype, "sectionCollapsed", 1);
-me([
+], X.prototype, "sectionCollapsed", 1);
+ye([
   a({
     reflect: !0,
     attribute: "section-collapsible",
-    converter: Hn
+    converter: Q
   })
-], G.prototype, "sectionCollapsible", 1);
-me([
+], X.prototype, "sectionCollapsible", 1);
+ye([
   a({
     reflect: !0,
     attribute: "header-toggle",
-    converter: ko
+    converter: g
   })
-], G.prototype, "headerToggle", 1);
-me([
+], X.prototype, "headerToggle", 1);
+ye([
   a({ type: String, reflect: !0, attribute: "section-title" })
-], G.prototype, "sectionTitle", 2);
-me([
+], X.prototype, "sectionTitle", 2);
+ye([
   a({ type: String })
-], G.prototype, "padding", 2);
-me([
+], X.prototype, "padding", 2);
+ye([
   a({ type: String, reflect: !0 })
-], G.prototype, "appearance", 2);
-me([
+], X.prototype, "appearance", 2);
+ye([
   a({ type: String, reflect: !0, attribute: "toggle-position" })
-], G.prototype, "togglePosition", 2);
-me([
-  g()
-], G.prototype, "_hasHeaderSlot", 2);
-me([
-  R('slot[name="header"]')
-], G.prototype, "_headerSlot", 2);
-customElements.get(Ls) || customElements.define(Ls, G);
-const Yn = w`
+], X.prototype, "togglePosition", 2);
+ye([
+  b()
+], X.prototype, "_hasHeaderSlot", 2);
+ye([
+  N('slot[name="header"]')
+], X.prototype, "_headerSlot", 2);
+customElements.get(Qs) || customElements.define(Qs, X);
+const ma = v`
   :host {
     display: contents;
   }
-`, Fs = "swim-section-header", Oi = class Oi extends v {
+`, eo = "swim-section-header", ji = class ji extends y {
   render() {
     return c`<slot></slot>`;
   }
 };
-Oi.styles = Yn;
-let si = Oi;
-customElements.get(Fs) || customElements.define(Fs, si);
-const Vn = w`
+ji.styles = ma;
+let ui = ji;
+customElements.get(eo) || customElements.define(eo, ui);
+const ba = v`
   :host {
     display: block;
   }
@@ -8698,7 +9844,7 @@ const Vn = w`
   :host([disabled]) .swim-radio__checkmark--checked::after {
     opacity: 1;
   }
-`, Nn = w`
+`, fa = v`
   :host {
     display: block;
   }
@@ -8716,34 +9862,34 @@ const Vn = w`
     outline: none;
   }
 `;
-var Un = Object.defineProperty, qn = Object.getOwnPropertyDescriptor, be = (o, e, t, i) => {
-  for (var s = i > 1 ? void 0 : i ? qn(e, t) : e, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = (i ? n(e, t, s) : n(s)) || s);
-  return i && s && Un(e, t, s), s;
+var ga = Object.defineProperty, _a = Object.getOwnPropertyDescriptor, xe = (s, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? _a(e, t) : e, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = (i ? n(e, t, o) : n(o)) || o);
+  return i && o && ga(e, t, o), o;
 };
-let jn = 0;
-const Bs = "swim-radio", Ii = class Ii extends v {
+let wa = 0;
+const to = "swim-radio", Ui = class Ui extends y {
   constructor() {
-    super(...arguments), this.id = `swim-radio-${++jn}`, this.name = "", this.radioId = "", this._tabindex = 0, this._checked = !1, this.value = "", this._disabled = !1, this.groupDisabled = !1, this.isInGroup = !1;
+    super(...arguments), this.id = `swim-radio-${++wa}`, this.name = "", this.radioId = "", this._tabindex = 0, this._checked = !1, this.value = "", this._disabled = !1, this.groupDisabled = !1, this.isInGroup = !1;
   }
   get tabindex() {
     return this._tabindex;
   }
   set tabindex(e) {
-    this._tabindex = A(e, 0);
+    this._tabindex = z(e, 0);
   }
   get checked() {
     return this._checked;
   }
   set checked(e) {
-    const t = m(e);
+    const t = p(e);
     this._checked !== t && (this._checked = t);
   }
   get disabled() {
     return this._disabled || this.groupDisabled;
   }
   set disabled(e) {
-    this._disabled = m(e);
+    this._disabled = p(e);
   }
   get _effectiveTabindex() {
     return this.disabled || this.isInGroup ? -1 : this._tabindex;
@@ -8771,6 +9917,7 @@ const Bs = "swim-radio", Ii = class Ii extends v {
     this._checked && this.dispatchEvent(
       new CustomEvent("change", {
         detail: this.value,
+        // Must bubble so swim-radio-group (light-DOM parent) receives selection.
         bubbles: !0,
         composed: !0
       })
@@ -8786,10 +9933,10 @@ const Bs = "swim-radio", Ii = class Ii extends v {
     );
   }
   _onFocus(e) {
-    this.dispatchEvent(new FocusEvent("focus", { ...e, bubbles: !0, composed: !0 }));
+    this.dispatchEvent(new FocusEvent("focus", { ...e, bubbles: !1, composed: !1 }));
   }
   _onBlur(e) {
-    this.dispatchEvent(new FocusEvent("blur", { ...e, bubbles: !0, composed: !0 }));
+    this.dispatchEvent(new FocusEvent("blur", { ...e, bubbles: !1, composed: !1 }));
   }
   render() {
     const e = `${this.id}-content`;
@@ -8831,63 +9978,63 @@ const Bs = "swim-radio", Ii = class Ii extends v {
     `;
   }
 };
-Ii.styles = [x, Vn];
-let W = Ii;
-be([
-  R(".swim-radio__roving")
-], W.prototype, "_roving", 2);
-be([
+Ui.styles = [C, ba];
+let J = Ui;
+xe([
+  N(".swim-radio__roving")
+], J.prototype, "_roving", 2);
+xe([
   a({ type: String })
-], W.prototype, "id", 2);
-be([
+], J.prototype, "id", 2);
+xe([
   a({ type: String })
-], W.prototype, "name", 2);
-be([
+], J.prototype, "name", 2);
+xe([
   a({ type: String, attribute: "radio-id" })
-], W.prototype, "radioId", 2);
-be([
+], J.prototype, "radioId", 2);
+xe([
   a({ type: Number })
-], W.prototype, "tabindex", 1);
-be([
-  a({ type: Boolean, reflect: !0 })
-], W.prototype, "checked", 1);
-be([
+], J.prototype, "tabindex", 1);
+xe([
+  a({ type: Boolean, reflect: !0, converter: g })
+], J.prototype, "checked", 1);
+xe([
   a({ type: String })
-], W.prototype, "value", 2);
-be([
-  a({ type: Boolean, reflect: !0 })
-], W.prototype, "disabled", 1);
-be([
+], J.prototype, "value", 2);
+xe([
+  a({ type: Boolean, reflect: !0, converter: g })
+], J.prototype, "disabled", 1);
+xe([
   a({ type: Boolean, attribute: !1 })
-], W.prototype, "groupDisabled", 2);
-be([
+], J.prototype, "groupDisabled", 2);
+xe([
   a({ type: Boolean, attribute: !1 })
-], W.prototype, "isInGroup", 2);
-customElements.get(Bs) || customElements.define(Bs, W);
-var Gn = Object.defineProperty, Wn = Object.getOwnPropertyDescriptor, Te = (o, e, t, i) => {
-  for (var s = i > 1 ? void 0 : i ? Wn(e, t) : e, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = (i ? n(e, t, s) : n(s)) || s);
-  return i && s && Gn(e, t, s), s;
+], J.prototype, "isInGroup", 2);
+customElements.get(to) || customElements.define(to, J);
+var va = Object.defineProperty, ya = Object.getOwnPropertyDescriptor, Ie = (s, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? ya(e, t) : e, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = (i ? n(e, t, o) : n(o)) || o);
+  return i && o && va(e, t, o), o;
 };
-let Kn = 0;
-function Zn(o, e) {
-  return (o % e + e) % e;
+let xa = 0;
+function $a(s, e) {
+  return (s % e + e) % e;
 }
-const Rs = "swim-radio-group", Lt = class Lt extends v {
+const io = "swim-radio-group", Ut = class Ut extends y {
   constructor() {
-    super(), this.id = `swim-radio-group-${++Kn}`, this._disabled = !1, this._value = "", this.name = "", this._focusIndex = -1, this._tabindex = 0, this._radios = [], this._changeHandler = (e) => this._onRadioChange(e), this._slotChangeBound = () => this._syncRadios(), this._onGroupFocus = (e) => {
+    super(), this.id = `swim-radio-group-${++xa}`, this._disabled = !1, this._value = "", this.name = "", this._focusIndex = -1, this._tabindex = 0, this._radios = [], this._changeHandler = (e) => this._onRadioChange(e), this._slotChangeBound = () => this._syncRadios(), this._onGroupFocus = (e) => {
       if (e.target !== this._slotWrapper) return;
       const t = this._radios.find((i) => i.checked);
       t ? (this._focusIndex = this._radios.indexOf(t), this._focusOn(this._focusIndex)) : this._focusFirst();
     }, this._onGroupBlur = () => {
-      this.dispatchEvent(new FocusEvent("blur", { bubbles: !0, composed: !0 }));
+      this.dispatchEvent(new FocusEvent("blur", { bubbles: !1, composed: !1 }));
     }, this._internals = this.attachInternals();
   }
   get disabled() {
     return this._disabled;
   }
   set disabled(e) {
-    this._disabled = m(e), this._updateRadioDisabledState();
+    this._disabled = p(e), this._updateRadioDisabledState();
   }
   get value() {
     return this._value;
@@ -8900,13 +10047,13 @@ const Rs = "swim-radio-group", Lt = class Lt extends v {
     return this._focusIndex;
   }
   set focusIndex(e) {
-    this._focusIndex = A(e, -1), this._focusOn(this._focusIndex);
+    this._focusIndex = z(e, -1), this._focusOn(this._focusIndex);
   }
   get tabindex() {
     return this.disabled ? -1 : this._tabindex;
   }
   set tabindex(e) {
-    this._tabindex = A(e, 0);
+    this._tabindex = z(e, 0);
   }
   connectedCallback() {
     super.connectedCallback(), this.addEventListener("change", this._changeHandler), this.addEventListener("focus", this._onGroupFocus), this.addEventListener("blur", this._onGroupBlur);
@@ -8926,9 +10073,9 @@ const Rs = "swim-radio-group", Lt = class Lt extends v {
     var i;
     const e = this._slot, t = ((i = e == null ? void 0 : e.assignedElements) == null ? void 0 : i.call(e)) ?? [];
     this._radios = t.filter(
-      (s) => {
+      (o) => {
         var r;
-        return s instanceof HTMLElement && ((r = s.tagName) == null ? void 0 : r.toLowerCase()) === "swim-radio";
+        return o instanceof HTMLElement && ((r = o.tagName) == null ? void 0 : r.toLowerCase()) === "swim-radio";
       }
     ), this._updateRadioNames(), this._updateRadioDisabledState(), this._updateSelectedFromValue();
   }
@@ -8949,15 +10096,15 @@ const Rs = "swim-radio-group", Lt = class Lt extends v {
     });
   }
   _onRadioChange(e) {
-    var s;
+    var o;
     const t = e.target;
-    if (!t || ((s = t.tagName) == null ? void 0 : s.toLowerCase()) !== "swim-radio") return;
+    if (!t || ((o = t.tagName) == null ? void 0 : o.toLowerCase()) !== "swim-radio") return;
     const i = e.detail;
     this._value !== i && (this._value = i, this._updateSelectedFromValue(), this._internals.setFormValue(String(this._value)), this.dispatchEvent(
       new CustomEvent("change", {
         detail: this._value,
-        bubbles: !0,
-        composed: !0
+        bubbles: !1,
+        composed: !1
       })
     ));
   }
@@ -8982,9 +10129,9 @@ const Rs = "swim-radio-group", Lt = class Lt extends v {
     if (this.disabled || !this._radios.length) return;
     const t = this._radios.length;
     for (let i = 1; i <= t; i++) {
-      const s = Zn(this._focusIndex + e * i, t);
-      if (!this._radios[s].disabled) {
-        this._focusIndex = s, this._focusOn(s);
+      const o = $a(this._focusIndex + e * i, t);
+      if (!this._radios[o].disabled) {
+        this._focusIndex = o, this._focusOn(o);
         return;
       }
     }
@@ -9015,88 +10162,34 @@ const Rs = "swim-radio-group", Lt = class Lt extends v {
     `;
   }
 };
-Lt.styles = [x, Nn], Lt.formAssociated = !0;
-let se = Lt;
-Te([
-  R("slot")
-], se.prototype, "_slot", 2);
-Te([
-  R(".swim-radio-group__slot")
-], se.prototype, "_slotWrapper", 2);
-Te([
+Ut.styles = [C, fa], Ut.formAssociated = !0;
+let le = Ut;
+Ie([
+  N("slot")
+], le.prototype, "_slot", 2);
+Ie([
+  N(".swim-radio-group__slot")
+], le.prototype, "_slotWrapper", 2);
+Ie([
   a({ type: String })
-], se.prototype, "id", 2);
-Te([
-  a({ type: Boolean, reflect: !0 })
-], se.prototype, "disabled", 1);
-Te([
+], le.prototype, "id", 2);
+Ie([
+  a({ type: Boolean, reflect: !0, converter: g })
+], le.prototype, "disabled", 1);
+Ie([
   a({ type: String })
-], se.prototype, "value", 1);
-Te([
+], le.prototype, "value", 1);
+Ie([
   a({ type: String })
-], se.prototype, "name", 2);
-Te([
+], le.prototype, "name", 2);
+Ie([
   a({ type: Number })
-], se.prototype, "focusIndex", 1);
-Te([
+], le.prototype, "focusIndex", 1);
+Ie([
   a({ type: Number })
-], se.prototype, "tabindex", 1);
-customElements.get(Rs) || customElements.define(Rs, se);
-/**
- * @license
- * Copyright 2017 Google LLC
- * SPDX-License-Identifier: BSD-3-Clause
- */
-const Hs = (o, e, t) => {
-  const i = /* @__PURE__ */ new Map();
-  for (let s = e; s <= t; s++) i.set(o[s], s);
-  return i;
-}, Xn = ui(class extends pi {
-  constructor(o) {
-    if (super(o), o.type !== Ce.CHILD) throw Error("repeat() can only be used in text expressions");
-  }
-  dt(o, e, t) {
-    let i;
-    t === void 0 ? t = e : e !== void 0 && (i = e);
-    const s = [], r = [];
-    let n = 0;
-    for (const l of o) s[n] = i ? i(l, n) : n, r[n] = t(l, n), n++;
-    return { values: r, keys: s };
-  }
-  render(o, e, t) {
-    return this.dt(o, e, t).values;
-  }
-  update(o, [e, t, i]) {
-    const s = gn(o), { values: r, keys: n } = this.dt(e, t, i);
-    if (!Array.isArray(s)) return this.ut = n, r;
-    const l = this.ut ?? (this.ut = []), d = [];
-    let h, _, p = 0, b = s.length - 1, f = 0, D = r.length - 1;
-    for (; p <= b && f <= D; ) if (s[p] === null) p++;
-    else if (s[b] === null) b--;
-    else if (l[p] === n[f]) d[f] = De(s[p], r[f]), p++, f++;
-    else if (l[b] === n[D]) d[D] = De(s[b], r[D]), b--, D--;
-    else if (l[p] === n[D]) d[D] = De(s[p], r[D]), rt(o, d[D + 1], s[p]), p++, D--;
-    else if (l[b] === n[f]) d[f] = De(s[b], r[f]), rt(o, s[p], s[b]), b--, f++;
-    else if (h === void 0 && (h = Hs(n, f, D), _ = Hs(l, p, b)), h.has(l[p])) if (h.has(l[b])) {
-      const ee = _.get(n[f]), tt = ee !== void 0 ? s[ee] : null;
-      if (tt === null) {
-        const it = rt(o, s[p]);
-        De(it, r[f]), d[f] = it;
-      } else d[f] = De(tt, r[f]), rt(o, s[p], tt), s[ee] = null;
-      f++;
-    } else Qt(s[b]), b--;
-    else Qt(s[p]), p++;
-    for (; f <= D; ) {
-      const ee = rt(o, d[D + 1]);
-      De(ee, r[f]), d[f++] = ee;
-    }
-    for (; p <= b; ) {
-      const ee = s[p++];
-      ee !== null && Qt(ee);
-    }
-    return this.ut = n, xo(o, d), Z;
-  }
-}), Jn = w`
+], le.prototype, "tabindex", 1);
+customElements.get(io) || customElements.define(io, le);
+const ka = v`
   :host {
     display: block;
     max-width: 100%;
@@ -9126,21 +10219,57 @@ const Hs = (o, e, t) => {
     font-size: var(--font-size-xl) !important;
   }
 
-  :host([focused]:not([invalid])) .select-label {
+  :host([focused]:not([invalid]):not([disabled])) .select-label {
     color: var(--blue-500) !important;
   }
 
-  :host([invalid][touched]) .select-underline {
+  :host([invalid][touched]:not([disabled])) .select-underline {
     background-color: var(--red-500) !important;
   }
 
-  :host([invalid][touched]) .underline-fill {
+  :host([invalid][touched]:not([disabled])) .underline-fill {
     background-color: var(--red-500) !important;
   }
 
-  :host([invalid][touched]) .select-label,
-  :host([invalid][touched]) .select-hint {
+  :host([invalid][touched]:not([disabled])) .select-label,
+  :host([invalid][touched]:not([disabled])) .select-hint {
     color: var(--red-500);
+  }
+
+  :host([disabled]) .select-input {
+    cursor: not-allowed;
+    color: var(--grey-400);
+    user-select: none;
+    pointer-events: none;
+  }
+
+  :host([disabled]) .select-label {
+    color: var(--grey-450);
+  }
+
+  :host([disabled]) .select-placeholder {
+    color: var(--grey-450);
+  }
+
+  :host([disabled]) .select-controls {
+    color: var(--grey-500);
+  }
+
+  :host([disabled]) .select-underline {
+    background-color: var(--grey-700);
+  }
+
+  :host([disabled]) .underline-fill {
+    width: 0 !important;
+  }
+
+  :host([disabled]) .select-hint {
+    color: var(--grey-450);
+  }
+
+  :host([disabled]) .select-chip {
+    background: var(--grey-650);
+    color: var(--grey-300);
   }
 
   .select-wrap {
@@ -9189,11 +10318,6 @@ const Hs = (o, e, t) => {
     outline: none;
   }
 
-  .select-input[disabled] {
-    cursor: not-allowed;
-    color: var(--grey-400);
-  }
-
   .select-value {
     flex: 1;
     padding: 3px 0;
@@ -9239,7 +10363,7 @@ const Hs = (o, e, t) => {
     margin-right: var(--spacing-8);
   }
 
-  :host([open]) .select-caret {
+  :host([open]:not([disabled])) .select-caret {
     transform: rotate(180deg);
   }
 
@@ -9278,8 +10402,8 @@ const Hs = (o, e, t) => {
     margin: 0 auto;
   }
 
-  :host([focused]) .underline-fill,
-  :host([open]) .underline-fill {
+  :host([focused]:not([disabled])) .underline-fill,
+  :host([open]:not([disabled])) .underline-fill {
     width: 100%;
   }
 
@@ -9290,10 +10414,6 @@ const Hs = (o, e, t) => {
     min-height: 1em;
     line-height: 14px;
     transition: color 0.2s ease-in-out;
-  }
-
-  .select-hint.hidden {
-    display: none;
   }
 
   /* Dropdown */
@@ -9352,10 +10472,47 @@ const Hs = (o, e, t) => {
     color: var(--grey-350);
   }
 
+  .select-filter-input:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+
+  .select-filter--loading .select-filter-input {
+    opacity: 0.85;
+    cursor: wait;
+  }
+
+  .select-filter--loading {
+    position: relative;
+  }
+
   .select-options {
     list-style: none;
     padding: 0;
     margin: 0;
+  }
+
+  .select-options--grouped .select-option {
+    padding-left: 25px;
+  }
+
+  .select-option-group {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    pointer-events: none;
+  }
+
+  .select-option-group-label {
+    display: block;
+    padding: 7px 15px;
+    font-size: var(--font-size-m);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--font-line-height-100);
+    color: var(--grey-300);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .select-option {
@@ -9428,7 +10585,7 @@ const Hs = (o, e, t) => {
   .select-chip-remove {
     background: none;
     border: none;
-    padding: 0;
+    padding: 4px 0 0 0;
     cursor: pointer;
     color: var(--grey-350);
     font-size: 0.5em;
@@ -9475,28 +10632,59 @@ const Hs = (o, e, t) => {
     display: block;
     font-size: inherit;
   }
-`;
-var Qn = Object.defineProperty, ea = Object.getOwnPropertyDescriptor, Yt = (o, e, t, i) => {
-  for (var s = i > 1 ? void 0 : i ? ea(e, t) : e, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = (i ? n(e, t, s) : n(s)) || s);
-  return i && s && Qn(e, t, s), s;
+`, Ca = /* @__PURE__ */ new Set(["name", "value", "title", "label", "description", "disabled", "group"]);
+function pi(s, e, t) {
+  return e ? s.toLowerCase().includes(e.toLowerCase()) : !0;
+}
+function Bo(s, e, t, i) {
+  if (s == null || i > 2)
+    return !1;
+  if (typeof s == "number" || typeof s == "boolean")
+    return pi(String(s), e);
+  if (typeof s == "string")
+    return pi(s, e);
+  if (typeof s == "object" && !Array.isArray(s)) {
+    const o = Object.getOwnPropertyNames(s);
+    for (const r of o)
+      if (Bo(s[r], e, t, i + 1))
+        return !0;
+  }
+  return !1;
+}
+function Ea(s, e, t) {
+  const i = e.trim();
+  if (!i)
+    return !0;
+  const o = i.toLowerCase(), r = [s.name, s.title, s.label, s.description, s.value, s.group].filter((n) => n != null).map((n) => typeof n == "string" ? n : String(n));
+  for (const n of r)
+    if (pi(n, o))
+      return !0;
+  for (const n of Object.keys(s))
+    if (!Ca.has(n) && Bo(s[n], o, t.filterCaseSensitive, 0))
+      return !0;
+  return !1;
+}
+var Sa = Object.defineProperty, Aa = Object.getOwnPropertyDescriptor, Le = (s, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? Aa(e, t) : e, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = (i ? n(e, t, o) : n(o)) || o);
+  return i && o && Sa(e, t, o), o;
 };
-const Ys = "swim-option";
-class wt extends v {
+const so = "swim-option";
+class Ae extends y {
   constructor() {
-    super(...arguments), this.name = "", this._disabled = !1, this._hidden = !1;
+    super(...arguments), this.name = "", this.label = "", this.title = "", this.description = "", this.group = "", this._disabled = !1, this._hidden = !1;
   }
   get disabled() {
     return this._disabled;
   }
   set disabled(e) {
-    this._disabled = m(e);
+    this._disabled = p(e);
   }
   get hidden() {
     return this._hidden;
   }
   set hidden(e) {
-    this._hidden = m(e);
+    this._hidden = p(e);
   }
   createRenderRoot() {
     return this;
@@ -9518,27 +10706,51 @@ class wt extends v {
     e && typeof e._onSlottedOptionsChange == "function" && e._onSlottedOptionsChange();
   }
 }
-Yt([
+Le([
   a({ type: String })
-], wt.prototype, "name", 2);
-Yt([
+], Ae.prototype, "name", 2);
+Le([
   a()
-], wt.prototype, "value", 2);
-Yt([
-  a({ type: Boolean, reflect: !0 })
-], wt.prototype, "disabled", 1);
-Yt([
-  a({ type: Boolean, reflect: !0 })
-], wt.prototype, "hidden", 1);
-customElements.get(Ys) || customElements.define(Ys, wt);
-var ta = Object.defineProperty, ia = Object.getOwnPropertyDescriptor, T = (o, e, t, i) => {
-  for (var s = i > 1 ? void 0 : i ? ia(e, t) : e, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = (i ? n(e, t, s) : n(s)) || s);
-  return i && s && ta(e, t, s), s;
+], Ae.prototype, "value", 2);
+Le([
+  a({ type: String })
+], Ae.prototype, "label", 2);
+Le([
+  a({ type: String })
+], Ae.prototype, "title", 2);
+Le([
+  a({ type: String })
+], Ae.prototype, "description", 2);
+Le([
+  a({ type: String })
+], Ae.prototype, "group", 2);
+Le([
+  a({ type: Boolean, reflect: !0, converter: g })
+], Ae.prototype, "disabled", 1);
+Le([
+  a({ type: Boolean, reflect: !0, converter: g })
+], Ae.prototype, "hidden", 1);
+customElements.get(so) || customElements.define(so, Ae);
+var Ta = Object.defineProperty, Da = Object.getOwnPropertyDescriptor, k = (s, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? Da(e, t) : e, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = (i ? n(e, t, o) : n(o)) || o);
+  return i && o && Ta(e, t, o), o;
 };
-const Vs = "swim-select", Ft = class Ft extends v {
+const oo = "swim-select", St = typeof HTMLElement < "u" && typeof HTMLElement.prototype.showPopover == "function", qt = class qt extends y {
   constructor() {
-    super(), this.label = "", this.placeholder = "Select...", this.hint = "", this.emptyPlaceholder = "No options available", this.filterPlaceholder = "Filter options...", this.options = [], this._value = [], this.name = "", this.id = `swim-select-${Math.random().toString(36).substr(2, 9)}`, this._disabled = !1, this._required = !1, this.appearance = mi.legacy, this.size = bi.sm, this._withMargin = !0, this._withHint = !0, this._filterable = !0, this._multiple = !1, this._allowClear = !0, this.requiredIndicator = "*", this._slottedOptions = [], this._open = !1, this._focused = !1, this._touched = !1, this._invalid = !1, this._filterQuery = "", this._focusedIndex = -1, this._internals = this.attachInternals();
+    super(), this.label = "", this.placeholder = "Select...", this.hint = "", this.emptyPlaceholder = "No options available", this.filterPlaceholder = "Filter options...", this.filterEmptyPlaceholder = "No matches", this.filterSearchingPlaceholder = "Searching…", this._asyncFilter = !1, this.filterDebounceMs = 500, this.filterMinLength = 2, this.dropdownAlign = "start", this._loading = !1, this.options = [], this._value = [], this.name = "", this.id = `swim-select-${Math.random().toString(36).substr(2, 9)}`, this._disabled = !1, this._required = !1, this.appearance = $i.legacy, this.size = ki.sm, this._withMargin = !0, this._withHint = !0, this._filterable = !0, this._grouped = !1, this._multiple = !1, this._allowClear = !0, this.requiredIndicator = "*", this._slottedOptions = [], this._hasSlottedHint = !1, this._open = !1, this._focused = !1, this._touched = !1, this._invalid = !1, this._filterQuery = "", this._focusedIndex = -1, this._internals = this.attachInternals();
+  }
+  get asyncFilter() {
+    return this._asyncFilter;
+  }
+  set asyncFilter(e) {
+    this._asyncFilter = p(e);
+  }
+  get loading() {
+    return this._loading;
+  }
+  set loading(e) {
+    this._loading = p(e);
   }
   get value() {
     return this.multiple ? this._value : this._value[0] ?? null;
@@ -9551,43 +10763,49 @@ const Vs = "swim-select", Ft = class Ft extends v {
     return this._disabled;
   }
   set disabled(e) {
-    this._disabled = m(e);
+    this._disabled = p(e);
   }
   get required() {
     return this._required;
   }
   set required(e) {
-    this._required = m(e);
+    this._required = p(e);
   }
   get marginless() {
     return !this._withMargin;
   }
   set marginless(e) {
-    this._withMargin = !m(e);
+    this._withMargin = !p(e);
   }
   get withHint() {
     return this._withHint;
   }
   set withHint(e) {
-    this._withHint = m(e);
+    this._withHint = p(e);
   }
   get filterable() {
     return this._filterable;
   }
   set filterable(e) {
-    this._filterable = m(e);
+    this._filterable = p(e);
+  }
+  get grouped() {
+    return this._grouped;
+  }
+  set grouped(e) {
+    this._grouped = p(e);
   }
   get multiple() {
     return this._multiple;
   }
   set multiple(e) {
-    this._multiple = m(e);
+    this._multiple = p(e);
   }
   get allowClear() {
     return this._allowClear;
   }
   set allowClear(e) {
-    this._allowClear = m(e);
+    this._allowClear = p(e);
   }
   /**
    * Combined options from both the `options` property and slotted `swim-option` children.
@@ -9597,11 +10815,12 @@ const Vs = "swim-select", Ft = class Ft extends v {
     return this.options.length > 0 && this._slottedOptions.length > 0 ? [...this.options, ...this._slottedOptions] : this.options.length > 0 ? this.options : this._slottedOptions;
   }
   connectedCallback() {
-    super.connectedCallback(), this._collectSlottedOptions(), this._setupChildObserver(), this._updateActiveState();
+    super.connectedCallback(), this._collectSlottedOptions(), this._syncSlottedHintPresence(), this._setupChildObserver(), this._updateActiveState();
   }
   disconnectedCallback() {
-    var e;
-    super.disconnectedCallback(), this._removeClickOutsideListener(), (e = this._childObserver) == null || e.disconnect();
+    var t, i;
+    const e = (t = this.shadowRoot) == null ? void 0 : t.querySelector(".select-dropdown");
+    this._teardownDropdownTopLayer(e), super.disconnectedCallback(), this._removeClickOutsideListener(), (i = this._childObserver) == null || i.disconnect(), this._filterDebounceTimer !== void 0 && (clearTimeout(this._filterDebounceTimer), this._filterDebounceTimer = void 0);
   }
   /** Called by swim-option children when they connect/disconnect/update */
   _onSlottedOptionsChange() {
@@ -9610,26 +10829,38 @@ const Vs = "swim-select", Ft = class Ft extends v {
   _collectSlottedOptions() {
     const e = Array.from(this.querySelectorAll(":scope > swim-option"));
     this._slottedOptions = e.filter((t) => !t.hasAttribute("hidden")).map((t) => {
-      const i = t.getAttribute("name") || "", s = t.getAttribute("value");
+      const i = t.getAttribute("name") || "", o = t.getAttribute("value"), r = t.getAttribute("group");
       return {
         name: i,
-        value: s !== null ? s : i,
-        disabled: t.hasAttribute("disabled")
+        value: o !== null ? o : i,
+        disabled: t.hasAttribute("disabled"),
+        ...r != null && r.trim() !== "" ? { group: r.trim() } : {}
       };
     });
   }
+  _syncSlottedHintPresence() {
+    const e = Array.from(this.children).some((t) => t.slot === "hint");
+    e !== this._hasSlottedHint && (this._hasSlottedHint = e);
+  }
   _setupChildObserver() {
     this._childObserver = new MutationObserver(() => {
-      this._collectSlottedOptions();
-    }), this._childObserver.observe(this, { childList: !0, subtree: !1 });
+      this._collectSlottedOptions(), this._syncSlottedHintPresence();
+    }), this._childObserver.observe(this, {
+      childList: !0,
+      subtree: !1,
+      attributes: !0,
+      attributeFilter: ["slot"]
+    });
   }
   updated(e) {
-    super.updated(e), e.has("value") && (this._updateActiveState(), this._validate()), e.has("_open") && (this._open ? (this.setAttribute("open", ""), this._addClickOutsideListener(), setTimeout(() => {
-      this.filterable && this.filterInput && this.filterInput.focus();
-    }, 100)) : (this.removeAttribute("open"), this._removeClickOutsideListener(), this._filterQuery = "", this._focusedIndex = -1));
+    super.updated(e), e.has("disabled") && (this.disabled && (this._focused = !1, this.removeAttribute("focused"), this._open && this._closeDropdown()), this._updateActiveState()), e.has("value") && (this._updateActiveState(), this._validate()), e.has("loading") && e.get("loading") === !0 && !this.loading && this._open && this.filterable && !this.disabled && this.updateComplete.then(() => {
+      this.filterInput && document.activeElement !== this.filterInput && this.filterInput.focus({ preventScroll: !0 });
+    }), e.has("_open") && (this._open ? (this.setAttribute("open", ""), this._addClickOutsideListener(), this.updateComplete.then(() => this._layoutOpenDropdownPanel()), setTimeout(() => {
+      this.filterable && this.filterInput && !this.disabled && this.filterInput.focus();
+    }, 100)) : (this.removeAttribute("open"), this._removeClickOutsideListener(), this._filterQuery = "", this._focusedIndex = -1, this._filterDebounceTimer !== void 0 && (clearTimeout(this._filterDebounceTimer), this._filterDebounceTimer = void 0))), this._open && (e.has("options") || e.has("loading")) && !e.has("_open") && this.updateComplete.then(() => this._layoutOpenDropdownPanel());
   }
   render() {
-    const e = this._value.length > 0, t = this._getFilteredOptions(), i = this.allowClear && e && !this.disabled;
+    const e = this._value.length > 0, t = this._getFilteredOptions(), i = this.allowClear && e && !this.disabled, o = t.length > 0 && !this.loading, r = this.withHint && (this.hint.trim() !== "" || this._hasSlottedHint);
     return c`
       <div class="select-wrap">
         <div class="select-flex-wrap">
@@ -9639,6 +10870,7 @@ const Vs = "swim-select", Ft = class Ft extends v {
                 class="select-input"
                 part="select"
                 role="combobox"
+                aria-disabled="${this.disabled ? "true" : u}"
                 aria-expanded="${this._open}"
                 aria-haspopup="listbox"
                 aria-controls="${this.id}-listbox"
@@ -9664,6 +10896,7 @@ const Vs = "swim-select", Ft = class Ft extends v {
                     type="button"
                     class="select-caret"
                     aria-label="Toggle dropdown"
+                    ?disabled="${this.disabled}"
                     @click="${this._handleToggle}"
                   >
                     <swim-icon font-icon="chevron-bold-down"></swim-icon>
@@ -9679,33 +10912,47 @@ const Vs = "swim-select", Ft = class Ft extends v {
         <div class="select-underline">
           <div class="underline-fill"></div>
         </div>
-        <div class="select-hint ${this.withHint ? "" : "hidden"}">
-          <slot name="hint">${this.hint}</slot>
-        </div>
-
+        ${r ? c`
+              <div class="select-hint">
+                <slot name="hint">${this.hint}</slot>
+              </div>
+            ` : u}
         ${this._open ? c`
-              <div class="select-dropdown swim-scroll" part="dropdown" role="listbox" id="${this.id}-listbox">
+              <div
+                class="select-dropdown swim-scroll"
+                part="dropdown"
+                role="listbox"
+                id="${this.id}-listbox"
+                popover="${St ? "manual" : u}"
+              >
                 ${this.filterable ? c`
-                      <div class="select-filter">
+                      <div
+                        class="select-filter ${this.loading ? "select-filter--loading" : ""}"
+                        aria-busy="${this.loading}"
+                      >
                         <input
                           type="text"
                           class="select-filter-input"
                           placeholder="${this.filterPlaceholder}"
+                          ?disabled="${this.disabled}"
+                          ?readonly="${this.loading}"
                           .value="${this._filterQuery}"
                           @input="${this._handleFilterInput}"
                           @keydown="${this._handleFilterKeyDown}"
                         />
                       </div>
                     ` : u}
-                ${t.length > 0 ? c`
-                      <ul class="select-options">
-                        ${Xn(
+                ${o ? c`
+                      <ul
+                        class="select-options ${this.grouped && this._listHasGroupHeadings(t) ? "select-options--grouped" : ""}"
+                      >
+                        ${this.grouped ? this._renderGroupedOptionRows(t) : Io(
       t,
-      (s) => this._getOptionValue(s),
-      (s, r) => this._renderOption(s, r)
+      (n) => this._getOptionValue(n),
+      (n, l) => this._renderOption(n, l)
     )}
                       </ul>
-                    ` : c` <div class="select-empty">${this.emptyPlaceholder}</div> `}
+                    ` : c`<div class="select-empty">${this._emptyDropdownMessage()}</div>`}
               </div>
             ` : u}
       </div>
@@ -9722,20 +10969,49 @@ const Vs = "swim-select", Ft = class Ft extends v {
       })}
       `;
     {
-      const e = this._allOptions.find((t) => this._getOptionValue(t) === this._value[0]);
-      return c`${(e == null ? void 0 : e.name) || this._value[0]}`;
+      const e = this._allOptions.find((i) => this._getOptionValue(i) === this._value[0]), t = e ? this._getOptionLabel(e) : String(this._value[0]);
+      return c`${t}`;
     }
   }
+  _getOptionLabel(e) {
+    const t = e.title ?? e.label;
+    return t != null && String(t).length > 0 ? String(t) : e.name;
+  }
+  /** Non-empty section title from `group`. */
+  _groupHeading(e) {
+    const t = e.group;
+    return t != null && String(t).trim() !== "" ? String(t).trim() : "";
+  }
+  _listHasGroupHeadings(e) {
+    return e.some((t) => this._groupHeading(t).length > 0);
+  }
+  _renderGroupedOptionRows(e) {
+    let t = "";
+    const i = [];
+    for (let o = 0; o < e.length; o++) {
+      const r = e[o], n = this._groupHeading(r);
+      n ? n !== t && (i.push(c`
+            <li class="select-option-group" role="presentation">
+              <span class="select-option-group-label">${n}</span>
+            </li>
+          `), t = n) : t = "", i.push(this._renderOption(r, o));
+    }
+    return i;
+  }
+  _emptyDropdownMessage() {
+    return this.loading ? this.filterSearchingPlaceholder : this.asyncFilter && this._filterQuery.trim().length < this.filterMinLength ? this.emptyPlaceholder : this._allOptions.length === 0 ? this.asyncFilter && this._filterQuery.trim().length > 0 ? this.filterEmptyPlaceholder : this.emptyPlaceholder : this.filterEmptyPlaceholder;
+  }
   _renderChip(e) {
+    const t = this._getOptionLabel(e);
     return c`
       <div class="select-chip">
-        <span class="select-chip-label">${e.name}</span>
+        <span class="select-chip-label">${t}</span>
         ${this.disabled ? u : c`
               <button
                 type="button"
                 class="select-chip-remove"
-                aria-label="Remove ${e.name}"
-                @click="${(t) => this._removeChip(t, e)}"
+                aria-label="Remove ${t}"
+                @click="${(i) => this._removeChip(i, e)}"
               >
                 <swim-icon font-icon="x"></swim-icon>
               </button>
@@ -9744,19 +11020,19 @@ const Vs = "swim-select", Ft = class Ft extends v {
     `;
   }
   _renderOption(e, t) {
-    const i = this._getOptionValue(e), s = this._isSelected(i), r = t === this._focusedIndex;
+    const i = this._getOptionValue(e), o = this._isSelected(i), r = t === this._focusedIndex;
     return c`
       <li
         class="select-option"
         role="option"
-        ?selected="${s}"
+        ?selected="${o}"
         ?focused="${r}"
         ?disabled="${e.disabled}"
-        aria-selected="${s}"
+        aria-selected="${o}"
         @click="${() => this._handleOptionClick(e)}"
         @mouseenter="${() => this._focusedIndex = t}"
       >
-        ${e.name}
+        ${this._getOptionLabel(e)}
       </li>
     `;
   }
@@ -9770,31 +11046,51 @@ const Vs = "swim-select", Ft = class Ft extends v {
     e.stopPropagation(), this.value = this.multiple ? [] : null, this._dispatchChange(), this._validate();
   }
   _handleFocus() {
-    this._focused = !0, this.setAttribute("focused", "");
+    this.disabled || (this._focused = !0, this.setAttribute("focused", ""));
   }
   _handleBlur() {
     this._focused = !1, this.removeAttribute("focused"), this._touched || (this._touched = !0, this.setAttribute("touched", "")), this._validate();
   }
   _handleKeyDown(e) {
-    switch (e.key) {
-      case "Enter":
-      case " ":
-        this._open || (e.preventDefault(), this._toggleDropdown());
-        break;
-      case "Escape":
-        this._open && (e.preventDefault(), this._closeDropdown());
-        break;
-      case "ArrowDown":
-        e.preventDefault(), this._open ? this._moveFocus(1) : this._openDropdown();
-        break;
-      case "ArrowUp":
-        e.preventDefault(), this._open && this._moveFocus(-1);
-        break;
-    }
+    if (!this.disabled)
+      switch (e.key) {
+        case "Enter":
+        case " ":
+          this._open || (e.preventDefault(), this._toggleDropdown());
+          break;
+        case "Escape":
+          this._open && (e.preventDefault(), this._closeDropdown());
+          break;
+        case "ArrowDown":
+          e.preventDefault(), this._open ? this._moveFocus(1) : this._openDropdown();
+          break;
+        case "ArrowUp":
+          e.preventDefault(), this._open && this._moveFocus(-1);
+          break;
+      }
+  }
+  _emitFilterChange(e) {
+    this.dispatchEvent(
+      new CustomEvent("filter-change", {
+        detail: { query: e },
+        bubbles: !1,
+        composed: !1
+      })
+    );
   }
   _handleFilterInput(e) {
     const t = e.target;
-    this._filterQuery = t.value, this._focusedIndex = 0;
+    if (this._filterQuery = t.value, this._focusedIndex = 0, this.asyncFilter) {
+      this._filterDebounceTimer !== void 0 && (clearTimeout(this._filterDebounceTimer), this._filterDebounceTimer = void 0);
+      const i = this._filterQuery.trim();
+      if (i.length < this.filterMinLength) {
+        this._emitFilterChange("");
+        return;
+      }
+      this._filterDebounceTimer = window.setTimeout(() => {
+        this._filterDebounceTimer = void 0, this._emitFilterChange(i);
+      }, this.filterDebounceMs);
+    }
   }
   _handleFilterKeyDown(e) {
     var t;
@@ -9819,36 +11115,37 @@ const Vs = "swim-select", Ft = class Ft extends v {
     if (e.disabled) return;
     const t = this._getOptionValue(e);
     if (this.multiple) {
-      const i = [...this._value], s = i.indexOf(t);
-      s > -1 ? i.splice(s, 1) : i.push(t), this.value = i;
+      const i = [...this._value], o = i.indexOf(t);
+      o > -1 ? i.splice(o, 1) : i.push(t), this.value = i;
     } else
       this.value = t, this._closeDropdown();
     this._dispatchChange(), this._validate();
   }
   _removeChip(e, t) {
     e.stopPropagation();
-    const i = this._getOptionValue(t), s = this._value.filter((r) => r !== i);
-    this.value = s, this._dispatchChange(), this._validate();
+    const i = this._getOptionValue(t), o = this._value.filter((r) => r !== i);
+    this.value = o, this._dispatchChange(), this._validate();
   }
   _toggleDropdown() {
     this._open ? this._closeDropdown() : this._openDropdown();
   }
   _openDropdown() {
-    this.disabled || (this._open = !0, this._focusedIndex = 0, this.dispatchEvent(new Event("open", { bubbles: !0, composed: !0 })));
+    this.disabled || (this._open = !0, this._focusedIndex = 0, this.dispatchEvent(new Event("dropdown-open", { bubbles: !1, composed: !1 })));
   }
   _closeDropdown() {
-    this._open = !1, this.dispatchEvent(new Event("close", { bubbles: !0, composed: !0 }));
+    var t;
+    const e = (t = this.shadowRoot) == null ? void 0 : t.querySelector(".select-dropdown");
+    this._teardownDropdownTopLayer(e), this._open = !1, this.dispatchEvent(new Event("dropdown-close", { bubbles: !1, composed: !1 }));
   }
   _moveFocus(e) {
     const i = this._getFilteredOptions().length - 1;
-    let s = this._focusedIndex + e;
-    s < 0 ? s = i : s > i && (s = 0), this._focusedIndex = s;
+    let o = this._focusedIndex + e;
+    o < 0 ? o = i : o > i && (o = 0), this._focusedIndex = o;
   }
   _getFilteredOptions() {
-    if (!this._filterQuery)
-      return this._allOptions;
-    const e = this._filterQuery.toLowerCase();
-    return this._allOptions.filter((t) => t.name.toLowerCase().includes(e));
+    return this.asyncFilter ? this._allOptions : this._filterQuery.trim() ? this._allOptions.filter(
+      (e) => Ea(e, this._filterQuery, { filterCaseSensitive: !1 })
+    ) : this._allOptions;
   }
   _getOptionValue(e) {
     return e.value !== void 0 ? e.value : e.name;
@@ -9860,8 +11157,8 @@ const Vs = "swim-select", Ft = class Ft extends v {
     this.dispatchEvent(
       new CustomEvent("change", {
         detail: { value: this.value },
-        bubbles: !0,
-        composed: !0
+        bubbles: !1,
+        composed: !1
       })
     );
   }
@@ -9875,13 +11172,68 @@ const Vs = "swim-select", Ft = class Ft extends v {
   }
   _addClickOutsideListener() {
     this._clickOutsideListener = (e) => {
-      this.contains(e.target) || this._closeDropdown();
+      e.composedPath().includes(this) || this._closeDropdown();
     }, setTimeout(() => {
       document.addEventListener("click", this._clickOutsideListener);
     }, 0);
   }
   _removeClickOutsideListener() {
     this._clickOutsideListener && (document.removeEventListener("click", this._clickOutsideListener), this._clickOutsideListener = void 0);
+  }
+  /** Manual popover + fixed geometry so the list escapes overflow/transform (e.g. medium dialog). */
+  _layoutOpenDropdownPanel() {
+    var t;
+    if (!this._open || !St) return;
+    const e = (t = this.shadowRoot) == null ? void 0 : t.querySelector(".select-dropdown");
+    if (!(!e || !this.selectInput || typeof e.showPopover != "function")) {
+      this._applyDropdownPanelGeometry(e, this.selectInput);
+      try {
+        e.showPopover();
+      } catch {
+      }
+      this._addDropdownScrollListener();
+    }
+  }
+  _applyDropdownPanelGeometry(e, t) {
+    const i = t.getBoundingClientRect(), o = this.getBoundingClientRect(), r = 8, n = Math.min(300, Math.max(0, window.innerHeight - i.bottom - r - 8)), l = this.dropdownAlign === "center", d = l ? o.width : i.width;
+    let h = l ? o.left : i.left;
+    l && (h = Math.min(Math.max(h, 8), window.innerWidth - d - 8)), e.style.setProperty("inset", "auto"), e.style.setProperty("margin", "0"), e.style.setProperty("height", "auto"), e.style.setProperty("position", "fixed"), e.style.setProperty("left", `${h}px`), e.style.setProperty("top", `${i.bottom + r}px`), e.style.setProperty("width", `${d}px`), e.style.setProperty("max-height", `${n}px`), e.style.setProperty("z-index", "2147483646"), e.style.setProperty("animation", "none"), e.style.setProperty("transform", "none");
+  }
+  _clearDropdownPanelGeometry(e) {
+    [
+      "inset",
+      "margin",
+      "height",
+      "position",
+      "left",
+      "top",
+      "width",
+      "max-height",
+      "z-index",
+      "animation",
+      "transform"
+    ].forEach((t) => e.style.removeProperty(t));
+  }
+  _teardownDropdownTopLayer(e) {
+    var t;
+    if (this._removeDropdownScrollListener(), !(!e || !St)) {
+      try {
+        (t = e.hidePopover) == null || t.call(e);
+      } catch {
+      }
+      this._clearDropdownPanelGeometry(e);
+    }
+  }
+  _addDropdownScrollListener() {
+    !St || this._dropdownScrollOrResizeListener || (this._dropdownScrollOrResizeListener = () => {
+      var t;
+      if (!this._open) return;
+      const e = (t = this.shadowRoot) == null ? void 0 : t.querySelector(".select-dropdown");
+      e && this.selectInput && this._applyDropdownPanelGeometry(e, this.selectInput);
+    }, window.addEventListener("scroll", this._dropdownScrollOrResizeListener, !0), window.addEventListener("resize", this._dropdownScrollOrResizeListener));
+  }
+  _removeDropdownScrollListener() {
+    this._dropdownScrollOrResizeListener && (window.removeEventListener("scroll", this._dropdownScrollOrResizeListener, !0), window.removeEventListener("resize", this._dropdownScrollOrResizeListener), this._dropdownScrollOrResizeListener = void 0);
   }
   // Form API
   formResetCallback() {
@@ -9891,98 +11243,125 @@ const Vs = "swim-select", Ft = class Ft extends v {
     this.disabled = e;
   }
 };
-Ft.styles = [x, _t, Jn], Ft.formAssociated = !0;
-let E = Ft;
-T([
-  R(".select-input")
-], E.prototype, "selectInput", 2);
-T([
-  R(".select-filter-input")
-], E.prototype, "filterInput", 2);
-T([
+qt.styles = [C, Et, ka], qt.formAssociated = !0;
+let x = qt;
+k([
+  N(".select-input")
+], x.prototype, "selectInput", 2);
+k([
+  N(".select-filter-input")
+], x.prototype, "filterInput", 2);
+k([
   a({ type: String })
-], E.prototype, "label", 2);
-T([
+], x.prototype, "label", 2);
+k([
   a({ type: String })
-], E.prototype, "placeholder", 2);
-T([
+], x.prototype, "placeholder", 2);
+k([
   a({ type: String })
-], E.prototype, "hint", 2);
-T([
+], x.prototype, "hint", 2);
+k([
   a({ type: String, attribute: "empty-placeholder" })
-], E.prototype, "emptyPlaceholder", 2);
-T([
+], x.prototype, "emptyPlaceholder", 2);
+k([
   a({ type: String, attribute: "filter-placeholder" })
-], E.prototype, "filterPlaceholder", 2);
-T([
+], x.prototype, "filterPlaceholder", 2);
+k([
+  a({ type: String, attribute: "filter-empty-placeholder" })
+], x.prototype, "filterEmptyPlaceholder", 2);
+k([
+  a({ type: String, attribute: "filter-searching-placeholder" })
+], x.prototype, "filterSearchingPlaceholder", 2);
+k([
+  a({ type: Boolean, attribute: "async-filter", converter: g })
+], x.prototype, "asyncFilter", 1);
+k([
+  a({ type: Number, attribute: "filter-debounce-ms" })
+], x.prototype, "filterDebounceMs", 2);
+k([
+  a({ type: Number, attribute: "filter-min-length" })
+], x.prototype, "filterMinLength", 2);
+k([
+  a({ type: String, attribute: "dropdown-align" })
+], x.prototype, "dropdownAlign", 2);
+k([
+  a({ type: Boolean, reflect: !0, converter: g })
+], x.prototype, "loading", 1);
+k([
   a({ type: Array })
-], E.prototype, "options", 2);
-T([
+], x.prototype, "options", 2);
+k([
   a()
-], E.prototype, "value", 1);
-T([
+], x.prototype, "value", 1);
+k([
   a({ type: String })
-], E.prototype, "name", 2);
-T([
+], x.prototype, "name", 2);
+k([
   a({ type: String })
-], E.prototype, "id", 2);
-T([
-  a({ type: Boolean, reflect: !0 })
-], E.prototype, "disabled", 1);
-T([
-  a({ type: Boolean, reflect: !0 })
-], E.prototype, "required", 1);
-T([
+], x.prototype, "id", 2);
+k([
+  a({ type: Boolean, reflect: !0, converter: g })
+], x.prototype, "disabled", 1);
+k([
+  a({ type: Boolean, reflect: !0, converter: g })
+], x.prototype, "required", 1);
+k([
   a({ type: String, reflect: !0 })
-], E.prototype, "appearance", 2);
-T([
+], x.prototype, "appearance", 2);
+k([
   a({ type: String, reflect: !0 })
-], E.prototype, "size", 2);
-T([
-  a({ type: Boolean, reflect: !0, attribute: "marginless" })
-], E.prototype, "marginless", 1);
-T([
-  a({ type: Boolean })
-], E.prototype, "withHint", 1);
-T([
-  a({ type: Boolean })
-], E.prototype, "filterable", 1);
-T([
-  a({ type: Boolean, reflect: !0 })
-], E.prototype, "multiple", 1);
-T([
-  a({ type: Boolean, attribute: "allow-clear" })
-], E.prototype, "allowClear", 1);
-T([
+], x.prototype, "size", 2);
+k([
+  a({ type: Boolean, reflect: !0, attribute: "marginless", converter: g })
+], x.prototype, "marginless", 1);
+k([
+  a({ type: Boolean, converter: Q })
+], x.prototype, "withHint", 1);
+k([
+  a({ type: Boolean, converter: Q })
+], x.prototype, "filterable", 1);
+k([
+  a({ type: Boolean, reflect: !0, converter: g })
+], x.prototype, "grouped", 1);
+k([
+  a({ type: Boolean, reflect: !0, converter: g })
+], x.prototype, "multiple", 1);
+k([
+  a({ type: Boolean, attribute: "allow-clear", converter: Q })
+], x.prototype, "allowClear", 1);
+k([
   a({ type: String, attribute: "required-indicator" })
-], E.prototype, "requiredIndicator", 2);
-T([
-  g()
-], E.prototype, "_slottedOptions", 2);
-T([
-  g()
-], E.prototype, "_open", 2);
-T([
-  g()
-], E.prototype, "_focused", 2);
-T([
-  g()
-], E.prototype, "_touched", 2);
-T([
-  g()
-], E.prototype, "_invalid", 2);
-T([
-  g()
-], E.prototype, "_filterQuery", 2);
-T([
-  g()
-], E.prototype, "_focusedIndex", 2);
-customElements.get(Vs) || customElements.define(Vs, E);
-const sa = 2, oa = 4, ra = 16, na = w`
+], x.prototype, "requiredIndicator", 2);
+k([
+  b()
+], x.prototype, "_slottedOptions", 2);
+k([
+  b()
+], x.prototype, "_hasSlottedHint", 2);
+k([
+  b()
+], x.prototype, "_open", 2);
+k([
+  b()
+], x.prototype, "_focused", 2);
+k([
+  b()
+], x.prototype, "_touched", 2);
+k([
+  b()
+], x.prototype, "_invalid", 2);
+k([
+  b()
+], x.prototype, "_filterQuery", 2);
+k([
+  b()
+], x.prototype, "_focusedIndex", 2);
+customElements.get(oo) || customElements.define(oo, x);
+const za = 2, Ma = 4, Oa = 16, Pa = v`
   :host {
-    --slider-track-height: ${sa}px;
-    --slider-fill-height: ${oa}px;
-    --slider-thumb-size: ${ra}px;
+    --slider-track-height: ${za}px;
+    --slider-fill-height: ${Ma}px;
+    --slider-thumb-size: ${Oa}px;
     display: inline-block;
   }
 
@@ -10157,71 +11536,71 @@ const sa = 2, oa = 4, ra = 16, na = w`
     transform-origin: top left;
   }
 `;
-var aa = Object.defineProperty, la = Object.getOwnPropertyDescriptor, V = (o, e, t, i) => {
-  for (var s = i > 1 ? void 0 : i ? la(e, t) : e, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = (i ? n(e, t, s) : n(s)) || s);
-  return i && s && aa(e, t, s), s;
+var Ia = Object.defineProperty, La = Object.getOwnPropertyDescriptor, G = (s, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? La(e, t) : e, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = (i ? n(e, t, o) : n(o)) || o);
+  return i && o && Ia(e, t, o), o;
 };
-let ca = 0;
-const Ns = "swim-slider", Bt = class Bt extends v {
+let Fa = 0;
+const ro = "swim-slider", Gt = class Gt extends y {
   constructor() {
-    super(), this.id = `swim-slider-${++ca}`, this._min = 0, this._max = 100, this._step = 1, this.orientation = "horizontal", this._filled = !1, this._multiple = !1, this._disabled = !1, this._showTicks = !1, this.ariaLabel = "", this._values = [0], this._active = [], this._internals = this.attachInternals();
+    super(), this.id = `swim-slider-${++Fa}`, this._min = 0, this._max = 100, this._step = 1, this.orientation = "horizontal", this._filled = !1, this._multiple = !1, this._disabled = !1, this._showTicks = !1, this.ariaLabel = "", this._values = [0], this._active = [], this._internals = this.attachInternals();
   }
   get min() {
     return this._min;
   }
   set min(e) {
-    this._min = A(e, 0);
+    this._min = z(e, 0);
   }
   get max() {
     return this._max;
   }
   set max(e) {
-    this._max = A(e, 100);
+    this._max = z(e, 100);
   }
   get step() {
     return this._step;
   }
   set step(e) {
-    this._step = A(e, 1);
+    this._step = z(e, 1);
   }
   get filled() {
     return this._filled;
   }
   set filled(e) {
-    this._filled = m(e);
+    this._filled = p(e);
   }
   get multiple() {
     return this._multiple;
   }
   set multiple(e) {
-    this._multiple = m(e);
+    this._multiple = p(e);
   }
   get disabled() {
     return this._disabled;
   }
   set disabled(e) {
-    this._disabled = m(e);
+    this._disabled = p(e);
   }
   get showTicks() {
     return this._showTicks;
   }
   set showTicks(e) {
-    this._showTicks = m(e);
+    this._showTicks = p(e);
   }
   get tickStep() {
     return this._tickStep ?? this._step;
   }
   set tickStep(e) {
-    this._tickStep = e != null ? A(e, this._step) : void 0;
+    this._tickStep = e != null ? z(e, this._step) : void 0;
   }
   get value() {
     return this._values.length ? this.multiple ? [...this._values].sort((e, t) => e - t).join(",") : String(this._values[0]) : String(this._min);
   }
   set value(e) {
-    const t = e != null ? String(e) : "", s = (t ? t.split(",").map((n) => A(n.trim(), this._min)) : [this._min]).map((n) => Math.max(this._min, Math.min(this._max, n)));
+    const t = e != null ? String(e) : "", o = (t ? t.split(",").map((n) => z(n.trim(), this._min)) : [this._min]).map((n) => Math.max(this._min, Math.min(this._max, n)));
     let r;
-    this.multiple ? r = s.length >= 2 ? s : s.length === 1 ? [s[0], this._max] : [this._min, this._max] : r = s.slice(0, 1), (r.length !== this._values.length || r.some((n, l) => n !== this._values[l])) && (this._values = r, this._syncFormValue());
+    this.multiple ? r = o.length >= 2 ? o : o.length === 1 ? [o[0], this._max] : [this._min, this._max] : r = o.slice(0, 1), (r.length !== this._values.length || r.some((n, l) => n !== this._values[l])) && (this._values = r, this._syncFormValue());
   }
   connectedCallback() {
     super.connectedCallback(), (this._values.length === 0 || this._values.length === 1 && this._values[0] === 0 && this._min !== 0) && (this._values = this.multiple ? [this._min, this._max] : [this._min], this._syncFormValue());
@@ -10243,10 +11622,10 @@ const Ns = "swim-slider", Bt = class Bt extends v {
   }
   get _fill() {
     if (!this.filled) return null;
-    const e = this._percents, t = this.multiple ? Math.min(...e) : 0, s = (this.multiple ? Math.max(...e) : e[0]) - t;
+    const e = this._percents, t = this.multiple ? Math.min(...e) : 0, o = (this.multiple ? Math.max(...e) : e[0]) - t;
     return {
       left: `${t}%`,
-      width: `${s}%`
+      width: `${o}%`
     };
   }
   get _tickStepValue() {
@@ -10258,17 +11637,17 @@ const Ns = "swim-slider", Bt = class Bt extends v {
     let i = this._min;
     for (; i <= this._max; )
       t.push(i), i += e;
-    const s = this._max - this._min || 1;
+    const o = this._max - this._min || 1;
     return t.map((r) => {
-      const n = 100 * (r - this._min) / s;
+      const n = 100 * (r - this._min) / o;
       return { left: `calc(${n}% - ${n / 100 - 0.5}em)` };
     });
   }
   _setValue(e, t) {
-    const i = A(e, this._min), s = Math.max(this._min, Math.min(this._max, i));
-    if (this._values[t] !== s) {
+    const i = z(e, this._min), o = Math.max(this._min, Math.min(this._max, i));
+    if (this._values[t] !== o) {
       const r = [...this._values];
-      r[t] = s, this._values = r, this._syncFormValue(), this._emitChange();
+      r[t] = o, this._values = r, this._syncFormValue(), this._emitChange();
     }
   }
   _onChange(e) {
@@ -10279,8 +11658,8 @@ const Ns = "swim-slider", Bt = class Bt extends v {
     this.dispatchEvent(
       new CustomEvent("change", {
         detail: { value: this.multiple ? e : Number(e), percent: t },
-        bubbles: !0,
-        composed: !0
+        bubbles: !1,
+        composed: !1
       })
     );
   }
@@ -10326,7 +11705,7 @@ const Ns = "swim-slider", Bt = class Bt extends v {
                   ></span>
                 ` : ""}
             ${this._values.map((t, i) => {
-      const s = this._thumbs[i], r = this._active[i], n = `${this.id}-${i}`, l = this.ariaLabel ? `${this.ariaLabel}${this.multiple ? ` (thumb ${i + 1})` : ""}` : void 0;
+      const o = this._thumbs[i], r = this._active[i], n = `${this.id}-${i}`, l = this.ariaLabel ? `${this.ariaLabel}${this.multiple ? ` (thumb ${i + 1})` : ""}` : void 0;
       return c`
                 <input
                   type="range"
@@ -10350,7 +11729,7 @@ const Ns = "swim-slider", Bt = class Bt extends v {
                 />
                 <div
                   class="swim-slider__thumb ${r ? "swim-slider__thumb--active" : ""}"
-                  style="${s ? `left: ${s.left}` : ""}"
+                  style="${o ? `left: ${o.left}` : ""}"
                   aria-hidden="true"
                   part="thumb"
                 ></div>
@@ -10362,52 +11741,52 @@ const Ns = "swim-slider", Bt = class Bt extends v {
     `;
   }
 };
-Bt.styles = [x, na], Bt.formAssociated = !0;
-let L = Bt;
-V([
+Gt.styles = [C, Pa], Gt.formAssociated = !0;
+let V = Gt;
+G([
   a({ type: String })
-], L.prototype, "id", 2);
-V([
+], V.prototype, "id", 2);
+G([
   a({ type: Number })
-], L.prototype, "min", 1);
-V([
+], V.prototype, "min", 1);
+G([
   a({ type: Number })
-], L.prototype, "max", 1);
-V([
+], V.prototype, "max", 1);
+G([
   a({ type: Number })
-], L.prototype, "step", 1);
-V([
+], V.prototype, "step", 1);
+G([
   a({ type: String, reflect: !0 })
-], L.prototype, "orientation", 2);
-V([
-  a({ type: Boolean, reflect: !0 })
-], L.prototype, "filled", 1);
-V([
-  a({ type: Boolean, reflect: !0 })
-], L.prototype, "multiple", 1);
-V([
-  a({ type: Boolean, reflect: !0 })
-], L.prototype, "disabled", 1);
-V([
-  a({ type: Boolean, attribute: "show-ticks" })
-], L.prototype, "showTicks", 1);
-V([
+], V.prototype, "orientation", 2);
+G([
+  a({ type: Boolean, reflect: !0, converter: g })
+], V.prototype, "filled", 1);
+G([
+  a({ type: Boolean, reflect: !0, converter: g })
+], V.prototype, "multiple", 1);
+G([
+  a({ type: Boolean, reflect: !0, converter: g })
+], V.prototype, "disabled", 1);
+G([
+  a({ type: Boolean, attribute: "show-ticks", converter: g })
+], V.prototype, "showTicks", 1);
+G([
   a({ type: Number, attribute: "tick-step" })
-], L.prototype, "tickStep", 1);
-V([
+], V.prototype, "tickStep", 1);
+G([
   a({ type: String, attribute: "aria-label" })
-], L.prototype, "ariaLabel", 2);
-V([
+], V.prototype, "ariaLabel", 2);
+G([
   a({ type: String })
-], L.prototype, "value", 1);
-V([
-  g()
-], L.prototype, "_values", 2);
-V([
-  g()
-], L.prototype, "_active", 2);
-customElements.get(Ns) || customElements.define(Ns, L);
-const da = w`
+], V.prototype, "value", 1);
+G([
+  b()
+], V.prototype, "_values", 2);
+G([
+  b()
+], V.prototype, "_active", 2);
+customElements.get(ro) || customElements.define(ro, V);
+const Ba = v`
   :host {
     display: flex;
     height: 100%;
@@ -10426,33 +11805,33 @@ const da = w`
   slot {
     display: contents;
   }
-`, ha = [x, da];
-var Ne = /* @__PURE__ */ ((o) => (o.Row = "row", o.Column = "column", o))(Ne || {});
-function Ze(o) {
-  const e = String(o).indexOf("calc") > -1;
-  return String(o).indexOf("%") > -1 && !e;
+`, Ra = [C, Ba];
+var Je = /* @__PURE__ */ ((s) => (s.Row = "row", s.Column = "column", s))(Je || {});
+function ot(s) {
+  const e = String(s).indexOf("calc") > -1;
+  return String(s).indexOf("%") > -1 && !e;
 }
-function re(o) {
-  return typeof o == "string" ? Number(o.replace(/%/g, "").replace(/px/g, "").trim()) : o;
+function ue(s) {
+  return typeof s == "string" ? Number(s.replace(/%/g, "").replace(/px/g, "").trim()) : s;
 }
-function Co(o, e, t, i, s, r) {
-  let n = o ? Ze(o) ? re(o) : re(o) / r : 0, l = e ? Ze(e) ? re(e) : re(e) / r : 100;
-  return n = Math.max(n, i === "0" ? s : 0), l = Math.min(l, t === "0" ? s : 100), [n, l];
+function Ro(s, e, t, i, o, r) {
+  let n = s ? ot(s) ? ue(s) : ue(s) / r : 0, l = e ? ot(e) ? ue(e) : ue(e) / r : 100;
+  return n = Math.max(n, i === "0" ? o : 0), l = Math.min(l, t === "0" ? o : 100), [n, l];
 }
-function Us(o, e, t) {
-  const [i, s, r] = o.currentFlexParts, n = Ze(r), l = re(r), d = o.initialFlexParts[2], h = Ze(d) ? re(d) : re(d) / t, _ = n ? l * t : l;
-  let p = _ + e, b = p / t;
-  const [f, D] = Co(o.minBasis, o.maxBasis, i, s, h, t);
-  return b = Math.max(b, f), b = Math.min(b, D), p = b * t, o.updateBasis(n ? b + "%" : p + "px"), p - _;
+function no(s, e, t) {
+  const [i, o, r] = s.currentFlexParts, n = ot(r), l = ue(r), d = s.initialFlexParts[2], h = ot(d) ? ue(d) : ue(d) / t, w = n ? l * t : l;
+  let m = w + e, f = m / t;
+  const [_, O] = Ro(s.minBasis, s.maxBasis, i, o, h, t);
+  return f = Math.max(f, _), f = Math.min(f, O), m = f * t, s.updateBasis(n ? f + "%" : m + "px"), m - w;
 }
-var ua = Object.defineProperty, Eo = (o, e, t, i) => {
-  for (var s = void 0, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = n(e, t, s) || s);
-  return s && ua(e, t, s), s;
+var Ha = Object.defineProperty, Ho = (s, e, t, i) => {
+  for (var o = void 0, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = n(e, t, o) || o);
+  return o && Ha(e, t, o), o;
 };
-const qs = "swim-split", Pi = class Pi extends v {
+const ao = "swim-split", qi = class qi extends y {
   constructor() {
-    super(...arguments), this.direction = Ne.Row, this._areas = [], this._handles = [], this._handleListeners = /* @__PURE__ */ new Map(), this._onSlotChange = () => {
+    super(...arguments), this.direction = Je.Row, this._areas = [], this._handles = [], this._handleListeners = /* @__PURE__ */ new Map(), this._onSlotChange = () => {
       this._collectAreasAndHandles(), this._removeHandleListeners(), this._attachHandleListeners();
     };
   }
@@ -10487,8 +11866,8 @@ const qs = "swim-split", Pi = class Pi extends v {
   }
   _attachHandleListeners() {
     this._handles.forEach((e) => {
-      const t = (s) => {
-        const r = s.detail;
+      const t = (o) => {
+        const r = o.detail;
         r && this._onDrag(r);
       }, i = () => this._onDblClick();
       this._handleListeners.set(e, { drag: t, dblclick: i }), e.addEventListener("drag", t), e.addEventListener("dblclick", i);
@@ -10501,107 +11880,107 @@ const qs = "swim-split", Pi = class Pi extends v {
     });
   }
   _resize(e) {
-    const s = (this.direction === Ne.Row ? this.clientWidth : this.clientHeight) / 100, r = this._areas;
+    const o = (this.direction === Je.Row ? this.clientWidth : this.clientHeight) / 100, r = this._areas;
     if (r.length === 0) return;
     const [n, ...l] = r;
     let d = e;
-    d = Us(n, d, s), l.forEach((h) => {
-      d += Us(h, -d, s);
+    d = no(n, d, o), l.forEach((h) => {
+      d += no(h, -d, o);
     });
   }
   _onDrag(e) {
-    const t = this.direction === Ne.Row ? e.movementX : e.movementY;
+    const t = this.direction === Je.Row ? e.movementX : e.movementY;
     this._resize(t);
   }
   _onDblClick() {
-    const i = (this.direction === Ne.Row ? this.clientWidth : this.clientHeight) / 100, r = this._areas[0];
+    const i = (this.direction === Je.Row ? this.clientWidth : this.clientHeight) / 100, r = this._areas[0];
     if (!r) return;
-    const [n, l, d] = r.currentFlexParts, h = Ze(d), _ = re(d), b = (h ? _ * i : _) / i, f = r.initialFlexParts[2], D = Ze(f) ? re(f) : re(f) / i, [ee, tt] = Co(
+    const [n, l, d] = r.currentFlexParts, h = ot(d), w = ue(d), f = (h ? w * i : w) / i, _ = r.initialFlexParts[2], O = ot(_) ? ue(_) : ue(_) / i, [ne, lt] = Ro(
       r.minBasis,
       r.maxBasis,
       n,
       l,
-      D,
+      O,
       i
-    ), it = b - ee, qi = tt - b, Do = (it < qi ? qi : -it) * i;
-    this._resize(Do);
+    ), ct = f - ne, ts = lt - f, jo = (ct < ts ? ts : -ct) * i;
+    this._resize(jo);
   }
   render() {
     return c`<slot></slot>`;
   }
 };
-Pi.styles = ha;
-let bt = Pi;
-Eo([
+qi.styles = Ra;
+let $t = qi;
+Ho([
   a({ type: String, reflect: !0 })
-], bt.prototype, "direction");
-Eo([
-  R("slot")
-], bt.prototype, "slotEl");
-customElements.get(qs) || customElements.define(qs, bt);
-const pa = w`
+], $t.prototype, "direction");
+Ho([
+  N("slot")
+], $t.prototype, "slotEl");
+customElements.get(ao) || customElements.define(ao, $t);
+const Va = v`
   :host {
     overflow: hidden;
     box-sizing: border-box;
     min-height: 0;
   }
-`, ma = [x, pa];
-function So(o) {
-  const [e, t, i] = o;
+`, Ya = [C, Va];
+function Vo(s) {
+  const [e, t, i] = s;
   return `${e} ${t} ${i}`;
 }
-function qe(o, e, t) {
+function et(s, e, t) {
   const i = t.split(" ");
-  return i.length === 3 ? i : [o, e, t];
+  return i.length === 3 ? i : [s, e, t];
 }
-var ba = Object.defineProperty, ga = Object.getOwnPropertyDescriptor, Vt = (o, e, t, i) => {
-  for (var s = i > 1 ? void 0 : i ? ga(e, t) : e, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = (i ? n(e, t, s) : n(s)) || s);
-  return i && s && ba(e, t, s), s;
+var Na = Object.defineProperty, ja = Object.getOwnPropertyDescriptor, Zt = (s, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? ja(e, t) : e, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = (i ? n(e, t, o) : n(o)) || o);
+  return i && o && Na(e, t, o), o;
 };
-const nt = "1 1 1e-9px", js = "swim-split-area", Li = class Li extends v {
+const ut = "1 1 1e-9px", lo = "swim-split-area", Gi = class Gi extends y {
   constructor() {
-    super(...arguments), this._areaBasis = nt, this.shouldAdjustMaxMin = !1, this.initialFlexParts = qe("1", "1", nt), this.currentFlexParts = qe("1", "1", nt);
+    super(...arguments), this._areaBasis = ut, this.shouldAdjustMaxMin = !1, this.initialFlexParts = et("1", "1", ut), this.currentFlexParts = et("1", "1", ut);
   }
   get areaBasis() {
     return this._areaBasis;
   }
   set areaBasis(e) {
-    this._areaBasis !== e && (this._areaBasis = e || nt, this._applyBasis());
+    this._areaBasis !== e && (this._areaBasis = e || ut, this._applyBasis());
   }
   connectedCallback() {
     super.connectedCallback(), this._applyBasis();
   }
   updated() {
-    this.style.flex = So(this.currentFlexParts), this.shouldAdjustMaxMin && this.currentFlexParts[2] ? (this.style.minWidth = this.currentFlexParts[2], this.style.maxWidth = this.currentFlexParts[2]) : (this.style.minWidth = "", this.style.maxWidth = "");
+    this.style.flex = Vo(this.currentFlexParts), this.shouldAdjustMaxMin && this.currentFlexParts[2] ? (this.style.minWidth = this.currentFlexParts[2], this.style.maxWidth = this.currentFlexParts[2]) : (this.style.minWidth = "", this.style.maxWidth = "");
   }
   updateBasis(e) {
     this.currentFlexParts[2] = e, this.requestUpdate();
   }
   _applyBasis() {
-    const e = this._areaBasis || nt, [t, i, s] = qe("1", "1", e);
-    this.currentFlexParts = [t, i, s], this.initialFlexParts = [t, i, s], !this.minBasis && i === "0" && (this.minBasis = s), !this.maxBasis && t === "0" && (this.maxBasis = s), this.requestUpdate();
+    const e = this._areaBasis || ut, [t, i, o] = et("1", "1", e);
+    this.currentFlexParts = [t, i, o], this.initialFlexParts = [t, i, o], !this.minBasis && i === "0" && (this.minBasis = o), !this.maxBasis && t === "0" && (this.maxBasis = o), this.requestUpdate();
   }
   render() {
     return c`<slot></slot>`;
   }
 };
-Li.styles = ma;
-let Pe = Li;
-Vt([
+Gi.styles = Ya;
+let Ne = Gi;
+Zt([
   a({ type: String, attribute: "area-basis" })
-], Pe.prototype, "areaBasis", 1);
-Vt([
+], Ne.prototype, "areaBasis", 1);
+Zt([
   a({ type: String, attribute: "min-basis" })
-], Pe.prototype, "minBasis", 2);
-Vt([
+], Ne.prototype, "minBasis", 2);
+Zt([
   a({ type: String, attribute: "max-basis" })
-], Pe.prototype, "maxBasis", 2);
-Vt([
-  a({ type: Boolean, attribute: "should-adjust-max-min" })
-], Pe.prototype, "shouldAdjustMaxMin", 2);
-customElements.get(js) || customElements.define(js, Pe);
-const fa = w`
+], Ne.prototype, "maxBasis", 2);
+Zt([
+  a({ type: Boolean, attribute: "should-adjust-max-min", converter: g })
+], Ne.prototype, "shouldAdjustMaxMin", 2);
+customElements.get(lo) || customElements.define(lo, Ne);
+const Ua = v`
   :host {
     position: relative;
     box-sizing: border-box;
@@ -10647,42 +12026,42 @@ const fa = w`
     top: -3px;
     transform: translateX(-50%) rotate(270deg);
   }
-`, _a = [x, fa];
-var wa = Object.defineProperty, va = Object.getOwnPropertyDescriptor, Ao = (o, e, t, i) => {
-  for (var s = i > 1 ? void 0 : i ? va(e, t) : e, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = (i ? n(e, t, s) : n(s)) || s);
-  return i && s && wa(e, t, s), s;
+`, qa = [C, Ua];
+var Ga = Object.defineProperty, Wa = Object.getOwnPropertyDescriptor, Yo = (s, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? Wa(e, t) : e, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = (i ? n(e, t, o) : n(o)) || o);
+  return i && o && Ga(e, t, o), o;
 };
-const vt = "0 0 15px", Gs = "swim-split-handle", Fi = class Fi extends v {
+const At = "0 0 15px", co = "swim-split-handle", Wi = class Wi extends y {
   constructor() {
-    super(...arguments), this._handleBasis = vt, this.direction = Ne.Row, this.currentFlexParts = qe("0", "0", vt), this._boundMouseUp = this._onMouseUp.bind(this), this._boundMouseMove = this._onMouseMove.bind(this);
+    super(...arguments), this._handleBasis = At, this.direction = Je.Row, this.currentFlexParts = et("0", "0", At), this._boundMouseUp = this._onMouseUp.bind(this), this._boundMouseMove = this._onMouseMove.bind(this);
   }
   get handleBasis() {
     return this._handleBasis;
   }
   set handleBasis(e) {
-    this._handleBasis !== e && (this._handleBasis = e || vt, this.currentFlexParts = qe("0", "0", this._handleBasis), this.requestUpdate());
+    this._handleBasis !== e && (this._handleBasis = e || At, this.currentFlexParts = et("0", "0", this._handleBasis), this.requestUpdate());
   }
   connectedCallback() {
-    super.connectedCallback(), this.currentFlexParts = qe("0", "0", this._handleBasis || vt);
+    super.connectedCallback(), this.currentFlexParts = et("0", "0", this._handleBasis || At);
   }
   disconnectedCallback() {
     super.disconnectedCallback(), document.removeEventListener("mouseup", this._boundMouseUp, !0), document.removeEventListener("mousemove", this._boundMouseMove, !0);
   }
   updated() {
-    this.style.flex = So(this.currentFlexParts);
+    this.style.flex = Vo(this.currentFlexParts);
   }
   _onMouseDown(e) {
-    e.preventDefault(), document.addEventListener("mouseup", this._boundMouseUp, !0), document.addEventListener("mousemove", this._boundMouseMove, !0), this.dispatchEvent(new CustomEvent("dragstart", { detail: e, bubbles: !0, composed: !0 }));
+    e.preventDefault(), document.addEventListener("mouseup", this._boundMouseUp, !0), document.addEventListener("mousemove", this._boundMouseMove, !0), this.dispatchEvent(new CustomEvent("dragstart", { detail: e, bubbles: !1, composed: !1 }));
   }
   _onMouseMove(e) {
-    this.dispatchEvent(new CustomEvent("drag", { detail: e, bubbles: !0, composed: !0 }));
+    this.dispatchEvent(new CustomEvent("drag", { detail: e, bubbles: !1, composed: !1 }));
   }
   _onMouseUp(e) {
-    document.removeEventListener("mouseup", this._boundMouseUp, !0), document.removeEventListener("mousemove", this._boundMouseMove, !0), this.dispatchEvent(new CustomEvent("dragend", { detail: e, bubbles: !0, composed: !0 }));
+    document.removeEventListener("mouseup", this._boundMouseUp, !0), document.removeEventListener("mousemove", this._boundMouseMove, !0), this.dispatchEvent(new CustomEvent("dragend", { detail: e, bubbles: !1, composed: !1 }));
   }
   _onDblClick(e) {
-    this.dispatchEvent(new CustomEvent("dblclick", { detail: e, bubbles: !0, composed: !0 }));
+    this.dispatchEvent(new CustomEvent("dblclick", { detail: e, bubbles: !1, composed: !1 }));
   }
   render() {
     return c`
@@ -10698,17 +12077,17 @@ const vt = "0 0 15px", Gs = "swim-split-handle", Fi = class Fi extends v {
     `;
   }
 };
-Fi.styles = _a;
-let gt = Fi;
-Ao([
+Wi.styles = qa;
+let kt = Wi;
+Yo([
   a({ type: String, attribute: "handle-basis" })
-], gt.prototype, "handleBasis", 1);
-Ao([
+], kt.prototype, "handleBasis", 1);
+Yo([
   a({ type: String, reflect: !0 })
-], gt.prototype, "direction", 2);
-customElements.get(Gs) || customElements.define(Gs, gt);
-const ya = w`
-  ${x}
+], kt.prototype, "direction", 2);
+customElements.get(co) || customElements.define(co, kt);
+const Ka = v`
+  ${C}
 
   @keyframes swim-progress-spinner--rotate {
     0% {
@@ -10789,58 +12168,58 @@ const ya = w`
     animation: swim-progress-spinner--rotate 1s linear infinite;
   }
 `;
-var Ye = /* @__PURE__ */ ((o) => (o.Indeterminate = "indeterminate", o.Determinate = "determinate", o))(Ye || {}), _e = /* @__PURE__ */ ((o) => (o.Default = "default", o.Icon = "icon", o))(_e || {}), xa = Object.defineProperty, $a = Object.getOwnPropertyDescriptor, K = (o, e, t, i) => {
-  for (var s = i > 1 ? void 0 : i ? $a(e, t) : e, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = (i ? n(e, t, s) : n(s)) || s);
-  return i && s && xa(e, t, s), s;
+var Ze = /* @__PURE__ */ ((s) => (s.Indeterminate = "indeterminate", s.Determinate = "determinate", s))(Ze || {}), Ce = /* @__PURE__ */ ((s) => (s.Default = "default", s.Icon = "icon", s))(Ce || {}), Za = Object.defineProperty, Xa = Object.getOwnPropertyDescriptor, ee = (s, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? Xa(e, t) : e, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = (i ? n(e, t, o) : n(o)) || o);
+  return i && o && Za(e, t, o), o;
 };
-const ka = 50, Ca = 100, oi = 100, $t = oi / 2, Ea = $t * 2 * Math.PI, Sa = "cloud-upload", Aa = "check", Ta = "x", Ws = "swim-progress-spinner", Bi = class Bi extends v {
+const Ja = 50, Qa = 100, mi = 100, Mt = mi / 2, el = Mt * 2 * Math.PI, tl = "cloud-upload", il = "check", sl = "x", ho = "swim-progress-spinner", Ki = class Ki extends y {
   constructor() {
-    super(...arguments), this.mode = Ye.Indeterminate, this.color = "var(--blue-500)", this.failStatusColor = "var(--red-500)", this.appearance = _e.Default, this.inProgressIconName = "", this.completeIconName = "", this.failIconName = "", this._isFailure = !1, this._value = 0, this._total = 100, this._diameter = 100, this._strokeWidth = 3, this._boundSlotChange = () => this.requestUpdate();
+    super(...arguments), this.mode = Ze.Indeterminate, this.color = "var(--blue-500)", this.failStatusColor = "var(--red-500)", this.appearance = Ce.Default, this.inProgressIconName = "", this.completeIconName = "", this.failIconName = "", this._isFailure = !1, this._value = 0, this._total = 100, this._diameter = 100, this._strokeWidth = 3, this._boundSlotChange = () => this.requestUpdate();
   }
   get isFailure() {
     return this._isFailure;
   }
   set isFailure(e) {
-    this._isFailure = m(e);
+    this._isFailure = p(e);
   }
   get value() {
     return this._value;
   }
   set value(e) {
-    const t = A(e, 0);
+    const t = z(e, 0);
     this._value !== t && (this._value = t);
   }
   get total() {
     return this._total;
   }
   set total(e) {
-    const t = A(e, 100);
+    const t = z(e, 100);
     this._total !== t && (this._total = t);
   }
   get diameter() {
     return this._diameter;
   }
   set diameter(e) {
-    const t = A(e, 100);
+    const t = z(e, 100);
     this._diameter !== t && (this._diameter = t);
   }
   get strokeWidth() {
     return this._strokeWidth;
   }
   set strokeWidth(e) {
-    const t = A(e, 3);
+    const t = z(e, 3);
     this._strokeWidth !== t && (this._strokeWidth = t);
   }
   /** Circumference in viewBox units for stroke-dasharray/offset (fixed viewBox 0 0 100 100). */
   get circumference() {
-    return Ea;
+    return el;
   }
   get modeValue() {
-    return this.mode === Ye.Determinate || this.isComplete ? this.value : ka;
+    return this.mode === Ze.Determinate || this.isComplete ? this.value : Ja;
   }
   get modeTotal() {
-    return this.mode === Ye.Determinate || this.isComplete ? this.total : Ca;
+    return this.mode === Ze.Determinate || this.isComplete ? this.total : Qa;
   }
   get percentage() {
     return 100 / this.modeTotal * this.modeValue;
@@ -10870,32 +12249,32 @@ const ka = 50, Ca = 100, oi = 100, $t = oi / 2, Ea = $t * 2 * Math.PI, Sa = "clo
   }
   /** Resolved icon name for in-progress: slot/prop or default. */
   get effectiveInProgressIcon() {
-    return this.hasSlotContent("in-progress-icon") ? "" : this.inProgressIconName || (this.appearance === _e.Icon ? Sa : "");
+    return this.hasSlotContent("in-progress-icon") ? "" : this.inProgressIconName || (this.appearance === Ce.Icon ? tl : "");
   }
   /** Resolved icon name for complete: slot/prop or default. */
   get effectiveCompleteIcon() {
-    return this.hasSlotContent("complete-icon") ? "" : this.completeIconName || (this.appearance === _e.Icon ? Aa : "");
+    return this.hasSlotContent("complete-icon") ? "" : this.completeIconName || (this.appearance === Ce.Icon ? il : "");
   }
   /** Resolved icon name for failure: slot/prop or default. */
   get effectiveFailIcon() {
-    return this.hasSlotContent("fail-icon") ? "" : this.failIconName || (this.appearance === _e.Icon ? Ta : "");
+    return this.hasSlotContent("fail-icon") ? "" : this.failIconName || (this.appearance === Ce.Icon ? sl : "");
   }
   render() {
-    const e = this.appearance === _e.Icon && !this.isComplete && (this.effectiveInProgressIcon || this.hasSlotContent("in-progress-icon")), t = this.appearance === _e.Icon && this.isComplete && !this.isFailure && (this.effectiveCompleteIcon || this.hasSlotContent("complete-icon")), i = this.appearance === _e.Icon && this.isComplete && this.isFailure && (this.effectiveFailIcon || this.hasSlotContent("fail-icon"));
+    const e = this.appearance === Ce.Icon && !this.isComplete && (this.effectiveInProgressIcon || this.hasSlotContent("in-progress-icon")), t = this.appearance === Ce.Icon && this.isComplete && !this.isFailure && (this.effectiveCompleteIcon || this.hasSlotContent("complete-icon")), i = this.appearance === Ce.Icon && this.isComplete && this.isFailure && (this.effectiveFailIcon || this.hasSlotContent("fail-icon"));
     return c`
       <div
-        class="swim-progress-spinner__container ${this.appearance === _e.Icon ? "swim-progress-spinner__container--icon" : ""}"
+        class="swim-progress-spinner__container ${this.appearance === Ce.Icon ? "swim-progress-spinner__container--icon" : ""}"
         part="container"
         style="--spinner-color: ${this.spinnerColor}"
         role="progressbar"
-        aria-valuenow="${this.mode === Ye.Determinate ? this.value : u}"
+        aria-valuenow="${this.mode === Ze.Determinate ? this.value : u}"
         aria-valuemin="0"
-        aria-valuemax="${this.mode === Ye.Determinate ? this.total : u}"
+        aria-valuemax="${this.mode === Ze.Determinate ? this.total : u}"
         aria-label="Progress"
       >
         <svg
           class="swim-progress-spinner__svg"
-          viewBox="0 0 ${oi} ${oi}"
+          viewBox="0 0 ${mi} ${mi}"
           width="${this.diameter}"
           height="${this.diameter}"
           aria-hidden="true"
@@ -10906,9 +12285,9 @@ const ka = 50, Ca = 100, oi = 100, $t = oi / 2, Ea = $t * 2 * Math.PI, Sa = "clo
             stroke-width="${this.strokeWidth}"
             stroke-dasharray="${this.strokeDasharray}"
             stroke-dashoffset="${this.strokeDashoffset}"
-            r="${$t}"
-            cx="${$t}"
-            cy="${$t}"
+            r="${Mt}"
+            cx="${Mt}"
+            cy="${Mt}"
           ></circle>
         </svg>
 
@@ -10935,49 +12314,49 @@ const ka = 50, Ca = 100, oi = 100, $t = oi / 2, Ea = $t * 2 * Math.PI, Sa = "clo
     `;
   }
 };
-Bi.styles = ya;
-let B = Bi;
-K([
+Ki.styles = Ka;
+let Y = Ki;
+ee([
   a({ type: String, reflect: !0 })
-], B.prototype, "mode", 2);
-K([
+], Y.prototype, "mode", 2);
+ee([
   a({ type: String })
-], B.prototype, "color", 2);
-K([
+], Y.prototype, "color", 2);
+ee([
   a({ attribute: "fail-status-color", type: String })
-], B.prototype, "failStatusColor", 2);
-K([
+], Y.prototype, "failStatusColor", 2);
+ee([
   a({ type: String, reflect: !0 })
-], B.prototype, "appearance", 2);
-K([
+], Y.prototype, "appearance", 2);
+ee([
   a({ type: String, attribute: "in-progress-icon-name" })
-], B.prototype, "inProgressIconName", 2);
-K([
+], Y.prototype, "inProgressIconName", 2);
+ee([
   a({ type: String, attribute: "complete-icon-name" })
-], B.prototype, "completeIconName", 2);
-K([
+], Y.prototype, "completeIconName", 2);
+ee([
   a({ type: String, attribute: "fail-icon-name" })
-], B.prototype, "failIconName", 2);
-K([
-  a({ type: Boolean, reflect: !0, attribute: "is-failure" })
-], B.prototype, "isFailure", 1);
-K([
+], Y.prototype, "failIconName", 2);
+ee([
+  a({ type: Boolean, reflect: !0, attribute: "is-failure", converter: g })
+], Y.prototype, "isFailure", 1);
+ee([
   a({ attribute: !1 })
-], B.prototype, "spinnerLabel", 2);
-K([
+], Y.prototype, "spinnerLabel", 2);
+ee([
   a({ type: Number })
-], B.prototype, "value", 1);
-K([
+], Y.prototype, "value", 1);
+ee([
   a({ type: Number })
-], B.prototype, "total", 1);
-K([
+], Y.prototype, "total", 1);
+ee([
   a({ type: Number })
-], B.prototype, "diameter", 1);
-K([
+], Y.prototype, "diameter", 1);
+ee([
   a({ attribute: "stroke-width", type: Number })
-], B.prototype, "strokeWidth", 1);
-customElements.get(Ws) || customElements.define(Ws, B);
-const za = w`
+], Y.prototype, "strokeWidth", 1);
+customElements.get(ho) || customElements.define(ho, Y);
+const ol = v`
   :host {
     display: block;
   }
@@ -10990,15 +12369,15 @@ const za = w`
     display: none;
   }
 `;
-var Da = Object.defineProperty, Ma = Object.getOwnPropertyDescriptor, et = (o, e, t, i) => {
-  for (var s = i > 1 ? void 0 : i ? Ma(e, t) : e, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = (i ? n(e, t, s) : n(s)) || s);
-  return i && s && Da(e, t, s), s;
+var rl = Object.defineProperty, nl = Object.getOwnPropertyDescriptor, at = (s, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? nl(e, t) : e, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = (i ? n(e, t, o) : n(o)) || o);
+  return i && o && rl(e, t, o), o;
 };
-let Oa = 0;
-const Ks = "swim-tab", Ri = class Ri extends v {
+let al = 0;
+const uo = "swim-tab", Zi = class Zi extends y {
   constructor() {
-    super(...arguments), this._instanceId = ++Oa, this._generatedPanelId = `tab-panel-${this._instanceId}`, this._generatedTabId = `tab-${this._instanceId}`, this.tabId = this._generatedTabId, this.label = "", this._active = !1, this._disabled = !1;
+    super(...arguments), this._instanceId = ++al, this._generatedPanelId = `tab-panel-${this._instanceId}`, this._generatedTabId = `tab-${this._instanceId}`, this.tabId = this._generatedTabId, this.label = "", this._active = !1, this._disabled = !1;
   }
   get id() {
     return this._id ?? this._generatedPanelId;
@@ -11016,17 +12395,17 @@ const Ks = "swim-tab", Ri = class Ri extends v {
     return this._active;
   }
   set active(e) {
-    const t = m(e);
+    const t = p(e);
     if (this._active !== t) {
       const i = this._active;
-      this._active = t, this.requestUpdate("active", i), this.dispatchEvent(new CustomEvent("swim-tab-active-change", { bubbles: !0, composed: !0 }));
+      this._active = t, this.requestUpdate("active", i), this.dispatchEvent(new CustomEvent("swim-tab-active-change", { bubbles: !1, composed: !1 }));
     }
   }
   get disabled() {
     return this._disabled;
   }
   set disabled(e) {
-    this._disabled = m(e);
+    this._disabled = p(e);
   }
   connectedCallback() {
     super.connectedCallback(), this.hasAttribute("tab-id") || (this.tabId = this._generatedTabId);
@@ -11045,28 +12424,28 @@ const Ks = "swim-tab", Ri = class Ri extends v {
     `;
   }
 };
-Ri.styles = [x, za];
-let ae = Ri;
-et([
+Zi.styles = [C, ol];
+let ge = Zi;
+at([
   a({ type: String })
-], ae.prototype, "id", 1);
-et([
+], ge.prototype, "id", 1);
+at([
   a({ type: String, attribute: "tab-id" })
-], ae.prototype, "tabId", 2);
-et([
+], ge.prototype, "tabId", 2);
+at([
   a({ type: String })
-], ae.prototype, "label", 2);
-et([
+], ge.prototype, "label", 2);
+at([
   a({ type: String })
-], ae.prototype, "title", 1);
-et([
-  a({ type: Boolean, reflect: !0 })
-], ae.prototype, "active", 1);
-et([
-  a({ type: Boolean, reflect: !0 })
-], ae.prototype, "disabled", 1);
-customElements.get(Ks) || customElements.define(Ks, ae);
-const Ia = w`
+], ge.prototype, "title", 1);
+at([
+  a({ type: Boolean, reflect: !0, converter: g })
+], ge.prototype, "active", 1);
+at([
+  a({ type: Boolean, reflect: !0, converter: g })
+], ge.prototype, "disabled", 1);
+customElements.get(uo) || customElements.define(uo, ge);
+const ll = v`
   :host {
     display: block;
     margin-bottom: 2em;
@@ -11223,20 +12602,20 @@ const Ia = w`
     background-color: var(--grey-750);
   }
 `;
-var To = /* @__PURE__ */ ((o) => (o.Legacy = "legacy", o.Light = "light", o))(To || {}), Pa = Object.defineProperty, La = Object.getOwnPropertyDescriptor, Nt = (o, e, t, i) => {
-  for (var s = i > 1 ? void 0 : i ? La(e, t) : e, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = (i ? n(e, t, s) : n(s)) || s);
-  return i && s && Pa(e, t, s), s;
+var No = /* @__PURE__ */ ((s) => (s.Legacy = "legacy", s.Light = "light", s))(No || {}), cl = Object.defineProperty, dl = Object.getOwnPropertyDescriptor, Xt = (s, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? dl(e, t) : e, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = (i ? n(e, t, o) : n(o)) || o);
+  return i && o && cl(e, t, o), o;
 };
-const Zs = "swim-tabs", Hi = class Hi extends v {
+const po = "swim-tabs", Xi = class Xi extends y {
   constructor() {
-    super(...arguments), this._vertical = !1, this.appearance = To.Legacy, this._tabs = [], this._slotChangeBound = () => this._syncTabs(), this._tabActiveChangeBound = () => this.requestUpdate();
+    super(...arguments), this._vertical = !1, this.appearance = No.Legacy, this._tabs = [], this._slotChangeBound = () => this._syncTabs(), this._tabActiveChangeBound = () => this.requestUpdate();
   }
   get vertical() {
     return this._vertical;
   }
   set vertical(e) {
-    this._vertical = m(e);
+    this._vertical = p(e);
   }
   connectedCallback() {
     super.connectedCallback();
@@ -11256,30 +12635,30 @@ const Zs = "swim-tabs", Hi = class Hi extends v {
   }
   _syncTabs() {
     var r;
-    const e = (r = this.shadowRoot) == null ? void 0 : r.querySelector("slot"), i = ((e == null ? void 0 : e.assignedElements({ flatten: !0 })) ?? []).filter((n) => n instanceof ae);
+    const e = (r = this.shadowRoot) == null ? void 0 : r.querySelector("slot"), i = ((e == null ? void 0 : e.assignedElements({ flatten: !0 })) ?? []).filter((n) => n instanceof ge);
     this._tabs.forEach((n) => n.removeEventListener("swim-tab-active-change", this._tabActiveChangeBound)), this._tabs = i, this._listenToTabChanges();
-    const s = i.filter((n) => n.active);
-    s.length > 1 ? console.error('swim-tabs: Multiple active tabs set "active".') : s.length === 0 && i.length > 0 && (i[0].active = !0);
+    const o = i.filter((n) => n.active);
+    o.length > 1 ? console.error('swim-tabs: Multiple active tabs set "active".') : o.length === 0 && i.length > 0 && (i[0].active = !0);
   }
   _tabClicked(e) {
     e.disabled || (this._tabs.forEach((t) => t.active = t === e), e.active = !0, this.dispatchEvent(
       new CustomEvent("select-tab", {
         detail: { tab: e },
-        bubbles: !0,
-        composed: !0
+        bubbles: !1,
+        composed: !1
       })
     ), this.dispatchEvent(
       new CustomEvent("select", {
         detail: { tab: e },
-        bubbles: !0,
-        composed: !0
+        bubbles: !1,
+        composed: !1
       })
     ));
   }
   _move(e) {
-    const t = this._tabs, i = t.findIndex((s) => s.active);
-    for (let s = i + e; s >= 0 && s < t.length; s += e) {
-      const r = t[s];
+    const t = this._tabs, i = t.findIndex((o) => o.active);
+    for (let o = i + e; o >= 0 && o < t.length; o += e) {
+      const r = t[o];
       if (r && !r.disabled) {
         this._tabClicked(r);
         return;
@@ -11327,22 +12706,22 @@ const Zs = "swim-tabs", Hi = class Hi extends v {
     `;
   }
 };
-Hi.styles = [x, Ia];
-let Le = Hi;
-Nt([
-  R("slot")
-], Le.prototype, "slotEl", 2);
-Nt([
-  a({ type: Boolean, reflect: !0 })
-], Le.prototype, "vertical", 1);
-Nt([
+Xi.styles = [C, ll];
+let je = Xi;
+Xt([
+  N("slot")
+], je.prototype, "slotEl", 2);
+Xt([
+  a({ type: Boolean, reflect: !0, converter: g })
+], je.prototype, "vertical", 1);
+Xt([
   a({ type: String, reflect: !0 })
-], Le.prototype, "appearance", 2);
-Nt([
-  g()
-], Le.prototype, "_tabs", 2);
-customElements.get(Zs) || customElements.define(Zs, Le);
-const Fa = w`
+], je.prototype, "appearance", 2);
+Xt([
+  b()
+], je.prototype, "_tabs", 2);
+customElements.get(po) || customElements.define(po, je);
+const hl = v`
   :host {
     display: inline-block;
   }
@@ -11481,50 +12860,46 @@ const Fa = w`
     margin: 0;
   }
 `;
-var Ba = Object.defineProperty, Ra = Object.getOwnPropertyDescriptor, $e = (o, e, t, i) => {
-  for (var s = i > 1 ? void 0 : i ? Ra(e, t) : e, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = (i ? n(e, t, s) : n(s)) || s);
-  return i && s && Ba(e, t, s), s;
+var ul = Object.defineProperty, pl = Object.getOwnPropertyDescriptor, Te = (s, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? pl(e, t) : e, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = (i ? n(e, t, o) : n(o)) || o);
+  return i && o && ul(e, t, o), o;
 };
-const Ha = {
-  fromAttribute: (o) => o !== "false" && o !== "",
-  toAttribute: (o) => o ? "true" : "false"
-};
-let Ya = 0;
-const Xs = "swim-toggle", Rt = class Rt extends v {
+let ml = 0;
+const mo = "swim-toggle", Wt = class Wt extends y {
   constructor() {
-    super(), this.id = `swim-toggle-${++Ya}`, this.name = "", this.label = "", this._checked = !1, this._disabled = !1, this._required = !1, this._showIcons = !0, this._tabindex = 0, this._internals = this.attachInternals();
+    super(), this.id = `swim-toggle-${++ml}`, this.name = "", this.label = "", this._checked = !1, this._disabled = !1, this._required = !1, this._showIcons = !0, this._tabindex = 0, this._internals = this.attachInternals();
   }
   get checked() {
     return this._checked;
   }
   set checked(e) {
-    const t = m(e);
+    const t = p(e);
     this._checked !== t && (this._checked = t, this._syncFormValue());
   }
   get disabled() {
     return this._disabled;
   }
   set disabled(e) {
-    this._disabled = m(e);
+    this._disabled = p(e);
   }
   get required() {
     return this._required;
   }
   set required(e) {
-    this._required = m(e);
+    this._required = p(e);
   }
   get showIcons() {
     return this._showIcons;
   }
   set showIcons(e) {
-    this._showIcons = e != null ? m(e) : !0;
+    this._showIcons = e != null ? p(e) : !0;
   }
   get tabindex() {
     return this._tabindex;
   }
   set tabindex(e) {
-    this._tabindex = A(e, 0);
+    this._tabindex = z(e, 0);
   }
   connectedCallback() {
     super.connectedCallback(), this._syncFormValue();
@@ -11560,16 +12935,16 @@ const Xs = "swim-toggle", Rt = class Rt extends v {
           timeStamp: Date.now(),
           target: { checked: this._checked }
         },
-        bubbles: !0,
-        composed: !0
+        bubbles: !1,
+        composed: !1
       })
     );
   }
   _onFocus(e) {
-    this.dispatchEvent(new FocusEvent("focus", { ...e, bubbles: !0, composed: !0 }));
+    this.dispatchEvent(new FocusEvent("focus", { ...e, bubbles: !1, composed: !1 }));
   }
   _onBlur(e) {
-    this.dispatchEvent(new FocusEvent("blur", { ...e, bubbles: !0, composed: !0 }));
+    this.dispatchEvent(new FocusEvent("blur", { ...e, bubbles: !1, composed: !1 }));
   }
   _onInputChange(e) {
     const t = e.target;
@@ -11619,492 +12994,40 @@ const Xs = "swim-toggle", Rt = class Rt extends v {
     `;
   }
 };
-Rt.styles = [x, Fa], Rt.formAssociated = !0;
-let J = Rt;
-$e([
-  R(".swim-toggle__roving")
-], J.prototype, "_roving", 2);
-$e([
+Wt.styles = [C, hl], Wt.formAssociated = !0;
+let se = Wt;
+Te([
+  N(".swim-toggle__roving")
+], se.prototype, "_roving", 2);
+Te([
   a({ type: String })
-], J.prototype, "id", 2);
-$e([
+], se.prototype, "id", 2);
+Te([
   a({ type: String })
-], J.prototype, "name", 2);
-$e([
+], se.prototype, "name", 2);
+Te([
   a({ type: String })
-], J.prototype, "label", 2);
-$e([
-  a({ type: Boolean, reflect: !0, attribute: "checked" })
-], J.prototype, "checked", 1);
-$e([
-  a({ type: Boolean, reflect: !0 })
-], J.prototype, "disabled", 1);
-$e([
-  a({ type: Boolean, reflect: !0 })
-], J.prototype, "required", 1);
-$e([
-  a({ type: Boolean, attribute: "show-icons", converter: Ha })
-], J.prototype, "showIcons", 1);
-$e([
+], se.prototype, "label", 2);
+Te([
+  a({ type: Boolean, reflect: !0, attribute: "checked", converter: g })
+], se.prototype, "checked", 1);
+Te([
+  a({ type: Boolean, reflect: !0, converter: g })
+], se.prototype, "disabled", 1);
+Te([
+  a({ type: Boolean, reflect: !0, converter: g })
+], se.prototype, "required", 1);
+Te([
+  a({ type: Boolean, attribute: "show-icons", converter: Q })
+], se.prototype, "showIcons", 1);
+Te([
   a({ type: Number })
-], J.prototype, "tabindex", 1);
-customElements.get(Xs) || customElements.define(Xs, J);
-/**
- * @license
- * Copyright 2017 Google LLC
- * SPDX-License-Identifier: BSD-3-Clause
- */
-class ri extends pi {
-  constructor(e) {
-    if (super(e), this.it = u, e.type !== Ce.CHILD) throw Error(this.constructor.directiveName + "() can only be used in child bindings");
-  }
-  render(e) {
-    if (e === u || e == null) return this._t = void 0, this.it = e;
-    if (e === Z) return e;
-    if (typeof e != "string") throw Error(this.constructor.directiveName + "() called with a non-string value");
-    if (e === this.it) return this._t;
-    this.it = e;
-    const t = [e];
-    return t.raw = t, this._t = { _$litType$: this.constructor.resultType, strings: t, values: [] };
-  }
-}
-ri.directiveName = "unsafeHTML", ri.resultType = 1;
-const Va = ui(ri), Na = w`
+], se.prototype, "tabindex", 1);
+customElements.get(mo) || customElements.define(mo, se);
+const bl = 40, fl = 2, gl = v`
   :host {
-    display: inline-block;
-  }
-
-  .swim-tooltip__trigger {
-    display: inline-block;
-    cursor: inherit;
-  }
-
-  .swim-tooltip__panel {
-    position: fixed;
-    z-index: 5000;
-    display: block;
-    font-weight: normal;
-    opacity: 0;
-    max-width: 600px;
-    overflow-wrap: anywhere;
-    border-radius: var(--radius-4);
-    pointer-events: auto;
-  }
-
-  .swim-tooltip__panel--animate {
-    opacity: 1;
-    transition: opacity 0.3s, transform 0.3s;
-    transform: translate3d(0, 0, 0);
-  }
-
-  .swim-tooltip__panel--narrow {
-    max-width: 300px;
-    text-align: center;
-  }
-
-  /* Placement transform (initial offset before animate) */
-  .swim-tooltip__panel--position-right {
-    transform: translate3d(10px, 0, 0);
-  }
-
-  .swim-tooltip__panel--position-left {
-    transform: translate3d(-10px, 0, 0);
-  }
-
-  .swim-tooltip__panel--position-top {
-    transform: translate3d(0, -10px, 0);
-  }
-
-  .swim-tooltip__panel--position-bottom {
-    transform: translate3d(0, 10px, 0);
-  }
-
-  .swim-tooltip__panel--animate.swim-tooltip__panel--position-right,
-  .swim-tooltip__panel--animate.swim-tooltip__panel--position-left,
-  .swim-tooltip__panel--animate.swim-tooltip__panel--position-top,
-  .swim-tooltip__panel--animate.swim-tooltip__panel--position-bottom {
-    transform: translate3d(0, 0, 0);
-  }
-
-  /* Caret */
-  .swim-tooltip__caret {
-    position: absolute;
-    z-index: 5001;
-    width: 0;
-    height: 0;
-  }
-
-  .swim-tooltip__caret--position-left {
-    border-top: 7px solid transparent;
-    border-bottom: 7px solid transparent;
-    border-left: 7px solid var(--swim-tooltip-caret-bg, var(--grey-200));
-  }
-
-  .swim-tooltip__caret--position-top {
-    border-left: 7px solid transparent;
-    border-right: 7px solid transparent;
-    border-top: 7px solid var(--swim-tooltip-caret-bg, var(--grey-200));
-  }
-
-  .swim-tooltip__caret--position-right {
-    border-top: 7px solid transparent;
-    border-bottom: 7px solid transparent;
-    border-right: 7px solid var(--swim-tooltip-caret-bg, var(--grey-200));
-  }
-
-  .swim-tooltip__caret--position-bottom {
-    border-left: 7px solid transparent;
-    border-right: 7px solid transparent;
-    border-bottom: 7px solid var(--swim-tooltip-caret-bg, var(--grey-200));
-  }
-
-  /* Type: tooltip (compact) */
-  .swim-tooltip__panel--type-tooltip {
-    color: var(--grey-700);
-    background: var(--grey-200);
-    font-size: var(--font-size-xs);
-    padding: var(--spacing-4, 4px);
-    text-align: center;
-  }
-
-  /* Type: popover */
-  .swim-tooltip__panel--type-popover {
-    background: var(--grey-200);
-    color: var(--grey-700);
-    box-shadow: var(--shadow-2);
-    font-size: var(--font-size-s);
-    padding: var(--spacing-10, 10px);
-  }
-
-  .swim-tooltip__content {
-    display: block;
-  }
-`, Ua = [x, Na];
-var O = /* @__PURE__ */ ((o) => (o.top = "top", o.bottom = "bottom", o.left = "left", o.right = "right", o))(O || {}), le = /* @__PURE__ */ ((o) => (o.top = "top", o.bottom = "bottom", o.left = "left", o.right = "right", o.center = "center", o))(le || {}), zo = /* @__PURE__ */ ((o) => (o.popover = "popover", o.tooltip = "tooltip", o))(zo || {}), we = /* @__PURE__ */ ((o) => (o.all = "all", o.focus = "focus", o.click = "click", o.mouseover = "mouseover", o))(we || {});
-const ce = 7;
-function zt(o, e, t) {
-  return t === le.left ? (o.left ?? 0) - ce : t === le.right ? (o.left ?? 0) + (o.width ?? 0) - (e.width ?? 0) + ce : (o.left ?? 0) + (o.width ?? 0) / 2 - (e.width ?? 0) / 2;
-}
-function gi(o, e, t) {
-  return t === le.top ? (o.top ?? 0) - ce : t === le.bottom ? (o.top ?? 0) + (o.height ?? 0) - (e.height ?? 0) + ce : (o.top ?? 0) + (o.height ?? 0) / 2 - (e.height ?? 0) / 2;
-}
-function Js(o, e, t) {
-  let i = zt(o, e, t);
-  return i + (e.width ?? 0) > window.innerWidth && (i = window.innerWidth - (e.width ?? 0)), i;
-}
-function Qs(o, e, t) {
-  let i = gi(o, e, t);
-  return i + (e.height ?? 0) > window.innerHeight && (i = window.innerHeight - (e.height ?? 0)), i;
-}
-function qa(o, e, t, i, s) {
-  return t === O.right ? zt(o, e, i) + (e.width ?? 0) + s > window.innerWidth : t === O.left ? zt(o, e, i) - s < 0 : t === O.top ? (o.top ?? 0) - (e.height ?? 0) - s < 0 : t === O.bottom ? gi(o, e, i) + (e.height ?? 0) + s > window.innerHeight : !1;
-}
-function ja(o, e, t, i, s) {
-  return qa(t, e, o, s, i) ? o === O.right ? O.left : o === O.left ? O.right : o === O.top ? O.bottom : O.top : o;
-}
-function Ga(o, e, t, i, s) {
-  let r = 0, n = 0;
-  return o === O.right ? (n = (t.left ?? 0) + (t.width ?? 0) + i, r = Qs(t, e, s)) : o === O.left ? (n = (t.left ?? 0) - (e.width ?? 0) - i, r = Qs(t, e, s)) : o === O.top ? (r = (t.top ?? 0) - (e.height ?? 0) - i, n = Js(t, e, s)) : (r = (t.top ?? 0) + (t.height ?? 0) + i, n = Js(t, e, s)), { top: r, left: n };
-}
-function eo(o, e, t, i) {
-  let s;
-  i === le.left ? s = (o.width ?? 0) / 2 - (t.width ?? 0) / 2 + ce : i === le.right ? s = (e.width ?? 0) - (o.width ?? 0) / 2 - (t.width ?? 0) / 2 - ce : s = (e.width ?? 0) / 2 - (t.width ?? 0) / 2;
-  const r = zt(o, e, i);
-  return r + (e.width ?? 0) > window.innerWidth && (s += r + (e.width ?? 0) - window.innerWidth), s;
-}
-function to(o, e, t, i) {
-  let s;
-  i === le.top ? s = (o.height ?? 0) / 2 - (t.height ?? 0) / 2 + ce : i === le.bottom ? s = (e.height ?? 0) - (o.height ?? 0) / 2 - (t.height ?? 0) / 2 - ce : s = (e.height ?? 0) / 2 - (t.height ?? 0) / 2;
-  const r = gi(o, e, i);
-  return r + (e.height ?? 0) > window.innerHeight && (s += r + (e.height ?? 0) - window.innerHeight), s;
-}
-function Wa(o, e, t, i, s) {
-  let r = 0, n = 0;
-  return o === O.right ? (n = -ce, r = to(t, e, i, s)) : o === O.left ? (n = e.width ?? 0, r = to(t, e, i, s)) : o === O.top ? (r = e.height ?? 0, n = eo(t, e, i, s)) : (r = -ce, n = eo(t, e, i, s)), { top: r, left: n };
-}
-var Ka = Object.defineProperty, Za = Object.getOwnPropertyDescriptor, I = (o, e, t, i) => {
-  for (var s = i > 1 ? void 0 : i ? Za(e, t) : e, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = (i ? n(e, t, s) : n(s)) || s);
-  return i && s && Ka(e, t, s), s;
-};
-const io = "swim-tooltip", Yi = class Yi extends v {
-  constructor() {
-    super(...arguments), this.content = "", this.placement = O.top, this.alignment = le.center, this.type = zo.popover, this.showEvent = we.all, this._spacing = 10, this._showCaret = !0, this._disabled = !1, this._closeOnClickOutside = !0, this._closeOnMouseLeave = !0, this._hideTimeout = 300, this._showTimeout = 100, this.cssClass = "", this._open = !1, this._panelTop = 0, this._panelLeft = 0, this._effectivePlacement = O.top, this._caretTop = 0, this._caretLeft = 0, this._animate = !1, this._triggerRef = null, this._panelRef = null, this._caretRef = null, this._boundDocumentClick = null, this._openFromClick = !1, this._tooltipId = `swim-tooltip-${Math.random().toString(36).slice(2, 11)}`, this._throttledPosition = () => {
-      this._throttleTimeout == null && (this._throttleTimeout = window.setTimeout(() => {
-        this._throttleTimeout = void 0, this._open && this._position();
-      }, 100));
-    }, this._panelForHideListeners = null, this._panelMouseEnterBound = () => this._clearHideTimer(), this._panelMouseLeaveBound = (e) => {
-      var i;
-      const t = e.relatedTarget;
-      t && ((i = this._triggerRef) != null && i.contains(t)) || this.hide();
-    }, this._onTriggerFocus = () => {
-      this._listensFocus && this.show();
-    }, this._onTriggerBlur = () => {
-      this._listensFocus && this.hide(!0);
-    }, this._onTriggerMouseEnter = () => {
-      this._listensHover && this.show();
-    }, this._onTriggerMouseLeave = (e) => {
-      var s;
-      const t = e.relatedTarget, i = this._panelRef ?? ((s = this.shadowRoot) == null ? void 0 : s.querySelector(".swim-tooltip__panel"));
-      i != null && i.contains(t) || (this._listensHover && this.closeOnMouseLeave && this.hide(), this._listensClick && this.hide());
-    }, this._onPanelMouseLeave = () => {
-      this.closeOnMouseLeave && this.hide();
-    }, this._onTriggerClick = () => {
-      if (this.showEvent === we.mouseover) {
-        this.hide(!0);
-        return;
-      }
-      this._listensClick && (this._openFromClick ? this.hide(!0) : (this._openFromClick = !0, this.show(!0)));
-    };
-  }
-  get spacing() {
-    return this._spacing;
-  }
-  set spacing(e) {
-    this._spacing = A(e, 10);
-  }
-  get showCaret() {
-    return this._showCaret;
-  }
-  set showCaret(e) {
-    this._showCaret = m(e);
-  }
-  get disabled() {
-    return this._disabled;
-  }
-  set disabled(e) {
-    this._disabled = m(e);
-  }
-  get closeOnClickOutside() {
-    return this._closeOnClickOutside;
-  }
-  set closeOnClickOutside(e) {
-    this._closeOnClickOutside = m(e);
-  }
-  get closeOnMouseLeave() {
-    return this._closeOnMouseLeave;
-  }
-  set closeOnMouseLeave(e) {
-    this._closeOnMouseLeave = m(e);
-  }
-  get hideTimeout() {
-    return this._hideTimeout;
-  }
-  set hideTimeout(e) {
-    this._hideTimeout = A(e, 300);
-  }
-  get showTimeout() {
-    return this._showTimeout;
-  }
-  set showTimeout(e) {
-    this._showTimeout = A(e, 100);
-  }
-  connectedCallback() {
-    super.connectedCallback(), window.addEventListener("resize", this._throttledPosition);
-  }
-  disconnectedCallback() {
-    window.removeEventListener("resize", this._throttledPosition), this._throttleTimeout != null && (window.clearTimeout(this._throttleTimeout), this._throttleTimeout = void 0), this._clearShowTimer(), this._clearHideTimer(), this._removeDocumentClick(), this._removePanelHideListeners(), super.disconnectedCallback();
-  }
-  /** Whether the host has a child with slot="content" (detected from light DOM so we can open before panel is rendered). */
-  _hasContentSlot() {
-    return !!this.querySelector('[slot="content"]');
-  }
-  get _listensFocus() {
-    return this.showEvent === we.all || this.showEvent === we.focus;
-  }
-  get _listensHover() {
-    return this.showEvent === we.all || this.showEvent === we.mouseover;
-  }
-  get _listensClick() {
-    return this.showEvent === we.all || this.showEvent === we.click;
-  }
-  /** Opens the tooltip (optionally immediately, without show timeout). */
-  show(e = !1) {
-    if (this._open || this.disabled) return;
-    this._clearShowTimer(), this._clearHideTimer();
-    const t = () => {
-      this._open || this.disabled || !(this._hasContentSlot || this.content != null && this.content !== "") || (this._open = !0, this._effectivePlacement = this.placement, requestAnimationFrame(() => {
-        this._position(), requestAnimationFrame(() => {
-          this._animate = !0, this._addHideListeners();
-        });
-      }), this.dispatchEvent(new CustomEvent("show", { detail: !0, bubbles: !0 })));
-    };
-    e ? t() : this._showTimer = window.setTimeout(t, this.showTimeout);
-  }
-  /** Hides the tooltip (optionally immediately). */
-  hide(e = !1) {
-    if (!this._open) return;
-    this._clearShowTimer(), this._clearHideTimer();
-    const t = () => {
-      this._open && (this._open = !1, this._animate = !1, this._openFromClick = !1, this._removeDocumentClick(), this._removePanelHideListeners(), this.dispatchEvent(new CustomEvent("hide", { detail: !0, bubbles: !0 })));
-    };
-    e ? t() : this._hideTimer = window.setTimeout(t, this.hideTimeout);
-  }
-  _clearShowTimer() {
-    this._showTimer != null && (window.clearTimeout(this._showTimer), this._showTimer = void 0);
-  }
-  _clearHideTimer() {
-    this._hideTimer != null && (window.clearTimeout(this._hideTimer), this._hideTimer = void 0);
-  }
-  _removeDocumentClick() {
-    this._boundDocumentClick && (document.removeEventListener("click", this._boundDocumentClick, !0), this._boundDocumentClick = null);
-  }
-  _position() {
-    var d, h, _;
-    const e = this._triggerRef ?? ((d = this.shadowRoot) == null ? void 0 : d.querySelector(".swim-tooltip__trigger")), t = this._panelRef ?? ((h = this.shadowRoot) == null ? void 0 : h.querySelector(".swim-tooltip__panel")), i = this._caretRef ?? ((_ = this.shadowRoot) == null ? void 0 : _.querySelector(".swim-tooltip__caret"));
-    if (!e || !t) return;
-    const s = e.getBoundingClientRect();
-    if (!s.height && !s.width) return;
-    const r = t.getBoundingClientRect();
-    this._effectivePlacement = ja(this.placement, r, s, this.spacing, this.alignment);
-    const { top: n, left: l } = Ga(this._effectivePlacement, r, s, this.spacing, this.alignment);
-    if (this._panelTop = n, this._panelLeft = l, this.showCaret && i) {
-      const p = i.getBoundingClientRect(), b = Wa(this._effectivePlacement, r, s, p, this.alignment);
-      this._caretTop = b.top, this._caretLeft = b.left;
-    }
-  }
-  _removePanelHideListeners() {
-    this._panelForHideListeners && (this._panelForHideListeners.removeEventListener("mouseenter", this._panelMouseEnterBound), this._panelForHideListeners.removeEventListener("mouseleave", this._panelMouseLeaveBound), this._panelForHideListeners = null);
-  }
-  _addHideListeners() {
-    var t;
-    const e = this._panelRef ?? ((t = this.shadowRoot) == null ? void 0 : t.querySelector(".swim-tooltip__panel"));
-    e && (this._removePanelHideListeners(), this._panelForHideListeners = e, e.addEventListener("mouseenter", this._panelMouseEnterBound), this.closeOnMouseLeave && e.addEventListener("mouseleave", this._panelMouseLeaveBound), this.closeOnClickOutside && (this._boundDocumentClick = (i) => {
-      var r;
-      const s = i.target;
-      e.contains(s) || (r = this._triggerRef) != null && r.contains(s) || this.hide(!0);
-    }, setTimeout(() => document.addEventListener("click", this._boundDocumentClick, !0), 0)));
-  }
-  firstUpdated() {
-    var e, t, i;
-    this._triggerRef = (e = this.shadowRoot) == null ? void 0 : e.querySelector(".swim-tooltip__trigger"), this._panelRef = (t = this.shadowRoot) == null ? void 0 : t.querySelector(".swim-tooltip__panel"), this._caretRef = (i = this.shadowRoot) == null ? void 0 : i.querySelector(".swim-tooltip__caret");
-  }
-  updated(e) {
-    this._open && (e.has("placement") || e.has("alignment") || e.has("spacing")) && this._position();
-  }
-  render() {
-    const e = this._hasContentSlot(), t = e || this.content != null && this.content !== "", i = [
-      "swim-tooltip__panel",
-      `swim-tooltip__panel--type-${this.type}`,
-      `swim-tooltip__panel--position-${this._effectivePlacement}`,
-      this._animate ? "swim-tooltip__panel--animate" : "",
-      this.cssClass.includes("narrow") ? "swim-tooltip__panel--narrow" : ""
-    ].filter(Boolean).join(" ");
-    return c`
-      <div
-        part="trigger"
-        class="swim-tooltip__trigger"
-        aria-describedby="${this._open && t ? this._tooltipId : u}"
-        aria-expanded="${this._listensClick ? this._open ? "true" : "false" : u}"
-        @focusin="${this._onTriggerFocus}"
-        @focusout="${this._onTriggerBlur}"
-        @mouseenter="${this._onTriggerMouseEnter}"
-        @mouseleave="${this._onTriggerMouseLeave}"
-        @click="${this._onTriggerClick}"
-      >
-        <slot></slot>
-      </div>
-
-      ${this._open && t ? c`
-            <div
-              part="panel"
-              id="${this._tooltipId}"
-              class="${i}"
-              style="top: ${this._panelTop}px; left: ${this._panelLeft}px;"
-              role="tooltip"
-              aria-hidden="false"
-              @mouseenter="${() => this._clearHideTimer()}"
-              @mouseleave="${this._onPanelMouseLeave}"
-            >
-              ${this.showCaret ? c`
-                    <span
-                      part="caret"
-                      class="swim-tooltip__caret swim-tooltip__caret--position-${this._effectivePlacement}"
-                      style="top: ${this._caretTop}px; left: ${this._caretLeft}px;"
-                    ></span>
-                  ` : ""}
-              <div part="content" class="swim-tooltip__content">
-                ${e ? c`<slot name="content"></slot>` : c`${Va(this.content)}`}
-              </div>
-            </div>
-          ` : ""}
-    `;
-  }
-};
-Yi.styles = Ua;
-let M = Yi;
-I([
-  a({ type: String })
-], M.prototype, "content", 2);
-I([
-  a({ type: String, reflect: !0, attribute: "placement" })
-], M.prototype, "placement", 2);
-I([
-  a({ type: String, reflect: !0, attribute: "alignment" })
-], M.prototype, "alignment", 2);
-I([
-  a({ type: String, reflect: !0, attribute: "type" })
-], M.prototype, "type", 2);
-I([
-  a({ type: String, attribute: "show-event" })
-], M.prototype, "showEvent", 2);
-I([
-  a({ type: Number, attribute: "spacing" })
-], M.prototype, "spacing", 1);
-I([
-  a({
-    type: Boolean,
-    attribute: "show-caret",
-    converter: {
-      fromAttribute: (o) => o !== "false",
-      toAttribute: (o) => o ? "" : "false"
-    }
-  })
-], M.prototype, "showCaret", 1);
-I([
-  a({ type: Boolean, reflect: !0 })
-], M.prototype, "disabled", 1);
-I([
-  a({ type: Boolean, attribute: "close-on-click-outside" })
-], M.prototype, "closeOnClickOutside", 1);
-I([
-  a({ type: Boolean, attribute: "close-on-mouse-leave" })
-], M.prototype, "closeOnMouseLeave", 1);
-I([
-  a({ type: Number, attribute: "hide-timeout" })
-], M.prototype, "hideTimeout", 1);
-I([
-  a({ type: Number, attribute: "show-timeout" })
-], M.prototype, "showTimeout", 1);
-I([
-  a({ type: String, attribute: "css-class" })
-], M.prototype, "cssClass", 2);
-I([
-  g()
-], M.prototype, "_open", 2);
-I([
-  g()
-], M.prototype, "_panelTop", 2);
-I([
-  g()
-], M.prototype, "_panelLeft", 2);
-I([
-  g()
-], M.prototype, "_effectivePlacement", 2);
-I([
-  g()
-], M.prototype, "_caretTop", 2);
-I([
-  g()
-], M.prototype, "_caretLeft", 2);
-I([
-  g()
-], M.prototype, "_animate", 2);
-customElements.get(io) || customElements.define(io, M);
-const Xa = 40, Ja = 2, Qa = w`
-  :host {
-    --swim-navbar-bar-size: ${Xa}px;
-    --swim-navbar-bar-thickness: ${Ja}px;
+    --swim-navbar-bar-size: ${bl}px;
+    --swim-navbar-bar-thickness: ${fl}px;
     display: inline-flex;
     align-items: center;
     min-height: 50px;
@@ -12147,7 +13070,7 @@ const Xa = 40, Ja = 2, Qa = w`
     top: 0;
     bottom: auto;
   }
-`, el = w`
+`, _l = v`
   :host {
     display: flex;
     font-size: var(--font-size-xl);
@@ -12173,12 +13096,12 @@ const Xa = 40, Ja = 2, Qa = w`
     color: var(--blue-400);
   }
 `;
-var tl = Object.defineProperty, il = Object.getOwnPropertyDescriptor, fi = (o, e, t, i) => {
-  for (var s = il(e, t), r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = n(e, t, s) || s);
-  return s && tl(e, t, s), s;
+var wl = Object.defineProperty, vl = Object.getOwnPropertyDescriptor, Si = (s, e, t, i) => {
+  for (var o = vl(e, t), r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = n(e, t, o) || o);
+  return o && wl(e, t, o), o;
 };
-const so = "swim-navbar-item", Vi = class Vi extends v {
+const bo = "swim-navbar-item", Ji = class Ji extends y {
   constructor() {
     super(...arguments), this._active = 0, this._total = 0, this._index = 0, this._clickBound = () => this._handleClick();
   }
@@ -12186,7 +13109,7 @@ const so = "swim-navbar-item", Vi = class Vi extends v {
     return this._active;
   }
   set active(e) {
-    const t = A(e, 0);
+    const t = z(e, 0);
     if (this._active !== t) {
       const i = this._active;
       this._active = t, this.requestUpdate("active", i);
@@ -12196,13 +13119,13 @@ const so = "swim-navbar-item", Vi = class Vi extends v {
     return this._total;
   }
   set total(e) {
-    this._total = A(e, 0);
+    this._total = z(e, 0);
   }
   get index() {
     return this._index;
   }
   set index(e) {
-    const t = A(e, 0);
+    const t = z(e, 0);
     if (this._index !== t) {
       const i = this._index;
       this._index = t, this.requestUpdate("index", i);
@@ -12236,8 +13159,8 @@ const so = "swim-navbar-item", Vi = class Vi extends v {
     this._active !== this._index && (this._active = this._index, this.requestUpdate(), this.dispatchEvent(
       new CustomEvent("active-change", {
         detail: this._index,
-        bubbles: !0,
-        composed: !0
+        bubbles: !1,
+        composed: !1
       })
     ));
   }
@@ -12248,24 +13171,24 @@ const so = "swim-navbar-item", Vi = class Vi extends v {
     (e.key === "Enter" || e.key === " ") && (e.preventDefault(), this.setActive());
   }
 };
-Vi.styles = [x, el];
-let Fe = Vi;
-fi([
+Ji.styles = [C, _l];
+let Ue = Ji;
+Si([
   a({ type: Number })
-], Fe.prototype, "active");
-fi([
+], Ue.prototype, "active");
+Si([
   a({ type: Number })
-], Fe.prototype, "total");
-fi([
+], Ue.prototype, "total");
+Si([
   a({ type: Number })
-], Fe.prototype, "index");
-customElements.get(so) || customElements.define(so, Fe);
-var sl = Object.defineProperty, ol = Object.getOwnPropertyDescriptor, Ut = (o, e, t, i) => {
-  for (var s = i > 1 ? void 0 : i ? ol(e, t) : e, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = (i ? n(e, t, s) : n(s)) || s);
-  return i && s && sl(e, t, s), s;
+], Ue.prototype, "index");
+customElements.get(bo) || customElements.define(bo, Ue);
+var yl = Object.defineProperty, xl = Object.getOwnPropertyDescriptor, Jt = (s, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? xl(e, t) : e, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = (i ? n(e, t, o) : n(o)) || o);
+  return i && o && yl(e, t, o), o;
 };
-const rl = 40, oo = "swim-navbar", Ni = class Ni extends v {
+const $l = 40, fo = "swim-navbar", Qi = class Qi extends y {
   constructor() {
     super(...arguments), this._barAtTop = !1, this._active = 0, this._navItems = [], this._slotChangeBound = () => this._syncFromSlot(), this._activeChangeBound = (e) => this._onItemActiveChange(e);
   }
@@ -12273,18 +13196,18 @@ const rl = 40, oo = "swim-navbar", Ni = class Ni extends v {
     return this._barAtTop;
   }
   set barAtTop(e) {
-    this._barAtTop = m(e);
+    this._barAtTop = p(e);
   }
   get active() {
     return this._active;
   }
   set active(e) {
-    const t = A(e, 0);
+    const t = z(e, 0);
     t !== this._active && !isNaN(t) && t >= 0 && (!this._navItems.length || t < this._navItems.length) && (this._active = t, this._syncItems(), this.dispatchEvent(
       new CustomEvent("active-change", {
         detail: this._active,
-        bubbles: !0,
-        composed: !0
+        bubbles: !1,
+        composed: !1
       })
     ));
   }
@@ -12308,18 +13231,18 @@ const rl = 40, oo = "swim-navbar", Ni = class Ni extends v {
    * Activate the item at the given index (zero-based). No-op if index is out of range or already active.
    */
   goTo(e) {
-    const t = A(e, -1);
+    const t = z(e, -1);
     if (t >= 0 && t < this._navItems.length && t !== this._active) {
       const i = this._navItems[t];
       i && i.setActive();
     }
   }
   _syncFromSlot() {
-    var s;
-    const e = this._slotEl ?? ((s = this.shadowRoot) == null ? void 0 : s.querySelector("slot"));
+    var o;
+    const e = this._slotEl ?? ((o = this.shadowRoot) == null ? void 0 : o.querySelector("slot"));
     let t = (e == null ? void 0 : e.assignedElements({ flatten: !0 })) ?? [];
     t.length === 0 && (t = Array.from(this.children));
-    const i = t.filter((r) => r instanceof Fe);
+    const i = t.filter((r) => r instanceof Ue);
     this._navItems.forEach((r) => {
       r.removeEventListener("active-change", this._activeChangeBound);
     }), this._navItems = i, i.forEach((r) => {
@@ -12328,8 +13251,8 @@ const rl = 40, oo = "swim-navbar", Ni = class Ni extends v {
   }
   _syncItems() {
     const e = this._active, t = this._navItems.length;
-    this._navItems.forEach((i, s) => {
-      i.index = s, i.total = t, i.active = e;
+    this._navItems.forEach((i, o) => {
+      i.index = o, i.total = t, i.active = e;
     });
   }
   _onItemActiveChange(e) {
@@ -12337,14 +13260,14 @@ const rl = 40, oo = "swim-navbar", Ni = class Ni extends v {
     typeof t != "number" || t === this._active || t >= 0 && t < this._navItems.length && (this._active = t, this._syncItems(), this.requestUpdate(), this.dispatchEvent(
       new CustomEvent("active-change", {
         detail: this._active,
-        bubbles: !0,
-        composed: !0
+        bubbles: !1,
+        composed: !1
       })
     ));
   }
   _getBarTransform() {
     const e = this._navItems.filter((t, i) => i < this._active).length;
-    return `translateX(${rl * e}px)`;
+    return `translateX(${$l * e}px)`;
   }
   render() {
     const e = this._barAtTop;
@@ -12362,24 +13285,24 @@ const rl = 40, oo = "swim-navbar", Ni = class Ni extends v {
     `;
   }
 };
-Ni.styles = [x, Qa];
-let Be = Ni;
-Ut([
-  R("slot")
-], Be.prototype, "_slotEl", 2);
-Ut([
-  a({ type: Boolean, reflect: !0, attribute: "bar-at-top" })
-], Be.prototype, "barAtTop", 1);
-Ut([
+Qi.styles = [C, gl];
+let qe = Qi;
+Jt([
+  N("slot")
+], qe.prototype, "_slotEl", 2);
+Jt([
+  a({ type: Boolean, reflect: !0, attribute: "bar-at-top", converter: g })
+], qe.prototype, "barAtTop", 1);
+Jt([
   a({ type: Number })
-], Be.prototype, "active", 1);
-Ut([
-  g()
-], Be.prototype, "_navItems", 2);
-customElements.get(oo) || customElements.define(oo, Be);
-const nl = [
-  x,
-  w`
+], qe.prototype, "active", 1);
+Jt([
+  b()
+], qe.prototype, "_navItems", 2);
+customElements.get(fo) || customElements.define(fo, qe);
+const kl = [
+  C,
+  v`
     :host {
       display: block;
     }
@@ -12463,20 +13386,20 @@ const nl = [
     }
   `
 ];
-var lt = /* @__PURE__ */ ((o) => (o.Error = "error", o.Success = "success", o.Warning = "warning", o))(lt || {}), al = Object.defineProperty, ll = Object.getOwnPropertyDescriptor, ke = (o, e, t, i) => {
-  for (var s = i > 1 ? void 0 : i ? ll(e, t) : e, r = o.length - 1, n; r >= 0; r--)
-    (n = o[r]) && (s = (i ? n(e, t, s) : n(s)) || s);
-  return i && s && al(e, t, s), s;
+var mt = /* @__PURE__ */ ((s) => (s.Error = "error", s.Success = "success", s.Warning = "warning", s))(mt || {}), Cl = Object.defineProperty, El = Object.getOwnPropertyDescriptor, De = (s, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? El(e, t) : e, r = s.length - 1, n; r >= 0; r--)
+    (n = s[r]) && (o = (i ? n(e, t, o) : n(o)) || o);
+  return i && o && Cl(e, t, o), o;
 };
-const ro = 44, no = "swim-list", Ui = class Ui extends v {
+const go = 44, _o = "swim-list", es = class es extends y {
   constructor() {
-    super(...arguments), this.columnLayout = "", this.dataSource = [], this.defaultRowStatus = lt.Error, this.headerLabels = [], this.columns = [], this._hasScrollbar = !1, this._page = 1, this._rowsContainer = null, this._scrollBound = (e) => this._emitScrollChanges(e);
+    super(...arguments), this.columnLayout = "", this.dataSource = [], this.defaultRowStatus = mt.Error, this.headerLabels = [], this.columns = [], this._hasScrollbar = !1, this._page = 1, this._rowsContainer = null, this._scrollBound = (e) => this._emitScrollChanges(e);
   }
   get height() {
     return this._height;
   }
   set height(e) {
-    this._height = e === void 0 ? void 0 : A(e);
+    this._height = e === void 0 ? void 0 : z(e);
   }
   connectedCallback() {
     super.connectedCallback();
@@ -12487,7 +13410,7 @@ const ro = 44, no = "swim-list", Ui = class Ui extends v {
       var t;
       if (this._updateScrollbarState(), (t = this.paginationConfig) != null && t.index && this.paginationConfig.index > 1 && this.paginationConfig.pageSize > 0) {
         this._page = this.paginationConfig.index;
-        const i = ro * (this.paginationConfig.pageSize * (this._page - 1));
+        const i = go * (this.paginationConfig.pageSize * (this._page - 1));
         this._rowsContainer.scrollTo({ top: i });
       }
     }));
@@ -12504,11 +13427,11 @@ const ro = 44, no = "swim-list", Ui = class Ui extends v {
   _emitScrollChanges(e) {
     var r;
     const i = e.target.scrollTop;
-    this.dispatchEvent(new CustomEvent("scroll", { detail: i, bubbles: !0 }));
-    const s = (r = this.paginationConfig) == null ? void 0 : r.pageSize;
-    if (s) {
-      const n = Math.floor(i / ro), l = Math.floor(n / s) + 1;
-      l !== this._page && (this._page = l, this.dispatchEvent(new CustomEvent("page-change", { detail: l, bubbles: !0 })));
+    this.dispatchEvent(new CustomEvent("scroll", { detail: i, bubbles: !1, composed: !1 }));
+    const o = (r = this.paginationConfig) == null ? void 0 : r.pageSize;
+    if (o) {
+      const n = Math.floor(i / go), l = Math.floor(n / o) + 1;
+      l !== this._page && (this._page = l, this.dispatchEvent(new CustomEvent("page-change", { detail: l, bubbles: !1, composed: !1 })));
     }
   }
   _getGridStyle() {
@@ -12517,13 +13440,13 @@ const ro = 44, no = "swim-list", Ui = class Ui extends v {
   }
   _getRowStatus(e) {
     const t = e.status;
-    return t === lt.Error || t === lt.Success || t === lt.Warning ? t : this.defaultRowStatus;
+    return t === mt.Error || t === mt.Success || t === mt.Warning ? t : this.defaultRowStatus;
   }
   _getCellValue(e, t, i) {
     if (t === "$index")
       return `${i + 1}.`;
-    const s = e[t];
-    return s == null ? "" : String(s);
+    const o = e[t];
+    return o == null ? "" : String(o);
   }
   render() {
     const e = this._getGridStyle(), t = Math.max(this.headerLabels.length, this.columns.length, 1), i = this.headerLabels.length >= t ? this.headerLabels.slice(0, t) : [...this.headerLabels, ...Array(t - this.headerLabels.length).fill("")];
@@ -12532,16 +13455,16 @@ const ro = 44, no = "swim-list", Ui = class Ui extends v {
         class="swim-list__headers-container ${this._hasScrollbar ? "swim-list__headers-container--scrollable" : ""}"
         style="grid-template-columns: ${e}"
       >
-        ${i.map((s) => c`<span class="swim-list__header-cell">${s}</span>`)}
+        ${i.map((o) => c`<span class="swim-list__header-cell">${o}</span>`)}
       </div>
       <hr class="swim-list__divider" />
       <div class="swim-list__rows-container" style=${this._height !== void 0 ? `height: ${this._height}px` : ""}>
-        ${this.dataSource.map((s, r) => {
-      const n = this._getRowStatus(s);
+        ${this.dataSource.map((o, r) => {
+      const n = this._getRowStatus(o);
       return c`
             <div class="swim-list__row swim-list__row--${n}" style="grid-template-columns: ${e}">
               ${this.columns.map(
-        (l) => c` <span class="swim-list__cell">${this._getCellValue(s, l, r)}</span> `
+        (l) => c` <span class="swim-list__cell">${this._getCellValue(o, l, r)}</span> `
       )}
             </div>
           `;
@@ -12550,37 +13473,37 @@ const ro = 44, no = "swim-list", Ui = class Ui extends v {
     `;
   }
 };
-Ui.styles = nl;
-let Q = Ui;
-ke([
+es.styles = kl;
+let oe = es;
+De([
   a({ type: String, attribute: "column-layout" })
-], Q.prototype, "columnLayout", 2);
-ke([
+], oe.prototype, "columnLayout", 2);
+De([
   a({ type: Array, attribute: !1 })
-], Q.prototype, "dataSource", 2);
-ke([
+], oe.prototype, "dataSource", 2);
+De([
   a({ type: Number })
-], Q.prototype, "height", 1);
-ke([
+], oe.prototype, "height", 1);
+De([
   a({ attribute: !1 })
-], Q.prototype, "paginationConfig", 2);
-ke([
+], oe.prototype, "paginationConfig", 2);
+De([
   a({ type: String, attribute: "default-row-status", reflect: !0 })
-], Q.prototype, "defaultRowStatus", 2);
-ke([
+], oe.prototype, "defaultRowStatus", 2);
+De([
   a({ type: Array, attribute: !1 })
-], Q.prototype, "headerLabels", 2);
-ke([
+], oe.prototype, "headerLabels", 2);
+De([
   a({ type: Array, attribute: !1 })
-], Q.prototype, "columns", 2);
-ke([
-  g()
-], Q.prototype, "_hasScrollbar", 2);
-ke([
-  g()
-], Q.prototype, "_page", 2);
-customElements.get(no) || customElements.define(no, Q);
-const vl = {
+], oe.prototype, "columns", 2);
+De([
+  b()
+], oe.prototype, "_hasScrollbar", 2);
+De([
+  b()
+], oe.prototype, "_page", 2);
+customElements.get(_o) || customElements.define(_o, oe);
+const Fl = {
   // Blue
   blue100: "rgb(224, 239, 255)",
   blue200: "rgb(173, 212, 255)",
@@ -12667,7 +13590,7 @@ const vl = {
   // Base
   white: "rgb(255, 255, 255)",
   black: "rgb(0, 0, 0)"
-}, yl = {
+}, Bl = {
   // Font sizes
   fontSizeBase: "16px",
   fontSizeXXS: "0.625rem",
@@ -12702,7 +13625,7 @@ const vl = {
   fontWeightRegular: "400",
   fontWeightSemibold: "600",
   fontWeightBold: "700"
-}, xl = {
+}, Rl = {
   spacing0: "0",
   spacing2: "2px",
   spacing4: "4px",
@@ -12711,110 +13634,113 @@ const vl = {
   spacing16: "16px",
   spacing24: "24px",
   spacing32: "32px"
-}, $l = {
+}, Hl = {
   radius2: "2px",
   radius4: "4px",
   radius8: "8px"
 };
 export {
-  le as AlignmentType,
-  mo as ButtonGroupOrientation,
-  go as ButtonGroupStyle,
-  bo as ButtonGroupVariant,
-  oe as ButtonState,
-  wo as CardAppearance,
-  _o as CardOrientation,
-  vo as CardPlaceholderSize,
-  Ue as CardStatus,
-  xr as DAYS_OF_WEEK,
-  ie as DateDisplayType,
-  z as DateTimeType,
-  at as DialogFormat,
-  Ve as DrawerDirection,
-  Pn as DrawerPosition,
-  mi as InputAppearance,
-  bi as InputSize,
-  fe as InputTypes,
-  lt as ListRowStatus,
-  yr as MONTHS_SHORT,
-  O as PlacementType,
-  Ye as ProgressSpinnerMode,
-  wl as SWIM_ICON_FONT_FAMILY,
-  $o as SectionAppearance,
-  we as ShowType,
-  _e as SpinnerAppearance,
-  Ne as SplitDirection,
-  zo as StyleType,
-  N as SwimButton,
-  Ge as SwimButtonGroup,
-  ve as SwimButtonToggle,
-  ne as SwimButtonToggleGroup,
-  U as SwimCalendar,
-  q as SwimCard,
-  Ke as SwimCardAvatar,
-  ii as SwimCardBody,
-  St as SwimCardFooter,
-  mt as SwimCardHeader,
-  At as SwimCardPlaceholder,
-  X as SwimCheckbox,
-  y as SwimDateTime,
-  P as SwimDialog,
-  j as SwimDrawer,
-  Ae as SwimIcon,
-  C as SwimInput,
-  ye as SwimLargeFormatDialogContent,
-  Tt as SwimLargeFormatDialogFooter,
-  Q as SwimList,
-  Be as SwimNavbar,
-  Fe as SwimNavbarItem,
-  wt as SwimOption,
-  B as SwimProgressSpinner,
-  W as SwimRadio,
-  se as SwimRadioGroup,
-  G as SwimSection,
-  si as SwimSectionHeader,
-  E as SwimSelect,
-  L as SwimSlider,
-  bt as SwimSplit,
-  Pe as SwimSplitArea,
-  gt as SwimSplitHandle,
-  ae as SwimTab,
-  Le as SwimTabs,
-  J as SwimToggle,
-  M as SwimTooltip,
-  To as TabsAppearance,
-  xt as TogglePosition,
-  x as baseStyles,
-  Yr as cardComponentStyles,
-  Rr as cardHorizontalStyles,
-  Br as cardStyles,
-  Hr as cardVerticalStyles,
-  m as coerceBooleanProperty,
-  A as coerceNumberProperty,
-  vl as colors,
-  or as convertClass,
-  ot as formatDate,
-  cs as getDecadeStartYear,
-  bl as getEffectiveDisplayFormat,
-  Or as getEffectiveInputFormat,
-  te as getMonth,
-  pl as globalStyles,
-  nr as iconRegistry,
-  Xt as isAfterDate,
-  Zt as isBeforeDate,
-  ms as isOutOfRange,
-  ei as isSameDay,
-  ml as isSameMonth,
-  $r as isSameYear,
-  F as isValidDate,
-  ti as normalizeTimezone,
-  _l as openDrawer,
-  We as parseDate,
-  $l as radius,
-  Mr as resolveFormat,
-  ps as roundToPrecision,
-  _t as scrollbarStyles,
-  xl as spacing,
-  gl as toNativeInputValue,
-  yl as typography
+  me as AlignmentType,
+  Co as ButtonGroupOrientation,
+  So as ButtonGroupStyle,
+  Eo as ButtonGroupVariant,
+  ce as ButtonState,
+  zo as CardAppearance,
+  Do as CardOrientation,
+  Mo as CardPlaceholderSize,
+  Qe as CardStatus,
+  Lr as DAYS_OF_WEEK,
+  L as DateDisplayType,
+  T as DateTimeType,
+  pt as DialogFormat,
+  Xe as DrawerDirection,
+  ca as DrawerPosition,
+  $i as InputAppearance,
+  ki as InputSize,
+  $e as InputTypes,
+  mt as ListRowStatus,
+  Ir as MONTHS_SHORT,
+  F as PlacementType,
+  Ze as ProgressSpinnerMode,
+  Ll as SWIM_ICON_FONT_FAMILY,
+  Fo as SectionAppearance,
+  ke as ShowType,
+  Ce as SpinnerAppearance,
+  Je as SplitDirection,
+  Ci as StyleType,
+  U as SwimButton,
+  it as SwimButtonGroup,
+  Ee as SwimButtonToggle,
+  pe as SwimButtonToggleGroup,
+  W as SwimCalendar,
+  K as SwimCard,
+  st as SwimCardAvatar,
+  di as SwimCardBody,
+  Lt as SwimCardFooter,
+  yt as SwimCardHeader,
+  Ft as SwimCardPlaceholder,
+  ie as SwimCheckbox,
+  M as SwimDateDisplay,
+  $ as SwimDateTime,
+  R as SwimDialog,
+  Z as SwimDrawer,
+  Pe as SwimIcon,
+  A as SwimInput,
+  fe as SwimLargeFormatDialogContent,
+  xt as SwimLargeFormatDialogFooter,
+  oe as SwimList,
+  qe as SwimNavbar,
+  Ue as SwimNavbarItem,
+  Ae as SwimOption,
+  Y as SwimProgressSpinner,
+  J as SwimRadio,
+  le as SwimRadioGroup,
+  X as SwimSection,
+  ui as SwimSectionHeader,
+  x as SwimSelect,
+  V as SwimSlider,
+  $t as SwimSplit,
+  Ne as SwimSplitArea,
+  kt as SwimSplitHandle,
+  ge as SwimTab,
+  je as SwimTabs,
+  se as SwimToggle,
+  P as SwimTooltip,
+  No as TabsAppearance,
+  zt as TogglePosition,
+  C as baseStyles,
+  en as cardComponentStyles,
+  Jr as cardHorizontalStyles,
+  Xr as cardStyles,
+  Qr as cardVerticalStyles,
+  p as coerceBooleanProperty,
+  z as coerceNumberProperty,
+  Fl as colors,
+  _r as convertClass,
+  he as formatDate,
+  ws as getDecadeStartYear,
+  qr as getEffectiveDisplayFormat,
+  To as getEffectiveInputFormat,
+  ae as getMonth,
+  zl as globalStyles,
+  vr as iconRegistry,
+  ri as isAfterDate,
+  oi as isBeforeDate,
+  $s as isOutOfRange,
+  li as isSameDay,
+  Ml as isSameMonth,
+  Fr as isSameYear,
+  H as isValidDate,
+  g as litBooleanAttrDefaultFalse,
+  Q as litBooleanAttrDefaultTrue,
+  vt as normalizeTimezone,
+  Il as openDrawer,
+  Ye as parseDate,
+  Hl as radius,
+  Dt as resolveFormat,
+  ci as roundToPrecision,
+  Et as scrollbarStyles,
+  Rl as spacing,
+  Ol as toNativeInputValue,
+  Bl as typography
 };
