@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TabsComponent } from './tabs.component';
 import { TabsFixtureComponent } from './fixtures/tabs.fixture';
@@ -10,7 +10,7 @@ describe('TabsComponent', () => {
   let component: TabsComponent;
   let fixture: ComponentFixture<TabsFixtureComponent>;
   describe('Standard Tabs', () => {
-    beforeEach(done => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [TabsFixtureComponent],
         imports: [TabsModule],
@@ -19,11 +19,8 @@ describe('TabsComponent', () => {
 
       fixture = TestBed.createComponent(TabsFixtureComponent);
       component = fixture.componentInstance.tabsComponent;
-      fixture.autoDetectChanges();
-      fixture.whenStable().then(() => {
-        done();
-      });
-    });
+      fixture.detectChanges();
+    }));
 
     it('can load instance', () => {
       expect(component).toBeTruthy();
@@ -70,7 +67,7 @@ describe('TabsComponent', () => {
   });
 
   describe('Tabs with specific tab set active', () => {
-    beforeEach(done => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [TabsLabeltemplateFixtureComponent],
         imports: [TabsModule],
@@ -79,11 +76,8 @@ describe('TabsComponent', () => {
 
       fixture = TestBed.createComponent(TabsLabeltemplateFixtureComponent);
       component = fixture.componentInstance.tabsComponent;
-      fixture.autoDetectChanges();
-      fixture.whenStable().then(() => {
-        done();
-      });
-    });
+      fixture.detectChanges();
+    }));
 
     it('4th tab is set to active on init', () => {
       expect(component.index).toBe(3);
@@ -96,21 +90,17 @@ describe('TabsComponent', () => {
   });
 
   describe('Tabs with multiple active', () => {
-    beforeEach(done => {
+    beforeEach(waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [TabsMultipleActiveFixtureComponent],
         imports: [TabsModule],
         teardown: { destroyAfterEach: false }
       }).compileComponents();
-
       spyOn(console, 'error');
       fixture = TestBed.createComponent(TabsMultipleActiveFixtureComponent);
       component = fixture.componentInstance.tabsComponent;
-      fixture.autoDetectChanges();
-      fixture.whenStable().then(() => {
-        done();
-      });
-    });
+      fixture.detectChanges();
+    }));
 
     it('Tabs with multiple active tabs throws error when initialized', () => {
       // eslint-disable-next-line no-console

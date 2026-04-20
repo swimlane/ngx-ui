@@ -94,7 +94,10 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
   private _closeOnMouseLeave = false;
   private _leaveTimeout = null;
 
-  constructor(private readonly renderer: Renderer2, private readonly cd: ChangeDetectorRef) {}
+  constructor(
+    private readonly renderer: Renderer2,
+    private readonly cd: ChangeDetectorRef
+  ) {}
 
   ngAfterContentInit(): void {
     if (this.dropdownToggle) {

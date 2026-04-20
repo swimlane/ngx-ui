@@ -188,7 +188,7 @@ These are helper commands not directly related to ngx-ui.
 
 ### `.getByName`
 
-Find element by name attribute. Alias for ` cy.get(``*[name="${name}"]``) `
+Find element by name attribute. Alias for `cy.get(``*[name="${name}"]``)`
 
 ```ts
 .getByName('name')

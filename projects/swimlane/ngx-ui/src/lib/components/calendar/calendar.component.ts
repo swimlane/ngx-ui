@@ -135,7 +135,10 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
   private _minView: CalendarView;
   private _defaultView: CalendarView;
 
-  constructor(private readonly cdr: ChangeDetectorRef, private readonly elm: ElementRef) {}
+  constructor(
+    private readonly cdr: ChangeDetectorRef,
+    private readonly elm: ElementRef
+  ) {}
 
   ngOnInit() {
     this.focusDate = this.createMoment(this.value);

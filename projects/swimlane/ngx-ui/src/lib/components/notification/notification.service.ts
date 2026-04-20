@@ -40,7 +40,10 @@ export class NotificationService extends InjectionRegistryService<NotificationCo
     return 'Notification' in window;
   }
 
-  constructor(readonly injectionService: InjectionService, @Inject(DOCUMENT) private readonly document: Document) {
+  constructor(
+    readonly injectionService: InjectionService,
+    @Inject(DOCUMENT) private readonly document: Document
+  ) {
     super(injectionService);
   }
 

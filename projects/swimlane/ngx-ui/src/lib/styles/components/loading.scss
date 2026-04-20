@@ -51,7 +51,8 @@
     // border: 1px solid red;
     border-right: 10px solid $color;
     transform: rotateZ(0deg);
-    animation: arc-spinner-rotator-arc $duration $easing 0s infinite,
+    animation:
+      arc-spinner-rotator-arc $duration $easing 0s infinite,
       arc-spinner-colors ($duration * 2) ease-in-out infinite;
   }
 
@@ -141,7 +142,9 @@
       stroke-linecap: $linecap;
       stroke-dasharray: $perimeter, $perimeter;
       stroke-dashoffset: 0;
-      animation: progress-arc $speed linear infinite, progress-color $speed linear infinite;
+      animation:
+        progress-arc $speed linear infinite,
+        progress-color $speed linear infinite;
     }
   }
 

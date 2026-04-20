@@ -26,7 +26,11 @@ export class AutoSizeInputDirective implements AfterContentChecked, AfterViewIni
   @Input() minWidth = -1;
   @Input() setParentWidth = false;
 
-  constructor(private element: ElementRef, @Optional() private ngModel: NgModel, private renderer: Renderer2) {}
+  constructor(
+    private element: ElementRef,
+    @Optional() private ngModel: NgModel,
+    private renderer: Renderer2
+  ) {}
 
   get borderWidth(): number {
     return this.includeBorders ? 2 * this._getPropertyWidth('border') : 0;

@@ -74,7 +74,10 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
   nodeExpandTrigger$ = new Subject<boolean>();
   private readonly unsub$: Subject<void> = new Subject();
 
-  constructor(public dialogMngr: DialogService, private dateFormat: DateFormatPipe) {
+  constructor(
+    public dialogMngr: DialogService,
+    private dateFormat: DateFormatPipe
+  ) {
     super(dialogMngr);
   }
 

@@ -58,7 +58,7 @@ export class MultiDimensionSelectionComponent implements OnChanges, AfterViewIni
 
   // Host listeners
   @HostListener('document:keydown.escape', ['$event'])
-  onKeydownEscape() {
+  onKeydownEscape(_: Event) {
     this.onClose.emit();
   }
 
