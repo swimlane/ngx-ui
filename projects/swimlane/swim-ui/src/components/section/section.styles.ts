@@ -5,6 +5,13 @@ import { baseStyles } from '../../styles/base';
  * Section component styles matching @swimlane/ngx-ui design system.
  * BEM: swim-section (block), swim-section__header, swim-section__toggle, swim-section__content.
  * Uses CSS variables from base; no hardcoded colors.
+ *
+ * Host-facing overrides (optional): `--swim-section-background`, `--swim-section-header-background`,
+ * `--swim-section-header-hover-background` (full header row on hover when collapsible UI exists: `header-toggle` or
+ *   chevron toggle; omitted when there is no toggle control),
+ * `--swim-section-content-background`.
+ * Private `--_swim-fallback-*` on :host are reset per `[appearance]`; public vars always win in the rules.
+ *
  * Note: Lit css`` only allows literal values or other css`` results; do not interpolate plain strings.
  */
 export const sectionStyles = css`
@@ -12,9 +19,34 @@ export const sectionStyles = css`
     display: block;
     width: 100%;
     margin-bottom: 2em;
-    background: var(--grey-825);
-    border-radius: var(--radius-8);
     box-sizing: border-box;
+
+    --_swim-fallback-background: var(--grey-825);
+    --_swim-fallback-header-background: var(--grey-775);
+    --_swim-fallback-header-hover-background: var(--grey-750);
+    --_swim-fallback-content-background: transparent;
+
+    background: var(--swim-section-background, var(--_swim-fallback-background));
+    border-radius: var(--radius-8);
+  }
+
+  :host([appearance='minimal']) {
+    --_swim-fallback-background: transparent;
+    --_swim-fallback-header-background: transparent;
+    --_swim-fallback-header-hover-background: transparent;
+    --_swim-fallback-content-background: transparent;
+  }
+
+  :host([appearance='outline']) {
+    --_swim-fallback-header-background: transparent;
+    --_swim-fallback-header-hover-background: var(--grey-750);
+    --_swim-fallback-content-background: transparent;
+  }
+
+  :host([appearance='light']) {
+    --_swim-fallback-header-background: var(--grey-700);
+    --_swim-fallback-header-hover-background: var(--grey-725);
+    --_swim-fallback-content-background: var(--grey-775);
   }
 
   .swim-section__inner {
@@ -23,7 +55,7 @@ export const sectionStyles = css`
   }
 
   .swim-section__header {
-    background: var(--grey-775);
+    background: var(--swim-section-header-background, var(--_swim-fallback-header-background));
     display: flex;
     align-items: center;
     width: 100%;
@@ -161,6 +193,15 @@ export const sectionStyles = css`
     padding-left: 0; /* space for toggle is from header-content padding-left */
   }
 
+  .swim-section__header.swim-section__header--collapsible:not(.swim-section__header--empty) {
+    transition: background-color 200ms ease;
+  }
+
+  /* Full-row hover when user can collapse via header click or chevron (not when collapsible but no UI control) */
+  .swim-section__header.swim-section__header--collapsible:hover:not(.swim-section__header--empty):is(.swim-section__header--header-toggle, :has(.swim-section__toggle)) {
+    background: var(--swim-section-header-hover-background, var(--_swim-fallback-header-hover-background));
+  }
+
   .swim-section__header.swim-section__header--header-toggle {
     cursor: pointer;
   }
@@ -197,21 +238,12 @@ export const sectionStyles = css`
   .swim-section__content {
     display: block;
     box-sizing: border-box;
-  }
-
-  /* Appearance: minimal */
-  :host([appearance='minimal']) {
-    background: transparent;
-  }
-
-  :host([appearance='minimal']) .swim-section__header {
-    background: transparent;
+    background: var(--swim-section-content-background, var(--_swim-fallback-content-background));
   }
 
   /* Appearance: outline */
   :host([appearance='outline']) .swim-section__header,
   :host([appearance='outline']) .swim-section__content {
-    background: none;
     border: 1px solid var(--grey-600);
   }
 
@@ -235,7 +267,6 @@ export const sectionStyles = css`
   }
 
   :host([appearance='light']) .swim-section__header {
-    background: var(--grey-700);
     border-radius: var(--radius-8) var(--radius-8) var(--radius-0) var(--radius-0);
   }
 
@@ -244,7 +275,6 @@ export const sectionStyles = css`
   }
 
   :host([appearance='light']) .swim-section__content {
-    background: var(--grey-775);
     border-radius: var(--radius-0) var(--radius-0) var(--radius-8) var(--radius-8);
   }
 `;
