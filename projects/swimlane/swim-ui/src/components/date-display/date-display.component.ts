@@ -1,5 +1,5 @@
 import { LitElement, html, nothing, PropertyValues } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
+import { property, state } from 'lit/decorators.js';
 import { repeat } from 'lit/directives/repeat.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { baseStyles } from '../../styles/base';
@@ -88,7 +88,6 @@ export type ZoneValue = { key: string; clip: string; display: string };
  *
  * @csspart - None (inner `<time>` is not part-exposed).
  */
-@customElement(TAG)
 export class SwimDateDisplay extends LitElement {
   static styles = [baseStyles, dateDisplayStyles];
 
@@ -415,8 +414,12 @@ export class SwimDateDisplay extends LitElement {
   }
 }
 
+if (!customElements.get(TAG)) {
+  customElements.define(TAG, SwimDateDisplay);
+}
+
 declare global {
   interface HTMLElementTagNameMap {
-    [TAG]: SwimDateDisplay;
+    'swim-date-display': SwimDateDisplay;
   }
 }

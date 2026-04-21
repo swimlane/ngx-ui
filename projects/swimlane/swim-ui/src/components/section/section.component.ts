@@ -16,6 +16,14 @@ let nextId = 0;
  * @slot - Default slot for section body content.
  *
  * @fires toggle - Fired when the section is expanded or collapsed (detail: boolean collapsed). Does not bubble.
+ *
+ * Hosts can theme surfaces via CSS custom properties on `swim-section` (or an ancestor). They override each
+ * `appearance`’s token fallbacks:
+ * - `--swim-section-background` — host / card surface
+ * - `--swim-section-header-background` — header row
+ * - `--swim-section-header-hover-background` — full header row on hover when the section can be toggled from the UI
+ *   (`header-toggle` or a visible chevron); no hover fill when collapsible but no toggle control
+ * - `--swim-section-content-background` — body panel
  */
 const SECTION_TAG = 'swim-section';
 export class SwimSection extends LitElement {
