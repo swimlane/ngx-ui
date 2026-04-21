@@ -2,6 +2,10 @@
 
 ## HEAD (unreleased)
 
+## 51.5.0 (2026-04-18)
+
+- Enhancement (`ngx-large-format-dialog-content`): Added support to display custom content in large dialog's header.
+
 ## 51.4.0 (2026-04-10)
 
 - Enhancement (`ngx-card`): Added a new input attribute in ngx-card to display content when we hover over the card.
