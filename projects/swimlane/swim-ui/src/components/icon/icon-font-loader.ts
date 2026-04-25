@@ -1,6 +1,6 @@
 /**
- * Font family name used by swim-ui icon component. Matches ngx-ui so the
- * platform can inject the icon font once and both Angular (ngx-icon) and
- * Lit (swim-icon) use the same font.
+ * Font family name used by swim-ui `swim-icon` (distinct from ngx-ui’s `ngx-icon`).
+ * Same glyph file is copied at build time; a separate family lets each browsing context
+ * (e.g. an iframe) load its own @font-face without depending on the parent shell’s font.
  */
-export const SWIM_ICON_FONT_FAMILY = 'ngx-icon';
+export const SWIM_ICON_FONT_FAMILY = 'swim-ui-icon';

@@ -19,17 +19,9 @@ npm install @swimlane/swim-ui
 yarn add @swimlane/swim-ui
 ```
 
-## CDN (GitHub Pages)
+## CDN
 
-You can load the library from the CDN for testing or use in a Lit app without installing from npm.
-
-**Publish to GitHub Pages** (manual, from this repo):
-
-```bash
-cd projects/swimlane/swim-ui && yarn deploy:gh-pages
-```
-
-Ensure GitHub Pages is enabled for the repo (Settings → Pages → Source: branch `gh-pages`). Files are available under your Pages base URL (e.g. `https://surya-pabbineedi.github.io/ngx-ui/`).
+You can load the library from a hosted CDN URL for testing or use in a Lit app without installing from npm.
 
 **Load only what you need (per-component, faster):**
 
@@ -120,42 +112,43 @@ export class AppModule {}
 
 ## Icon font
 
-`swim-icon` uses font family `ngx-icon` (same as ngx-ui). Codepoints in swim-ui match `icons.scss` / `ngx-icon.svg`. The host must load the **same** ngx-icon font for correct glyphs.
+`swim-icon` uses font family **`swim-ui-icon`** (exported as `SWIM_ICON_FONT_FAMILY`). Glyph codepoints match ngx-ui’s `icons.scss` / `ngx-icon.svg`, but the **family name is different** from ngx-ui’s `ngx-icon` so each document—including an iframe—can register its own `@font-face` without relying on the parent app’s font.
 
-**Loading from the ngx-ui package (recommended):** If your app has `@swimlane/ngx-ui` installed, use the same `@font-face` as ngx-ui so both Angular and Lit share one font:
+**CDN / module bundles:** Importing `icon.js` or any component entry that loads `icon.component` (for example `button.js`) runs `scheduleEnsureSwimUiIconFontFace()`, which injects a document-level `@font-face` for `swim-ui-icon`. The Vite CDN build inlines the woff2 (data URL), so no separate font request or host CSS is required.
+
+**npm (`@swimlane/swim-ui`):** After `yarn build:lib`, `dist/assets/swim-ui-icon.woff2` is published with the package; runtime resolves it via `import.meta.url` from `dist/components/icon/icon-font-face.js`.
+
+**Optional manual CSS** (e.g. if you tree-shake away the icon module or need a custom URL): point `src` at the same binary ngx-ui ships (`ngx-icon.woff2` from `@swimlane/ngx-ui` or your copy), but declare `font-family: 'swim-ui-icon'`:
 
 ```scss
-$ngx-font-path: '../../../../node_modules/@swimlane/ngx-ui/lib/assets/icons/iconfont/fonts' !default;
+$icon-font-path: 'path/to/fonts' !default;
 
 @font-face {
-  font-family: 'ngx-icon';
-  src: url('#{$ngx-font-path}/ngx-icon.eot');
-  src: url('#{$ngx-font-path}/ngx-icon.eot') format('embedded-opentype'), url('#{$ngx-font-path}/ngx-icon.woff2') format('woff2'),
-    url('#{$ngx-font-path}/ngx-icon.woff') format('woff'), url('#{$ngx-font-path}/ngx-icon.ttf') format('truetype'),
-    url('#{$ngx-font-path}/ngx-icon.svg') format('svg');
+  font-family: 'swim-ui-icon';
+  src: url('#{$icon-font-path}/ngx-icon.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
 ```
 
-Plain CSS equivalent (adjust the path to your node_modules or asset URL):
+Plain CSS (adjust URL to your deployed asset):
 
 ```css
 @font-face {
-  font-family: 'ngx-icon';
-  src: url('path/to/ngx-ui/.../fonts/ngx-icon.woff2') format('woff2');
+  font-family: 'swim-ui-icon';
+  src: url('https://your.cdn/swim-ui-icon.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
 ```
 
-When the font is loaded from the ngx-ui package this way, the default `icon-font-glyphs.ts` (generated from `icons.scss`) is correct. The CDN build embeds the font as base64, so no external font loading is required.
+Use `yarn copy:icon-font` in this package to copy ngx-ui’s `ngx-icon.woff2` into `src/assets/swim-ui-icon.woff2`. The default `icon-font-glyphs.ts` (from `yarn generate:icon-glyphs`) stays aligned with ngx-ui’s map.
 
 **How the font is deployed from the Angular lib:** The ngx-ui library’s `ng-package.json` includes an `assets` entry that copies `src/lib/assets/icons/iconfont/fonts/*` (eot, woff2, woff, ttf, svg) into the built package at `lib/assets/icons/iconfont/fonts/`. So when you install `@swimlane/ngx-ui` from npm, those files in `node_modules/@swimlane/ngx-ui/lib/assets/icons/iconfont/fonts/` are the **same files** as in the repo—no transformation, just copy.
 
 **Icon font scripts (swim-ui development):** From the swim-ui package directory, use:
 
-- **`yarn copy:icon-font`** — Copies the icon font files from ngx-ui into swim-ui (e.g. `demo/assets/`) so the demo and CDN build can use them.
+- **`yarn copy:icon-font`** — Copies the icon font from ngx-ui into `src/assets/` for demo, CDN, and lib builds.
 - **`yarn generate:icon-glyphs`** — Generates the glyph name-to-codepoint mappings (e.g. `src/components/icon/icon-font-glyphs.ts`) from the font so `swim-icon` has the correct icon set.
 
 ```bash
