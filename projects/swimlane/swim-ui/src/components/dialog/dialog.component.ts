@@ -225,18 +225,6 @@ export class SwimDialog extends LitElement {
         this._contentEl?.focus({ preventScroll: true });
       });
     }
-    // Sync close-button to large/medium format content so one attribute on the dialog controls the header close button
-    const isLargeOrMedium =
-      this.format === DialogFormat.Large ||
-      this.format === DialogFormat.Medium ||
-      this.format === 'large' ||
-      this.format === 'medium';
-    if (isLargeOrMedium) {
-      const content = this.querySelector('swim-large-format-dialog-content');
-      if (content instanceof HTMLElement) {
-        content.setAttribute('close-button', this.closeButton ? 'true' : 'false');
-      }
-    }
   }
 
   render() {

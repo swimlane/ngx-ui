@@ -1,6 +1,6 @@
 import { LitElement, html, nothing } from 'lit';
 import { property, state } from 'lit/decorators.js';
-import { litBooleanAttrDefaultFalse, litBooleanAttrDefaultTrue } from '../../../utils/coerce';
+import { litBooleanAttrDefaultFalse } from '../../../utils/coerce';
 import { largeFormatDialogContentStyles } from './large-format-dialog-content.styles';
 import { scrollbarStyles } from '../../../styles/scrollbars';
 import '../../icon/icon.component';
@@ -42,10 +42,6 @@ export class SwimLargeFormatDialogContent extends LitElement {
   /** When true, shows cancel label and emits dirty flag on close */
   @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   dirty = false;
-
-  /** When false, header close/cancel is hidden (synced from parent `swim-dialog` `close-button`). */
-  @property({ type: Boolean, attribute: 'close-button', converter: litBooleanAttrDefaultTrue })
-  closeButton = true;
 
   @state()
   private _hasFooterSlot = false;
@@ -95,21 +91,17 @@ export class SwimLargeFormatDialogContent extends LitElement {
             <h1>${this.dialogTitle}</h1>
             ${this.dialogSubtitle ? html`<h4>${this.dialogSubtitle}</h4>` : nothing}
           </div>
-          ${this.closeButton
-            ? html`
-                <div class="format-dialog-container__header-action">
-                  <button
-                    type="button"
-                    class="format-dialog-container__header-action__button"
-                    aria-label="${this.dirty ? this.dialogDirtyActionTitle : this.dialogActionTitle}"
-                    @click="${this._onCloseOrCancel}"
-                  >
-                    <swim-icon font-icon="x"></swim-icon>
-                    ${this.dirty ? this.dialogDirtyActionTitle : this.dialogActionTitle}
-                  </button>
-                </div>
-              `
-            : nothing}
+          <div class="format-dialog-container__header-action">
+            <button
+              type="button"
+              class="format-dialog-container__header-action__button"
+              aria-label="${this.dirty ? this.dialogDirtyActionTitle : this.dialogActionTitle}"
+              @click="${this._onCloseOrCancel}"
+            >
+              <swim-icon font-icon="x"></swim-icon>
+              ${this.dirty ? this.dialogDirtyActionTitle : this.dialogActionTitle}
+            </button>
+          </div>
         </header>
         <section class="format-dialog-container__body swim-scroll">
           <slot></slot>
