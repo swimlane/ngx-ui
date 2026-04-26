@@ -1,6 +1,6 @@
 import { LitElement, html, nothing } from 'lit';
 import { property, state } from 'lit/decorators.js';
-import { litBooleanAttrDefaultFalse } from '../../../utils/coerce';
+import { litBooleanAttrDefaultFalse, litBooleanAttrDefaultTrue } from '../../../utils/coerce';
 import { largeFormatDialogContentStyles } from './large-format-dialog-content.styles';
 import { scrollbarStyles } from '../../../styles/scrollbars';
 import '../../icon/icon.component';
@@ -42,6 +42,10 @@ export class SwimLargeFormatDialogContent extends LitElement {
   /** When true, shows cancel label and emits dirty flag on close */
   @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   dirty = false;
+
+  /** When false, header close/cancel is hidden (synced from parent `swim-dialog` `close-button`). */
+  @property({ type: Boolean, attribute: 'close-button', converter: litBooleanAttrDefaultTrue })
+  closeButton = true;
 
   @state()
   private _hasFooterSlot = false;

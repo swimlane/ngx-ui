@@ -131,11 +131,11 @@ function findInTree(el: HTMLElement, pred: (n: Element) => boolean): Element | n
   if (pred(el)) return el;
   const shadow = el.shadowRoot;
   if (shadow) {
-    for (const child of shadow.querySelectorAll('*')) {
+    for (const child of Array.from(shadow.querySelectorAll('*'))) {
       if (pred(child)) return child;
     }
   }
-  for (const child of el.querySelectorAll('*')) {
+  for (const child of Array.from(el.querySelectorAll('*'))) {
     if (pred(child)) return child;
   }
   return null;
