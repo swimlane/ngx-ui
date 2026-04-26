@@ -3,7 +3,7 @@ import { property, state, query } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { navbarStyles } from './navbar.styles';
 import { SwimNavbarItem } from './navbar-item.component';
-import { coerceBooleanProperty, coerceNumberProperty, booleanAttributeConverter } from '../../utils/coerce';
+import { coerceBooleanProperty, coerceNumberProperty, litBooleanAttrDefaultFalse } from '../../utils/coerce';
 
 const BAR_SIZE = 40;
 
@@ -12,7 +12,7 @@ const BAR_SIZE = 40;
  *
  * @slot - Default slot for swim-navbar-item children
  *
- * @fires active-change - Fired when the active item changes (detail: number index)
+ * @fires active-change - Fired when the active item changes (detail: number index). Does not bubble.
  *
  * @csspart nav-items - Container for nav items
  * @csspart bar-track - Track for the active bar
@@ -28,7 +28,7 @@ export class SwimNavbar extends LitElement {
   /**
    * Whether the active indicator bar is on top of the items (default: false = bottom).
    */
-  @property({ type: Boolean, reflect: true, attribute: 'bar-at-top', converter: booleanAttributeConverter })
+  @property({ type: Boolean, reflect: true, attribute: 'bar-at-top', converter: litBooleanAttrDefaultFalse })
   get barAtTop(): boolean {
     return this._barAtTop;
   }
@@ -52,8 +52,8 @@ export class SwimNavbar extends LitElement {
       this.dispatchEvent(
         new CustomEvent('active-change', {
           detail: this._active,
-          bubbles: true,
-          composed: true
+          bubbles: false,
+          composed: false
         })
       );
     }
@@ -140,8 +140,8 @@ export class SwimNavbar extends LitElement {
       this.dispatchEvent(
         new CustomEvent('active-change', {
           detail: this._active,
-          bubbles: true,
-          composed: true
+          bubbles: false,
+          composed: false
         })
       );
     }

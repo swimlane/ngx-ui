@@ -9,7 +9,7 @@ import { coerceNumberProperty } from '../../utils/coerce';
  *
  * @slot - Item content (e.g. icon, label)
  *
- * @fires active-change - Fired when this item becomes active (detail: number index)
+ * @fires active-change - Fired when this item becomes active (detail: number index). Does not bubble.
  */
 const NAVBAR_ITEM_TAG = 'swim-navbar-item';
 export class SwimNavbarItem extends LitElement {
@@ -99,8 +99,8 @@ export class SwimNavbarItem extends LitElement {
       this.dispatchEvent(
         new CustomEvent('active-change', {
           detail: this._index,
-          bubbles: true,
-          composed: true
+          bubbles: false,
+          composed: false
         })
       );
     }

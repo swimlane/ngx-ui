@@ -2,7 +2,7 @@ import { LitElement, html } from 'lit';
 import { property } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { tabStyles } from './tab.styles.js';
-import { coerceBooleanProperty } from '../../utils/coerce';
+import { coerceBooleanProperty, litBooleanAttrDefaultFalse } from '../../utils/coerce';
 
 let nextId = 0;
 
@@ -11,6 +11,8 @@ let nextId = 0;
  *
  * @slot label - Custom label content (optional; if not used, the `label` property is shown in the tab list)
  * @slot - Tab panel content (shown when this tab is active)
+ *
+ * @fires swim-tab-active-change - Fired when `active` changes. Does not bubble.
  */
 const TAB_TAG = 'swim-tab';
 export class SwimTab extends LitElement {
@@ -58,7 +60,7 @@ export class SwimTab extends LitElement {
   /**
    * Whether this tab is currently active
    */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get active(): boolean {
     return this._active;
   }
@@ -68,7 +70,7 @@ export class SwimTab extends LitElement {
       const prev = this._active;
       this._active = next;
       this.requestUpdate('active', prev);
-      this.dispatchEvent(new CustomEvent('swim-tab-active-change', { bubbles: true, composed: true }));
+      this.dispatchEvent(new CustomEvent('swim-tab-active-change', { bubbles: false, composed: false }));
     }
   }
   private _active = false;
@@ -76,7 +78,7 @@ export class SwimTab extends LitElement {
   /**
    * Whether this tab is disabled
    */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get disabled(): boolean {
     return this._disabled;
   }

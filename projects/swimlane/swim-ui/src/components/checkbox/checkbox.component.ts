@@ -2,7 +2,7 @@ import { LitElement, html } from 'lit';
 import { property, query } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { checkboxStyles } from './checkbox.styles';
-import { coerceBooleanProperty, coerceNumberProperty, booleanAttributeConverter } from '../../utils/coerce';
+import { coerceBooleanProperty, coerceNumberProperty, litBooleanAttrDefaultFalse } from '../../utils/coerce';
 
 let nextId = 0;
 
@@ -51,7 +51,7 @@ export class SwimCheckbox extends LitElement {
   /**
    * Checked state (alias: value from ngx-ui)
    */
-  @property({ type: Boolean, reflect: true, attribute: 'checked', converter: booleanAttributeConverter })
+  @property({ type: Boolean, reflect: true, attribute: 'checked', converter: litBooleanAttrDefaultFalse })
   get checked(): boolean {
     return this._checked;
   }
@@ -60,14 +60,14 @@ export class SwimCheckbox extends LitElement {
     if (this._checked === next) return;
     this._checked = next;
     this._syncFormValue();
-    this.dispatchEvent(new CustomEvent('checked-change', { detail: this._checked, bubbles: true, composed: true }));
+    this.dispatchEvent(new CustomEvent('checked-change', { detail: this._checked, bubbles: false, composed: false }));
   }
   private _checked = false;
 
   /**
    * Indeterminate state (e.g. "select all" partial state)
    */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get indeterminate(): boolean {
     return this._indeterminate;
   }
@@ -78,8 +78,8 @@ export class SwimCheckbox extends LitElement {
     this.dispatchEvent(
       new CustomEvent('indeterminate-change', {
         detail: this._indeterminate,
-        bubbles: true,
-        composed: true
+        bubbles: false,
+        composed: false
       })
     );
   }
@@ -100,7 +100,7 @@ export class SwimCheckbox extends LitElement {
   /**
    * Whether the checkbox is disabled
    */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get disabled(): boolean {
     return this._disabled;
   }
@@ -112,7 +112,7 @@ export class SwimCheckbox extends LitElement {
   /**
    * Use round (circular) box instead of square
    */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get round(): boolean {
     return this._round;
   }
@@ -173,18 +173,18 @@ export class SwimCheckbox extends LitElement {
           timeStamp: Date.now(),
           target: { checked: this._checked }
         },
-        bubbles: true,
-        composed: true
+        bubbles: false,
+        composed: false
       })
     );
   }
 
   private _onFocus(ev: FocusEvent) {
-    this.dispatchEvent(new FocusEvent('focus', { ...ev, bubbles: true, composed: true }));
+    this.dispatchEvent(new FocusEvent('focus', { ...ev, bubbles: false, composed: false }));
   }
 
   private _onBlur(ev: FocusEvent) {
-    this.dispatchEvent(new FocusEvent('blur', { ...ev, bubbles: true, composed: true }));
+    this.dispatchEvent(new FocusEvent('blur', { ...ev, bubbles: false, composed: false }));
   }
 
   render() {

@@ -10,6 +10,7 @@ const COMPONENT_NAMES = [
   'card',
   'checkbox',
   'date-time',
+  'date-display',
   'dialog',
   'drawer',
   'icon',

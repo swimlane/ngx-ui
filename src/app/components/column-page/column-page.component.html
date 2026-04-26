@@ -3,7 +3,28 @@
 <ngx-tabs>
   <ngx-tab label="Examples" [active]="true">
     <ngx-section class="shadow" sectionTitle="Column">
-      <ngx-columns [column]="column" [height]="'400'"></ngx-columns>
+      <ng-template #columnHeaderTpl let-column let-expanded="expanded">
+        @switch (column.id) {
+          @case ('1a') {
+            <ngx-toggle style="margin-left: auto;"></ngx-toggle>
+          }
+          @case ('1b') {
+            @if (expanded) {
+              <ngx-button class="btn btn-sm" style="margin-left: auto;">Action</ngx-button>
+            }
+          }
+          @default {
+            @if (expanded) {
+              <div style="display: flex; align-items: center; gap: 8px; margin-left: auto;">
+                <ngx-toggle [label]="'Active'"></ngx-toggle>
+                <ngx-button class="btn btn-sm">Action</ngx-button>
+              </div>
+            }
+          }
+        }
+      </ng-template>
+
+      <ngx-columns [column]="column" [height]="'400'" [headerTemplate]="columnHeaderTpl"></ngx-columns>
 
       <br />
       <br />
@@ -13,7 +34,28 @@
           <!-- prettier-ignore -->
           <app-prism ngNonBindable>
   <![CDATA[
-  <ngx-columns [column]="column"></ngx-columns>
+  <ng-template #columnHeaderTpl let-column let-expanded="expanded">
+    @switch (column.id) {
+      @case ('1a') {
+        <ngx-toggle style="margin-left: auto;"></ngx-toggle>
+      }
+      @case ('1b') {
+       @if (expanded) {
+          <ngx-button class="btn btn-sm" style="margin-left: auto;">Action</ngx-button>
+       }
+      }
+      @default {
+        @if (expanded) {
+          <div style="display: flex; align-items: center; gap: 8px; margin-left: auto;">
+            <ngx-toggle [label]="'Active'"></ngx-toggle>
+            <ngx-button class="btn btn-sm">Action</ngx-button>
+          </div>
+        }
+      }
+    }
+  </ng-template>
+
+  <ngx-columns [column]="column" [headerTemplate]="columnHeaderTpl"></ngx-columns>
   ]]>
           </app-prism>
 
@@ -54,6 +96,17 @@
             <code>height: string</code>
           </th>
           <td>Change the overall height of the columns by providing a <code>string</code> value in pixels.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>headerTemplate: TemplateRef&lt;any&gt;</code>
+          </th>
+          <td>
+            An optional <code>ng-template</code> rendered on the right side of each column header. The template
+            receives the <code>Column</code> object as its implicit context (<code>$implicit</code>), so use
+            <code>let-column</code> to access column properties and render different content per column.
+          </td>
         </tr>
         <tr>
           <th>

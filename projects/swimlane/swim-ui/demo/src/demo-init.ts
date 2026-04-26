@@ -6,6 +6,7 @@
 
 import { ICON_NAMES } from './icon-names';
 import { openDrawer } from '../../src/components/drawer/drawer-controller';
+import { formatDate, parseDate } from '../../src/components/date-time/date-format';
 
 function delay(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -57,11 +58,89 @@ const LIST_LARGE_DATA = [
   ...LIST_DATA
 ];
 
+/** Demo: log swim-checkbox propagation (light DOM vs nested shadow) for bubbles/composed. */
+function setupEventBubblingMatrixDemo(): void {
+  const root = document.getElementById('eventBubblingMatrixRoot');
+  if (!root) return;
+
+  const logEl = document.getElementById('eventBubblingMatrixLog');
+  const lines: string[] = [];
+  const maxLines = 100;
+
+  const log = (msg: string) => {
+    lines.push(`${new Date().toISOString().slice(11, 23)} ${msg}`);
+    if (lines.length > maxLines) lines.splice(0, lines.length - maxLines);
+    if (logEl) logEl.textContent = lines.join('\n');
+  };
+
+  document.getElementById('matrixClearLog')?.addEventListener('click', () => {
+    lines.length = 0;
+    if (logEl) logEl.textContent = '';
+    log('(log cleared)');
+  });
+
+  const types = ['change', 'checked-change'] as const;
+
+  const wire = (caseLabel: string, target: EventTarget, listenerLabel: string) => {
+    for (const t of types) {
+      target.addEventListener(
+        t,
+        (e: Event) => {
+          const tgt = e.target as HTMLElement | null;
+          const tag = tgt?.tagName?.toLowerCase() ?? '?';
+          log(
+            `${caseLabel} | ${listenerLabel} | type=${e.type} bubbles=${e.bubbles} composed=${e.composed} target=${tag}`
+          );
+        },
+        false
+      );
+    }
+  };
+
+  const cbLight = document.getElementById('matrixCbLight');
+  const wrapLight = root.querySelector('.matrix-wrap-light');
+  if (cbLight && wrapLight) {
+    wire('light', cbLight, 'onCheckbox');
+    wire('light', wrapLight, 'onWrapper(parent)');
+    wire('light', document, 'onDocument');
+  }
+
+  const mount = document.getElementById('matrixShadowMount');
+  if (mount && !mount.querySelector('[data-matrix-shadow-demo]')) {
+    const host = document.createElement('div');
+    host.dataset.matrixShadowDemo = '';
+    host.setAttribute(
+      'style',
+      'padding:1rem;background:var(--grey-800);border-radius:4px;border:1px solid var(--grey-600)'
+    );
+    const title = document.createElement('div');
+    title.style.cssText = 'font-size:0.875rem;color:var(--grey-300);margin-bottom:0.5rem';
+    title.textContent = 'Shadow host (open shadow contains swim-checkbox below)';
+    host.appendChild(title);
+    const shadow = host.attachShadow({ mode: 'open' });
+    const cb = document.createElement('swim-checkbox');
+    cb.id = 'matrixCbShadow';
+    cb.setAttribute('label', 'Toggle (inside shadow)');
+    shadow.appendChild(cb);
+    mount.appendChild(host);
+
+    wire('shadow', cb, 'onCheckbox');
+    wire('shadow', host, 'onShadowHost(light parent)');
+    wire('shadow', document, 'onDocument');
+  }
+
+  log(
+    'Toggle a checkbox above. Expect: events on the checkbox and wrapper; document only sees the light-DOM case (events do not bubble from the host). Shadow case: document does not receive events from inside the nested shadow root.'
+  );
+}
+
 const SECTION_FILES = [
+  'home',
   'buttons',
   'input',
   'select',
   'datetime',
+  'date-display',
   'checkbox',
   'radio',
   'toggle',
@@ -79,11 +158,12 @@ const SECTION_FILES = [
   'dialog',
   'drawer',
   'scrollbars',
-  'icons'
+  'icons',
+  'event-bubbling-matrix'
 ];
 
 const SECTION_SET = new Set([...SECTION_FILES, 'datetime', 'drawer']);
-const DEFAULT_SECTION = SECTION_FILES[0];
+const DEFAULT_SECTION = 'home';
 
 const sectionCache = new Map<string, string>();
 
@@ -268,6 +348,62 @@ function setupIconsDemo(): void {
   }
 }
 
+/** GitHub user search for swim-select (Select demo + Medium dialog demo). */
+function setupGithubUserAsyncSelect(selectId: string, valueElementId: string | null): void {
+  const githubUserSelect = document.getElementById(selectId) as any;
+  const githubUserSelectValue = valueElementId ? document.getElementById(valueElementId) : null;
+  if (!githubUserSelect) {
+    return;
+  }
+  githubUserSelect.options = [];
+  let githubRequestId = 0;
+  githubUserSelect.addEventListener('filter-change', async (e: CustomEvent<{ query: string }>) => {
+    const q = (e.detail?.query ?? '').trim();
+    if (!q) {
+      githubUserSelect.options = [];
+      githubUserSelect.loading = false;
+      return;
+    }
+    const reqId = ++githubRequestId;
+    githubUserSelect.loading = true;
+    try {
+      const res = await fetch(`https://api.github.com/search/users?q=${encodeURIComponent(q)}&per_page=15`, {
+        headers: { Accept: 'application/vnd.github+json' }
+      });
+      if (!res.ok) {
+        throw new Error(`GitHub API ${res.status}`);
+      }
+      const data = (await res.json()) as {
+        items?: Array<{ login: string; type?: string }>;
+      };
+      if (reqId !== githubRequestId) {
+        return;
+      }
+      githubUserSelect.options = (data.items ?? []).map(u => ({
+        name: u.login,
+        value: u.login,
+        title: u.login,
+        description: u.type === 'Organization' ? 'Organization' : 'User'
+      }));
+    } catch (err) {
+      console.error('GitHub user search failed', err);
+      if (reqId === githubRequestId) {
+        githubUserSelect.options = [];
+      }
+    } finally {
+      if (reqId === githubRequestId) {
+        githubUserSelect.loading = false;
+      }
+    }
+  });
+  githubUserSelect.addEventListener('change', () => {
+    if (githubUserSelectValue) {
+      githubUserSelectValue.textContent =
+        githubUserSelect.value != null && githubUserSelect.value !== '' ? String(githubUserSelect.value) : '—';
+    }
+  });
+}
+
 function setupSelectDemos(): void {
   const attackTypeOptions = [
     { name: 'Breach', value: 'breach' },
@@ -289,8 +425,45 @@ function setupSelectDemos(): void {
   const basicSelect = document.getElementById('basicSelect') as any;
   if (basicSelect) basicSelect.options = attackTypeOptions;
 
+  const groupedOptionsDemo = [
+    { name: 'Apples', value: 'apples', group: 'Produce' },
+    { name: 'Carrots', value: 'carrots', group: 'Produce' },
+    { name: 'Spinach', value: 'spinach', group: 'Produce' },
+    { name: 'Milk', value: 'milk', group: 'Dairy' },
+    { name: 'Cheddar', value: 'cheddar', group: 'Dairy' },
+    { name: 'Yogurt', value: 'yogurt', group: 'Dairy' },
+    { name: 'Chips', value: 'chips', group: 'Pantry' },
+    { name: 'Rice', value: 'rice', group: 'Pantry' }
+  ];
+
+  const groupedSelectProgrammatic = document.getElementById('groupedSelectProgrammatic') as any;
+  if (groupedSelectProgrammatic) {
+    groupedSelectProgrammatic.options = groupedOptionsDemo;
+  }
+
+  const groupedSelectFlat = document.getElementById('groupedSelectFlat') as any;
+  if (groupedSelectFlat) {
+    groupedSelectFlat.options = groupedOptionsDemo;
+  }
+
+  const groupedSelectMulti = document.getElementById('groupedSelectMulti') as any;
+  if (groupedSelectMulti) {
+    groupedSelectMulti.options = [
+      { name: 'Drill', value: 'drill', group: 'Power tools' },
+      { name: 'Sander', value: 'sander', group: 'Power tools' },
+      { name: 'Hammer', value: 'hammer', group: 'Hand tools' },
+      { name: 'Wrench', value: 'wrench', group: 'Hand tools' }
+    ];
+  }
+
   const requiredSelect = document.getElementById('requiredSelect') as any;
   if (requiredSelect) requiredSelect.options = attackTypeOptions;
+
+  const singleSelectDisabled = document.getElementById('singleSelectDisabled') as any;
+  if (singleSelectDisabled) {
+    singleSelectDisabled.options = attackTypeOptions;
+    singleSelectDisabled.value = 'breach';
+  }
 
   const legacySelect = document.getElementById('legacySelect') as any;
   if (legacySelect) legacySelect.options = fruits;
@@ -342,6 +515,9 @@ function setupSelectDemos(): void {
   const filterableSelect = document.getElementById('filterableSelect') as any;
   if (filterableSelect) filterableSelect.options = countries;
 
+  setupGithubUserAsyncSelect('githubUserSelect', 'githubUserSelectValue');
+  setupGithubUserAsyncSelect('dialogMediumGithubUserSelect', 'dialogMediumGithubUserSelectValue');
+
   const noFilterSelect = document.getElementById('noFilterSelect') as any;
   if (noFilterSelect) noFilterSelect.options = fruits;
 
@@ -387,6 +563,33 @@ function setupSelectDemos(): void {
 
   const formSelect2 = document.getElementById('formSelect2') as any;
   if (formSelect2) formSelect2.options = tags;
+}
+
+function setupDateDisplayDemo(): void {
+  type DdEl = HTMLElement & {
+    timezones?: Record<string, string>;
+  };
+
+  const customTz = document.getElementById('dateDisplayTimezonesCustom') as DdEl | null;
+  if (customTz) {
+    customTz.timezones = { Local: '', GMT: 'Etc/UTC', Tokyo: 'Asia/Tokyo' };
+  }
+
+  const localOut = document.getElementById('dateDisplayLocalString');
+  const quake = parseDate('2011-03-11T05:46:24Z');
+  if (localOut && quake) {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    localOut.textContent = JSON.stringify(formatDate(quake, 'MMMM D, YYYY h:mm:ss A', tz));
+  }
+
+  const log = document.getElementById('dateDisplayCopyLog');
+  const root = document.getElementById('dateDisplayDemoRoot');
+  if (log && root) {
+    root.addEventListener('date-copied', (e: Event) => {
+      const d = (e as CustomEvent<{ message?: string }>).detail;
+      log.textContent = d?.message ?? '—';
+    });
+  }
 }
 
 function setupDateTimeDemos(): void {
@@ -587,6 +790,8 @@ function setupListDemos(): void {
  * Called after each section is injected into #page-sections.
  */
 function setupDemos(): void {
+  setupEventBubblingMatrixDemo();
+
   // Button demos (promise handling)
   const successBtn = document.getElementById('successBtn');
   if (successBtn) {
@@ -655,6 +860,7 @@ function setupDemos(): void {
 
   setupSelectDemos();
   setupDateTimeDemos();
+  setupDateDisplayDemo();
 
   // Card demos
   const selectableCardDemo = document.getElementById('selectableCardDemo') as any;
@@ -851,6 +1057,58 @@ function setupDemos(): void {
   setupListDemos();
 
   // Dialog demos
+  /** `close-or-cancel` is emitted from `swim-large-format-dialog-content`, not from `swim-dialog`. */
+  const wireLargeFormatHeaderClose = (dialogEl: HTMLElement & { visible?: boolean }) => {
+    dialogEl.querySelector('swim-large-format-dialog-content')?.addEventListener('close-or-cancel', () => {
+      dialogEl.visible = false;
+    });
+  };
+
+  const dialogEventsDemo = document.getElementById('dialogEventsDemo') as
+    | (HTMLElement & {
+        visible: boolean;
+      })
+    | null;
+  const dialogEventsLog = document.getElementById('dialogEventsLog');
+  const dialogEventsLargeContent = document.getElementById('dialogEventsLargeContent');
+  const dialogEventsLines: string[] = [];
+  const maxDialogEventLines = 50;
+  const appendDialogEventLine = (line: string) => {
+    const stamp = new Date().toISOString().slice(11, 23);
+    dialogEventsLines.push(`${stamp} ${line}`);
+    if (dialogEventsLines.length > maxDialogEventLines) {
+      dialogEventsLines.splice(0, dialogEventsLines.length - maxDialogEventLines);
+    }
+    if (dialogEventsLog) dialogEventsLog.textContent = dialogEventsLines.join('\n');
+  };
+
+  if (dialogEventsDemo && dialogEventsLog) {
+    dialogEventsDemo.addEventListener('open', e => {
+      appendDialogEventLine(`swim-dialog open (bubbles=${e.bubbles}, composed=${e.composed})`);
+    });
+    dialogEventsDemo.addEventListener('close', e => {
+      appendDialogEventLine(`swim-dialog close (bubbles=${e.bubbles}, composed=${e.composed})`);
+      dialogEventsDemo.visible = false;
+    });
+  }
+  if (dialogEventsLargeContent) {
+    dialogEventsLargeContent.addEventListener('close-or-cancel', e => {
+      const dirty = (e as CustomEvent<boolean>).detail;
+      appendDialogEventLine(`swim-large-format-dialog-content close-or-cancel (detail dirty=${dirty})`);
+      if (dialogEventsDemo) dialogEventsDemo.visible = false;
+    });
+  }
+  document.getElementById('dialogEventsOpen')?.addEventListener('click', () => {
+    if (dialogEventsDemo) dialogEventsDemo.visible = true;
+  });
+  document.getElementById('dialogEventsClearLog')?.addEventListener('click', () => {
+    dialogEventsLines.length = 0;
+    if (dialogEventsLog) dialogEventsLog.textContent = '(log cleared)';
+  });
+  document.getElementById('dialogEventsFooterClose')?.addEventListener('click', () => {
+    if (dialogEventsDemo) dialogEventsDemo.visible = false;
+  });
+
   const dialogContentOpen = document.getElementById('dialogContentOpen');
   const dialogContentDemo = document.getElementById('dialogContentDemo') as any;
   if (dialogContentOpen && dialogContentDemo) {
@@ -859,6 +1117,17 @@ function setupDemos(): void {
     });
     dialogContentDemo.addEventListener('close', () => {
       dialogContentDemo.visible = false;
+    });
+  }
+
+  const dialogDismissBackdropOpen = document.getElementById('dialogDismissBackdropOpen');
+  const dialogDismissBackdropDemo = document.getElementById('dialogDismissBackdropDemo') as any;
+  if (dialogDismissBackdropOpen && dialogDismissBackdropDemo) {
+    dialogDismissBackdropOpen.addEventListener('click', () => {
+      dialogDismissBackdropDemo.visible = true;
+    });
+    dialogDismissBackdropDemo.addEventListener('close', () => {
+      dialogDismissBackdropDemo.visible = false;
     });
   }
 
@@ -913,9 +1182,67 @@ function setupDemos(): void {
     dialogLargeFormatOpen.addEventListener('click', () => {
       dialogLargeFormatDemo.visible = true;
     });
-    dialogLargeFormatDemo.addEventListener('close-or-cancel', () => {
-      dialogLargeFormatDemo.visible = false;
+    wireLargeFormatHeaderClose(dialogLargeFormatDemo);
+  }
+
+  const dialogThemeVarsLargeOpen = document.getElementById('dialogThemeVarsLargeOpen');
+  const dialogThemeVarsLargeDemo = document.getElementById('dialogThemeVarsLargeDemo') as
+    | (HTMLElement & {
+        visible?: boolean;
+      })
+    | null;
+  if (dialogThemeVarsLargeOpen && dialogThemeVarsLargeDemo) {
+    const hideThemedLarge = () => {
+      dialogThemeVarsLargeDemo.visible = false;
+    };
+    dialogThemeVarsLargeOpen.addEventListener('click', () => {
+      dialogThemeVarsLargeDemo.visible = true;
     });
+    dialogThemeVarsLargeDemo
+      .querySelector('swim-large-format-dialog-content')
+      ?.addEventListener('close-or-cancel', hideThemedLarge);
+    dialogThemeVarsLargeDemo.addEventListener('close', hideThemedLarge);
+  }
+
+  const dialogThemeVarsRegularOpen = document.getElementById('dialogThemeVarsRegularOpen');
+  const dialogThemeVarsRegularDemo = document.getElementById('dialogThemeVarsRegularDemo') as
+    | (HTMLElement & {
+        visible?: boolean;
+      })
+    | null;
+  if (dialogThemeVarsRegularOpen && dialogThemeVarsRegularDemo) {
+    dialogThemeVarsRegularOpen.addEventListener('click', () => {
+      dialogThemeVarsRegularDemo.visible = true;
+    });
+    dialogThemeVarsRegularDemo.addEventListener('close', () => {
+      dialogThemeVarsRegularDemo.visible = false;
+    });
+  }
+
+  const dialogFooterAlignDemo = document.getElementById('dialogFooterAlignDemo') as
+    | (HTMLElement & {
+        visible?: boolean;
+      })
+    | null;
+  const dialogFooterAlignFooter = document.getElementById('dialogFooterAlignFooter') as {
+    align?: string;
+    setAttribute(name: string, value: string): void;
+  } | null;
+  const wireDialogFooterAlignOpen = (buttonId: string, align: string) => {
+    const btn = document.getElementById(buttonId);
+    if (!btn || !dialogFooterAlignDemo || !dialogFooterAlignFooter) return;
+    btn.addEventListener('click', () => {
+      dialogFooterAlignFooter.setAttribute('align', align);
+      dialogFooterAlignFooter.align = align;
+      dialogFooterAlignDemo.visible = true;
+    });
+  };
+  wireDialogFooterAlignOpen('dialogFooterAlignOpenStart', 'start');
+  wireDialogFooterAlignOpen('dialogFooterAlignOpenCenter', 'center');
+  wireDialogFooterAlignOpen('dialogFooterAlignOpenEnd', 'end');
+  wireDialogFooterAlignOpen('dialogFooterAlignOpenBetween', 'space-between');
+  if (dialogFooterAlignDemo) {
+    wireLargeFormatHeaderClose(dialogFooterAlignDemo);
   }
 
   const dialogMediumFormatOpen = document.getElementById('dialogMediumFormatOpen');
@@ -924,9 +1251,7 @@ function setupDemos(): void {
     dialogMediumFormatOpen.addEventListener('click', () => {
       dialogMediumFormatDemo.visible = true;
     });
-    dialogMediumFormatDemo.addEventListener('close-or-cancel', () => {
-      dialogMediumFormatDemo.visible = false;
-    });
+    wireLargeFormatHeaderClose(dialogMediumFormatDemo);
   }
 
   const dialogMediumContentOpen = document.getElementById('dialogMediumContentOpen');
@@ -935,9 +1260,7 @@ function setupDemos(): void {
     dialogMediumContentOpen.addEventListener('click', () => {
       dialogMediumContentDemo.visible = true;
     });
-    dialogMediumContentDemo.addEventListener('close-or-cancel', () => {
-      dialogMediumContentDemo.visible = false;
-    });
+    wireLargeFormatHeaderClose(dialogMediumContentDemo);
   }
 
   const dialogMediumFooterOpen = document.getElementById('dialogMediumFooterOpen');
@@ -946,9 +1269,7 @@ function setupDemos(): void {
     dialogMediumFooterOpen.addEventListener('click', () => {
       dialogMediumFooterDemo.visible = true;
     });
-    dialogMediumFooterDemo.addEventListener('close-or-cancel', () => {
-      dialogMediumFooterDemo.visible = false;
-    });
+    wireLargeFormatHeaderClose(dialogMediumFooterDemo);
   }
 
   const dialogMediumFooterContentOpen = document.getElementById('dialogMediumFooterContentOpen');
@@ -957,9 +1278,7 @@ function setupDemos(): void {
     dialogMediumFooterContentOpen.addEventListener('click', () => {
       dialogMediumFooterContentDemo.visible = true;
     });
-    dialogMediumFooterContentDemo.addEventListener('close-or-cancel', () => {
-      dialogMediumFooterContentDemo.visible = false;
-    });
+    wireLargeFormatHeaderClose(dialogMediumFooterContentDemo);
   }
 
   // Drawer demos

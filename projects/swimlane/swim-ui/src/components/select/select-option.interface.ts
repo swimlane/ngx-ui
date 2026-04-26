@@ -3,14 +3,29 @@
  */
 export interface SelectOption {
   /**
-   * Display name
+   * Stable identifier (often matches server `name`); shown when no title/label
    */
   name: string;
 
   /**
-   * Value
+   * Selected form / programmatic value (defaults to `name` when omitted)
    */
-  value: any;
+  value?: any;
+
+  /**
+   * Primary display string when different from `name` (e.g. AI-SOC: id in `name`, label in `title`)
+   */
+  title?: string;
+
+  /**
+   * Alias for `title` for display
+   */
+  label?: string;
+
+  /**
+   * Secondary line for search / list (not always shown in UI)
+   */
+  description?: string;
 
   /**
    * Whether the option is disabled
@@ -18,7 +33,7 @@ export interface SelectOption {
   disabled?: boolean;
 
   /**
-   * Group name for grouped options
+   * Group / section header when `grouped` is enabled on the select
    */
   group?: string;
 

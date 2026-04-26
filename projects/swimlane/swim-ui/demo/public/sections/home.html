@@ -1,0 +1,59 @@
+<style>
+  h2.style-header {
+    margin-top: 3rem;
+  }
+</style>
+<h1 id="home" class="page-title">Welcome to Swim-UI</h1>
+<p class="subtitle">
+  Lit web component library matching Swimlane's ngx-ui design system. Use the sidebar to explore components.
+</p>
+
+<section class="section">
+  <swim-section section-title="Load from CDN">
+    <p class="section-desc">
+      Load swim-ui from the Swimlane CDN. You can load the full bundle or individual components; version locking is supported for predictable builds.
+    </p>
+    
+    <h2 class="style-header">Individual components (recommended)</h2>
+    <p class="section-desc">
+      Import only the components you use. This keeps payload size small—you avoid downloading the rest of the library. Each component script is self-contained (includes Lit), so no import map is required. Use the same base URL and version path as the full bundle; append the component name (e.g. <code>button.js</code>, <code>input.js</code>).
+    </p>
+    <pre class="demo-pre"><code>// Only &lt;swim-button&gt; and &lt;swim-input&gt; are registered — smaller download
+import 'https://widgets.swimlane.app/swim-ui/button.js';
+import 'https://widgets.swimlane.app/swim-ui/input.js';
+
+...
+&lt;swim-button variant="primary"&gt;Click Me&lt;/swim-button&gt;
+&lt;swim-input label="Name" placeholder="Enter name"&gt;&lt;/swim-input&gt;</code></pre>
+    <p class="section-desc">
+      Available component scripts include <code>button.js</code>, <code>input.js</code>, <code>select.js</code>, <code>card.js</code>, <code>dialog.js</code>, <code>tabs.js</code>, <code>checkbox.js</code>, <code>toggle.js</code>, and others. Version locking works the same way (e.g. <code>.../1.0/button.js</code>).
+    </p>
+
+    <h2 class="style-header">Full bundle</h2>
+    <p class="section-desc">
+      One script registers all custom elements. Use this when you need many components; otherwise prefer individual component imports for a smaller download.
+    </p>
+    <pre class="demo-pre"><code>
+import 'https://widgets.swimlane.app/swim-ui/swim-ui.js';
+...
+&lt;swim-button variant="primary"&gt;Click Me&lt;/swim-button&gt;</code></pre>
+
+    <h2 class="style-header">Version locking</h2>
+    <p class="section-desc">
+      Pin the version in the URL to avoid unexpected updates. You can lock to <strong>major</strong>, <strong>minor</strong>, or <strong>patch</strong> (e.g. <code>1</code>, <code>1.0</code>, or <code>1.0.0</code>).
+    </p>
+    <ul class="section-desc" style="margin: 0.5rem 0 1rem 1.5rem;">
+      <li><strong>Latest</strong> (no version) — always gets the newest release:<br />
+        <code>https://widgets.swimlane.app/swim-ui/swim-ui.js</code><br /><br /></li>
+      <li><strong>Major</strong> (e.g. <code>1</code>) — any 1.x.x (minor and patch updates):<br />
+        <code>https://widgets.swimlane.app/swim-ui/1/swim-ui.js</code><br /><br /></li>
+      <li><strong>Minor</strong> (e.g. <code>1.0</code>) — any 1.0.x (patch updates only):<br />
+        <code>https://widgets.swimlane.app/swim-ui/1.0/swim-ui.js</code><br /><br /></li>
+      <li><strong>Patch</strong> (e.g. <code>1.0.0</code>) — exact version, no automatic updates:<br />
+        <code>https://widgets.swimlane.app/swim-ui/1.0.0/swim-ui.js</code><br /><br /></li>
+    </ul>
+
+  </swim-section>
+</section>
+
+

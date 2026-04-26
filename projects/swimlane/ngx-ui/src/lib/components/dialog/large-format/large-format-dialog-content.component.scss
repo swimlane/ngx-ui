@@ -63,6 +63,16 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 2rem;
+
+      .ngx-large-format-dialog-header-content {
+        flex: 1;
+        margin: 0 var(--spacing-12);
+      }
+
+      ngx-large-format-dialog-header-title:has(+ .ngx-large-format-dialog-header-content),
+      .ngx-large-format-dialog-header-content + .ngx-large-format-dialog-header-action {
+        flex: 0 0 auto;
+      }
     }
 
     &__body {

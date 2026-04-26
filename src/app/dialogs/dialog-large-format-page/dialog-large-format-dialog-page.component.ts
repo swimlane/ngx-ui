@@ -28,6 +28,23 @@ import { BehaviorSubject } from 'rxjs';
       .margin-left-12 {
         margin-left: 12px;
       }
+
+      .header-content {
+        display: flex;
+        flex: 1;
+        gap: 12px;
+        align-items: center;
+
+        &.position-left {
+          justify-content: flex-start;
+        }
+        &.position-right {
+          justify-content: flex-end;
+        }
+        &.position-center {
+          justify-content: center;
+        }
+      }
     `
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -38,6 +55,7 @@ export class DialogLargeFormatDialogPageComponent {
 
   dirty$ = new BehaviorSubject(false);
   skipDirty$ = new BehaviorSubject(false);
+  headerContentPosition$ = new BehaviorSubject<'left' | 'center' | 'right'>('left');
 
   @ViewChild('dialogDrawerTemplate') dialogDrawerTemplate: TemplateRef<unknown>;
 

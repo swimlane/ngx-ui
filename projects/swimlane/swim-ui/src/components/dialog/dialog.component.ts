@@ -2,7 +2,12 @@ import { LitElement, html, nothing } from 'lit';
 import { property, state, query } from 'lit/decorators.js';
 import { dialogStyles } from './dialog.styles';
 import { DialogFormat } from './dialog-format.enum';
-import { coerceBooleanProperty, coerceNumberProperty, booleanAttributeConverter } from '../../utils/coerce';
+import {
+  coerceBooleanProperty,
+  coerceNumberProperty,
+  litBooleanAttrDefaultFalse,
+  litBooleanAttrDefaultTrue
+} from '../../utils/coerce';
 import '../icon/icon.component';
 
 /**
@@ -10,11 +15,23 @@ import '../icon/icon.component';
  *
  * @slot - Default content (body). Use with dialog-title and optional header/footer.
  *
- * @fires open - Fired when the dialog is shown
- * @fires close - Fired when the dialog is closed (detail: boolean | void)
+ * @fires open - Fired when the dialog is shown (does not bubble; listen on this element).
+ * @fires close - Fired when the dialog is closed (detail: boolean | void). Does not bubble.
+ *
+ * @attr close-button - When false, hides all header dismiss controls: the regular-format X and the large/medium
+ *   header action on `swim-large-format-dialog-content` (via inherited `--swim-dialog-header-action-display`). Default: true.
+ * @attr close-on-blur - When false, clicking the backdrop does not close (ngx closeOnBlur parity). Default: true.
+ * @attr close-on-escape - When false, Escape does not close (ngx closeOnEscape parity). Default: true.
  *
  * @csspart content - The dialog content panel
  * @csspart close-button - The close button
+ * @csspart header - The regular-format title wrapper (use with `::part(header)` for layout overrides)
+ *
+ * @cssprop [--swim-dialog-border] - Panel outline; default none (Figma modal has no stroke on the panel).
+ * @cssprop [--swim-dialog-box-shadow] - Panel elevation; defaults to `--shadow-dialog-panel` (Figma drop shadow).
+ * @cssprop [--swim-dialog-header-text-align] - Title block alignment in regular format (`start` default). Set `center` to center the header.
+ * @cssprop [--swim-dialog-header-action-display] - Set on this host when `close-button` is false (`none`). Slotted
+ *   `swim-large-format-dialog-content` uses it to hide the header Close/Cancel. Override on a child host with `flex` if needed.
  */
 const DIALOG_TAG = 'swim-dialog';
 export class SwimDialog extends LitElement {
@@ -61,8 +78,10 @@ export class SwimDialog extends LitElement {
   })
   showBackdrop = true;
 
-  /** Whether to show the close button */
-  @property({ type: Boolean, attribute: 'close-button', converter: booleanAttributeConverter })
+  /**
+   * When false, hides the regular-format X and the large/medium format header close/cancel (see `--swim-dialog-header-action-display`).
+   */
+  @property({ type: Boolean, attribute: 'close-button', converter: litBooleanAttrDefaultTrue })
   get closeButton(): boolean {
     return this._closeButton;
   }
@@ -71,8 +90,28 @@ export class SwimDialog extends LitElement {
   }
   private _closeButton = true;
 
+  /** When false, clicking the dimmed backdrop does not dismiss the dialog (ngx `closeOnBlur`). */
+  @property({ type: Boolean, attribute: 'close-on-blur', converter: litBooleanAttrDefaultTrue })
+  get closeOnBlur(): boolean {
+    return this._closeOnBlur;
+  }
+  set closeOnBlur(value: boolean) {
+    this._closeOnBlur = coerceBooleanProperty(value);
+  }
+  private _closeOnBlur = true;
+
+  /** When false, the Escape key does not dismiss the dialog (ngx `closeOnEscape`). */
+  @property({ type: Boolean, attribute: 'close-on-escape', converter: litBooleanAttrDefaultTrue })
+  get closeOnEscape(): boolean {
+    return this._closeOnEscape;
+  }
+  set closeOnEscape(value: boolean) {
+    this._closeOnEscape = coerceBooleanProperty(value);
+  }
+  private _closeOnEscape = true;
+
   /** Whether the dialog is visible */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get visible(): boolean {
     return this._visible;
   }
@@ -83,10 +122,10 @@ export class SwimDialog extends LitElement {
     if (next) {
       this._previousActiveElement =
         typeof document !== 'undefined' ? (document.activeElement as HTMLElement | null) : null;
-      this.dispatchEvent(new CustomEvent('open', { bubbles: true }));
+      this.dispatchEvent(new CustomEvent('open', { bubbles: false, composed: false }));
     } else {
       this._restoreFocus();
-      this.dispatchEvent(new CustomEvent('close', { detail: undefined, bubbles: true }));
+      this.dispatchEvent(new CustomEvent('close', { detail: undefined, bubbles: false, composed: false }));
     }
   }
   private _visible = false;
@@ -146,23 +185,41 @@ export class SwimDialog extends LitElement {
   }
 
   private _onBackdropClick(): void {
+    if (!this.closeOnBlur) return;
     this.hide();
   }
 
   private _onKeydown(e: KeyboardEvent): void {
     if (e.key === 'Escape') {
+      if (!this.closeOnEscape) return;
       e.stopPropagation();
       this.hide();
     }
   }
 
-  protected firstUpdated(): void {
-    if (this.visible && this._contentEl) {
-      this._contentEl.focus({ preventScroll: true });
+  /** Large/medium slotted content reads `--swim-dialog-header-action-display` (inherited). */
+  private _syncCloseButtonCustomProperty(): void {
+    if (!this.closeButton) {
+      this.style.setProperty('--swim-dialog-header-action-display', 'none');
+    } else {
+      this.style.removeProperty('--swim-dialog-header-action-display');
     }
   }
 
+  override connectedCallback(): void {
+    super.connectedCallback();
+    this._syncCloseButtonCustomProperty();
+  }
+
+  override disconnectedCallback(): void {
+    this.style.removeProperty('--swim-dialog-header-action-display');
+    super.disconnectedCallback();
+  }
+
   protected updated(changedProperties: Map<string, unknown>): void {
+    if (changedProperties.has('closeButton')) {
+      this._syncCloseButtonCustomProperty();
+    }
     if (changedProperties.has('visible') && this.visible && this._contentEl) {
       requestAnimationFrame(() => {
         this._contentEl?.focus({ preventScroll: true });
@@ -236,7 +293,7 @@ export class SwimDialog extends LitElement {
                   : nothing}
                 ${this.dialogTitle
                   ? html`
-                      <div class="swim-dialog__header">
+                      <div class="swim-dialog__header" part="header">
                         <h2 id="${this._titleId}" class="swim-dialog__title">${this.dialogTitle}</h2>
                       </div>
                     `

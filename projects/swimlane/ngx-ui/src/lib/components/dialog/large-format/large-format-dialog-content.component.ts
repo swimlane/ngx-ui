@@ -41,6 +41,7 @@ export class LargeFormatDialogContentComponent implements OnInit {
   @Input() dialogActionTitle = 'Close';
   @Input() dirty = false;
   @Input() dialogDirtyActionTitle = 'Cancel';
+  @Input() largeFormatDialogHeaderContent?: TemplateRef<unknown> | null;
 
   // dirty alert options
   @Input() dirtyAlertOptions?: DialogOptions;

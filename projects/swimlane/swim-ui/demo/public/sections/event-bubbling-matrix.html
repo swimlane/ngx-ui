@@ -1,0 +1,33 @@
+<section class="section" id="event-bubbling-matrix">
+  <h1 class="page-title">Event propagation matrix</h1>
+  <p class="section-desc">
+    Use this page to see where <code>change</code> / <code>checked-change</code> from <code>swim-checkbox</code> are observed.
+    swim-ui dispatches these with <code>bubbles: false</code> and <code>composed: false</code>, so they stay on the host:
+    attach listeners on the <code>swim-checkbox</code> (or a direct listener target), not on <code>document</code>, and not
+    from outside an enclosing shadow root unless you listen on the host inside that root.
+  </p>
+
+  <div id="eventBubblingMatrixRoot">
+    <h2 class="section-title">Case A – light DOM</h2>
+    <p class="section-desc">
+      Wrapper <code>.matrix-wrap-light</code> → <code>swim-checkbox</code>. Listeners: checkbox, wrapper (bubble), <code>document</code> (bubble).
+    </p>
+    <div class="matrix-wrap-light demo-card-container" style="margin-bottom: 2rem">
+      <swim-checkbox id="matrixCbLight" label="Toggle (light DOM)"></swim-checkbox>
+    </div>
+
+    <h2 class="section-title">Case B – swim-checkbox inside another shadow root</h2>
+    <p class="section-desc">
+      The checkbox lives in an element's shadow root. With non-bubbling events, a listener on <code>document</code> does
+      <strong>not</strong> receive <code>change</code> from inside the shadow subtree; listen on the checkbox node or the shadow host.
+    </p>
+    <div id="matrixShadowMount" class="demo-card-container" style="margin-bottom: 1rem"></div>
+
+    <div class="demo-row">
+      <swim-button id="matrixClearLog" variant="bordered">Clear log</swim-button>
+    </div>
+
+    <h3 class="style-header" style="margin-top: 1.5rem">Log</h3>
+    <pre id="eventBubblingMatrixLog" class="demo-pre" style="min-height: 12rem; white-space: pre-wrap"></pre>
+  </div>
+</section>

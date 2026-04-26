@@ -2,6 +2,22 @@
 
 ## HEAD (unreleased)
 
+## 51.5.0 (2026-04-18)
+
+- Enhancement (`ngx-large-format-dialog-content`): Added support to display custom content in large dialog's header.
+
+## 51.4.0 (2026-04-10)
+
+- Enhancement (`ngx-card`): Added a new input attribute in ngx-card to display content when we hover over the card.
+
+## 51.3.2 (2026-04-10)
+
+- Fix (`ngx-column`): Fix scroll position when changing columns after filtering.
+
+## 51.3.1 (2026-03-12)
+
+- Enhancement (`ngx-column`): Added custom header template for each column
+
 ## 51.3.0 (2026-02-27)
 
 - Enhancement (`icons`): Added `panel-expand` and `panel-collapse` icons

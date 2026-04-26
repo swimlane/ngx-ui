@@ -6,6 +6,7 @@
   <code>section-title</code> or <code>swim-section-header</code> for custom header content. Supports legacy, outline,
   light, and minimal appearances.
 </p>
+<p class="section-desc" style="margin-top: 0; margin-bottom: 1.5rem;"><strong>CDN:</strong> <code>import 'https://widgets.swimlane.app/swim-ui/section.js';</code></p>
 
 <section class="section">
   <swim-section section-title="Title and content">
@@ -139,8 +140,86 @@
 </section>
 
 <section class="section">
-  <swim-section section-title="Section usage">
-    <p class="section-desc">Import and use the section components:</p>
+  <swim-section section-title="Theming (CSS custom properties)">
+    <p class="section-desc" style="margin-top: 0; max-width: 48rem">
+      Set <code>--swim-section-*</code> on <code>&lt;swim-section&gt;</code> (or an ancestor). They override the token
+      fallbacks for each <code>appearance</code>. <code>--swim-section-header-hover-background</code> fills the
+      <strong>entire header row</strong> on hover when the section can be toggled (<code>header-toggle</code> or the
+      default chevron). Hover the sample below to compare.
+    </p>
+    <div class="demo-row demo-row--column">
+      <div class="demo-label">Custom surfaces (hover the header)</div>
+      <swim-section
+        id="section-css-vars-demo"
+        section-title="Themed section"
+        header-toggle
+        style="
+          --swim-section-background: var(--grey-850);
+          --swim-section-header-background: var(--grey-800);
+          --swim-section-header-hover-background: var(--blue-500);
+          --swim-section-content-background: var(--grey-825);
+        "
+      >
+        Host, header, content, and header hover colors are driven by the <code>style</code> attribute on this element.
+      </swim-section>
+    </div>
+    <h4 class="api-heading" style="margin-top: 1.25rem">Available overrides</h4>
+    <div class="api-table-wrap">
+      <table class="api-table">
+        <thead>
+          <tr>
+            <th>Custom property</th>
+            <th>Default role</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>--swim-section-background</code></td>
+            <td>Section host (card surface)</td>
+            <td>Falls back to appearance tokens (e.g. <code>--grey-825</code> for legacy)</td>
+          </tr>
+          <tr>
+            <td><code>--swim-section-header-background</code></td>
+            <td>Header bar</td>
+            <td>Outline / minimal use transparent fallbacks</td>
+          </tr>
+          <tr>
+            <td><code>--swim-section-header-hover-background</code></td>
+            <td>Header on hover</td>
+            <td>Full header row when <code>header-toggle</code> or chevron toggle is present</td>
+          </tr>
+          <tr>
+            <td><code>--swim-section-content-background</code></td>
+            <td>Content panel</td>
+            <td>Legacy default is transparent; <code>appearance="light"</code> sets a token fallback</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <pre class="demo-pre"><code>&lt;swim-section
+  section-title="Themed section"
+  header-toggle
+  style="
+    --swim-section-background: var(--grey-850);
+    --swim-section-header-background: var(--grey-800);
+    --swim-section-header-hover-background: var(--blue-500);
+    --swim-section-content-background: var(--grey-825);
+  "
+&gt;
+  Body content.
+&lt;/swim-section&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Usage">
+    <p class="section-desc">
+      Import the section bundle (and <code>swim-icon</code> if you use the built-in chevron). Use
+      <code>section-title</code> for a simple title, or <code>slot="header"</code> with
+      <code>&lt;swim-section-header&gt;</code> for custom markup. See <strong>API Reference</strong> for attributes,
+      events, and CSS variables.
+    </p>
     <pre class="demo-pre"><code>&lt;script type="module"&gt;
   import '@swimlane/swim-ui/section';
   import '@swimlane/swim-ui/icon';
@@ -176,6 +255,21 @@
             <tr><td><code>toggle-position</code></td><td><code>'left' | 'right' | 'none'</code></td><td><code>'left'</code></td><td>Position of the expand/collapse icon</td></tr>
             <tr><td><code>header-toggle</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Makes entire header clickable to toggle</td></tr>
             <tr><td><code>padding</code></td><td><code>string</code></td><td><code>'1.8em'</code></td><td>Content area padding</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 class="api-heading">CSS custom properties</h4>
+      <p class="section-desc" style="margin-top: 0; margin-bottom: 0.75rem">
+        Optional host overrides (see <strong>Theming (CSS custom properties)</strong> in the demo above).
+      </p>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Property</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>--swim-section-background</code></td><td>Host / outer surface behind header and content</td></tr>
+            <tr><td><code>--swim-section-header-background</code></td><td>Header row background</td></tr>
+            <tr><td><code>--swim-section-header-hover-background</code></td><td>Full header on hover when <code>header-toggle</code> or chevron UI is shown</td></tr>
+            <tr><td><code>--swim-section-content-background</code></td><td>Main content panel background</td></tr>
           </tbody>
         </table>
       </div>

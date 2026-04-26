@@ -2,13 +2,12 @@ import { LitElement, html } from 'lit';
 import { property, query } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { toggleStyles } from './toggle.styles';
-import { coerceBooleanProperty, coerceNumberProperty, booleanAttributeConverter } from '../../utils/coerce';
-
-/** Converter so show-icons="false" is respected (Lit's default Boolean ignores attribute value). */
-const booleanAttrConverter = {
-  fromAttribute: (value: string | null): boolean => value !== 'false' && value !== '',
-  toAttribute: (value: boolean): string => (value ? 'true' : 'false')
-};
+import {
+  coerceBooleanProperty,
+  coerceNumberProperty,
+  litBooleanAttrDefaultFalse,
+  litBooleanAttrDefaultTrue
+} from '../../utils/coerce';
 
 let nextId = 0;
 
@@ -57,7 +56,7 @@ export class SwimToggle extends LitElement {
   /**
    * Checked (on) state. Reflects as attribute for styling.
    */
-  @property({ type: Boolean, reflect: true, attribute: 'checked', converter: booleanAttributeConverter })
+  @property({ type: Boolean, reflect: true, attribute: 'checked', converter: litBooleanAttrDefaultFalse })
   get checked(): boolean {
     return this._checked;
   }
@@ -72,7 +71,7 @@ export class SwimToggle extends LitElement {
   /**
    * Whether the toggle is disabled
    */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get disabled(): boolean {
     return this._disabled;
   }
@@ -84,7 +83,7 @@ export class SwimToggle extends LitElement {
   /**
    * Whether the toggle is required (for forms)
    */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get required(): boolean {
     return this._required;
   }
@@ -96,7 +95,7 @@ export class SwimToggle extends LitElement {
   /**
    * Whether to show check/x icons inside the track
    */
-  @property({ type: Boolean, attribute: 'show-icons', converter: booleanAttrConverter })
+  @property({ type: Boolean, attribute: 'show-icons', converter: litBooleanAttrDefaultTrue })
   get showIcons(): boolean {
     return this._showIcons;
   }
@@ -178,18 +177,18 @@ export class SwimToggle extends LitElement {
           timeStamp: Date.now(),
           target: { checked: this._checked }
         },
-        bubbles: true,
-        composed: true
+        bubbles: false,
+        composed: false
       })
     );
   }
 
   private _onFocus(ev: FocusEvent) {
-    this.dispatchEvent(new FocusEvent('focus', { ...ev, bubbles: true, composed: true }));
+    this.dispatchEvent(new FocusEvent('focus', { ...ev, bubbles: false, composed: false }));
   }
 
   private _onBlur(ev: FocusEvent) {
-    this.dispatchEvent(new FocusEvent('blur', { ...ev, bubbles: true, composed: true }));
+    this.dispatchEvent(new FocusEvent('blur', { ...ev, bubbles: false, composed: false }));
   }
 
   private _onInputChange(ev: Event) {

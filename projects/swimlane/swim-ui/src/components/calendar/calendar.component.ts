@@ -15,6 +15,7 @@ import {
 } from './calendar-utils';
 import type { CalendarMonth } from './calendar-utils';
 import { parseDate, isValidDate } from '../date-time/date-format';
+import { litBooleanAttrDefaultFalse } from '../../utils/coerce';
 
 /**
  * Calendar view modes.
@@ -67,7 +68,7 @@ export class SwimCalendar extends LitElement {
   maxDate?: string | Date;
 
   /** Whether the calendar is disabled. */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   disabled = false;
 
   /** IANA timezone name. */
@@ -471,7 +472,7 @@ export class SwimCalendar extends LitElement {
     }
 
     this.requestUpdate();
-    this.dispatchEvent(new CustomEvent('change', { detail: this._value, bubbles: true, composed: true }));
+    this.dispatchEvent(new CustomEvent('change', { detail: this._value, bubbles: false, composed: false }));
   }
 
   private _onMonthClick(month: number): void {
@@ -486,7 +487,7 @@ export class SwimCalendar extends LitElement {
     }
 
     this.requestUpdate();
-    this.dispatchEvent(new CustomEvent('change', { detail: this._value, bubbles: true, composed: true }));
+    this.dispatchEvent(new CustomEvent('change', { detail: this._value, bubbles: false, composed: false }));
   }
 
   private _onYearClick(year: number): void {
@@ -501,7 +502,7 @@ export class SwimCalendar extends LitElement {
     }
 
     this.requestUpdate();
-    this.dispatchEvent(new CustomEvent('change', { detail: this._value, bubbles: true, composed: true }));
+    this.dispatchEvent(new CustomEvent('change', { detail: this._value, bubbles: false, composed: false }));
   }
 
   // ---------------------------------------------------------------------------
@@ -594,7 +595,7 @@ export class SwimCalendar extends LitElement {
       }
       case 'Enter':
         setTimeout(() => {
-          this.dispatchEvent(new CustomEvent('day-key-enter', { bubbles: true, composed: true }));
+          this.dispatchEvent(new CustomEvent('day-key-enter', { bubbles: false, composed: false }));
         }, 200);
         break;
     }
@@ -634,7 +635,7 @@ export class SwimCalendar extends LitElement {
         break;
       case 'Enter':
         setTimeout(() => {
-          this.dispatchEvent(new CustomEvent('day-key-enter', { bubbles: true, composed: true }));
+          this.dispatchEvent(new CustomEvent('day-key-enter', { bubbles: false, composed: false }));
         }, 200);
         break;
     }
@@ -673,7 +674,7 @@ export class SwimCalendar extends LitElement {
         break;
       case 'Enter':
         setTimeout(() => {
-          this.dispatchEvent(new CustomEvent('day-key-enter', { bubbles: true, composed: true }));
+          this.dispatchEvent(new CustomEvent('day-key-enter', { bubbles: false, composed: false }));
         }, 200);
         break;
     }

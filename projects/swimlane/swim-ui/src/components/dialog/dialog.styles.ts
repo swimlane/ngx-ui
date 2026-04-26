@@ -6,15 +6,17 @@ import { scrollbarStyles } from '../../styles/scrollbars';
  * Dialog component styles matching @swimlane/ngx-ui design system.
  * Uses CSS variables from base; BEM: swim-dialog, swim-dialog__content, etc.
  * Includes scrollbar styles so .swim-scroll on the body works inside shadow DOM.
+ *
+ * Optional theme overrides (set on a parent or this host; inherit into shadow):
+ * --swim-dialog-bg, --swim-dialog-border, --swim-dialog-header-color, --swim-dialog-body-color,
+ * --swim-dialog-box-shadow, --swim-dialog-header-text-align (e.g. center)
  */
 export const dialogStyles = [
   baseStyles,
   scrollbarStyles,
   css`
     :host {
-      --swim-dialog-bg: var(--grey-800);
-      --swim-dialog-header-color: var(--grey-100);
-      --swim-dialog-body-color: var(--grey-200);
+      outline: none;
     }
 
     .swim-dialog {
@@ -49,33 +51,52 @@ export const dialogStyles = [
       cursor: default;
     }
 
+    /* ngx-dialog visibilityTransition void=>*: 0.2s ease-out, opacity 0→1, scale3d(1.2)→(1) */
+    @keyframes swim-dialog-content-enter {
+      from {
+        opacity: 0;
+        transform: scale3d(1.2, 1.2, 1.2);
+      }
+      to {
+        opacity: 1;
+        transform: scale3d(1, 1, 1);
+      }
+    }
+
     .swim-dialog__content {
+      outline: none;
       pointer-events: auto;
       position: relative;
       border-radius: var(--radius-8);
-      box-shadow: var(--shadow-3);
-      background: var(--swim-dialog-bg);
+      border: var(--swim-dialog-border, none);
+      box-shadow: var(--swim-dialog-box-shadow, var(--shadow-dialog-panel));
+      background: var(--swim-dialog-bg, var(--grey-725));
       padding: 1.4rem;
       min-width: 250px;
       font-size: var(--font-size-m);
-      color: var(--swim-dialog-body-color);
-      animation-fill-mode: forwards;
-      opacity: 0;
-      transform: scale3d(1.2, 1.2, 1);
-      transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+      color: var(--swim-dialog-body-color, var(--grey-200));
       z-index: calc(var(--swim-dialog-z, 991) + 1);
     }
 
     .swim-dialog.swim-dialog--open .swim-dialog__content {
-      opacity: 1;
-      transform: scale3d(1, 1, 1);
+      animation: swim-dialog-content-enter 0.2s ease-out forwards;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .swim-dialog.swim-dialog--open .swim-dialog__content {
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
     }
 
     .swim-dialog__content--large,
     .swim-dialog__content--medium {
       padding: var(--spacing-0);
       width: calc(100vw - 120px);
-      background-color: transparent;
+      background: transparent;
+      border: none;
+      box-shadow: none;
     }
 
     .swim-dialog__content--large {
@@ -134,6 +155,7 @@ export const dialogStyles = [
 
     .swim-dialog__header {
       margin: 0 0 1.4rem 0;
+      text-align: var(--swim-dialog-header-text-align, start);
     }
 
     .swim-dialog__title,
@@ -142,7 +164,8 @@ export const dialogStyles = [
       font-size: var(--font-size-3xl);
       font-weight: 400;
       margin: 0 0 1.4rem 0;
-      color: var(--swim-dialog-header-color);
+      color: var(--swim-dialog-header-color, var(--grey-050));
+      text-align: inherit;
     }
 
     .swim-dialog__content--medium .swim-dialog__header,
@@ -182,6 +205,7 @@ export const dialogStyles = [
     :host(.swim-dialog--full-screen) .swim-dialog__content,
     .swim-dialog.swim-dialog--full-screen .swim-dialog__content {
       box-shadow: none;
+      border: none;
       box-sizing: border-box;
       width: 100%;
       min-height: 100%;

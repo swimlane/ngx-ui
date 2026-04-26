@@ -81,6 +81,75 @@ $card-vertical-gutter: var(--spacing-20);
     background: none;
     box-shadow: none;
   }
+
+  // Hover effect when [allowHoverTemplate]="true"; visibility driven by isHovered (ngx-card--hovered), not :hover
+  &.ngx-card--hover-effect {
+    background: $color-flat-background;
+    border-left: $card-accent-thickness solid transparent;
+    transition: background 0.2s ease-in-out, border-color 0.2s ease-in-out;
+
+    &:hover {
+      background: var(--grey-825);
+      border-left-color: var(--grey-550);
+      border-radius: var(--radius-6);
+    }
+
+    &.flat {
+      background: none;
+      border-left-color: transparent;
+
+      &:hover {
+        background: none;
+        border-left-color: var(--grey-550);
+      }
+    }
+
+    // When hovered, hide default header/section; show hover slot (state-driven, no !important)
+    &.ngx-card--hovered > .ngx-card-header,
+    &.ngx-card--hovered > .ngx-card-section {
+      display: none;
+    }
+
+    & > .ngx-card-hover-section {
+      position: absolute;
+      inset: 0;
+      display: none;
+      flex: 1 0 0;
+      flex-direction: column;
+      justify-content: center;
+      gap: var(--spacing-12);
+      min-height: 0;
+      padding: var(--spacing-18) var(--spacing-24);
+      width: 100%;
+      border-radius: var(--radius-6);
+    }
+
+    &.ngx-card--hovered > .ngx-card-hover-section {
+      display: flex;
+    }
+
+    .ngx-card-hover-section p {
+      margin: 0;
+      font-size: var(--font-size-s);
+      color: var(--grey-050);
+      line-height: 1.4;
+    }
+
+    .ngx-card-hover-section .ngx-button {
+      width: fit-content;
+      min-width: 0;
+
+      button {
+        padding: 0.5em 0.35em;
+        min-height: 0;
+        width: auto;
+
+        > .content {
+          width: auto;
+        }
+      }
+    }
+  }
 } // end of ngx-card
 
 .ngx-card-horizontal {

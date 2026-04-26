@@ -4,7 +4,7 @@ import { cardComponentStyles } from './card.styles';
 import { CardStatus } from './card-status.enum';
 import { CardOrientation } from './card-orientation.enum';
 import { CardAppearance } from './card-appearance.enum';
-import { coerceBooleanProperty, booleanAttributeConverter } from '../../utils/coerce';
+import { coerceBooleanProperty, litBooleanAttrDefaultFalse } from '../../utils/coerce';
 import '../checkbox/checkbox.component';
 
 /**
@@ -12,8 +12,8 @@ import '../checkbox/checkbox.component';
  *
  * @slot - Default slot for card content (header, sections, body, footer).
  *
- * @fires select - Fired when the selectable checkbox is toggled (detail: boolean selected).
- * @fires outline-click - Fired when the outline text label is clicked.
+ * @fires select - Fired when the selectable checkbox is toggled (detail: boolean selected). Does not bubble.
+ * @fires outline-click - Fired when the outline text label is clicked. Does not bubble.
  *
  * @csspart outline-text - The clickable outline text inner element (when outlineText is set).
  */
@@ -22,7 +22,7 @@ export class SwimCard extends LitElement {
   static styles = cardComponentStyles;
 
   /** When true, card is non-interactive. */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get disabled(): boolean {
     return this._disabled;
   }
@@ -44,7 +44,7 @@ export class SwimCard extends LitElement {
   statusTooltip = '';
 
   /** When true, shows a checkbox to select the card. */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get selectable(): boolean {
     return this._selectable;
   }
@@ -54,7 +54,7 @@ export class SwimCard extends LitElement {
   private _selectable = false;
 
   /** When true (and selectable), card appears selected. */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get selected(): boolean {
     return this._selected;
   }
@@ -64,7 +64,7 @@ export class SwimCard extends LitElement {
   private _selected = false;
 
   /** When true, outline and outline text use error color. */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get error(): boolean {
     return this._error;
   }
@@ -82,7 +82,7 @@ export class SwimCard extends LitElement {
   appearance: CardAppearance | 'normal' | 'flat' = CardAppearance.Normal;
 
   /** When true, the accent bar is hidden. */
-  @property({ type: Boolean, attribute: 'hide-accent', converter: booleanAttributeConverter })
+  @property({ type: Boolean, attribute: 'hide-accent', converter: litBooleanAttrDefaultFalse })
   get hideAccent(): boolean {
     return this._hideAccent;
   }
@@ -93,7 +93,7 @@ export class SwimCard extends LitElement {
 
   private _onOutlineClick(e: Event) {
     e.stopPropagation();
-    this.dispatchEvent(new CustomEvent('outline-click', { bubbles: true, composed: true }));
+    this.dispatchEvent(new CustomEvent('outline-click', { bubbles: false, composed: false }));
   }
 
   private _onSelectChange(e: CustomEvent) {
@@ -103,8 +103,8 @@ export class SwimCard extends LitElement {
     this.dispatchEvent(
       new CustomEvent('select', {
         detail: this.selected,
-        bubbles: true,
-        composed: true
+        bubbles: false,
+        composed: false
       })
     );
   }
