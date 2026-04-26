@@ -526,10 +526,10 @@ __metadata:
 
 "@swimlane/swim-ui@file:../swim-ui::locator=%40swimlane%2Fswim-ui-testing%40workspace%3A.":
   version: 1.0.0
-  resolution: "@swimlane/swim-ui@file:../swim-ui#../swim-ui::hash=dacc2c&locator=%40swimlane%2Fswim-ui-testing%40workspace%3A."
+  resolution: "@swimlane/swim-ui@file:../swim-ui#../swim-ui::hash=4fb746&locator=%40swimlane%2Fswim-ui-testing%40workspace%3A."
   dependencies:
     lit: "npm:^3.2.0"
-  checksum: 10c0/594dc5d71d9222b680d608d770cdce2b0480cbbb40318c69ed06ed72a89fa8f955a788263bb34a5849dbdda05ed14617b077601577608b97cf78eec4a55e0fd2
+  checksum: 10c0/1da56df930d597140e118fc91c444df8e02e800faef05399d33332eb7ed3cf8fd952d6a39e506473ddbf5c1f9f6cca0c532a41a028ddd640f7dda98bb818f25b
   languageName: node
   linkType: hard
 
