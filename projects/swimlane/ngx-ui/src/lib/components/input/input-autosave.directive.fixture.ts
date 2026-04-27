@@ -9,7 +9,7 @@ import { InputTypes } from './input-types.enum';
   template: `
     @if ((type$ | async) === 'text') {
     <input #input [style.max-width.px]="maxWidth$ | async" [(ngModel)]="value" [autosize]="enabled$ | async" />
-    } @if ((type$ | async) === 'textarea') {
+    } @else if ((type$ | async) === 'textarea') {
     <textarea #textarea [(ngModel)]="value" [autosize]="enabled$ | async"></textarea>
     }
   `,

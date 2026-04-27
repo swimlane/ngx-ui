@@ -88,11 +88,10 @@
               ngx-tooltip
               [tooltipTitle]="acceptedFileFormatsTextDisplay"
               class="ngx-dropzone--sub-title">OR <span class="underline">BROWSE</span></div>
-            }
-            @if (!acceptedFileFormats || acceptedFileFormats.length === 0) {
-              <div class="ngx-dropzone--sub-title">OR <span class="underline">BROWSE</span></div>
-            }
+          } @else {
+            <div class="ngx-dropzone--sub-title">OR <span class="underline">BROWSE</span></div>
           }
+        }
         </div>
       </label>
     </ng-template>
