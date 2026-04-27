@@ -2,7 +2,8 @@ import { describe, it, expect } from 'vitest';
 import {
   coerceBooleanProperty,
   coerceNumberProperty,
-  booleanAttributeConverter
+  litBooleanAttrDefaultTrue,
+  litBooleanAttrDefaultFalse
 } from '../../../swim-ui/src/utils/coerce.js';
 
 describe('coerce', () => {
@@ -69,30 +70,31 @@ describe('coerce', () => {
     });
   });
 
-  describe('booleanAttributeConverter', () => {
-    it('fromAttribute: converts "false" to false', () => {
-      expect(booleanAttributeConverter.fromAttribute('false')).toBe(false);
+  describe('litBooleanAttrDefaultTrue', () => {
+    it('fromAttribute: only "false" is false', () => {
+      expect(litBooleanAttrDefaultTrue.fromAttribute('false')).toBe(false);
+      expect(litBooleanAttrDefaultTrue.fromAttribute(null)).toBe(true);
+      expect(litBooleanAttrDefaultTrue.fromAttribute('')).toBe(true);
     });
 
-    it('fromAttribute: converts null to false', () => {
-      expect(booleanAttributeConverter.fromAttribute(null)).toBe(false);
+    it('toAttribute: true omits attr; false serializes as "false"', () => {
+      expect(litBooleanAttrDefaultTrue.toAttribute(true)).toBe(null);
+      expect(litBooleanAttrDefaultTrue.toAttribute(false)).toBe('false');
+    });
+  });
+
+  describe('litBooleanAttrDefaultFalse', () => {
+    it('fromAttribute: null, "false", and "0" are false', () => {
+      expect(litBooleanAttrDefaultFalse.fromAttribute(null)).toBe(false);
+      expect(litBooleanAttrDefaultFalse.fromAttribute('false')).toBe(false);
+      expect(litBooleanAttrDefaultFalse.fromAttribute('0')).toBe(false);
+      expect(litBooleanAttrDefaultFalse.fromAttribute('')).toBe(true);
+      expect(litBooleanAttrDefaultFalse.fromAttribute('true')).toBe(true);
     });
 
-    it('fromAttribute: converts "" to true (same as coerceBooleanProperty)', () => {
-      expect(booleanAttributeConverter.fromAttribute('')).toBe(true);
-    });
-
-    it('fromAttribute: converts "true" or any other string to true', () => {
-      expect(booleanAttributeConverter.fromAttribute('true')).toBe(true);
-      expect(booleanAttributeConverter.fromAttribute('yes')).toBe(true);
-    });
-
-    it('toAttribute: converts true to empty string', () => {
-      expect(booleanAttributeConverter.toAttribute(true)).toBe('');
-    });
-
-    it('toAttribute: converts false to "false"', () => {
-      expect(booleanAttributeConverter.toAttribute(false)).toBe('false');
+    it('toAttribute: true uses empty string; false removes attr', () => {
+      expect(litBooleanAttrDefaultFalse.toAttribute(true)).toBe('');
+      expect(litBooleanAttrDefaultFalse.toAttribute(false)).toBe(null);
     });
   });
 });

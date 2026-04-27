@@ -10,7 +10,7 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@swimlane/swim-ui": "file:../swim-ui"
+    "@swimlane/swim-ui": "workspace:*"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^2.1.0",

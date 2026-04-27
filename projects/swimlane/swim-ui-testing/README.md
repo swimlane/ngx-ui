@@ -4,13 +4,11 @@ Unit tests for [@swimlane/swim-ui](../swim-ui). Tests run against swim-ui source
 
 ## Setup
 
-From this directory:
+This package is a **Yarn workspace** of the repo root. Install once from the repository root:
 
 ```bash
 yarn install
 ```
-
-Requires an empty `yarn.lock` so this folder is treated as a separate Yarn project. After first install, the lockfile is populated.
 
 ## Run tests
 

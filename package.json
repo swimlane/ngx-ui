@@ -23,8 +23,7 @@
     "test:prettier": "prettier --check  \"{src,projects,cypress}/**/*.{js,ts,scss,css,md,json}\"",
     "test:lint": "ng lint",
     "test:unit": "TZ=America/Los_Angeles ng test @swimlane/ngx-ui --watch=false --progress=false --browsers=ChromeHeadlessCI --ts-config tsconfig.spec.json",
-    "test:swim-ui": "cd projects/swimlane/swim-ui-testing && yarn test:run",
-    "refresh-swim-ui-testing-lockfile": "yarn install && (cd projects/swimlane/swim-ui && yarn install) && (cd projects/swimlane/swim-ui-testing && yarn install)",
+    "test:swim-ui": "yarn workspace @swimlane/swim-ui-testing test:run",
     "test:integration": "start-server-and-test start http-get://localhost:4200 cypress:run",
     "fix": "yarn fix:prettier && yarn fix:lint",
     "fix:prettier": "prettier --write \"{src,projects,cypress}/**/*.{js,ts,scss,css,md,json}\"",
@@ -42,6 +41,10 @@
     "prepare": "husky install"
   },
   "private": true,
+  "workspaces": [
+    "projects/swimlane/swim-ui",
+    "projects/swimlane/swim-ui-testing"
+  ],
   "dependencies": {
     "@angular/animations": "^20.0.4",
     "@angular/cdk": "^20.0.3",
