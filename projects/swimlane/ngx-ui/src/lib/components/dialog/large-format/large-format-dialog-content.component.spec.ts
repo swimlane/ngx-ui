@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -92,8 +92,8 @@ class TestHostStepperWithHeaderContentComponent {
 describe(LargeFormatDialogContentComponent.name, () => {
   let fixture: ComponentFixture<LargeFormatDialogContentComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       declarations: [
         LargeFormatDialogContentComponent,
         LargeFormatDialogHeaderTitleComponent,
@@ -104,7 +104,7 @@ describe(LargeFormatDialogContentComponent.name, () => {
         {
           provide: AlertService,
           useValue: {
-            confirm: jasmine.createSpy('confirm').and.returnValue({
+            confirm: vi.fn().mockReturnValue({
               asObservable: () => of({ type: 'cancel' })
             })
           }
@@ -118,7 +118,7 @@ describe(LargeFormatDialogContentComponent.name, () => {
 
     fixture = TestBed.createComponent(LargeFormatDialogContentComponent);
     fixture.detectChanges();
-  }));
+  });
 
   it('should create', () => {
     expect(fixture.componentInstance).toBeTruthy();
@@ -126,8 +126,8 @@ describe(LargeFormatDialogContentComponent.name, () => {
 });
 
 describe(`${LargeFormatDialogContentComponent.name} largeFormatDialogHeaderContent`, () => {
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       declarations: [
         LargeFormatDialogContentComponent,
         LargeFormatDialogHeaderTitleComponent,
@@ -144,7 +144,7 @@ describe(`${LargeFormatDialogContentComponent.name} largeFormatDialogHeaderConte
         {
           provide: AlertService,
           useValue: {
-            confirm: jasmine.createSpy('confirm').and.returnValue({
+            confirm: vi.fn().mockReturnValue({
               asObservable: () => of({ type: 'cancel' })
             })
           }
@@ -155,7 +155,7 @@ describe(`${LargeFormatDialogContentComponent.name} largeFormatDialogHeaderConte
         set: { changeDetection: ChangeDetectionStrategy.Default }
       })
       .compileComponents();
-  }));
+  });
 
   it('should accept largeFormatDialogHeaderContent input', () => {
     const fixture = TestBed.createComponent(TestHostWithHeaderContentComponent);

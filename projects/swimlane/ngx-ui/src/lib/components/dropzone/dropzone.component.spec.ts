@@ -10,7 +10,7 @@ const uploader = new FileUploader({ url: '' });
 const acceptedFileFormats = ['.txt', '.json'];
 const oneAcceptedFileFormat = ['.csv'];
 
-xdescribe('DropzoneComponent', () => {
+describe('DropzoneComponent', () => {
   let fixture: ComponentFixture<DropzoneComponent>;
   let component: DropzoneComponent;
 
@@ -31,8 +31,8 @@ xdescribe('DropzoneComponent', () => {
   describe('init', () => {
     it('has correct class', () => {
       const el = fixture.debugElement.query(By.css('ngx-file-button'))?.nativeElement;
-      expect(el).toHaveClass('ngx-dropzone');
-      expect(el).toHaveClass('ngx-dropzone--large');
+      expect(el.classList.contains('ngx-dropzone')).toBe(true);
+      expect(el.classList.contains('ngx-dropzone--large')).toBe(true);
     });
 
     it('multiple defaults to true', () => {

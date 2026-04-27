@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { MomentModule } from 'ngx-moment';
@@ -15,14 +15,14 @@ describe('CalendarComponent', () => {
   let component: CalendarComponent;
   let fixture: ComponentFixture<CalendarComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       declarations: [CalendarComponent],
       schemas: [NO_ERRORS_SCHEMA],
       imports: [MomentModule, PipesModule],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CalendarComponent);
@@ -313,11 +313,10 @@ describe('CalendarComponent', () => {
   });
 
   describe('registerOnChange', () => {
-    it('should register new on change callback fn', done => {
+    it('should register new on change callback fn', async () => {
       component.value = new Date();
       component.registerOnChange((v: Date) => {
         expect(v).toEqual(now);
-        done();
       });
 
       const now = new Date();

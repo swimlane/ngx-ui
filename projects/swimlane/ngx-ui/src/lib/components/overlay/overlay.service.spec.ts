@@ -10,19 +10,24 @@ describe('OverlayService', () => {
   let injectionService: InjectionService;
   let component: ComponentFixture<OverlayComponent>;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [OverlayModule],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
 
     component = TestBed.createComponent(OverlayComponent);
     service = TestBed.inject(OverlayService);
+    service.triggerComponents = [];
     service.component = component.componentRef;
     injectionService = TestBed.inject(InjectionService);
-    spyOn(injectionService, 'appendComponent').and.callFake(() => {
+    vi.spyOn(injectionService, 'appendComponent').mockImplementation(() => {
       return component.componentRef;
     });
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
   });
 
   it('can load instance', () => {
@@ -47,25 +52,21 @@ describe('OverlayService', () => {
     expect(service.instance.visible).not.toEqual(false);
   });
 
-  it('calling destroy sets component to undefined', done => {
+  it('calling destroy sets component to undefined', async () => {
     service.destroy();
 
-    setTimeout(() => {
-      expect(service.component).toBeUndefined();
-      done();
-    }, 101);
+    await new Promise<void>(resolve => setTimeout(resolve, 101));
+    expect(service.component).toBeUndefined();
   });
 
-  it('calling destroy while triggered components exist will not destroy component ref', done => {
+  it('calling destroy while triggered components exist will not destroy component ref', async () => {
     service.show({ triggerComponent: component.componentInstance });
     expect(service.triggerComponents.length).toEqual(1);
 
     service.destroy();
 
-    setTimeout(() => {
-      expect(service.component).toBeTruthy();
-      done();
-    }, 101);
+    await new Promise<void>(resolve => setTimeout(resolve, 101));
+    expect(service.component).toBeTruthy();
   });
 
   it('calling destroy with component already undefined will not throw error', () => {
@@ -91,20 +92,22 @@ describe('OverlayService', () => {
   });
 
   it('onClick with no triggered components does not emit click event', () => {
-    spyOn(service.click, 'emit');
-    service.show({ triggerComponent: component.componentInstance });
-    expect(service.triggerComponents.length).toEqual(1);
-
-    service.onClick();
-    expect(service.click.emit).toHaveBeenCalled();
-  });
-
-  it('onClick with some triggered components emits click event', () => {
-    spyOn(service.click, 'emit');
+    vi.spyOn(service.click, 'emit');
 
     service.onClick();
 
     expect(service.click.emit).not.toHaveBeenCalled();
+  });
+
+  it('onClick with some triggered components emits click event', () => {
+    vi.spyOn(service.click, 'emit');
+
+    service.show({ triggerComponent: component.componentInstance });
+    expect(service.triggerComponents.length).toEqual(1);
+
+    service.onClick();
+
+    expect(service.click.emit).toHaveBeenCalled();
   });
 
   it('removeTriggerComponent removes component from triggeredComponents array', () => {
@@ -117,13 +120,11 @@ describe('OverlayService', () => {
     expect(service.triggerComponents.length).toEqual(1);
   });
 
-  it('removeTriggerComponent when no components have been triggered calls destroy and clears component', done => {
+  it('removeTriggerComponent when no components have been triggered calls destroy and clears component', async () => {
     service.removeTriggerComponent(component.componentInstance);
 
-    setTimeout(() => {
-      expect(service.component).toBeUndefined();
-      done();
-    }, 101);
+    await new Promise<void>(resolve => setTimeout(resolve, 101));
+    expect(service.component).toBeUndefined();
   });
 
   it('calling show with no defined component uses the injection service to create one', () => {

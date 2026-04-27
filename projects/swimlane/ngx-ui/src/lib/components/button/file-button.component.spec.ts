@@ -25,7 +25,7 @@ class FileButtonDropzoneTemplateHost {
   id = 'test-id';
 }
 
-xdescribe('FileButtonComponent', () => {
+describe('FileButtonComponent', () => {
   afterEach(() => {
     TestBed.resetTestingModule();
   });
@@ -71,11 +71,11 @@ xdescribe('FileButtonComponent', () => {
       component = fixture.componentInstance;
       component.uploader = uploader;
       fixture.detectChanges();
-      spyOn(component.afterAddingFile, 'emit');
-      spyOn(component.beforeUploadItem, 'emit');
-      spyOn(component.errorItem, 'emit');
-      spyOn(component.progressAll, 'emit');
-      spyOn(component.successItem, 'emit');
+      vi.spyOn(component.afterAddingFile, 'emit');
+      vi.spyOn(component.beforeUploadItem, 'emit');
+      vi.spyOn(component.errorItem, 'emit');
+      vi.spyOn(component.progressAll, 'emit');
+      vi.spyOn(component.successItem, 'emit');
     });
 
     describe('onAfterAddingFile', () => {
@@ -167,7 +167,8 @@ xdescribe('FileButtonComponent', () => {
       const label = fixture.debugElement.query(By.css('label'));
       expect(input?.nativeElement).toBeTruthy();
       expect(label?.nativeElement).toBeTruthy();
-      expect(label?.nativeElement.innerText).toEqual('Label');
+      // In jsdom (Vitest), Element.innerText is not implemented
+      expect(label?.nativeElement.textContent?.trim()).toEqual('Label');
     });
   });
 });

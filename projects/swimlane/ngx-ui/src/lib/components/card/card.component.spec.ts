@@ -44,13 +44,13 @@ describe('Card', () => {
     const component = fixture.componentInstance;
     const card = fixture.debugElement.nativeElement;
     expect(card).toBeDefined();
-    expect(card).toHaveClass(`${baseClass}`);
-    expect(card).not.toHaveClass('ngx-card-vertical');
-    expect(card).not.toHaveClass('disabled');
-    expect(card).not.toHaveClass('flat');
-    expect(card).toHaveClass('ngx-card-horizontal');
-    expect(component.selectable).toBeFalse();
-    expect(component.selected).toBeFalse();
+    expect(card.classList.contains(`${baseClass}`)).toBe(true);
+    expect(card.classList.contains('ngx-card-vertical')).toBe(false);
+    expect(card.classList.contains('disabled')).toBe(false);
+    expect(card.classList.contains('flat')).toBe(false);
+    expect(card.classList.contains('ngx-card-horizontal')).toBe(true);
+    expect(component.selectable).toBe(false);
+    expect(component.selected).toBe(false);
   });
 
   it('Initializes vertical card', () => {
@@ -58,9 +58,9 @@ describe('Card', () => {
     fixture.componentRef.setInput('orientation', CardOrientation.Vertical);
     fixture.detectChanges();
     const card = fixture.debugElement.nativeElement;
-    expect(card).toHaveClass(`${baseClass}`);
-    expect(card).not.toHaveClass('ngx-card-horizontal');
-    expect(card).toHaveClass('ngx-card-vertical');
+    expect(card.classList.contains(`${baseClass}`)).toBe(true);
+    expect(card.classList.contains('ngx-card-horizontal')).toBe(false);
+    expect(card.classList.contains('ngx-card-vertical')).toBe(true);
   });
 
   it('Initializes card header', () => {
@@ -68,7 +68,7 @@ describe('Card', () => {
     fixture.detectChanges();
     const header = fixture.debugElement.nativeElement;
     expect(header).toBeDefined();
-    expect(header).toHaveClass('ngx-card-header');
+    expect(header.classList.contains('ngx-card-header')).toBe(true);
   });
 
   it('Initializes card footer', () => {
@@ -76,7 +76,7 @@ describe('Card', () => {
     fixture.detectChanges();
     const footer = fixture.debugElement.nativeElement;
     expect(footer).toBeDefined();
-    expect(footer).toHaveClass('ngx-card-footer');
+    expect(footer.classList.contains('ngx-card-footer')).toBe(true);
   });
 
   describe('CardBodyDirective', () => {

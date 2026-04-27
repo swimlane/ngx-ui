@@ -15,7 +15,7 @@ const expectHtmlEquals = (actual: string, expected: string, options?: any) => {
   expect(actual).toEqual(expected, 'Expected HTML to match');
 };
 
-xdescribe('PlusMenuComponent', () => {
+describe('PlusMenuComponent', () => {
   afterEach(() => {
     TestBed.resetTestingModule();
   });
@@ -62,15 +62,13 @@ xdescribe('PlusMenuComponent', () => {
       });
 
       it('has correct (default) color', () => {
-        const icon0 = fixture.debugElement.query(By.css('.ngx-plus-menu--icon-0'))?.nativeElement;
-        const style = window.getComputedStyle(icon0!);
-
-        expect(style.borderColor).toBe('rgb(159, 206, 54)');
+        const content = fixture.debugElement.query(By.css('.ngx-plus-menu--content-container'))?.nativeElement;
+        expect(getComputedStyle(content).getPropertyValue('--menu-color').trim()).toBe('#9fce36'); // Equals to rgb(159, 206, 54)
       });
 
       it('starts closed', () => {
         expect(component.open).toBe(false);
-        expect(fixture.debugElement.nativeElement).not.toHaveClass('open');
+        expect(fixture.debugElement.nativeElement.classList.contains('open')).toBe(false);
       });
 
       it('opens', fakeAsync(() => {
@@ -79,7 +77,7 @@ xdescribe('PlusMenuComponent', () => {
         fixture.detectChanges();
 
         expect(component.open).toBe(true);
-        expect(fixture.debugElement.nativeElement).toHaveClass('open');
+        expect(fixture.debugElement.nativeElement.classList.contains('open')).toBe(true);
       }));
 
       it('renders correct item content', () => {
@@ -111,7 +109,9 @@ xdescribe('PlusMenuComponent', () => {
           fixture.debugElement.query(By.css('.ngx-plus-menu--icon-0'))?.nativeElement,
           `
           <div class="ngx-plus-menu--icon ngx-plus-menu--icon-0">
-            <ngx-icon ng-reflect-font-icon="upload-outline">
+            <ngx-icon>
+              <i class="ngx ngx-icon ngx-upload-outline">
+              </i>
             </ngx-icon>
           </div>`
         );
@@ -120,7 +120,9 @@ xdescribe('PlusMenuComponent', () => {
           fixture.debugElement.query(By.css('.ngx-plus-menu--icon-1'))?.nativeElement,
           `
           <div class="ngx-plus-menu--icon ngx-plus-menu--icon-1">
-            <ngx-icon ng-reflect-font-icon="add-circle-thin">
+            <ngx-icon>
+              <i class="ngx ngx-icon ngx-add-circle-thin">
+              </i>
             </ngx-icon>
           </div>`
         );
@@ -145,10 +147,8 @@ xdescribe('PlusMenuComponent', () => {
       });
 
       it('has correct (custom) color', () => {
-        const element = fixture.debugElement.query(By.css('.ngx-plus-menu--icon-0'))?.nativeElement;
-        const style = window.getComputedStyle(element!);
-
-        expect(style.borderColor).toBe('rgb(255, 0, 0)');
+        const content = fixture.debugElement.query(By.css('.ngx-plus-menu--content-container'))?.nativeElement;
+        expect(getComputedStyle(content).getPropertyValue('--menu-color').trim()).toBe('red'); // Equals to rgb(255, 0, 0)
       });
 
       it('renders correct item content', () => {

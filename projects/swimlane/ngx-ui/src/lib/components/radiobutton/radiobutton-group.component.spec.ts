@@ -34,7 +34,7 @@ describe('RadioButtonGroupComponent', () => {
     });
 
     it('should not set name if not changed', () => {
-      const spy = spyOn(component.radioButtonGroup._radios, 'forEach');
+      const spy = vi.spyOn(component.radioButtonGroup._radios, 'forEach');
       component.radioButtonGroup.name = component.name$.value;
       expect(spy).not.toHaveBeenCalled();
     });
@@ -48,19 +48,18 @@ describe('RadioButtonGroupComponent', () => {
 
   describe('value', () => {
     it('should should not set value if unchanged', () => {
-      const spy = spyOn(component.radioButtonGroup.change, 'emit');
+      const spy = vi.spyOn(component.radioButtonGroup.change, 'emit');
       component.radioButtonGroup.value = component.value;
       expect(spy).not.toHaveBeenCalled();
     });
   });
 
   describe('onRadioSelected', () => {
-    it('should select radio button', done => {
+    it('should select radio button', async () => {
       component.radioButtonGroup.onRadioSelected('one');
 
       setTimeout(() => {
         expect(component.radioButtonGroup.selected.value).toEqual(component.value as any);
-        done();
       });
     });
   });

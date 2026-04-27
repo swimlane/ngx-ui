@@ -30,33 +30,33 @@ describe('SplitDirective', () => {
   });
 
   it('should drag on handle drag', () => {
-    const spy = spyOn(component.split as any, 'onDrag');
+    const spy = vi.spyOn(component.split as any, 'onDrag');
     component.splitHandle.onMouseMove({} as any);
     expect(spy).toHaveBeenCalled();
   });
 
   it('should double click on handle double click', () => {
-    const spy = spyOn(component.split as any, 'onDblClick');
+    const spy = vi.spyOn(component.split as any, 'onDblClick');
     component.splitHandle.dblclick.emit();
     expect(spy).toHaveBeenCalled();
   });
 
   describe('onDblClick', () => {
     it('should resize row on double click', () => {
-      const spy = spyOn(component.split as any, 'resize');
+      const spy = vi.spyOn(component.split as any, 'resize');
       (component.split as any).onDblClick();
       expect(spy).toHaveBeenCalled();
     });
 
     it('should resize column on double click', () => {
-      const spy = spyOn(component.split as any, 'resize');
+      const spy = vi.spyOn(component.split as any, 'resize');
       component.split.splitDirection = SplitDirection.Column;
       (component.split as any).onDblClick();
       expect(spy).toHaveBeenCalled();
     });
 
     it('should resize with px value instead of %', () => {
-      const spy = spyOn(component.split as any, 'resize');
+      const spy = vi.spyOn(component.split as any, 'resize');
       fixture.detectChanges();
       (component.split as any).onDblClick();
       expect(spy).toHaveBeenCalled();
@@ -65,13 +65,13 @@ describe('SplitDirective', () => {
 
   describe('onDrag', () => {
     it('should resize horizontal', () => {
-      const spy = spyOn(component.split as any, 'resize');
+      const spy = vi.spyOn(component.split as any, 'resize');
       (component.split as any).onDrag({ movementX: 10, movementY: 20 } as any);
       expect(spy).toHaveBeenCalledWith(10);
     });
 
     it('should resize vertical', () => {
-      const spy = spyOn(component.split as any, 'resize');
+      const spy = vi.spyOn(component.split as any, 'resize');
       component.split.splitDirection = SplitDirection.Column;
       (component.split as any).onDrag({ movementX: 10, movementY: 20 } as any);
       expect(spy).toHaveBeenCalledWith(20);
@@ -81,13 +81,13 @@ describe('SplitDirective', () => {
   describe('resize', () => {
     it('should resize splitAreas as row', () => {
       (component.split as any).resize(10);
-      expect(true).toBeTrue();
+      expect(true).toBe(true);
     });
 
     it('should resize splitAreas as column', () => {
       component.split.splitDirection = SplitDirection.Column;
       (component.split as any).resize(10);
-      expect(true).toBeTrue();
+      expect(true).toBe(true);
     });
   });
 });

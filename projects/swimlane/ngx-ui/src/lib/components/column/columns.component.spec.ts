@@ -76,8 +76,8 @@ describe('ColumnsComponent', () => {
   });
 
   it('should set columns on ngOnChanges', fakeAsync(() => {
-    spyOn(component, 'getCurrentColumns').and.callThrough();
-    spyOn(component, 'traverseActivePath').and.callThrough();
+    vi.spyOn(component, 'getCurrentColumns');
+    vi.spyOn(component, 'traverseActivePath');
 
     component.ngOnChanges({
       column: {
@@ -192,7 +192,7 @@ describe('ColumnsComponent', () => {
         }
       }
     ];
-    spyOn(component, 'deactivatePath').and.callThrough();
+    vi.spyOn(component, 'deactivatePath');
     component.onColumnNavigation({
       columnId,
       active: false,
@@ -211,7 +211,7 @@ describe('ColumnsComponent', () => {
     expect(component.columns[0].id).toBe('1');
     expect(component.columns[1].id).toBe('1-1');
     expect(component.columns[2].id).toBe('1-1-1');
-    expect(component.columns[2].active).toBeTrue();
+    expect(component.columns[2].active).toBe(true);
     expect(component.deactivatePath).toHaveBeenCalledWith({
       id: '1-1-2',
       active: false,
@@ -248,7 +248,7 @@ describe('ColumnsComponent', () => {
         }
       ]
     };
-    spyOn(component, 'deactivatePath').and.callThrough();
+    vi.spyOn(component, 'deactivatePath');
     component.deactivatePath(activeColumn);
 
     expect(activeColumn.active).toBeFalsy();
@@ -278,11 +278,11 @@ describe('ColumnsComponent', () => {
 
     expect((component as any).selectedChildIds.get('c1')).toBe('c1-1');
     expect((component as any).selectedChildTitles.get('c1')).toBe('Child 1');
-    expect((component as any).scrollPositions.has('c1')).toBeFalse();
+    expect((component as any).scrollPositions.has('c1')).toBe(false);
   });
 
   it('should restore scroll using selected child id/title', () => {
-    const scrollToChild = jasmine.createSpy('scrollToChild').and.returnValue(true);
+    const scrollToChild = vi.fn().mockReturnValue(true);
     const columnCompMock = {
       column: () => ({ id: 'c1' }),
       scrollToChild,
@@ -300,9 +300,9 @@ describe('ColumnsComponent', () => {
     (component as any).selectedChildTitles.set('c1', 'Child 2');
 
     const restored = component.restoreScrollPositions();
-    expect(restored).toBeTrue();
+    expect(restored).toBe(true);
     expect(scrollToChild).toHaveBeenCalledWith('c1-2', 'Child 2');
-    expect((component as any).selectedChildIds.has('c1')).toBeFalse();
-    expect((component as any).selectedChildTitles.has('c1')).toBeFalse();
+    expect((component as any).selectedChildIds.has('c1')).toBe(false);
+    expect((component as any).selectedChildTitles.has('c1')).toBe(false);
   });
 });

@@ -16,6 +16,8 @@ describe('ObjectNodeComponent', () => {
     });
     fixture = TestBed.createComponent(ObjectNodeComponent);
     component = fixture.componentInstance;
+    component.schema = { type: 'object', properties: {} };
+    component.model = {};
   });
   it('can load instance', () => {
     expect(component).toBeTruthy();
@@ -37,14 +39,14 @@ describe('ObjectNodeComponent', () => {
   });
   describe('ngOnChanges', () => {
     it('makes expected calls', () => {
-      spyOn(component, 'update');
+      vi.spyOn(component, 'update');
       component.ngOnChanges({ model: {}, schema: {} } as any);
       expect(component.update).toHaveBeenCalled();
     });
   });
   describe('ngOnInit', () => {
     it('makes expected calls', () => {
-      spyOn(component, 'update');
+      vi.spyOn(component, 'update');
       component.ngOnInit();
       expect(component.update).toHaveBeenCalled();
     });

@@ -41,7 +41,7 @@ describe('TabsComponent', () => {
 
     describe('next', () => {
       it('makes expected calls', () => {
-        spyOn(component, 'move').and.callThrough();
+        vi.spyOn(component, 'move');
         component.next();
         fixture.detectChanges();
         expect(component.move).toHaveBeenCalled();
@@ -51,7 +51,7 @@ describe('TabsComponent', () => {
 
     describe('prev', () => {
       it('makes expected calls', () => {
-        spyOn(component, 'move');
+        vi.spyOn(component, 'move');
         component.prev();
         expect(component.move).toHaveBeenCalled();
       });
@@ -72,7 +72,7 @@ describe('TabsComponent', () => {
   });
 
   describe('Tabs with specific tab set active', () => {
-    beforeEach(done => {
+    beforeEach(async () => {
       TestBed.configureTestingModule({
         declarations: [TabsLabeltemplateFixtureComponent],
         imports: [TabsModule],
@@ -82,9 +82,7 @@ describe('TabsComponent', () => {
       fixture = TestBed.createComponent(TabsLabeltemplateFixtureComponent);
       component = fixture.componentInstance.tabsComponent;
       fixture.autoDetectChanges();
-      fixture.whenStable().then(() => {
-        done();
-      });
+      await fixture.whenStable().then(() => {});
     });
 
     it('4th tab is set to active on init', () => {
@@ -98,20 +96,18 @@ describe('TabsComponent', () => {
   });
 
   describe('Tabs with multiple active', () => {
-    beforeEach(done => {
+    beforeEach(async () => {
       TestBed.configureTestingModule({
         declarations: [TabsMultipleActiveFixtureComponent],
         imports: [TabsModule],
         teardown: { destroyAfterEach: false }
       }).compileComponents();
 
-      spyOn(console, 'error');
+      vi.spyOn(console, 'error');
       fixture = TestBed.createComponent(TabsMultipleActiveFixtureComponent);
       component = fixture.componentInstance.tabsComponent;
       fixture.autoDetectChanges();
-      fixture.whenStable().then(() => {
-        done();
-      });
+      await fixture.whenStable().then(() => {});
     });
 
     it('Tabs with multiple active tabs throws error when initialized', () => {

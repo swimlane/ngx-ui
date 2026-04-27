@@ -255,7 +255,7 @@ describe('Json Editor', () => {
           cy.get('@rootTabs').find('.ngx-tab-content ngx-tab').eq(2).as('tabSchema');
           cy.get('@tabSchema')
             .find('.myInputControlNodeContainer__scrollable')
-            .should('contain', '{\n  "type": "object",\n  "required": [],\n  "properties": {}\n}\n');
+            .should('contain', '{\n  "type": "object",\n  "properties": {},\n  "required": []\n}\n');
 
           cy.get('@rootTabs').ngxSelectTab(3);
           cy.get('@rootTabs').find('.ngx-tab-content ngx-tab').eq(3).as('tabContext');

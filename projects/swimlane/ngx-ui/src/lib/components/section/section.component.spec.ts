@@ -9,7 +9,7 @@ describe('SectionComponent', () => {
   let component: SectionComponent;
   let fixture: ComponentFixture<SectionFixtureComponent>;
 
-  beforeEach(done => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       declarations: [SectionFixtureComponent],
       imports: [SectionModule, HttpClientTestingModule]
@@ -18,7 +18,7 @@ describe('SectionComponent', () => {
     fixture = TestBed.createComponent(SectionFixtureComponent);
     component = fixture.componentInstance.section;
     fixture.autoDetectChanges();
-    fixture.whenStable().then(() => done());
+    await fixture.whenStable().then(() => {});
   });
 
   it('can load instance', () => {
@@ -50,7 +50,7 @@ describe('SectionComponent', () => {
   });
 
   it('onSectionClicked collapses section and triggers toggle emit', () => {
-    spyOn(component.toggle, 'emit');
+    vi.spyOn(component.toggle, 'emit');
     component.onSectionClicked();
 
     expect(component.sectionCollapsed).toEqual(true);

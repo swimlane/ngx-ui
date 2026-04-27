@@ -51,8 +51,8 @@ describe('DialogService', () => {
           closeOnBlur: true
         }
       };
-      const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component as any);
-      const destroySpy = spyOn(service, 'destroy');
+      const spy = vi.spyOn(injectionService, 'appendComponent').mockReturnValue(component as any);
+      const destroySpy = vi.spyOn(service, 'destroy');
 
       service.create({ closeOnBlur: true });
       expect(spy).toHaveBeenCalled();
@@ -68,8 +68,8 @@ describe('DialogService', () => {
           closeOnBlur: false
         }
       };
-      const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component as any);
-      const overlaySpy = spyOn(overlayService, 'show');
+      const spy = vi.spyOn(injectionService, 'appendComponent').mockReturnValue(component as any);
+      const overlaySpy = vi.spyOn(overlayService, 'show');
 
       service.create({ closeOnBlur: false });
       expect(spy).toHaveBeenCalled();
@@ -84,8 +84,8 @@ describe('DialogService', () => {
           closeOnBlur: false
         }
       };
-      const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component as any);
-      const overlaySpy = spyOn(overlayService.click, 'subscribe');
+      const spy = vi.spyOn(injectionService, 'appendComponent').mockReturnValue(component as any);
+      const overlaySpy = vi.spyOn(overlayService.click, 'subscribe');
 
       service.create({ closeOnBlur: false });
       expect(spy).toHaveBeenCalled();
@@ -101,8 +101,8 @@ describe('DialogService', () => {
           beforeClose: () => false
         }
       };
-      const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component as any);
-      const overlaySpy = spyOn(overlayService.click, 'subscribe');
+      const spy = vi.spyOn(injectionService, 'appendComponent').mockReturnValue(component as any);
+      const overlaySpy = vi.spyOn(overlayService.click, 'subscribe');
 
       service.create({ closeOnBlur: true });
       expect(spy).toHaveBeenCalled();
@@ -112,13 +112,13 @@ describe('DialogService', () => {
 
   describe('destroy', () => {
     it('should destroy with overlay', () => {
-      const spy = spyOn(overlayService, 'removeTriggerComponent');
+      const spy = vi.spyOn(overlayService, 'removeTriggerComponent');
       service.destroy({ instance: { showOverlay: true } });
       expect(spy).toHaveBeenCalled();
     });
 
     it('should destroy without overlay', () => {
-      const spy = spyOn(overlayService, 'removeTriggerComponent');
+      const spy = vi.spyOn(overlayService, 'removeTriggerComponent');
       service.destroy({ instance: { showOverlay: false } });
       expect(spy).not.toHaveBeenCalled();
     });

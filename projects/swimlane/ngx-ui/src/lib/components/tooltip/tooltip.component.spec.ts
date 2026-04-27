@@ -45,7 +45,7 @@ describe('TooltipContentComponent', () => {
       } as any
     };
 
-    spyOn(component.element.nativeElement, 'getBoundingClientRect').and.returnValue({
+    vi.spyOn(component.element.nativeElement, 'getBoundingClientRect').mockReturnValue({
       wdith: 10,
       height: 10
     } as any);
@@ -59,7 +59,7 @@ describe('TooltipContentComponent', () => {
 
   describe('onWindowResize', () => {
     it('should reposition', () => {
-      const spy = spyOn(component, 'position');
+      const spy = vi.spyOn(component, 'position');
       component.onWindowResize();
       expect(spy).toHaveBeenCalled();
     });
@@ -67,14 +67,14 @@ describe('TooltipContentComponent', () => {
 
   describe('position', () => {
     it('should do nothing if no bounding box', () => {
-      const spy = spyOn(position, 'positionContent');
+      const spy = vi.spyOn(position, 'positionContent');
       component.host = { nativeElement: document.createElement('div') };
       component.position();
       expect(spy).not.toHaveBeenCalled();
     });
 
     it('should not position caret', () => {
-      const spy = spyOn(position, 'positionCaret');
+      const spy = vi.spyOn(position, 'positionCaret');
       component.showCaret = false;
       component.position();
       expect(spy).not.toHaveBeenCalled();

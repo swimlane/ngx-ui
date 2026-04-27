@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { LargeFormatDialogHeaderTitleComponent } from './large-format-dialog-header-title.component';
 
@@ -8,8 +8,8 @@ describe(LargeFormatDialogHeaderTitleComponent.name, () => {
   let fixture: ComponentFixture<LargeFormatDialogHeaderTitleComponent>;
   let nativeElement: HTMLElement;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       declarations: [LargeFormatDialogHeaderTitleComponent],
       imports: [NoopAnimationsModule]
     })
@@ -23,7 +23,7 @@ describe(LargeFormatDialogHeaderTitleComponent.name, () => {
     nativeElement = fixture.nativeElement;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();

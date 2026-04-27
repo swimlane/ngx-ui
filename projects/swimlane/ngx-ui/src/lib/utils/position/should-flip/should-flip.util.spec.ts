@@ -1,11 +1,17 @@
+import { afterEach } from 'vitest';
+
 import { shouldFlip } from './should-flip.util';
 import { PlacementTypes } from '../placement-type.enum';
 import { AlignmentTypes } from '../alignment-types.enum';
 
 describe('shouldFlip', () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
   describe('left', () => {
     it('should flip placement left', () => {
-      spyOnProperty(window, 'innerWidth').and.returnValue(0);
+      vi.spyOn(window, 'innerWidth', 'get').mockReturnValue(0);
       expect(
         shouldFlip(
           { left: 0, right: 0, width: 10 },
@@ -32,7 +38,7 @@ describe('shouldFlip', () => {
 
   describe('right', () => {
     it('should flip placement right', () => {
-      spyOnProperty(window, 'innerWidth').and.returnValue(0);
+      vi.spyOn(window, 'innerWidth', 'get').mockReturnValue(0);
       expect(
         shouldFlip(
           { left: 0, right: 0, width: 10 },
@@ -59,7 +65,7 @@ describe('shouldFlip', () => {
 
   describe('top', () => {
     it('should flip placement top', () => {
-      spyOnProperty(window, 'innerHeight').and.returnValue(0);
+      vi.spyOn(window, 'innerHeight', 'get').mockReturnValue(0);
       expect(
         shouldFlip(
           { top: 0, bottom: 0, height: 10 },
@@ -86,7 +92,7 @@ describe('shouldFlip', () => {
 
   describe('bottom', () => {
     it('should flip placement bottom', () => {
-      spyOnProperty(window, 'innerHeight').and.returnValue(0);
+      vi.spyOn(window, 'innerHeight', 'get').mockReturnValue(0);
       expect(
         shouldFlip(
           { top: 0, bottom: 0, height: 10 },
