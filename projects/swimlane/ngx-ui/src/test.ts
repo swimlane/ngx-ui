@@ -5,12 +5,12 @@ import 'zone.js';
 import 'zone.js/testing';
 import { NgModule } from '@angular/core';
 import { getTestBed } from '@angular/core/testing';
-import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
-import { provideAnimations } from '@angular/platform-browser/animations';
+import { BrowserTestingModule, platformBrowserTesting } from '@angular/platform-browser/testing';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
-  providers: [provideAnimations()]
+  providers: [provideAnimationsAsync()]
 })
 class TestModule {}
 
-getTestBed().initTestEnvironment([BrowserDynamicTestingModule, TestModule], platformBrowserDynamicTesting());
+getTestBed().initTestEnvironment([BrowserTestingModule, TestModule], platformBrowserTesting());
