@@ -22,6 +22,10 @@ describe('ButtonComponent', () => {
     fixture.detectChanges();
   });
 
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
   it('should be defined', () => {
     expect(component).toBeTruthy();
   });

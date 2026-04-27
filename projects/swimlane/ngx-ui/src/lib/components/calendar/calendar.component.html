@@ -29,7 +29,7 @@
             </button>
           </div>
           <div class="day-name-row">
-            @for (d of daysOfWeek; track d) {
+            @for (d of daysOfWeek; track $index) {
               <div class="day-name text-center">
                 {{ d }}
               </div>
