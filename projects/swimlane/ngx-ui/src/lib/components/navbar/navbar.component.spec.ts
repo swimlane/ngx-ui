@@ -30,12 +30,11 @@ describe('Navbar Component', () => {
   });
 
   it('setting barAtTop moves bar to the top of component', () => {
-    component.navbar.barAtTop = true;
+    fixture.componentRef.setInput('barAtTop', true);
     fixture.detectChanges();
 
     const bar = fixture.debugElement.query(By.css('ngx-navbar:first-child .ngx-navbar--bar'));
-
-    expect(bar.classes['ngx-navbar--top']).toBeTruthy();
+    expect((bar?.nativeElement as HTMLElement).classList.contains('ngx-navbar--top')).toBe(true);
   });
 
   it('clicking on a nav changes navbar active property to that tab`s index', () => {

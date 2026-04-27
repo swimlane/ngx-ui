@@ -13648,7 +13648,6 @@ __metadata:
     prismjs: "npm:1.29.0"
     resize-observer-polyfill: "npm:^1.5.1"
     rxjs: "npm:7.8.1"
-    shallow-render: "npm:20.0.0"
     start-server-and-test: "npm:1.14.0"
     ts-node: "npm:10.9.1"
     tslib: "npm:2.4.0"
@@ -16202,19 +16201,6 @@ __metadata:
   dependencies:
     kind-of: "npm:^6.0.2"
   checksum: 10c0/7bab09613a1b9f480c85a9823aebec533015579fa055ba6634aa56ba1f984380670eaf33b8217502931872aa1401c9fcadaa15f9f604d631536df475b05bcf1e
-  languageName: node
-  linkType: hard
-
-"shallow-render@npm:20.0.0":
-  version: 20.0.0
-  resolution: "shallow-render@npm:20.0.0"
-  peerDependencies:
-    "@angular/common": 20.x
-    "@angular/compiler": 20.x
-    "@angular/core": 20.x
-    "@angular/forms": 20.x
-    "@angular/platform-browser": 20.x
-  checksum: 10c0/c9bda97f8ef4637657f0cf047bac666fc117391d32f3d07f207eb7e9f76f46647e30a0e36a4511d0a69a8626b44a67300020362dd998129b495af5125875ab17
   languageName: node
   linkType: hard
 

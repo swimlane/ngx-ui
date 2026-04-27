@@ -353,43 +353,47 @@ describe('CalendarComponent', () => {
 
   describe('conditional time Input rendering', () => {
     it('should show both time inputs if both showStartTimeInputs and showEndTimeInputs are true', () => {
-      component.range = { startDate: new Date(), endDate: new Date() };
-      component.showStartTimeInputs = true;
-      component.showEndTimeInputs = true;
-      component.selectType = 'range';
+      const range = { startDate: new Date(), endDate: new Date() };
+      fixture.componentRef.setInput('range', range);
+      fixture.componentRef.setInput('showStartTimeInputs', true);
+      fixture.componentRef.setInput('showEndTimeInputs', true);
+      fixture.componentRef.setInput('selectType', 'range');
       fixture.detectChanges();
       const timeRows = fixture.nativeElement.querySelectorAll('.time-row');
       expect(timeRows.length).toBe(2);
     });
 
     it('should hide start time input if showStartTimeInputs is false', () => {
-      component.range = { startDate: new Date(), endDate: new Date() };
-      component.showStartTimeInputs = false;
-      component.showEndTimeInputs = true;
-      component.selectType = 'range';
+      const range = { startDate: new Date(), endDate: new Date() };
+      fixture.componentRef.setInput('range', range);
+      fixture.componentRef.setInput('showStartTimeInputs', false);
+      fixture.componentRef.setInput('showEndTimeInputs', true);
+      fixture.componentRef.setInput('selectType', 'range');
       fixture.detectChanges();
       const timeRows = fixture.nativeElement.querySelectorAll('.time-row');
       expect(timeRows.length).toBe(1); // only end input shown
     });
 
     it('should hide end time input if showEndTimeInputs is false', () => {
-      component.range = { startDate: new Date(), endDate: new Date() };
-      component.showStartTimeInputs = true;
-      component.showEndTimeInputs = false;
-      component.selectType = 'range';
+      const range = { startDate: new Date(), endDate: new Date() };
+      fixture.componentRef.setInput('range', range);
+      fixture.componentRef.setInput('showStartTimeInputs', true);
+      fixture.componentRef.setInput('showEndTimeInputs', false);
+      fixture.componentRef.setInput('selectType', 'range');
       fixture.detectChanges();
       const timeRows = fixture.nativeElement.querySelectorAll('.time-row');
       expect(timeRows.length).toBe(1); // only start input shown
     });
 
     it('should hide both time inputs if both flags are false', () => {
-      component.showStartTimeInputs = false;
-      component.showEndTimeInputs = false;
-      component.range = {
+      const range = {
         startDate: new Date('2024-06-01T10:00:00'),
         endDate: new Date('2024-06-02T18:00:00')
       };
-      component.selectType = 'range';
+      fixture.componentRef.setInput('range', range);
+      fixture.componentRef.setInput('showStartTimeInputs', false);
+      fixture.componentRef.setInput('showEndTimeInputs', false);
+      fixture.componentRef.setInput('selectType', 'range');
       fixture.detectChanges();
       const timeRows = fixture.nativeElement.querySelectorAll('.time-row');
       expect(timeRows.length).toBe(0); // nothing rendered

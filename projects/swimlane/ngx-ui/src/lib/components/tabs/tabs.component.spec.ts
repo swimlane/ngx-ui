@@ -10,8 +10,8 @@ describe('TabsComponent', () => {
   let component: TabsComponent;
   let fixture: ComponentFixture<TabsFixtureComponent>;
   describe('Standard Tabs', () => {
-    beforeEach(done => {
-      TestBed.configureTestingModule({
+    beforeEach(async () => {
+      await TestBed.configureTestingModule({
         declarations: [TabsFixtureComponent],
         imports: [TabsModule],
         teardown: { destroyAfterEach: false }
@@ -20,8 +20,10 @@ describe('TabsComponent', () => {
       fixture = TestBed.createComponent(TabsFixtureComponent);
       component = fixture.componentInstance.tabsComponent;
       fixture.autoDetectChanges();
-      fixture.whenStable().then(() => {
-        done();
+      await fixture.whenStable();
+      // Default active tab is set in ngAfterContentInit via setTimeout(0); whenStable() does not wait for that macrotask.
+      await new Promise<void>(resolve => {
+        setTimeout(() => resolve(), 0);
       });
     });
 

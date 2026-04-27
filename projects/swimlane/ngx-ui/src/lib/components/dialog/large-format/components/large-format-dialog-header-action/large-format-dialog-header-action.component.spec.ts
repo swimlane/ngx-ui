@@ -51,10 +51,10 @@ describe(LargeFormatDialogHeaderActionComponent.name, () => {
     });
 
     it('should have dirty action title when state is dirty', () => {
-      component.dirty = true;
+      fixture.componentRef.setInput('dirty', true);
       fixture.detectChanges();
 
-      expect(nativeElement.querySelector('button').textContent).toContain(component.dirtyActionTitle);
+      expect(nativeElement.querySelector('button')?.textContent).toContain(component.dirtyActionTitle);
     });
   });
 });

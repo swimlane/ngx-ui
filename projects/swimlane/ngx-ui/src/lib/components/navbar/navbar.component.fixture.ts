@@ -1,10 +1,10 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { NavbarComponent } from './navbar.component';
 
 @Component({
   selector: 'ngx-navbar-fixture',
   template: `
-    <ngx-navbar [(active)]="active" #navbar1>
+    <ngx-navbar [(active)]="active" [barAtTop]="barAtTop" #navbar1>
       <ngx-navbar-item><ngx-icon fontIcon="apps"></ngx-icon></ngx-navbar-item>
       <ngx-navbar-item><ngx-icon fontIcon="chart-scatter"></ngx-icon></ngx-navbar-item>
       <ngx-navbar-item><ngx-icon fontIcon="database"></ngx-icon></ngx-navbar-item>
@@ -25,4 +25,5 @@ export class NavbarComponentFixture {
 
   active = 0;
   active2 = 2;
+  @Input() barAtTop = false;
 }

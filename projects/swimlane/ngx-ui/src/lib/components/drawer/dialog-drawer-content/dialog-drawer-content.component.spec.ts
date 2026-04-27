@@ -59,9 +59,10 @@ describe(DialogDrawerContentComponent.name, () => {
     });
 
     it('should display custom dismiss button text', () => {
-      component.dismissBtnText = 'Custom Dismiss';
+      fixture.componentRef.setInput('dismissBtnText', 'Custom Dismiss');
       fixture.detectChanges();
-      expect(dismissBtn.textContent).toContain('Custom Dismiss');
+      const btn = nativeElement.querySelector('button.ngx-dialog-drawer-content__dismiss-btn') as HTMLButtonElement;
+      expect(btn.textContent).toContain('Custom Dismiss');
     });
   });
 
