@@ -157,26 +157,32 @@ describe('DrawerService', () => {
   });
 
   describe('destroy', () => {
-    it('should destroy with overlay', async () => {
+    afterEach(() => {
+      vi.useRealTimers();
+    });
+
+    it('should destroy with overlay', () => {
+      vi.useFakeTimers();
       const spy = vi.spyOn(overlayService, 'removeTriggerComponent');
       const component: any = { instance: { size: 10 } };
       service.destroy(component);
 
-      setTimeout(() => {
-        expect(component.instance.size).toEqual(0);
-        expect(spy).toHaveBeenCalled();
-      }, 10);
+      expect(component.instance.size).toEqual(0);
+
+      vi.advanceTimersByTime(10);
+      expect(spy).toHaveBeenCalled();
     });
 
-    it('should not set size to 0 if !component', async () => {
+    it('should not set size to 0 if !component', () => {
+      vi.useFakeTimers();
       const spy = vi.spyOn(overlayService, 'removeTriggerComponent');
       const component: any = {};
       service.destroy(component);
 
-      setTimeout(() => {
-        expect(component.instance).toBeUndefined();
-        expect(spy).toHaveBeenCalled();
-      }, 10);
+      expect(component.instance).toBeUndefined();
+
+      vi.advanceTimersByTime(10);
+      expect(spy).toHaveBeenCalled();
     });
   });
 });

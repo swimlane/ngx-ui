@@ -31,31 +31,6 @@
     </section>
   }
 
-  <ng-template #custom>
-    <section
-      [ngClass]="{
-        'dialog-container--stepper dialog-stepper': !!stepperTemplate,
-        'dialog-container--tabs dialog-tabs': !!tabsTemplate
-      }"
-      >
-      <header
-        class="dialog-container__header"
-        [ngClass]="{
-          'dialog-stepper__header': !!stepperTemplate,
-          'dialog-tabs__header': !!tabsTemplate
-        }"
-        >
-        <ng-container *ngTemplateOutlet="header"></ng-container>
-      </header>
-      @if (stepperTemplate) {
-        <ng-container *ngTemplateOutlet="stepperTemplate"></ng-container>
-      }
-      @if (tabsTemplate) {
-        <ng-container *ngTemplateOutlet="tabsTemplate"></ng-container>
-      }
-    </section>
-  </ng-template>
-
   <ng-content select="ngx-large-format-dialog-footer"></ng-content>
   <ng-content select="ngx-medium-format-dialog-footer"></ng-content>
 </main>

@@ -61,10 +61,9 @@ describe('ButtonComponent', () => {
         resolve('');
       });
 
-      component.updatePromise().finally(() => {
-        expect(component.state).toBe(ButtonState.Success);
-        expect(spy).toHaveBeenCalledTimes(1);
-      });
+      await component.updatePromise();
+      expect(component.state).toBe(ButtonState.Success);
+      expect(spy).toHaveBeenCalledTimes(1);
     });
 
     it('should update and reject', async () => {
@@ -73,10 +72,9 @@ describe('ButtonComponent', () => {
         throw new Error();
       });
 
-      component.updatePromise().finally(() => {
-        expect(component.state).toBe(ButtonState.Fail);
-        expect(spy).toHaveBeenCalledTimes(1);
-      });
+      await component.updatePromise();
+      expect(component.state).toBe(ButtonState.Fail);
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 

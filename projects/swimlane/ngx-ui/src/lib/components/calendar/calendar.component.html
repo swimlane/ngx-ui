@@ -158,7 +158,7 @@
           </div>
           <table class="years-container" role="grid">
             <tr class="years-row" role="row">
-              @for (dummy of ' '.repeat(20).split(''); track dummy; let x = $index) {
+              @for (dummy of ' '.repeat(20).split(''); track $index; let x = $index) {
                 <td
                   class="year-cell text-center"
                   role="gridcell"
