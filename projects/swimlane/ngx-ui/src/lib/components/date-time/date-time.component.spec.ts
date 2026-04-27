@@ -752,24 +752,26 @@ describe('DateTimeComponent', () => {
   });
 
   describe('registerOnChange', () => {
-    it('should register onchange callback', async () => {
-      const fn = () => {
+    it('should register onchange callback', () => {
+      const onChange = vi.fn(() => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore: private and only accessible within class
-        expect(component.onChangeCallback).toBe(fn);
-      };
-      component.registerOnChange(fn);
+        expect(component.onChangeCallback).toBe(onChange);
+      });
+      component.registerOnChange(onChange);
       component.value = new Date();
+      expect(onChange).toHaveBeenCalled();
     });
   });
 
   describe('registryOnTouched', () => {
-    it('should register ontouched callback', async () => {
-      const fn = () => {
-        expect((component as any).onTouchedCallback).toBe(fn);
-      };
-      component.registerOnTouched(fn);
+    it('should register ontouched callback', () => {
+      const onTouched = vi.fn(() => {
+        expect((component as any).onTouchedCallback).toBe(onTouched);
+      });
+      component.registerOnTouched(onTouched);
       component.onBlur();
+      expect(onTouched).toHaveBeenCalled();
     });
   });
 

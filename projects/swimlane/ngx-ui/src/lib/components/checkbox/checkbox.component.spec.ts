@@ -86,12 +86,12 @@ describe('CheckboxComponent', () => {
   });
 
   describe('registerOnChange', () => {
-    it('should register new callback and call when value changes', async () => {
-      component.registerOnChange((v: boolean) => {
-        expect(v).toBe(false);
-      });
-
+    it('should register new callback and call when value changes', () => {
+      const onChange = vi.fn();
+      component.registerOnChange(onChange);
       component.value = false;
+      expect(onChange).toHaveBeenCalledTimes(1);
+      expect(onChange).toHaveBeenCalledWith(false);
     });
   });
 

@@ -313,15 +313,18 @@ describe('CalendarComponent', () => {
   });
 
   describe('registerOnChange', () => {
-    it('should register new on change callback fn', async () => {
-      component.value = new Date();
-      component.registerOnChange((v: Date) => {
-        expect(v).toEqual(now);
-      });
+    it('should register new on change callback fn', () => {
+      const initial = new Date();
+      const next = new Date();
+      next.setDate(next.getDate() + 1);
 
-      const now = new Date();
-      now.setDate(now.getDate() + 1);
-      component.value = now;
+      component.value = initial;
+      const onChange = vi.fn();
+      component.registerOnChange(onChange);
+      component.value = next;
+
+      expect(onChange).toHaveBeenCalledTimes(1);
+      expect(onChange.mock.calls[0]![0]).toEqual(next);
     });
   });
 

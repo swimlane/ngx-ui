@@ -1,5 +1,5 @@
+import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
 
@@ -54,5 +54,24 @@ describe('IconComponent', () => {
     const spy = vi.spyOn(httpClient, 'get');
     component.loadSvg('test');
     expect(spy).toHaveBeenCalled();
+  });
+
+  it('should project ng-content when fontIcon is unset (cssClasses undefined)', () => {
+    TestBed.resetTestingModule();
+    @Component({
+      template: `<ngx-icon>projected</ngx-icon>`,
+      standalone: false
+    })
+    class HostComponent {}
+    TestBed.configureTestingModule({
+      declarations: [IconComponent, HostComponent],
+      imports: [HttpClientTestingModule],
+      schemas: [NO_ERRORS_SCHEMA],
+      providers: [{ provide: IconRegistryService, useValue: { get: () => ['cls'] } }]
+    });
+    const hostFixture = TestBed.createComponent(HostComponent);
+    hostFixture.detectChanges();
+    expect(hostFixture.nativeElement.textContent).toContain('projected');
+    expect(hostFixture.nativeElement.querySelector('.icon-fx-stacked')).toBeNull();
   });
 });

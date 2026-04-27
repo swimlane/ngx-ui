@@ -1,19 +1,11 @@
-
-@switch (cssClasses?.length) {
-  @case ('') {
-    <ng-content></ng-content>
-  }
-  @case (0) {
-    <ng-content></ng-content>
-  }
-  @case (1) {
-    <i [ngClass]="cssClasses[0]"></i>
-  }
-  @default {
-    <span class="icon-fx-stacked">
-      @for (cssClass of cssClasses; track cssClass) {
-        <i [ngClass]="cssClass"></i>
-      }
-    </span>
-  }
+@if (!cssClasses || cssClasses.length === 0) {
+  <ng-content></ng-content>
+} @else if (cssClasses.length === 1) {
+  <i [ngClass]="cssClasses[0]"></i>
+} @else {
+  <span class="icon-fx-stacked">
+    @for (cssClass of cssClasses; track cssClass) {
+      <i [ngClass]="cssClass"></i>
+    }
+  </span>
 }

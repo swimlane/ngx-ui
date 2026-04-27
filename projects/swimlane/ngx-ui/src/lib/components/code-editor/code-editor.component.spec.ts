@@ -137,26 +137,27 @@ describe('CodeEditorComponent', () => {
   });
 
   describe('registerOnChange', () => {
-    it('should register new change callback', async () => {
-      component.registerOnChange(v => {
-        expect(v).toBe('testing123');
-      });
-
+    it('should register new change callback', () => {
+      const onChange = vi.fn();
+      component.registerOnChange(onChange);
       component.value = 'testing123';
+      expect(onChange).toHaveBeenCalledTimes(1);
+      expect(onChange).toHaveBeenCalledWith('testing123');
     });
   });
 
   describe('registerOnTouched', () => {
-    it('should register new touched callback', async () => {
-      const fn = () => {
+    it('should register new touched callback', () => {
+      const onTouched = vi.fn(() => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        expect(component.onTouchedCallback).toBe(fn);
-      };
+        expect(component.onTouchedCallback).toBe(onTouched);
+      });
 
-      component.registerOnTouched(fn);
+      component.registerOnTouched(onTouched);
 
       component.updateValue('testing123');
+      expect(onTouched).toHaveBeenCalled();
     });
   });
 
