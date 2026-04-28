@@ -45,30 +45,43 @@ describe('AutosizeDirective', () => {
     });
 
     it('should set height on input', () => {
-      component.textarea.nativeElement.value = faker.random.words(500);
-      component.textarea.nativeElement.dispatchEvent(new Event('input'));
+      const el = component.textarea.nativeElement;
+      // jsdom has no real layout; use accessor properties so they override any prototype getters.
+      Object.defineProperty(el, 'clientHeight', { configurable: true, get: () => 40 });
+      Object.defineProperty(el, 'scrollHeight', { configurable: true, get: () => 100 });
+      el.value = faker.random.words(500);
+      el.dispatchEvent(new Event('input'));
       fixture.detectChanges();
 
-      expect(component.textarea.nativeElement.style.height).not.toEqual('auto');
+      expect(el.style.height).toBe('100px');
     });
 
     it('should set height auto when no scroll', () => {
-      component.textarea.nativeElement.value = '';
-      component.textarea.nativeElement.dispatchEvent(new Event('input'));
+      const el = component.textarea.nativeElement;
+      // jsdom does not implement a layout engine, which is required to calculate physical dimensions like clientHeight, scrollHeight, and offsetHeight
+      Object.defineProperty(el, 'clientHeight', { configurable: true, get: () => 40 });
+      Object.defineProperty(el, 'scrollHeight', { configurable: true, get: () => 40 });
+      el.value = '';
+      el.dispatchEvent(new Event('input'));
       fixture.detectChanges();
 
-      expect(component.textarea.nativeElement.style.height).toEqual('auto');
+      expect(el.style.height).toEqual('auto');
     });
 
     it('should do nothing when disabled', () => {
+      const el = component.textarea.nativeElement;
+      // jsdom does not implement a layout engine, which is required to calculate physical dimensions like clientHeight, scrollHeight, and offsetHeight
+      Object.defineProperty(el, 'clientHeight', { configurable: true, get: () => 40 });
+      Object.defineProperty(el, 'scrollHeight', { configurable: true, get: () => 100 });
       component.enabled$.next(false);
       fixture.detectChanges();
 
-      component.textarea.nativeElement.value = faker.random.words(500);
-      component.textarea.nativeElement.dispatchEvent(new Event('input'));
+      el.value = faker.random.words(500);
+      el.dispatchEvent(new Event('input'));
       fixture.detectChanges();
 
-      expect(component.textarea.nativeElement.scrollHeight).not.toEqual(component.textarea.nativeElement.offsetHeight);
+      expect(el.style.height).not.toBe('100px');
+      expect(el.style.height).not.toBe('auto');
     });
   });
 });

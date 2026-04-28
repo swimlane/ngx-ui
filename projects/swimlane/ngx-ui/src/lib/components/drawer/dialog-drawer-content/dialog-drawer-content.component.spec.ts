@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogDrawerContentComponent } from './dialog-drawer-content.component';
 
@@ -8,14 +8,14 @@ describe(DialogDrawerContentComponent.name, () => {
   let fixture: ComponentFixture<DialogDrawerContentComponent>;
   let nativeElement: HTMLElement;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       declarations: [DialogDrawerContentComponent],
       imports: [NoopAnimationsModule]
     })
       .overrideComponent(DialogDrawerContentComponent, { set: { changeDetection: ChangeDetectionStrategy.Default } })
       .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DialogDrawerContentComponent);
@@ -59,9 +59,10 @@ describe(DialogDrawerContentComponent.name, () => {
     });
 
     it('should display custom dismiss button text', () => {
-      component.dismissBtnText = 'Custom Dismiss';
+      fixture.componentRef.setInput('dismissBtnText', 'Custom Dismiss');
       fixture.detectChanges();
-      expect(dismissBtn.textContent).toContain('Custom Dismiss');
+      const btn = nativeElement.querySelector('button.ngx-dialog-drawer-content__dismiss-btn') as HTMLButtonElement;
+      expect(btn.textContent).toContain('Custom Dismiss');
     });
   });
 

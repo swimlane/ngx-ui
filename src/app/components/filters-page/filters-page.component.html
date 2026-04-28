@@ -11,15 +11,15 @@
       <!-- prettier-ignore -->
       <app-prism>
         <![CDATA[
-        <ngx-filter 
-          [filterable]="false" 
+        <ngx-filter
+          [filterable]="false"
           label="Category"
           style="display: inline-block"
-        > 
-          <ngx-select-option name="Selection" value="breach"></ngx-select-option> 
-          <ngx-select-option name="DDOS"value="ddos"></ngx-select-option> 
+          >
+          <ngx-select-option name="Selection" value="breach"></ngx-select-option>
+          <ngx-select-option name="DDOS"value="ddos"></ngx-select-option>
           <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-        </ngx-filter> 
+        </ngx-filter>
         ]]>
       </app-prism>
       <br />
@@ -34,13 +34,13 @@
       </ngx-filter>
       <!-- prettier-ignore -->
       <app-prism>
-        <![CDATA[ 
-         <ngx-filter [filterable]="false">
+        <![CDATA[
+        <ngx-filter [filterable]="false">
           <ngx-select-option name="Selection" value="breach"></ngx-select-option>
           <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
           <ngx-select-option name="Physical" value="physical"></ngx-select-option>
         </ngx-filter>
-        
+
         ]]>
       </app-prism>
       <br />
@@ -106,842 +106,864 @@
       <ngx-tabs>
         <ngx-tab label="Markup">
           <app-prism>
-            <![CDATA[ 
-      <ngx-filter
-        label="Multi Dimension"
-        [multiDimension]="true"
-        [multiple]="true"
-        [selectionList]="selectionListExample"
-        [ngModel]="selectionListExampleValue"
-        (ngModelChange)="onMultiDimensionSelectionChange($event)"
-      ></ngx-filter>
+            <![CDATA[
+            <ngx-filter
+              label="Multi Dimension"
+              [multiDimension]="true"
+              [multiple]="true"
+              [selectionList]="selectionListExample"
+              [ngModel]="selectionListExampleValue"
+              (ngModelChange)="onMultiDimensionSelectionChange($event)"
+            ></ngx-filter>
             ]]>
           </app-prism>
         </ngx-tab>
         <ngx-tab label="TypeScript">
           <!-- prettier-ignore -->
           <app-prism language="js">
-<![CDATA[
-    import { SelectionList, SelectionListOption } from '@swimlane/ngx-ui';
+            <![CDATA[
+            import { SelectionList, SelectionListOption } from '@swimlane/ngx-ui';
 
-      @Component({
-        selector: 'app',
-        templateUrl: './app.template.html'
-      })
-      export class AppComponent {
-        selectionListExample: SelectionList = {
-          id: '751badfa-587e-4e9f-9b72-de05fab53aa1',
-          active: true,
-          title: '',
-          children: [
+            @Component({
+            selector: 'app',
+            templateUrl: './app.template.html'
+            })
+            export class AppComponent {
+            selectionListExample: SelectionList = {
+            id: '751badfa-587e-4e9f-9b72-de05fab53aa1',
+            active: true,
+            title: '',
+            children: [
             {
-              id: 'option1',
-              title: 'Option 1',
-              model: {
-                id: 'd3cf72f1-2be8-47aa-be77-a94df8092116',
-                name: 'Option 1'
-              },
-              children: [
-                {
-                  id: 'option1a',
-                  title: 'Option 1A',
-                  model: {
-                    id: '8759986b-acfc-430b-bf3e-68ca0ce4bcff',
-                    name: 'Option 1A'
-                  }
-                },
-                {
-                  id: 'option1b',
-                  title: 'Option 1B',
-                  model: {
-                    id: '0bfeeeae-aa84-4a8f-8136-6fd1c461d06c',
-                    name: 'Option 1B'
-                  }
-                },
-                {
-                  id: 'option1c',
-                  title: 'Option 1C',
-                  model: {
-                    id: '63edb06d-e8e2-493c-893f-914320279302',
-                    name: 'Option 1C'
-                  }
-                },
-                {
-                  id: 'option1d',
-                  title: 'Option 1D',
-                  model: {
-                    id: '4672f2d6-0ca1-42c1-a7b6-51eccf51fa60',
-                    name: 'Option 1D'
-                  }
-                }
-              ]
+            id: 'option1',
+            title: 'Option 1',
+            model: {
+            id: 'd3cf72f1-2be8-47aa-be77-a94df8092116',
+            name: 'Option 1'
             },
+            children: [
             {
-              id: 'option2',
-              title: 'Option 2',
-              model: {
-                id: '56066336-350d-4e44-b160-6cbbe4893971',
-                name: 'Option 2'
-              },
-              children: [
-                {
-                  id: 'option2a',
-                  title: 'Option 2A',
-                  model: {
-                    id: '674ec51c-ade0-4462-928d-34e461690521',
-                    name: 'Option 2A'
-                  }
-                },
-                {
-                  id: 'option2b',
-                  title: 'Option 2B',
-                  model: {
-                    id: '961ac331-73b6-46e7-839a-6a26eeabb22d',
-                    name: 'Option 2B'
-                  }
-                }
-              ]
-            },
-            {
-              id: 'option3',
-              title: 'Option 3',
-              model: {
-                id: 'c72b4039-bbd5-48e0-8c1e-219488f5a3df',
-                name: 'Option 3'
-              },
-              children: [
-                {
-                  id: 'option3a',
-                  title: 'Option 3A',
-                  model: {
-                    id: '06a2e280-56de-41dc-aa4a-c05685d9a2a6',
-                    name: 'Option 3A'
-                  }
-                }
-              ]
-            },
-            {
-              id: 'option4',
-              title: 'Option 4',
-              model: {
-                id: '84b1fe88-2745-4074-8b2c-9b3d0786afde',
-                name: 'Option 4'
-              }
-            },
-            {
-              id: 'option5',
-              title: 'Option 5',
-              model: {
-                id: 'c9d46c6e-5139-4ffa-860b-2b6338274fea',
-                name: 'Option 5'
-              }
-            },
-            {
-              id: 'option6',
-              title: 'Option 6',
-              model: {
-                id: '73b31272-fff2-45e3-86af-5c9adb64717e',
-                name: 'Option 6'
-              },
-              children: [
-                {
-                  id: 'option6a',
-                  title: 'Option 6A',
-                  model: {
-                    id: '22f8a2f9-71af-446a-ae13-e269ea77b3a7',
-                    name: 'Option 6A'
-                  }
-                },
-                {
-                  id: 'option6b',
-                  title: 'Option 6B',
-                  model: {
-                    id: 'f9cd8b08-76cd-48db-9246-99f2a9b58f12',
-                    name: 'Option 6B'
-                  }
-                },
-                {
-                  id: 'option6c',
-                  title: 'Option 6C',
-                  model: {
-                    id: '998855a9-208a-44f7-b20b-c51fbe830dd2',
-                    name: 'Option 6C'
-                  }
-                },
-                {
-                  id: 'option6d',
-                  title: 'Option 6D',
-                  model: {
-                    id: '87039692-09f7-4af6-9db7-d7373a6308fa',
-                    name: 'Option 6D'
-                  }
-                },
-                {
-                  id: 'option6e',
-                  title: 'Option 6E',
-                  model: {
-                    id: '030f2c7f-edce-46ab-86c8-c4f176dff755',
-                    name: 'Option 6E'
-                  },
-                  children: [
-                    {
-                      id: 'option6e1',
-                      title: 'Option 6E-1',
-                      model: {
-                        id: 'a56440af-6cd6-450a-9c54-91d65452dc58',
-                        name: 'Option 6E-1'
-                      }
-                    },
-                    {
-                      id: 'option6e2',
-                      title: 'Option 6E-2 With a Very Long Title',
-                      model: {
-                        id: 'a220b29f-55e2-4686-bb94-43c7fb7c7ec0',
-                        name: 'Option 6E-2 With a Very Long Title'
-                      }
-                    },
-                    {
-                      id: 'option6e3',
-                      title: 'Option 6E-3',
-                      model: {
-                        id: '37a80ad0-4f12-41d6-90bb-30c625415ce6',
-                        name: 'Option 6E-3'
-                      }
-                    },
-                    {
-                      id: 'option6e4',
-                      title: 'Option 6E-4 With a Very Long Title',
-                      model: {
-                        id: '08b46eb6-7b39-43e3-a521-e615d29b833b',
-                        name: 'Option 6E-4 With a Very Long Title'
-                      }
-                    },
-                    {
-                      id: 'option6e5',
-                      title: 'Option 6E-5 With a Very Long Title',
-                      model: {
-                        id: '2209b087-e59a-4e5b-9dd7-c15b4cf2537d',
-                        name: 'Option 6E-5 With a Very Long Title'
-                      }
-                    },
-                    {
-                      id: 'option6e6',
-                      title: 'Option 6E-6',
-                      model: {
-                        id: '30899449-ea56-499b-a495-0ea45c661a40',
-                        name: 'Option 6E-6'
-                      }
-                    },
-                    {
-                      id: 'option6e7',
-                      title: 'Option 6E-7',
-                      model: {
-                        id: '712896ac-472c-46cd-8eec-6d2f289fdbff',
-                        name: 'Option 6E-7'
-                      }
-                    },
-                    {
-                      id: 'option6e8',
-                      title: 'Option 6E-8 With a Very Long Title',
-                      model: {
-                        id: '16844679-ce3e-427c-9da4-63cc48fc2c08',
-                        name: 'Option 6E-8 With a Very Long Title'
-                      }
-                    },
-                    {
-                      id: 'option6e9',
-                      title: 'Option 6E-9',
-                      model: {
-                        id: '7b285629-bc87-4f9f-a3b7-d76f3bd9e355',
-                        name: 'Option 6E-9'
-                      }
-                    }
-                  ]
-                },
-                {
-                  id: 'option6f',
-                  title: 'Option 6F',
-                  model: {
-                    id: '241604bf-5bde-4322-8194-9fd90a62c430',
-                    name: 'Option 6F'
-                  }
-                }
-              ]
-            },
-            {
-              id: 'option7',
-              title: 'Option 7',
-              model: {
-                id: 'aed63636-fbc1-4eb5-a15a-cea960feb4e6',
-                name: 'Option 7'
-              }
-            },
-            {
-              id: 'option8',
-              title: 'Option 8',
-              model: {
-                id: '6a3c8e95-15b6-4759-b68c-8d69452c2b9d',
-                name: 'Option 8'
-              }
-            },
-            {
-              id: 'option9',
-              title: 'Option9',
-              model: {
-                id: '150efb58-567f-481e-abb4-c3d1f06ea6af',
-                name: 'Option 9'
-              },
-              children: [
-                {
-                  id: 'option9a',
-                  title: 'Option 9A',
-                  model: {
-                    id: '7678d687-7f44-4d7b-a820-f6eb68673108',
-                    name: 'Option 9A'
-                  }
-                },
-                {
-                  id: 'option9b',
-                  title: 'Option 9B',
-                  model: {
-                    id: '3071f34d-d6c1-4a1a-85c1-2e608f02c8d0',
-                    name: 'Option 9B'
-                  }
-                },
-                {
-                  id: 'option9c',
-                  title: 'Option 9C',
-                  model: {
-                    id: '5322f3f1-d841-41d6-8645-9b50d166124d',
-                    name: 'Option 9C'
-                  }
-                },
-                {
-                  id: 'option9d',
-                  title: 'Option 9D',
-                  model: {
-                    id: 'd98f48e9-adb0-4019-a046-3f0083b7b21e',
-                    name: 'Option 9D'
-                  }
-                }
-              ]
-            },
-            {
-              id: 'option10',
-              title: 'Option 10',
-              model: {
-                id: '50dd037a-2b25-4ef3-8893-df2ce115da4e',
-                name: 'Option 10'
-              },
-              children: [
-                {
-                  id: 'option10a',
-                  title: 'Option 10A',
-                  model: {
-                    id: 'ebbff0eb-7300-4fbe-9f96-47956b2e3f76',
-                    name: 'Option 10A'
-                  }
-                },
-                {
-                  id: 'option10b',
-                  title: 'Option 10B',
-                  model: {
-                    id: '9a42fb22-1020-4966-8cf0-bba20b8d8d16',
-                    name: 'Option 10B'
-                  }
-                }
-              ]
-            },
-            {
-              id: 'option11',
-              title: 'Option 11',
-              model: {
-                id: '812f9ad5-c51e-43e1-9f4c-6c075a79d205',
-                name: 'Option 11'
-              },
-              children: [
-                {
-                  id: 'option11a',
-                  title: 'Option 11A',
-                  model: {
-                    id: '739b0ad0-4c79-4f44-9489-6f7b4e03f6c6',
-                    name: 'Option 11A'
-                  }
-                }
-              ]
-            }
-          ]
-        };
-
-        selectionListExampleValue: Array<SelectionListOption> = [];
-
-        onMultiDimensionSelectionChange(event: Array<SelectionListOption>): void {
-          console.log('Multi-dimension selection change: ', event);
+            id: 'option1a',
+            title: 'Option 1A',
+            model: {
+            id: '8759986b-acfc-430b-bf3e-68ca0ce4bcff',
+            name: 'Option 1A'
+          }
+          },
+          {
+          id: 'option1b',
+          title: 'Option 1B',
+          model: {
+          id: '0bfeeeae-aa84-4a8f-8136-6fd1c461d06c',
+          name: 'Option 1B'
         }
+        },
+        {
+        id: 'option1c',
+        title: 'Option 1C',
+        model: {
+        id: '63edb06d-e8e2-493c-893f-914320279302',
+        name: 'Option 1C'
       }
-        ]]>
-          </app-prism>
-        </ngx-tab>
-       </ngx-tabs>
-      <br />
-      <br />
-      <br />
+      },
+      {
+      id: 'option1d',
+      title: 'Option 1D',
+      model: {
+      id: '4672f2d6-0ca1-42c1-a7b6-51eccf51fa60',
+      name: 'Option 1D'
+    }
+  }
+  ]
+  },
+  {
+  id: 'option2',
+  title: 'Option 2',
+  model: {
+  id: '56066336-350d-4e44-b160-6cbbe4893971',
+  name: 'Option 2'
+  },
+  children: [
+  {
+  id: 'option2a',
+  title: 'Option 2A',
+  model: {
+  id: '674ec51c-ade0-4462-928d-34e461690521',
+  name: 'Option 2A'
+}
+},
+{
+id: 'option2b',
+title: 'Option 2B',
+model: {
+id: '961ac331-73b6-46e7-839a-6a26eeabb22d',
+name: 'Option 2B'
+}
+}
+]
+},
+{
+id: 'option3',
+title: 'Option 3',
+model: {
+id: 'c72b4039-bbd5-48e0-8c1e-219488f5a3df',
+name: 'Option 3'
+},
+children: [
+{
+id: 'option3a',
+title: 'Option 3A',
+model: {
+id: '06a2e280-56de-41dc-aa4a-c05685d9a2a6',
+name: 'Option 3A'
+}
+}
+]
+},
+{
+id: 'option4',
+title: 'Option 4',
+model: {
+id: '84b1fe88-2745-4074-8b2c-9b3d0786afde',
+name: 'Option 4'
+}
+},
+{
+id: 'option5',
+title: 'Option 5',
+model: {
+id: 'c9d46c6e-5139-4ffa-860b-2b6338274fea',
+name: 'Option 5'
+}
+},
+{
+id: 'option6',
+title: 'Option 6',
+model: {
+id: '73b31272-fff2-45e3-86af-5c9adb64717e',
+name: 'Option 6'
+},
+children: [
+{
+id: 'option6a',
+title: 'Option 6A',
+model: {
+id: '22f8a2f9-71af-446a-ae13-e269ea77b3a7',
+name: 'Option 6A'
+}
+},
+{
+id: 'option6b',
+title: 'Option 6B',
+model: {
+id: 'f9cd8b08-76cd-48db-9246-99f2a9b58f12',
+name: 'Option 6B'
+}
+},
+{
+id: 'option6c',
+title: 'Option 6C',
+model: {
+id: '998855a9-208a-44f7-b20b-c51fbe830dd2',
+name: 'Option 6C'
+}
+},
+{
+id: 'option6d',
+title: 'Option 6D',
+model: {
+id: '87039692-09f7-4af6-9db7-d7373a6308fa',
+name: 'Option 6D'
+}
+},
+{
+id: 'option6e',
+title: 'Option 6E',
+model: {
+id: '030f2c7f-edce-46ab-86c8-c4f176dff755',
+name: 'Option 6E'
+},
+children: [
+{
+id: 'option6e1',
+title: 'Option 6E-1',
+model: {
+id: 'a56440af-6cd6-450a-9c54-91d65452dc58',
+name: 'Option 6E-1'
+}
+},
+{
+id: 'option6e2',
+title: 'Option 6E-2 With a Very Long Title',
+model: {
+id: 'a220b29f-55e2-4686-bb94-43c7fb7c7ec0',
+name: 'Option 6E-2 With a Very Long Title'
+}
+},
+{
+id: 'option6e3',
+title: 'Option 6E-3',
+model: {
+id: '37a80ad0-4f12-41d6-90bb-30c625415ce6',
+name: 'Option 6E-3'
+}
+},
+{
+id: 'option6e4',
+title: 'Option 6E-4 With a Very Long Title',
+model: {
+id: '08b46eb6-7b39-43e3-a521-e615d29b833b',
+name: 'Option 6E-4 With a Very Long Title'
+}
+},
+{
+id: 'option6e5',
+title: 'Option 6E-5 With a Very Long Title',
+model: {
+id: '2209b087-e59a-4e5b-9dd7-c15b4cf2537d',
+name: 'Option 6E-5 With a Very Long Title'
+}
+},
+{
+id: 'option6e6',
+title: 'Option 6E-6',
+model: {
+id: '30899449-ea56-499b-a495-0ea45c661a40',
+name: 'Option 6E-6'
+}
+},
+{
+id: 'option6e7',
+title: 'Option 6E-7',
+model: {
+id: '712896ac-472c-46cd-8eec-6d2f289fdbff',
+name: 'Option 6E-7'
+}
+},
+{
+id: 'option6e8',
+title: 'Option 6E-8 With a Very Long Title',
+model: {
+id: '16844679-ce3e-427c-9da4-63cc48fc2c08',
+name: 'Option 6E-8 With a Very Long Title'
+}
+},
+{
+id: 'option6e9',
+title: 'Option 6E-9',
+model: {
+id: '7b285629-bc87-4f9f-a3b7-d76f3bd9e355',
+name: 'Option 6E-9'
+}
+}
+]
+},
+{
+id: 'option6f',
+title: 'Option 6F',
+model: {
+id: '241604bf-5bde-4322-8194-9fd90a62c430',
+name: 'Option 6F'
+}
+}
+]
+},
+{
+id: 'option7',
+title: 'Option 7',
+model: {
+id: 'aed63636-fbc1-4eb5-a15a-cea960feb4e6',
+name: 'Option 7'
+}
+},
+{
+id: 'option8',
+title: 'Option 8',
+model: {
+id: '6a3c8e95-15b6-4759-b68c-8d69452c2b9d',
+name: 'Option 8'
+}
+},
+{
+id: 'option9',
+title: 'Option9',
+model: {
+id: '150efb58-567f-481e-abb4-c3d1f06ea6af',
+name: 'Option 9'
+},
+children: [
+{
+id: 'option9a',
+title: 'Option 9A',
+model: {
+id: '7678d687-7f44-4d7b-a820-f6eb68673108',
+name: 'Option 9A'
+}
+},
+{
+id: 'option9b',
+title: 'Option 9B',
+model: {
+id: '3071f34d-d6c1-4a1a-85c1-2e608f02c8d0',
+name: 'Option 9B'
+}
+},
+{
+id: 'option9c',
+title: 'Option 9C',
+model: {
+id: '5322f3f1-d841-41d6-8645-9b50d166124d',
+name: 'Option 9C'
+}
+},
+{
+id: 'option9d',
+title: 'Option 9D',
+model: {
+id: 'd98f48e9-adb0-4019-a046-3f0083b7b21e',
+name: 'Option 9D'
+}
+}
+]
+},
+{
+id: 'option10',
+title: 'Option 10',
+model: {
+id: '50dd037a-2b25-4ef3-8893-df2ce115da4e',
+name: 'Option 10'
+},
+children: [
+{
+id: 'option10a',
+title: 'Option 10A',
+model: {
+id: 'ebbff0eb-7300-4fbe-9f96-47956b2e3f76',
+name: 'Option 10A'
+}
+},
+{
+id: 'option10b',
+title: 'Option 10B',
+model: {
+id: '9a42fb22-1020-4966-8cf0-bba20b8d8d16',
+name: 'Option 10B'
+}
+}
+]
+},
+{
+id: 'option11',
+title: 'Option 11',
+model: {
+id: '812f9ad5-c51e-43e1-9f4c-6c075a79d205',
+name: 'Option 11'
+},
+children: [
+{
+id: 'option11a',
+title: 'Option 11A',
+model: {
+id: '739b0ad0-4c79-4f44-9489-6f7b4e03f6c6',
+name: 'Option 11A'
+}
+}
+]
+}
+]
+};
 
-      <h4>Filter</h4>
-      <ngx-filter [filterable]="true" label="Categories" multiple="true">
-        <ngx-select-option name="Selection" value="breach"></ngx-select-option>
-        <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-        <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-      </ngx-filter>
+selectionListExampleValue: Array<SelectionListOption> = [];
+
+onMultiDimensionSelectionChange(event: Array<SelectionListOption>): void {
+console.log('Multi-dimension selection change: ', event);
+}
+}
+]]>
+</app-prism>
+</ngx-tab>
+</ngx-tabs>
+<br />
+<br />
+<br />
+
+<h4>Filter</h4>
+<ngx-filter [filterable]="true" label="Categories" multiple="true">
+  <ngx-select-option name="Selection" value="breach"></ngx-select-option>
+  <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+  <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+</ngx-filter>
+<!-- prettier-ignore -->
+<app-prism>
+  <![CDATA[
+  <ngx-filter [filterable]="true" label="Categories" multiple="true">
+    <ngx-select-option name="Selection" value="breach"></ngx-select-option>
+    <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+    <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+  </ngx-filter>
+  ]]>
+</app-prism>
+<br />
+<br />
+<br />
+
+<h4>Objects with Grouping</h4>
+<ngx-filter [groupBy]="'type'">
+  <ngx-select-option [name]="'Breach'" [value]="{ value: 'breach', type: 'IOS' }"></ngx-select-option>
+  <ngx-select-option [name]="'DDOS'" [value]="{ value: 'ddos', type: 'IOS' }"></ngx-select-option>
+  <ngx-select-option [name]="'Physical'" [value]="{ value: 'Physical', type: 'MOX' }"></ngx-select-option>
+</ngx-filter>
+<!-- prettier-ignore -->
+<app-prism>
+  <![CDATA[
+  <ngx-filter [groupBy]="'type'">
+    <ngx-select-option [name]="'Breach'" [value]="{ value: 'breach', type: 'IOS' }"></ngx-select-option>
+    <ngx-select-option [name]="'DDOS'" [value]="{ value: 'ddos', type: 'IOS' }"></ngx-select-option>
+    <ngx-select-option [name]="'Physical'" [value]="{ value: 'Physical', type: 'MOX' }"></ngx-select-option>
+  </ngx-filter>
+  ]]>
+</app-prism>
+<br />
+<br />
+<br />
+
+<h4>Disabled</h4>
+<ngx-filter label="Category" [disabled]="true">
+  <ngx-select-option name="Selection" value="breach"></ngx-select-option>
+  <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+  <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+</ngx-filter>
+<!-- prettier-ignore -->
+<app-prism>
+  <![CDATA[
+  <ngx-filter label="Category" [disabled]="true">
+    <ngx-select-option name="Selection" value="breach"></ngx-select-option>
+    <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+    <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+  </ngx-filter>
+  ]]>
+</app-prism>
+<br />
+<br />
+<br />
+
+<h4>Large ngFor with Default Selections</h4>
+<ngx-filter [identifier]="'attr'" [ngModel]="[selects[0]]" label="Selection">
+  @for (option of selects; track option) {
+    <ngx-select-option [name]="option.name" [value]="option"> </ngx-select-option>
+  }
+</ngx-filter>
+<!-- prettier-ignore -->
+<app-prism>
+  <![CDATA[
+  <ngx-filter [identifier]="'attr'" [ngModel]="[selects[0]]" label="Selection">
+    <ngx-select-option
+      *ngFor="let option of selects"
+      [name]="option.name"
+      [value]="option"
+    ></ngx-select-option>
+  </ngx-filter>
+  ]]>
+</app-prism>
+<br />
+<br />
+<br />
+
+<h4>Async options</h4>
+<ngx-filter (keyup)="search($event.value)">
+  @for (option of asyncOptions$ | async; track option) {
+    <ngx-select-option
+      [name]="option.title"
+      [value]="option"
+      [disabled]="option.disabled"
+    ></ngx-select-option>
+  }
+</ngx-filter>
+<!-- prettier-ignore -->
+<app-prism>
+  <![CDATA[
+  <ngx-filter (keyup)="search($event.value)">
+    <ngx-select-option
+      *ngFor="let option of asyncOptions$ | async"
+      [name]="option.title"
+      [value]="option"
+      [disabled]="option.disabled"
+    ></ngx-select-option>
+  </ngx-filter>
+  ]]>
+</app-prism>
+<br />
+<br />
+<br />
+
+<h4>Items popup position</h4>
+<div class="div-options-position">
+  <ngx-filter label="Selection" [filterable]="false" [itemsPosition]="'right'">
+    <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+    <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+    <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+  </ngx-filter>
+</div>
+<!-- prettier-ignore -->
+<app-prism>
+  <![CDATA[
+  <ngx-filter label="Selection" [filterable]="false" [itemsPosition]="'right'">
+    <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+    <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+    <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+  </ngx-filter>
+  ]]>
+</app-prism>
+<br />
+<br />
+<br />
+
+<h4>Auto Select All</h4>
+
+<ngx-filter
+  [identifier]="'attr'"
+  [ngModel]="selectsModel"
+  label="Selection"
+  [filterable]="true"
+  [multiple]="true"
+  [autoSelectAll]="true"
+  >
+  @for (option of selectsSmall; track option) {
+    <ngx-select-option [name]="option.name" [value]="option">
+    </ngx-select-option>
+  }
+</ngx-filter>
+
+<!-- prettier-ignore -->
+<app-prism>
+  <![CDATA[
+  <ngx-filter
+    [identifier]="'attr'"
+    [ngModel]="selectsModel"
+    label="Selection"
+    [filterable]="true"
+    [multiple]="true"
+    [autoSelectAll]="true"
+    >
+    <ngx-select-option
+      *ngFor="let option of selectsSmall"
+      [name]="option.name"
+      [value]="option"
+    ></ngx-select-option>
+  </ngx-filter>
+  ]]>
+</app-prism>
+<br />
+<br />
+<br />
+
+<h4>Icon</h4>
+<ngx-filter label="Selection" [filterable]="false" [ngxIconClass]="'ngx-calendar'">
+  <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+  <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+  <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+</ngx-filter>
+
+<!-- prettier-ignore -->
+<app-prism>
+  <![CDATA[
+  <ngx-filter label="Selection" [filterable]="false" [ngxIconClass]="'ngx-calendar'">
+    <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+    <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+    <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+  </ngx-filter>
+  ]]>
+</app-prism>
+<br />
+<br />
+<br />
+
+<h4>Event emitters</h4>
+<ngx-filter
+  [filterable]="true"
+  label="Category"
+  style="display: inline-block"
+  (clicked)="onDropdownClick()"
+  (change)="onDropdownChange($event)"
+  (keyup)="onDropdownKeyup($event)"
+  (toggle)="onDropdownToggle($event)"
+  (clearQueryFilter)="onDropDownClearQuery()"
+  >
+  <ngx-select-option name="Selection" value="breach"></ngx-select-option>
+  <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+  <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+</ngx-filter>
+<p>Click: {{ dropdownClicks }}</p>
+<p>Change: {{ dropdownChange }}</p>
+<p>Keyup: {{ dropdownKeyUp | json }}</p>
+<p>ClearQueryFilter: {{ dropdownClearQueryFilter }}</p>
+<p>Toggle: {{ dropdownToggle }}</p>
+
+<!-- prettier-ignore -->
+<app-prism>
+  <![CDATA[
+  <ngx-filter
+    [filterable]="true"
+    label="Category"
+    style="display: inline-block"
+    (clicked)="onDropdownClick()"
+    (change)="onDropdownChange($event)"
+    (keyup)="onDropdownKeyup($event)"
+    (toggle)="onDropdownToggle($event)"
+    (clearQueryFilter)="onDropDownClearQuery()"
+    >
+    <ngx-select-option name="Selection" value="breach"></ngx-select-option>
+    <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+    <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+  </ngx-filter>
+  ]]>
+</app-prism>
+<br />
+<br />
+<br />
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Custom Dropdown">
+  <h4>Basic</h4>
+  <ngx-filter
+    label="Repeat"
+    [type]="'customDropdown'"
+    [customDropdownConfig]="customDropdownCounterBasicConfig"
+  ></ngx-filter>
+  <br />
+  <br />
+  <ngx-tabs>
+    <ngx-tab label="Markup">
       <!-- prettier-ignore -->
       <app-prism>
         <![CDATA[
-        <ngx-filter [filterable]="true" label="Categories" multiple="true">
-          <ngx-select-option name="Selection" value="breach"></ngx-select-option>
-          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-        </ngx-filter>
-        ]]>
-      </app-prism>
-      <br />
-      <br />
-      <br />
-
-      <h4>Objects with Grouping</h4>
-      <ngx-filter [groupBy]="'type'">
-        <ngx-select-option [name]="'Breach'" [value]="{ value: 'breach', type: 'IOS' }"></ngx-select-option>
-        <ngx-select-option [name]="'DDOS'" [value]="{ value: 'ddos', type: 'IOS' }"></ngx-select-option>
-        <ngx-select-option [name]="'Physical'" [value]="{ value: 'Physical', type: 'MOX' }"></ngx-select-option>
-      </ngx-filter>
-      <!-- prettier-ignore -->
-      <app-prism>
-        <![CDATA[
-        <ngx-filter [groupBy]="'type'">
-          <ngx-select-option [name]="'Breach'" [value]="{ value: 'breach', type: 'IOS' }"></ngx-select-option>
-          <ngx-select-option [name]="'DDOS'" [value]="{ value: 'ddos', type: 'IOS' }"></ngx-select-option>
-          <ngx-select-option [name]="'Physical'" [value]="{ value: 'Physical', type: 'MOX' }"></ngx-select-option>
-        </ngx-filter>
-        ]]>
-      </app-prism>
-      <br />
-      <br />
-      <br />
-
-      <h4>Disabled</h4>
-      <ngx-filter label="Category" [disabled]="true">
-        <ngx-select-option name="Selection" value="breach"></ngx-select-option>
-        <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-        <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-      </ngx-filter>
-      <!-- prettier-ignore -->
-      <app-prism>
-        <![CDATA[
-        <ngx-filter label="Category" [disabled]="true">
-          <ngx-select-option name="Selection" value="breach"></ngx-select-option>
-          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-        </ngx-filter>
-        ]]>
-      </app-prism>
-      <br />
-      <br />
-      <br />
-
-      <h4>Large ngFor with Default Selections</h4>
-      <ngx-filter [identifier]="'attr'" [ngModel]="[selects[0]]" label="Selection">
-        <ngx-select-option *ngFor="let option of selects" [name]="option.name" [value]="option"> </ngx-select-option>
-      </ngx-filter>
-      <!-- prettier-ignore -->
-      <app-prism>
-        <![CDATA[
-        <ngx-filter [identifier]="'attr'" [ngModel]="[selects[0]]" label="Selection">
-          <ngx-select-option 
-            *ngFor="let option of selects" 
-            [name]="option.name" 
-            [value]="option"
-          ></ngx-select-option>
-        </ngx-filter>
-        ]]>
-      </app-prism>
-      <br />
-      <br />
-      <br />
-
-      <h4>Async options</h4>
-      <ngx-filter (keyup)="search($event.value)">
-        <ngx-select-option
-          *ngFor="let option of asyncOptions$ | async"
-          [name]="option.title"
-          [value]="option"
-          [disabled]="option.disabled"
-        ></ngx-select-option>
-      </ngx-filter>
-      <!-- prettier-ignore -->
-      <app-prism>
-        <![CDATA[
-        <ngx-filter (keyup)="search($event.value)">
-          <ngx-select-option
-            *ngFor="let option of asyncOptions$ | async"
-            [name]="option.title"
-            [value]="option"
-            [disabled]="option.disabled"
-          ></ngx-select-option>
-        </ngx-filter>
-        ]]>
-      </app-prism>
-      <br />
-      <br />
-      <br />
-
-      <h4>Items popup position</h4>
-      <div class="div-options-position">
-        <ngx-filter label="Selection" [filterable]="false" [itemsPosition]="'right'">
-          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-        </ngx-filter>
-      </div>
-      <!-- prettier-ignore -->
-      <app-prism>
-        <![CDATA[
-        <ngx-filter label="Selection" [filterable]="false" [itemsPosition]="'right'">
-          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-        </ngx-filter>
-        ]]>
-      </app-prism>
-      <br />
-      <br />
-      <br />
-
-      <h4>Auto Select All</h4>
-
-      <ngx-filter
-        [identifier]="'attr'"
-        [ngModel]="selectsModel"
-        label="Selection"
-        [filterable]="true"
-        [multiple]="true"
-        [autoSelectAll]="true"
-      >
-        <ngx-select-option *ngFor="let option of selectsSmall" [name]="option.name" [value]="option">
-        </ngx-select-option>
-      </ngx-filter>
-
-      <!-- prettier-ignore -->
-      <app-prism>
-        <![CDATA[
-        <ngx-filter
-          [identifier]="'attr'"
-          [ngModel]="selectsModel"
-          label="Selection"
-          [filterable]="true"
-          [multiple]="true"
-          [autoSelectAll]="true"
-        >
-          <ngx-select-option 
-            *ngFor="let option of selectsSmall" 
-            [name]="option.name" 
-            [value]="option"
-          ></ngx-select-option>
-        </ngx-filter>
-        ]]>
-      </app-prism>
-      <br />
-      <br />
-      <br />
-
-      <h4>Icon</h4>
-      <ngx-filter label="Selection" [filterable]="false" [ngxIconClass]="'ngx-calendar'">
-        <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-        <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-        <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-      </ngx-filter>
-
-      <!-- prettier-ignore -->
-      <app-prism>
-        <![CDATA[
-        <ngx-filter label="Selection" [filterable]="false" [ngxIconClass]="'ngx-calendar'">
-          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-        </ngx-filter>
-        ]]>
-      </app-prism>
-      <br />
-      <br />
-      <br />
-
-      <h4>Event emitters</h4>
-      <ngx-filter
-        [filterable]="true"
-        label="Category"
-        style="display: inline-block"
-        (clicked)="onDropdownClick()"
-        (change)="onDropdownChange($event)"
-        (keyup)="onDropdownKeyup($event)"
-        (toggle)="onDropdownToggle($event)"
-        (clearQueryFilter)="onDropDownClearQuery()"
-      >
-        <ngx-select-option name="Selection" value="breach"></ngx-select-option>
-        <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-        <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-      </ngx-filter>
-      <p>Click: {{ dropdownClicks }}</p>
-      <p>Change: {{ dropdownChange }}</p>
-      <p>Keyup: {{ dropdownKeyUp | json }}</p>
-      <p>ClearQueryFilter: {{ dropdownClearQueryFilter }}</p>
-      <p>Toggle: {{ dropdownToggle }}</p>
-
-      <!-- prettier-ignore -->
-      <app-prism>
-        <![CDATA[
-        <ngx-filter
-          [filterable]="true"
-          label="Category"
-          style="display: inline-block"
-          (clicked)="onDropdownClick()"
-          (change)="onDropdownChange($event)"
-          (keyup)="onDropdownKeyup($event)"
-          (toggle)="onDropdownToggle($event)"
-          (clearQueryFilter)="onDropDownClearQuery()"
-        >
-          <ngx-select-option name="Selection" value="breach"></ngx-select-option>
-          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-        </ngx-filter>
-        ]]>
-      </app-prism>
-      <br />
-      <br />
-      <br />
-    </ngx-section>
-
-    <ngx-section class="shadow" sectionTitle="Custom Dropdown">
-      <h4>Basic</h4>
-      <ngx-filter
-        label="Repeat"
-        [type]="'customDropdown'"
-        [customDropdownConfig]="customDropdownCounterBasicConfig"
-      ></ngx-filter>
-      <br />
-      <br />
-      <ngx-tabs>
-        <ngx-tab label="Markup">
-          <!-- prettier-ignore -->
-          <app-prism>
-            <![CDATA[
-            <ngx-filter
-              label="Repeat"
-              [type]="'customDropdown'"
-              [customDropdownConfig]="customDropdownCounterBasicConfig"
-            ></ngx-filter>
-            ]]>
-          </app-prism>
-        </ngx-tab>
-        <ngx-tab label="Typescript">
-          <!-- prettier-ignore -->
-          <app-prism language="js">
-            <![CDATA[
-            const customDropdownCounterBasicConfig: FilterCustomDropDown = { 
-              component: { 
-                type: MyCustomComponent 
-              } 
-            };
-            ]]>
-          </app-prism>
-        </ngx-tab>
-      </ngx-tabs>
-      <br />
-      <br />
-      <h4>Date Range Selection Calendar</h4>
-      <ngx-filter
-        #filterRef
-        [label]="labelForRange"
-        [autosize]="true"
-        [ngClass]="labelForRange !== 'Select a range' ? 'active-selections' : ''"
-        [type]="'customDropdown'"
-        [customDropdownConfig]="customDropdownDateRangeConfig"
-        [ngxIconClass]="labelForRange !== 'Select a range' ? 'ngx-x' : null"
-        [ngxIconPosition]="labelForRange !== 'Select a range' ? 'right' : null"
-        (clicked)="onClearSelection($event)"
-      ></ngx-filter>
-      <br />
-      <br />
-      <ngx-tabs>
-        <ngx-tab label="Markup">
-          <!-- prettier-ignore -->
-          <app-prism>
-            <![CDATA[
-            <ngx-filter 
-              label="Repeat" 
-              [type]="'customDropdown'"
-              [customDropdownConfig]="customDropdownDateRangeConfig"
-            ></ngx-filter>
-            ]]>
-          </app-prism>
-        </ngx-tab>
-      </ngx-tabs>
-
-      <h4>Items popup position</h4>
-      <div class="div-options-position">
         <ngx-filter
           label="Repeat"
           [type]="'customDropdown'"
           [customDropdownConfig]="customDropdownCounterBasicConfig"
-          [itemsPosition]="'right'"
         ></ngx-filter>
-      </div>
-      <br />
-      <br />
-      <ngx-tabs>
-        <ngx-tab label="Markup">
-          <!-- prettier-ignore -->
-          <app-prism>
-            <![CDATA[
-            <ngx-filter
-              label="Repeat"
-              [type]="'customDropdown'"
-              [customDropdownConfig]="customDropdownCounterBasicConfig"
-              [itemsPosition]="'right'"
-            ></ngx-filter>
-            ]]>
-          </app-prism>
-        </ngx-tab>
-        <ngx-tab label="Typescript">
-          <!-- prettier-ignore -->
-          <app-prism language="js">
-            <![CDATA[
-            const customDropdownCounterBasicConfig: FilterCustomDropDown = { 
-              component: { 
-                type: MyCustomComponent 
-              } 
-            };
-            ]]>
-          </app-prism>
-        </ngx-tab>
-      </ngx-tabs>
-      <br />
-      <br />
+        ]]>
+      </app-prism>
+    </ngx-tab>
+    <ngx-tab label="Typescript">
+      <!-- prettier-ignore -->
+      <app-prism language="js">
+        <![CDATA[
+        const customDropdownCounterBasicConfig: FilterCustomDropDown = {
+        component: {
+        type: MyCustomComponent
+      }
+      };
+      ]]>
+    </app-prism>
+  </ngx-tab>
+</ngx-tabs>
+<br />
+<br />
+<h4>Date Range Selection Calendar</h4>
+<ngx-filter
+  #filterRef
+  [label]="labelForRange"
+  [autosize]="true"
+  [ngClass]="labelForRange !== 'Select a range' ? 'active-selections' : ''"
+  [type]="'customDropdown'"
+  [customDropdownConfig]="customDropdownDateRangeConfig"
+  [ngxIconClass]="labelForRange !== 'Select a range' ? 'ngx-x' : null"
+  [ngxIconPosition]="labelForRange !== 'Select a range' ? 'right' : null"
+  (clicked)="onClearSelection($event)"
+></ngx-filter>
+<br />
+<br />
+<ngx-tabs>
+  <ngx-tab label="Markup">
+    <!-- prettier-ignore -->
+    <app-prism>
+      <![CDATA[
+      <ngx-filter
+        label="Repeat"
+        [type]="'customDropdown'"
+        [customDropdownConfig]="customDropdownDateRangeConfig"
+      ></ngx-filter>
+      ]]>
+    </app-prism>
+  </ngx-tab>
+</ngx-tabs>
 
-      <h4>Show Dropdown Caret</h4>
+<h4>Items popup position</h4>
+<div class="div-options-position">
+  <ngx-filter
+    label="Repeat"
+    [type]="'customDropdown'"
+    [customDropdownConfig]="customDropdownCounterBasicConfig"
+    [itemsPosition]="'right'"
+  ></ngx-filter>
+</div>
+<br />
+<br />
+<ngx-tabs>
+  <ngx-tab label="Markup">
+    <!-- prettier-ignore -->
+    <app-prism>
+      <![CDATA[
+      <ngx-filter
+        label="Repeat"
+        [type]="'customDropdown'"
+        [customDropdownConfig]="customDropdownCounterBasicConfig"
+        [itemsPosition]="'right'"
+      ></ngx-filter>
+      ]]>
+    </app-prism>
+  </ngx-tab>
+  <ngx-tab label="Typescript">
+    <!-- prettier-ignore -->
+    <app-prism language="js">
+      <![CDATA[
+      const customDropdownCounterBasicConfig: FilterCustomDropDown = {
+      component: {
+      type: MyCustomComponent
+    }
+    };
+    ]]>
+  </app-prism>
+</ngx-tab>
+</ngx-tabs>
+<br />
+<br />
+
+<h4>Show Dropdown Caret</h4>
+<ngx-filter
+  label="Repeat"
+  [type]="'customDropdown'"
+  [customDropdownConfig]="customDropdownCounterCaretConfig"
+></ngx-filter>
+<br />
+<br />
+<ngx-tabs>
+  <ngx-tab label="Markup">
+    <!-- prettier-ignore -->
+    <app-prism>
+      <![CDATA[
       <ngx-filter
         label="Repeat"
         [type]="'customDropdown'"
         [customDropdownConfig]="customDropdownCounterCaretConfig"
       ></ngx-filter>
-      <br />
-      <br />
-      <ngx-tabs>
-        <ngx-tab label="Markup">
-          <!-- prettier-ignore -->
-          <app-prism>
-            <![CDATA[
-            <ngx-filter
-              label="Repeat"
-              [type]="'customDropdown'"
-              [customDropdownConfig]="customDropdownCounterCaretConfig"
-            ></ngx-filter>
-            ]]>
-          </app-prism>
-        </ngx-tab>
-        <ngx-tab label="Typescript">
-          <!-- prettier-ignore -->
-          <app-prism language="js">
-            <![CDATA[
-            const customDropdownCounterCaretConfig: FilterCustomDropDown = { 
-              component: { 
-                type: MyCustomComponent 
-              }, 
-              showCaret: true 
-            };
-            ]]>
-          </app-prism>
-        </ngx-tab>
-      </ngx-tabs>
-      <br />
-      <br />
+      ]]>
+    </app-prism>
+  </ngx-tab>
+  <ngx-tab label="Typescript">
+    <!-- prettier-ignore -->
+    <app-prism language="js">
+      <![CDATA[
+      const customDropdownCounterCaretConfig: FilterCustomDropDown = {
+      component: {
+      type: MyCustomComponent
+      },
+      showCaret: true
+      };
+      ]]>
+    </app-prism>
+  </ngx-tab>
+</ngx-tabs>
+<br />
+<br />
 
-      <h4>Disabled</h4>
+<h4>Disabled</h4>
+<ngx-filter
+  label="Repeat"
+  [type]="'customDropdown'"
+  [customDropdownConfig]="customDropdownCounterBasicConfig"
+  [disabled]="true"
+></ngx-filter>
+<br />
+<br />
+<ngx-tabs>
+  <ngx-tab label="Markup">
+    <!-- prettier-ignore -->
+    <app-prism>
+      <![CDATA[
       <ngx-filter
         label="Repeat"
         [type]="'customDropdown'"
         [customDropdownConfig]="customDropdownCounterBasicConfig"
         [disabled]="true"
       ></ngx-filter>
-      <br />
-      <br />
-      <ngx-tabs>
-        <ngx-tab label="Markup">
-          <!-- prettier-ignore -->
-          <app-prism>
-            <![CDATA[
-            <ngx-filter
-              label="Repeat"
-              [type]="'customDropdown'"
-              [customDropdownConfig]="customDropdownCounterBasicConfig"
-              [disabled]="true"
-            ></ngx-filter>
-            ]]>
-          </app-prism>
-        </ngx-tab>
-        <ngx-tab label="Typescript">
-          <!-- prettier-ignore -->
-          <app-prism language="js">
-            <![CDATA[
-            const customDropdownCounterBasicConfig: FilterCustomDropDown = { 
-              component: { 
-                type: MyCustomComponent 
-              } 
-            };
-            ]]>
-          </app-prism>
-        </ngx-tab>
-      </ngx-tabs>
-      <br />
-      <br />
+      ]]>
+    </app-prism>
+  </ngx-tab>
+  <ngx-tab label="Typescript">
+    <!-- prettier-ignore -->
+    <app-prism language="js">
+      <![CDATA[
+      const customDropdownCounterBasicConfig: FilterCustomDropDown = {
+      component: {
+      type: MyCustomComponent
+    }
+    };
+    ]]>
+  </app-prism>
+</ngx-tab>
+</ngx-tabs>
+<br />
+<br />
 
-      <h4>CloseOnClick and CloseOnOutsideClick</h4>
+<h4>CloseOnClick and CloseOnOutsideClick</h4>
+<ngx-filter
+  label="Repeat"
+  [type]="'customDropdown'"
+  [customDropdownConfig]="customDropdownCounterCloseConfig"
+></ngx-filter>
+<br />
+<br />
+<ngx-tabs>
+  <ngx-tab label="Markup">
+    <!-- prettier-ignore -->
+    <app-prism>
+      <![CDATA[
       <ngx-filter
         label="Repeat"
         [type]="'customDropdown'"
         [customDropdownConfig]="customDropdownCounterCloseConfig"
       ></ngx-filter>
-      <br />
-      <br />
-      <ngx-tabs>
-        <ngx-tab label="Markup">
-          <!-- prettier-ignore -->
-          <app-prism>
-            <![CDATA[
-            <ngx-filter
-              label="Repeat"
-              [type]="'customDropdown'"
-              [customDropdownConfig]="customDropdownCounterCloseConfig"
-            ></ngx-filter>
-            ]]>
-          </app-prism>
-        </ngx-tab>
-        <ngx-tab label="Typescript">
-          <!-- prettier-ignore -->
-          <app-prism language="js">
-            <![CDATA[
-            const customDropdownCounterCloseConfig: FilterCustomDropDown = { 
-              component: { 
-                type: MyCustomComponent 
-              }, 
-              closeOnClick: false, 
-              closeOnOutsideClick: true 
-            };
-            ]]>
-          </app-prism>
-        </ngx-tab>
-      </ngx-tabs>
-      <br />
-      <br />
+      ]]>
+    </app-prism>
+  </ngx-tab>
+  <ngx-tab label="Typescript">
+    <!-- prettier-ignore -->
+    <app-prism language="js">
+      <![CDATA[
+      const customDropdownCounterCloseConfig: FilterCustomDropDown = {
+      component: {
+      type: MyCustomComponent
+      },
+      closeOnClick: false,
+      closeOnOutsideClick: true
+      };
+      ]]>
+    </app-prism>
+  </ngx-tab>
+</ngx-tabs>
+<br />
+<br />
 
-      <h4>&#64;Inputs and &#64;Outputs of custom component</h4>
+<h4>&#64;Inputs and &#64;Outputs of custom component</h4>
+<ngx-filter
+  label="Repeat"
+  [type]="'customDropdown'"
+  [customDropdownConfig]="customDropdownCounterConfig"
+  [filterCount]="customDropdownFilterCount"
+  [ngxIconClass]="'ngx-repeat'"
+  [ngxIconPosition]="'left'"
+  >
+</ngx-filter>
+<p>Emitted by myCustomComponentOutput1: {{ customDropdownText }}</p>
+<p>Emitted by myCustomComponentOutput2: {{ customDropdownFilterCount }}</p>
+<br />
+<ngx-tabs>
+  <ngx-tab label="Markup">
+    <!-- prettier-ignore -->
+    <app-prism>
+      <![CDATA[
       <ngx-filter
         label="Repeat"
         [type]="'customDropdown'"
@@ -949,120 +971,120 @@
         [filterCount]="customDropdownFilterCount"
         [ngxIconClass]="'ngx-repeat'"
         [ngxIconPosition]="'left'"
-      >
-      </ngx-filter>
-      <p>Emitted by myCustomComponentOutput1: {{ customDropdownText }}</p>
-      <p>Emitted by myCustomComponentOutput2: {{ customDropdownFilterCount }}</p>
-      <br />
-      <ngx-tabs>
-        <ngx-tab label="Markup">
-          <!-- prettier-ignore -->
-          <app-prism>
-            <![CDATA[
-            <ngx-filter
-              label="Repeat"
-              [type]="'customDropdown'"
-              [customDropdownConfig]="customDropdownCounterConfig"
-              [filterCount]="customDropdownFilterCount"
-              [ngxIconClass]="'ngx-repeat'"
-              [ngxIconPosition]="'left'"
-            ></ngx-filter>
-            ]]>
-          </app-prism>
-        </ngx-tab>
-        <ngx-tab label="Typescript">
-          <!-- prettier-ignore -->
-          <app-prism language="js">
-            <![CDATA[
-            /* Custom component definition */ 
+      ></ngx-filter>
+      ]]>
+    </app-prism>
+  </ngx-tab>
+  <ngx-tab label="Typescript">
+    <!-- prettier-ignore -->
+    <app-prism language="js">
+      <![CDATA[
+      /* Custom component definition */
 
-            export class MyCustomComponent { 
-              @Input() counter = 0;
+      export class MyCustomComponent {
+      @Input() counter = 0;
 
-              @Output()
-              myCustomComponentOutput1 = new EventEmitter<string>(); 
+      @Output()
+      myCustomComponentOutput1 = new EventEmitter<string>();
 
-              @Output() myCustomComponentOutput2 = new EventEmitter<number>(); 
-                
-              onMinusClicked(): void { 
-                this.counter--;
-                this.myCustomComponentOutput1.emit('Minus'); 
-                this.myCustomComponentOutput2.emit(this.counter); 
-              }
+      @Output() myCustomComponentOutput2 = new EventEmitter<number>();
 
-              onPlusClicked(): void { 
-                this.counter++; 
-                this.myCustomComponentOutput1.emit('Plus');
-                this.myCustomComponentOutput2.emit(this.counter);
-              }
-            } 
-              
-            /* ... */ 
-            
-            /* Custom component configuration to pass @Inputs and @Outputs */ 
-            
-            const customDropdownCounterConfig: FilterCustomDropDown = { 
-              component: { 
-                type: MyCustomComponent, 
-                options: { 
-                  bindings: [ 
-                    inputBinding('counter', () => 0),
-                    outputBinding('myCustomComponentOutput1', event => this.onCustomDropdownClickedButton(event)),
-                    outputBinding('myCustomComponentOutput2', event => this.onCustomDropdownCounterChanged(event)) 
-                  ] 
-                } 
-              },
-              closeOnClick: false, 
-              closeOnOutsideClick: true 
-            };
-            ]]>
-          </app-prism>
-        </ngx-tab>
-      </ngx-tabs>
-      <br />
-      <br />
+      onMinusClicked(): void {
+      this.counter--;
+      this.myCustomComponentOutput1.emit('Minus');
+      this.myCustomComponentOutput2.emit(this.counter);
+    }
 
-      <h4>Custom Css Class</h4>
+    onPlusClicked(): void {
+    this.counter++;
+    this.myCustomComponentOutput1.emit('Plus');
+    this.myCustomComponentOutput2.emit(this.counter);
+  }
+}
+
+/* ... */
+
+/* Custom component configuration to pass @Inputs and @Outputs */
+
+const customDropdownCounterConfig: FilterCustomDropDown = {
+component: {
+type: MyCustomComponent,
+options: {
+bindings: [
+inputBinding('counter', () => 0),
+outputBinding('myCustomComponentOutput1', event => this.onCustomDropdownClickedButton(event)),
+outputBinding('myCustomComponentOutput2', event => this.onCustomDropdownCounterChanged(event))
+]
+}
+},
+closeOnClick: false,
+closeOnOutsideClick: true
+};
+]]>
+</app-prism>
+</ngx-tab>
+</ngx-tabs>
+<br />
+<br />
+
+<h4>Custom Css Class</h4>
+<ngx-filter
+  label="Region"
+  [type]="'customDropdown'"
+  [customDropdownConfig]="customDropdownConfigTreeCss"
+  [ngxIconClass]="'ngx-map'"
+></ngx-filter>
+<br />
+<ngx-tabs>
+  <ngx-tab label="Markup">
+    <!-- prettier-ignore -->
+    <app-prism>
+      <![CDATA[
       <ngx-filter
         label="Region"
         [type]="'customDropdown'"
         [customDropdownConfig]="customDropdownConfigTreeCss"
         [ngxIconClass]="'ngx-map'"
       ></ngx-filter>
-      <br />
-      <ngx-tabs>
-        <ngx-tab label="Markup">
-          <!-- prettier-ignore -->
-          <app-prism>
-            <![CDATA[
-            <ngx-filter
-              label="Region"
-              [type]="'customDropdown'"
-              [customDropdownConfig]="customDropdownConfigTreeCss"
-              [ngxIconClass]="'ngx-map'"
-            ></ngx-filter>
-            ]]>
-          </app-prism>
-        </ngx-tab>
-        <ngx-tab label="Typescript">
-          <!-- prettier-ignore -->
-          <app-prism language="js">
-            <![CDATA[
-            const customDropdownConfigTreeCss: FilterCustomDropDown = { 
-              component: { 
-                type: TreeComponent,
-                options: { 
-                  bindings: [inputBinding('nodes', () => this.treeNodes)] 
-                } 
-              }, 
-              containerClasses: ['custom-container-css-class-red'] 
-            };
-            ]]>
-          </app-prism>
-        </ngx-tab>
-      </ngx-tabs>
+      ]]>
+    </app-prism>
+  </ngx-tab>
+  <ngx-tab label="Typescript">
+    <!-- prettier-ignore -->
+    <app-prism language="js">
+      <![CDATA[
+      const customDropdownConfigTreeCss: FilterCustomDropDown = {
+      component: {
+      type: TreeComponent,
+      options: {
+      bindings: [inputBinding('nodes', () => this.treeNodes)]
+    }
+    },
+    containerClasses: ['custom-container-css-class-red']
+    };
+    ]]>
+  </app-prism>
+</ngx-tab>
+</ngx-tabs>
 
-      <h4>Event Emitters</h4>
+<h4>Event Emitters</h4>
+<ngx-filter
+  label="Region"
+  [type]="'customDropdown'"
+  [customDropdownConfig]="customDropdownConfigTree"
+  [ngxIconClass]="'ngx-map'"
+  (clicked)="onCustomDropdownClick()"
+  (toggle)="onCustomDropdownToggle($event)"
+  >
+</ngx-filter>
+<p>Clicked: {{ customDropdownClicks }}</p>
+<p>Toggle: {{ customDropdownToggle }}</p>
+<br />
+<ngx-tabs>
+  <ngx-tab label="Markup">
+    <!-- prettier-ignore -->
+    <app-prism>
+      <![CDATA[
       <ngx-filter
         label="Region"
         [type]="'customDropdown'"
@@ -1070,567 +1092,550 @@
         [ngxIconClass]="'ngx-map'"
         (clicked)="onCustomDropdownClick()"
         (toggle)="onCustomDropdownToggle($event)"
-      >
-      </ngx-filter>
-      <p>Clicked: {{ customDropdownClicks }}</p>
-      <p>Toggle: {{ customDropdownToggle }}</p>
-      <br />
-      <ngx-tabs>
-        <ngx-tab label="Markup">
-          <!-- prettier-ignore -->
-          <app-prism>
-            <![CDATA[
-            <ngx-filter
-              label="Region"
-              [type]="'customDropdown'"
-              [customDropdownConfig]="customDropdownConfigTree"
-              [ngxIconClass]="'ngx-map'"
-              (clicked)="onCustomDropdownClick()"
-              (toggle)="onCustomDropdownToggle($event)"
-            ></ngx-filter>
-            ]]>
-          </app-prism>
-        </ngx-tab>
-        <ngx-tab label="Typescript">
-          <!-- prettier-ignore -->
-          <app-prism language="js">
-            <![CDATA[
-            const customDropdownConfigTree: FilterCustomDropDown = { 
-              component: { 
-                type: TreeComponent, 
-                options: { 
-                  bindings: [inputBinding('nodes', () => this.treeNodes)] 
-                } 
-              }, 
-              containerClasses: ['custom-container-css-class'] 
-            };
-            ]]>
-          </app-prism>
-        </ngx-tab>
-      </ngx-tabs>
-    </ngx-section>
-
-    <ngx-section class="shadow" sectionTitle="Button Filter">
-      <h4>Basic</h4>
-      <ngx-filter label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'"> </ngx-filter>
-
-      <!-- prettier-ignore -->
-      <app-prism>
-        <![CDATA[
-        <ngx-filter 
-          label="Selection" 
-          [type]="'button'" 
-          [ngxIconClass]="'ngx-filter'" 
-        ></ngx-filter>
+      ></ngx-filter>
       ]]>
-      </app-prism>
-      <br />
-      <br />
-      <br />
-
-      <h4>Disabled</h4>
-      <ngx-filter label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" [disabled]="true"> </ngx-filter>
-      <!-- prettier-ignore -->
-      <app-prism>
-        <![CDATA[
-        <ngx-filter 
-          label="Selection" 
-          [type]="'button'" 
-          [ngxIconClass]="'ngx-filter'" 
-          [disabled]="true"
-        ></ngx-filter>
-        ]]>
-      </app-prism>
-      <br />
-      <br />
-      <br />
-
-      <h4>Icon Position</h4>
-      <div class="div-options-position">
-        <ngx-filter label="Selection 1" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'left'">
-        </ngx-filter>
-        <ngx-filter label="Selection 2" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'right'">
-        </ngx-filter>
-      </div>
-
-      <!-- prettier-ignore -->
-      <app-prism>
-        <![CDATA[
-        <ngx-filter 
-          label="Selection 1" 
-          [type]="'button'" 
-          [ngxIconClass]="'ngx-filter'" 
-          [ngxIconPosition]="'left'"
-        ></ngx-filter>
-        <ngx-filter 
-          label="Selection 2" 
-          [type]="'button'" 
-          [ngxIconClass]="'ngx-filter'" 
-          [ngxIconPosition]="'right'"
-        ></ngx-filter>
-        ]]>
-      </app-prism>
-      <br />
-      <br />
-      <br />
-
-      <h4>Count badge visible</h4>
-      <ngx-filter
-        label="Selection"
-        [type]="'button'"
-        [ngxIconClass]="'ngx-filter'"
-        [ngxIconPosition]="'left'"
-        [filterCount]="3"
-      ></ngx-filter>
-
-      <!-- prettier-ignore -->
-      <app-prism>
-        <![CDATA[
-        <ngx-filter
-          label="Selection"
-          [type]="'button'"
-          [ngxIconClass]="'ngx-filter'"
-          [ngxIconPosition]="'left'"
-          [filterCount]="3"
-        ></ngx-filter>
-        ]]>
-      </app-prism>
-      <br />
-      <br />
-      <br />
-
-      <h4>Count badge hidden</h4>
-      <ngx-filter
-        label="Selection"
-        [type]="'button'"
-        [ngxIconClass]="'ngx-filter'"
-        [ngxIconPosition]="'left'"
-        [filterCount]="3"
-        [showCount]="false"
-      ></ngx-filter>
-
-      <!-- prettier-ignore -->
-      <app-prism>
-        <![CDATA[
-        <ngx-filter
-          label="Selection"
-          [type]="'button'"
-          [ngxIconClass]="'ngx-filter'"
-          [ngxIconPosition]="'left'"
-          [filterCount]="3"
-          [showCount]="false"
-        ></ngx-filter>
-        ]]>
-      </app-prism>
-      <br />
-      <br />
-      <br />
-
-      <h4>Event emitters</h4>
-      <ngx-filter
-        label="Selection"
-        [type]="'button'"
-        [ngxIconClass]="'ngx-filter'"
-        [ngxIconPosition]="'left'"
-        [filterCount]="1"
-        (clicked)="onButtonClick()"
-      ></ngx-filter>
-      <p>Click: {{ buttonClicks }}</p>
-
-      <!-- prettier-ignore -->
-      <app-prism>
-        <![CDATA[
-        <ngx-filter
-          label="Selection"
-          [type]="'button'"
-          [ngxIconClass]="'ngx-filter'"
-          [ngxIconPosition]="'left'"
-          [filterCount]="1"
-          (clicked)="onButtonClick()"
-        ></ngx-filter>
-        ]]>
-      </app-prism>
-      <br />
-      <br />
-      <br />
-    </ngx-section>
+    </app-prism>
   </ngx-tab>
-  <ngx-tab label="API">
-    <h3>Table of Contents</h3>
-    <a class="documentation-content" (click)="scrollTo('ngx-filter-inputs')">ngx-filter Inputs</a>
-    <a class="documentation-content" (click)="scrollTo('ngx-filter-outputs')">ngx-filter Outputs</a>
-    <a class="documentation-content" (click)="scrollTo('ngx-select-option-inputs')">ngx-select-option Inputs</a>
-    <a class="documentation-content" (click)="scrollTo('ngx-select-option-outputs')">ngx-select-option Outputs</a>
-    <hr />
+  <ngx-tab label="Typescript">
+    <!-- prettier-ignore -->
+    <app-prism language="js">
+      <![CDATA[
+      const customDropdownConfigTree: FilterCustomDropDown = {
+      component: {
+      type: TreeComponent,
+      options: {
+      bindings: [inputBinding('nodes', () => this.treeNodes)]
+    }
+    },
+    containerClasses: ['custom-container-css-class']
+    };
+    ]]>
+  </app-prism>
+</ngx-tab>
+</ngx-tabs>
+</ngx-section>
 
-    <h3 class="style-header" id="ngx-filter-inputs">ngx-filter Inputs</h3>
-    <table class="table documentation-table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>allowAdditions: boolean</code>
-          </th>
-          <td>NEEDS DOCUMENTATION.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>autofocus: boolean</code>
-          </th>
-          <td>Whether the component is auto-focused.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">>&#64;Input()</code>
-            <code>autoSelectAll: boolean</code>
-          </th>
-          <td>
-            Sets the 'Select All' when all options are selected. Requires 'multiple', and 'showSelectAll' as true. False
-            in the default value for this property.
-          </td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>autosize: boolean</code>
-          </th>
-          <td>Whether the component is autosized.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>autosizeMinWidth: number | string</code>
-          </th>
-          <td>The minimum width of the component when autosize is enabled, in pixels.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>closeOnBodyClick: boolean = true</code>
-          </th>
-          <td>Whether the component dropdown should close when a click outside of the dropdown is registered.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>closeOnSelect: boolean</code>
-          </th>
-          <td>Whether the component dropdown should close when an option has been selected.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>customDropdownConfig: FilterCustomDropDown</code>
-          </th>
-          <td>
-            The configuration when the type is CustomDropdown. You can configure the custom component to render, its
-            inputs and outputs.
-          </td>
-        </tr>
+<ngx-section class="shadow" sectionTitle="Button Filter">
+  <h4>Basic</h4>
+  <ngx-filter label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'"> </ngx-filter>
 
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>disabled: boolean</code>
-          </th>
-          <td>Whether the component is disabled.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>disableDropdown: boolean</code>
-          </th>
-          <td>Whether the component dropdown is disabled.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>emptyPlaceholder: string = 'No options available'</code>
-          </th>
-          <td>Placeholder to display when the component has no selectable options.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>filterable: boolean = true</code>
-          </th>
-          <td>Whether the component is filterable.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>filterCaseSensitive: boolean</code>
-          </th>
-          <td>Whether the component's filter is case-sensitive.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>filterCount: number</code>
-          </th>
-          <td>Tne number of filters applied.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>filterEmptyPlaceholder: string = 'No matches...'</code>
-          </th>
-          <td>
-            Placeholder to display when the component has no selectable options that match the user's filter term.
-          </td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>filterPlaceholder: string = 'Search'</code>
-          </th>
-          <td>Placeholder to display for the component's filter text input.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>forceDownwardOpening: boolean</code>
-          </th>
-          <td>Whether to force the component to open beneath itself.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>groupBy: string</code>
-          </th>
-          <td>NEEDS DOCUMENTATION.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>groupByTemplate: TemplateRef&lt;unknown&gt;</code>
-          </th>
-          <td>NEEDS DOCUMENTATION.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>hasFilters: boolean</code>
-          </th>
-          <td>Whether the component has filter or not.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>id: string = 'select-1'</code>
-          </th>
-          <td>The ID for the component.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>identifier: string</code>
-          </th>
-          <td>NEEDS DOCUMENTATION.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">>&#64;Input()</code>
-            <code>itemsPosition: FilterItemPositionTypes</code>
-          </th>
-          <td>
-            The position where the items popup is going to be displayed ('left', 'right'). 'Left' is the default value.
-          </td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>label: string</code>
-          </th>
-          <td class="component-description">The label for the component.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>multiDimension: boolean</code>
-          </th>
-          <td class="component-description">
-            Whether the component supports multiple dimensions of selectable options. When this option is set to
-            <code>true</code>, the <code>selectionList &#64;Input()</code> must be provided. See the Examples tab for
-            more information.
-          </td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>multiple: boolean</code>
-          </th>
-          <td class="component-description">Whether multiple selection is allowed.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>name: string</code>
-          </th>
-          <td class="component-description">The name for the component.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">>&#64;Input()</code>
-            <code>ngxIconClass: string</code>
-          </th>
-          <td>The ngx-class name that represents an icon.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">>&#64;Input()</code>
-            <code>ngxIconPosition: FilterIconPositionTypes</code>
-          </th>
-          <td>The position where ngxIcon is going to be displayed ('left', 'right'). 'Left' is the default value.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>options: SelectDropdownOption[] = []</code>
-          </th>
-          <td class="component-description">The options to display for the component.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>placeholder: string</code>
-          </th>
-          <td class="component-description">The placeholder for the component.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>selectionList: SelectionList</code>
-          </th>
-          <td class="component-description">
-            When the <code>multiDimension &#64;Input()</code> is set to <code>true</code>, this is the data source used
-            to build each dimension of selectable options. This data source should include the entire nested structure
-            of each selection list and should have the active property set to <code>true</code>. See the Examples tab
-            for more information.
-          </td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>showSelectAll: boolean</code>
-          </th>
-          <td class="component-description">Displays a "Select All" item in the Select</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>type: FilterType</code>
-          </th>
-          <td class="component-description">
-            Sets the type of filter based-on the enum FilterType ('select', 'button', and 'customDropdown'). Select is
-            the default.
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <hr />
-    <h3 class="style-header" id="ngx-filter-outputs">ngx-filter Outputs</h3>
-    <table class="table documentation-table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Output()</code>
-            <code>change: EventEmitter&lt;any[]&gt;</code>
-          </th>
-          <td>Event emitted when an option is selected.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Output()</code>
-            <code>clicked: EventEmitter&lt;void&gt;</code>
-          </th>
-          <td>Event emitted when the component is clicked.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Output()</code>
-            <code>keyup: EventEmitter&lt;&#123; event: KeyboardEvent; value?: string &#125;&gt;</code>
-          </th>
-          <td>Event emitted when a key is released.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Output()</code>
-            <code>toggle: EventEmitter&lt;boolean&gt;</code>
-          </th>
-          <td>Event emitted when the dropdown is toggled open or closed.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Output()</code>
-            <code>clearQueryFilter: EventEmitter&lt;void&gt;</code>
-          </th>
-          <td>Event emitted when the query filter is cleared.</td>
-        </tr>
-      </tbody>
-    </table>
-    <hr />
-    <h3 class="style-header" id="ngx-select-option-inputs">ngx-select-option Inputs</h3>
-    <table class="table documentation-table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>disabled: boolean</code>
-          </th>
-          <td>Whether the component is disabled.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>hidden: boolean</code>
-          </th>
-          <td>Whether the component is hidden.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>name: string</code>
-          </th>
-          <td>The name of the component. This is what is displayed to the user.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>tooltipConfig: TooltipConfig = DEFAULT_TOOLTIP_CONFIG</code>
-          </th>
-          <td>The tooltip configuration object required by the component to display a tooltip. See Examples tab.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>value: any</code>
-          </th>
-          <td>The value of the component.</td>
-        </tr>
-      </tbody>
-    </table>
-    <hr />
-    <h3 class="style-header" id="ngx-select-option-outputs">ngx-select-option Outputs</h3>
-    <h4>No component outputs to display.</h4>
-  </ngx-tab>
+  <!-- prettier-ignore -->
+  <app-prism>
+    <![CDATA[
+    <ngx-filter
+      label="Selection"
+      [type]="'button'"
+      [ngxIconClass]="'ngx-filter'"
+    ></ngx-filter>
+    ]]>
+  </app-prism>
+  <br />
+  <br />
+  <br />
+
+  <h4>Disabled</h4>
+  <ngx-filter label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" [disabled]="true"> </ngx-filter>
+  <!-- prettier-ignore -->
+  <app-prism>
+    <![CDATA[
+    <ngx-filter
+      label="Selection"
+      [type]="'button'"
+      [ngxIconClass]="'ngx-filter'"
+      [disabled]="true"
+    ></ngx-filter>
+    ]]>
+  </app-prism>
+  <br />
+  <br />
+  <br />
+
+  <h4>Icon Position</h4>
+  <div class="div-options-position">
+    <ngx-filter label="Selection 1" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'left'">
+    </ngx-filter>
+    <ngx-filter label="Selection 2" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'right'">
+    </ngx-filter>
+  </div>
+
+  <!-- prettier-ignore -->
+  <app-prism>
+    <![CDATA[
+    <ngx-filter
+      label="Selection 1"
+      [type]="'button'"
+      [ngxIconClass]="'ngx-filter'"
+      [ngxIconPosition]="'left'"
+    ></ngx-filter>
+    <ngx-filter
+      label="Selection 2"
+      [type]="'button'"
+      [ngxIconClass]="'ngx-filter'"
+      [ngxIconPosition]="'right'"
+    ></ngx-filter>
+    ]]>
+  </app-prism>
+  <br />
+  <br />
+  <br />
+
+  <h4>Count badge visible</h4>
+  <ngx-filter
+    label="Selection"
+    [type]="'button'"
+    [ngxIconClass]="'ngx-filter'"
+    [ngxIconPosition]="'left'"
+    [filterCount]="3"
+  ></ngx-filter>
+
+  <!-- prettier-ignore -->
+  <app-prism>
+    <![CDATA[
+    <ngx-filter
+      label="Selection"
+      [type]="'button'"
+      [ngxIconClass]="'ngx-filter'"
+      [ngxIconPosition]="'left'"
+      [filterCount]="3"
+    ></ngx-filter>
+    ]]>
+  </app-prism>
+  <br />
+  <br />
+  <br />
+
+  <h4>Count badge hidden</h4>
+  <ngx-filter
+    label="Selection"
+    [type]="'button'"
+    [ngxIconClass]="'ngx-filter'"
+    [ngxIconPosition]="'left'"
+    [filterCount]="3"
+    [showCount]="false"
+  ></ngx-filter>
+
+  <!-- prettier-ignore -->
+  <app-prism>
+    <![CDATA[
+    <ngx-filter
+      label="Selection"
+      [type]="'button'"
+      [ngxIconClass]="'ngx-filter'"
+      [ngxIconPosition]="'left'"
+      [filterCount]="3"
+      [showCount]="false"
+    ></ngx-filter>
+    ]]>
+  </app-prism>
+  <br />
+  <br />
+  <br />
+
+  <h4>Event emitters</h4>
+  <ngx-filter
+    label="Selection"
+    [type]="'button'"
+    [ngxIconClass]="'ngx-filter'"
+    [ngxIconPosition]="'left'"
+    [filterCount]="1"
+    (clicked)="onButtonClick()"
+  ></ngx-filter>
+  <p>Click: {{ buttonClicks }}</p>
+
+  <!-- prettier-ignore -->
+  <app-prism>
+    <![CDATA[
+    <ngx-filter
+      label="Selection"
+      [type]="'button'"
+      [ngxIconClass]="'ngx-filter'"
+      [ngxIconPosition]="'left'"
+      [filterCount]="1"
+      (clicked)="onButtonClick()"
+    ></ngx-filter>
+    ]]>
+  </app-prism>
+  <br />
+  <br />
+  <br />
+</ngx-section>
+</ngx-tab>
+<ngx-tab label="API">
+  <h3>Table of Contents</h3>
+  <a class="documentation-content" (click)="scrollTo('ngx-filter-inputs')">ngx-filter Inputs</a>
+  <a class="documentation-content" (click)="scrollTo('ngx-filter-outputs')">ngx-filter Outputs</a>
+  <a class="documentation-content" (click)="scrollTo('ngx-select-option-inputs')">ngx-select-option Inputs</a>
+  <a class="documentation-content" (click)="scrollTo('ngx-select-option-outputs')">ngx-select-option Outputs</a>
+  <hr />
+
+  <h3 class="style-header" id="ngx-filter-inputs">ngx-filter Inputs</h3>
+  <table class="table documentation-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>allowAdditions: boolean</code>
+        </th>
+        <td>NEEDS DOCUMENTATION.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>autofocus: boolean</code>
+        </th>
+        <td>Whether the component is auto-focused.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">>&#64;Input()</code>
+          <code>autoSelectAll: boolean</code>
+        </th>
+        <td>
+          Sets the 'Select All' when all options are selected. Requires 'multiple', and 'showSelectAll' as true. False
+          in the default value for this property.
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>autosize: boolean</code>
+        </th>
+        <td>Whether the component is autosized.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>autosizeMinWidth: number | string</code>
+        </th>
+        <td>The minimum width of the component when autosize is enabled, in pixels.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>closeOnBodyClick: boolean = true</code>
+        </th>
+        <td>Whether the component dropdown should close when a click outside of the dropdown is registered.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>closeOnSelect: boolean</code>
+        </th>
+        <td>Whether the component dropdown should close when an option has been selected.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>customDropdownConfig: FilterCustomDropDown</code>
+        </th>
+        <td>
+          The configuration when the type is CustomDropdown. You can configure the custom component to render, its
+          inputs and outputs.
+        </td>
+      </tr>
+
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>disabled: boolean</code>
+        </th>
+        <td>Whether the component is disabled.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>disableDropdown: boolean</code>
+        </th>
+        <td>Whether the component dropdown is disabled.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>emptyPlaceholder: string = 'No options available'</code>
+        </th>
+        <td>Placeholder to display when the component has no selectable options.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>filterable: boolean = true</code>
+        </th>
+        <td>Whether the component is filterable.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>filterCaseSensitive: boolean</code>
+        </th>
+        <td>Whether the component's filter is case-sensitive.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>filterCount: number</code>
+        </th>
+        <td>Tne number of filters applied.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>filterEmptyPlaceholder: string = 'No matches...'</code>
+        </th>
+        <td>
+          Placeholder to display when the component has no selectable options that match the user's filter term.
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>filterPlaceholder: string = 'Search'</code>
+        </th>
+        <td>Placeholder to display for the component's filter text input.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>forceDownwardOpening: boolean</code>
+        </th>
+        <td>Whether to force the component to open beneath itself.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>groupBy: string</code>
+        </th>
+        <td>NEEDS DOCUMENTATION.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>groupByTemplate: TemplateRef&lt;unknown&gt;</code>
+        </th>
+        <td>NEEDS DOCUMENTATION.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>hasFilters: boolean</code>
+        </th>
+        <td>Whether the component has filter or not.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>id: string = 'select-1'</code>
+        </th>
+        <td>The ID for the component.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>identifier: string</code>
+        </th>
+        <td>NEEDS DOCUMENTATION.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">>&#64;Input()</code>
+          <code>itemsPosition: FilterItemPositionTypes</code>
+        </th>
+        <td>
+          The position where the items popup is going to be displayed ('left', 'right'). 'Left' is the default value.
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>label: string</code>
+        </th>
+        <td class="component-description">The label for the component.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>multiDimension: boolean</code>
+        </th>
+        <td class="component-description">
+          Whether the component supports multiple dimensions of selectable options. When this option is set to
+          <code>true</code>, the <code>selectionList &#64;Input()</code> must be provided. See the Examples tab for
+          more information.
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>multiple: boolean</code>
+        </th>
+        <td class="component-description">Whether multiple selection is allowed.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>name: string</code>
+        </th>
+        <td class="component-description">The name for the component.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">>&#64;Input()</code>
+          <code>ngxIconClass: string</code>
+        </th>
+        <td>The ngx-class name that represents an icon.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">>&#64;Input()</code>
+          <code>ngxIconPosition: FilterIconPositionTypes</code>
+        </th>
+        <td>The position where ngxIcon is going to be displayed ('left', 'right'). 'Left' is the default value.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>options: SelectDropdownOption[] = []</code>
+        </th>
+        <td class="component-description">The options to display for the component.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>placeholder: string</code>
+        </th>
+        <td class="component-description">The placeholder for the component.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>selectionList: SelectionList</code>
+        </th>
+        <td class="component-description">
+          When the <code>multiDimension &#64;Input()</code> is set to <code>true</code>, this is the data source used
+          to build each dimension of selectable options. This data source should include the entire nested structure
+          of each selection list and should have the active property set to <code>true</code>. See the Examples tab
+          for more information.
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>showSelectAll: boolean</code>
+        </th>
+        <td class="component-description">Displays a "Select All" item in the Select</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>type: FilterType</code>
+        </th>
+        <td class="component-description">
+          Sets the type of filter based-on the enum FilterType ('select', 'button', and 'customDropdown'). Select is
+          the default.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <hr />
+  <h3 class="style-header" id="ngx-filter-outputs">ngx-filter Outputs</h3>
+  <table class="table documentation-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Output()</code>
+          <code>change: EventEmitter&lt;any[]&gt;</code>
+        </th>
+        <td>Event emitted when an option is selected.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Output()</code>
+          <code>clicked: EventEmitter&lt;void&gt;</code>
+        </th>
+        <td>Event emitted when the component is clicked.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Output()</code>
+          <code>keyup: EventEmitter&lt;&#123; event: KeyboardEvent; value?: string &#125;&gt;</code>
+        </th>
+        <td>Event emitted when a key is released.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Output()</code>
+          <code>toggle: EventEmitter&lt;boolean&gt;</code>
+        </th>
+        <td>Event emitted when the dropdown is toggled open or closed.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Output()</code>
+          <code>clearQueryFilter: EventEmitter&lt;void&gt;</code>
+        </th>
+        <td>Event emitted when the query filter is cleared.</td>
+      </tr>
+    </tbody>
+  </table>
+  <hr />
+  <h3 class="style-header" id="ngx-select-option-inputs">ngx-select-option Inputs</h3>
+  <table class="table documentation-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>disabled: boolean</code>
+        </th>
+        <td>Whether the component is disabled.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>hidden: boolean</code>
+        </th>
+        <td>Whether the component is hidden.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>name: string</code>
+        </th>
+        <td>The name of the component. This is what is displayed to the user.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>tooltipConfig: TooltipConfig = DEFAULT_TOOLTIP_CONFIG</code>
+        </th>
+        <td>The tooltip configuration object required by the component to display a tooltip. See Examples tab.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>value: any</code>
+        </th>
+        <td>The value of the component.</td>
+      </tr>
+    </tbody>
+  </table>
+  <hr />
+  <h3 class="style-header" id="ngx-select-option-outputs">ngx-select-option Outputs</h3>
+  <h4>No component outputs to display.</h4>
+</ngx-tab>
 </ngx-tabs>

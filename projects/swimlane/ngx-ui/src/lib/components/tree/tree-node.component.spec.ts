@@ -41,7 +41,7 @@ describe('TreeNodeComponent', () => {
   });
 
   it('clicking expand to expand node emits expand event', () => {
-    spyOn(component.expand, 'emit').and.callThrough();
+    vi.spyOn(component.expand, 'emit');
     component.expandable = true;
     component.onExpandClick(MOCK_EVENT);
 
@@ -50,7 +50,7 @@ describe('TreeNodeComponent', () => {
   });
 
   it('clicking to collapse node emits collapse event', () => {
-    spyOn(component.collapse, 'emit').and.callThrough();
+    vi.spyOn(component.collapse, 'emit');
     component.expandable = true;
     // click once to expand then again to collapse
     component.onExpandClick(MOCK_EVENT);
@@ -61,7 +61,7 @@ describe('TreeNodeComponent', () => {
   });
 
   it('onClick emits select event', () => {
-    spyOn(component.selectNode, 'emit').and.callThrough();
+    vi.spyOn(component.selectNode, 'emit');
     component.selectable = true;
     component.onClick();
 
@@ -82,7 +82,7 @@ describe('TreeNodeComponent', () => {
     });
 
     it('select click does not select node when disabled', () => {
-      spyOn(component.selectNode, 'emit').and.callThrough();
+      vi.spyOn(component.selectNode, 'emit');
       component.onClick();
 
       expect(component.selectNode.emit).not.toHaveBeenCalled();

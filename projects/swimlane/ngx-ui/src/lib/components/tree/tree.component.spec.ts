@@ -8,7 +8,7 @@ describe('TreeComponent', () => {
   let component2: TreeComponent;
   let fixture: ComponentFixture<TreeFixtureComponent>;
 
-  beforeEach(done => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [TreeModule],
       declarations: [TreeFixtureComponent]
@@ -18,9 +18,7 @@ describe('TreeComponent', () => {
     component2 = fixture.componentInstance.treeComponent2;
 
     fixture.autoDetectChanges();
-    fixture.whenStable().then(() => {
-      done();
-    });
+    await fixture.whenStable().then(() => {});
   });
 
   it('can load instance', () => {

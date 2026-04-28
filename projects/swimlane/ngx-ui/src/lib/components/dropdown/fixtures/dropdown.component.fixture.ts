@@ -7,7 +7,9 @@ import { DropdownComponent } from '../dropdown.component';
   selector: 'ngx-dropdown-fixture',
   template: `
     <ngx-dropdown showCaret>
-      <ngx-dropdown-toggle *ngIf="hasToggler$ | async">Button</ngx-dropdown-toggle>
+      @if (hasToggler$ | async) {
+      <ngx-dropdown-toggle>Button</ngx-dropdown-toggle>
+      }
       <ngx-dropdown-menu class="pull-right">
         <ul>
           <li><a>...</a></li>

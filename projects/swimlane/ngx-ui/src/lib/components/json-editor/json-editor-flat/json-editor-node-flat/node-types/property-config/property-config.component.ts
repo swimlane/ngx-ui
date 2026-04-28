@@ -7,7 +7,7 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { JSONSchema7TypeName } from 'json-schema';
+import { JSONSchema7Type, JSONSchema7TypeName } from 'json-schema';
 
 import { JSONEditorSchema, propTypes, JsonSchemaDataType } from '../../../../json-editor.helper';
 import { snakeCase } from '../../../../../../utils/strings/snake-case';
@@ -118,7 +118,7 @@ export class PropertyConfigComponent implements OnInit {
     }
   }
 
-  removeEnumValue(val: string): void {
+  removeEnumValue(val: string | JSONSchema7Type): void {
     const enumValues = this.editableProperty.enum;
     const index = enumValues.indexOf(val);
 

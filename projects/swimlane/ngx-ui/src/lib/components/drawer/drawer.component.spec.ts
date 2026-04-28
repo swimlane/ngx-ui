@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DrawerComponent } from './drawer.component';
@@ -8,13 +8,13 @@ describe('DrawerComponent', () => {
   let component: DrawerComponent;
   let fixture: ComponentFixture<DrawerComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       declarations: [DrawerComponent],
       imports: [NoopAnimationsModule],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DrawerComponent);
@@ -54,7 +54,7 @@ describe('DrawerComponent', () => {
 
   describe('onEscapeKey', () => {
     it('should close', () => {
-      const spy = spyOn(component.close, 'emit');
+      const spy = vi.spyOn(component.close, 'emit');
       component.onEscapeKey();
       expect(spy).toHaveBeenCalled();
     });

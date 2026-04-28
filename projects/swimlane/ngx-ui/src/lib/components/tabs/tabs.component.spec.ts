@@ -10,8 +10,8 @@ describe('TabsComponent', () => {
   let component: TabsComponent;
   let fixture: ComponentFixture<TabsFixtureComponent>;
   describe('Standard Tabs', () => {
-    beforeEach(done => {
-      TestBed.configureTestingModule({
+    beforeEach(async () => {
+      await TestBed.configureTestingModule({
         declarations: [TabsFixtureComponent],
         imports: [TabsModule],
         teardown: { destroyAfterEach: false }
@@ -20,8 +20,10 @@ describe('TabsComponent', () => {
       fixture = TestBed.createComponent(TabsFixtureComponent);
       component = fixture.componentInstance.tabsComponent;
       fixture.autoDetectChanges();
-      fixture.whenStable().then(() => {
-        done();
+      await fixture.whenStable();
+      // Default active tab is set in ngAfterContentInit via setTimeout(0); whenStable() does not wait for that macrotask.
+      await new Promise<void>(resolve => {
+        setTimeout(() => resolve(), 0);
       });
     });
 
@@ -39,7 +41,7 @@ describe('TabsComponent', () => {
 
     describe('next', () => {
       it('makes expected calls', () => {
-        spyOn(component, 'move').and.callThrough();
+        vi.spyOn(component, 'move');
         component.next();
         fixture.detectChanges();
         expect(component.move).toHaveBeenCalled();
@@ -49,7 +51,7 @@ describe('TabsComponent', () => {
 
     describe('prev', () => {
       it('makes expected calls', () => {
-        spyOn(component, 'move');
+        vi.spyOn(component, 'move');
         component.prev();
         expect(component.move).toHaveBeenCalled();
       });
@@ -70,7 +72,7 @@ describe('TabsComponent', () => {
   });
 
   describe('Tabs with specific tab set active', () => {
-    beforeEach(done => {
+    beforeEach(async () => {
       TestBed.configureTestingModule({
         declarations: [TabsLabeltemplateFixtureComponent],
         imports: [TabsModule],
@@ -80,9 +82,7 @@ describe('TabsComponent', () => {
       fixture = TestBed.createComponent(TabsLabeltemplateFixtureComponent);
       component = fixture.componentInstance.tabsComponent;
       fixture.autoDetectChanges();
-      fixture.whenStable().then(() => {
-        done();
-      });
+      await fixture.whenStable().then(() => {});
     });
 
     it('4th tab is set to active on init', () => {
@@ -96,20 +96,18 @@ describe('TabsComponent', () => {
   });
 
   describe('Tabs with multiple active', () => {
-    beforeEach(done => {
+    beforeEach(async () => {
       TestBed.configureTestingModule({
         declarations: [TabsMultipleActiveFixtureComponent],
         imports: [TabsModule],
         teardown: { destroyAfterEach: false }
       }).compileComponents();
 
-      spyOn(console, 'error');
+      vi.spyOn(console, 'error');
       fixture = TestBed.createComponent(TabsMultipleActiveFixtureComponent);
       component = fixture.componentInstance.tabsComponent;
       fixture.autoDetectChanges();
-      fixture.whenStable().then(() => {
-        done();
-      });
+      await fixture.whenStable().then(() => {});
     });
 
     it('Tabs with multiple active tabs throws error when initialized', () => {

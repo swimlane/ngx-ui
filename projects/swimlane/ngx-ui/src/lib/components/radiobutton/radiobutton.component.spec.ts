@@ -37,7 +37,7 @@ describe('RadioButtonComponent', () => {
     it('should emit if checked', () => {
       component.checked$.next(true);
       fixture.detectChanges();
-      const spy = spyOn(component.one.change, 'emit');
+      const spy = vi.spyOn(component.one.change, 'emit');
       component.one.value = !component.one.value;
       expect(spy).toHaveBeenCalled();
     });
@@ -45,7 +45,7 @@ describe('RadioButtonComponent', () => {
 
   describe('onFocus', () => {
     it('should focus', () => {
-      const spy = spyOn(component.one.focus, 'emit');
+      const spy = vi.spyOn(component.one.focus, 'emit');
       component.one.onFocus(undefined);
       expect(spy).toHaveBeenCalled();
     });

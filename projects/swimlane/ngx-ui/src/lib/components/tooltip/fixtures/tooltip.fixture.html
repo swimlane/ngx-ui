@@ -1,7 +1,9 @@
 <ng-template #popoverTemplate let-model="model">
   <h3>Tool tip custom content defined inside a template</h3>
   <p>With context binding: {{tooltipModel.text}}</p>
-  <p *ngIf="model">Outside Context {{model.foo}}</p>
+  @if (model) {
+    <p>Outside Context {{model.foo}}</p>
+  }
 </ng-template>
 
 <a
@@ -19,6 +21,6 @@
   tooltipShowTimeout="0"
   [tooltipContext]="{ foo: 'YAZ' }"
   [tooltipTemplate]="popoverTemplate"
->
+  >
   Top
 </a>

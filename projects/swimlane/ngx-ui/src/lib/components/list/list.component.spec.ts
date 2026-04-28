@@ -1,21 +1,34 @@
+import type { Mock } from 'vitest';
 import { fakeAsync, tick } from '@angular/core/testing';
 import { ListComponent } from './list.component';
 import { of } from 'rxjs';
 
 describe('ListComponent', () => {
   let component: ListComponent;
-  const mockScrollEvent = {} as Event;
+  const mockScrollEvent = { target: { scrollTop: 0 } } as unknown as Event;
+  let listRowsScrollMetrics: { clientHeight: number; scrollHeight: number };
+
+  const createListRowsNativeElement = () => {
+    const el = document.createElement('div');
+    listRowsScrollMetrics = { clientHeight: 400, scrollHeight: 0 };
+    Object.defineProperty(el, 'clientHeight', {
+      configurable: true,
+      get: () => listRowsScrollMetrics.clientHeight
+    });
+    Object.defineProperty(el, 'scrollHeight', {
+      configurable: true,
+      get: () => listRowsScrollMetrics.scrollHeight
+    });
+    el.scrollTo = vi.fn() as unknown as HTMLDivElement['scrollTo'];
+    return el;
+  };
 
   beforeEach(() => {
     component = new ListComponent();
     component.columnLayout = null as any;
-    component.headers = null as any;
+    component.headers = { length: 1 } as any;
     component.listRowsContainer = {
-      nativeElement: {
-        clientHeight: 400,
-        scrollHeight: 0,
-        scrollTo: (options: ScrollToOptions) => options
-      }
+      nativeElement: createListRowsNativeElement()
     } as any;
     component.paginationConfig = null as any;
     component.virtualScroll = false;
@@ -29,7 +42,7 @@ describe('ListComponent', () => {
   });
 
   it('ngAfterContentInit', () => {
-    const generateLayoutSpy = spyOn(component, 'generateLayout');
+    const generateLayoutSpy = vi.spyOn(component, 'generateLayout');
 
     component.ngAfterContentInit();
 
@@ -38,7 +51,7 @@ describe('ListComponent', () => {
 
   describe('ngAfterViewInit', () => {
     it('should call initScrollListener and determine there is no scrollbar', fakeAsync(() => {
-      const initScrollListenerSpy = spyOn(component, 'initScrollListener');
+      const initScrollListenerSpy = vi.spyOn(component, 'initScrollListener');
 
       component.ngAfterViewInit();
 
@@ -49,8 +62,8 @@ describe('ListComponent', () => {
     }));
 
     it('should call initScrollListener and determine there is a scrollbar', fakeAsync(() => {
-      const initScrollListenerSpy = spyOn(component, 'initScrollListener');
-      (component.listRowsContainer.nativeElement as any).scrollHeight = 800;
+      const initScrollListenerSpy = vi.spyOn(component, 'initScrollListener');
+      listRowsScrollMetrics.scrollHeight = 800;
 
       component.ngAfterViewInit();
 
@@ -61,11 +74,8 @@ describe('ListComponent', () => {
     }));
 
     it('should call initScrollListener and scroll to the correct page when the paginationConfig Input is provided', fakeAsync(() => {
-      const scrollToSpy: jasmine.Spy<{ (options: ScrollToOptions): void }> = spyOn(
-        component.listRowsContainer.nativeElement,
-        'scrollTo'
-      );
-      const initScrollListenerSpy = spyOn(component, 'initScrollListener');
+      const scrollToSpy: Mock = vi.spyOn(component.listRowsContainer.nativeElement, 'scrollTo');
+      const initScrollListenerSpy = vi.spyOn(component, 'initScrollListener');
       component.paginationConfig = {
         index: 5,
         pageSize: 10
@@ -85,8 +95,8 @@ describe('ListComponent', () => {
   });
 
   it('ngOnDestroy', () => {
-    const destroyNextSpy = spyOn(component['destroy$'], 'next');
-    const destroyCompleteSpy = spyOn(component['destroy$'], 'complete');
+    const destroyNextSpy = vi.spyOn(component['destroy$'], 'next');
+    const destroyCompleteSpy = vi.spyOn(component['destroy$'], 'complete');
 
     component.ngOnDestroy();
 
@@ -97,7 +107,7 @@ describe('ListComponent', () => {
   describe('emitScrollChanges', () => {
     it('should emit the scroll event', () => {
       const scrollEvent = { target: { scrollTop: 1000 } } as any;
-      const onScrollSpy = spyOn(component.onScroll, 'emit');
+      const onScrollSpy = vi.spyOn(component.onScroll, 'emit');
 
       component.emitScrollChanges(scrollEvent);
 
@@ -106,8 +116,8 @@ describe('ListComponent', () => {
 
     it('should emit the onScroll event and emit the onPageChange event when the pageSize is provided as part of the paginationConfig Input', () => {
       const scrollEvent = { target: { scrollTop: 1000 } } as any;
-      const onScrollSpy = spyOn(component.onScroll, 'emit');
-      const onPageChangeSpy = spyOn(component.onPageChange, 'emit');
+      const onScrollSpy = vi.spyOn(component.onScroll, 'emit');
+      const onPageChangeSpy = vi.spyOn(component.onPageChange, 'emit');
       component.paginationConfig = {
         pageSize: 10
       };
@@ -152,7 +162,7 @@ describe('ListComponent', () => {
 
   describe('initScrollListener', () => {
     it('should initialize the scroll listener for virtual scroll viewport', () => {
-      const emitScrollChangesSpy = spyOn(component, 'emitScrollChanges');
+      const emitScrollChangesSpy = vi.spyOn(component, 'emitScrollChanges');
       component.virtualScroll = true;
 
       component.initScrollListener();
