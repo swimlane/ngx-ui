@@ -115,11 +115,10 @@
     "copy:icon-font": "node scripts/copy-icon-font.mjs",
     "generate:icon-glyphs": "node scripts/generate-icon-glyphs.mjs",
     "dev": "yarn copy:icon-font && vite",
-    "build": "yarn copy:icon-font && tsc && vite build",
-    "build:lib": "tsc --project tsconfig.lib.json",
-    "build:cdn": "node scripts/build-cdn.mjs",
-    "serve:cdn-local": "yarn copy:icon-font && yarn build:cdn && rm -rf .cdn-local-serve && mkdir -p .cdn-local-serve/swim-ui && cp -r dist-cdn/. .cdn-local-serve/swim-ui/ && npx --yes serve .cdn-local-serve -l 8765 --cors",
-    "deploy:gh-pages": "yarn build && yarn build:cdn && cp -r dist-cdn/* dist-demo/ && yarn exec gh-pages -d dist-demo -r https://github.com/surya-pabbineedi/swim-ui.git",
+    "build": "yarn copy:icon-font && tsc && node scripts/sync-icon-font-to-dist.mjs && vite build",
+    "build:lib": "yarn copy:icon-font && tsc --project tsconfig.lib.json && node scripts/sync-icon-font-to-dist.mjs",
+    "build:cdn": "yarn copy:icon-font && node scripts/build-cdn.mjs",
+    "serve:cdn-local": "yarn build:cdn && rm -rf .cdn-local-serve && mkdir -p .cdn-local-serve/swim-ui && cp -r dist-cdn/. .cdn-local-serve/swim-ui/ && npx --yes serve .cdn-local-serve -l 8765 --cors",
     "preview": "vite preview",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint src/**/*.ts"
@@ -142,7 +141,6 @@
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
-    "gh-pages": "^6.2.0",
     "typescript": "^5.8.0",
     "vite": "^5.4.0"
   },

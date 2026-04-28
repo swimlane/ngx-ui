@@ -4503,7 +4503,6 @@ __metadata:
   resolution: "@swimlane/swim-ui@workspace:projects/swimlane/swim-ui"
   dependencies:
     "@types/node": "npm:^20.0.0"
-    gh-pages: "npm:^6.2.0"
     lit: "npm:^3.2.0"
     typescript: "npm:^5.8.0"
     vite: "npm:^5.4.0"
@@ -6577,7 +6576,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"async@npm:^3.2.0, async@npm:^3.2.4, async@npm:^3.2.6":
+"async@npm:^3.2.0, async@npm:^3.2.6":
   version: 3.2.6
   resolution: "async@npm:3.2.6"
   checksum: 10c0/36484bb15ceddf07078688d95e27076379cc2f87b10c03b6dd8a83e89475a3c8df5848859dd06a4c95af1e4c16fc973de0171a77f18ea00be899aca2a4f85e70
@@ -7718,13 +7717,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:^13.0.0":
-  version: 13.1.0
-  resolution: "commander@npm:13.1.0"
-  checksum: 10c0/7b8c5544bba704fbe84b7cab2e043df8586d5c114a4c5b607f83ae5060708940ed0b5bd5838cf8ce27539cde265c1cbd59ce3c8c6b017ed3eec8943e3a415164
-  languageName: node
-  linkType: hard
-
 "commander@npm:^14.0.0":
   version: 14.0.3
   resolution: "commander@npm:14.0.3"
@@ -8698,13 +8690,6 @@ __metadata:
   version: 3.1.0
   resolution: "email-addresses@npm:3.1.0"
   checksum: 10c0/d017b1f6ef355470f5c1c405f971b881254a017194feb6f4766fd7500b1c449fcdf60b8442b5a06e13e284f3948972f11ca83274aacbd7d4d89ae05a850c9e87
-  languageName: node
-  linkType: hard
-
-"email-addresses@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "email-addresses@npm:5.0.0"
-  checksum: 10c0/fc8a6f84e378bbe601ce39a3d8d86bc7e4584030ae9eb1938e12943f7fb5207e5fd7ae449cced3bea70968a519ade560d55ca170208c3f1413d7d25d8613a577
   languageName: node
   linkType: hard
 
@@ -10386,7 +10371,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fs-extra@npm:^11.1.1, fs-extra@npm:^11.2.0":
+"fs-extra@npm:^11.2.0":
   version: 11.3.4
   resolution: "fs-extra@npm:11.3.4"
   dependencies:
@@ -10659,24 +10644,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gh-pages@npm:^6.2.0":
-  version: 6.3.0
-  resolution: "gh-pages@npm:6.3.0"
-  dependencies:
-    async: "npm:^3.2.4"
-    commander: "npm:^13.0.0"
-    email-addresses: "npm:^5.0.0"
-    filenamify: "npm:^4.3.0"
-    find-cache-dir: "npm:^3.3.1"
-    fs-extra: "npm:^11.1.1"
-    globby: "npm:^11.1.0"
-  bin:
-    gh-pages: bin/gh-pages.js
-    gh-pages-clean: bin/gh-pages-clean.js
-  checksum: 10c0/c9c063c24ee986a1a964afa3984e62b18677a369417ed51605877bd6263d6e3b7f7c813c9e3470ce6d64191b2fc792ef50e8cf2f60ec65e0560088c147442d81
-  languageName: node
-  linkType: hard
-
 "glob-base@npm:^0.3.0":
   version: 0.3.0
   resolution: "glob-base@npm:0.3.0"
@@ -10808,7 +10775,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globby@npm:^11.0.1, globby@npm:^11.1.0":
+"globby@npm:^11.0.1":
   version: 11.1.0
   resolution: "globby@npm:11.1.0"
   dependencies:

@@ -2,15 +2,17 @@ import { LitElement, html, nothing } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { iconStyles } from './icon.styles';
+import { scheduleEnsureSwimUiIconFontFace } from './icon-font-face';
 import { iconRegistry } from '../../utils/icon-registry';
+
+scheduleEnsureSwimUiIconFontFace();
 
 /**
  * SwimIcon - Icon component matching @swimlane/ngx-ui design system.
  * Uses swim lit font icons only (via fontIcon + fontSet) or slotted content (e.g. another swim-icon).
  *
- * The host application must load the icon font with font-family 'ngx-icon'
- * (see SWIM_ICON_FONT_FAMILY; same as ngx-ui so platform can inject once). Icons render using
- * the font loaded by the parent.
+ * Registers @font-face for SWIM_ICON_FONT_FAMILY when this module loads (CDN / bundled apps).
+ * Hosts may still override with their own @font-face if they prefer a different asset URL.
  *
  * @slot - Default content when no fontIcon (e.g. slotted swim-icon or image)
  *
