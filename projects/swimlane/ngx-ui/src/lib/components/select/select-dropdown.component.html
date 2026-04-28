@@ -24,7 +24,7 @@
     <li class="ngx-select-dropdown-option ngx-select-all-option" (click)="selectAll.emit()">
       <span>Select All</span>
     </li>
-    } @for (group of groups; track group; let i = $index; let first = $first; let last = $last; let odd = $odd; let even
+    }     @for (group of groups; track group.name; let i = $index; let first = $first; let last = $last; let odd = $odd; let even
     = $even) {
     <li class="ngx-select-option-group">
       @if (group.name) { @if (groupByTemplate) {
@@ -40,7 +40,7 @@
       <span class="ngx-select-option-group-name" [innerHTML]="group.name"> </span>
       } }
       <ul class="vertical-list ngx-select-dropdown-options">
-        @for (kv of group.options; track kv) {
+        @for (kv of group.options; track kv.option) {
         <li
           class="ngx-select-dropdown-option"
           [class.disabled]="kv.option.disabled"

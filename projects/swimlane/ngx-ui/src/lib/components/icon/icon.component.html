@@ -4,7 +4,7 @@
   <i [ngClass]="cssClasses[0]"></i>
 } @else {
   <span class="icon-fx-stacked">
-    @for (cssClass of cssClasses; track cssClass) {
+    @for (cssClass of cssClasses; track $index) {
       <i [ngClass]="cssClass"></i>
     }
   </span>

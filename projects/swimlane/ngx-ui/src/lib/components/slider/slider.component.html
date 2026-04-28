@@ -1,7 +1,7 @@
 <div class="slider-inner">
   @if (showTicks) {
     <div class="ticks-container">
-      @for (s of _ticks; track s) {
+      @for (s of _ticks; track $index) {
         <div class="tick" [ngStyle]="s"></div>
       }
     </div>
@@ -11,7 +11,7 @@
     @if (filled) {
       <span [ngStyle]="_fill" class="fill-bar"> </span>
     }
-    @for (value of _values; track trackIndex(i); let i = $index; let odd = $odd) {
+    @for (value of _values; track $index; let i = $index; let odd = $odd) {
       <input
         type="range"
         [id]="id + '-' + i"
