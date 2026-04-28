@@ -18,15 +18,17 @@ describe('debounce', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  it('should get debounce result with wait', async () => {
-    const dbc = debounce(() => console.log('test'), 10);
-    dbc();
-    expect(spy).not.toHaveBeenCalled();
+  it('should get debounce result with wait', () => {
+    vi.useFakeTimers();
+    try {
+      const dbc = debounce(() => console.log('test'), 10);
+      dbc();
+      expect(spy).not.toHaveBeenCalled();
 
-    await new Promise<void>(resolve => {
-      setTimeout(resolve, 11);
-    });
-
-    expect(spy).toHaveBeenCalledTimes(1);
+      vi.advanceTimersByTime(10);
+      expect(spy).toHaveBeenCalledTimes(1);
+    } finally {
+      vi.useRealTimers();
+    }
   });
 });
