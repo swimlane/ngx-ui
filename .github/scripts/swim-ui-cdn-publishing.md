@@ -47,7 +47,7 @@ The publishing script is run by the workflow [.github/workflows/publish-swim-ui-
 
 **Steps:**
 1. Checkout, setup Node/Yarn, install dependencies
-2. Build swim-ui CDN: `cd projects/swimlane/swim-ui && yarn install --immutable && yarn copy:icon-font && yarn build:cdn`
+2. Build swim-ui CDN: from repo root run `yarn install --immutable`, then `cd projects/swimlane/swim-ui && yarn copy:icon-font && yarn build:cdn` (swim-ui is a Yarn workspace; root install already links dependencies).
 3. Configure AWS credentials (uses `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` repo secrets)
 4. Run `publish-swim-ui-cdn.sh` with the default bucket and source directory
 
