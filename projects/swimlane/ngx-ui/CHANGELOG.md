@@ -2,6 +2,12 @@
 
 ## HEAD (unreleased)
 
+## 52.0.0-alpha.0 (2026-04-27)
+
+- Feature: Added support for Angular 21.2
+- Feature: Migrating from control directives to control flow
+- Feature: Migrating from karma to vitest
+
 ## 51.5.0 (2026-04-18)
 
 - Enhancement (`ngx-large-format-dialog-content`): Added support to display custom content in large dialog's header.
