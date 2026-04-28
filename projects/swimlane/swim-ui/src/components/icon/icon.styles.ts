@@ -1,12 +1,15 @@
-import { css } from 'lit';
+import { css, unsafeCSS } from 'lit';
+import { SWIM_ICON_FONT_FAMILY } from './icon-font-loader';
 import { iconFontGlyphs } from './icon-font-glyphs';
+
+/** Quoted font-family value for Lit static styles (constant only). */
+const swimIconFontFamily = unsafeCSS(`'${SWIM_ICON_FONT_FAMILY}'`);
 
 /**
  * Icon styles matching @swimlane/ngx-ui design system.
  * BEM: swim-icon (block), swim-icon__i, swim-icon__stack (elements).
  *
- * The host must load the icon font with family name 'ngx-icon' (same as ngx-ui) so
- * the platform can inject once and both Angular and Lit use it. Demo loads font via assets/lit-icons.css.
+ * Font family SWIM_ICON_FONT_FAMILY; @font-face is injected by icon-font-face when the icon module loads.
  */
 export const iconStyles = css`
   :host {
@@ -79,7 +82,7 @@ export const iconStyles = css`
     color: var(--red-500);
   }
 
-  /* Font icon base (glyphs in icon-font-glyphs.ts); uses same font as ngx-ui ('ngx-icon'). */
+  /* Font icon base (glyphs in icon-font-glyphs.ts); same codepoints as ngx-ui icon font. */
   .swim-icon,
   .swim-icon__i.swim-icon {
     display: inline-flex;
@@ -87,14 +90,14 @@ export const iconStyles = css`
     justify-content: center;
     width: 1em;
     height: 1em;
-    font: normal normal normal 1em/1 'ngx-icon';
-    font-family: 'ngx-icon', sans-serif;
+    font: normal normal normal 1em/1 ${swimIconFontFamily};
+    font-family: ${swimIconFontFamily}, sans-serif;
     flex-shrink: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Center the glyph in the em box; many ngx-icon glyphs sit high with display:block alone */
+  /* Center the glyph in the em box; many icon glyphs sit high with display:block alone */
   .swim-icon::before,
   .swim-icon__i.swim-icon::before {
     display: flex;
@@ -108,7 +111,7 @@ export const iconStyles = css`
   [class^='icon-']:before,
   [class*='icon-']:before {
     line-height: 1;
-    font: normal normal normal 1em/1 'ngx-icon';
+    font: normal normal normal 1em/1 ${swimIconFontFamily};
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

@@ -36,3 +36,4 @@ coverage/
 .env
 .env.local
 
+src/assets/swim-ui-icon.woff2
