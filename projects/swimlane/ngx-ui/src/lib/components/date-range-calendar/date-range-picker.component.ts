@@ -30,7 +30,7 @@ import {
 } from '@angular/core';
 import { DateRangeForm, TooltipDateItem } from './models/date-range.model';
 
-import { addMonths, endOfMonth, format, isValid, startOfMonth } from 'date-fns';
+import { addMonths, endOfDay, endOfMonth, format, isValid, startOfDay, startOfMonth } from 'date-fns';
 import { DropdownComponent } from '../dropdown/dropdown.component';
 import { DateUtils } from './services/date-utils.service';
 import moment from 'moment-timezone';
@@ -170,15 +170,15 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
   onRangeSelect(range: { startDate: Date; endDate: Date }) {
     // If both dates already exist & user clicks again → reset to new start
     if (this.form.startDate && this.form.endDate) {
-      this.form.startDate = range.startDate;
+      this.form.startDate = startOfDay(range.startDate);
       this.form.endDate = null;
     } else if (!this.form.startDate || (this.form.startDate && range.startDate < this.form.startDate)) {
       // If startDate is not yet set, or clicked date is before current startDate
-      this.form.startDate = range.startDate;
+      this.form.startDate = startOfDay(range.startDate);
       this.form.endDate = null;
     } else {
-      // Otherwise, set endDate
-      this.form.endDate = range.startDate;
+      // Normalize end date to 23:59:59.999 so the full selected day is included
+      this.form.endDate = endOfDay(range.startDate);
     }
 
     this.rangeModel = {
