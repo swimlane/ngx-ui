@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## HEAD (unreleased)
+
 ## 52.0.0-alpha.1 (2026-04-28)
 
 - Enhancement: Fixing warnings related to trackBy in for
