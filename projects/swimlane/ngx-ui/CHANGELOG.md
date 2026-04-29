@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Enhancement: Fixing warnings related to trackBy in for
+
 ## 52.0.0-alpha.0 (2026-04-27)
 
 - Feature: Added support for Angular 21.2
