@@ -2,9 +2,8 @@
   "compilerOptions": {
     "target": "es5",
     "module": "esnext",
-    "lib": ["es2018", "dom"],
     "types": ["cypress", "cypress-axe"],
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "declaration": true,
     "rootDir": "src",
     "outDir": "dist",

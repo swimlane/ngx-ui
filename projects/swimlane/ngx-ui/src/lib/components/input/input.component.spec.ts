@@ -42,7 +42,7 @@ describe('InputComponent', () => {
   });
 
   it('should focus input', () => {
-    const spy = spyOn(component.input.focus, 'emit');
+    const spy = vi.spyOn(component.input.focus, 'emit');
     component.input.autoSelect = true;
     component.input.onFocus(MOCK_EVENT);
     expect(spy).toHaveBeenCalled();
@@ -67,25 +67,25 @@ describe('InputComponent', () => {
   });
 
   it('should emit changes', () => {
-    const spy = spyOn(component.input.change, 'emit');
+    const spy = vi.spyOn(component.input.change, 'emit');
     component.input.onChange(MOCK_EVENT);
     expect(spy).toHaveBeenCalledWith(component.input.value);
   });
 
   it('should emit keyup', () => {
-    const spy = spyOn(component.input.keyup, 'emit');
+    const spy = vi.spyOn(component.input.keyup, 'emit');
     component.input.onKeyUp(MOCK_EVENT);
     expect(spy).toHaveBeenCalledWith(MOCK_EVENT);
   });
 
   it('should blur', () => {
-    const spy = spyOn(component.input.blur, 'emit');
+    const spy = vi.spyOn(component.input.blur, 'emit');
     component.input.onBlur(MOCK_EVENT);
     expect(spy).toHaveBeenCalled();
   });
 
   it('should execute registered onTouchedCallback on blur', () => {
-    const onTouchedCallback = jasmine.createSpy();
+    const onTouchedCallback = vi.fn();
     component.input.registerOnTouched(onTouchedCallback);
     component.input.onBlur(MOCK_EVENT);
     expect(onTouchedCallback).toHaveBeenCalled();
@@ -158,7 +158,7 @@ describe('InputComponent', () => {
     it('should not change model if value is identical', () => {
       const cbs = { onChange: () => ({}) };
       component.input.registerOnChange(cbs.onChange);
-      const spy = spyOn(cbs, 'onChange');
+      const spy = vi.spyOn(cbs, 'onChange');
       component.input.value = '';
       fixture.detectChanges();
       expect(spy).not.toHaveBeenCalled();
@@ -310,12 +310,12 @@ describe('InputComponent', () => {
     });
 
     it('should be disabled by default', () => {
-      expect(component.input.disabled).toBeTrue();
+      expect(component.input.disabled).toBe(true);
     });
 
     it('should NOT be disabled when lock button clicked', () => {
       lockBtn.triggerEventHandler('click', null);
-      expect(component.input.disabled).toBeFalse();
+      expect(component.input.disabled).toBe(false);
     });
 
     it('should remove lock button from DOM when unlocked', () => {

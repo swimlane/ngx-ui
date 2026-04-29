@@ -1,55 +1,58 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { FileUploader } from 'ng2-file-upload';
 
-import { Shallow } from 'shallow-render';
 import { DropzoneComponent, DropzoneSize } from './dropzone.component';
 import { DropzoneModule } from './dropzone.module';
-import { Rendering } from 'shallow-render/dist/lib/models/rendering';
-import { FileUploader } from 'ng2-file-upload';
 
 const uploader = new FileUploader({ url: '' });
 const acceptedFileFormats = ['.txt', '.json'];
 const oneAcceptedFileFormat = ['.csv'];
 
-xdescribe('DropzoneComponent', () => {
-  let shallow: Shallow<DropzoneComponent>;
-  let rendering: Rendering<DropzoneComponent, unknown>;
+describe('DropzoneComponent', () => {
+  let fixture: ComponentFixture<DropzoneComponent>;
+  let component: DropzoneComponent;
 
   beforeEach(() => {
-    shallow = new Shallow(DropzoneComponent, DropzoneModule).import(HttpClientTestingModule);
+    TestBed.configureTestingModule({
+      imports: [DropzoneModule, HttpClientTestingModule]
+    });
+    fixture = TestBed.createComponent(DropzoneComponent);
+    component = fixture.componentInstance;
+    component.uploader = uploader;
+    fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    TestBed.resetTestingModule();
   });
 
   describe('init', () => {
-    beforeEach(async () => {
-      rendering = await shallow.render({
-        bind: {
-          uploader
-        }
-      });
-    });
-
     it('has correct class', () => {
-      expect(rendering.find('ngx-file-button').nativeElement).toHaveClass('ngx-dropzone');
-      expect(rendering.find('ngx-file-button').nativeElement).toHaveClass('ngx-dropzone--large');
+      const el = fixture.debugElement.query(By.css('ngx-file-button'))?.nativeElement;
+      expect(el.classList.contains('ngx-dropzone')).toBe(true);
+      expect(el.classList.contains('ngx-dropzone--large')).toBe(true);
     });
 
     it('multiple defaults to true', () => {
-      expect(rendering.instance.multiple).toBe(true);
+      expect(component.multiple).toBe(true);
     });
 
     it('size defaults to large', () => {
-      expect(rendering.instance.size).toBe(DropzoneSize.Large);
+      expect(component.size).toBe(DropzoneSize.Large);
     });
 
     it('accepted file formats', () => {
-      rendering.instance.acceptedFileFormats = acceptedFileFormats;
-      rendering.instance.ngOnInit();
-      expect(rendering.instance.acceptedFileFormatsTextDisplay).toEqual('.txt and .json');
+      component.acceptedFileFormats = acceptedFileFormats;
+      component.ngOnInit();
+      expect(component.acceptedFileFormatsTextDisplay).toEqual('.txt and .json');
     });
 
     it('display proper message when only one file format is added ', () => {
-      rendering.instance.acceptedFileFormats = oneAcceptedFileFormat;
-      rendering.instance.ngOnInit();
-      expect(rendering.instance.acceptedFileFormatsTextDisplay).toEqual('.csv');
+      component.acceptedFileFormats = oneAcceptedFileFormat;
+      component.ngOnInit();
+      expect(component.acceptedFileFormatsTextDisplay).toEqual('.csv');
     });
   });
 });

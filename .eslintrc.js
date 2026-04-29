@@ -12,7 +12,13 @@ module.exports = {
       files: ['*.ts'],
       parserOptions: {
         allowAutomaticSingleRunInference: true,
-        project: ['tsconfig.json', 'tsconfig.app.json', 'tsconfig.spec.json', 'cypress/tsconfig.json'],
+        project: [
+          'tsconfig.json',
+          'src/tsconfig.app.json',
+          'tsconfig.spec.json',
+          'cypress/tsconfig.json',
+          'projects/swimlane/ngx-ui/tsconfig.eslint.json'
+        ],
         tsconfigRootDir: __dirname
       },
       extends: [

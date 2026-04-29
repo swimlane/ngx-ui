@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { JsonEditorNodeInfoComponent } from './node-info.component';
 import { TooltipModule } from '../../../../../tooltip/tooltip.module';
@@ -7,13 +7,13 @@ describe('JsonEditorNodeInfoComponent', () => {
   let component: JsonEditorNodeInfoComponent;
   let fixture: ComponentFixture<JsonEditorNodeInfoComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       declarations: [JsonEditorNodeInfoComponent],
       imports: [TooltipModule],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(JsonEditorNodeInfoComponent);

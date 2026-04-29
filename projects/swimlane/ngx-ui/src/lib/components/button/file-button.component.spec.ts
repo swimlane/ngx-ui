@@ -1,31 +1,51 @@
-import { Shallow } from 'shallow-render';
-import { Rendering } from 'shallow-render/dist/lib/models/rendering';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Component } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { FileUploader } from 'ng2-file-upload';
 
 import { FileButtonComponent } from './file-button.component';
 import { ButtonModule } from './button.module';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 const uploader = new FileUploader({ url: '' });
 
-xdescribe('FileButtonComponent', () => {
-  let shallow: Shallow<FileButtonComponent>;
-  let rendering: Rendering<FileButtonComponent, unknown>;
+@Component({
+  template: `
+    <ngx-file-button [uploader]="uploader">
+      <ng-template #dropzoneTemplate let-uploader>
+        <input [id]="id" type="file" ng2FileSelect [uploader]="uploader" />
+        <label [attr.for]="id">Label</label>
+      </ng-template>
+    </ngx-file-button>
+  `,
+  standalone: false
+})
+class FileButtonDropzoneTemplateHost {
+  uploader = uploader;
+  id = 'test-id';
+}
 
-  beforeEach(() => {
-    shallow = new Shallow(FileButtonComponent, ButtonModule).import(HttpClientTestingModule);
+describe('FileButtonComponent', () => {
+  afterEach(() => {
+    TestBed.resetTestingModule();
   });
 
   describe('ngOnInit', () => {
-    beforeEach(async () => {
-      rendering = await shallow.render({ detectChanges: false });
+    let component: FileButtonComponent;
+
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        imports: [ButtonModule, HttpClientTestingModule]
+      });
+      const fixture = TestBed.createComponent(FileButtonComponent);
+      component = fixture.componentInstance;
     });
 
     it('should throw error if !uploader and !options', () => {
       let err: Error;
 
       try {
-        rendering.instance.ngOnInit();
+        component.ngOnInit();
       } catch (ex) {
         err = ex;
       }
@@ -34,113 +54,121 @@ xdescribe('FileButtonComponent', () => {
     });
 
     it('should create new uploader if !uploader and options', () => {
-      rendering.instance.options = { url: '' };
-      rendering.instance.ngOnInit();
-      expect(rendering.instance.uploader).toBeDefined();
+      component.options = { url: '' };
+      component.ngOnInit();
+      expect(component.uploader).toBeDefined();
     });
   });
 
   describe('outputs', () => {
-    beforeEach(async () => {
-      rendering = await shallow.render({
-        bind: {
-          uploader
-        }
+    let component: FileButtonComponent;
+
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        imports: [ButtonModule, HttpClientTestingModule]
       });
+      const fixture = TestBed.createComponent(FileButtonComponent);
+      component = fixture.componentInstance;
+      component.uploader = uploader;
+      fixture.detectChanges();
+      vi.spyOn(component.afterAddingFile, 'emit');
+      vi.spyOn(component.beforeUploadItem, 'emit');
+      vi.spyOn(component.errorItem, 'emit');
+      vi.spyOn(component.progressAll, 'emit');
+      vi.spyOn(component.successItem, 'emit');
     });
 
     describe('onAfterAddingFile', () => {
       it('should set filename and emit event', () => {
-        rendering.instance.onAfterAddingFile({ file: { name: 'test' } } as any);
-        expect(rendering.instance.afterAddingFile.emit).toHaveBeenCalled();
+        component.onAfterAddingFile({ file: { name: 'test' } } as any);
+        expect(component.afterAddingFile.emit).toHaveBeenCalled();
       });
     });
 
     describe('onBeforeUploadItem', () => {
       it('should emit event', () => {
-        rendering.instance.onBeforeUploadItem({} as any);
-        expect(rendering.instance.beforeUploadItem.emit).toHaveBeenCalled();
+        component.onBeforeUploadItem({} as any);
+        expect(component.beforeUploadItem.emit).toHaveBeenCalled();
       });
     });
 
     describe('onErrorItem', () => {
       it('should emit event', () => {
-        rendering.instance.onErrorItem('test', 500, {});
-        expect(rendering.instance.errorItem.emit).toHaveBeenCalled();
+        component.onErrorItem('test', 500, {});
+        expect(component.errorItem.emit).toHaveBeenCalled();
       });
     });
 
     describe('onProgressAll', () => {
       it('should change progress and emit event', () => {
-        rendering.instance.onProgressAll(100);
-        expect(rendering.instance.progress).toEqual(100);
-        expect(rendering.instance.progressAll.emit).toHaveBeenCalled();
+        component.onProgressAll(100);
+        expect(component.progress).toEqual(100);
+        expect(component.progressAll.emit).toHaveBeenCalled();
       });
     });
 
     describe('onSuccessItem', () => {
       it('should emit event', () => {
-        rendering.instance.onSuccessItem({}, 'test', 200, {});
-        expect(rendering.instance.successItem.emit).toHaveBeenCalled();
+        component.onSuccessItem({}, 'test', 200, {});
+        expect(component.successItem.emit).toHaveBeenCalled();
       });
     });
 
     describe('fileOverBase', () => {
       it('should set dropzone state', () => {
-        rendering.instance.fileOverBase(true);
-        expect(rendering.instance.fileOverDropzone).toBeTruthy();
-        rendering.instance.fileOverBase(false);
-        expect(rendering.instance.fileOverDropzone).toBeFalsy();
+        component.fileOverBase(true);
+        expect(component.fileOverDropzone).toBeTruthy();
+        component.fileOverBase(false);
+        expect(component.fileOverDropzone).toBeFalsy();
       });
     });
   });
 
   describe('clearInput', () => {
-    beforeEach(async () => {
-      rendering = await shallow.render({
-        bind: {
-          uploader
-        }
+    let component: FileButtonComponent;
+    let fixture: ComponentFixture<FileButtonComponent>;
+
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        imports: [ButtonModule, HttpClientTestingModule]
       });
+      fixture = TestBed.createComponent(FileButtonComponent);
+      component = fixture.componentInstance;
+      component.uploader = uploader;
+      fixture.detectChanges();
     });
     it('should clear input value', () => {
-      rendering.instance.clearInput();
-      expect(rendering.instance.fileInput.nativeElement.value).toBe('');
+      component.clearInput();
+      expect(component.fileInput?.nativeElement.value).toBe('');
     });
   });
 
   describe('dropzone template', () => {
-    beforeEach(async () => {
-      rendering = await shallow.render(
-        `
-        <ngx-file-button [uploader]="uploader">
-          <ng-template #dropzoneTemplate let-uploader>
-            <input
-              [id]="id"
-              type="file"
-              ng2FileSelect
-              [uploader]="uploader"
-            />
-            <label [attr.for]="id">Label</label>
-          </ng-template>
-        </ngx-file-button>
-        `,
-        {
-          bind: {
-            uploader
-          }
-        }
-      );
+    let fixture: ComponentFixture<FileButtonDropzoneTemplateHost>;
+    let component: FileButtonComponent;
+
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        imports: [ButtonModule, HttpClientTestingModule],
+        declarations: [FileButtonDropzoneTemplateHost]
+      });
+      fixture = TestBed.createComponent(FileButtonDropzoneTemplateHost);
+      fixture.detectChanges();
+      const fileButton = fixture.debugElement.query(By.directive(FileButtonComponent));
+      component = fileButton.componentInstance;
     });
 
     it('has custom dropzone template', () => {
-      expect(rendering.instance.dropzoneTemplate).toBeTruthy();
+      expect(component.dropzoneTemplate).toBeTruthy();
     });
 
     it('has custom input and label', () => {
-      expect(rendering.find('input').nativeElement).toBeTruthy();
-      expect(rendering.find('label').nativeElement).toBeTruthy();
-      expect(rendering.find('label').nativeElement.innerText).toEqual('Label');
+      const input = fixture.debugElement.query(By.css('input'));
+      const label = fixture.debugElement.query(By.css('label'));
+      expect(input?.nativeElement).toBeTruthy();
+      expect(label?.nativeElement).toBeTruthy();
+      // In jsdom (Vitest), Element.innerText is not implemented
+      expect(label?.nativeElement.textContent?.trim()).toEqual('Label');
     });
   });
 });

@@ -1,3 +1,4 @@
+import type { Mock } from 'vitest';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA, Component } from '@angular/core';
 
@@ -14,7 +15,7 @@ export class ColumnTestContentComponent {}
 describe('ColumnComponent', () => {
   let component: ColumnComponent;
   let fixture: ComponentFixture<ColumnComponent>;
-  let searchInputWriteValueSpy: jasmine.Spy;
+  let searchInputWriteValueSpy: Mock;
 
   const column = {
     id: '3m',
@@ -123,7 +124,7 @@ describe('ColumnComponent', () => {
           }
         ]
       };
-      spyOn(component, 'displayContent').and.callThrough();
+      vi.spyOn(component, 'displayContent');
       component.ngOnChanges({
         column: {
           currentValue: contentChild,
@@ -163,7 +164,7 @@ describe('ColumnComponent', () => {
       fixture.componentRef?.setInput('column', column);
       fixture.detectChanges();
       component = fixture.componentInstance;
-      searchInputWriteValueSpy = jasmine.createSpy('writeValue');
+      searchInputWriteValueSpy = vi.fn();
       (component as any).searchInput = () => ({ writeValue: searchInputWriteValueSpy });
     });
 
@@ -191,7 +192,7 @@ describe('ColumnComponent', () => {
           }
         ]
       };
-      spyOn(component.tabClick, 'emit');
+      vi.spyOn(component.tabClick, 'emit');
       component.ngOnChanges({
         column: {
           currentValue: activeColumn,
@@ -233,7 +234,7 @@ describe('ColumnComponent', () => {
           }
         ]
       };
-      spyOn(component.tabClick, 'emit');
+      vi.spyOn(component.tabClick, 'emit');
       component.ngOnChanges({
         column: {
           currentValue: activeColumn,
@@ -275,7 +276,7 @@ describe('ColumnComponent', () => {
           }
         ]
       };
-      spyOn(component.tabClick, 'emit');
+      vi.spyOn(component.tabClick, 'emit');
       component.ngOnChanges({
         column: {
           currentValue: activeColumn,
@@ -309,7 +310,7 @@ describe('ColumnComponent', () => {
           }
         ]
       };
-      spyOn(component, 'displayContent').and.callThrough();
+      vi.spyOn(component, 'displayContent');
       component.ngOnChanges({
         column: {
           currentValue: activeColumn,
@@ -339,7 +340,7 @@ describe('ColumnComponent', () => {
           }
         ]
       };
-      spyOn(component, 'displayContent').and.callThrough();
+      vi.spyOn(component, 'displayContent');
       component.ngOnChanges({
         column: {
           currentValue: activeColumn,
@@ -538,19 +539,19 @@ describe('ColumnComponent', () => {
     });
 
     it('should scroll to child by id first then title', () => {
-      const scrollToIndex = jasmine.createSpy('scrollToIndex');
+      const scrollToIndex = vi.fn();
       (component as any).virtualScrollViewport = () => ({
         elementRef: { nativeElement: { scrollHeight: 100 } },
         scrollToIndex
       });
 
       const byId = component.scrollToChild('3p', 'does-not-matter');
-      expect(byId).toBeTrue();
+      expect(byId).toBe(true);
       expect(scrollToIndex).toHaveBeenCalledWith(1);
 
-      scrollToIndex.calls.reset();
+      scrollToIndex.mockClear();
       const byTitle = component.scrollToChild(undefined, 'Column 3n');
-      expect(byTitle).toBeTrue();
+      expect(byTitle).toBe(true);
       expect(scrollToIndex).toHaveBeenCalledWith(0);
     });
   });

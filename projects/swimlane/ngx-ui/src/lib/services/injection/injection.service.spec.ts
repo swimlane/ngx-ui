@@ -49,7 +49,7 @@ describe('InjectionService', () => {
       expect(service.getRootViewContainer() as any).toEqual({});
     });
 
-    xit('should throw error when no container found', () => {
+    it.skip('should throw error when no container found', () => {
       appRef.components = [];
       expect(() => {
         service.getRootViewContainer();

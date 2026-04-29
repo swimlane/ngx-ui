@@ -9,17 +9,24 @@
   <span class="inner-background"></span>
   <svg viewBox="-170 -170 340 340">
     <g transform="rotate(-90)">
-      <circle
-        class="loading-circle"
-        *ngIf="state !== LongPressButtonState.Submitted"
-        r="160"
-        [@circleAnimation]="{ value: pressed ? 'active' : 'inactive', params: { duration: duration } }"
-      />
-      <circle class="full-circle" *ngIf="state === LongPressButtonState.Submitted" r="160" />
+      @if (state !== LongPressButtonState.Submitted) {
+        <circle
+          class="loading-circle"
+          r="160"
+          [@circleAnimation]="{ value: pressed ? 'active' : 'inactive', params: { duration: duration } }"
+          />
+      }
+      @if (state === LongPressButtonState.Submitted) {
+        <circle class="full-circle" r="160" />
+      }
     </g>
   </svg>
   <button [disabled]="disabled">
-    <ngx-icon *ngIf="state === LongPressButtonState.Active" [fontIcon]="icon"></ngx-icon>
-    <ngx-icon *ngIf="state === LongPressButtonState.Submitted" fontIcon="check"></ngx-icon>
+    @if (state === LongPressButtonState.Active) {
+      <ngx-icon [fontIcon]="icon"></ngx-icon>
+    }
+    @if (state === LongPressButtonState.Submitted) {
+      <ngx-icon fontIcon="check"></ngx-icon>
+    }
   </button>
 </div>

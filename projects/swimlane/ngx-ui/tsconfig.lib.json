@@ -4,7 +4,7 @@
     "outDir": "../../../out-tsc/lib",
     "declarationMap": false,
     "module": "es2015",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "declaration": true,
     "sourceMap": true,
     "inlineSources": true,
@@ -14,8 +14,7 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": false,
     "importHelpers": false,
-    "types": [],
-    "lib": ["dom", "es2018"]
+    "types": []
   },
   "angularCompilerOptions": {
     "skipTemplateCodegen": true,
@@ -26,5 +25,5 @@
     "preserveWhitespaces": true,
     "compilationMode": "partial"
   },
-  "exclude": ["src/test.ts", "**/*.spec.ts"]
+  "exclude": ["src/test.ts", "**/*.spec.ts", "src/vitest-globals.ts"]
 }

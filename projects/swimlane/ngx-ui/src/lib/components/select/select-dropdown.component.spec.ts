@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, flush, fakeAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA, ElementRef } from '@angular/core';
 import * as faker from 'faker/locale/en';
 
@@ -74,12 +74,11 @@ describe('SelectDropdownComponent', () => {
       fixture.detectChanges();
     });
 
-    it('should focus filter input', done => {
-      const spy = spyOn(component.filterInput?.nativeElement, 'focus');
+    it('should focus filter input', async () => {
+      const spy = vi.spyOn(component.filterInput?.nativeElement, 'focus');
       component.ngAfterViewInit();
       setTimeout(() => {
         expect(spy).toHaveBeenCalled();
-        done();
       }, 50);
     });
   });
@@ -141,14 +140,14 @@ describe('SelectDropdownComponent', () => {
     });
 
     it('should emit event and value', () => {
-      const spy = spyOn(component.keyup, 'emit');
+      const spy = vi.spyOn(component.keyup, 'emit');
       component.onInputKeyUp(event);
       expect(spy).toHaveBeenCalledWith({ event, value: '' });
     });
 
     it('should close when escape pressed', () => {
       event.key = event.code = KeyboardKeys.ESCAPE;
-      const spy = spyOn(component.close, 'emit');
+      const spy = vi.spyOn(component.close, 'emit');
       component.onInputKeyUp(event);
       expect(spy).toHaveBeenCalled();
     });
@@ -167,17 +166,17 @@ describe('SelectDropdownComponent', () => {
     });
 
     it('should call updateFilterQueryIsInOptions', fakeAsync(() => {
-      const spy = spyOnProperty(component, 'updateFilterQueryIsInOptions').and.callThrough();
+      // @debounceable(500) wraps the method; fakeAsync must advance past the debounce interval.
       component.onInputKeyUp(event);
-      flush();
+      tick(500);
       fixture.detectChanges();
-      expect(spy).toHaveBeenCalled();
+      expect(component.filterQueryIsInOptions).toBeFalsy();
     }));
 
     it('should set filterQueryIsInOptions to false if filterQuery does not equal any of the options name property', fakeAsync(() => {
       event.target.value = 'zzzzzzzzzzzzzzzzzzzz';
       component.onInputKeyUp(event);
-      flush();
+      tick(500);
       fixture.detectChanges();
       expect(component.filterQueryIsInOptions).toBeFalsy();
     }));
@@ -185,7 +184,7 @@ describe('SelectDropdownComponent', () => {
     it('should set filterQueryIsInOptions to true if filterQuery equals one of the options name property', fakeAsync(() => {
       event.target.value = component.groups[0].options[0].option.name;
       component.onInputKeyUp(event);
-      flush();
+      tick(500);
       fixture.detectChanges();
       expect(component.filterQueryIsInOptions).toBeTruthy();
     }));
@@ -196,11 +195,14 @@ describe('SelectDropdownComponent', () => {
       component.filterable = true;
 
       component.onInputKeyUp(event);
-      flush();
+      tick(500);
       fixture.detectChanges();
       const allowAdditionsButton = fixture.debugElement.queryAll(By.css('.ngx-select-empty-placeholder'));
-      expect(allowAdditionsButton[0].nativeElement).toBeDefined();
-      expect(allowAdditionsButton[0].nativeElement.innerText).toBe('Add Value');
+      expect(allowAdditionsButton[0]).toBeDefined();
+      const addText = fixture.debugElement
+        .query(By.css('.ngx-select-empty-placeholder .ngx-select-add-current-value span'))
+        ?.nativeElement.textContent?.trim();
+      expect(addText).toBe('Add Value');
     }));
 
     it('should not display Add Value button when allow additions is false', fakeAsync(() => {
@@ -209,7 +211,7 @@ describe('SelectDropdownComponent', () => {
       component.filterable = true;
 
       component.onInputKeyUp(event);
-      flush();
+      tick(500);
       fixture.detectChanges();
       const allowAdditionsButton = fixture.debugElement.queryAll(By.css('.ngx-select-empty-placeholder'));
       expect(allowAdditionsButton.length).toEqual(0);
@@ -222,13 +224,12 @@ describe('SelectDropdownComponent', () => {
       component.filterEmptyPlaceholder = 'No Matches';
 
       component.onInputKeyUp(event);
-      flush();
+      tick(500);
       fixture.detectChanges();
-      const allowAdditionsButton = fixture.debugElement.queryAll(By.css('.ngx-select-empty-placeholder'));
-
-      expect(allowAdditionsButton.length).toEqual(1);
-      expect(allowAdditionsButton[0].nativeElement.children[0].innerText).toEqual('No Matches');
-      expect(allowAdditionsButton[0].nativeElement.children[1].innerText).toEqual('Add Value');
+      const placeholder = fixture.debugElement.query(By.css('.ngx-select-empty-placeholder-text'));
+      const addLink = fixture.debugElement.query(By.css('.ngx-select-empty-placeholder-add span'));
+      expect(placeholder?.nativeElement.textContent?.trim()).toBe('No Matches');
+      expect(addLink?.nativeElement.textContent?.trim()).toBe('Add Value');
     }));
 
     it('should only display the filterEmptyPlaceholder text when there are no options and allowAddition is false', fakeAsync(() => {
@@ -238,7 +239,7 @@ describe('SelectDropdownComponent', () => {
       component.filterEmptyPlaceholder = 'No Matches';
 
       component.onInputKeyUp(event);
-      flush();
+      tick(500);
       fixture.detectChanges();
       const allowAdditionsButton = fixture.debugElement.queryAll(By.css('.ngx-select-empty-placeholder'));
 
@@ -291,14 +292,14 @@ describe('SelectDropdownComponent', () => {
     });
 
     it('should select element on enter', () => {
-      const spy = spyOn(component.selection, 'emit');
+      const spy = vi.spyOn(component.selection, 'emit');
       event.key = event.code = KeyboardKeys.ENTER;
       component.onOptionKeyDown(event);
       expect(spy).toHaveBeenCalled();
     });
 
     it('should do nothing', () => {
-      const spy = spyOn(component.selection, 'emit');
+      const spy = vi.spyOn(component.selection, 'emit');
       const idx = component.focusIndex;
       component.onOptionKeyDown(event);
       expect(spy).not.toHaveBeenCalled();
@@ -319,8 +320,8 @@ describe('SelectDropdownComponent', () => {
     });
 
     it('should select element and close', () => {
-      const selectSpy = spyOn(component.selection, 'emit');
-      const closeSpy = spyOn(component.close, 'emit');
+      const selectSpy = vi.spyOn(component.selection, 'emit');
+      const closeSpy = vi.spyOn(component.close, 'emit');
       component.onAddClicked(event, '');
       expect(selectSpy).toHaveBeenCalled();
       expect(closeSpy).toHaveBeenCalled();

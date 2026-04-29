@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StepComponent } from './step.component';
 
@@ -6,12 +6,12 @@ describe('StepComponent', () => {
   let component: StepComponent;
   let fixture: ComponentFixture<StepComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       declarations: [StepComponent],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(StepComponent);

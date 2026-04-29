@@ -1,39 +1,44 @@
-<div
-  *ngIf="dropzoneTemplate"
-  ng2FileDrop
-  [class.file-over]="fileOverDropzone"
-  [uploader]="uploader"
-  (fileOver)="fileOverBase($event)"
->
-  <ng-template ng2FileDrop [ngTemplateOutlet]="dropzoneTemplate" [ngTemplateOutletContext]="{ $implicit: uploader }">
-  </ng-template>
-</div>
-
-<div *ngIf="!dropzoneTemplate" [ngClass]="cssClasses">
-  <div class="ngx-file-button-button">
-    <input
-      #fileInput
-      ng2FileSelect
-      type="file"
-      class="ngx-file-button-input"
-      [disabled]="isDisabled"
-      [multiple]="multiple"
-      [id]="id + '-input'"
-      [name]="name + '-input'"
-      [uploader]="uploader"
-    />
-    <label
-      [class.disabled]="isDisabled"
-      [class.btn]="styleType === FileButtonStyleType.standard"
-      [attr.for]="id + '-input'"
-      class="ngx-file-button-label"
+@if (dropzoneTemplate) {
+  <div
+    ng2FileDrop
+    [class.file-over]="fileOverDropzone"
+    [uploader]="uploader"
+    (fileOver)="fileOverBase($event)"
     >
-      <ng-content></ng-content>
-    </label>
-    <span class="ngx-file-button-text" *ngIf="fileName">
-      {{ fileName }}
-    </span>
+    <ng-template ng2FileDrop [ngTemplateOutlet]="dropzoneTemplate" [ngTemplateOutletContext]="{ $implicit: uploader }">
+    </ng-template>
   </div>
-  <div class="ngx-file-button-fill" [style.width.%]="progress"></div>
-  <span class="ngx-icon ngx-check"></span>
-</div>
+}
+
+@if (!dropzoneTemplate) {
+  <div [ngClass]="cssClasses">
+    <div class="ngx-file-button-button">
+      <input
+        #fileInput
+        ng2FileSelect
+        type="file"
+        class="ngx-file-button-input"
+        [disabled]="isDisabled"
+        [multiple]="multiple"
+        [id]="id + '-input'"
+        [name]="name + '-input'"
+        [uploader]="uploader"
+        />
+      <label
+        [class.disabled]="isDisabled"
+        [class.btn]="styleType === FileButtonStyleType.standard"
+        [attr.for]="id + '-input'"
+        class="ngx-file-button-label"
+        >
+        <ng-content></ng-content>
+      </label>
+      @if (fileName) {
+        <span class="ngx-file-button-text">
+          {{ fileName }}
+        </span>
+      }
+    </div>
+    <div class="ngx-file-button-fill" [style.width.%]="progress"></div>
+    <span class="ngx-icon ngx-check"></span>
+  </div>
+}

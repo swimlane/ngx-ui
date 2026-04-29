@@ -1,11 +1,17 @@
+import { afterEach, beforeEach } from 'vitest';
+
 import { determinePlacement } from './determine-placement.util';
 import { PlacementTypes } from '../placement-type.enum';
 import { AlignmentTypes } from '../alignment-types.enum';
 
 describe('determinePlacement', () => {
   beforeEach(() => {
-    spyOnProperty(window, 'innerWidth').and.returnValue(0);
-    spyOnProperty(window, 'innerHeight').and.returnValue(0);
+    vi.spyOn(window, 'innerWidth', 'get').mockReturnValue(0);
+    vi.spyOn(window, 'innerHeight', 'get').mockReturnValue(0);
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
   });
 
   it('should flip placement left', () => {

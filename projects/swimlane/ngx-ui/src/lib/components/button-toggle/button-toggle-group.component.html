@@ -1,5 +1,7 @@
 <div [id]="id" class="ngx-button-toggle-group__container" [class.disabled]="disabled">
-  <label class="ngx-button-toggle-group__container__label" *ngIf="label">{{ label }}</label>
+  @if (label) {
+    <label class="ngx-button-toggle-group__container__label">{{ label }}</label>
+  }
   <div class="ngx-button-toggle-group__container__toggle-buttons">
     <div
       class="ngx-button-toggle-group__container__toggle-buttons__animation-holder"

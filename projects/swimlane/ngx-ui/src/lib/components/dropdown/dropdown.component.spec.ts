@@ -1,24 +1,29 @@
 /* eslint-disable security/detect-non-literal-fs-filename */
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { DropdownComponent } from './dropdown.component';
 import { DropdownMenuDirective } from './dropdown-menu.directive';
 import { DropdownToggleDirective } from './dropdown-toggle.directive';
 import { DropdownComponentFixture } from './fixtures/dropdown.component.fixture';
+import { stubIntersectionObserverIfNeeded } from '../../testing/stub-intersection-observer';
 
 describe('DropdownComponent', () => {
   let component: DropdownComponentFixture;
   let fixture: ComponentFixture<DropdownComponentFixture>;
   let debugElement: DebugElement;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeAll(() => {
+    stubIntersectionObserverIfNeeded();
+  });
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       declarations: [DropdownComponent, DropdownMenuDirective, DropdownToggleDirective, DropdownComponentFixture],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DropdownComponentFixture);
@@ -32,7 +37,7 @@ describe('DropdownComponent', () => {
   });
 
   it('should toggle on click', () => {
-    const spy = spyOn(component.dropdown, 'onToggleClick');
+    const spy = vi.spyOn(component.dropdown, 'onToggleClick');
     component.dropdown.dropdownToggle.onClick({ preventDefault: () => undefined } as any);
     expect(spy).toHaveBeenCalled();
   });

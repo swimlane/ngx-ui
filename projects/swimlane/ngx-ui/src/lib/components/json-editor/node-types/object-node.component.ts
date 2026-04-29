@@ -77,6 +77,14 @@ export class ObjectNode implements OnInit, OnChanges {
 
   update(): void {
     setTimeout(() => {
+      if (!this.schema) {
+        this.initialized = true;
+        this.cdr.markForCheck();
+        return;
+      }
+      this.model = this.model ?? {};
+      this.schema.properties = this.schema.properties ?? {};
+
       for (const prop in this.schema.properties) {
         if (Array.isArray(this.schema.properties[prop]?.type) && this.schema.properties[prop]?.type.length > 0) {
           if (!this.schema.properties[prop].$meta) {
@@ -283,7 +291,11 @@ export class ObjectNode implements OnInit, OnChanges {
    * Creates an index out of all the properties in the model
    */
   indexProperties(): void {
-    const props = this.schemaBuilderMode ? this.schemaRef.properties : this.model;
+    if (!this.schema) {
+      return;
+    }
+    this.model = this.model ?? {};
+    const props = this.schemaBuilderMode ? this.schemaRef?.properties ?? {} : this.model ?? {};
 
     for (const prop in props) {
       if (this.isIndexed(prop)) {
