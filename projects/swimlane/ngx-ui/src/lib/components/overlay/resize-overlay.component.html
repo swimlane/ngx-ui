@@ -4,7 +4,7 @@
   [visible]="!disabled && (visible$ | async)"
   [zIndex]="10000"
   (click)="onClick($event)"
->
+  >
   <span class="resize-overlay-content">
     <h1><i class="ngx-icon ngx-browser-size icon-fx-dbl-sized"></i></h1>
     <h3>Your browser is too small</h3>
@@ -17,11 +17,15 @@
       <div class="browser-size-popover">
         Bypass this warning
         <span class="combination">
-          <span *ngFor="let key of keys; let i = index">
-            <span class="key">{{ key }}</span> <span *ngIf="i < keys.length - 1"> + </span>
+          @for (key of keys; track key; let i = $index) {
+            <span>
+              <span class="key">{{ key }}</span> @if (i < keys.length - 1) {
+              <span> + </span>
+            }
           </span>
-        </span>
-      </div>
-    </a>
-  </span>
+        }
+      </span>
+    </div>
+  </a>
+</span>
 </ngx-overlay>

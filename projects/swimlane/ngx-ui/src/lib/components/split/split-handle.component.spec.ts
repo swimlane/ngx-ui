@@ -27,7 +27,7 @@ describe('SplitHandleComponent', () => {
 
   describe('onMousedown', () => {
     it('should emit dragStart', () => {
-      const spy = spyOn(component.dragStart, 'emit');
+      const spy = vi.spyOn(component.dragStart, 'emit');
       component.onMousedown({} as any);
       expect(spy).toHaveBeenCalled();
     });
@@ -35,7 +35,7 @@ describe('SplitHandleComponent', () => {
 
   describe('onMouseMove', () => {
     it('should emit drag', () => {
-      const spy = spyOn(component.drag, 'emit');
+      const spy = vi.spyOn(component.drag, 'emit');
       (component as any).onMouseMove({} as any);
       expect(spy).toHaveBeenCalled();
     });
@@ -43,14 +43,14 @@ describe('SplitHandleComponent', () => {
 
   describe('onMouseup', () => {
     it('should stop drag if subscription defined', () => {
-      const spy = spyOn(component.dragEnd, 'emit');
+      const spy = vi.spyOn(component.dragEnd, 'emit');
       component.onMousedown({} as any);
       (component as any).onMouseup({} as any);
       expect(spy).toHaveBeenCalled();
     });
 
     it('should not stop drag if !subscription', () => {
-      const spy = spyOn(component.dragEnd, 'emit');
+      const spy = vi.spyOn(component.dragEnd, 'emit');
       (component as any).onMouseup({} as any);
       expect(spy).not.toHaveBeenCalled();
     });

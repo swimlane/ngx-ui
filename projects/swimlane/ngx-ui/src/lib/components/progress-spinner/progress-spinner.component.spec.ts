@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProgressSpinnerComponent } from './progress-spinner.component';
 import { ProgressSpinnerMode } from './progress-spinner-mode.enum';
@@ -7,12 +7,12 @@ describe('ProgressSpinnerComponent', () => {
   let component: ProgressSpinnerComponent;
   let fixture: ComponentFixture<ProgressSpinnerComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       declarations: [ProgressSpinnerComponent],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ProgressSpinnerComponent);

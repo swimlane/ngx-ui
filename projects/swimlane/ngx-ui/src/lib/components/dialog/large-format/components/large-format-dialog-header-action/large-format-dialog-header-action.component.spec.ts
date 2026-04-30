@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { LargeFormatDialogHeaderActionComponent } from './large-format-dialog-header-action.component';
 
@@ -8,8 +8,8 @@ describe(LargeFormatDialogHeaderActionComponent.name, () => {
   let fixture: ComponentFixture<LargeFormatDialogHeaderActionComponent>;
   let nativeElement: HTMLElement;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       declarations: [LargeFormatDialogHeaderActionComponent],
       imports: [NoopAnimationsModule]
     })
@@ -23,7 +23,7 @@ describe(LargeFormatDialogHeaderActionComponent.name, () => {
     nativeElement = fixture.nativeElement;
 
     fixture.detectChanges();
-  }));
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -51,10 +51,10 @@ describe(LargeFormatDialogHeaderActionComponent.name, () => {
     });
 
     it('should have dirty action title when state is dirty', () => {
-      component.dirty = true;
+      fixture.componentRef.setInput('dirty', true);
       fixture.detectChanges();
 
-      expect(nativeElement.querySelector('button').textContent).toContain(component.dirtyActionTitle);
+      expect(nativeElement.querySelector('button')?.textContent).toContain(component.dirtyActionTitle);
     });
   });
 });

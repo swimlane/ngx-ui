@@ -4,6 +4,17 @@
 
 - Fix (`ngx-date-range-picker`): Fixed start and end times being wrong when manually selecting a date range. Clicking a start day now normalizes to `startOfDay()` (00:00:00) and clicking an end day normalizes to `endOfDay()` (23:59:59.999), matching the behaviour of the "Last week" and other presets. The fix is isolated to `onRangeSelect` so the calendar time inputs and AM/PM toggle are unaffected.
 
+## 52.0.0-alpha.1 (2026-04-28)
+
+- Enhancement: Fixing warnings related to trackBy in for
+- Enhancement: Adding vitest globals
+
+## 52.0.0-alpha.0 (2026-04-27)
+
+- Feature: Added support for Angular 21.2
+- Feature: Migrating from control directives to control flow
+- Feature: Migrating from karma to vitest
+
 ## 51.5.0 (2026-04-18)
 
 - Enhancement (`ngx-large-format-dialog-content`): Added support to display custom content in large dialog's header.

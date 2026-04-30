@@ -11,9 +11,15 @@ import { CommonModule } from '@angular/common';
 import { CalendarModule } from '../calendar/calendar.module';
 import { endOfDay, endOfMonth, startOfDay, startOfMonth } from 'date-fns';
 
+import { stubIntersectionObserverIfNeeded } from '../../testing/stub-intersection-observer';
+
 describe('DateRangePickerComponent', () => {
   let component: DateRangePickerComponent;
   let fixture: ComponentFixture<DateRangePickerComponent>;
+
+  beforeAll(() => {
+    stubIntersectionObserverIfNeeded();
+  });
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -41,7 +47,7 @@ describe('DateRangePickerComponent', () => {
     expect(start).not.toBeNull();
     expect(end).not.toBeNull();
     if (start && end) {
-      expect(start <= end).toBeTrue();
+      expect(start <= end).toBe(true);
     }
   }
 
@@ -50,7 +56,7 @@ describe('DateRangePickerComponent', () => {
   });
 
   it('should emit cancel on cancel button', () => {
-    spyOn(component.cancel, 'emit');
+    vi.spyOn(component.cancel, 'emit');
     component.onCancel();
     expect(component.cancel.emit).toHaveBeenCalled();
     expect(component.showPicker).toBe(false);
@@ -61,7 +67,7 @@ describe('DateRangePickerComponent', () => {
     const end = new Date('2023-01-10');
     component.form.startDate = start;
     component.form.endDate = end;
-    spyOn(component.apply, 'emit');
+    vi.spyOn(component.apply, 'emit');
     component.onApply();
     expect(component.apply.emit).toHaveBeenCalledWith({
       start: start,
@@ -124,7 +130,7 @@ describe('DateRangePickerComponent', () => {
       component.updateSelectedLabel();
       expect(component.selectedLabel).toBe('Last 7 days');
     } else {
-      fail('Preset "Last 7 days" not found');
+      throw new Error('Preset "Last 7 days" not found');
     }
   });
 
@@ -146,7 +152,7 @@ describe('DateRangePickerComponent', () => {
       startRaw: '2023-01-01',
       endRaw: '2023-01-10'
     };
-    spyOn(component.cancel, 'emit');
+    vi.spyOn(component.cancel, 'emit');
     component.onCancel();
     expect(component.form.startDate).toEqual(confirmedStart);
     expect(component.form.endDate).toEqual(confirmedEnd);
@@ -154,7 +160,7 @@ describe('DateRangePickerComponent', () => {
   });
 
   it('should call window.open when openSearchStringDocPage is invoked', () => {
-    spyOn(window, 'open');
+    vi.spyOn(window, 'open');
     component.openSearchStringDocPage();
     expect(window.open).toHaveBeenCalledWith(
       'https://docs.swimlane.com/custom-and-relative-date-ranges-with-time-units',
@@ -212,10 +218,10 @@ describe('DateRangePickerComponent', () => {
     if (preset) {
       const [start, end] = preset.range();
       expect(start !== null && start.getDay()).toBe(0); // Sunday
-      expect(end !== null && end <= new Date()).toBeTrue();
+      expect(end !== null && end <= new Date()).toBe(true);
       expectValidRange(start, end);
     } else {
-      fail('Preset "This week so far" not found');
+      throw new Error('Preset "This week so far" not found');
     }
   });
 
@@ -229,7 +235,7 @@ describe('DateRangePickerComponent', () => {
       }
       if (end) {
         expect(end.getDay()).toBe(6); // Saturday
-        expect(end < new Date()).toBeTrue();
+        expect(end < new Date()).toBe(true);
       }
       expectValidRange(start, end);
     }
@@ -253,7 +259,7 @@ describe('DateRangePickerComponent', () => {
       expect(start && start.getMonth() % 3).toBe(0);
       expectValidRange(start, end);
     } else {
-      fail('Preset "Last quarter" not found');
+      throw new Error('Preset "Last quarter" not found');
     }
   });
 
@@ -263,7 +269,7 @@ describe('DateRangePickerComponent', () => {
     if (preset) {
       const [start, end] = preset.range();
       expect(start && start.getMonth()).toBe(0);
-      expect(end && end <= new Date()).toBeTrue();
+      expect(end && end <= new Date()).toBe(true);
       expectValidRange(start, end);
     }
   });

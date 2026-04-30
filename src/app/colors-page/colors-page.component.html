@@ -1,77 +1,86 @@
 <h3 class="style-header">Colors: Hues</h3>
 <div class="ngx-flex--row">
-  <div
-    class="ngx-flex--col-12 ngx-flex--col-md-6 ngx-flex--col-lg-4 ngx-flex--col-xl-3"
-    *ngFor="let color of ['blue', 'light-blue', 'green', 'orange', 'red', 'purple']"
-  >
-    <ul class="color-group shadow-2 shadow-fx list-reset">
-      <li class="color main-color color-{{ color }}-500">$color-{{ color }}</li>
-      <li #swatch *ngFor="let weight of [1, 2, 3, 4, 5, 6, 7, 8, 9]" class="color color-{{ color }}-{{ weight }}00">
-        <span class="hex tag tag-small" [innerHTML]="'$color-' + color + '-' + weight + '00'" dbl-click-copy> </span>
-        <span class="hex tag tag-small" [innerHTML]="getBackgroundColor(swatch)" dbl-click-copy> </span>
-      </li>
-    </ul>
-  </div>
+  @for (color of ['blue', 'light-blue', 'green', 'orange', 'red', 'purple']; track color) {
+    <div
+      class="ngx-flex--col-12 ngx-flex--col-md-6 ngx-flex--col-lg-4 ngx-flex--col-xl-3"
+      >
+      <ul class="color-group shadow-2 shadow-fx list-reset">
+        <li class="color main-color color-{{ color }}-500">$color-{{ color }}</li>
+        @for (weight of [1, 2, 3, 4, 5, 6, 7, 8, 9]; track weight) {
+          <li #swatch class="color color-{{ color }}-{{ weight }}00">
+            <span class="hex tag tag-small" [innerHTML]="'$color-' + color + '-' + weight + '00'" dbl-click-copy> </span>
+            <span class="hex tag tag-small" [innerHTML]="getBackgroundColor(swatch)" dbl-click-copy> </span>
+          </li>
+        }
+      </ul>
+    </div>
+  }
 </div>
 
 <h3 class="style-header">Colors: Greys</h3>
 <div class="ngx-flex--row start">
-  <div
-    class="ngx-flex--col-12 ngx-flex--col-md-6 ngx-flex--col-lg-4 ngx-flex--col-xl-3"
-    *ngFor="let color of ['blue-grey', 'grey']"
-  >
-    <ul class="color-group shadow-2 shadow-fx list-reset">
-      <li class="color main-color color-{{ color }}-500">$color-{{ color }}</li>
-      <li
-        #swatch
-        *ngFor="
-          let weight of [
-            '050',
-            100,
-            150,
-            200,
-            250,
-            300,
-            350,
-            400,
-            450,
-            500,
-            550,
-            600,
-            650,
-            700,
-            725,
-            750,
-            775,
-            800,
-            825,
-            850,
-            875,
-            900
-          ]
-        "
-        class="color color-{{ color }}-{{ weight }}"
+  @for (color of ['blue-grey', 'grey']; track color) {
+    <div
+      class="ngx-flex--col-12 ngx-flex--col-md-6 ngx-flex--col-lg-4 ngx-flex--col-xl-3"
       >
-        <span class="hex tag tag-small" [innerHTML]="'$color-' + color + '-' + weight" dbl-click-copy> </span>
-        <span class="hex tag tag-small" [innerHTML]="getBackgroundColor(swatch)" dbl-click-copy> </span>
-      </li>
-    </ul>
-  </div>
+      <ul class="color-group shadow-2 shadow-fx list-reset">
+        <li class="color main-color color-{{ color }}-500">$color-{{ color }}</li>
+        @for (
+          weight of [
+          '050',
+          100,
+          150,
+          200,
+          250,
+          300,
+          350,
+          400,
+          450,
+          500,
+          550,
+          600,
+          650,
+          700,
+          725,
+          750,
+          775,
+          800,
+          825,
+          850,
+          875,
+          900
+          ]
+          ; track
+          weight) {
+          <li
+            #swatch
+            class="color color-{{ color }}-{{ weight }}"
+            >
+            <span class="hex tag tag-small" [innerHTML]="'$color-' + color + '-' + weight" dbl-click-copy> </span>
+            <span class="hex tag tag-small" [innerHTML]="getBackgroundColor(swatch)" dbl-click-copy> </span>
+          </li>
+        }
+      </ul>
+    </div>
+  }
 </div>
 
 <h3 class="style-header">Colors: Gradients</h3>
 <div class="ngx-flex--row">
   <div class="ngx-flex--col-12 ngx-flex--col-md-6 ngx-flex--col-lg-4 ngx-flex--col-xl-3">
     <ul class="color-group shadow-2 shadow-fx list-reset">
-      <li
-        *ngFor="let gradient of gradients; let i = index"
-        style="border-top: solid 1px #fff;"
-        class="color main-color {{ gradient }}"
-      >
-        <span *ngIf="i === 0" class="name u-floatLeft" style="color: white;">Linear</span>
-        <br />
-        <span class="hex tag tag-small u-floatRight" dbl-click-copy>${{ gradient }}</span>
-      </li>
+      @for (gradient of gradients; track gradient; let i = $index) {
+        <li
+          style="border-top: solid 1px #fff;"
+          class="color main-color {{ gradient }}"
+          >
+          @if (i === 0) {
+            <span class="name u-floatLeft" style="color: white;">Linear</span>
+          }
+          <br />
+          <span class="hex tag tag-small u-floatRight" dbl-click-copy>${{ gradient }}</span>
+        </li>
+      }
     </ul>
   </div>
   <div class="ngx-flex--col-12 ngx-flex--col-md-6 ngx-flex--col-lg-4 ngx-flex--col-xl-3">
@@ -102,73 +111,86 @@
 
 <h3 class="style-header">Colors: Ordinal Charts</h3>
 <div class="ngx-flex--row">
-  <div
-    class="ngx-flex--col-12 ngx-flex--col-md-6 ngx-flex--col-lg-4 ngx-flex--col-xl-3"
-    *ngFor="let colorGroup of chartColorsOrdinal"
-  >
-    <ul class="color-group shadow-2 shadow-fx list-reset">
-      <li
-        *ngFor="let color of colorGroup.colors; let idx = index"
-        class="color"
-        [style.background]="color"
-        [ngClass]="{ 'main-color': idx === 0 }"
+  @for (colorGroup of chartColorsOrdinal; track colorGroup) {
+    <div
+      class="ngx-flex--col-12 ngx-flex--col-md-6 ngx-flex--col-lg-4 ngx-flex--col-xl-3"
       >
-        <span class="name u-floatLeft" *ngIf="idx === 0"
-          >{{ colorGroup.name }}
-          <br />
-        </span>
-        <span class="hex tag tag-small u-floatRight" dbl-click-copy [innerHTML]="color"> </span>
-      </li>
-    </ul>
-  </div>
+      <ul class="color-group shadow-2 shadow-fx list-reset">
+        @for (color of colorGroup.colors; track color; let idx = $index) {
+          <li
+            class="color"
+            [style.background]="color"
+            [ngClass]="{ 'main-color': idx === 0 }"
+            >
+            @if (idx === 0) {
+              <span class="name u-floatLeft"
+                >{{ colorGroup.name }}
+                <br />
+              </span>
+            }
+            <span class="hex tag tag-small u-floatRight" dbl-click-copy [innerHTML]="color"> </span>
+          </li>
+        }
+      </ul>
+    </div>
+  }
 </div>
 
 <h3 class="style-header">Colors: Sequential Charts</h3>
 <div class="ngx-flex--row">
-  <div
-    class="ngx-flex--col-12 ngx-flex--col-md-6 ngx-flex--col-lg-4 ngx-flex--col-xl-3"
-    *ngFor="let colorGroup of chartColorsSequential"
-  >
-    <ul class="color-group shadow-2 shadow-fx list-reset">
-      <li
-        *ngFor="let color of colorGroup.colors; let idx = index"
-        class="color"
-        [style.background]="color"
-        [ngClass]="{ 'main-color': idx === 0 }"
+  @for (colorGroup of chartColorsSequential; track colorGroup) {
+    <div
+      class="ngx-flex--col-12 ngx-flex--col-md-6 ngx-flex--col-lg-4 ngx-flex--col-xl-3"
       >
-        <span class="name u-floatLeft" *ngIf="idx === 0"
-          >{{ colorGroup.name }}
-          <br />
-        </span>
-        <span class="hex tag tag-small u-floatRight" dbl-click-copy [innerHTML]="color"> </span>
-      </li>
-    </ul>
-  </div>
+      <ul class="color-group shadow-2 shadow-fx list-reset">
+        @for (color of colorGroup.colors; track color; let idx = $index) {
+          <li
+            class="color"
+            [style.background]="color"
+            [ngClass]="{ 'main-color': idx === 0 }"
+            >
+            @if (idx === 0) {
+              <span class="name u-floatLeft"
+                >{{ colorGroup.name }}
+                <br />
+              </span>
+            }
+            <span class="hex tag tag-small u-floatRight" dbl-click-copy [innerHTML]="color"> </span>
+          </li>
+        }
+      </ul>
+    </div>
+  }
 </div>
 
 <h3 class="style-header">Colors: Borders and Glows</h3>
 Apply the class to an element to give it a glowing border. Alternatively, you can use the glow mixin in any class:
 <app-prism language="css">
-<![CDATA[ .my-class { @include glow($color); }
-]]>
+  <![CDATA[ .my-class { @include glow($color); }
+  ]]>
 </app-prism>
 <div class="ngx-flex--row">
-  <div class="ngx-flex--col-2" *ngFor="let color of ['blue', 'light-blue', 'green', 'orange', 'red', 'purple']">
-    <div
-      *ngFor="let weight of [1, 2, 3, 4, 5, 6, 7, 8, 9]"
-      class="glow-demo glow-{{ color }}-{{ weight }}00"
-      dbl-click-copy
-    >
-      .glow-{{ color }}-{{ weight }}00
+  @for (color of ['blue', 'light-blue', 'green', 'orange', 'red', 'purple']; track color) {
+    <div class="ngx-flex--col-2">
+      @for (weight of [1, 2, 3, 4, 5, 6, 7, 8, 9]; track weight) {
+        <div
+          class="glow-demo glow-{{ color }}-{{ weight }}00"
+          dbl-click-copy
+          >
+          .glow-{{ color }}-{{ weight }}00
+        </div>
+      }
     </div>
-  </div>
+  }
 </div>
 
 <h3 class="style-header">Colors: Shadows</h3>
 <div class="ngx-flex--row">
-  <div class="ngx-flex--col-2 center" *ngFor="let i of shadows">
-    <div class="shadow-demo shadow-{{ i }}" dbl-click-copy>$shadow-{{ i }}</div>
-  </div>
+  @for (i of shadows; track i) {
+    <div class="ngx-flex--col-2 center">
+      <div class="shadow-demo shadow-{{ i }}" dbl-click-copy>$shadow-{{ i }}</div>
+    </div>
+  }
   <div class="ngx-flex--col-2 center">
     <div class="shadow-demo shadow-10 shadow-fx">
       shadow-fx

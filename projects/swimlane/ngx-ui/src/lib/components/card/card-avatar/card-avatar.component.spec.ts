@@ -17,7 +17,7 @@ describe('CardAvatarComponent', () => {
   it('initializes default avatar', () => {
     const avatar = fixture.debugElement.nativeElement;
     expect(avatar).toBeDefined();
-    expect(avatar).toHaveClass('ngx-card-avatar');
+    expect(avatar.classList.contains('ngx-card-avatar')).toBe(true);
     expect(component.status).toBeUndefined();
     expect(component.src).toBeUndefined();
   });

@@ -1,7 +1,7 @@
 /**
  * Generate icon-font-glyphs.ts from ngx-ui's icons.scss $icons map.
  * Single source of truth: projects/swimlane/ngx-ui/src/lib/assets/icons/iconfont/scss/icons.scss
- * Same codepoints as ngx-icon.svg / icons.scss so the same font works for Angular and Lit.
+ * Same codepoints as ngx-icon.svg / icons.scss; swim-ui registers them under font-family swim-ui-icon.
  *
  * Run: yarn generate:icon-glyphs
  */

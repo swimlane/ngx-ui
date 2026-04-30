@@ -1,3 +1,4 @@
+import type { Mock } from 'vitest';
 import { TestBed } from '@angular/core/testing';
 import { ComponentRef, EventEmitter } from '@angular/core';
 
@@ -10,6 +11,23 @@ import { NotificationComponent } from './notification.component';
 describe('NotificationService', () => {
   let service: NotificationService;
   let injectionService: InjectionService;
+
+  beforeAll(() => {
+    if (!globalThis.Notification) {
+      globalThis.Notification = class {
+        static requestPermission = vi.fn((cb?: (status: NotificationPermission) => void) => {
+          const result: NotificationPermission = 'default';
+          if (cb) {
+            cb(result);
+          }
+          return Promise.resolve(result);
+        });
+        constructor(_title?: string, _options?: unknown) {}
+        close(): void {}
+        onerror: null | ((this: globalThis.Notification, ev: Event) => any) = null;
+      } as typeof globalThis.Notification;
+    }
+  });
 
   beforeEach(() => {
     const injectionServiceStub = {
@@ -36,7 +54,11 @@ describe('NotificationService', () => {
   });
 
   describe('create', () => {
-    let spy: jasmine.Spy;
+    let spy: Mock;
+
+    afterEach(() => {
+      vi.restoreAllMocks();
+    });
 
     beforeEach(() => {
       const component = {
@@ -46,7 +68,7 @@ describe('NotificationService', () => {
           resume: new EventEmitter<void>()
         }
       };
-      spy = spyOn(injectionService, 'appendComponent').and.returnValue(component as any);
+      spy = vi.spyOn(injectionService, 'appendComponent').mockReturnValue(component as any);
     });
 
     it('should create notification', () => {
@@ -56,73 +78,82 @@ describe('NotificationService', () => {
     });
 
     it('should do nothing if flooded', () => {
-      spyOn(service, 'isFlooded').and.returnValue(true);
+      vi.spyOn(service, 'isFlooded').mockReturnValue(true);
       const ref = service.create({ rateLimit: true });
       expect(ref).toBeUndefined();
     });
 
     it('should remove first item if limit reached', () => {
-      const destroySpy = spyOn(service, 'destroy');
-      spyOn(service, 'getByType').and.returnValue([0, 0, 0, 0, 0, 0, 0, 0, 0, 0] as any);
+      const destroySpy = vi.spyOn(service, 'destroy');
+      vi.spyOn(service, 'getByType').mockReturnValue([0, 0, 0, 0, 0, 0, 0, 0, 0, 0] as any);
       const ref = service.create({});
       expect(ref).toBeDefined();
       expect(destroySpy).toHaveBeenCalled();
     });
 
     it('should create native notification', () => {
-      const nativeSpy = spyOn(service, 'showNative');
+      const nativeSpy = vi.spyOn(service, 'showNative');
       service.create({ type: NotificationType.native });
       expect(nativeSpy).toHaveBeenCalled();
     });
   });
 
   describe('startTimer', () => {
-    let spy: jasmine.Spy;
+    let spy: Mock;
 
     beforeEach(() => {
-      spy = spyOn(service, 'destroy');
+      spy = vi.spyOn(service, 'destroy');
     });
 
-    it('should set destroy timeout', done => {
+    it('should set destroy timeout', async () => {
       service.startTimer({ instance: { timeout: 0 } } as any);
-      setTimeout(() => {
-        expect(spy).toHaveBeenCalled();
-        done();
-      }, 0);
+      await new Promise<void>(resolve => setTimeout(resolve, 0));
+      expect(spy).toHaveBeenCalled();
     });
 
-    it('should not set destroy timeout if !timeout', done => {
+    it('should not set destroy timeout if !timeout', async () => {
       service.startTimer({ instance: { timeout: false } } as any);
-      setTimeout(() => {
-        expect(spy).not.toHaveBeenCalled();
-        done();
-      }, 0);
+      await new Promise<void>(resolve => setTimeout(resolve, 0));
+      expect(spy).not.toHaveBeenCalled();
     });
   });
 
   describe('pauseTimer', () => {
     it('should pause timer', () => {
-      const spy = spyOn(window, 'clearTimeout');
+      const spy = vi.spyOn(window, 'clearTimeout');
       service.pauseTimer({ instance: { timer: {} } } as any);
       expect(spy).toHaveBeenCalled();
     });
   });
 
   describe('requestPermissions', () => {
-    let spy: jasmine.Spy;
+    let spy: Mock;
 
     beforeEach(() => {
-      spy = spyOn(Notification, 'requestPermission');
+      spy = vi.spyOn(Notification, 'requestPermission');
+    });
+
+    afterEach(() => {
+      vi.restoreAllMocks();
     });
 
     it('should not request permission when native not supported', () => {
-      spyOnProperty(service, 'isNativeSupported').and.returnValue(false);
-      service.requestPermissions();
-      expect(spy).not.toHaveBeenCalled();
+      Object.defineProperty(service, 'isNativeSupported', {
+        configurable: true,
+        get: () => false
+      });
+      try {
+        expect(service.isNativeSupported).toBe(false);
+        spy.mockClear();
+        service.requestPermissions();
+        expect(spy).not.toHaveBeenCalled();
+      } finally {
+        Reflect.deleteProperty(service, 'isNativeSupported');
+      }
     });
 
     it('should request permissions when native supported', () => {
-      spyOnProperty(service, 'isNativeSupported').and.returnValue(true);
+      expect(service.isNativeSupported).toBe(true);
       service.requestPermissions();
       expect(spy).toHaveBeenCalled();
     });
@@ -137,20 +168,20 @@ describe('NotificationService', () => {
   });
 
   describe('injectComponent', () => {
-    let spy: jasmine.Spy;
+    let spy: Mock;
 
     beforeEach(() => {
-      spy = spyOn(injectionService, 'appendComponent');
+      spy = vi.spyOn(injectionService, 'appendComponent');
     });
 
     it('should create container if doesnt exist', () => {
-      spyOn(document, 'contains').and.returnValue(false);
+      vi.spyOn(document, 'contains').mockReturnValue(false);
       service.injectComponent({} as any, {});
       expect(spy).toHaveBeenCalledTimes(2);
     });
 
     it('should not create container if exists', () => {
-      spyOn(document, 'contains').and.returnValue(true);
+      vi.spyOn(document, 'contains').mockReturnValue(true);
       service.container = { location: { nativeElement: {} } } as any;
       service.injectComponent({} as any, {});
       expect(spy).toHaveBeenCalledTimes(1);
@@ -176,22 +207,26 @@ describe('NotificationService', () => {
       };
     });
 
+    afterEach(() => {
+      vi.restoreAllMocks();
+    });
+
     it('should destroy component on close', () => {
-      const spy = spyOn(service, 'destroy');
+      const spy = vi.spyOn(service, 'destroy');
       service.createSubscriptions(component as any);
       component.instance.close.emit();
       expect(spy).toHaveBeenCalled();
     });
 
     it('should pause timer on pause', () => {
-      const spy = spyOn(service, 'pauseTimer');
+      const spy = vi.spyOn(service, 'pauseTimer');
       service.createSubscriptions(component as any);
       component.instance.pause.emit();
       expect(spy).toHaveBeenCalled();
     });
 
     it('should start timer on resume', () => {
-      const spy = spyOn(service, 'startTimer');
+      const spy = vi.spyOn(service, 'startTimer');
       service.createSubscriptions(component as any);
       component.instance.resume.emit();
       expect(spy).toHaveBeenCalled();
@@ -204,7 +239,7 @@ describe('NotificationService', () => {
     beforeEach(() => {
       notifications = [notificationMock() as any, notificationMock() as any, notificationMock() as any];
 
-      spyOn(service, 'getByType').and.returnValue(notifications);
+      vi.spyOn(service, 'getByType').mockReturnValue(notifications);
     });
 
     it('should be false', () => {
@@ -223,29 +258,33 @@ describe('NotificationService', () => {
   });
 
   describe('showNative', () => {
+    afterEach(() => {
+      vi.restoreAllMocks();
+    });
+
     it('should do nothing if native not supported', () => {
-      spyOnProperty(service, 'isNativeSupported').and.returnValue(false);
+      vi.spyOn(NotificationService.prototype, 'isNativeSupported', 'get').mockReturnValue(false);
       const notification = service.showNative({});
       expect(notification).toBeUndefined();
     });
 
     it('should request permissions', () => {
-      spyOnProperty(service, 'isNativeSupported').and.returnValue(true);
-      const spy = spyOn(service, 'requestPermissions');
+      vi.spyOn(NotificationService.prototype, 'isNativeSupported', 'get').mockReturnValue(true);
+      const spy = vi.spyOn(service, 'requestPermissions');
       service.showNative({});
       expect(spy).toHaveBeenCalled();
     });
 
     it('should do nothing if permissions denied', () => {
-      spyOnProperty(service, 'isNativeSupported').and.returnValue(true);
+      vi.spyOn(NotificationService.prototype, 'isNativeSupported', 'get').mockReturnValue(true);
       service.permission = 'denied';
       expect(service.showNative({})).toBeUndefined();
     });
 
     it('should not set timeout', () => {
-      spyOnProperty(service, 'isNativeSupported').and.returnValue(true);
-      const spy = spyOn(service, 'requestPermissions');
-      const timeoutSpy = spyOn(window, 'setTimeout');
+      vi.spyOn(NotificationService.prototype, 'isNativeSupported', 'get').mockReturnValue(true);
+      const spy = vi.spyOn(service, 'requestPermissions');
+      const timeoutSpy = vi.spyOn(globalThis, 'setTimeout');
       service.showNative({ timeout: false });
       expect(spy).toHaveBeenCalled();
       expect(timeoutSpy).not.toHaveBeenCalled();

@@ -52,7 +52,7 @@ describe('TipComponent', () => {
     expect(component.icon).toEqual(customIcon);
   });
   it('emits close', () => {
-    spyOn(component.close, 'emit');
+    vi.spyOn(component.close, 'emit');
     component.onClose();
     expect(component.close.emit).toHaveBeenCalled();
   });

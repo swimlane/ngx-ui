@@ -1,8 +1,14 @@
 <button [disabled]="disabled" [attr.type]="type">
   <span class="content"><ng-content></ng-content></span>
   <span class="state-icon">
-    <span *ngIf="inProgress$ | async" class="ngx-icon ngx-loading icon-fx-spinning"></span>
-    <span *ngIf="success$ | async" class="ngx-icon ngx-check"></span>
-    <span *ngIf="fail$ | async" class="ngx-icon ngx-x"></span>
+    @if (inProgress$ | async) {
+      <span class="ngx-icon ngx-loading icon-fx-spinning"></span>
+    }
+    @if (success$ | async) {
+      <span class="ngx-icon ngx-check"></span>
+    }
+    @if (fail$ | async) {
+      <span class="ngx-icon ngx-x"></span>
+    }
   </span>
 </button>

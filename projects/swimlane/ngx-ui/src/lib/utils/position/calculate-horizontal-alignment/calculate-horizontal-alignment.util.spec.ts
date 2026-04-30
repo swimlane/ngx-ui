@@ -1,7 +1,13 @@
+import { afterEach } from 'vitest';
+
 import { calculateHorizontalAlignment } from './calculate-horizontal-alignment.util';
 import { AlignmentTypes } from '../alignment-types.enum';
 
 describe('calculateHorizontalAlignment', () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
   it('should get horizontal alignment', () => {
     expect(
       calculateHorizontalAlignment(
@@ -13,7 +19,7 @@ describe('calculateHorizontalAlignment', () => {
   });
 
   it('should get horizontal alignment when width exceeds window width', () => {
-    spyOnProperty(window, 'innerWidth').and.returnValue(10);
+    vi.spyOn(window, 'innerWidth', 'get').mockReturnValue(10);
     expect(
       calculateHorizontalAlignment(
         { height: 10, width: 10, left: 0 },

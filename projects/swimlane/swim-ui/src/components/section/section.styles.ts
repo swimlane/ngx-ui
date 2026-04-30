@@ -81,11 +81,6 @@ export const sectionStyles = css`
     gap: var(--spacing-16);
   }
 
-  /* When toggle is shown (left), reserve space so title isn’t cut off */
-  .swim-section__header--collapsible:not(.swim-section__header--toggle-right) .swim-section__header-content {
-    padding-left: 28px;
-  }
-
   .swim-section__header-content slot {
     display: flex;
     align-items: center;
@@ -126,11 +121,9 @@ export const sectionStyles = css`
   }
 
   .swim-section__toggle {
-    position: absolute;
-    left: 0;
-    top: 0;
+    flex: 0 0 28px;
     width: 28px;
-    height: 100%;
+    align-self: stretch;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -154,13 +147,15 @@ export const sectionStyles = css`
   .swim-section__toggle-icon {
     font-size: var(--font-size-xs);
     line-height: 1;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
   }
 
   .swim-section__toggle swim-icon {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     font-size: var(--font-size-xs);
   }
 
@@ -212,14 +207,12 @@ export const sectionStyles = css`
     outline-offset: 1px;
   }
 
-  .swim-section__header.swim-section__header--toggle-right.swim-section__header--collapsible {
-    padding: var(--spacing-0) var(--spacing-20) var(--spacing-0) var(--spacing-16);
+  .swim-section__header.swim-section__header--toggle-right {
+    flex-direction: row-reverse;
   }
 
-  .swim-section__header.swim-section__header--toggle-right .swim-section__toggle {
-    left: auto;
-    right: 0;
-    width: 28px;
+  .swim-section__header.swim-section__header--toggle-right.swim-section__header--collapsible {
+    padding: var(--spacing-0) var(--spacing-20) var(--spacing-0) var(--spacing-16);
   }
 
   .swim-section__header--empty {

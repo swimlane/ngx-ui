@@ -58,17 +58,17 @@ describe('CheckboxComponent', () => {
   });
 
   describe('onBlur', () => {
-    it('should call touched callback on blur', done => {
-      const fn = () => {
+    it('should call touched callback on blur', () => {
+      const onTouched = vi.fn(() => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        expect(component.onTouchedCallback).toBe(fn);
-        done();
-      };
+        expect(component.onTouchedCallback).toBe(onTouched);
+      });
 
-      component.registerOnTouched(fn);
+      component.registerOnTouched(onTouched);
 
       component.onBlur({});
+      expect(onTouched).toHaveBeenCalled();
     });
   });
 
@@ -87,13 +87,12 @@ describe('CheckboxComponent', () => {
   });
 
   describe('registerOnChange', () => {
-    it('should register new callback and call when value changes', done => {
-      component.registerOnChange((v: boolean) => {
-        expect(v).toBe(false);
-        done();
-      });
-
+    it('should register new callback and call when value changes', () => {
+      const onChange = vi.fn();
+      component.registerOnChange(onChange);
       component.value = false;
+      expect(onChange).toHaveBeenCalledTimes(1);
+      expect(onChange).toHaveBeenCalledWith(false);
     });
   });
 

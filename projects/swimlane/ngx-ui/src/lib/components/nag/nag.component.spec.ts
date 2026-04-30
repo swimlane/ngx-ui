@@ -37,7 +37,7 @@ describe('NagComponent', () => {
 
   it('toggle changes state and triggers stateChanged emitter', () => {
     component.state = 'peek';
-    spyOn(component.stateChanged, 'emit');
+    vi.spyOn(component.stateChanged, 'emit');
 
     component.toggle();
     expect(component.state).toEqual('open');

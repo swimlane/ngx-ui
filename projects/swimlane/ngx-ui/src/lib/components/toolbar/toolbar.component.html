@@ -1,37 +1,53 @@
 <header class="flex-container">
   <div class="ngx-toolbar-title-col">
-    <ng-content *ngIf="!mainTitle" select="ngx-toolbar-title"></ng-content>
-    <h2 class="ngx-toolbar-title" *ngIf="mainTitle">
-      {{ mainTitle }}
-      <small *ngIf="subtitle">{{ subtitle }}</small>
-    </h2>
+    @if (!mainTitle) {
+      <ng-content select="ngx-toolbar-title"></ng-content>
+    }
+    @if (mainTitle) {
+      <h2 class="ngx-toolbar-title">
+        {{ mainTitle }}
+        @if (subtitle) {
+          <small>{{ subtitle }}</small>
+        }
+      </h2>
+    }
   </div>
   <div class="ngx-toolbar-content-col">
-    <ng-content *ngIf="!menu.length" select="ngx-toolbar-content"></ng-content>
-    <ul class="horizontal-list ngx-toolbar-menu" *ngIf="menu.length">
-      <li *ngFor="let item of toolbarItems">
-        <button type="button" [disabled]="item.disabled" (click)="onMenuClicked(item, $event)">
-          {{ item.label }}
-        </button>
-      </li>
-      <li *ngIf="dropdownItems.length">
-        <ngx-dropdown>
-          <ngx-dropdown-toggle>
-            <button type="button">
-              ...
+    @if (!menu.length) {
+      <ng-content select="ngx-toolbar-content"></ng-content>
+    }
+    @if (menu.length) {
+      <ul class="horizontal-list ngx-toolbar-menu">
+        @for (item of toolbarItems; track item) {
+          <li>
+            <button type="button" [disabled]="item.disabled" (click)="onMenuClicked(item, $event)">
+              {{ item.label }}
             </button>
-          </ngx-dropdown-toggle>
-          <ngx-dropdown-menu class="align-right">
-            <ul class="vertical-list">
-              <li *ngFor="let item of dropdownItems">
-                <button type="button" (click)="onMenuClicked(item, $event)">
-                  {{ item.label }}
+          </li>
+        }
+        @if (dropdownItems.length) {
+          <li>
+            <ngx-dropdown>
+              <ngx-dropdown-toggle>
+                <button type="button">
+                  ...
                 </button>
-              </li>
-            </ul>
-          </ngx-dropdown-menu>
-        </ngx-dropdown>
-      </li>
-    </ul>
+              </ngx-dropdown-toggle>
+              <ngx-dropdown-menu class="align-right">
+                <ul class="vertical-list">
+                  @for (item of dropdownItems; track item) {
+                    <li>
+                      <button type="button" (click)="onMenuClicked(item, $event)">
+                        {{ item.label }}
+                      </button>
+                    </li>
+                  }
+                </ul>
+              </ngx-dropdown-menu>
+            </ngx-dropdown>
+          </li>
+        }
+      </ul>
+    }
   </div>
 </header>

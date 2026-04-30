@@ -28,13 +28,14 @@ import { selectDropdownOptionMock } from './select-dropdown-option.mock';
       [multiple]="multiple$ | async"
       [disabled]="disabled$ | async"
     >
+      @for (opt of options$ | async; track opt) {
       <ngx-select-option
-        *ngFor="let opt of options$ | async"
         [name]="opt.name"
         [value]="opt.value"
         [disabled]="opt.disabled"
         [hidden]="opt.hidden"
       ></ngx-select-option>
+      }
     </ngx-select>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
