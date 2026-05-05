@@ -9,7 +9,7 @@ import { IconModule } from '../icon/icon.module';
 import { TooltipModule } from '../tooltip/tooltip.module';
 import { CommonModule } from '@angular/common';
 import { CalendarModule } from '../calendar/calendar.module';
-import { endOfMonth, startOfMonth } from 'date-fns';
+import { endOfDay, endOfMonth, startOfDay, startOfMonth } from 'date-fns';
 
 import { stubIntersectionObserverIfNeeded } from '../../testing/stub-intersection-observer';
 
@@ -114,10 +114,11 @@ describe('DateRangePickerComponent', () => {
 
     component.onRangeSelect({ startDate: invalidStart, endDate: invalidEnd });
 
-    expect(component.form.startDate).toEqual(invalidStart);
+    const expectedStart = startOfDay(invalidStart);
+    expect(component.form.startDate).toEqual(expectedStart);
     expect(component.form.endDate).toBeNull(); // reset because invalid
-    expect(component.rangeModel.startDate).toEqual(invalidStart);
-    expect(component.rangeModel.endDate).toEqual(invalidStart);
+    expect(component.rangeModel.startDate).toEqual(expectedStart);
+    expect(component.rangeModel.endDate).toEqual(expectedStart);
   });
 
   it('should update selected label based on preset match', () => {
@@ -174,8 +175,22 @@ describe('DateRangePickerComponent', () => {
     component.form.startDate = first;
     component.form.endDate = second;
     component.onRangeSelect({ startDate: third, endDate: third });
-    expect(component.form.startDate).toEqual(third);
+    expect(component.form.startDate).toEqual(startOfDay(third));
     expect(component.form.endDate).toBeNull();
+  });
+
+  it('should normalize startDate to start of day and endDate to end of day on range selection', () => {
+    const startDate = new Date('2024-03-05T14:30:00');
+    const endDate = new Date('2024-03-10T09:15:00');
+
+    // First click sets start
+    component.onRangeSelect({ startDate, endDate: startDate });
+    expect(component.form.startDate).toEqual(startOfDay(startDate));
+    expect(component.form.endDate).toBeNull();
+
+    // Second click sets end
+    component.onRangeSelect({ startDate: endDate, endDate });
+    expect(component.form.endDate).toEqual(endOfDay(endDate));
   });
 
   it('should update label with custom range if no preset matches', () => {
