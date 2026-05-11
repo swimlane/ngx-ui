@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 52.0.0-alpha.3 (2026-05-11)
+
 - Breaking: Removing angular 18 support
 
 ## 52.0.0-alpha.2 (2026-05-11)
