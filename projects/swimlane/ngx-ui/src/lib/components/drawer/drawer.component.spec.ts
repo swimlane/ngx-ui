@@ -34,6 +34,14 @@ describe('DrawerComponent', () => {
     expect(component.closeOnOutsideClick).toEqual(true);
   });
 
+  describe('ngOnInit', () => {
+    it('should focus the element with preventScroll to avoid unwanted page scroll', () => {
+      const spy = vi.spyOn(component['elementRef'].nativeElement, 'focus');
+      component.ngOnInit();
+      expect(spy).toHaveBeenCalledWith({ preventScroll: true });
+    });
+  });
+
   describe('cssClasses', () => {
     it('should get left drawer classes', () => {
       component.direction = DrawerDirection.Left;

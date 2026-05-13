@@ -99,7 +99,7 @@ export class DrawerComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.position = this.isRoot ? DrawerPosition.fixed : DrawerPosition.absolute;
     this.setDimensions(this.size);
-    this.elementRef.nativeElement.focus();
+    this.elementRef.nativeElement.focus({ preventScroll: true });
   }
 
   ngOnDestroy() {
