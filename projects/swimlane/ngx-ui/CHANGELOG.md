@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 52.0.0-alpha.4 (2026-05-18)
+
 - Fix (`ngx-drawer`): Added `preventScroll: true` to the drawer's `focus()` call on init to prevent unwanted page scrolling when a drawer opens.
 
 ## 52.0.0-alpha.3 (2026-05-11)
