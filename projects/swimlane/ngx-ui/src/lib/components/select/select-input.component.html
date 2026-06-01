@@ -14,8 +14,14 @@
         <span [innerHTML]="requiredIndicator"></span>
       </label>
     }
-    @if (!selected?.length && placeholder) {
+    @if (!selected?.length) {
+      @if (placeholder) {
       <span class="ngx-select-placeholder" [innerHTML]="placeholder"> </span>
+      } @else if (placeholderTemplate) {
+        <div class="ngx-select-placeholder template">
+          <ng-container [ngTemplateOutlet]="placeholderTemplate"></ng-container>
+        </div>
+      }
     }
     @if (tagging || selectedOptions?.length) {
       <ul

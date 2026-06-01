@@ -200,6 +200,8 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
    */
   @Input() groupByTemplate: TemplateRef<unknown>;
 
+  @Input() placeholderTemplate: TemplateRef<unknown>;
+
   @ContentChildren(SelectOptionDirective, { descendants: true })
   get optionTemplates() {
     return this._optionTemplates;

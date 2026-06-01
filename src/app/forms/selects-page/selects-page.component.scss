@@ -1,0 +1,10 @@
+@use 'colors/colors' as colors;
+
+.custom-placeholder {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  .ngx-icon {
+    color: colors.$color-red-500;
+  }
+}
