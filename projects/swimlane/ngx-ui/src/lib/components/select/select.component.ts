@@ -254,7 +254,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   }
 
   get hasPlaceholder() {
-    return this.placeholder && this.placeholder.length > 0;
+    return (this.placeholder && this.placeholder.length > 0) || !!this.placeholderTemplate;
   }
 
   get value() {
