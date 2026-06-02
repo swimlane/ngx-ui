@@ -337,6 +337,24 @@ describe('SelectComponent', () => {
     });
   });
 
+  describe('hasPlaceholder', () => {
+    it('should be true when placeholder has content', () => {
+      component.select.placeholder = 'Select an option';
+      expect(component.select.hasPlaceholder).toBeTruthy();
+    });
+
+    it('should be false when placeholder is empty', () => {
+      component.select.placeholder = '';
+      expect(component.select.hasPlaceholder).toBeFalsy();
+    });
+
+    it('should be true when placeholderTemplate is set', () => {
+      component.select.placeholder = '';
+      component.select.placeholderTemplate = {} as any;
+      expect(component.select.hasPlaceholder).toBeTruthy();
+    });
+  });
+
   describe('optionTemplates', () => {
     it('should get templates', () => {
       expect(component.select.optionTemplates.length).toBeGreaterThan(0);

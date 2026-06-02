@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Feature (`ngx-select`): Added `placeholderTemplate` to allow render a template as placeholder.
+
 ## 52.0.0-alpha.4 (2026-05-18)
 
 - Fix (`ngx-drawer`): Added `preventScroll: true` to the drawer's `focus()` call on init to prevent unwanted page scrolling when a drawer opens.

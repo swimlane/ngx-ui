@@ -30,6 +30,7 @@ import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
 export class SelectInputComponent implements AfterViewInit, OnChanges {
   @Input() selectId: string;
   @Input() placeholder: string;
+  @Input() placeholderTemplate: TemplateRef<any>;
   @Input() identifier: string;
   @Input() options: SelectDropdownOption[];
   @Input() label: string;

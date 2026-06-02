@@ -308,6 +308,35 @@
 <br />
 <br />
 
+<h4>Placeholder Template</h4>
+<ngx-select [placeholderTemplate]="placeholderTemplate">
+  <ngx-select-option [name]="'Breach'" [value]="'breach'"></ngx-select-option>
+  <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true"></ngx-select-option>
+  <ngx-select-option [name]="'Physical'" [value]="'pyhs'" [disabled]="false"></ngx-select-option>
+</ngx-select>
+<ng-template #placeholderTemplate>
+  <div class="custom-placeholder">
+    <i class="ngx-icon ngx-warning-filled-sm "></i> Select an item
+  </div>
+</ng-template>
+<app-prism>
+  <![CDATA[<ngx-select [placeholderTemplate]="placeholderTemplate">
+  <ngx-select-option [name]="'Breach'" [value]="'breach'"></ngx-select-option>
+  <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true"></ngx-select-option>
+  <ngx-select-option [name]="'Physical'" [value]="'pyhs'" [disabled]="false"></ngx-select-option>
+</ngx-select>
+<ng-template #placeholderTemplate>
+  <div class="custom-placeholder">
+    <i class="ngx-icon ngx-warning-filled-sm"></i> Select an item
+  </div>
+</ng-template>
+]]>
+</app-prism>
+
+<br />
+<br />
+<br />
+
 <h4>Disabled Options with Placeholder</h4>
 <ngx-select [placeholder]="'Select incident type...'">
   <ngx-select-option [name]="'Breach'" [value]="'breach'"></ngx-select-option>
@@ -1112,6 +1141,13 @@
             <code>emptyPlaceholder: string = 'No options available'</code>
           </th>
           <td>Placeholder to display when the component has no selectable options.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>placeholderTemplate: TemplateRef</code>
+          </th>
+          <td>Template to display as a placeholder when the component has no selectable options.</td>
         </tr>
         <tr>
           <th>
