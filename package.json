@@ -125,7 +125,7 @@
     "eslint-plugin-security": "1.5.0",
     "faker": "^5.1.0",
     "gh-pages": "4.0.0",
-    "husky": "8.0.1",
+    "husky": "9.1.7",
     "jsdom": "29.1.0",
     "moment": "2.29.4",
     "moment-locales-webpack-plugin": "^1.2.0",
