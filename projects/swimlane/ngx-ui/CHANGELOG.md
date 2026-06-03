@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 52.0.0-alpha.5 (2026-06-03)
+
 - Feature (`ngx-select`): Added `placeholderTemplate` to allow render a template as placeholder.
 
 ## 52.0.0-alpha.4 (2026-05-18)
