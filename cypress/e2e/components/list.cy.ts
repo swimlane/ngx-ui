@@ -20,7 +20,7 @@ describe('List', () => {
     });
 
     it('displays the row number using the row index', () => {
-      cy.get('ngx-list').eq(2).as('CUT');
+      cy.get('ngx-list[data-cy="virtualized-pagination-list"]').as('CUT');
       cy.get('@CUT').find('ngx-list-column').first().should('contain.text', '1.');
     });
   });
