@@ -2,6 +2,25 @@
 
 <ng-template #template>
   @if (header) {
-  <ng-container [ngTemplateOutlet]="header.headerTemplate"></ng-container>
+    @if (header.sortable) {
+      <button type="button" class="ngx-list-header__sort-button" (click)="onSortClick()">
+        <span class="ngx-list-header__label">
+          <ng-container [ngTemplateOutlet]="header.headerTemplate"></ng-container>
+        </span>
+        <span
+          class="ngx-list-header__sort-indicator"
+          [class.ngx-list-header__sort-indicator--asc]="sortDir === 'asc'"
+          [class.ngx-list-header__sort-indicator--desc]="sortDir === 'desc'"
+        >
+          @if (sortDir === 'asc') {
+            <i class="ngx-icon ngx-arrow-up" aria-hidden="true"></i>
+          } @else if (sortDir === 'desc') {
+            <i class="ngx-icon ngx-arrow-down" aria-hidden="true"></i>
+          }
+        </span>
+      </button>
+    } @else {
+      <ng-container [ngTemplateOutlet]="header.headerTemplate"></ng-container>
+    }
   }
 </ng-template>

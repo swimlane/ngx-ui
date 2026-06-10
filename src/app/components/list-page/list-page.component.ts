@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ListRowStatus } from '@swimlane/ngx-ui';
+import { getListSortComparator, ListRowStatus, ListSortEvent, ListSortPropDir } from '@swimlane/ngx-ui';
 
 @Component({
   selector: 'app-list-page',
@@ -153,6 +153,29 @@ export class ListPageComponent {
   };
 
   rowStatus: ListRowStatus = ListRowStatus.Error;
+
+  externalSortData: Array<Record<string, unknown>> = [...this.data];
+  externalSort: ListSortPropDir | null = null;
+
+  onExternalSort(event: ListSortEvent): void {
+    this.externalSort = event.sort ? { ...event.sort } : null;
+
+    if (!event.sort) {
+      this.externalSortData = [...this.data];
+      return;
+    }
+
+    const { prop, dir } = event.sort;
+    const comparator = getListSortComparator({
+      prop,
+      type: prop === 'date' ? 'date' : 'text'
+    });
+
+    this.externalSortData = [...this.data].sort((rowA, rowB) => {
+      const result = comparator(rowA[prop], rowB[prop], rowA, rowB);
+      return dir === 'desc' ? -result : result;
+    });
+  }
 
   onPageChangeVirtualScroll(event: number) {
     console.log('VIRTUALIZED EXAMPLE PAGE NUMBER: ', event);

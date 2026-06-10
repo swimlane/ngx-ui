@@ -4,13 +4,18 @@
   [class.ngx-list__headers-container__scrollable]="hasScrollbar"
 >
   @for (header of headers; track header) {
-  <ng-container *ngComponentOutlet="headerComponent; inputs: { header: header }"></ng-container>
+  <ng-container
+    *ngComponentOutlet="
+      headerComponent;
+      inputs: { header: header, sortDir: getSortDirection(header), onHeaderSort: onHeaderSort }
+    "
+  ></ng-container>
   }
 </div>
 <hr />
 @if (virtualScroll) {
 <cdk-virtual-scroll-viewport #virtualScrollViewport [style.height.px]="height" [itemSize]="rowHeight">
-  <div *cdkVirtualFor="let data of dataSource; index as i">
+  <div *cdkVirtualFor="let data of displayDataSource; track: data; index as i">
     <ng-container
       *ngComponentOutlet="
         rowComponent;
@@ -21,7 +26,7 @@
 </cdk-virtual-scroll-viewport>
 } @else {
 <div #listRowsContainer [style.height.px]="height" class="ngx-list__rows-container">
-  @for (data of dataSource; track data; let idx = $index) {
+  @for (data of displayDataSource; track data; let idx = $index) {
   <ng-container
     *ngComponentOutlet="
       rowComponent;
