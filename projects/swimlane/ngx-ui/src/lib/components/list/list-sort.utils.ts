@@ -10,6 +10,8 @@ export type ListSortComparator = (
   rowB?: Record<string, unknown>
 ) => number;
 
+const collator = new Intl.Collator(undefined, { sensitivity: 'base', numeric: true });
+
 export function defaultListSortComparator(a: unknown, b: unknown): number {
   if (a == null && b == null) {
     return 0;
@@ -24,9 +26,9 @@ export function defaultListSortComparator(a: unknown, b: unknown): number {
     return a - b;
   }
   if (typeof a === 'string' && typeof b === 'string') {
-    return a.localeCompare(b);
+    return collator.compare(a, b);
   }
-  return String(a).localeCompare(String(b));
+  return collator.compare(String(a), String(b));
 }
 
 export function parseListSortDate(value: unknown): number | null {
@@ -108,10 +110,15 @@ export function sortListRows(
 
   const header = Array.from(headers).find(item => item?.prop === sort.prop);
   const comparator = header ? getListSortComparator(header) : defaultListSortComparator;
+  const isDateSort = !header?.comparator && getListHeaderSortType(header ?? { prop: sort.prop }) === 'date';
+
+  const parsedDates = isDateSort
+    ? new Map(rows.map(row => [row, parseListSortDate(row[sort.prop])]))
+    : null;
 
   return [...rows].sort((rowA, rowB) => {
-    const valueA = rowA[sort.prop];
-    const valueB = rowB[sort.prop];
+    const valueA = parsedDates ? parsedDates.get(rowA) : rowA[sort.prop];
+    const valueB = parsedDates ? parsedDates.get(rowB) : rowB[sort.prop];
     const result = comparator(valueA, valueB, rowA, rowB);
     return sort.dir === 'desc' ? -result : result;
   });
