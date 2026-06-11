@@ -1,6 +1,7 @@
 import type { Mock } from 'vitest';
 import { fakeAsync, tick } from '@angular/core/testing';
 import { ListComponent } from './list.component';
+import { ListHeaderComponent } from './list-header/list-header.component';
 import { of } from 'rxjs';
 
 describe('ListComponent', () => {
@@ -23,10 +24,20 @@ describe('ListComponent', () => {
     return el;
   };
 
+  const createSortableHeader = (prop: string, sortable = true): ListHeaderComponent => {
+    const header = new ListHeaderComponent();
+    header.sortable = sortable;
+    header.prop = prop;
+    return header;
+  };
+
   beforeEach(() => {
     component = new ListComponent();
     component.columnLayout = null as any;
-    component.headers = { length: 1 } as any;
+    component.headers = {
+      length: 1,
+      toArray: () => [createSortableHeader('name')]
+    } as any;
     component.listRowsContainer = {
       nativeElement: createListRowsNativeElement()
     } as any;
@@ -35,6 +46,11 @@ describe('ListComponent', () => {
     component.virtualScrollViewport = {
       elementScrolled: () => of(mockScrollEvent)
     } as any;
+    component.dataSource = [
+      { name: 'Charlie', value: 3 },
+      { name: 'Alice', value: 1 },
+      { name: 'Bob', value: 2 }
+    ];
   });
 
   it('should create', () => {
@@ -168,6 +184,111 @@ describe('ListComponent', () => {
       component.initScrollListener();
 
       expect(emitScrollChangesSpy).toHaveBeenCalledWith(mockScrollEvent);
+    });
+  });
+
+  describe('sorting', () => {
+    beforeEach(() => {
+      component.headers = {
+        length: 1,
+        toArray: () => [createSortableHeader('name')]
+      } as any;
+      component.ngAfterContentInit();
+    });
+
+    it('should emit onSort with expected payload when a sortable header is clicked', () => {
+      const header = createSortableHeader('name');
+      const onSortSpy = vi.spyOn(component.onSort, 'emit');
+
+      component.onHeaderSort(header);
+
+      expect(onSortSpy).toHaveBeenCalledWith({
+        sort: { prop: 'name', dir: 'asc' }
+      });
+    });
+
+    it('should sort rows ascending then descending then ascending again in local mode', () => {
+      const header = createSortableHeader('name');
+
+      component.onHeaderSort(header);
+      expect(component.displayDataSource.map(row => row.name)).toEqual(['Alice', 'Bob', 'Charlie']);
+
+      component.onHeaderSort(header);
+      expect(component.displayDataSource.map(row => row.name)).toEqual(['Charlie', 'Bob', 'Alice']);
+
+      component.onHeaderSort(header);
+      expect(component.displayDataSource.map(row => row.name)).toEqual(['Alice', 'Bob', 'Charlie']);
+    });
+
+    it('should not reorder rows in external sorting mode', () => {
+      component.externalSorting = true;
+      const header = createSortableHeader('name');
+
+      component.onHeaderSort(header);
+
+      expect(component.displayDataSource.map(row => row.name)).toEqual(['Charlie', 'Alice', 'Bob']);
+    });
+
+    it('should respect pre-seeded sort input', () => {
+      component.sort = { prop: 'name', dir: 'asc' };
+      component.ngOnChanges({
+        sort: {
+          currentValue: component.sort,
+          previousValue: null,
+          firstChange: false,
+          isFirstChange: () => false
+        },
+        dataSource: {
+          currentValue: component.dataSource,
+          previousValue: [],
+          firstChange: false,
+          isFirstChange: () => false
+        }
+      });
+
+      expect(component.displayDataSource.map(row => row.name)).toEqual(['Alice', 'Bob', 'Charlie']);
+      expect(component.getSortDirection(createSortableHeader('name'))).toBe('asc');
+    });
+
+    it('should recompute sorted rows when dataSource changes in local mode', () => {
+      const header = createSortableHeader('name');
+      component.onHeaderSort(header);
+
+      component.dataSource = [
+        { name: 'Zoe', value: 1 },
+        { name: 'Amy', value: 2 }
+      ];
+      component.ngOnChanges({
+        dataSource: {
+          currentValue: component.dataSource,
+          previousValue: [],
+          firstChange: false,
+          isFirstChange: () => false
+        }
+      });
+
+      expect(component.displayDataSource.map(row => row.name)).toEqual(['Amy', 'Zoe']);
+    });
+
+    it('should reset scroll position after local sort', () => {
+      const scrollToSpy = vi.spyOn(component.listRowsContainer.nativeElement, 'scrollTo');
+      const header = createSortableHeader('name');
+
+      component.onHeaderSort(header);
+
+      expect(scrollToSpy).toHaveBeenCalledWith({ top: 0 });
+      expect(component.page).toBe(1);
+    });
+
+    it('should reset scroll position after external sort', () => {
+      const scrollToSpy = vi.spyOn(component.listRowsContainer.nativeElement, 'scrollTo');
+      component.externalSorting = true;
+      const header = createSortableHeader('name');
+
+      component.onHeaderSort(header);
+
+      expect(scrollToSpy).toHaveBeenCalledWith({ top: 0 });
+      expect(component.page).toBe(1);
     });
   });
 });
