@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
-import { getListSortComparator, ListRowStatus, ListSortEvent, ListSortPropDir } from '@swimlane/ngx-ui';
+import {
+  defaultListSortComparator,
+  parseListSortDate,
+  ListRowStatus,
+  ListSortEvent,
+  ListSortPropDir
+} from '@swimlane/ngx-ui';
 
 @Component({
   selector: 'app-list-page',
@@ -166,13 +172,13 @@ export class ListPageComponent {
     }
 
     const { prop, dir } = event.sort;
-    const comparator = getListSortComparator({
-      prop,
-      type: prop === 'date' ? 'date' : 'text'
-    });
+    const isDate = prop === 'date';
+    const parsed = isDate ? new Map(this.data.map(row => [row, parseListSortDate(row[prop])])) : null;
 
     this.externalSortData = [...this.data].sort((rowA, rowB) => {
-      const result = comparator(rowA[prop], rowB[prop], rowA, rowB);
+      const a = parsed ? parsed.get(rowA) : rowA[prop];
+      const b = parsed ? parsed.get(rowB) : rowB[prop];
+      const result = defaultListSortComparator(a, b);
       return dir === 'desc' ? -result : result;
     });
   }

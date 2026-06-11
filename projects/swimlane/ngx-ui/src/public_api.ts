@@ -176,11 +176,7 @@ export * from './lib/components/list/models/list-sort-direction.type';
 export * from './lib/components/list/models/list-sort-prop-dir';
 export * from './lib/components/list/models/list-sort-event';
 export * from './lib/components/list/models/list-header-sort-type.type';
-export {
-  dateListSortComparator,
-  defaultListSortComparator,
-  getListSortComparator
-} from './lib/components/list/list-sort.utils';
+export { defaultListSortComparator, parseListSortDate } from './lib/components/list/list-sort.utils';
 export * from './lib/components/list/list-header/list-header.component';
 export * from './lib/components/list/list-header/list-header-template.directive';
 export * from './lib/components/list/list-row/list-row.component';

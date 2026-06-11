@@ -48,10 +48,7 @@ export function parseListSortDate(value: unknown): number | null {
   return Number.isNaN(parsed) ? null : parsed;
 }
 
-export function dateListSortComparator(a: unknown, b: unknown): number {
-  const timeA = parseListSortDate(a);
-  const timeB = parseListSortDate(b);
-
+function compareParsedDates(timeA: number | null, timeB: number | null): number {
   if (timeA == null && timeB == null) {
     return 0;
   }
@@ -71,16 +68,6 @@ export function getListHeaderSortType(header: Pick<ListHeaderComponent, 'prop' |
   }
 
   return header.prop === 'date' ? 'date' : 'text';
-}
-
-export function getListSortComparator(
-  header: Pick<ListHeaderComponent, 'prop' | 'type' | 'comparator'>
-): ListSortComparator {
-  if (header.comparator) {
-    return header.comparator;
-  }
-
-  return getListHeaderSortType(header) === 'date' ? dateListSortComparator : defaultListSortComparator;
 }
 
 export function getNextListSort(
@@ -109,17 +96,22 @@ export function sortListRows(
   }
 
   const header = Array.from(headers).find(item => item?.prop === sort.prop);
-  const comparator = header ? getListSortComparator(header) : defaultListSortComparator;
-  const isDateSort = !header?.comparator && getListHeaderSortType(header ?? { prop: sort.prop }) === 'date';
+  const isDateSort = !header.comparator && getListHeaderSortType(header ?? { prop: sort.prop }) === 'date';
+  const comparator = header.comparator ? header.comparator : defaultListSortComparator;
 
-  const parsedDates = isDateSort
-    ? new Map(rows.map(row => [row, parseListSortDate(row[sort.prop])]))
-    : null;
+  const parsedDates = isDateSort ? new Map(rows.map(row => [row, parseListSortDate(row[sort.prop])])) : null;
 
   return [...rows].sort((rowA, rowB) => {
-    const valueA = parsedDates ? parsedDates.get(rowA) : rowA[sort.prop];
-    const valueB = parsedDates ? parsedDates.get(rowB) : rowB[sort.prop];
-    const result = comparator(valueA, valueB, rowA, rowB);
+    let result: number;
+    if (parsedDates) {
+      const valueA = parsedDates.get(rowA);
+      const valueB = parsedDates.get(rowB);
+      result = compareParsedDates(valueA, valueB);
+    } else {
+      const valueA = rowA[sort.prop];
+      const valueB = rowB[sort.prop];
+      result = comparator(valueA, valueB, rowA, rowB);
+    }
     return sort.dir === 'desc' ? -result : result;
   });
 }
