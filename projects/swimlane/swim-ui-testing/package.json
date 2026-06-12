@@ -20,8 +20,8 @@
     "vitest": "^2.1.0"
   },
   "volta": {
-    "node": "22.16.0",
-    "yarn": "4.9.2"
+    "node": "22.22.3",
+    "yarn": "4.16.0"
   },
-  "packageManager": "yarn@4.9.2"
+  "packageManager": "yarn@4.16.0"
 }
