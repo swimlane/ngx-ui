@@ -3,4 +3,37 @@ ngx-list-header.ngx-list-header {
   font-size: 14px;
   font-weight: 700;
   line-height: 22px;
+
+  .ngx-list-header__sort-button {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    display: inline-flex;
+    font: inherit;
+    gap: var(--spacing-4);
+    line-height: inherit;
+    margin: 0;
+    padding: 0;
+    text-align: inherit;
+    width: 100%;
+  }
+
+  .ngx-list-header__label {
+    min-width: 0;
+  }
+
+  .ngx-list-header__sort-indicator {
+    display: inline-flex;
+    flex-shrink: 0;
+    min-width: var(--spacing-16);
+    opacity: 0;
+    transition: opacity 0.2s linear;
+
+    &--asc,
+    &--desc {
+      opacity: 1;
+    }
+  }
 }

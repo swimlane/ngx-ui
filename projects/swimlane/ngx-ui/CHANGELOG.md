@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Feature (`ngx-list`): Added header sorting support with local and external sort modes. Sortable headers cycle `asc → desc → asc` on click. New inputs: `sortable`, `prop`, `type` (`'text' | 'date'`), and `comparator` on `ngx-list-header`; `externalSorting` and `sort: ListSortPropDir | null` on `ngx-list`. New output `onSort: EventEmitter<ListSortEvent>` on `ngx-list`. New exported types: `ListSortPropDir`, `ListSortDirection`, `ListSortEvent`, `ListSortComparator`, `ListHeader`, `ListHeaderSortType`. New sort utilities: `defaultListSortComparator`, `parseListSortDate`.
+
 ## 52.0.0-alpha.5 (2026-06-03)
 
 - Feature (`ngx-select`): Added `placeholderTemplate` to allow render a template as placeholder.

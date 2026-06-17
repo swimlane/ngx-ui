@@ -7,9 +7,11 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  OnChanges,
   OnDestroy,
   Output,
   QueryList,
+  SimpleChanges,
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
@@ -19,6 +21,11 @@ import { ListRowComponent } from './list-row/list-row.component';
 import { ListColumnComponent } from './list-column/list-column.component';
 import { ListHeaderComponent } from './list-header/list-header.component';
 import { ListPaginationConfig } from './models/list-pagination-config';
+import { ListSortEvent } from './models/list-sort-event';
+import { ListSortPropDir } from './models/list-sort-prop-dir';
+import { ListSortDirection } from './models/list-sort-direction.type';
+import { getListSortDirection, getNextListSort, sortListRows } from './list-sort.utils';
+
 @Component({
   selector: 'ngx-list',
   templateUrl: './list.component.html',
@@ -29,9 +36,11 @@ import { ListPaginationConfig } from './models/list-pagination-config';
     class: 'ngx-list'
   }
 })
-export class ListComponent implements AfterContentInit, AfterViewInit, OnDestroy {
+export class ListComponent implements AfterContentInit, AfterViewInit, OnChanges, OnDestroy {
   @Input() columnLayout: Partial<CSSStyleDeclaration>;
   @Input() dataSource: Array<Record<string, unknown>> = [];
+  @Input() externalSorting = false;
+  @Input() sort: ListSortPropDir | null = null;
   @Input() height: number;
   @Input() paginationConfig: ListPaginationConfig;
   @Input() virtualScroll = false;
@@ -39,6 +48,7 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnDestroy
 
   @Output() onPageChange = new EventEmitter<number>();
   @Output() onScroll = new EventEmitter<number>();
+  @Output() onSort = new EventEmitter<ListSortEvent>();
 
   @ContentChild(ListRowComponent) row: ListRowComponent;
 
@@ -55,12 +65,26 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnDestroy
     display: 'grid',
     gap: '1rem'
   };
+  displayDataSource: Array<Record<string, unknown>> = [];
   hasScrollbar = false;
   page = 1;
 
+  private _sort: ListSortPropDir | null = null;
   private destroy$ = new Subject<void>();
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['sort']) {
+      this._sort = this.sort ? { ...this.sort } : null;
+    }
+
+    if (changes['dataSource'] || changes['sort']) {
+      this.updateDisplayDataSource();
+    }
+  }
+
   ngAfterContentInit(): void {
+    this._sort = this.sort ? { ...this.sort } : null;
+    this.updateDisplayDataSource();
     this.generateLayout();
   }
 
@@ -92,6 +116,35 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnDestroy
     this.destroy$.next();
     this.destroy$.complete();
   }
+
+  getSortDirection(header: ListHeaderComponent): ListSortDirection | undefined {
+    return getListSortDirection(this._sort, header.prop);
+  }
+
+  /**
+   * @function onHeaderSort
+   *
+   * @description
+   * Handles sortable header clicks by updating sort state, emitting `onSort`, and applying local sorting when enabled.
+   *
+   * @param {ListHeaderComponent} header - the clicked header
+   */
+  onHeaderSort = (header: ListHeaderComponent): void => {
+    if (!header.sortable || !header.prop) {
+      return;
+    }
+
+    this._sort = getNextListSort(this._sort, header);
+    this.onSort.emit({
+      sort: this._sort ? { ...this._sort } : null
+    });
+
+    if (!this.externalSorting) {
+      this.updateDisplayDataSource();
+    }
+
+    this.resetScrollAfterSort();
+  };
 
   /**
    * @function emitScrollChanges
@@ -153,6 +206,34 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnDestroy
       fromEvent(this.listRowsContainer.nativeElement, 'scroll')
         .pipe(takeUntil(this.destroy$))
         .subscribe(event => this.emitScrollChanges(event));
+    }
+  }
+
+  private updateDisplayDataSource(): void {
+    const rows = this.dataSource ?? [];
+
+    if (this.externalSorting || !this._sort) {
+      this.displayDataSource = [...rows];
+      return;
+    }
+
+    this.displayDataSource = sortListRows(rows, this._sort, this.getHeaderList());
+  }
+
+  private getHeaderList(): ListHeaderComponent[] {
+    return this.headers?.toArray?.() ?? [];
+  }
+
+  private resetScrollAfterSort(): void {
+    this.page = 1;
+
+    if (this.virtualScroll && this.virtualScrollViewport) {
+      this.virtualScrollViewport.scrollToIndex(0);
+      return;
+    }
+
+    if (this.listRowsContainer?.nativeElement) {
+      this.listRowsContainer.nativeElement.scrollTo({ top: 0 });
     }
   }
 }

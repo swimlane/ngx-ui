@@ -252,8 +252,241 @@
         </ngx-tab>
       </ngx-tabs>
     </ngx-section>
+    <ngx-section class="shadow" sectionTitle="Local Header Sorting">
+      <ngx-list [dataSource]="data">
+        <ngx-list-header [sortable]="true" prop="type">
+          <ng-template ngx-list-header-template>Attack Type</ng-template>
+        </ngx-list-header>
+        <ngx-list-header [sortable]="true" prop="date" type="date">
+          <ng-template ngx-list-header-template>Date of Attack</ng-template>
+        </ngx-list-header>
+        <ngx-list-header [sortable]="true" prop="origin">
+          <ng-template ngx-list-header-template>Origin of Attack</ng-template>
+        </ngx-list-header>
+
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.date }}</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.origin }}</ng-template>
+        </ngx-list-column>
+
+        <ngx-list-row [status]="rowStatus"></ngx-list-row>
+      </ngx-list>
+
+      <br />
+      <br />
+
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <!-- prettier-ignore -->
+          <app-prism ngNonBindable>
+  <![CDATA[
+  <ngx-list [dataSource]="data">
+    <ngx-list-header [sortable]="true" prop="type">
+      <ng-template ngx-list-header-template>Attack Type</ng-template>
+    </ngx-list-header>
+    <ngx-list-header [sortable]="true" prop="date" type="date">
+      <ng-template ngx-list-header-template>Date of Attack</ng-template>
+    </ngx-list-header>
+    <ngx-list-header [sortable]="true" prop="origin">
+      <ng-template ngx-list-header-template>Origin of Attack</ng-template>
+    </ngx-list-header>
+
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
+    </ngx-list-column>
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.date }}</ng-template>
+    </ngx-list-column>
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.origin }}</ng-template>
+    </ngx-list-column>
+
+    <ngx-list-row [status]="rowStatus"></ngx-list-row>
+  </ngx-list>
+  ]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <!-- prettier-ignore -->
+          <app-prism language="js">
+<![CDATA[import { ListRowStatus } from '@swimlane/ngx-ui';
+
+  @Component({
+    selector: 'app',
+    templateUrl: './app.template.html'
+  })
+  export class AppComponent {
+    data: Array<Record<string, unknown>> = [
+      {
+        type: 'Malware',
+        date: '1/1/2025',
+        origin: 'China'
+      },
+      {
+        type: 'DDOS',
+        date: '1/5/2025',
+        origin: 'China'
+      },
+      {
+        type: 'DDOS',
+        date: '1/5/2025',
+        origin: 'Russia'
+      },
+      {
+        type: 'XSS',
+        date: '1/6/2025',
+        origin: 'North Korea'
+      },
+      {
+        type: 'DDOS',
+        date: '1/6/2025',
+        origin: 'North Korea'
+      },
+      {
+        type: 'Ransomware',
+        date: '1/8/2025',
+        origin: 'China'
+      },
+      {
+        type: 'DDOS',
+        date: '1/9/2025',
+        origin: 'China'
+      },
+      {
+        type: 'SQL injection',
+        date: '1/10/2025',
+        origin: 'North Korea'
+      },
+      {
+        type: 'Malware',
+        date: '1/11/2025',
+        origin: 'Russia'
+      }
+    ];
+
+    rowStatus = ListRowStatus.Error;
+  }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    </ngx-section>
+    <ngx-section class="shadow" sectionTitle="External Header Sorting">
+      <ngx-list
+        [dataSource]="externalSortData"
+        [externalSorting]="true"
+        [sort]="externalSort"
+        (onSort)="onExternalSort($event)"
+      >
+        <ngx-list-header [sortable]="true" prop="type">
+          <ng-template ngx-list-header-template>Attack Type</ng-template>
+        </ngx-list-header>
+        <ngx-list-header [sortable]="true" prop="date" type="date">
+          <ng-template ngx-list-header-template>Date of Attack</ng-template>
+        </ngx-list-header>
+        <ngx-list-header [sortable]="true" prop="origin">
+          <ng-template ngx-list-header-template>Origin of Attack</ng-template>
+        </ngx-list-header>
+
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.date }}</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.origin }}</ng-template>
+        </ngx-list-column>
+
+        <ngx-list-row [status]="rowStatus"></ngx-list-row>
+      </ngx-list>
+
+      <br />
+      <br />
+
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <!-- prettier-ignore -->
+          <app-prism ngNonBindable>
+  <![CDATA[
+  <ngx-list
+    [dataSource]="externalSortData"
+    [externalSorting]="true"
+    [sort]="externalSort"
+    (onSort)="onExternalSort($event)"
+  >
+    <ngx-list-header [sortable]="true" prop="type">
+      <ng-template ngx-list-header-template>Attack Type</ng-template>
+    </ngx-list-header>
+    <ngx-list-header [sortable]="true" prop="date" type="date">
+      <ng-template ngx-list-header-template>Date of Attack</ng-template>
+    </ngx-list-header>
+    <ngx-list-header [sortable]="true" prop="origin">
+      <ng-template ngx-list-header-template>Origin of Attack</ng-template>
+    </ngx-list-header>
+
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
+    </ngx-list-column>
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.date }}</ng-template>
+    </ngx-list-column>
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.origin }}</ng-template>
+    </ngx-list-column>
+
+    <ngx-list-row [status]="rowStatus"></ngx-list-row>
+  </ngx-list>
+  ]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <!-- prettier-ignore -->
+          <app-prism language="js">
+<![CDATA[import { defaultListSortComparator, parseListSortDate, ListRowStatus, ListSortEvent, ListSortPropDir } from '@swimlane/ngx-ui';
+
+  @Component({
+    selector: 'app',
+    templateUrl: './app.template.html'
+  })
+  export class AppComponent {
+    data: Array<Record<string, unknown>> = [/* ... */];
+
+    externalSortData: Array<Record<string, unknown>> = [...this.data];
+    externalSort: ListSortPropDir | null = null;
+    rowStatus = ListRowStatus.Error;
+
+    onExternalSort(event: ListSortEvent): void {
+      this.externalSort = event.sort ? { ...event.sort } : null;
+
+      if (!event.sort) {
+        this.externalSortData = [...this.data];
+        return;
+      }
+
+      const { prop, dir } = event.sort;
+      const isDate = prop === 'date';
+      const parsed = isDate ? new Map(this.data.map(row => [row, parseListSortDate(row[prop])])) : null;
+
+      this.externalSortData = [...this.data].sort((rowA, rowB) => {
+        const a = parsed ? parsed.get(rowA) : rowA[prop];
+        const b = parsed ? parsed.get(rowB) : rowB[prop];
+        const result = defaultListSortComparator(a, b);
+        return dir === 'desc' ? -result : result;
+      });
+    }
+  }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    </ngx-section>
     <ngx-section class="shadow" sectionTitle="Virtualized Scroll-Based Pagination">
       <ngx-list
+        data-cy="virtualized-pagination-list"
         [columnLayout]="paginationColumnLayout"
         [dataSource]="largeData"
         [height]="400"
@@ -998,6 +1231,27 @@
         <tr>
           <th>
             <code class="component-type">&#64;Input()</code>
+            <code>externalSorting: boolean = false</code>
+          </th>
+          <td>
+            When <code>true</code>, the list emits sort intent via <code>onSort</code> and expects the parent to update
+            <code>dataSource</code>. When <code>false</code>, the list sorts rows internally.
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>sort: ListSortPropDir | null = null</code>
+          </th>
+          <td>
+            Active sort state with column <code>prop</code> and direction (<code>asc</code> or <code>desc</code>). Set
+            to <code>null</code> when unsorted. Used to reflect header state and reapply sorting when
+            <code>dataSource</code> changes.
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
             <code>height: number</code>
           </th>
           <td>
@@ -1061,12 +1315,64 @@
             scroll container. This output is provided for implementing a custom pagination solution.
           </td>
         </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Output()</code>
+            <code>onSort: EventEmitter&lt;ListSortEvent&gt;</code>
+          </th>
+          <td>
+            Event emitted when a sortable header is clicked. The payload includes the next <code>sort</code> state.
+          </td>
+        </tr>
       </tbody>
     </table>
     <hr />
 
     <h3 class="style-header" id="ngx-list-header-inputs">ngx-list-header Inputs</h3>
-    <h4>No component inputs to display.</h4>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>sortable: boolean = false</code>
+          </th>
+          <td>Whether the header can be clicked to sort the list.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>prop?: string</code>
+          </th>
+          <td>The row property name used for sorting when this header is active.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>type?: 'text' | 'date'</code>
+          </th>
+          <td>
+            Sort value type for local sorting. When omitted, <code>prop="date"</code> defaults to date sorting. Use
+            <code>type="date"</code> for date strings such as <code>M/D/YYYY</code>.
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>comparator?: (a, b, rowA?, rowB?) =&gt; number</code>
+          </th>
+          <td>
+            Optional comparator for local sorting. Used by <code>ngx-list</code> when <code>externalSorting</code> is
+            <code>false</code>.
+          </td>
+        </tr>
+      </tbody>
+    </table>
     <hr />
     <h3 class="style-header" id="ngx-list-header-outputs">ngx-list-header Outputs</h3>
     <h4>No component outputs to display.</h4>
