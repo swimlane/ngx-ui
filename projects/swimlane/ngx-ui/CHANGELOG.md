@@ -2,6 +2,19 @@
 
 ## HEAD (unreleased)
 
+## 52.0.0
+
+- Enhancement (`ngx-list`): Added header sorting support with local and external sort modes. Sortable headers cycle `asc → desc → asc` on click. New inputs: `sortable`, `prop`, `type` (`'text' | 'date'`), and `comparator` on `ngx-list-header`; `externalSorting` and `sort: ListSortPropDir | null` on `ngx-list`. New output `onSort: EventEmitter<ListSortEvent>` on `ngx-list`. New exported types: `ListSortPropDir`, `ListSortDirection`, `ListSortEvent`, `ListSortComparator`, `ListHeader`, `ListHeaderSortType`. New sort utilities: `defaultListSortComparator`, `parseListSortDate`.
+- Enhancement (`ngx-select`): Added `placeholderTemplate` to allow render a template as placeholder.
+- Enhancement: Added support for Angular 21.2
+- Enhancement: Migrating from control directives to control flow
+- Enhancement: Adding vitest globals
+- Fix (`ngx-drawer`): Added `preventScroll: true` to the drawer's `focus()` call on init to prevent unwanted page scrolling when a drawer opens.
+- Fix (`ngx-date-range-picker`): Fixed start and end times being wrong when manually selecting a date range. Clicking a start day now normalizes to `startOfDay()` (00:00:00) and clicking an end day normalizes to `endOfDay()` (23:59:59.999), matching the behaviour of the "Last week" and other presets. The fix is isolated to `onRangeSelect` so the calendar time inputs and AM/PM toggle are unaffected.
+- Fix: Warnings related to trackBy in for
+- Chore: Migrating karma to vitest
+- Breaking: Removing angular 18 support
+
 ## 52.0.0-alpha.6 (2026-06-17)
 
 - Feature (`ngx-list`): Added header sorting support with local and external sort modes. Sortable headers cycle `asc → desc → asc` on click. New inputs: `sortable`, `prop`, `type` (`'text' | 'date'`), and `comparator` on `ngx-list-header`; `externalSorting` and `sort: ListSortPropDir | null` on `ngx-list`. New output `onSort: EventEmitter<ListSortEvent>` on `ngx-list`. New exported types: `ListSortPropDir`, `ListSortDirection`, `ListSortEvent`, `ListSortComparator`, `ListHeader`, `ListHeaderSortType`. New sort utilities: `defaultListSortComparator`, `parseListSortDate`.
