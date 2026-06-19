@@ -150,7 +150,7 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
           : this.selectedRange.start;
       const endDate =
         typeof this.selectedRange.end === 'string'
-          ? DateUtils.parseExpression(this.selectedRange.end)
+          ? DateUtils.parseExpression(this.selectedRange.end, 'end')
           : this.selectedRange.end;
       this.lastConfirmedRange = {
         startDate,
@@ -164,6 +164,7 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
       this.form.endDate = endDate;
       this.rangeModel = { startDate, endDate };
       this.setTooltipDate(startDate, endDate);
+      this.updateSelectedPresetByValue();
     }
   }
 
@@ -207,7 +208,7 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
 
   onCustomInputChange() {
     const start = this.parseFn(this.form.startRaw);
-    const end = this.parseFn(this.form.endRaw);
+    const end = this.parseFn(this.form.endRaw, 'end');
 
     if (!start || !end || !isValid(start) || !isValid(end)) {
       this.validationError = `Invalid date expression`;
