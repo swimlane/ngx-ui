@@ -161,7 +161,10 @@ export class ListPageComponent {
   rowStatus: ListRowStatus = ListRowStatus.Error;
 
   externalSortData: Array<Record<string, unknown>> = [...this.data];
-  externalSort: ListSortPropDir | null = null;
+  externalSort: ListSortPropDir | null = {
+    prop: 'date',
+    dir: 'desc'
+  };
 
   onExternalSort(event: ListSortEvent): void {
     this.externalSort = event.sort ? { ...event.sort } : null;

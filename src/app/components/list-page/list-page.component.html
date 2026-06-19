@@ -253,7 +253,7 @@
       </ngx-tabs>
     </ngx-section>
     <ngx-section class="shadow" sectionTitle="Local Header Sorting">
-      <ngx-list [dataSource]="data">
+      <ngx-list [dataSource]="data" [sort]="{ prop: 'date', dir: 'desc' }">
         <ngx-list-header [sortable]="true" prop="type">
           <ng-template ngx-list-header-template>Attack Type</ng-template>
         </ngx-list-header>
