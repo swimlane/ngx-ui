@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 52.1.0 (2026-06-19)
+
 - Fixing Date Picker to Highlight correct Date range for strings
 
 ## 52.0.0
