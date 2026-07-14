@@ -62,7 +62,7 @@ export const addPackages = (options: Schema) => {
       },
       {
         name: 'ng-in-viewport',
-        version: '^6.1.5'
+        version: '16.1.0'
       },
       {
         name: 'resize-observer-polyfill',

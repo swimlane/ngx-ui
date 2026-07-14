@@ -1,25 +1,28 @@
-import { ElementRef, Directive, Inject, PLATFORM_ID, EventEmitter } from '@angular/core';
-import { InViewportDirective, InViewportService } from 'ng-in-viewport';
+import { Directive, ElementRef, EventEmitter, inject } from '@angular/core';
+import { InViewportAction, InViewportDirective, InViewportOptions } from 'ng-in-viewport';
 
 @Directive({
   exportAs: 'ngxDropdownMenu',
   selector: 'ngx-dropdown-menu',
   host: { class: 'ngx-dropdown-menu' },
+  hostDirectives: [InViewportDirective],
   standalone: false
 })
-export class DropdownMenuDirective extends InViewportDirective {
+export class DropdownMenuDirective {
   readonly element: HTMLElement;
 
-  constructor(
-    @Inject(PLATFORM_ID) readonly _platformIdentifier: any,
-    readonly _elementReference: ElementRef,
-    readonly _insideViewport: InViewportService
-  ) {
-    super(_platformIdentifier, _elementReference, _insideViewport);
-    this.element = this._elementReference.nativeElement;
+  private readonly elementRef = inject(ElementRef);
+  private readonly inViewport = inject(InViewportDirective);
+
+  constructor() {
+    this.element = this.elementRef.nativeElement;
   }
 
-  getCallbackFn(): EventEmitter<any> {
-    return this.inViewportAction;
+  set options(value: InViewportOptions) {
+    this.inViewport.options = value;
+  }
+
+  getCallbackFn(): EventEmitter<InViewportAction> {
+    return this.inViewport.inViewportAction;
   }
 }

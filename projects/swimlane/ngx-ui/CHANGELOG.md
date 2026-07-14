@@ -2,6 +2,11 @@
 
 ## HEAD (unreleased)
 
+## 53.0.0-alpha.0 (2026-07-14)
+
+- Breaking: Bump peer dependency `ng-in-viewport` from `13.0.0` to `16.1.0`. Version 13.x calls `new Function()` at module import (requires CSP `script-src 'unsafe-eval'`); 16.1.0 removes that and clears the bootstrap CSP blocker. Consumers must upgrade `ng-in-viewport` to `16.1.0` when adopting this release.
+- Chore (`ngx-dropdown`): Migrate `DropdownMenuDirective` to compose `InViewportDirective` via `hostDirectives` (16.x no longer supports the previous constructor/`extends` pattern).
+
 ## 52.1.0 (2026-06-19)
 
 - Fixing Date Picker to Highlight correct Date range for strings

@@ -13763,6 +13763,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash-es@npm:^4.17.21":
+  version: 4.18.1
+  resolution: "lodash-es@npm:4.18.1"
+  checksum: 10c0/35d4dcf87ef07f8d090f409447575800108057e360b445f590d0d25d09e3d1e33a163d2fc100d4d072b0f901d5e2fc533cd7c4bfd8eeb38a06abec693823c8b8
+  languageName: node
+  linkType: hard
+
 "lodash.camelcase@npm:^4.3.0":
   version: 4.3.0
   resolution: "lodash.camelcase@npm:4.3.0"
@@ -14723,16 +14730,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ng-in-viewport@npm:13.0.1":
-  version: 13.0.1
-  resolution: "ng-in-viewport@npm:13.0.1"
+"ng-in-viewport@npm:16.1.0":
+  version: 16.1.0
+  resolution: "ng-in-viewport@npm:16.1.0"
   dependencies:
-    tslib: "npm:^2.1.0"
+    lodash-es: "npm:^4.17.21"
+    tslib: "npm:^2.3.0"
   peerDependencies:
-    "@angular/common": ">=12.0.0"
-    "@angular/core": ">=12.0.0"
-    rxjs: ">=6.5.3"
-  checksum: 10c0/08c789594bde732c4d5a9730acdf4b91c4f95efdd7125ead02c8fb45a43627de7733ccf83c1f9cca7f56653d499645af9143fc1948adc1775de5c5ebd6170e2f
+    "@angular/common": ^14.0.0 || ^15.0.0 || ^16.0.0 || >=17.0.0
+    "@angular/core": ^14.0.0 || ^15.0.0 || ^16.0.0 || >=17.0.0
+  checksum: 10c0/0837a68e05204fa52d04adcd60ddf53af351b3907bcb6051dcd18a3b08dd7bb0b19041611b666cfc94af81b3154b56d52b5a241eec84590550bc0895b54d366a
   languageName: node
   linkType: hard
 
@@ -14880,7 +14887,7 @@ __metadata:
     moment-timezone: "npm:0.5.37"
     moment-timezone-data-webpack-plugin: "npm:1.5.1"
     mousetrap: "npm:^1.6.5"
-    ng-in-viewport: "npm:13.0.1"
+    ng-in-viewport: "npm:16.1.0"
     ng-packagr: "npm:21.2.3"
     ng2-file-upload: "npm:^8.0.0"
     ngx-moment: "npm:6.0.2"

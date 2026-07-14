@@ -1,6 +1,6 @@
 {
   "name": "@swimlane/ngx-ui",
-  "version": "52.1.0",
+  "version": "53.0.0-alpha.0",
   "engines": {
     "node": ">=18.0.0"
   },
@@ -34,7 +34,7 @@
     "json-schema": "*",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.37",
-    "ng-in-viewport": "13.0.0",
+    "ng-in-viewport": "16.1.0",
     "ngx-autosize-input": "^2.3.7",
     "rxjs": "7.x"
   },
