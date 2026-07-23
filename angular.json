@@ -22,9 +22,13 @@
             },
             "allowedCommonJsDependencies": [
               "moment-timezone",
+              "moment",
               "mousetrap",
               "ajv",
-              "codemirror"
+              "codemirror",
+              "camelcase",
+              "prismjs",
+              "faker"
             ],
             "aot": true,
             "preserveSymlinks": true,
@@ -51,7 +55,7 @@
             "scripts": [],
             "sourceMap": {
               "scripts": true,
-              "styles": true,
+              "styles": false,
               "vendor": true
             }
           },

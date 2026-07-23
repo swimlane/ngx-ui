@@ -1,11 +1,3 @@
-# This file is currently used by autoprefixer to adjust CSS to support the below specified browsers
-# For additional information regarding the format and rule options, please see:
-# https://github.com/browserslist/browserslist#queries
-#
-# For IE 9-11 support, please remove 'not' from the last line of the file and adjust as needed
-
-> 0.5%
-last 2 versions
-Firefox ESR
-not dead
-not IE 9-11
+# Align with Angular CLI browser support (Baseline widely available).
+# Used by the CLI and Autoprefixer.
+baseline widely available on 2025-10-20
