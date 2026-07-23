@@ -69,7 +69,10 @@ $input-animation-duration: 150ms;
   overflow-x: clip;
   max-width: 100%;
   text-overflow: ellipsis;
-  transition: color 0.2s ease-out, font-size $input-animation-duration ease-out, top $input-animation-duration ease-out;
+  transition:
+    color 0.2s ease-out,
+    font-size $input-animation-duration ease-out,
+    top $input-animation-duration ease-out;
 }
 
 @mixin input-hint {

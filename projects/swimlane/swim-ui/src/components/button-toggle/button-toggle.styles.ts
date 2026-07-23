@@ -22,7 +22,9 @@ export const buttonToggleStyles = css`
     border-radius: var(--radius-4);
     color: var(--grey-350);
     white-space: nowrap;
-    transition: background-color 0.25s cubic-bezier(0.35, 0, 0.25, 1), font-weight 0.25s ease-in;
+    transition:
+      background-color 0.25s cubic-bezier(0.35, 0, 0.25, 1),
+      font-weight 0.25s ease-in;
     font: inherit;
     font-size: var(--font-size-m);
     cursor: inherit;

@@ -7,9 +7,9 @@ import { ButtonToggleModule } from './button-toggle.module';
   template: `
     <ngx-button-toggle-group [(value)]="value" [disabled]="disabled">
       @for (item of items; track item) {
-      <ngx-button-toggle [value]="item">
-        {{ item }}
-      </ngx-button-toggle>
+        <ngx-button-toggle [value]="item">
+          {{ item }}
+        </ngx-button-toggle>
       }
     </ngx-button-toggle-group>
   `,
