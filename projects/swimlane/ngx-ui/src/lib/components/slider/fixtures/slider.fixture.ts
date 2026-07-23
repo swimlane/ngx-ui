@@ -1,10 +1,11 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { SliderComponent } from '../slider.component';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'slider-fixture',
   templateUrl: 'slider.fixture.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class SliderFixtureComponent {

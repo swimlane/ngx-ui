@@ -2,6 +2,10 @@
 
 ## HEAD (unreleased)
 
+- Enhancement: Added support for Angular 22
+- Breaking: Removing Angular 19 support (peers are now `20.x || 21.x || 22.x`)
+- Chore: Migrated ESLint to flat config (`eslint.config.js`) required by angular-eslint v22
+
 ## 52.1.0 (2026-06-19)
 
 - Fixing Date Picker to Highlight correct Date range for strings

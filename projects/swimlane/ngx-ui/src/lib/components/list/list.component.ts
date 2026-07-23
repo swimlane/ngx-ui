@@ -13,7 +13,8 @@ import {
   QueryList,
   SimpleChanges,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { fromEvent, Subject, takeUntil } from 'rxjs';
@@ -32,6 +33,7 @@ import { getListSortDirection, getNextListSort, sortListRows } from './list-sort
   styleUrl: './list.component.scss',
   standalone: false,
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.Eager,
   host: {
     class: 'ngx-list'
   }

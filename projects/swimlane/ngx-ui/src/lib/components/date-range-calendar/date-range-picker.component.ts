@@ -26,7 +26,8 @@ import {
   Output,
   SimpleChanges,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { DateRangeForm, TooltipDateItem } from './models/date-range.model';
 
@@ -47,6 +48,7 @@ const guessTimeZone = moment.tz.guess();
   templateUrl: './date-range-picker.component.html',
   styleUrls: ['./date-range-picker.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DateRangePickerComponent implements OnInit, OnChanges {

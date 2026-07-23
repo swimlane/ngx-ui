@@ -104,19 +104,10 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:web-test-runner",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": [],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ]
+            "runner": "vitest"
           }
         },
         "lint": {
@@ -138,7 +129,7 @@
       "prefix": "ngx",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "builder": "@angular/build:ng-packagr",
           "options": {
             "tsConfig": "projects/swimlane/ngx-ui-testing/tsconfig.json",
             "project": "projects/swimlane/ngx-ui-testing/ng-package.json"
@@ -164,7 +155,7 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "builder": "@angular/build:ng-packagr",
           "options": {
             "tsConfig": "projects/swimlane/ngx-ui/tsconfig.lib.json",
             "project": "projects/swimlane/ngx-ui/ng-package.json"
