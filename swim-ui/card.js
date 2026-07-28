@@ -1368,44 +1368,44 @@ const Oe = "swim-card", he = class he extends m {
       ${e ? u`<div class="swim-card__outline" aria-hidden="true"></div>` : c}
       ${t ? u`<div class="swim-card__outline swim-card__outline--error" aria-hidden="true"></div>` : c}
       ${s ? u`
-            <div
-              class="swim-card__outline-text ${this.error ? "swim-card__outline-text--error" : ""}"
-              aria-hidden="true"
-            >
               <div
-                part="outline-text"
-                class="swim-card__outline-text-inner"
-                role="button"
-                tabindex="${this.disabled ? -1 : 0}"
-                aria-label="${this.outlineText}"
-                @click="${this._onOutlineClick}"
-                @keydown="${(n) => {
+                class="swim-card__outline-text ${this.error ? "swim-card__outline-text--error" : ""}"
+                aria-hidden="true"
+              >
+                <div
+                  part="outline-text"
+                  class="swim-card__outline-text-inner"
+                  role="button"
+                  tabindex="${this.disabled ? -1 : 0}"
+                  aria-label="${this.outlineText}"
+                  @click="${this._onOutlineClick}"
+                  @keydown="${(n) => {
       (n.key === "Enter" || n.key === " ") && (n.preventDefault(), this._onOutlineClick(n));
     }}"
-              >
-                ${this.outlineText}
+                >
+                  ${this.outlineText}
+                </div>
               </div>
-            </div>
-          ` : c}
+            ` : c}
       ${r ? u`
-            <div
-              class="swim-card__status ${o}"
-              title="${this.statusTooltip}"
-              role="status"
-              aria-label="${this.statusTooltip || this.status || ""}"
-            ></div>
-          ` : c}
+              <div
+                class="swim-card__status ${o}"
+                title="${this.statusTooltip}"
+                role="status"
+                aria-label="${this.statusTooltip || this.status || ""}"
+              ></div>
+            ` : c}
       ${this.selectable ? u`
-            <div class="swim-card__select" @click="${this._onCheckboxClick}">
-              <swim-checkbox
-                round
-                .checked="${this.selected}"
-                ?disabled="${this.disabled}"
-                aria-label="Select card"
-                @change="${this._onSelectChange}"
-              ></swim-checkbox>
-            </div>
-          ` : c}
+              <div class="swim-card__select" @click="${this._onCheckboxClick}">
+                <swim-checkbox
+                  round
+                  .checked="${this.selected}"
+                  ?disabled="${this.disabled}"
+                  aria-label="Select card"
+                  @change="${this._onSelectChange}"
+                ></swim-checkbox>
+              </div>
+            ` : c}
 
       <slot></slot>
 
@@ -1743,14 +1743,14 @@ const Re = "swim-card-avatar", ge = class ge extends m {
       >
         <div class="swim-card-avatar__inner">
           ${this.src ? u`
-                <img
-                  class="swim-card-avatar__img ${this.removeImageBackground ? "swim-card-avatar__img--no-bg" : ""}"
-                  src="${this.src}"
-                  alt=""
-                  draggable="false"
-                  loading="lazy"
-                />
-              ` : u`<span class="swim-card-avatar__content"><slot></slot></span>`}
+                  <img
+                    class="swim-card-avatar__img ${this.removeImageBackground ? "swim-card-avatar__img--no-bg" : ""}"
+                    src="${this.src}"
+                    alt=""
+                    draggable="false"
+                    loading="lazy"
+                  />
+                ` : u`<span class="swim-card-avatar__content"><slot></slot></span>`}
         </div>
       </div>
     `;

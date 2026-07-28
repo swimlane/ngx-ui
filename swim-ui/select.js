@@ -1204,7 +1204,10 @@ const St = j`
     overflow-x: clip;
     max-width: 100%;
     text-overflow: ellipsis;
-    transition: color 0.2s ease-out, font-size 150ms ease-out, top 150ms ease-out;
+    transition:
+      color 0.2s ease-out,
+      font-size 150ms ease-out,
+      top 150ms ease-out;
   }
 
   :host([active]) .select-label,
@@ -3273,15 +3276,15 @@ const Le = "swim-select", Y = typeof HTMLElement < "u" && typeof HTMLElement.pro
                 <div class="select-value">${this._renderValue()}</div>
                 <div class="select-controls">
                   ${i ? g`
-                        <button
-                          type="button"
-                          class="select-clear"
-                          aria-label="Clear selection"
-                          @click="${this._handleClear}"
-                        >
-                          <swim-icon font-icon="x"></swim-icon>
-                        </button>
-                      ` : p}
+                          <button
+                            type="button"
+                            class="select-clear"
+                            aria-label="Clear selection"
+                            @click="${this._handleClear}"
+                          >
+                            <swim-icon font-icon="x"></swim-icon>
+                          </button>
+                        ` : p}
                   <button
                     type="button"
                     class="select-caret"
@@ -3303,48 +3306,48 @@ const Le = "swim-select", Y = typeof HTMLElement < "u" && typeof HTMLElement.pro
           <div class="underline-fill"></div>
         </div>
         ${r ? g`
-              <div class="select-hint">
-                <slot name="hint">${this.hint}</slot>
-              </div>
-            ` : p}
+                <div class="select-hint">
+                  <slot name="hint">${this.hint}</slot>
+                </div>
+              ` : p}
         ${this._open ? g`
-              <div
-                class="select-dropdown swim-scroll"
-                part="dropdown"
-                role="listbox"
-                id="${this.id}-listbox"
-                popover="${Y ? "manual" : p}"
-              >
-                ${this.filterable ? g`
-                      <div
-                        class="select-filter ${this.loading ? "select-filter--loading" : ""}"
-                        aria-busy="${this.loading}"
-                      >
-                        <input
-                          type="text"
-                          class="select-filter-input"
-                          placeholder="${this.filterPlaceholder}"
-                          ?disabled="${this.disabled}"
-                          ?readonly="${this.loading}"
-                          .value="${this._filterQuery}"
-                          @input="${this._handleFilterInput}"
-                          @keydown="${this._handleFilterKeyDown}"
-                        />
-                      </div>
-                    ` : p}
-                ${o ? g`
-                      <ul
-                        class="select-options ${this.grouped && this._listHasGroupHeadings(t) ? "select-options--grouped" : ""}"
-                      >
-                        ${this.grouped ? this._renderGroupedOptionRows(t) : xt(
+                <div
+                  class="select-dropdown swim-scroll"
+                  part="dropdown"
+                  role="listbox"
+                  id="${this.id}-listbox"
+                  popover="${Y ? "manual" : p}"
+                >
+                  ${this.filterable ? g`
+                          <div
+                            class="select-filter ${this.loading ? "select-filter--loading" : ""}"
+                            aria-busy="${this.loading}"
+                          >
+                            <input
+                              type="text"
+                              class="select-filter-input"
+                              placeholder="${this.filterPlaceholder}"
+                              ?disabled="${this.disabled}"
+                              ?readonly="${this.loading}"
+                              .value="${this._filterQuery}"
+                              @input="${this._handleFilterInput}"
+                              @keydown="${this._handleFilterKeyDown}"
+                            />
+                          </div>
+                        ` : p}
+                  ${o ? g`
+                          <ul
+                            class="select-options ${this.grouped && this._listHasGroupHeadings(t) ? "select-options--grouped" : ""}"
+                          >
+                            ${this.grouped ? this._renderGroupedOptionRows(t) : xt(
       t,
       (s) => this._getOptionValue(s),
       (s, l) => this._renderOption(s, l)
     )}
-                      </ul>
-                    ` : g`<div class="select-empty">${this._emptyDropdownMessage()}</div>`}
-              </div>
-            ` : p}
+                          </ul>
+                        ` : g`<div class="select-empty">${this._emptyDropdownMessage()}</div>`}
+                </div>
+              ` : p}
       </div>
     `;
   }
@@ -3397,15 +3400,15 @@ const Le = "swim-select", Y = typeof HTMLElement < "u" && typeof HTMLElement.pro
       <div class="select-chip">
         <span class="select-chip-label">${t}</span>
         ${this.disabled ? p : g`
-              <button
-                type="button"
-                class="select-chip-remove"
-                aria-label="Remove ${t}"
-                @click="${(i) => this._removeChip(i, e)}"
-              >
-                <swim-icon font-icon="x"></swim-icon>
-              </button>
-            `}
+                <button
+                  type="button"
+                  class="select-chip-remove"
+                  aria-label="Remove ${t}"
+                  @click="${(i) => this._removeChip(i, e)}"
+                >
+                  <swim-icon font-icon="x"></swim-icon>
+                </button>
+              `}
       </div>
     `;
   }

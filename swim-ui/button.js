@@ -896,7 +896,9 @@ const Ye = G`
     border-color: var(--swim-button-border-color, var(--_swim-fallback-border-color));
     border-radius: var(--radius-4);
     box-shadow: var(--swim-button-shadow, var(--_swim-fallback-shadow));
-    transition: background-color 200ms, box-shadow 200ms;
+    transition:
+      background-color 200ms,
+      box-shadow 200ms;
     text-shadow: 1px 1px rgba(0, 0, 0, 0.07);
   }
 
