@@ -13,7 +13,10 @@ export class DrawerContainerExampleComponent {
 
   readonly DrawerDirection = DrawerDirection;
 
-  constructor(private readonly drawerService: DrawerService, private readonly el: ElementRef<HTMLElement>) {}
+  constructor(
+    private readonly drawerService: DrawerService,
+    private readonly el: ElementRef<HTMLElement>
+  ) {}
 
   open(direction: DrawerDirection) {
     this.drawerService.create({

@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { Event, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { DrawerService, LoadingService } from '@swimlane/ngx-ui';
 import * as Prism from 'prismjs';
@@ -12,6 +12,7 @@ import pkg from '../../projects/swimlane/ngx-ui/package.json';
   styleUrls: ['./app.component.scss'],
   templateUrl: './app.template.html',
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class AppComponent {
@@ -269,7 +270,11 @@ export class AppComponent {
 
   navExpanded = true;
 
-  constructor(private drawerService: DrawerService, private loadingService: LoadingService, private router: Router) {
+  constructor(
+    private drawerService: DrawerService,
+    private loadingService: LoadingService,
+    private router: Router
+  ) {
     Prism.plugins.customClass.prefix('prism--');
 
     // Adding loading component in router

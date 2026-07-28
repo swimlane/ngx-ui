@@ -161,8 +161,8 @@ export class SwimSlider extends LitElement {
         normalized.length >= 2
           ? normalized
           : normalized.length === 1
-          ? [normalized[0], this._max]
-          : [this._min, this._max];
+            ? [normalized[0], this._max]
+            : [this._min, this._max];
     } else {
       next = normalized.slice(0, 1);
     }
@@ -305,32 +305,36 @@ export class SwimSlider extends LitElement {
 
     return html`
       <div
-        class="swim-slider ${isVertical ? 'swim-slider--vertical' : ''} ${this.filled
-          ? 'swim-slider--filled'
-          : ''} ${this.multiple ? 'swim-slider--multiple' : ''}"
+        class="swim-slider ${isVertical ? 'swim-slider--vertical' : ''} ${
+          this.filled ? 'swim-slider--filled' : ''
+        } ${this.multiple ? 'swim-slider--multiple' : ''}"
         role="group"
         aria-label="${this.ariaLabel || undefined}"
       >
         <div class="swim-slider__inner">
-          ${this.showTicks
-            ? html`
-                <div class="swim-slider__ticks" aria-hidden="true">
-                  ${this._ticks.map(t => html`<div class="swim-slider__tick" style="left: ${t.left}"></div>`)}
-                </div>
-              `
-            : ''}
+          ${
+            this.showTicks
+              ? html`
+                  <div class="swim-slider__ticks" aria-hidden="true">
+                    ${this._ticks.map(t => html`<div class="swim-slider__tick" style="left: ${t.left}"></div>`)}
+                  </div>
+                `
+              : ''
+          }
           <div class="swim-slider__inputs">
             <div class="swim-slider__track" part="track" aria-hidden="true"></div>
-            ${this._fill
-              ? html`
-                  <span
-                    class="swim-slider__fill"
-                    part="fill"
-                    style="left: ${this._fill.left}; width: ${this._fill.width}"
-                    aria-hidden="true"
-                  ></span>
-                `
-              : ''}
+            ${
+              this._fill
+                ? html`
+                    <span
+                      class="swim-slider__fill"
+                      part="fill"
+                      style="left: ${this._fill.left}; width: ${this._fill.width}"
+                      aria-hidden="true"
+                    ></span>
+                  `
+                : ''
+            }
             ${this._values.map((val, i) => {
               const thumbStyle = this._thumbs[i];
               const active = this._active[i];
@@ -339,9 +343,9 @@ export class SwimSlider extends LitElement {
               return html`
                 <input
                   type="range"
-                  class="swim-slider__input ${i % 2 === 1 ? 'swim-slider__input--odd' : ''} ${active
-                    ? 'swim-slider__input--active'
-                    : ''}"
+                  class="swim-slider__input ${i % 2 === 1 ? 'swim-slider__input--odd' : ''} ${
+                    active ? 'swim-slider__input--active' : ''
+                  }"
                   id="${inputId}"
                   aria-valuemin="${this._min}"
                   aria-valuemax="${this._max}"

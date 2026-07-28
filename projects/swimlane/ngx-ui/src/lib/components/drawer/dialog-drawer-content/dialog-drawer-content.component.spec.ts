@@ -13,7 +13,7 @@ describe(DialogDrawerContentComponent.name, () => {
       declarations: [DialogDrawerContentComponent],
       imports: [NoopAnimationsModule]
     })
-      .overrideComponent(DialogDrawerContentComponent, { set: { changeDetection: ChangeDetectionStrategy.Default } })
+      .overrideComponent(DialogDrawerContentComponent, { set: { changeDetection: ChangeDetectionStrategy.Eager } })
       .compileComponents();
   });
 

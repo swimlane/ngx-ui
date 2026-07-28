@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   defaultListSortComparator,
   parseListSortDate,
@@ -10,6 +10,7 @@ import {
 @Component({
   selector: 'app-list-page',
   templateUrl: './list-page.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class ListPageComponent {

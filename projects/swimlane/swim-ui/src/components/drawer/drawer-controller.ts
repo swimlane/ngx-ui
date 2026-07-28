@@ -57,7 +57,7 @@ export function openDrawer(options: DrawerOptions): {
     }
   }
 
-  const container = isRoot ? document.body : parentContainer ?? document.body;
+  const container = isRoot ? document.body : (parentContainer ?? document.body);
   container.appendChild(drawer);
 
   const close = (): void => {

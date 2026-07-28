@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import iconsData from '@swimlane/ngx-ui/assets/icons/json/icons.json';
 
 @Component({
   selector: 'app-icons-page',
   templateUrl: './icons-page.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class IconsPageComponent {

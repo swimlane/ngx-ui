@@ -157,9 +157,9 @@ export class SwimTabs extends LitElement {
                 id="${tab.tabId}"
                 aria-controls="${tab.id}"
                 aria-selected="${tab.active}"
-                class="swim-tabs__tab ${tab.active ? 'swim-tabs__tab--active' : ''} ${tab.disabled
-                  ? 'swim-tabs__tab--disabled'
-                  : ''}"
+                class="swim-tabs__tab ${tab.active ? 'swim-tabs__tab--active' : ''} ${
+                  tab.disabled ? 'swim-tabs__tab--disabled' : ''
+                }"
                 ?disabled="${tab.disabled}"
                 @click="${() => this._tabClicked(tab)}"
               >

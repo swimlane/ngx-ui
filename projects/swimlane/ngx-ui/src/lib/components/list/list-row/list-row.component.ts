@@ -1,4 +1,4 @@
-import { Component, Input, QueryList, ViewEncapsulation } from '@angular/core';
+import { Component, Input, QueryList, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { ListColumnComponent } from '../list-column/list-column.component';
 import { ListRowStatus } from '../models/list-row-status.enum';
 
@@ -14,6 +14,7 @@ import { ListRowStatus } from '../models/list-row-status.enum';
     '[class.ngx-list-row--warning]': 'status === ListRowStatus.Warning || data?.status === ListRowStatus.Warning',
     '[style.height.px]': 'rowHeight'
   },
+  changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None
 })
 export class ListRowComponent {

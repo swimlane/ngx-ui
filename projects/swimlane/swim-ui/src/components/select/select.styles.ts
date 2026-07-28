@@ -193,7 +193,10 @@ export const selectStyles = css`
     overflow-x: clip;
     max-width: 100%;
     text-overflow: ellipsis;
-    transition: color 0.2s ease-out, font-size 150ms ease-out, top 150ms ease-out;
+    transition:
+      color 0.2s ease-out,
+      font-size 150ms ease-out,
+      top 150ms ease-out;
   }
 
   :host([active]) .select-label,
