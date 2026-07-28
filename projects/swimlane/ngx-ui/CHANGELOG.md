@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 53.0.0 (2026-07-28)
+
 - Enhancement: Added support for Angular 22
 - Breaking: Removing Angular 19 support (peers are now `20.x || 21.x || 22.x`)
 - Chore: Migrated ESLint to flat config (`eslint.config.js`) required by angular-eslint v22
