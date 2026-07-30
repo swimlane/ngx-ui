@@ -1,3 +1,8 @@
+// JSON Editor dropdowns use `ngxDropdownPortal`, so while open their menus are
+// moved into the CDK overlay container and are no longer inside the editor DOM.
+// On close the menu is restored to its original parent, hidden.
+const openDropdownMenu = () => cy.get('.cdk-overlay-container ngx-dropdown-menu');
+
 describe('Json Editor', () => {
   before(() => {
     cy.visit('/json-editor');
@@ -65,10 +70,11 @@ describe('Json Editor', () => {
               cy.get('ngx-dropdown').as('addPropDropdown').scrollIntoView();
               cy.get('@addPropDropdown').should('be.visible');
               cy.get('@addPropDropdown').find('ngx-dropdown-toggle').should('contain.text', 'Add a property').click();
-              cy.get('@addPropDropdown').find('ngx-dropdown-menu').should('exist');
             });
         });
       });
+
+      openDropdownMenu().should('exist');
     });
 
     describe('Array', () => {
@@ -76,17 +82,14 @@ describe('Json Editor', () => {
         cy.get('ngx-section').eq(1).find('ngx-json-editor-flat').as('jsonEditorFlat');
       });
       it('Should allow to add a property of type array', () => {
-        cy.get('@jsonEditorFlat').within(() => {
-          cy.get('ngx-dropdown-menu')
-            .last()
-            .should('exist')
-            .within(() => {
-              cy.contains('li', 'Array').click();
-            });
-        });
-        cy.get('@jsonEditorFlat').within(() => {
-          cy.get('ngx-dropdown-menu').last().should('not.be.visible');
-        });
+        openDropdownMenu()
+          .last()
+          .should('exist')
+          .within(() => {
+            cy.contains('li', 'Array').click();
+          });
+
+        openDropdownMenu().should('not.exist');
         cy.get('ngx-json-array-node-flat').should('exist');
       });
 
@@ -101,13 +104,15 @@ describe('Json Editor', () => {
               .within(() => {
                 cy.get('ngx-dropdown-toggle').should('contain.text', 'Add an item').click();
               });
-            cy.get('ngx-dropdown-menu')
-              .last()
-              .should('be.visible')
-              .within(() => {
-                cy.contains('li', 'String').click();
-              });
           });
+
+        openDropdownMenu()
+          .last()
+          .should('be.visible')
+          .within(() => {
+            cy.contains('li', 'String').click();
+          });
+
         cy.get('ngx-json-array-node-flat')
           .should('exist')
           .last()
@@ -124,13 +129,14 @@ describe('Json Editor', () => {
             .within(() => {
               cy.get('ngx-dropdown-toggle').should('be.visible').click();
             });
-          cy.get('ngx-dropdown-menu')
-            .should('be.visible')
-            .first()
-            .within(() => {
-              cy.contains('button', 'Delete').click({ force: true });
-            });
         });
+
+        openDropdownMenu()
+          .should('be.visible')
+          .first()
+          .within(() => {
+            cy.contains('button', 'Delete').click({ force: true });
+          });
 
         cy.get('ngx-json-array-node-flat').within(() => {
           cy.get('.node').should('have.length', 0);
@@ -144,40 +150,46 @@ describe('Json Editor', () => {
             .within(() => {
               cy.get('ngx-dropdown-toggle').should('contain.text', 'Add an item').click();
             });
-          cy.get('ngx-dropdown-menu')
-            .should('be.visible')
-            .last()
-            .within(() => {
-              cy.contains('li', 'Object').click();
-            });
-          cy.get('ngx-json-object-node-flat').scrollIntoView();
-
-          cy.get('ngx-json-object-node-flat')
-            .should('exist')
-            .within(() => {
-              cy.get('.add-button')
-                .should('be.visible')
-                .last()
-                .within(() => {
-                  cy.get('ngx-dropdown-toggle').should('contain.text', 'Add a property').click();
-                });
-
-              cy.get('ngx-dropdown-menu')
-                .should('be.visible')
-                .within(() => {
-                  cy.contains('li', 'String').click();
-                });
-
-              cy.get('ngx-json-editor-node-info').scrollIntoView();
-
-              cy.get('ngx-json-editor-node-info').find('ngx-input').should('be.visible').ngxFill('name');
-
-              cy.get('.node-input ngx-input')
-                .should('exist')
-                .should('have.attr', 'type', 'textarea')
-                .ngxFill('Swimlane User');
-            });
         });
+
+        openDropdownMenu()
+          .should('be.visible')
+          .last()
+          .within(() => {
+            cy.contains('li', 'Object').click();
+          });
+
+        cy.get('ngx-json-array-node-flat').find('ngx-json-object-node-flat').scrollIntoView();
+        cy.get('ngx-json-array-node-flat')
+          .find('ngx-json-object-node-flat')
+          .should('exist')
+          .within(() => {
+            cy.get('.add-button')
+              .should('be.visible')
+              .last()
+              .within(() => {
+                cy.get('ngx-dropdown-toggle').should('contain.text', 'Add a property').click();
+              });
+          });
+
+        openDropdownMenu()
+          .should('be.visible')
+          .within(() => {
+            cy.contains('li', 'String').click();
+          });
+
+        cy.get('ngx-json-array-node-flat')
+          .find('ngx-json-object-node-flat')
+          .within(() => {
+            cy.get('ngx-json-editor-node-info').scrollIntoView();
+
+            cy.get('ngx-json-editor-node-info').find('ngx-input').should('be.visible').ngxFill('name');
+
+            cy.get('.node-input ngx-input')
+              .should('exist')
+              .should('have.attr', 'type', 'textarea')
+              .ngxFill('Swimlane User');
+          });
       });
 
       it('should allow adding another object with same props as array item', () => {
@@ -188,42 +200,48 @@ describe('Json Editor', () => {
             .should('be.visible')
             .within(() => {
               cy.get('ngx-dropdown-toggle').should('contain.text', 'Add an item').click();
-              cy.get('ngx-dropdown-menu').scrollIntoView();
-
-              cy.get('ngx-dropdown-menu')
-                .should('be.visible')
-                .last()
-                .within(() => {
-                  cy.contains('li', 'Object').click();
-                });
-            });
-
-          cy.get('ngx-json-object-node-flat').eq(1).scrollIntoView();
-          cy.get('ngx-json-object-node-flat')
-            .eq(1)
-            .should('exist')
-            .within(() => {
-              cy.get('.add-button')
-                .should('be.visible')
-                .within(() => {
-                  cy.get('ngx-dropdown-toggle').should('contain.text', 'Add a property').click();
-                  cy.get('ngx-dropdown-menu')
-                    .should('be.visible')
-                    .within(() => {
-                      cy.contains('li', 'String').click();
-                    });
-                });
-
-              cy.get('ngx-json-editor-node-info').scrollIntoView();
-
-              cy.get('ngx-json-editor-node-info').find('ngx-input').should('be.visible').ngxFill('name');
-
-              cy.get('.node-input ngx-input')
-                .should('exist')
-                .should('have.attr', 'type', 'textarea')
-                .ngxFill('Swimlane Admin');
             });
         });
+
+        openDropdownMenu()
+          .should('be.visible')
+          .last()
+          .within(() => {
+            cy.contains('li', 'Object').click();
+          });
+
+        cy.get('ngx-json-array-node-flat').find('ngx-json-object-node-flat').eq(1).scrollIntoView();
+        cy.get('ngx-json-array-node-flat')
+          .find('ngx-json-object-node-flat')
+          .eq(1)
+          .should('exist')
+          .within(() => {
+            cy.get('.add-button')
+              .should('be.visible')
+              .within(() => {
+                cy.get('ngx-dropdown-toggle').should('contain.text', 'Add a property').click();
+              });
+          });
+
+        openDropdownMenu()
+          .should('be.visible')
+          .within(() => {
+            cy.contains('li', 'String').click();
+          });
+
+        cy.get('ngx-json-array-node-flat')
+          .find('ngx-json-object-node-flat')
+          .eq(1)
+          .within(() => {
+            cy.get('ngx-json-editor-node-info').scrollIntoView();
+
+            cy.get('ngx-json-editor-node-info').find('ngx-input').should('be.visible').ngxFill('name');
+
+            cy.get('.node-input ngx-input')
+              .should('exist')
+              .should('have.attr', 'type', 'textarea')
+              .ngxFill('Swimlane Admin');
+          });
       });
     });
 
@@ -276,8 +294,7 @@ describe('Json Editor', () => {
           describe('String prop', () => {
             it('Adding', () => {
               cy.get('@addPropDropdown').find('ngx-dropdown-toggle').should('contain.text', 'Add a property').click();
-              cy.get('@addPropDropdown')
-                .find('ngx-dropdown-menu')
+              openDropdownMenu()
                 .should('exist')
                 .within(() => {
                   cy.contains('li', 'String').click();
@@ -345,8 +362,7 @@ describe('Json Editor', () => {
           describe('Array prop', () => {
             it('Adding', () => {
               cy.get('@addPropDropdown').find('ngx-dropdown-toggle').should('contain.text', 'Add a property').click();
-              cy.get('@addPropDropdown')
-                .find('ngx-dropdown-menu')
+              openDropdownMenu()
                 .should('exist')
                 .within(() => {
                   cy.contains('li', 'Array').click();
@@ -389,8 +405,7 @@ describe('Json Editor', () => {
               it('Modifying', () => {
                 cy.get('@section3').find('ngx-json-array-node-flat .add-button ngx-dropdown').as('arrayPropDdl');
                 cy.get('@arrayPropDdl').find('ngx-dropdown-toggle').click();
-                cy.get('@arrayPropDdl')
-                  .find('ngx-dropdown-menu')
+                openDropdownMenu()
                   .should('exist')
                   .within(() => {
                     cy.contains('li', 'Number').click();
@@ -435,8 +450,7 @@ describe('Json Editor', () => {
             cy.get('@section3').find('ngx-json-editor-flat div.node').eq(2).as('arrayNode');
             cy.get('@arrayNode').find('.node-options ngx-dropdown').as('nodeOptions');
             cy.get('@nodeOptions').find('ngx-dropdown-toggle').click();
-            cy.get('@nodeOptions')
-              .find('ngx-dropdown-menu')
+            openDropdownMenu()
               .should('exist')
               .within(() => {
                 cy.contains('button', 'Remove').click();
@@ -495,11 +509,15 @@ describe('Json Editor', () => {
               cy.get('ngx-dropdown').as('addPropDropdown').scrollIntoView();
               cy.get('@addPropDropdown').should('be.visible');
               cy.get('@addPropDropdown').find('ngx-dropdown-toggle').should('contain.text', 'Add a property').click();
-              cy.get('@addPropDropdown').find('ngx-dropdown-menu').should('exist');
-              cy.contains('li', 'Object').click();
             });
         });
       });
+
+      openDropdownMenu()
+        .should('exist')
+        .within(() => {
+          cy.contains('li', 'Object').click();
+        });
     });
 
     it('should allow modifying the property title', () => {
@@ -527,11 +545,15 @@ describe('Json Editor', () => {
               cy.get('ngx-dropdown').as('addPropDropdown').scrollIntoView();
               cy.get('@addPropDropdown').should('be.visible');
               cy.get('@addPropDropdown').find('ngx-dropdown-toggle').should('contain.text', 'Add a property').click();
-              cy.get('@addPropDropdown').find('ngx-dropdown-menu').should('exist');
-              cy.contains('li', 'String').click();
             });
         });
       });
+
+      openDropdownMenu()
+        .should('exist')
+        .within(() => {
+          cy.contains('li', 'String').click();
+        });
     });
 
     it('should allow modifying the nested property title', () => {
@@ -556,8 +578,16 @@ describe('Json Editor', () => {
           .should('be.visible')
           .within(() => {
             cy.get('ngx-dropdown-toggle').should('be.visible').click();
-            cy.contains('button', 'Remove').click();
           });
+      });
+
+      openDropdownMenu()
+        .should('exist')
+        .within(() => {
+          cy.contains('button', 'Remove').click();
+        });
+
+      cy.get('@schemaBuilderMode').within(() => {
         cy.get('ngx-json-editor-flat').as('jsonEditorFlat');
         cy.get('@jsonEditorFlat').within(() => {
           cy.get('.info-name>span').last().should('not.contain.text', 'str_1');
