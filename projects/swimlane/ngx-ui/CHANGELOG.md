@@ -2,6 +2,9 @@
 
 ## HEAD (unreleased)
 
+- Feature (`ngx-dropdown`): Added opt-in `ngxDropdownPortal` directive to render dropdown menus via Angular CDK Overlay, avoiding clipping inside overflow containers. Supports `portalOffsetX`, `portalOffsetY`, `portalPanelClass`, and `portalFollowScroll` (default `true`). Closes when the trigger scrolls fully out of view. Global portal styles are included in the library CSS bundle.
+- Feature: Applied `ngxDropdownPortal` to JSON Editor type-picker dropdowns.
+
 ## 52.1.0 (2026-06-19)
 
 - Fixing Date Picker to Highlight correct Date range for strings

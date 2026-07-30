@@ -268,6 +268,83 @@
         </ngx-dropdown-menu>
       </ngx-dropdown>
     </ngx-section>
+
+    <ngx-section class="shadow" sectionTitle="Portal Dropdown">
+      <p>
+        Add <code>ngxDropdownPortal</code> to move the menu into a CDK overlay. Use this when a parent
+        with <code>overflow</code> would clip the menu. By default the menu tracks the trigger while
+        scrollable ancestors move (<code>portalFollowScroll</code>), and closes when the trigger
+        scrolls fully out of view.
+      </p>
+
+      <div class="portal-demo-clip">
+        <p class="portal-demo-clip__hint">
+          Scroll down to the button and open the menu. Small scrolls keep the menu attached; keep
+          scrolling until the button passes the top or bottom edge and the menu closes.
+        </p>
+        <div class="portal-demo-clip__spacer" aria-hidden="true"></div>
+        <ngx-dropdown ngxDropdownPortal>
+          <ngx-dropdown-toggle>
+            <button class="btn" type="button">
+              Portal Menu
+            </button>
+          </ngx-dropdown-toggle>
+          <ngx-dropdown-menu>
+            <ul class="vertical-list">
+              <li>
+                <button type="button">Button 1</button>
+              </li>
+              <li>
+                <button type="button">Button 2</button>
+              </li>
+              <li>
+                <a href="/">Link 1</a>
+              </li>
+              <li>
+                <a href="/">Link 2</a>
+              </li>
+            </ul>
+          </ngx-dropdown-menu>
+        </ngx-dropdown>
+        <div class="portal-demo-clip__spacer" aria-hidden="true"></div>
+      </div>
+
+      <br />
+      <br />
+      <app-prism>
+    <![CDATA[<div class="overflow-container">
+  <ngx-dropdown ngxDropdownPortal>
+    <ngx-dropdown-toggle>
+      <button class="btn" type="button">
+        Portal Menu
+      </button>
+    </ngx-dropdown-toggle>
+    <ngx-dropdown-menu>
+      <ul class="vertical-list">
+        <li><button type="button">Button 1</button></li>
+        <li><button type="button">Button 2</button></li>
+        <li><a href="/">Link 1</a></li>
+        <li><a href="/">Link 2</a></li>
+      </ul>
+    </ngx-dropdown-menu>
+  </ngx-dropdown>
+</div>
+
+<!-- Optional: leave the menu fixed in the viewport while scrolling -->
+<ngx-dropdown ngxDropdownPortal [portalFollowScroll]="false">
+  ...
+</ngx-dropdown>
+
+<!-- Optional: offset and panel class for consumer-specific styles -->
+<ngx-dropdown
+  ngxDropdownPortal
+  [portalOffsetX]="8"
+  [portalOffsetY]="4"
+  portalPanelClass="my-dropdown-panel">
+  ...
+</ngx-dropdown>]]>
+      </app-prism>
+    </ngx-section>
     
     <ngx-section sectionTitle="Dropdown Appearances">
       <table class="appearance-table">
@@ -603,6 +680,7 @@
     <a class="documentation-content" (click)="scrollTo('ngx-dropdown-toggle-outputs')">ngx-dropdown-toggle Outputs</a>
     <a class="documentation-content" (click)="scrollTo('ngx-dropdown-menu-outputs')">ngx-dropdown-menu Inputs</a>
     <a class="documentation-content" (click)="scrollTo('ngx-dropdown-menu-outputs')">ngx-dropdown-menu Outputs</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-dropdown-portal-inputs')">ngxDropdownPortal Inputs</a>
     <hr>
 
     <h3 class="style-header" id="ngx-dropdown-inputs">ngx-dropdown Inputs</h3>
@@ -715,6 +793,58 @@
     <hr>
     <h3 class="style-header" id="ngx-dropdown-menu-outputs">ngx-dropdown-menu Outputs</h3>
     <h4>No component outputs to display.</h4>
+    <hr>
+    <h3 class="style-header" id="ngx-dropdown-portal-inputs">ngxDropdownPortal Inputs</h3>
+    <p>
+      Opt-in attribute directive on <code>ngx-dropdown</code>. Structural portal styles ship in the
+      library global CSS (<code>ngx-dropdown-portal-panel</code>).
+    </p>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>portalFollowScroll: boolean = true</code>
+          </th>
+          <td>
+            When true, the portaled menu tracks the trigger as scrollable ancestors move. Set to
+            false to leave the menu fixed in the viewport. In either case, the dropdown closes when
+            the trigger scrolls fully out of the viewport or a scrollable ancestor.
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>portalOffsetX: number = 0</code>
+          </th>
+          <td>Horizontal offset applied to the connected overlay position.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>portalOffsetY: number = 0</code>
+          </th>
+          <td>Vertical offset applied to the connected overlay position.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>portalPanelClass: string | string[]</code>
+          </th>
+          <td>
+            Extra CSS class(es) added to the CDK overlay pane, in addition to
+            <code>ngx-dropdown-portal-panel</code>. Useful for consumer-specific menu styles once the
+            menu is moved out of the component DOM.
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </ngx-tab>
 </ngx-tabs>
 

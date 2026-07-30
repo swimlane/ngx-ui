@@ -120,6 +120,7 @@ export * from './lib/components/dropdown/dropdown.module';
 export * from './lib/components/dropdown/dropdown.component';
 export * from './lib/components/dropdown/dropdown-toggle.directive';
 export * from './lib/components/dropdown/dropdown-menu.directive';
+export * from './lib/components/dropdown/dropdown-portal.directive';
 export * from './lib/components/dropdown/dropdown.show-types.enum';
 
 export * from './lib/components/dropzone/dropzone.module';

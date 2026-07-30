@@ -8,3 +8,25 @@
     vertical-align: top;
   }
 }
+
+.portal-demo-clip {
+  max-width: 360px;
+  height: 180px;
+  overflow: auto;
+  border: 1px solid var(--color-blue-grey-600, #455066);
+  border-radius: 4px;
+  padding: 12px;
+  background: var(--color-blue-grey-800, #1b1e27);
+
+  &__hint {
+    margin: 0 0 12px;
+    font-size: 0.875rem;
+    color: var(--color-blue-grey-300, #afb7c8);
+  }
+
+  // Must exceed the box's visible height so the trigger can scroll fully past
+  // either edge, which is what triggers the close-when-hidden behavior.
+  &__spacer {
+    height: 320px;
+  }
+}
