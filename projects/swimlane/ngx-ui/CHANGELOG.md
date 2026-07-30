@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix (`ngx-dropdown`): `ngxDropdownPortal` should ignore parents that do not have dimension. 
+
 ## 52.2.0 (2026-07-30)
 
 - Feature (`ngx-dropdown`): Added opt-in `ngxDropdownPortal` directive to render dropdown menus via Angular CDK Overlay, avoiding clipping inside overflow containers. Supports `portalOffsetX`, `portalOffsetY`, `portalPanelClass`, and `portalFollowScroll` (default `true`). Closes when the trigger scrolls fully out of view. Global portal styles are included in the library CSS bundle.
