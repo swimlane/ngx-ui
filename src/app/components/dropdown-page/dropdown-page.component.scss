@@ -11,7 +11,7 @@
 
 .portal-demo-clip {
   max-width: 360px;
-  height: 160px;
+  height: 180px;
   overflow: auto;
   border: 1px solid var(--color-blue-grey-600, #455066);
   border-radius: 4px;
@@ -24,7 +24,9 @@
     color: var(--color-blue-grey-300, #afb7c8);
   }
 
+  // Must exceed the box's visible height so the trigger can scroll fully past
+  // either edge, which is what triggers the close-when-hidden behavior.
   &__spacer {
-    height: 120px;
+    height: 320px;
   }
 }

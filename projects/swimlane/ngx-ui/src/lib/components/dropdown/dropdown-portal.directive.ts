@@ -75,10 +75,7 @@ export class DropdownPortalDirective implements DoCheck, OnDestroy {
 
     this.overlayRef.updatePositionStrategy(this.createPositionStrategy(menu));
     this.overlayRef.attach(new DomPortal(menu));
-
-    if (this.portalFollowScroll) {
-      this.bindScrollListeners();
-    }
+    this.bindScrollListeners();
   }
 
   private detach(): void {
@@ -135,12 +132,54 @@ export class DropdownPortalDirective implements DoCheck, OnDestroy {
     this.unbindScrollListeners();
 
     this.ngZone.runOutsideAngular(() => {
+      const onScroll = () => this.onScroll();
+
       for (const parent of this.getScrollParents(this.elementRef.nativeElement)) {
-        const cleanup = this.renderer.listen(parent, 'scroll', () => {
-          this.overlayRef?.updatePosition();
-        });
-        this.scrollListenerCleanups.push(cleanup);
+        this.scrollListenerCleanups.push(this.renderer.listen(parent, 'scroll', onScroll));
       }
+
+      // Viewport / document scrolling (bubble phase only reaches window/document).
+      this.scrollListenerCleanups.push(this.renderer.listen('window', 'scroll', onScroll));
+    });
+  }
+
+  private onScroll(): void {
+    if (!this.overlayRef?.hasAttached()) {
+      return;
+    }
+
+    if (this.isOriginFullyHidden()) {
+      this.ngZone.run(() => this.dropdown.close());
+      return;
+    }
+
+    if (this.portalFollowScroll) {
+      this.overlayRef.updatePosition();
+    }
+  }
+
+  /**
+   * True when the trigger is completely outside the viewport or any scrollable
+   * ancestor (above/below/left/right of the fold).
+   */
+  private isOriginFullyHidden(): boolean {
+    const origin = this.elementRef.nativeElement.getBoundingClientRect();
+    const boundsList: Array<Pick<DOMRect, 'top' | 'right' | 'bottom' | 'left'>> = [
+      {
+        top: 0,
+        left: 0,
+        bottom: window.innerHeight,
+        right: window.innerWidth
+      },
+      ...this.getScrollParents(this.elementRef.nativeElement).map(parent => parent.getBoundingClientRect())
+    ];
+
+    return boundsList.some(bounds => {
+      const outsideAbove = origin.bottom < bounds.top;
+      const outsideBelow = origin.top > bounds.bottom;
+      const outsideLeft = origin.right < bounds.left;
+      const outsideRight = origin.left > bounds.right;
+      return outsideAbove || outsideBelow || outsideLeft || outsideRight;
     });
   }
 

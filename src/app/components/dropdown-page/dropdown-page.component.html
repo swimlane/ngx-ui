@@ -273,12 +273,14 @@
       <p>
         Add <code>ngxDropdownPortal</code> to move the menu into a CDK overlay. Use this when a parent
         with <code>overflow</code> would clip the menu. By default the menu tracks the trigger while
-        scrollable ancestors move (<code>portalFollowScroll</code>).
+        scrollable ancestors move (<code>portalFollowScroll</code>), and closes when the trigger
+        scrolls fully out of view.
       </p>
 
       <div class="portal-demo-clip">
         <p class="portal-demo-clip__hint">
-          Open the menu, then scroll this box — the portaled menu stays attached instead of clipping.
+          Scroll down to the button and open the menu. Small scrolls keep the menu attached; keep
+          scrolling until the button passes the top or bottom edge and the menu closes.
         </p>
         <div class="portal-demo-clip__spacer" aria-hidden="true"></div>
         <ngx-dropdown ngxDropdownPortal>
@@ -812,7 +814,8 @@
           </th>
           <td>
             When true, the portaled menu tracks the trigger as scrollable ancestors move. Set to
-            false to leave the menu fixed in the viewport.
+            false to leave the menu fixed in the viewport. In either case, the dropdown closes when
+            the trigger scrolls fully out of the viewport or a scrollable ancestor.
           </td>
         </tr>
         <tr>
