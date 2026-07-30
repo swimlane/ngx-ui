@@ -2693,10 +2693,7 @@ const mt = H`
     overflow-x: clip;
     max-width: 100%;
     text-overflow: ellipsis;
-    transition:
-      color 0.2s ease-out,
-      font-size 150ms ease-out,
-      top 150ms ease-out;
+    transition: color 0.2s ease-out, font-size 150ms ease-out, top 150ms ease-out;
   }
 
   :host([active]) .input-label,
@@ -2982,39 +2979,39 @@ const We = "swim-input", he = class he extends B {
             <div class="input-box-wrap">
               ${e ? this._renderTextarea() : this._renderInput(n)}
               ${i ? g`
-                      <div class="numeric-spinner">
-                        <button
-                          type="button"
-                          class="spinner-btn"
-                          @mousedown="${this._incrementValue}"
-                          @mouseup="${this._stopSpinner}"
-                          @mouseleave="${this._stopSpinner}"
-                          aria-label="Increment"
-                        >
-                          <swim-icon font-icon="chevron-bold-up"></swim-icon>
-                        </button>
-                        <button
-                          type="button"
-                          class="spinner-btn"
-                          @mousedown="${this._decrementValue}"
-                          @mouseup="${this._stopSpinner}"
-                          @mouseleave="${this._stopSpinner}"
-                          aria-label="Decrement"
-                        >
-                          <swim-icon font-icon="chevron-bold-down"></swim-icon>
-                        </button>
-                      </div>
-                    ` : u}
-              ${t ? g`
+                    <div class="numeric-spinner">
                       <button
                         type="button"
-                        class="password-toggle"
-                        @click="${this._togglePassword}"
-                        aria-label="Toggle password visibility"
+                        class="spinner-btn"
+                        @mousedown="${this._incrementValue}"
+                        @mouseup="${this._stopSpinner}"
+                        @mouseleave="${this._stopSpinner}"
+                        aria-label="Increment"
                       >
-                        <swim-icon font-icon="${this._passwordVisible ? "eye-disabled" : "eye"}"></swim-icon>
+                        <swim-icon font-icon="chevron-bold-up"></swim-icon>
                       </button>
-                    ` : u}
+                      <button
+                        type="button"
+                        class="spinner-btn"
+                        @mousedown="${this._decrementValue}"
+                        @mouseup="${this._stopSpinner}"
+                        @mouseleave="${this._stopSpinner}"
+                        aria-label="Decrement"
+                      >
+                        <swim-icon font-icon="chevron-bold-down"></swim-icon>
+                      </button>
+                    </div>
+                  ` : u}
+              ${t ? g`
+                    <button
+                      type="button"
+                      class="password-toggle"
+                      @click="${this._togglePassword}"
+                      aria-label="Toggle password visibility"
+                    >
+                      <swim-icon font-icon="${this._passwordVisible ? "eye-disabled" : "eye"}"></swim-icon>
+                    </button>
+                  ` : u}
             </div>
             <label class="input-label" part="label" for="${this.id}">
               ${this.label} ${this.required ? g`<span>${this.requiredIndicator}</span>` : u}
@@ -4785,32 +4782,32 @@ const ot = "swim-dialog", Fe = class Fe extends B {
           @keydown="${this._onKeydown}"
         >
           ${e ? g`
-                  ${this.closeButton ? g`
-                          <button
-                            part="close-button"
-                            type="button"
-                            class="swim-dialog__close"
-                            aria-label="Close dialog"
-                            @click="${this.hide}"
-                          >
-                            <swim-icon font-icon="x"></swim-icon>
-                          </button>
-                        ` : u}
-                  ${this.dialogTitle ? g`
-                          <div class="swim-dialog__header" part="header">
-                            <h2 id="${this._titleId}" class="swim-dialog__title">${this.dialogTitle}</h2>
-                          </div>
-                        ` : u}
-                  <div class="swim-dialog__body swim-scroll">
-                    <slot></slot>
-                    ${this.content ? g`<div>${this.content}</div>` : u}
-                  </div>
-                ` : g`
-                  <div class="swim-dialog__body swim-scroll">
-                    <slot></slot>
-                    ${this.content ? g`<div>${this.content}</div>` : u}
-                  </div>
-                `}
+                ${this.closeButton ? g`
+                      <button
+                        part="close-button"
+                        type="button"
+                        class="swim-dialog__close"
+                        aria-label="Close dialog"
+                        @click="${this.hide}"
+                      >
+                        <swim-icon font-icon="x"></swim-icon>
+                      </button>
+                    ` : u}
+                ${this.dialogTitle ? g`
+                      <div class="swim-dialog__header" part="header">
+                        <h2 id="${this._titleId}" class="swim-dialog__title">${this.dialogTitle}</h2>
+                      </div>
+                    ` : u}
+                <div class="swim-dialog__body swim-scroll">
+                  <slot></slot>
+                  ${this.content ? g`<div>${this.content}</div>` : u}
+                </div>
+              ` : g`
+                <div class="swim-dialog__body swim-scroll">
+                  <slot></slot>
+                  ${this.content ? g`<div>${this.content}</div>` : u}
+                </div>
+              `}
         </div>
       </div>
     `;
@@ -5451,16 +5448,16 @@ const nt = "swim-date-time", ue = class ue extends B {
           </div>
 
           ${this._showCalendar ? g`
-                  <swim-calendar
-                    .value="${this._dialogModel}"
-                    .minDate="${this.minDate}"
-                    .maxDate="${this.maxDate}"
-                    .disabled="${this.disabled}"
-                    min-view="${this._calendarMinView}"
-                    @change="${this._onCalendarChange}"
-                    @day-key-enter="${this._apply}"
-                  ></swim-calendar>
-                ` : u}
+                <swim-calendar
+                  .value="${this._dialogModel}"
+                  .minDate="${this.minDate}"
+                  .maxDate="${this.maxDate}"
+                  .disabled="${this.disabled}"
+                  min-view="${this._calendarMinView}"
+                  @change="${this._onCalendarChange}"
+                  @day-key-enter="${this._apply}"
+                ></swim-calendar>
+              ` : u}
           ${this._showTime ? this._renderTimeRow() : u}
 
           <nav role="navigation" class="swim-date-time__dialog-footer">

@@ -916,9 +916,7 @@ const E = v`
     border-color: var(--swim-button-border-color, var(--_swim-fallback-border-color));
     border-radius: var(--radius-4);
     box-shadow: var(--swim-button-shadow, var(--_swim-fallback-shadow));
-    transition:
-      background-color 200ms,
-      box-shadow 200ms;
+    transition: background-color 200ms, box-shadow 200ms;
     text-shadow: 1px 1px rgba(0, 0, 0, 0.07);
   }
 
@@ -2965,9 +2963,7 @@ const Pr = v`
     border-radius: var(--radius-4);
     color: var(--grey-350);
     white-space: nowrap;
-    transition:
-      background-color 0.25s cubic-bezier(0.35, 0, 0.25, 1),
-      font-weight 0.25s ease-in;
+    transition: background-color 0.25s cubic-bezier(0.35, 0, 0.25, 1), font-weight 0.25s ease-in;
     font: inherit;
     font-size: var(--font-size-m);
     cursor: inherit;
@@ -3220,8 +3216,8 @@ const ys = "swim-button-toggle-group", jt = class jt extends y {
     return c`
       <div class="swim-button-toggle-group__container" id="${this.id}">
         ${this.label ? c`<label class="swim-button-toggle-group__container__label" for="${this.id}-toggles"
-                >${this.label}</label
-              >` : ""}
+              >${this.label}</label
+            >` : ""}
         <div
           class="swim-button-toggle-group__container__toggle-buttons"
           id="${this.id}-toggles"
@@ -5033,44 +5029,44 @@ const Os = "swim-card", Li = class Li extends y {
       ${e ? c`<div class="swim-card__outline" aria-hidden="true"></div>` : u}
       ${t ? c`<div class="swim-card__outline swim-card__outline--error" aria-hidden="true"></div>` : u}
       ${i ? c`
+            <div
+              class="swim-card__outline-text ${this.error ? "swim-card__outline-text--error" : ""}"
+              aria-hidden="true"
+            >
               <div
-                class="swim-card__outline-text ${this.error ? "swim-card__outline-text--error" : ""}"
-                aria-hidden="true"
-              >
-                <div
-                  part="outline-text"
-                  class="swim-card__outline-text-inner"
-                  role="button"
-                  tabindex="${this.disabled ? -1 : 0}"
-                  aria-label="${this.outlineText}"
-                  @click="${this._onOutlineClick}"
-                  @keydown="${(n) => {
+                part="outline-text"
+                class="swim-card__outline-text-inner"
+                role="button"
+                tabindex="${this.disabled ? -1 : 0}"
+                aria-label="${this.outlineText}"
+                @click="${this._onOutlineClick}"
+                @keydown="${(n) => {
       (n.key === "Enter" || n.key === " ") && (n.preventDefault(), this._onOutlineClick(n));
     }}"
-                >
-                  ${this.outlineText}
-                </div>
+              >
+                ${this.outlineText}
               </div>
-            ` : u}
+            </div>
+          ` : u}
       ${s ? c`
-              <div
-                class="swim-card__status ${r}"
-                title="${this.statusTooltip}"
-                role="status"
-                aria-label="${this.statusTooltip || this.status || ""}"
-              ></div>
-            ` : u}
+            <div
+              class="swim-card__status ${r}"
+              title="${this.statusTooltip}"
+              role="status"
+              aria-label="${this.statusTooltip || this.status || ""}"
+            ></div>
+          ` : u}
       ${this.selectable ? c`
-              <div class="swim-card__select" @click="${this._onCheckboxClick}">
-                <swim-checkbox
-                  round
-                  .checked="${this.selected}"
-                  ?disabled="${this.disabled}"
-                  aria-label="Select card"
-                  @change="${this._onSelectChange}"
-                ></swim-checkbox>
-              </div>
-            ` : u}
+            <div class="swim-card__select" @click="${this._onCheckboxClick}">
+              <swim-checkbox
+                round
+                .checked="${this.selected}"
+                ?disabled="${this.disabled}"
+                aria-label="Select card"
+                @change="${this._onSelectChange}"
+              ></swim-checkbox>
+            </div>
+          ` : u}
 
       <slot></slot>
 
@@ -5408,14 +5404,14 @@ const Fs = "swim-card-avatar", Hi = class Hi extends y {
       >
         <div class="swim-card-avatar__inner">
           ${this.src ? c`
-                  <img
-                    class="swim-card-avatar__img ${this.removeImageBackground ? "swim-card-avatar__img--no-bg" : ""}"
-                    src="${this.src}"
-                    alt=""
-                    draggable="false"
-                    loading="lazy"
-                  />
-                ` : c`<span class="swim-card-avatar__content"><slot></slot></span>`}
+                <img
+                  class="swim-card-avatar__img ${this.removeImageBackground ? "swim-card-avatar__img--no-bg" : ""}"
+                  src="${this.src}"
+                  alt=""
+                  draggable="false"
+                  loading="lazy"
+                />
+              ` : c`<span class="swim-card-avatar__content"><slot></slot></span>`}
         </div>
       </div>
     `;
@@ -5878,10 +5874,7 @@ const js = Ci(class extends Ei {
     overflow-x: clip;
     max-width: 100%;
     text-overflow: ellipsis;
-    transition:
-      color 0.2s ease-out,
-      font-size 150ms ease-out,
-      top 150ms ease-out;
+    transition: color 0.2s ease-out, font-size 150ms ease-out, top 150ms ease-out;
   }
 
   :host([active]) .input-label,
@@ -6147,39 +6140,39 @@ const Vs = "swim-input", Nt = class Nt extends y {
             <div class="input-box-wrap">
               ${e ? this._renderTextarea() : this._renderInput(s)}
               ${i ? c`
-                      <div class="numeric-spinner">
-                        <button
-                          type="button"
-                          class="spinner-btn"
-                          @mousedown="${this._incrementValue}"
-                          @mouseup="${this._stopSpinner}"
-                          @mouseleave="${this._stopSpinner}"
-                          aria-label="Increment"
-                        >
-                          <swim-icon font-icon="chevron-bold-up"></swim-icon>
-                        </button>
-                        <button
-                          type="button"
-                          class="spinner-btn"
-                          @mousedown="${this._decrementValue}"
-                          @mouseup="${this._stopSpinner}"
-                          @mouseleave="${this._stopSpinner}"
-                          aria-label="Decrement"
-                        >
-                          <swim-icon font-icon="chevron-bold-down"></swim-icon>
-                        </button>
-                      </div>
-                    ` : u}
-              ${t ? c`
+                    <div class="numeric-spinner">
                       <button
                         type="button"
-                        class="password-toggle"
-                        @click="${this._togglePassword}"
-                        aria-label="Toggle password visibility"
+                        class="spinner-btn"
+                        @mousedown="${this._incrementValue}"
+                        @mouseup="${this._stopSpinner}"
+                        @mouseleave="${this._stopSpinner}"
+                        aria-label="Increment"
                       >
-                        <swim-icon font-icon="${this._passwordVisible ? "eye-disabled" : "eye"}"></swim-icon>
+                        <swim-icon font-icon="chevron-bold-up"></swim-icon>
                       </button>
-                    ` : u}
+                      <button
+                        type="button"
+                        class="spinner-btn"
+                        @mousedown="${this._decrementValue}"
+                        @mouseup="${this._stopSpinner}"
+                        @mouseleave="${this._stopSpinner}"
+                        aria-label="Decrement"
+                      >
+                        <swim-icon font-icon="chevron-bold-down"></swim-icon>
+                      </button>
+                    </div>
+                  ` : u}
+              ${t ? c`
+                    <button
+                      type="button"
+                      class="password-toggle"
+                      @click="${this._togglePassword}"
+                      aria-label="Toggle password visibility"
+                    >
+                      <swim-icon font-icon="${this._passwordVisible ? "eye-disabled" : "eye"}"></swim-icon>
+                    </button>
+                  ` : u}
             </div>
             <label class="input-label" part="label" for="${this.id}">
               ${this.label} ${this.required ? c`<span>${this.requiredIndicator}</span>` : u}
@@ -6753,32 +6746,32 @@ const Ns = "swim-dialog", ji = class ji extends y {
           @keydown="${this._onKeydown}"
         >
           ${e ? c`
-                  ${this.closeButton ? c`
-                          <button
-                            part="close-button"
-                            type="button"
-                            class="swim-dialog__close"
-                            aria-label="Close dialog"
-                            @click="${this.hide}"
-                          >
-                            <swim-icon font-icon="x"></swim-icon>
-                          </button>
-                        ` : u}
-                  ${this.dialogTitle ? c`
-                          <div class="swim-dialog__header" part="header">
-                            <h2 id="${this._titleId}" class="swim-dialog__title">${this.dialogTitle}</h2>
-                          </div>
-                        ` : u}
-                  <div class="swim-dialog__body swim-scroll">
-                    <slot></slot>
-                    ${this.content ? c`<div>${this.content}</div>` : u}
-                  </div>
-                ` : c`
-                  <div class="swim-dialog__body swim-scroll">
-                    <slot></slot>
-                    ${this.content ? c`<div>${this.content}</div>` : u}
-                  </div>
-                `}
+                ${this.closeButton ? c`
+                      <button
+                        part="close-button"
+                        type="button"
+                        class="swim-dialog__close"
+                        aria-label="Close dialog"
+                        @click="${this.hide}"
+                      >
+                        <swim-icon font-icon="x"></swim-icon>
+                      </button>
+                    ` : u}
+                ${this.dialogTitle ? c`
+                      <div class="swim-dialog__header" part="header">
+                        <h2 id="${this._titleId}" class="swim-dialog__title">${this.dialogTitle}</h2>
+                      </div>
+                    ` : u}
+                <div class="swim-dialog__body swim-scroll">
+                  <slot></slot>
+                  ${this.content ? c`<div>${this.content}</div>` : u}
+                </div>
+              ` : c`
+                <div class="swim-dialog__body swim-scroll">
+                  <slot></slot>
+                  ${this.content ? c`<div>${this.content}</div>` : u}
+                </div>
+              `}
         </div>
       </div>
     `;
@@ -7419,16 +7412,16 @@ const qs = "swim-date-time", qt = class qt extends y {
           </div>
 
           ${this._showCalendar ? c`
-                  <swim-calendar
-                    .value="${this._dialogModel}"
-                    .minDate="${this.minDate}"
-                    .maxDate="${this.maxDate}"
-                    .disabled="${this.disabled}"
-                    min-view="${this._calendarMinView}"
-                    @change="${this._onCalendarChange}"
-                    @day-key-enter="${this._apply}"
-                  ></swim-calendar>
-                ` : u}
+                <swim-calendar
+                  .value="${this._dialogModel}"
+                  .minDate="${this.minDate}"
+                  .maxDate="${this.maxDate}"
+                  .disabled="${this.disabled}"
+                  min-view="${this._calendarMinView}"
+                  @change="${this._onCalendarChange}"
+                  @day-key-enter="${this._apply}"
+                ></swim-calendar>
+              ` : u}
           ${this._showTime ? this._renderTimeRow() : u}
 
           <nav role="navigation" class="swim-date-time__dialog-footer">
@@ -7932,9 +7925,7 @@ const Wn = Ci(mi), Qn = v`
 
   .swim-tooltip__panel--animate {
     opacity: 1;
-    transition:
-      opacity 0.3s,
-      transform 0.3s;
+    transition: opacity 0.3s, transform 0.3s;
     transform: translate3d(0, 0, 0);
   }
 
@@ -8247,28 +8238,28 @@ const Zs = "swim-tooltip", Vi = class Vi extends y {
       </div>
 
       ${this._open && t ? c`
-              <div
-                part="panel"
-                id="${this._tooltipId}"
-                class="${i}"
-                style="top: ${this._panelTop}px; left: ${this._panelLeft}px;"
-                role="tooltip"
-                aria-hidden="false"
-                @mouseenter="${() => this._clearHideTimer()}"
-                @mouseleave="${this._onPanelMouseLeave}"
-              >
-                ${this.showCaret ? c`
-                        <span
-                          part="caret"
-                          class="swim-tooltip__caret swim-tooltip__caret--position-${this._effectivePlacement}"
-                          style="top: ${this._caretTop}px; left: ${this._caretLeft}px;"
-                        ></span>
-                      ` : ""}
-                <div part="content" class="swim-tooltip__content">
-                  ${e ? c`<slot name="content"></slot>` : c`${Wn(this.content)}`}
-                </div>
+            <div
+              part="panel"
+              id="${this._tooltipId}"
+              class="${i}"
+              style="top: ${this._panelTop}px; left: ${this._panelLeft}px;"
+              role="tooltip"
+              aria-hidden="false"
+              @mouseenter="${() => this._clearHideTimer()}"
+              @mouseleave="${this._onPanelMouseLeave}"
+            >
+              ${this.showCaret ? c`
+                    <span
+                      part="caret"
+                      class="swim-tooltip__caret swim-tooltip__caret--position-${this._effectivePlacement}"
+                      style="top: ${this._caretTop}px; left: ${this._caretLeft}px;"
+                    ></span>
+                  ` : ""}
+              <div part="content" class="swim-tooltip__content">
+                ${e ? c`<slot name="content"></slot>` : c`${Wn(this.content)}`}
               </div>
-            ` : ""}
+            </div>
+          ` : ""}
     `;
   }
 };
@@ -8497,39 +8488,39 @@ const Ni = class Ni extends y {
     return c`
       <div class="swim-date-display__root">
         ${t ? c`
-                <swim-tooltip
-                  type="${Di.popover}"
-                  placement="${this.tooltipPlacement}"
-                  css-class="${this.tooltipCssClass}"
-                  show-timeout="400"
-                  show-caret="true"
-                >
-                  ${l}
-                  <div slot="content" class="swim-date-display__tooltip-body">
-                    ${Vo(
+              <swim-tooltip
+                type="${Di.popover}"
+                placement="${this.tooltipPlacement}"
+                css-class="${this.tooltipCssClass}"
+                show-timeout="400"
+                show-caret="true"
+              >
+                ${l}
+                <div slot="content" class="swim-date-display__tooltip-body">
+                  ${Vo(
       this._zoneList,
       (d) => d.key,
       (d) => c`
-                        <div class="swim-date-display__zone-row">
-                          <span class="swim-date-display__zone-label">${d.display}</span>
-                          <swim-button
-                            class="swim-date-display__copy-btn"
-                            variant="bordered"
-                            size="small"
-                            type="button"
-                            @click="${(h) => {
+                      <div class="swim-date-display__zone-row">
+                        <span class="swim-date-display__zone-label">${d.display}</span>
+                        <swim-button
+                          class="swim-date-display__copy-btn"
+                          variant="bordered"
+                          size="small"
+                          type="button"
+                          @click="${(h) => {
         h.stopPropagation(), this._copyRow(d.key);
       }}"
-                          >
-                            <swim-icon font-icon="copy"></swim-icon>
-                            ${d.key}
-                          </swim-button>
-                        </div>
-                      `
+                        >
+                          <swim-icon font-icon="copy"></swim-icon>
+                          ${d.key}
+                        </swim-button>
+                      </div>
+                    `
     )}
-                  </div>
-                </swim-tooltip>
-              ` : l}
+                </div>
+              </swim-tooltip>
+            ` : l}
       </div>
     `;
   }
@@ -8646,10 +8637,8 @@ const la = [
     :host([format='medium']) .format-dialog-container {
       max-height: var(--swim-format-max-height, 75vh);
       --swim-format-body-max-height-internal: calc(
-        var(--swim-format-max-height, 75vh) - var(
-            --swim-format-header-height,
-            var(--swim-format-header-height-medium, 60px)
-          )
+        var(--swim-format-max-height, 75vh) -
+          var(--swim-format-header-height, var(--swim-format-header-height-medium, 60px))
       );
     }
 
@@ -9474,10 +9463,7 @@ const fa = v`
   }
 
   /* Full-row hover when user can collapse via header click or chevron (not when collapsible but no UI control) */
-  .swim-section__header.swim-section__header--collapsible:hover:not(.swim-section__header--empty):is(
-      .swim-section__header--header-toggle,
-      :has(.swim-section__toggle)
-    ) {
+  .swim-section__header.swim-section__header--collapsible:hover:not(.swim-section__header--empty):is(.swim-section__header--header-toggle, :has(.swim-section__toggle)) {
     background: var(--swim-section-header-hover-background, var(--_swim-fallback-header-hover-background));
   }
 
@@ -9659,40 +9645,40 @@ const oo = "swim-section", $i = class $i extends y {
           @keydown="${this._onHeaderKeydown}"
         >
           ${t && !r ? c`
-                  <button
-                    type="button"
-                    class="swim-section__toggle"
-                    title="Toggle Content Visibility"
-                    aria-controls="${this._contentId}"
-                    aria-expanded="${this.sectionCollapsed ? "false" : "true"}"
-                    @click="${this._onToggle}"
-                    @keydown="${(l) => {
+                <button
+                  type="button"
+                  class="swim-section__toggle"
+                  title="Toggle Content Visibility"
+                  aria-controls="${this._contentId}"
+                  aria-expanded="${this.sectionCollapsed ? "false" : "true"}"
+                  @click="${this._onToggle}"
+                  @keydown="${(l) => {
       (l.key === " " || l.key === "Enter") && (l.preventDefault(), this._onToggle(l));
     }}"
-                  >
-                    <swim-icon
-                      class="swim-section__toggle-icon"
-                      font-icon="${this.sectionCollapsed ? "chevron-bold-right" : "chevron-bold-down"}"
-                      aria-hidden="true"
-                    ></swim-icon>
-                  </button>
-                ` : u}
+                >
+                  <swim-icon
+                    class="swim-section__toggle-icon"
+                    font-icon="${this.sectionCollapsed ? "chevron-bold-right" : "chevron-bold-down"}"
+                    aria-hidden="true"
+                  ></swim-icon>
+                </button>
+              ` : u}
           <div class="swim-section__header-content">
             ${(n = this.sectionTitle) != null && n.trim() ? c`<h1 class="swim-section__header-title">${this.sectionTitle}</h1>` : u}
             <slot name="header"></slot>
           </div>
         </header>
         ${this.sectionCollapsed ? u : c`
-                <div
-                  id="${this._contentId}"
-                  class="swim-section__content"
-                  style="padding: ${this.padding}"
-                  role="region"
-                  aria-labelledby="${r ? "" : void 0}"
-                >
-                  <slot></slot>
-                </div>
-              `}
+              <div
+                id="${this._contentId}"
+                class="swim-section__content"
+                style="padding: ${this.padding}"
+                role="region"
+                aria-labelledby="${r ? "" : void 0}"
+              >
+                <slot></slot>
+              </div>
+            `}
       </div>
     `;
   }
@@ -9814,10 +9800,7 @@ const ya = v`
     border-radius: 50%;
     border: 1px solid var(--grey-600);
     opacity: 1;
-    transition:
-      background-color 0.3s ease,
-      border-color 0.3s ease,
-      opacity 0.3s ease;
+    transition: background-color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
     outline: 0 none transparent;
     outline-offset: 1px;
   }
@@ -10414,10 +10397,7 @@ const za = v`
     overflow-x: clip;
     max-width: 100%;
     text-overflow: ellipsis;
-    transition:
-      color 0.2s ease-out,
-      font-size 150ms ease-out,
-      top 150ms ease-out;
+    transition: color 0.2s ease-out, font-size 150ms ease-out, top 150ms ease-out;
   }
 
   :host([active]) .select-label,
@@ -10921,15 +10901,15 @@ const co = "swim-select", St = typeof HTMLElement < "u" && typeof HTMLElement.pr
                 <div class="select-value">${this._renderValue()}</div>
                 <div class="select-controls">
                   ${i ? c`
-                          <button
-                            type="button"
-                            class="select-clear"
-                            aria-label="Clear selection"
-                            @click="${this._handleClear}"
-                          >
-                            <swim-icon font-icon="x"></swim-icon>
-                          </button>
-                        ` : u}
+                        <button
+                          type="button"
+                          class="select-clear"
+                          aria-label="Clear selection"
+                          @click="${this._handleClear}"
+                        >
+                          <swim-icon font-icon="x"></swim-icon>
+                        </button>
+                      ` : u}
                   <button
                     type="button"
                     class="select-caret"
@@ -10951,48 +10931,48 @@ const co = "swim-select", St = typeof HTMLElement < "u" && typeof HTMLElement.pr
           <div class="underline-fill"></div>
         </div>
         ${r ? c`
-                <div class="select-hint">
-                  <slot name="hint">${this.hint}</slot>
-                </div>
-              ` : u}
+              <div class="select-hint">
+                <slot name="hint">${this.hint}</slot>
+              </div>
+            ` : u}
         ${this._open ? c`
-                <div
-                  class="select-dropdown swim-scroll"
-                  part="dropdown"
-                  role="listbox"
-                  id="${this.id}-listbox"
-                  popover="${St ? "manual" : u}"
-                >
-                  ${this.filterable ? c`
-                          <div
-                            class="select-filter ${this.loading ? "select-filter--loading" : ""}"
-                            aria-busy="${this.loading}"
-                          >
-                            <input
-                              type="text"
-                              class="select-filter-input"
-                              placeholder="${this.filterPlaceholder}"
-                              ?disabled="${this.disabled}"
-                              ?readonly="${this.loading}"
-                              .value="${this._filterQuery}"
-                              @input="${this._handleFilterInput}"
-                              @keydown="${this._handleFilterKeyDown}"
-                            />
-                          </div>
-                        ` : u}
-                  ${s ? c`
-                          <ul
-                            class="select-options ${this.grouped && this._listHasGroupHeadings(t) ? "select-options--grouped" : ""}"
-                          >
-                            ${this.grouped ? this._renderGroupedOptionRows(t) : Vo(
+              <div
+                class="select-dropdown swim-scroll"
+                part="dropdown"
+                role="listbox"
+                id="${this.id}-listbox"
+                popover="${St ? "manual" : u}"
+              >
+                ${this.filterable ? c`
+                      <div
+                        class="select-filter ${this.loading ? "select-filter--loading" : ""}"
+                        aria-busy="${this.loading}"
+                      >
+                        <input
+                          type="text"
+                          class="select-filter-input"
+                          placeholder="${this.filterPlaceholder}"
+                          ?disabled="${this.disabled}"
+                          ?readonly="${this.loading}"
+                          .value="${this._filterQuery}"
+                          @input="${this._handleFilterInput}"
+                          @keydown="${this._handleFilterKeyDown}"
+                        />
+                      </div>
+                    ` : u}
+                ${s ? c`
+                      <ul
+                        class="select-options ${this.grouped && this._listHasGroupHeadings(t) ? "select-options--grouped" : ""}"
+                      >
+                        ${this.grouped ? this._renderGroupedOptionRows(t) : Vo(
       t,
       (n) => this._getOptionValue(n),
       (n, l) => this._renderOption(n, l)
     )}
-                          </ul>
-                        ` : c`<div class="select-empty">${this._emptyDropdownMessage()}</div>`}
-                </div>
-              ` : u}
+                      </ul>
+                    ` : c`<div class="select-empty">${this._emptyDropdownMessage()}</div>`}
+              </div>
+            ` : u}
       </div>
     `;
   }
@@ -11045,15 +11025,15 @@ const co = "swim-select", St = typeof HTMLElement < "u" && typeof HTMLElement.pr
       <div class="select-chip">
         <span class="select-chip-label">${t}</span>
         ${this.disabled ? u : c`
-                <button
-                  type="button"
-                  class="select-chip-remove"
-                  aria-label="Remove ${t}"
-                  @click="${(i) => this._removeChip(i, e)}"
-                >
-                  <swim-icon font-icon="x"></swim-icon>
-                </button>
-              `}
+              <button
+                type="button"
+                class="select-chip-remove"
+                aria-label="Remove ${t}"
+                @click="${(i) => this._removeChip(i, e)}"
+              >
+                <swim-icon font-icon="x"></swim-icon>
+              </button>
+            `}
       </div>
     `;
   }
@@ -11728,20 +11708,20 @@ const ho = "swim-slider", $t = class $t extends y {
       >
         <div class="swim-slider__inner">
           ${this.showTicks ? c`
-                  <div class="swim-slider__ticks" aria-hidden="true">
-                    ${this._ticks.map((t) => c`<div class="swim-slider__tick" style="left: ${t.left}"></div>`)}
-                  </div>
-                ` : ""}
+                <div class="swim-slider__ticks" aria-hidden="true">
+                  ${this._ticks.map((t) => c`<div class="swim-slider__tick" style="left: ${t.left}"></div>`)}
+                </div>
+              ` : ""}
           <div class="swim-slider__inputs">
             <div class="swim-slider__track" part="track" aria-hidden="true"></div>
             ${this._fill ? c`
-                    <span
-                      class="swim-slider__fill"
-                      part="fill"
-                      style="left: ${this._fill.left}; width: ${this._fill.width}"
-                      aria-hidden="true"
-                    ></span>
-                  ` : ""}
+                  <span
+                    class="swim-slider__fill"
+                    part="fill"
+                    style="left: ${this._fill.left}; width: ${this._fill.width}"
+                    aria-hidden="true"
+                  ></span>
+                ` : ""}
             ${this._values.map((t, i) => {
       const s = this._thumbs[i], r = this._active[i], n = `${this.id}-${i}`, l = this.ariaLabel ? `${this.ariaLabel}${this.multiple ? ` (thumb ${i + 1})` : ""}` : void 0;
       return c`
@@ -12330,25 +12310,25 @@ const ol = 50, rl = 100, gi = 100, Ot = gi / 2, nl = Ot * 2 * Math.PI, al = "clo
         </svg>
 
         ${e ? c`
-                <div class="swim-progress-spinner__icon-in-progress">
-                  ${this.hasSlotContent("in-progress-icon") ? c`<slot name="in-progress-icon"></slot>` : c`<swim-icon font-icon="${this.effectiveInProgressIcon}"></swim-icon>`}
-                </div>
-              ` : t ? c`
-                  <div class="swim-progress-spinner__icon-complete">
-                    ${this.hasSlotContent("complete-icon") ? c`<slot name="complete-icon"></slot>` : c`<swim-icon font-icon="${this.effectiveCompleteIcon}"></swim-icon>`}
-                  </div>
-                ` : i ? c`
-                    <div class="swim-progress-spinner__icon-failure">
-                      ${this.hasSlotContent("fail-icon") ? c`<slot name="fail-icon"></slot>` : c`<swim-icon font-icon="${this.effectiveFailIcon}"></swim-icon>`}
-                    </div>
-                  ` : u}
+              <div class="swim-progress-spinner__icon-in-progress">
+                ${this.hasSlotContent("in-progress-icon") ? c`<slot name="in-progress-icon"></slot>` : c`<swim-icon font-icon="${this.effectiveInProgressIcon}"></swim-icon>`}
+              </div>
+            ` : t ? c`
+              <div class="swim-progress-spinner__icon-complete">
+                ${this.hasSlotContent("complete-icon") ? c`<slot name="complete-icon"></slot>` : c`<swim-icon font-icon="${this.effectiveCompleteIcon}"></swim-icon>`}
+              </div>
+            ` : i ? c`
+              <div class="swim-progress-spinner__icon-failure">
+                ${this.hasSlotContent("fail-icon") ? c`<slot name="fail-icon"></slot>` : c`<swim-icon font-icon="${this.effectiveFailIcon}"></swim-icon>`}
+              </div>
+            ` : u}
       </div>
 
       ${this.spinnerLabel ? c`
-              <div class="swim-progress-spinner__label" part="label">
-                ${!this.isComplete && this.spinnerLabel.inProgressLabel ? c`<h4>${this.spinnerLabel.inProgressLabel}</h4>` : this.isComplete && !this.isFailure && this.spinnerLabel.completeLabel ? c`<h4>${this.spinnerLabel.completeLabel}</h4>` : this.isComplete && this.isFailure && this.spinnerLabel.failLabel ? c`<h4>${this.spinnerLabel.failLabel}</h4>` : u}
-              </div>
-            ` : u}
+            <div class="swim-progress-spinner__label" part="label">
+              ${!this.isComplete && this.spinnerLabel.inProgressLabel ? c`<h4>${this.spinnerLabel.inProgressLabel}</h4>` : this.isComplete && !this.isFailure && this.spinnerLabel.completeLabel ? c`<h4>${this.spinnerLabel.completeLabel}</h4>` : this.isComplete && this.isFailure && this.spinnerLabel.failLabel ? c`<h4>${this.spinnerLabel.failLabel}</h4>` : u}
+            </div>
+          ` : u}
     `;
   }
 };
@@ -12831,9 +12811,7 @@ const gl = v`
     background: var(--grey-400);
     box-shadow: 0 3px 3px var(--grey-900);
     content: '';
-    transition:
-      left 0.3s ease,
-      background 0.3s ease;
+    transition: left 0.3s ease, background 0.3s ease;
   }
 
   .swim-toggle__track[aria-checked='true'] .swim-toggle__thumb {
@@ -13021,10 +12999,10 @@ const _o = "swim-toggle", Wt = class Wt extends y {
         >
           <span class="swim-toggle__thumb" part="thumb"></span>
           ${this.showIcons ? this._checked ? c`<span class="swim-toggle__icon swim-toggle__icon--on" aria-hidden="true"
-                    ><swim-icon font-icon="check"></swim-icon
-                  ></span>` : c`<span class="swim-toggle__icon swim-toggle__icon--off" aria-hidden="true"
-                    ><swim-icon font-icon="x"></swim-icon
-                  ></span>` : ""}
+                  ><swim-icon font-icon="check"></swim-icon
+                ></span>` : c`<span class="swim-toggle__icon swim-toggle__icon--off" aria-hidden="true"
+                  ><swim-icon font-icon="x"></swim-icon
+                ></span>` : ""}
         </div>
         <label class="swim-toggle__text" part="text" id="${e}" for="${this.id}">
           ${this.label ? c`<span>${this.label}</span>` : ""}

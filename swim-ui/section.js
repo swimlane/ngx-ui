@@ -970,10 +970,7 @@ const it = P`
   }
 
   /* Full-row hover when user can collapse via header click or chevron (not when collapsible but no UI control) */
-  .swim-section__header.swim-section__header--collapsible:hover:not(.swim-section__header--empty):is(
-      .swim-section__header--header-toggle,
-      :has(.swim-section__toggle)
-    ) {
+  .swim-section__header.swim-section__header--collapsible:hover:not(.swim-section__header--empty):is(.swim-section__header--header-toggle, :has(.swim-section__toggle)) {
     background: var(--swim-section-header-hover-background, var(--_swim-fallback-header-hover-background));
   }
 
@@ -2720,40 +2717,40 @@ const ve = "swim-section", se = class se extends S {
           @keydown="${this._onHeaderKeydown}"
         >
           ${t && !s ? g`
-                  <button
-                    type="button"
-                    class="swim-section__toggle"
-                    title="Toggle Content Visibility"
-                    aria-controls="${this._contentId}"
-                    aria-expanded="${this.sectionCollapsed ? "false" : "true"}"
-                    @click="${this._onToggle}"
-                    @keydown="${(c) => {
+                <button
+                  type="button"
+                  class="swim-section__toggle"
+                  title="Toggle Content Visibility"
+                  aria-controls="${this._contentId}"
+                  aria-expanded="${this.sectionCollapsed ? "false" : "true"}"
+                  @click="${this._onToggle}"
+                  @keydown="${(c) => {
       (c.key === " " || c.key === "Enter") && (c.preventDefault(), this._onToggle(c));
     }}"
-                  >
-                    <swim-icon
-                      class="swim-section__toggle-icon"
-                      font-icon="${this.sectionCollapsed ? "chevron-bold-right" : "chevron-bold-down"}"
-                      aria-hidden="true"
-                    ></swim-icon>
-                  </button>
-                ` : b}
+                >
+                  <swim-icon
+                    class="swim-section__toggle-icon"
+                    font-icon="${this.sectionCollapsed ? "chevron-bold-right" : "chevron-bold-down"}"
+                    aria-hidden="true"
+                  ></swim-icon>
+                </button>
+              ` : b}
           <div class="swim-section__header-content">
             ${(r = this.sectionTitle) != null && r.trim() ? g`<h1 class="swim-section__header-title">${this.sectionTitle}</h1>` : b}
             <slot name="header"></slot>
           </div>
         </header>
         ${this.sectionCollapsed ? b : g`
-                <div
-                  id="${this._contentId}"
-                  class="swim-section__content"
-                  style="padding: ${this.padding}"
-                  role="region"
-                  aria-labelledby="${s ? "" : void 0}"
-                >
-                  <slot></slot>
-                </div>
-              `}
+              <div
+                id="${this._contentId}"
+                class="swim-section__content"
+                style="padding: ${this.padding}"
+                role="region"
+                aria-labelledby="${s ? "" : void 0}"
+              >
+                <slot></slot>
+              </div>
+            `}
       </div>
     `;
   }

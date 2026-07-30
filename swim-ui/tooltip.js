@@ -835,9 +835,7 @@ const se = it`
 
   .swim-tooltip__panel--animate {
     opacity: 1;
-    transition:
-      opacity 0.3s,
-      transform 0.3s;
+    transition: opacity 0.3s, transform 0.3s;
     transform: translate3d(0, 0, 0);
   }
 
@@ -1169,28 +1167,28 @@ const xt = "swim-tooltip", at = class at extends U {
       </div>
 
       ${this._open && e ? M`
-              <div
-                part="panel"
-                id="${this._tooltipId}"
-                class="${i}"
-                style="top: ${this._panelTop}px; left: ${this._panelLeft}px;"
-                role="tooltip"
-                aria-hidden="false"
-                @mouseenter="${() => this._clearHideTimer()}"
-                @mouseleave="${this._onPanelMouseLeave}"
-              >
-                ${this.showCaret ? M`
-                        <span
-                          part="caret"
-                          class="swim-tooltip__caret swim-tooltip__caret--position-${this._effectivePlacement}"
-                          style="top: ${this._caretTop}px; left: ${this._caretLeft}px;"
-                        ></span>
-                      ` : ""}
-                <div part="content" class="swim-tooltip__content">
-                  ${t ? M`<slot name="content"></slot>` : M`${ee(this.content)}`}
-                </div>
+            <div
+              part="panel"
+              id="${this._tooltipId}"
+              class="${i}"
+              style="top: ${this._panelTop}px; left: ${this._panelLeft}px;"
+              role="tooltip"
+              aria-hidden="false"
+              @mouseenter="${() => this._clearHideTimer()}"
+              @mouseleave="${this._onPanelMouseLeave}"
+            >
+              ${this.showCaret ? M`
+                    <span
+                      part="caret"
+                      class="swim-tooltip__caret swim-tooltip__caret--position-${this._effectivePlacement}"
+                      style="top: ${this._caretTop}px; left: ${this._caretLeft}px;"
+                    ></span>
+                  ` : ""}
+              <div part="content" class="swim-tooltip__content">
+                ${t ? M`<slot name="content"></slot>` : M`${ee(this.content)}`}
               </div>
-            ` : ""}
+            </div>
+          ` : ""}
     `;
   }
 };

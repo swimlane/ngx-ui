@@ -2822,32 +2822,32 @@ const Se = "swim-dialog", de = class de extends A {
           @keydown="${this._onKeydown}"
         >
           ${e ? p`
-                  ${this.closeButton ? p`
-                          <button
-                            part="close-button"
-                            type="button"
-                            class="swim-dialog__close"
-                            aria-label="Close dialog"
-                            @click="${this.hide}"
-                          >
-                            <swim-icon font-icon="x"></swim-icon>
-                          </button>
-                        ` : c}
-                  ${this.dialogTitle ? p`
-                          <div class="swim-dialog__header" part="header">
-                            <h2 id="${this._titleId}" class="swim-dialog__title">${this.dialogTitle}</h2>
-                          </div>
-                        ` : c}
-                  <div class="swim-dialog__body swim-scroll">
-                    <slot></slot>
-                    ${this.content ? p`<div>${this.content}</div>` : c}
-                  </div>
-                ` : p`
-                  <div class="swim-dialog__body swim-scroll">
-                    <slot></slot>
-                    ${this.content ? p`<div>${this.content}</div>` : c}
-                  </div>
-                `}
+                ${this.closeButton ? p`
+                      <button
+                        part="close-button"
+                        type="button"
+                        class="swim-dialog__close"
+                        aria-label="Close dialog"
+                        @click="${this.hide}"
+                      >
+                        <swim-icon font-icon="x"></swim-icon>
+                      </button>
+                    ` : c}
+                ${this.dialogTitle ? p`
+                      <div class="swim-dialog__header" part="header">
+                        <h2 id="${this._titleId}" class="swim-dialog__title">${this.dialogTitle}</h2>
+                      </div>
+                    ` : c}
+                <div class="swim-dialog__body swim-scroll">
+                  <slot></slot>
+                  ${this.content ? p`<div>${this.content}</div>` : c}
+                </div>
+              ` : p`
+                <div class="swim-dialog__body swim-scroll">
+                  <slot></slot>
+                  ${this.content ? p`<div>${this.content}</div>` : c}
+                </div>
+              `}
         </div>
       </div>
     `;
@@ -2941,10 +2941,8 @@ const vt = [
     :host([format='medium']) .format-dialog-container {
       max-height: var(--swim-format-max-height, 75vh);
       --swim-format-body-max-height-internal: calc(
-        var(--swim-format-max-height, 75vh) - var(
-            --swim-format-header-height,
-            var(--swim-format-header-height-medium, 60px)
-          )
+        var(--swim-format-max-height, 75vh) -
+          var(--swim-format-header-height, var(--swim-format-header-height-medium, 60px))
       );
     }
 

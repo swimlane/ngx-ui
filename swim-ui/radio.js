@@ -843,10 +843,7 @@ const We = F`
     border-radius: 50%;
     border: 1px solid var(--grey-600);
     opacity: 1;
-    transition:
-      background-color 0.3s ease,
-      border-color 0.3s ease,
-      opacity 0.3s ease;
+    transition: background-color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
     outline: 0 none transparent;
     outline-offset: 1px;
   }

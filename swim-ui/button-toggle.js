@@ -809,9 +809,7 @@ const Fe = B`
     border-radius: var(--radius-4);
     color: var(--grey-350);
     white-space: nowrap;
-    transition:
-      background-color 0.25s cubic-bezier(0.35, 0, 0.25, 1),
-      font-weight 0.25s ease-in;
+    transition: background-color 0.25s cubic-bezier(0.35, 0, 0.25, 1), font-weight 0.25s ease-in;
     font: inherit;
     font-size: var(--font-size-m);
     cursor: inherit;
@@ -1076,8 +1074,8 @@ const _e = "swim-button-toggle-group", j = class j extends S {
     return Z`
       <div class="swim-button-toggle-group__container" id="${this.id}">
         ${this.label ? Z`<label class="swim-button-toggle-group__container__label" for="${this.id}-toggles"
-                >${this.label}</label
-              >` : ""}
+              >${this.label}</label
+            >` : ""}
         <div
           class="swim-button-toggle-group__container__toggle-buttons"
           id="${this.id}-toggles"

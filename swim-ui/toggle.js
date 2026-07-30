@@ -855,9 +855,7 @@ const Be = Z`
     background: var(--grey-400);
     box-shadow: 0 3px 3px var(--grey-900);
     content: '';
-    transition:
-      left 0.3s ease,
-      background 0.3s ease;
+    transition: left 0.3s ease, background 0.3s ease;
   }
 
   .swim-toggle__track[aria-checked='true'] .swim-toggle__thumb {
@@ -1064,10 +1062,10 @@ const ce = "swim-toggle", B = class B extends O {
         >
           <span class="swim-toggle__thumb" part="thumb"></span>
           ${this.showIcons ? this._checked ? H`<span class="swim-toggle__icon swim-toggle__icon--on" aria-hidden="true"
-                    ><swim-icon font-icon="check"></swim-icon
-                  ></span>` : H`<span class="swim-toggle__icon swim-toggle__icon--off" aria-hidden="true"
-                    ><swim-icon font-icon="x"></swim-icon
-                  ></span>` : ""}
+                  ><swim-icon font-icon="check"></swim-icon
+                ></span>` : H`<span class="swim-toggle__icon swim-toggle__icon--off" aria-hidden="true"
+                  ><swim-icon font-icon="x"></swim-icon
+                ></span>` : ""}
         </div>
         <label class="swim-toggle__text" part="text" id="${e}" for="${this.id}">
           ${this.label ? H`<span>${this.label}</span>` : ""}

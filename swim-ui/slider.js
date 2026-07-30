@@ -1117,20 +1117,20 @@ const ct = "swim-slider", V = class V extends T {
       >
         <div class="swim-slider__inner">
           ${this.showTicks ? P`
-                  <div class="swim-slider__ticks" aria-hidden="true">
-                    ${this._ticks.map((e) => P`<div class="swim-slider__tick" style="left: ${e.left}"></div>`)}
-                  </div>
-                ` : ""}
+                <div class="swim-slider__ticks" aria-hidden="true">
+                  ${this._ticks.map((e) => P`<div class="swim-slider__tick" style="left: ${e.left}"></div>`)}
+                </div>
+              ` : ""}
           <div class="swim-slider__inputs">
             <div class="swim-slider__track" part="track" aria-hidden="true"></div>
             ${this._fill ? P`
-                    <span
-                      class="swim-slider__fill"
-                      part="fill"
-                      style="left: ${this._fill.left}; width: ${this._fill.width}"
-                      aria-hidden="true"
-                    ></span>
-                  ` : ""}
+                  <span
+                    class="swim-slider__fill"
+                    part="fill"
+                    style="left: ${this._fill.left}; width: ${this._fill.width}"
+                    aria-hidden="true"
+                  ></span>
+                ` : ""}
             ${this._values.map((e, s) => {
       const i = this._thumbs[s], n = this._active[s], o = `${this.id}-${s}`, l = this.ariaLabel ? `${this.ariaLabel}${this.multiple ? ` (thumb ${s + 1})` : ""}` : void 0;
       return P`
