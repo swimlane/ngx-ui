@@ -1,0 +1,17 @@
+@use '@angular/cdk' as cdk;
+
+@include cdk.overlay();
+
+.cdk-overlay-pane.ngx-dropdown-portal-panel {
+  position: absolute;
+  padding-bottom: 0;
+
+  .ngx-dropdown-menu {
+    position: static;
+  }
+
+  .ngx-dropdown-menu--upwards {
+    bottom: auto;
+    margin-bottom: 0;
+  }
+}

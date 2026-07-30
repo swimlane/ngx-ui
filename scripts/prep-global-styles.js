@@ -31,7 +31,7 @@ const compileCss = () =>
       sass.render(
         {
           data: `$pkgVersion:'${version}';${data}`,
-          includePaths: ['dist/swimlane/ngx-ui/lib/styles', 'dist/swimlane/ngx-ui/lib/assets']
+          includePaths: ['dist/swimlane/ngx-ui/lib/styles', 'dist/swimlane/ngx-ui/lib/assets', 'node_modules']
         },
         (err, result) => {
           if (err) {

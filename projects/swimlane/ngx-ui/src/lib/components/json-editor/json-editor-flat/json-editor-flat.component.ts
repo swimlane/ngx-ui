@@ -26,7 +26,7 @@ import type { QueryList } from '@angular/core';
 @Component({
   selector: 'ngx-json-editor-flat',
   templateUrl: './json-editor-flat.component.html',
-  styleUrls: ['./json-editor-flat.component.scss'],
+  styleUrls: ['./json-editor-flat.component.scss', '../json-editor-dropdown-panel.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   standalone: false

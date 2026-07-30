@@ -1,0 +1,5 @@
+@use './json-editor.extensions';
+
+.ngx-json-editor-dropdown-panel .ngx-dropdown-menu {
+  @extend %ngx-dropdown-menu;
+}
