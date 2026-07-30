@@ -367,45 +367,43 @@ export class SwimDateDisplay extends LitElement {
 
     return html`
       <div class="swim-date-display__root">
-        ${
-          showPanel
-            ? html`
-                <swim-tooltip
-                  type="${StyleType.popover}"
-                  placement="${this.tooltipPlacement as PlacementType}"
-                  css-class="${this.tooltipCssClass}"
-                  show-timeout="400"
-                  show-caret="true"
-                >
-                  ${timeTpl}
-                  <div slot="content" class="swim-date-display__tooltip-body">
-                    ${repeat(
-                      this._zoneList,
-                      z => z.key,
-                      z => html`
-                        <div class="swim-date-display__zone-row">
-                          <span class="swim-date-display__zone-label">${z.display}</span>
-                          <swim-button
-                            class="swim-date-display__copy-btn"
-                            variant="bordered"
-                            size="small"
-                            type="button"
-                            @click="${(e: Event) => {
-                              e.stopPropagation();
-                              void this._copyRow(z.key);
-                            }}"
-                          >
-                            <swim-icon font-icon="copy"></swim-icon>
-                            ${z.key}
-                          </swim-button>
-                        </div>
-                      `
-                    )}
-                  </div>
-                </swim-tooltip>
-              `
-            : timeTpl
-        }
+        ${showPanel
+          ? html`
+              <swim-tooltip
+                type="${StyleType.popover}"
+                placement="${this.tooltipPlacement as PlacementType}"
+                css-class="${this.tooltipCssClass}"
+                show-timeout="400"
+                show-caret="true"
+              >
+                ${timeTpl}
+                <div slot="content" class="swim-date-display__tooltip-body">
+                  ${repeat(
+                    this._zoneList,
+                    z => z.key,
+                    z => html`
+                      <div class="swim-date-display__zone-row">
+                        <span class="swim-date-display__zone-label">${z.display}</span>
+                        <swim-button
+                          class="swim-date-display__copy-btn"
+                          variant="bordered"
+                          size="small"
+                          type="button"
+                          @click="${(e: Event) => {
+                            e.stopPropagation();
+                            void this._copyRow(z.key);
+                          }}"
+                        >
+                          <swim-icon font-icon="copy"></swim-icon>
+                          ${z.key}
+                        </swim-button>
+                      </div>
+                    `
+                  )}
+                </div>
+              </swim-tooltip>
+            `
+          : timeTpl}
       </div>
     `;
   }

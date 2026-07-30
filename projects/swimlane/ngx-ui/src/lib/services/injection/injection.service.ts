@@ -38,10 +38,7 @@ export class InjectionService {
     InjectionService.globalRootViewContainer = container;
   }
 
-  constructor(
-    private applicationRef: ApplicationRef,
-    private injector: Injector
-  ) {}
+  constructor(private applicationRef: ApplicationRef, private injector: Injector) {}
 
   /**
    * Gets the root view container to inject the component to.

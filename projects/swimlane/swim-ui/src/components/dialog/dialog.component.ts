@@ -250,11 +250,9 @@ export class SwimDialog extends LitElement {
 
     return html`
       <div class="${wrapperClasses}" style="--swim-dialog-z: ${this.zIndex}" role="presentation">
-        ${
-          this.showBackdrop
-            ? html`<div class="swim-dialog__backdrop" aria-hidden="true" @click="${this._onBackdropClick}"></div>`
-            : nothing
-        }
+        ${this.showBackdrop
+          ? html`<div class="swim-dialog__backdrop" aria-hidden="true" @click="${this._onBackdropClick}"></div>`
+          : nothing}
         <div
           part="content"
           class="${contentClasses}"
@@ -266,45 +264,39 @@ export class SwimDialog extends LitElement {
           id="${this._contentId}"
           @keydown="${this._onKeydown}"
         >
-          ${
-            isRegular
-              ? html`
-                  ${
-                    this.closeButton
-                      ? html`
-                          <button
-                            part="close-button"
-                            type="button"
-                            class="swim-dialog__close"
-                            aria-label="Close dialog"
-                            @click="${this.hide}"
-                          >
-                            <swim-icon font-icon="x"></swim-icon>
-                          </button>
-                        `
-                      : nothing
-                  }
-                  ${
-                    this.dialogTitle
-                      ? html`
-                          <div class="swim-dialog__header" part="header">
-                            <h2 id="${this._titleId}" class="swim-dialog__title">${this.dialogTitle}</h2>
-                          </div>
-                        `
-                      : nothing
-                  }
-                  <div class="swim-dialog__body swim-scroll">
-                    <slot></slot>
-                    ${this.content ? html`<div>${this.content}</div>` : nothing}
-                  </div>
-                `
-              : html`
-                  <div class="swim-dialog__body swim-scroll">
-                    <slot></slot>
-                    ${this.content ? html`<div>${this.content}</div>` : nothing}
-                  </div>
-                `
-          }
+          ${isRegular
+            ? html`
+                ${this.closeButton
+                  ? html`
+                      <button
+                        part="close-button"
+                        type="button"
+                        class="swim-dialog__close"
+                        aria-label="Close dialog"
+                        @click="${this.hide}"
+                      >
+                        <swim-icon font-icon="x"></swim-icon>
+                      </button>
+                    `
+                  : nothing}
+                ${this.dialogTitle
+                  ? html`
+                      <div class="swim-dialog__header" part="header">
+                        <h2 id="${this._titleId}" class="swim-dialog__title">${this.dialogTitle}</h2>
+                      </div>
+                    `
+                  : nothing}
+                <div class="swim-dialog__body swim-scroll">
+                  <slot></slot>
+                  ${this.content ? html`<div>${this.content}</div>` : nothing}
+                </div>
+              `
+            : html`
+                <div class="swim-dialog__body swim-scroll">
+                  <slot></slot>
+                  ${this.content ? html`<div>${this.content}</div>` : nothing}
+                </div>
+              `}
         </div>
       </div>
     `;

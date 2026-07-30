@@ -729,10 +729,9 @@ describe('DateTimeComponent', () => {
 
   describe('inputChanged', () => {
     it('should set valid value', () => {
-      // Use en-US so parsing matches DATE_DISPLAY_INPUT_FORMATS (MM/DD/YYYY-style)
-      const date = new Date().toLocaleDateString('en-US');
+      const date = new Date().toLocaleDateString();
       component.inputChanged(date);
-      expect((component.value as Date).toLocaleDateString('en-US')).toEqual(date);
+      expect((component.value as Date).toLocaleDateString()).toEqual(date);
     });
 
     // TODO: fix the handling of invalid inputs in the component and update the tests

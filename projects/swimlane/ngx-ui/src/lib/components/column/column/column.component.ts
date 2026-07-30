@@ -10,8 +10,7 @@ import {
   viewChild,
   ViewContainerRef,
   ViewEncapsulation,
-  AfterViewInit,
-  ChangeDetectionStrategy
+  AfterViewInit
 } from '@angular/core';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { InputComponent } from '../../input/input.component';
@@ -31,7 +30,6 @@ export interface ColumnTabClickEvent {
   styleUrls: ['./column.component.scss'],
   standalone: false,
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.Eager,
   host: {
     class: 'ngx-column',
     '[class.expanded]': 'activeChild && activeChild.content'

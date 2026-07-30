@@ -193,10 +193,7 @@ export const sectionStyles = css`
   }
 
   /* Full-row hover when user can collapse via header click or chevron (not when collapsible but no UI control) */
-  .swim-section__header.swim-section__header--collapsible:hover:not(.swim-section__header--empty):is(
-      .swim-section__header--header-toggle,
-      :has(.swim-section__toggle)
-    ) {
+  .swim-section__header.swim-section__header--collapsible:hover:not(.swim-section__header--empty):is(.swim-section__header--header-toggle, :has(.swim-section__toggle)) {
     background: var(--swim-section-header-hover-background, var(--_swim-fallback-header-hover-background));
   }
 

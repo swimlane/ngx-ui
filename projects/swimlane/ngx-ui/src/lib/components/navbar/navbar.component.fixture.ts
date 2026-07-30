@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { NavbarComponent } from './navbar.component';
 
 @Component({
@@ -17,7 +17,6 @@ import { NavbarComponent } from './navbar.component';
       <ngx-navbar-item><ngx-icon fontIcon="commandline"></ngx-icon></ngx-navbar-item>
     </ngx-navbar>
   `,
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class NavbarComponentFixture {

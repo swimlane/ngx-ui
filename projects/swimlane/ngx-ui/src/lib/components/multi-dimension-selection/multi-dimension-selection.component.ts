@@ -10,8 +10,7 @@ import {
   output,
   SimpleChanges,
   viewChild,
-  ViewEncapsulation,
-  ChangeDetectionStrategy
+  ViewEncapsulation
 } from '@angular/core';
 import { InViewportDirective } from 'ng-in-viewport';
 import { debounceable } from '../../decorators/debounceable/debounceable.decorator';
@@ -26,7 +25,6 @@ import { InputComponent } from '../input/input.component';
   styleUrl: './multi-dimension-selection.component.scss',
   standalone: false,
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.Eager,
   host: {
     class: 'ngx-multi-dimension-selection',
     '[class.ngx-multi-dimension-selection__detached]': 'detached()'

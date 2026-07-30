@@ -122,70 +122,62 @@ export class SwimCard extends LitElement {
       this.status === CardStatus.Success
         ? 'swim-card__status--success'
         : this.status === CardStatus.Error
-          ? 'swim-card__status--error'
-          : '';
+        ? 'swim-card__status--error'
+        : '';
 
     return html`
       ${showOutline ? html`<div class="swim-card__outline" aria-hidden="true"></div>` : nothing}
-      ${
-        showOutlineError
-          ? html`<div class="swim-card__outline swim-card__outline--error" aria-hidden="true"></div>`
-          : nothing
-      }
-      ${
-        showOutlineText
-          ? html`
+      ${showOutlineError
+        ? html`<div class="swim-card__outline swim-card__outline--error" aria-hidden="true"></div>`
+        : nothing}
+      ${showOutlineText
+        ? html`
+            <div
+              class="swim-card__outline-text ${this.error ? 'swim-card__outline-text--error' : ''}"
+              aria-hidden="true"
+            >
               <div
-                class="swim-card__outline-text ${this.error ? 'swim-card__outline-text--error' : ''}"
-                aria-hidden="true"
+                part="outline-text"
+                class="swim-card__outline-text-inner"
+                role="button"
+                tabindex="${this.disabled ? -1 : 0}"
+                aria-label="${this.outlineText}"
+                @click="${this._onOutlineClick}"
+                @keydown="${(e: KeyboardEvent) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this._onOutlineClick(e as unknown as Event);
+                  }
+                }}"
               >
-                <div
-                  part="outline-text"
-                  class="swim-card__outline-text-inner"
-                  role="button"
-                  tabindex="${this.disabled ? -1 : 0}"
-                  aria-label="${this.outlineText}"
-                  @click="${this._onOutlineClick}"
-                  @keydown="${(e: KeyboardEvent) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      this._onOutlineClick(e as unknown as Event);
-                    }
-                  }}"
-                >
-                  ${this.outlineText}
-                </div>
+                ${this.outlineText}
               </div>
-            `
-          : nothing
-      }
-      ${
-        showStatus
-          ? html`
-              <div
-                class="swim-card__status ${statusClass}"
-                title="${this.statusTooltip}"
-                role="status"
-                aria-label="${this.statusTooltip || this.status || ''}"
-              ></div>
-            `
-          : nothing
-      }
-      ${
-        this.selectable
-          ? html`
-              <div class="swim-card__select" @click="${this._onCheckboxClick}">
-                <swim-checkbox
-                  round
-                  .checked="${this.selected}"
-                  ?disabled="${this.disabled}"
-                  aria-label="Select card"
-                  @change="${this._onSelectChange}"
-                ></swim-checkbox>
-              </div>
-            `
-          : nothing
-      }
+            </div>
+          `
+        : nothing}
+      ${showStatus
+        ? html`
+            <div
+              class="swim-card__status ${statusClass}"
+              title="${this.statusTooltip}"
+              role="status"
+              aria-label="${this.statusTooltip || this.status || ''}"
+            ></div>
+          `
+        : nothing}
+      ${this.selectable
+        ? html`
+            <div class="swim-card__select" @click="${this._onCheckboxClick}">
+              <swim-checkbox
+                round
+                .checked="${this.selected}"
+                ?disabled="${this.disabled}"
+                aria-label="Select card"
+                @change="${this._onSelectChange}"
+              ></swim-checkbox>
+            </div>
+          `
+        : nothing}
 
       <slot></slot>
 

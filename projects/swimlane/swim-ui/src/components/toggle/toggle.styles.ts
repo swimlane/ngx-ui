@@ -76,9 +76,7 @@ export const toggleStyles = css`
     background: var(--grey-400);
     box-shadow: 0 3px 3px var(--grey-900);
     content: '';
-    transition:
-      left 0.3s ease,
-      background 0.3s ease;
+    transition: left 0.3s ease, background 0.3s ease;
   }
 
   .swim-toggle__track[aria-checked='true'] .swim-toggle__thumb {

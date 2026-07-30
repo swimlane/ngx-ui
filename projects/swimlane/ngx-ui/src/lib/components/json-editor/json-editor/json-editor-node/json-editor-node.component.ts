@@ -31,10 +31,7 @@ export class JsonEditorNodeComponent extends JsonEditorNode implements OnInit {
 
   placeholder = '';
 
-  constructor(
-    public dialogMngr: DialogService,
-    private dateFormat: DateFormatPipe
-  ) {
+  constructor(public dialogMngr: DialogService, private dateFormat: DateFormatPipe) {
     super(dialogMngr);
   }
 

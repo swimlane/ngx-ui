@@ -226,9 +226,9 @@ export class SwimProgressSpinner extends LitElement {
 
     return html`
       <div
-        class="swim-progress-spinner__container ${
-          this.appearance === SpinnerAppearance.Icon ? 'swim-progress-spinner__container--icon' : ''
-        }"
+        class="swim-progress-spinner__container ${this.appearance === SpinnerAppearance.Icon
+          ? 'swim-progress-spinner__container--icon'
+          : ''}"
         part="container"
         style="--spinner-color: ${this.spinnerColor}"
         role="progressbar"
@@ -256,58 +256,46 @@ export class SwimProgressSpinner extends LitElement {
           ></circle>
         </svg>
 
-        ${
-          showInProgressIcon
-            ? html`
-                <div class="swim-progress-spinner__icon-in-progress">
-                  ${
-                    this.hasSlotContent('in-progress-icon')
-                      ? html`<slot name="in-progress-icon"></slot>`
-                      : html`<swim-icon font-icon="${this.effectiveInProgressIcon}"></swim-icon>`
-                  }
-                </div>
-              `
-            : showCompleteIcon
-              ? html`
-                  <div class="swim-progress-spinner__icon-complete">
-                    ${
-                      this.hasSlotContent('complete-icon')
-                        ? html`<slot name="complete-icon"></slot>`
-                        : html`<swim-icon font-icon="${this.effectiveCompleteIcon}"></swim-icon>`
-                    }
-                  </div>
-                `
-              : showFailIcon
-                ? html`
-                    <div class="swim-progress-spinner__icon-failure">
-                      ${
-                        this.hasSlotContent('fail-icon')
-                          ? html`<slot name="fail-icon"></slot>`
-                          : html`<swim-icon font-icon="${this.effectiveFailIcon}"></swim-icon>`
-                      }
-                    </div>
-                  `
-                : nothing
-        }
-      </div>
-
-      ${
-        this.spinnerLabel
+        ${showInProgressIcon
           ? html`
-              <div class="swim-progress-spinner__label" part="label">
-                ${
-                  !this.isComplete && this.spinnerLabel.inProgressLabel
-                    ? html`<h4>${this.spinnerLabel.inProgressLabel}</h4>`
-                    : this.isComplete && !this.isFailure && this.spinnerLabel.completeLabel
-                      ? html`<h4>${this.spinnerLabel.completeLabel}</h4>`
-                      : this.isComplete && this.isFailure && this.spinnerLabel.failLabel
-                        ? html`<h4>${this.spinnerLabel.failLabel}</h4>`
-                        : nothing
-                }
+              <div class="swim-progress-spinner__icon-in-progress">
+                ${this.hasSlotContent('in-progress-icon')
+                  ? html`<slot name="in-progress-icon"></slot>`
+                  : html`<swim-icon font-icon="${this.effectiveInProgressIcon}"></swim-icon>`}
               </div>
             `
-          : nothing
-      }
+          : showCompleteIcon
+          ? html`
+              <div class="swim-progress-spinner__icon-complete">
+                ${this.hasSlotContent('complete-icon')
+                  ? html`<slot name="complete-icon"></slot>`
+                  : html`<swim-icon font-icon="${this.effectiveCompleteIcon}"></swim-icon>`}
+              </div>
+            `
+          : showFailIcon
+          ? html`
+              <div class="swim-progress-spinner__icon-failure">
+                ${this.hasSlotContent('fail-icon')
+                  ? html`<slot name="fail-icon"></slot>`
+                  : html`<swim-icon font-icon="${this.effectiveFailIcon}"></swim-icon>`}
+              </div>
+            `
+          : nothing}
+      </div>
+
+      ${this.spinnerLabel
+        ? html`
+            <div class="swim-progress-spinner__label" part="label">
+              ${!this.isComplete && this.spinnerLabel.inProgressLabel
+                ? html`<h4>${this.spinnerLabel.inProgressLabel}</h4>`
+                : this.isComplete && !this.isFailure && this.spinnerLabel.completeLabel
+                ? html`<h4>${this.spinnerLabel.completeLabel}</h4>`
+                : this.isComplete && this.isFailure && this.spinnerLabel.failLabel
+                ? html`<h4>${this.spinnerLabel.failLabel}</h4>`
+                : nothing}
+            </div>
+          `
+        : nothing}
     `;
   }
 }

@@ -263,9 +263,7 @@ ngx-nav-menu.expanded,
   box-shadow: none !important;
   padding: var(--spacing-0) !important;
 
-  transition:
-    opacity 0.3s,
-    transform 0s !important;
+  transition: opacity 0.3s, transform 0s !important;
 
   .sub-nav {
     max-height: 300px;

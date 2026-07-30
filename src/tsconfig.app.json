@@ -7,8 +7,7 @@
     "allowSyntheticDefaultImports": true
   },
   "angularCompilerOptions": {
-    "preserveWhitespaces": true,
-    "strictTemplates": false
+    "preserveWhitespaces": true
   },
   "files": ["main.ts", "polyfills.ts"]
 }

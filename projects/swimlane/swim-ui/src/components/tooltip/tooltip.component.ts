@@ -415,37 +415,33 @@ export class SwimTooltip extends LitElement {
         <slot></slot>
       </div>
 
-      ${
-        this._open && hasContent
-          ? html`
-              <div
-                part="panel"
-                id="${this._tooltipId}"
-                class="${panelClasses}"
-                style="top: ${this._panelTop}px; left: ${this._panelLeft}px;"
-                role="tooltip"
-                aria-hidden="false"
-                @mouseenter="${() => this._clearHideTimer()}"
-                @mouseleave="${this._onPanelMouseLeave}"
-              >
-                ${
-                  this.showCaret
-                    ? html`
-                        <span
-                          part="caret"
-                          class="swim-tooltip__caret swim-tooltip__caret--position-${this._effectivePlacement}"
-                          style="top: ${this._caretTop}px; left: ${this._caretLeft}px;"
-                        ></span>
-                      `
-                    : ''
-                }
-                <div part="content" class="swim-tooltip__content">
-                  ${hasContentSlot ? html`<slot name="content"></slot>` : html`${unsafeHTML(this.content)}`}
-                </div>
+      ${this._open && hasContent
+        ? html`
+            <div
+              part="panel"
+              id="${this._tooltipId}"
+              class="${panelClasses}"
+              style="top: ${this._panelTop}px; left: ${this._panelLeft}px;"
+              role="tooltip"
+              aria-hidden="false"
+              @mouseenter="${() => this._clearHideTimer()}"
+              @mouseleave="${this._onPanelMouseLeave}"
+            >
+              ${this.showCaret
+                ? html`
+                    <span
+                      part="caret"
+                      class="swim-tooltip__caret swim-tooltip__caret--position-${this._effectivePlacement}"
+                      style="top: ${this._caretTop}px; left: ${this._caretLeft}px;"
+                    ></span>
+                  `
+                : ''}
+              <div part="content" class="swim-tooltip__content">
+                ${hasContentSlot ? html`<slot name="content"></slot>` : html`${unsafeHTML(this.content)}`}
               </div>
-            `
-          : ''
-      }
+            </div>
+          `
+        : ''}
     `;
   }
 }

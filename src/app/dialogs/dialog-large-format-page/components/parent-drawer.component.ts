@@ -105,10 +105,7 @@ export class ParentDrawerComponent {
 
   @ViewChild('childDrawer', { static: true }) childDrawer: TemplateRef<unknown>;
 
-  constructor(
-    private readonly elRef: ElementRef<HTMLElement>,
-    private readonly drawerService: DrawerService
-  ) {}
+  constructor(private readonly elRef: ElementRef<HTMLElement>, private readonly drawerService: DrawerService) {}
 
   openInnerDrawer() {
     this.drawerService.create({

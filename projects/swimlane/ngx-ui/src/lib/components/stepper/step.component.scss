@@ -143,8 +143,7 @@
       flex: 1 1 auto;
       height: 1.4px;
       background-color: colors.$color-blue-grey-600;
-      transition:
-        background-color stepper.$transition-speed ease-in-out,
+      transition: background-color stepper.$transition-speed ease-in-out,
         background-image stepper.$transition-speed ease-in-out;
       content: '';
     }
@@ -162,9 +161,7 @@
       color: colors.$color-blue-grey-600;
       font-size: stepper.$stepper-size * 0.5;
       font-weight: bold;
-      transition:
-        border-color stepper.$transition-speed ease-in-out,
-        color stepper.$transition-speed ease-in-out;
+      transition: border-color stepper.$transition-speed ease-in-out, color stepper.$transition-speed ease-in-out;
       user-select: none;
       cursor: pointer;
 

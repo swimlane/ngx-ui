@@ -1,4 +1,4 @@
-import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 import { SectionComponent } from '../section.component';
 
@@ -6,7 +6,6 @@ import { SectionComponent } from '../section.component';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'section-fixture',
   templateUrl: 'section.fixture.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class SectionFixtureComponent {

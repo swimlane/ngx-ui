@@ -29,9 +29,7 @@ export const tooltipStyles = css`
 
   .swim-tooltip__panel--animate {
     opacity: 1;
-    transition:
-      opacity 0.3s,
-      transform 0.3s;
+    transition: opacity 0.3s, transform 0.3s;
     transform: translate3d(0, 0, 0);
   }
 

@@ -23,8 +23,7 @@
     "strictInjectionParameters": true,
     "enableResourceInlining": true,
     "preserveWhitespaces": true,
-    "compilationMode": "partial",
-    "strictTemplates": false
+    "compilationMode": "partial"
   },
   "exclude": ["src/test.ts", "**/*.spec.ts", "src/vitest-globals.ts"]
 }

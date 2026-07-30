@@ -1,0 +1,30 @@
+{
+  "extends": "../../../.eslintrc.js",
+  "ignorePatterns": ["!**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parserOptions": {
+        "project": ["projects/swimlane/ngx-ui/tsconfig.eslint.json"]
+      },
+      "rules": {
+        "@angular-eslint/component-selector": [
+          "off",
+          {
+            "type": "element",
+            "prefix": "ngx",
+            "style": "kebab-case"
+          }
+        ],
+        "@angular-eslint/directive-selector": [
+          "off",
+          {
+            "type": "attribute",
+            "prefix": "ngx",
+            "style": "camelCase"
+          }
+        ]
+      }
+    }
+  ]
+}

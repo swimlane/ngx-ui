@@ -112,7 +112,7 @@ describe(LargeFormatDialogContentComponent.name, () => {
       ]
     })
       .overrideComponent(LargeFormatDialogContentComponent, {
-        set: { changeDetection: ChangeDetectionStrategy.Eager }
+        set: { changeDetection: ChangeDetectionStrategy.Default }
       })
       .compileComponents();
 
@@ -152,7 +152,7 @@ describe(`${LargeFormatDialogContentComponent.name} largeFormatDialogHeaderConte
       ]
     })
       .overrideComponent(LargeFormatDialogContentComponent, {
-        set: { changeDetection: ChangeDetectionStrategy.Eager }
+        set: { changeDetection: ChangeDetectionStrategy.Default }
       })
       .compileComponents();
   });
