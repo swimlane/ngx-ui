@@ -22,13 +22,9 @@
             },
             "allowedCommonJsDependencies": [
               "moment-timezone",
-              "moment",
               "mousetrap",
               "ajv",
-              "codemirror",
-              "camelcase",
-              "prismjs",
-              "faker"
+              "codemirror"
             ],
             "aot": true,
             "preserveSymlinks": true,
@@ -55,7 +51,7 @@
             "scripts": [],
             "sourceMap": {
               "scripts": true,
-              "styles": false,
+              "styles": true,
               "vendor": true
             }
           },
@@ -108,10 +104,19 @@
           }
         },
         "test": {
-          "builder": "@angular/build:unit-test",
+          "builder": "@angular-devkit/build-angular:web-test-runner",
           "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
-            "runner": "vitest"
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": [],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ]
           }
         },
         "lint": {
@@ -133,7 +138,7 @@
       "prefix": "ngx",
       "architect": {
         "build": {
-          "builder": "@angular/build:ng-packagr",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/swimlane/ngx-ui-testing/tsconfig.json",
             "project": "projects/swimlane/ngx-ui-testing/ng-package.json"
@@ -159,7 +164,7 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular/build:ng-packagr",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/swimlane/ngx-ui/tsconfig.lib.json",
             "project": "projects/swimlane/ngx-ui/ng-package.json"

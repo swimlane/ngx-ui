@@ -122,7 +122,8 @@ export class SwimSection extends LitElement {
   override firstUpdated(): void {
     this._checkHeaderSlot();
     const slot = (this.renderRoot?.querySelector?.('slot[name="header"]') ?? this._headerSlot) as
-      HTMLSlotElement | undefined;
+      | HTMLSlotElement
+      | undefined;
     if (slot) {
       this._headerSlotForCleanup = slot;
       slot.addEventListener('slotchange', this._headerSlotChangeBound);
@@ -139,7 +140,8 @@ export class SwimSection extends LitElement {
 
   private _checkHeaderSlot(): void {
     const slot = (this.renderRoot?.querySelector?.('slot[name="header"]') ?? this._headerSlot) as
-      HTMLSlotElement | undefined;
+      | HTMLSlotElement
+      | undefined;
     if (slot) {
       const nodes = slot.assignedNodes({ flatten: true });
       const hasContent = nodes.some(
@@ -209,56 +211,50 @@ export class SwimSection extends LitElement {
           @click="${this._onHeaderClick}"
           @keydown="${this._onHeaderKeydown}"
         >
-          ${
-            showToggle && !headerEmpty
-              ? html`
-                  <button
-                    type="button"
-                    class="swim-section__toggle"
-                    title="Toggle Content Visibility"
-                    aria-controls="${this._contentId}"
-                    aria-expanded="${this.sectionCollapsed ? 'false' : 'true'}"
-                    @click="${this._onToggle}"
-                    @keydown="${(e: KeyboardEvent) => {
-                      if (e.key === ' ' || e.key === 'Enter') {
-                        e.preventDefault();
-                        this._onToggle(e as unknown as Event);
-                      }
-                    }}"
-                  >
-                    <swim-icon
-                      class="swim-section__toggle-icon"
-                      font-icon="${this.sectionCollapsed ? 'chevron-bold-right' : 'chevron-bold-down'}"
-                      aria-hidden="true"
-                    ></swim-icon>
-                  </button>
-                `
-              : nothing
-          }
+          ${showToggle && !headerEmpty
+            ? html`
+                <button
+                  type="button"
+                  class="swim-section__toggle"
+                  title="Toggle Content Visibility"
+                  aria-controls="${this._contentId}"
+                  aria-expanded="${this.sectionCollapsed ? 'false' : 'true'}"
+                  @click="${this._onToggle}"
+                  @keydown="${(e: KeyboardEvent) => {
+                    if (e.key === ' ' || e.key === 'Enter') {
+                      e.preventDefault();
+                      this._onToggle(e as unknown as Event);
+                    }
+                  }}"
+                >
+                  <swim-icon
+                    class="swim-section__toggle-icon"
+                    font-icon="${this.sectionCollapsed ? 'chevron-bold-right' : 'chevron-bold-down'}"
+                    aria-hidden="true"
+                  ></swim-icon>
+                </button>
+              `
+            : nothing}
           <div class="swim-section__header-content">
-            ${
-              this.sectionTitle?.trim()
-                ? html`<h1 class="swim-section__header-title">${this.sectionTitle}</h1>`
-                : nothing
-            }
+            ${this.sectionTitle?.trim()
+              ? html`<h1 class="swim-section__header-title">${this.sectionTitle}</h1>`
+              : nothing}
             <slot name="header"></slot>
           </div>
         </header>
-        ${
-          !this.sectionCollapsed
-            ? html`
-                <div
-                  id="${this._contentId}"
-                  class="swim-section__content"
-                  style="padding: ${this.padding}"
-                  role="region"
-                  aria-labelledby="${headerEmpty ? '' : undefined}"
-                >
-                  <slot></slot>
-                </div>
-              `
-            : nothing
-        }
+        ${!this.sectionCollapsed
+          ? html`
+              <div
+                id="${this._contentId}"
+                class="swim-section__content"
+                style="padding: ${this.padding}"
+                role="region"
+                aria-labelledby="${headerEmpty ? '' : undefined}"
+              >
+                <slot></slot>
+              </div>
+            `
+          : nothing}
       </div>
     `;
   }

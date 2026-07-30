@@ -6,7 +6,12 @@ const LARGE_FORMAT_DIALOG_FOOTER_TAG = 'swim-large-format-dialog-footer';
 
 /** Horizontal alignment of slotted footer content (maps to flex `justify-content`). */
 export type SwimLargeFormatDialogFooterAlign =
-  'start' | 'center' | 'end' | 'space-between' | 'space-around' | 'space-evenly';
+  | 'start'
+  | 'center'
+  | 'end'
+  | 'space-between'
+  | 'space-around'
+  | 'space-evenly';
 
 /**
  * Footer for Large or Medium format dialogs. Use inside swim-large-format-dialog-content with slot="footer".

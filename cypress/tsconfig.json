@@ -9,8 +9,7 @@
       "@swimlane/ngx-ui-testing/*": ["projects/swimlane/ngx-ui-testing/*"]
     },
     "moduleResolution": "nodenext",
-    "module": "nodenext",
-    "ignoreDeprecations": "6.0"
+    "module": "nodenext"
   },
   "include": ["**/*.ts"]
 }

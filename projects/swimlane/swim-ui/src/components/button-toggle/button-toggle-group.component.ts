@@ -199,13 +199,11 @@ export class SwimButtonToggleGroup extends LitElement {
   render() {
     return html`
       <div class="swim-button-toggle-group__container" id="${this.id}">
-        ${
-          this.label
-            ? html`<label class="swim-button-toggle-group__container__label" for="${this.id}-toggles"
-                >${this.label}</label
-              >`
-            : ''
-        }
+        ${this.label
+          ? html`<label class="swim-button-toggle-group__container__label" for="${this.id}-toggles"
+              >${this.label}</label
+            >`
+          : ''}
         <div
           class="swim-button-toggle-group__container__toggle-buttons"
           id="${this.id}-toggles"

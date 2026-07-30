@@ -204,12 +204,12 @@ export class SwimCheckbox extends LitElement {
       >
         <div
           part="box"
-          class="swim-checkbox__box ${this.checked && !this.indeterminate ? 'swim-checkbox__box--checked' : ''} ${
-            this.indeterminate ? 'swim-checkbox__box--indeterminate' : ''
-          }"
-          style="width: ${this.diameter}; height: ${this.diameter}; min-width: ${this.diameter}; min-height: ${
-            this.diameter
-          };"
+          class="swim-checkbox__box ${this.checked && !this.indeterminate ? 'swim-checkbox__box--checked' : ''} ${this
+            .indeterminate
+            ? 'swim-checkbox__box--indeterminate'
+            : ''}"
+          style="width: ${this.diameter}; height: ${this.diameter}; min-width: ${this.diameter}; min-height: ${this
+            .diameter};"
         ></div>
         <div part="content" class="swim-checkbox__content" id="${contentId}">
           <slot></slot>

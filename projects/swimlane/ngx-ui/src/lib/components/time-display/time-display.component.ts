@@ -1,13 +1,4 @@
-import {
-  Component,
-  Input,
-  HostListener,
-  ViewEncapsulation,
-  OnChanges,
-  HostBinding,
-  OnInit,
-  ChangeDetectionStrategy
-} from '@angular/core';
+import { Component, Input, HostListener, ViewEncapsulation, OnChanges, HostBinding, OnInit } from '@angular/core';
 import { Clipboard } from '@angular/cdk/clipboard';
 
 import moment from 'moment-timezone';
@@ -36,7 +27,6 @@ export interface ITimeValues {
   templateUrl: './time-display.component.html',
   styleUrls: ['./time-display.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class NgxTimeDisplayComponent implements OnInit, OnChanges {
@@ -160,10 +150,7 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
   private _clickable: boolean;
   private _type: string;
 
-  constructor(
-    private readonly clipboard: Clipboard,
-    private readonly notificationService: NotificationService
-  ) {}
+  constructor(private readonly clipboard: Clipboard, private readonly notificationService: NotificationService) {}
 
   ngOnInit() {
     this.update();

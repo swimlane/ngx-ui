@@ -14,7 +14,7 @@ describe(LargeFormatDialogFooterComponent.name, () => {
       imports: [NoopAnimationsModule]
     })
       .overrideComponent(LargeFormatDialogFooterComponent, {
-        set: { changeDetection: ChangeDetectionStrategy.Eager }
+        set: { changeDetection: ChangeDetectionStrategy.Default }
       })
       .compileComponents();
 

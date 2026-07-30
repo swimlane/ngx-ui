@@ -453,21 +453,19 @@ export class SwimDateTime extends LitElement {
             <h1>${headerText}</h1>
           </div>
 
-          ${
-            this._showCalendar
-              ? html`
-                  <swim-calendar
-                    .value="${this._dialogModel}"
-                    .minDate="${this.minDate}"
-                    .maxDate="${this.maxDate}"
-                    .disabled="${this.disabled}"
-                    min-view="${this._calendarMinView}"
-                    @change="${this._onCalendarChange}"
-                    @day-key-enter="${this._apply}"
-                  ></swim-calendar>
-                `
-              : nothing
-          }
+          ${this._showCalendar
+            ? html`
+                <swim-calendar
+                  .value="${this._dialogModel}"
+                  .minDate="${this.minDate}"
+                  .maxDate="${this.maxDate}"
+                  .disabled="${this.disabled}"
+                  min-view="${this._calendarMinView}"
+                  @change="${this._onCalendarChange}"
+                  @day-key-enter="${this._apply}"
+                ></swim-calendar>
+              `
+            : nothing}
           ${this._showTime ? this._renderTimeRow() : nothing}
 
           <nav role="navigation" class="swim-date-time__dialog-footer">

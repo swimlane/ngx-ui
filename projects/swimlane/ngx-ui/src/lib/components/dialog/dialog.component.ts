@@ -138,10 +138,7 @@ export class DialogComponent implements OnInit, OnDestroy {
   private _visible?: boolean;
   private _zIndex?: number;
 
-  constructor(
-    private readonly element: ElementRef,
-    private readonly renderer2: Renderer2
-  ) {}
+  constructor(private readonly element: ElementRef, private readonly renderer2: Renderer2) {}
 
   ngOnInit(): void {
     if (this.visible) {

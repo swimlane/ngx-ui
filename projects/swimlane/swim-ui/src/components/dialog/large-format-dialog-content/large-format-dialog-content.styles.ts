@@ -46,10 +46,8 @@ export const largeFormatDialogContentStyles = [
     :host([format='medium']) .format-dialog-container {
       max-height: var(--swim-format-max-height, 75vh);
       --swim-format-body-max-height-internal: calc(
-        var(--swim-format-max-height, 75vh) - var(
-            --swim-format-header-height,
-            var(--swim-format-header-height-medium, 60px)
-          )
+        var(--swim-format-max-height, 75vh) -
+          var(--swim-format-header-height, var(--swim-format-header-height-medium, 60px))
       );
     }
 

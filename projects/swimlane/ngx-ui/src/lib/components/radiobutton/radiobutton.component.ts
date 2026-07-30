@@ -101,10 +101,7 @@ export class RadioButtonComponent implements ControlValueAccessor {
   private _value = false;
   private _disabled = false;
 
-  constructor(
-    private readonly cdr: ChangeDetectorRef,
-    private readonly elementRef: ElementRef
-  ) {}
+  constructor(private readonly cdr: ChangeDetectorRef, private readonly elementRef: ElementRef) {}
 
   _onInputChange(event: Event) {
     event.stopPropagation();

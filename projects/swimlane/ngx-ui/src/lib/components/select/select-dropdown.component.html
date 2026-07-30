@@ -24,8 +24,8 @@
     <li class="ngx-select-dropdown-option ngx-select-all-option" (click)="selectAll.emit()">
       <span>Select All</span>
     </li>
-    } @for (group of groups; track group.name; let i = $index; let first = $first; let last = $last; let odd = $odd; let
-    even = $even) {
+    }     @for (group of groups; track group.name; let i = $index; let first = $first; let last = $last; let odd = $odd; let even
+    = $even) {
     <li class="ngx-select-option-group">
       @if (group.name) { @if (groupByTemplate) {
       <span class="ngx-select-option-group-name">
@@ -51,16 +51,16 @@
           [hidden]="kv.option.hidden"
           [attr.data-value]="kv.option.value"
           ngx-tooltip
-          [tooltipAlignment]="$safeNavigationMigration(kv.option.tooltipConfig?.tooltipAlignment)"
-          [tooltipContext]="$safeNavigationMigration(kv.option.tooltipConfig?.tooltipContext)"
-          [tooltipCssClass]="$safeNavigationMigration(kv.option.tooltipConfig?.tooltipCssClass)"
+          [tooltipAlignment]="kv.option.tooltipConfig?.tooltipAlignment"
+          [tooltipContext]="kv.option.tooltipConfig?.tooltipContext"
+          [tooltipCssClass]="kv.option.tooltipConfig?.tooltipCssClass"
           [tooltipDisabled]="kv.option.tooltipConfig?.tooltipDisabled || !kv.option.tooltipConfig?.tooltipTitle"
-          [tooltipPlacement]="$safeNavigationMigration(kv.option.tooltipConfig?.tooltipPlacement)"
-          [tooltipShowEvent]="$safeNavigationMigration(kv.option.tooltipConfig?.tooltipShowEvent)"
-          [tooltipShowTimeout]="$safeNavigationMigration(kv.option.tooltipConfig?.tooltipShowTimeout)"
-          [tooltipTemplate]="$safeNavigationMigration(kv.option.tooltipConfig?.tooltipTemplate)"
-          [tooltipTitle]="$safeNavigationMigration(kv.option.tooltipConfig?.tooltipTitle)"
-          [tooltipType]="$safeNavigationMigration(kv.option.tooltipConfig?.tooltipType)"
+          [tooltipPlacement]="kv.option.tooltipConfig?.tooltipPlacement"
+          [tooltipShowEvent]="kv.option.tooltipConfig?.tooltipShowEvent"
+          [tooltipShowTimeout]="kv.option.tooltipConfig?.tooltipShowTimeout"
+          [tooltipTemplate]="kv.option.tooltipConfig?.tooltipTemplate"
+          [tooltipTitle]="kv.option.tooltipConfig?.tooltipTitle"
+          [tooltipType]="kv.option.tooltipConfig?.tooltipType"
           tabindex="-1"
           (click)="onOptionClick(kv.option)"
           (keydown)="onOptionKeyDown($event, kv.option)"

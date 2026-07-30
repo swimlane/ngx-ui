@@ -1,12 +1,4 @@
-import {
-  Component,
-  ContentChild,
-  Input,
-  TemplateRef,
-  ViewChild,
-  ViewEncapsulation,
-  ChangeDetectionStrategy
-} from '@angular/core';
+import { Component, ContentChild, Input, TemplateRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ListHeaderTemplateDirective } from './list-header-template.directive';
 import { ListSortComparator } from '../list-sort.utils';
 import { ListHeaderSortType } from '../models/list-header-sort-type.type';
@@ -18,7 +10,6 @@ import { ListSortDirection } from '../models/list-sort-direction.type';
   styleUrl: './list-header.component.scss',
   standalone: false,
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.Eager,
   host: {
     class: 'ngx-list-header'
   }

@@ -86,9 +86,7 @@ $card-vertical-gutter: var(--spacing-20);
   &.ngx-card--hover-effect {
     background: $color-flat-background;
     border-left: $card-accent-thickness solid transparent;
-    transition:
-      background 0.2s ease-in-out,
-      border-color 0.2s ease-in-out;
+    transition: background 0.2s ease-in-out, border-color 0.2s ease-in-out;
 
     &:hover {
       background: var(--grey-825);

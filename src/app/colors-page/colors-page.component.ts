@@ -1,11 +1,10 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { getComputedStyle, rgb2hex } from '../app.utils';
 
 @Component({
   selector: 'app-colors-page',
   templateUrl: './colors-page.component.html',
   styleUrls: ['./colors-page.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class ColorsPageComponent {

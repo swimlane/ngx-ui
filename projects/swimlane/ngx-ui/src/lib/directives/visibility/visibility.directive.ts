@@ -23,10 +23,7 @@ export class VisibilityDirective implements OnInit, OnDestroy {
 
   timeout: any;
 
-  constructor(
-    private readonly element: ElementRef<HTMLElement>,
-    private readonly zone: NgZone
-  ) {}
+  constructor(private readonly element: ElementRef<HTMLElement>, private readonly zone: NgZone) {}
 
   ngOnInit(): void {
     this.runCheck();

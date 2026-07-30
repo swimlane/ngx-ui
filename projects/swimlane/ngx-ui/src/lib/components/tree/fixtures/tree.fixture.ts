@@ -1,4 +1,4 @@
-import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { TreeComponent } from '../tree.component';
 import { TreeNode } from '../tree-node.model';
 
@@ -6,7 +6,6 @@ import { TreeNode } from '../tree-node.model';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'tree-fixture',
   templateUrl: 'tree.fixture.html',
-  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class TreeFixtureComponent {
