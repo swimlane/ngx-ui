@@ -171,7 +171,12 @@ export class DropdownPortalDirective implements DoCheck, OnDestroy {
         bottom: window.innerHeight,
         right: window.innerWidth
       },
-      ...this.getScrollParents(this.elementRef.nativeElement).map(parent => parent.getBoundingClientRect())
+      // A scrollable ancestor with a collapsed box clips nothing, so it cannot
+      // hide the trigger. Hosts commonly give `body` a scrollbar style while
+      // laying their content out with fixed positioning, which collapses it.
+      ...this.getScrollParents(this.elementRef.nativeElement)
+        .filter(parent => parent.clientWidth > 0 && parent.clientHeight > 0)
+        .map(parent => parent.getBoundingClientRect())
     ];
 
     return boundsList.some(bounds => {
