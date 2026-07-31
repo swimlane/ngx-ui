@@ -2,7 +2,7 @@
 
 ## HEAD (unreleased)
 
-- Fix (`ngx-dropdown`): `ngxDropdownPortal` should ignore parents that do not have dimension. 
+- Fix (`ngx-dropdown`): `ngxDropdownPortal` should ignore parents that do not have dimension.
 
 ## 52.2.0 (2026-07-30)
 
