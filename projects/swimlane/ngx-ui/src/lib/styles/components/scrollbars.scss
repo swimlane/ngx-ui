@@ -78,3 +78,42 @@
     background-color: rgba(colors.$color-blue-grey-550, 1);
   }
 }
+
+/*
+ * Firefox 153+: ::-webkit-scrollbar is recognized but not fully styled.
+ * Non-zero width/height creates unstyled (black) classic scrollbar gutters.
+ *
+ * Do not set scrollbar-width/color globally — Chrome 121+ disables
+ * ::-webkit-scrollbar (and thumb :hover) when those properties are set.
+ * Scope standard scrollbar props + webkit size reset to Firefox only.
+ */
+@supports (-moz-appearance: none) {
+  .ngx-scroll,
+  .ngx-scroll-overlay,
+  .ngx-scroll-muted,
+  .ngx-scroll * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(colors.$color-blue-grey-550, 0.5) transparent;
+
+    &::-webkit-scrollbar {
+      width: auto;
+      height: auto;
+    }
+  }
+
+  .ngx-scroll-overlay {
+    scrollbar-width: none;
+
+    &:hover {
+      scrollbar-width: thin;
+    }
+  }
+
+  .ngx-scroll-muted {
+    scrollbar-color: rgba(colors.$color-blue-grey-550, 0.3) transparent;
+
+    &:hover {
+      scrollbar-color: rgba(colors.$color-blue-grey-550, 0.5) transparent;
+    }
+  }
+}

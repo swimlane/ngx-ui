@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix (`scrollbars`): Firefox 153+ partially honors `::-webkit-scrollbar` with non-zero width/height but does not style thumbs/tracks, which produced black scrollbar rectangles under `.ngx-scroll *`. Keep Chromium/Safari webkit styling; under Firefox apply standard `scrollbar-width` / `scrollbar-color` and reset webkit sizing. (SPT-67000)
+
 ## 52.2.0 (2026-07-30)
 
 - Feature (`ngx-dropdown`): Added opt-in `ngxDropdownPortal` directive to render dropdown menus via Angular CDK Overlay, avoiding clipping inside overflow containers. Supports `portalOffsetX`, `portalOffsetY`, `portalPanelClass`, and `portalFollowScroll` (default `true`). Closes when the trigger scrolls fully out of view. Global portal styles are included in the library CSS bundle.
