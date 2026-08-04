@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { ToolTipFixtureComponent } from './fixtures/tooltip.fixture';
 import { TooltipModule } from './tooltip.module';
@@ -138,15 +138,15 @@ describe('TooltipDirective', () => {
       vi.restoreAllMocks();
     });
 
-    it('should show tooltip', async () => {
+    it('should show tooltip', fakeAsync(() => {
       const spy = vi.spyOn(directive.show, 'emit');
       directive.showTooltip(true);
 
-      await new Promise<void>(resolve => setTimeout(resolve, 0));
+      tick();
       expect(spy).toHaveBeenCalled();
-    });
+    }));
 
-    it('should add hide listeners to component if exists', async () => {
+    it('should add hide listeners to component if exists', fakeAsync(() => {
       const spy = vi.spyOn(directive, 'addHideListeners');
       vi.spyOn(service, 'create').mockReturnValue({
         instance: {
@@ -159,11 +159,11 @@ describe('TooltipDirective', () => {
       // Outer delay skipped; addHideListeners still runs after inner 10ms in showTooltip.
       directive.showTooltip(true);
 
-      await new Promise<void>(resolve => setTimeout(resolve, 20));
+      tick(10);
       expect(spy).toHaveBeenCalled();
-    });
+    }));
 
-    it('should add hide listeners to component if exists without tooltipCloseOnMouseLeave', async () => {
+    it('should add hide listeners to component if exists without tooltipCloseOnMouseLeave', fakeAsync(() => {
       const spy = vi.spyOn(directive, 'addHideListeners');
       vi.spyOn(service, 'create').mockReturnValue({
         instance: {
@@ -176,11 +176,11 @@ describe('TooltipDirective', () => {
       directive.tooltipCloseOnMouseLeave = false;
       directive.showTooltip(true);
 
-      await new Promise<void>(resolve => setTimeout(resolve, 20));
+      tick(10);
       expect(spy).toHaveBeenCalled();
-    });
+    }));
 
-    it('should add hide listeners to component if exists without tooltipCloseOnClickOutside', async () => {
+    it('should add hide listeners to component if exists without tooltipCloseOnClickOutside', fakeAsync(() => {
       const spy = vi.spyOn(directive, 'addHideListeners');
       vi.spyOn(service, 'create').mockReturnValue({
         instance: {
@@ -193,9 +193,9 @@ describe('TooltipDirective', () => {
       directive.tooltipCloseOnClickOutside = false;
       directive.showTooltip(true);
 
-      await new Promise<void>(resolve => setTimeout(resolve, 20));
+      tick(10);
       expect(spy).toHaveBeenCalled();
-    });
+    }));
 
     it('should not show tooltip when component exists', () => {
       const spy = vi.spyOn(directive.show, 'emit');
@@ -206,7 +206,7 @@ describe('TooltipDirective', () => {
   });
 
   describe('hideTooltip', () => {
-    it('should hide tooltip with timeout set', async () => {
+    it('should hide tooltip with timeout set', fakeAsync(() => {
       const spy = vi.spyOn(directive.hide, 'emit');
       vi.spyOn(service, 'create').mockReturnValue({
         instance: {
@@ -218,13 +218,13 @@ describe('TooltipDirective', () => {
 
       directive.showTooltip(true);
 
-      await new Promise<void>(resolve => setTimeout(resolve, 20));
+      tick(10);
 
       directive.hideTooltip();
 
-      await new Promise<void>(resolve => setTimeout(resolve, directive.tooltipHideTimeout));
+      tick(directive.tooltipHideTimeout);
 
       expect(spy).toHaveBeenCalled();
-    });
+    }));
   });
 });
