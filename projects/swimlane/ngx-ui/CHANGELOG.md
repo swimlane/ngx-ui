@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix (`scrollbars`): Firefox 153+ partially honors `::-webkit-scrollbar` with non-zero width/height but does not style thumbs/tracks, which produced black scrollbar rectangles under `.ngx-scroll *`. Keep Chromium/Safari webkit styling; under Firefox apply standard `scrollbar-width` / `scrollbar-color` and reset webkit sizing. (SPT-67000)
+
 ## 52.2.1 (2026-07-31)
 
 - Fix (`ngx-dropdown`): `ngxDropdownPortal` should ignore parents that do not have dimension.
