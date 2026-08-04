@@ -45,7 +45,7 @@ const _e = (i) => new ue(typeof i == "string" ? i : i + "", void 0, K), I = (i, 
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const { is: $e, defineProperty: ve, getOwnPropertyDescriptor: xe, getOwnPropertyNames: Ae, getOwnPropertySymbols: ke, getPrototypeOf: Ee } = Object, f = globalThis, ee = f.trustedTypes, Ce = ee ? ee.emptyScript : "", D = f.reactiveElementPolyfillSupport, O = (i, e) => i, B = { toAttribute(i, e) {
+const { is: $e, defineProperty: ve, getOwnPropertyDescriptor: xe, getOwnPropertyNames: Ae, getOwnPropertySymbols: ke, getPrototypeOf: Ee } = Object, f = globalThis, ee = f.trustedTypes, Ce = ee ? ee.emptyScript : "", D = f.reactiveElementPolyfillSupport, z = (i, e) => i, B = { toAttribute(i, e) {
   switch (e) {
     case Boolean:
       i = i ? Ce : null;
@@ -103,13 +103,13 @@ let A = class extends HTMLElement {
     return this.elementProperties.get(e) ?? te;
   }
   static _$Ei() {
-    if (this.hasOwnProperty(O("elementProperties"))) return;
+    if (this.hasOwnProperty(z("elementProperties"))) return;
     const e = Ee(this);
     e.finalize(), e.l !== void 0 && (this.l = [...e.l]), this.elementProperties = new Map(e.elementProperties);
   }
   static finalize() {
-    if (this.hasOwnProperty(O("finalized"))) return;
-    if (this.finalized = !0, this._$Ei(), this.hasOwnProperty(O("properties"))) {
+    if (this.hasOwnProperty(z("finalized"))) return;
+    if (this.finalized = !0, this._$Ei(), this.hasOwnProperty(z("properties"))) {
       const t = this.properties, s = [...Ae(t), ...ke(t)];
       for (const r of s) this.createProperty(r, t[r]);
     }
@@ -278,15 +278,15 @@ let A = class extends HTMLElement {
   firstUpdated(e) {
   }
 };
-A.elementStyles = [], A.shadowRootOptions = { mode: "open" }, A[O("elementProperties")] = /* @__PURE__ */ new Map(), A[O("finalized")] = /* @__PURE__ */ new Map(), D == null || D({ ReactiveElement: A }), (f.reactiveElementVersions ?? (f.reactiveElementVersions = [])).push("2.1.2");
+A.elementStyles = [], A.shadowRootOptions = { mode: "open" }, A[z("elementProperties")] = /* @__PURE__ */ new Map(), A[z("finalized")] = /* @__PURE__ */ new Map(), D == null || D({ ReactiveElement: A }), (f.reactiveElementVersions ?? (f.reactiveElementVersions = [])).push("2.1.2");
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const z = globalThis, se = (i) => i, L = z.trustedTypes, re = L ? L.createPolicy("lit-html", { createHTML: (i) => i }) : void 0, ge = "$lit$", w = `lit$${Math.random().toFixed(9).slice(2)}$`, be = "?" + w, Se = `<${be}>`, x = document, T = () => x.createComment(""), R = (i) => i === null || typeof i != "object" && typeof i != "function", Y = Array.isArray, Oe = (i) => Y(i) || typeof (i == null ? void 0 : i[Symbol.iterator]) == "function", F = `[ 	
+const O = globalThis, se = (i) => i, L = O.trustedTypes, re = L ? L.createPolicy("lit-html", { createHTML: (i) => i }) : void 0, be = "$lit$", w = `lit$${Math.random().toFixed(9).slice(2)}$`, ge = "?" + w, Se = `<${ge}>`, x = document, T = () => x.createComment(""), R = (i) => i === null || typeof i != "object" && typeof i != "function", Y = Array.isArray, ze = (i) => Y(i) || typeof (i == null ? void 0 : i[Symbol.iterator]) == "function", F = `[ 	
 \f\r]`, S = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, ie = /-->/g, oe = />/g, y = RegExp(`>|${F}(?:([^\\s"'>=/]+)(${F}*=${F}*(?:[^ 	
-\f\r"'\`<>=]|("|')|))|$)`, "g"), ne = /'/g, le = /"/g, me = /^(?:script|style|textarea|title)$/i, ze = (i) => (e, ...t) => ({ _$litType$: i, strings: e, values: t }), ae = ze(1), E = Symbol.for("lit-noChange"), d = Symbol.for("lit-nothing"), ce = /* @__PURE__ */ new WeakMap(), $ = x.createTreeWalker(x, 129);
+\f\r"'\`<>=]|("|')|))|$)`, "g"), ne = /'/g, le = /"/g, me = /^(?:script|style|textarea|title)$/i, Oe = (i) => (e, ...t) => ({ _$litType$: i, strings: e, values: t }), ae = Oe(1), E = Symbol.for("lit-noChange"), d = Symbol.for("lit-nothing"), ce = /* @__PURE__ */ new WeakMap(), $ = x.createTreeWalker(x, 129);
 function we(i, e) {
   if (!Y(i) || !i.hasOwnProperty("raw")) throw Error("invalid template strings array");
   return re !== void 0 ? re.createHTML(e) : e;
@@ -299,7 +299,7 @@ const Pe = (i, e) => {
     let c, p, h = -1, u = 0;
     for (; u < a.length && (n.lastIndex = u, p = n.exec(a), p !== null); ) u = n.lastIndex, n === S ? p[1] === "!--" ? n = ie : p[1] !== void 0 ? n = oe : p[2] !== void 0 ? (me.test(p[2]) && (r = RegExp("</" + p[2], "g")), n = y) : p[3] !== void 0 && (n = y) : n === y ? p[0] === ">" ? (n = r ?? S, h = -1) : p[1] === void 0 ? h = -2 : (h = n.lastIndex - p[2].length, c = p[1], n = p[3] === void 0 ? y : p[3] === '"' ? le : ne) : n === le || n === ne ? n = y : n === ie || n === oe ? n = S : (n = y, r = void 0);
     const m = n === y && i[l + 1].startsWith("/>") ? " " : "";
-    o += n === S ? a + Se : h >= 0 ? (s.push(c), a.slice(0, h) + ge + a.slice(h) + w + m) : a + w + (h === -2 ? l : m);
+    o += n === S ? a + Se : h >= 0 ? (s.push(c), a.slice(0, h) + be + a.slice(h) + w + m) : a + w + (h === -2 ? l : m);
   }
   return [we(i, o + (i[t] || "<?>") + (e === 2 ? "</svg>" : e === 3 ? "</math>" : "")), s];
 };
@@ -315,7 +315,7 @@ class U {
     }
     for (; (r = $.nextNode()) !== null && a.length < l; ) {
       if (r.nodeType === 1) {
-        if (r.hasAttributes()) for (const h of r.getAttributeNames()) if (h.endsWith(ge)) {
+        if (r.hasAttributes()) for (const h of r.getAttributeNames()) if (h.endsWith(be)) {
           const u = p[n++], m = r.getAttribute(h).split(w), M = /([.?@])?(.*)/.exec(u);
           a.push({ type: 1, index: o, name: M[2], strings: m, ctor: M[1] === "." ? Re : M[1] === "?" ? Ue : M[1] === "@" ? Ne : j }), r.removeAttribute(h);
         } else h.startsWith(w) && (a.push({ type: 6, index: o }), r.removeAttribute(h));
@@ -327,7 +327,7 @@ class U {
             r.append(h[u], T());
           }
         }
-      } else if (r.nodeType === 8) if (r.data === be) a.push({ type: 2, index: o });
+      } else if (r.nodeType === 8) if (r.data === ge) a.push({ type: 2, index: o });
       else {
         let h = -1;
         for (; (h = r.data.indexOf(w, h + 1)) !== -1; ) a.push({ type: 7, index: o }), h += w.length - 1;
@@ -395,7 +395,7 @@ class N {
     return this._$AB;
   }
   _$AI(e, t = this) {
-    e = C(this, e, t), R(e) ? e === d || e == null || e === "" ? (this._$AH !== d && this._$AR(), this._$AH = d) : e !== this._$AH && e !== E && this._(e) : e._$litType$ !== void 0 ? this.$(e) : e.nodeType !== void 0 ? this.T(e) : Oe(e) ? this.k(e) : this._(e);
+    e = C(this, e, t), R(e) ? e === d || e == null || e === "" ? (this._$AH !== d && this._$AR(), this._$AH = d) : e !== this._$AH && e !== E && this._(e) : e._$litType$ !== void 0 ? this.$(e) : e.nodeType !== void 0 ? this.T(e) : ze(e) ? this.k(e) : this._(e);
   }
   O(e) {
     return this._$AA.parentNode.insertBefore(e, this._$AB);
@@ -504,8 +504,8 @@ class Me {
     C(this, e);
   }
 }
-const q = z.litHtmlPolyfillSupport;
-q == null || q(U, N), (z.litHtmlVersions ?? (z.litHtmlVersions = [])).push("3.3.2");
+const q = O.litHtmlPolyfillSupport;
+q == null || q(U, N), (O.litHtmlVersions ?? (O.litHtmlVersions = [])).push("3.3.2");
 const He = (i, e, t) => {
   const s = (t == null ? void 0 : t.renderBefore) ?? e;
   let r = s._$litPart$;
@@ -792,18 +792,6 @@ I`
   }
 `;
 const Fe = I`
-  /* Only set standard scrollbar props in browsers that don't support -webkit-scrollbar.
-   * Chrome 121+ disables ::-webkit-scrollbar (and thumb :hover) when scrollbar-color/width are set. */
-  @supports not selector(::-webkit-scrollbar) {
-    .swim-scroll,
-    .swim-scroll-overlay,
-    .swim-scroll-muted,
-    .swim-scroll * {
-      scrollbar-width: thin;
-      scrollbar-color: rgb(80, 92, 117) transparent;
-    }
-  }
-
   /* Base: make element scrollable so scrollbar styling applies (matches overlay/muted) */
   .swim-scroll {
     overflow: auto;
@@ -908,6 +896,49 @@ const Fe = I`
 
   .swim-scroll-muted:hover::-webkit-scrollbar-thumb:hover {
     background-color: rgb(80, 92, 117);
+  }
+
+  /*
+   * Firefox 153+: ::-webkit-scrollbar is recognized but not fully styled.
+   * Non-zero width/height creates unstyled (black) classic scrollbar gutters.
+   *
+   * Do not set scrollbar-width/color globally — Chrome 121+ disables
+   * ::-webkit-scrollbar (and thumb :hover) when those properties are set.
+   * Scope standard scrollbar props + webkit size reset to Firefox only.
+   * Matches ngx-ui scrollbars.scss (SPT-67000).
+   */
+  @supports (-moz-appearance: none) {
+    .swim-scroll,
+    .swim-scroll-overlay,
+    .swim-scroll-muted,
+    .swim-scroll * {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(80, 92, 117, 0.5) transparent;
+    }
+
+    .swim-scroll::-webkit-scrollbar,
+    .swim-scroll-overlay::-webkit-scrollbar,
+    .swim-scroll-muted::-webkit-scrollbar,
+    .swim-scroll *::-webkit-scrollbar {
+      width: auto;
+      height: auto;
+    }
+
+    .swim-scroll-overlay {
+      scrollbar-width: none;
+    }
+
+    .swim-scroll-overlay:hover {
+      scrollbar-width: thin;
+    }
+
+    .swim-scroll-muted {
+      scrollbar-color: rgba(80, 92, 117, 0.3) transparent;
+    }
+
+    .swim-scroll-muted:hover {
+      scrollbar-color: rgba(80, 92, 117, 0.5) transparent;
+    }
   }
 `, qe = [
   De,
@@ -1062,7 +1093,7 @@ const Ve = {
    */
   toAttribute: (i) => i ? "" : null
 };
-var We = Object.defineProperty, Xe = Object.getOwnPropertyDescriptor, b = (i, e, t, s) => {
+var We = Object.defineProperty, Xe = Object.getOwnPropertyDescriptor, g = (i, e, t, s) => {
   for (var r = s > 1 ? void 0 : s ? Xe(e, t) : e, o = i.length - 1, n; o >= 0; o--)
     (n = i[o]) && (r = (s ? n(e, t, r) : n(r)) || r);
   return s && r && We(e, t, r), r;
@@ -1186,20 +1217,20 @@ const de = "swim-drawer", Z = class Z extends P {
   }
 };
 Z.styles = qe;
-let g = Z;
-b([
+let b = Z;
+g([
   _({ type: String, attribute: "css-class" })
-], g.prototype, "cssClass", 2);
-b([
+], b.prototype, "cssClass", 2);
+g([
   _({ type: String, reflect: !0 })
-], g.prototype, "direction", 2);
-b([
+], b.prototype, "direction", 2);
+g([
   _({ type: Number })
-], g.prototype, "size", 1);
-b([
+], b.prototype, "size", 1);
+g([
   _({ type: Number })
-], g.prototype, "zIndex", 1);
-b([
+], b.prototype, "zIndex", 1);
+g([
   _({
     type: Boolean,
     attribute: "close-on-outside-click",
@@ -1209,8 +1240,8 @@ b([
       toAttribute: (i) => i ? "" : "false"
     }
   })
-], g.prototype, "closeOnOutsideClick", 1);
-b([
+], b.prototype, "closeOnOutsideClick", 1);
+g([
   _({
     type: Boolean,
     attribute: "is-root",
@@ -1220,20 +1251,20 @@ b([
       toAttribute: (i) => i ? "" : "false"
     }
   })
-], g.prototype, "isRoot", 1);
-b([
+], b.prototype, "isRoot", 1);
+g([
   _({ type: Boolean, reflect: !0, converter: Ve })
-], g.prototype, "open", 1);
-b([
+], b.prototype, "open", 1);
+g([
   fe()
-], g.prototype, "_closing", 2);
-b([
+], b.prototype, "_closing", 2);
+g([
   fe()
-], g.prototype, "_contentId", 2);
-b([
+], b.prototype, "_contentId", 2);
+g([
   je(".swim-drawer__content")
-], g.prototype, "_contentEl", 2);
-customElements.get(de) || customElements.define(de, g);
+], b.prototype, "_contentEl", 2);
+customElements.get(de) || customElements.define(de, b);
 var Ke = /* @__PURE__ */ ((i) => (i.Fixed = "fixed", i.Absolute = "absolute", i))(Ke || {});
 function Ze(i) {
   const {
@@ -1271,6 +1302,6 @@ function Ze(i) {
 export {
   k as DrawerDirection,
   Ke as DrawerPosition,
-  g as SwimDrawer,
+  b as SwimDrawer,
   Ze as openDrawer
 };

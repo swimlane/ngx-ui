@@ -73,7 +73,7 @@ const { is: We, defineProperty: Xe, getOwnPropertyDescriptor: Le, getOwnProperty
       }
   }
   return t;
-} }, se = (n, e) => !We(n, e), pe = { attribute: !0, type: String, converter: N, reflect: !1, useDefault: !1, hasChanged: se };
+} }, se = (n, e) => !We(n, e), ge = { attribute: !0, type: String, converter: N, reflect: !1, useDefault: !1, hasChanged: se };
 Symbol.metadata ?? (Symbol.metadata = Symbol("metadata")), x.litPropertyMetadata ?? (x.litPropertyMetadata = /* @__PURE__ */ new WeakMap());
 let M = class extends HTMLElement {
   static addInitializer(e) {
@@ -82,7 +82,7 @@ let M = class extends HTMLElement {
   static get observedAttributes() {
     return this.finalize(), this._$Eh && [...this._$Eh.keys()];
   }
-  static createProperty(e, t = pe) {
+  static createProperty(e, t = ge) {
     if (t.state && (t.attribute = !1), this._$Ei(), this.prototype.hasOwnProperty(e) && ((t = Object.create(t)).wrapped = !0), this.elementProperties.set(e, t), !t.noAccessor) {
       const i = Symbol(), o = this.getPropertyDescriptor(e, i, t);
       o !== void 0 && Xe(this.prototype, e, o);
@@ -100,7 +100,7 @@ let M = class extends HTMLElement {
     }, configurable: !0, enumerable: !0 };
   }
   static getPropertyOptions(e) {
-    return this.elementProperties.get(e) ?? pe;
+    return this.elementProperties.get(e) ?? ge;
   }
   static _$Ei() {
     if (this.hasOwnProperty(I("elementProperties"))) return;
@@ -284,9 +284,9 @@ M.elementStyles = [], M.shadowRootOptions = { mode: "open" }, M[I("elementProper
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const D = globalThis, ge = (n) => n, U = D.trustedTypes, ue = U ? U.createPolicy("lit-html", { createHTML: (n) => n }) : void 0, je = "$lit$", y = `lit$${Math.random().toFixed(9).slice(2)}$`, Pe = "?" + y, Ue = `<${Pe}>`, z = document, T = () => z.createComment(""), G = (n) => n === null || typeof n != "object" && typeof n != "function", le = Array.isArray, Ye = (n) => le(n) || typeof (n == null ? void 0 : n[Symbol.iterator]) == "function", _ = `[ 	
+const D = globalThis, pe = (n) => n, U = D.trustedTypes, ue = U ? U.createPolicy("lit-html", { createHTML: (n) => n }) : void 0, je = "$lit$", y = `lit$${Math.random().toFixed(9).slice(2)}$`, Pe = "?" + y, Ue = `<${Pe}>`, z = document, T = () => z.createComment(""), G = (n) => n === null || typeof n != "object" && typeof n != "function", le = Array.isArray, Ye = (n) => le(n) || typeof (n == null ? void 0 : n[Symbol.iterator]) == "function", _ = `[ 	
 \f\r]`, Q = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, ve = /-->/g, ye = />/g, S = RegExp(`>|${_}(?:([^\\s"'>=/]+)(${_}*=${_}*(?:[^ 	
-\f\r"'\`<>=]|("|')|))|$)`, "g"), xe = /'/g, Ae = /"/g, Qe = /^(?:script|style|textarea|title)$/i, qe = (n) => (e, ...t) => ({ _$litType$: n, strings: e, values: t }), p = qe(1), j = Symbol.for("lit-noChange"), c = Symbol.for("lit-nothing"), Ee = /* @__PURE__ */ new WeakMap(), k = z.createTreeWalker(z, 129);
+\f\r"'\`<>=]|("|')|))|$)`, "g"), xe = /'/g, Ae = /"/g, Qe = /^(?:script|style|textarea|title)$/i, qe = (n) => (e, ...t) => ({ _$litType$: n, strings: e, values: t }), g = qe(1), j = Symbol.for("lit-noChange"), c = Symbol.for("lit-nothing"), Ee = /* @__PURE__ */ new WeakMap(), k = z.createTreeWalker(z, 129);
 function He(n, e) {
   if (!le(n) || !n.hasOwnProperty("raw")) throw Error("invalid template strings array");
   return ue !== void 0 ? ue.createHTML(e) : e;
@@ -429,8 +429,8 @@ class X {
   _$AR(e = this._$AA.nextSibling, t) {
     var i;
     for ((i = this._$AP) == null ? void 0 : i.call(this, !1, !0, t); e !== this._$AB; ) {
-      const o = ge(e).nextSibling;
-      ge(e).remove(), e = o;
+      const o = pe(e).nextSibling;
+      pe(e).remove(), e = o;
     }
   }
   setConnected(e) {
@@ -792,18 +792,6 @@ C`
   }
 `;
 const Ie = C`
-  /* Only set standard scrollbar props in browsers that don't support -webkit-scrollbar.
-   * Chrome 121+ disables ::-webkit-scrollbar (and thumb :hover) when scrollbar-color/width are set. */
-  @supports not selector(::-webkit-scrollbar) {
-    .swim-scroll,
-    .swim-scroll-overlay,
-    .swim-scroll-muted,
-    .swim-scroll * {
-      scrollbar-width: thin;
-      scrollbar-color: rgb(80, 92, 117) transparent;
-    }
-  }
-
   /* Base: make element scrollable so scrollbar styling applies (matches overlay/muted) */
   .swim-scroll {
     overflow: auto;
@@ -908,6 +896,49 @@ const Ie = C`
 
   .swim-scroll-muted:hover::-webkit-scrollbar-thumb:hover {
     background-color: rgb(80, 92, 117);
+  }
+
+  /*
+   * Firefox 153+: ::-webkit-scrollbar is recognized but not fully styled.
+   * Non-zero width/height creates unstyled (black) classic scrollbar gutters.
+   *
+   * Do not set scrollbar-width/color globally — Chrome 121+ disables
+   * ::-webkit-scrollbar (and thumb :hover) when those properties are set.
+   * Scope standard scrollbar props + webkit size reset to Firefox only.
+   * Matches ngx-ui scrollbars.scss (SPT-67000).
+   */
+  @supports (-moz-appearance: none) {
+    .swim-scroll,
+    .swim-scroll-overlay,
+    .swim-scroll-muted,
+    .swim-scroll * {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(80, 92, 117, 0.5) transparent;
+    }
+
+    .swim-scroll::-webkit-scrollbar,
+    .swim-scroll-overlay::-webkit-scrollbar,
+    .swim-scroll-muted::-webkit-scrollbar,
+    .swim-scroll *::-webkit-scrollbar {
+      width: auto;
+      height: auto;
+    }
+
+    .swim-scroll-overlay {
+      scrollbar-width: none;
+    }
+
+    .swim-scroll-overlay:hover {
+      scrollbar-width: thin;
+    }
+
+    .swim-scroll-muted {
+      scrollbar-color: rgba(80, 92, 117, 0.3) transparent;
+    }
+
+    .swim-scroll-muted:hover {
+      scrollbar-color: rgba(80, 92, 117, 0.5) transparent;
+    }
   }
 `, lt = [
   K,
@@ -2616,10 +2647,10 @@ class ht {
   }
 }
 const wt = new ht();
-var pt = Object.defineProperty, L = (n, e, t, i) => {
+var gt = Object.defineProperty, L = (n, e, t, i) => {
   for (var o = void 0, r = n.length - 1, s; r >= 0; r--)
     (s = n[r]) && (o = s(e, t, o) || o);
-  return o && pt(e, t, o), o;
+  return o && gt(e, t, o), o;
 };
 mt();
 const Ce = "swim-icon", ce = class ce extends A {
@@ -2661,7 +2692,7 @@ const Ce = "swim-icon", ce = class ce extends A {
   render() {
     var r;
     const e = this._cssClasses, t = !!this.alt, i = ((r = this.iconClass) == null ? void 0 : r.trim()) ?? "", o = i ? ` ${i}` : "";
-    return !e || e.length === 0 ? p`
+    return !e || e.length === 0 ? g`
         <span
           part="icon"
           class="${i}"
@@ -2671,7 +2702,7 @@ const Ce = "swim-icon", ce = class ce extends A {
         >
           <slot></slot>
         </span>
-      ` : e.length === 1 ? p`
+      ` : e.length === 1 ? g`
         <i
           part="icon"
           class="swim-icon__i ${e[0]}${o}"
@@ -2679,7 +2710,7 @@ const Ce = "swim-icon", ce = class ce extends A {
           aria-label="${t ? this.alt : c}"
           aria-hidden="${t ? "false" : "true"}"
         ></i>
-      ` : p`
+      ` : g`
       <span
         class="swim-icon__stack"
         role="${t ? "img" : "presentation"}"
@@ -2687,7 +2718,7 @@ const Ce = "swim-icon", ce = class ce extends A {
         aria-hidden="${t ? "false" : "true"}"
       >
         ${e.map(
-      (s, l) => p`<i part="icon icon-${l}" class="swim-icon__i swim-icon__i--${l} ${s}${o}"></i>`
+      (s, l) => g`<i part="icon icon-${l}" class="swim-icon__i swim-icon__i--${l} ${s}${o}"></i>`
     )}
       </span>
     `;
@@ -2711,10 +2742,10 @@ L([
   q()
 ], E.prototype, "_cssClasses");
 customElements.get(Ce) || customElements.define(Ce, E);
-var gt = Object.defineProperty, ut = Object.getOwnPropertyDescriptor, w = (n, e, t, i) => {
+var pt = Object.defineProperty, ut = Object.getOwnPropertyDescriptor, w = (n, e, t, i) => {
   for (var o = i > 1 ? void 0 : i ? ut(e, t) : e, r = n.length - 1, s; r >= 0; r--)
     (s = n[r]) && (o = (i ? s(e, t, o) : s(o)) || o);
-  return i && o && gt(e, t, o), o;
+  return i && o && pt(e, t, o), o;
 };
 const Se = "swim-dialog", de = class de extends A {
   constructor() {
@@ -2807,9 +2838,9 @@ const Se = "swim-dialog", de = class de extends A {
       t ? "swim-dialog__content--large" : "",
       i ? "swim-dialog__content--medium" : ""
     ].filter(Boolean).join(" "), r = this.class.includes("swim-dialog--full-screen"), s = ["swim-dialog", "swim-dialog--open", this.class, r ? "swim-scroll" : ""].filter(Boolean).join(" ");
-    return p`
+    return g`
       <div class="${s}" style="--swim-dialog-z: ${this.zIndex}" role="presentation">
-        ${this.showBackdrop ? p`<div class="swim-dialog__backdrop" aria-hidden="true" @click="${this._onBackdropClick}"></div>` : c}
+        ${this.showBackdrop ? g`<div class="swim-dialog__backdrop" aria-hidden="true" @click="${this._onBackdropClick}"></div>` : c}
         <div
           part="content"
           class="${o}"
@@ -2821,8 +2852,8 @@ const Se = "swim-dialog", de = class de extends A {
           id="${this._contentId}"
           @keydown="${this._onKeydown}"
         >
-          ${e ? p`
-                ${this.closeButton ? p`
+          ${e ? g`
+                ${this.closeButton ? g`
                       <button
                         part="close-button"
                         type="button"
@@ -2833,19 +2864,19 @@ const Se = "swim-dialog", de = class de extends A {
                         <swim-icon font-icon="x"></swim-icon>
                       </button>
                     ` : c}
-                ${this.dialogTitle ? p`
+                ${this.dialogTitle ? g`
                       <div class="swim-dialog__header" part="header">
                         <h2 id="${this._titleId}" class="swim-dialog__title">${this.dialogTitle}</h2>
                       </div>
                     ` : c}
                 <div class="swim-dialog__body swim-scroll">
                   <slot></slot>
-                  ${this.content ? p`<div>${this.content}</div>` : c}
+                  ${this.content ? g`<div>${this.content}</div>` : c}
                 </div>
-              ` : p`
+              ` : g`
                 <div class="swim-dialog__body swim-scroll">
                   <slot></slot>
-                  ${this.content ? p`<div>${this.content}</div>` : c}
+                  ${this.content ? g`<div>${this.content}</div>` : c}
                 </div>
               `}
         </div>
@@ -3127,12 +3158,12 @@ const ke = "swim-large-format-dialog-content", be = class be extends A {
       "format-dialog-container__footer",
       this._hasFooterSlot ? "" : "format-dialog-container__footer--hidden"
     ].filter(Boolean).join(" ");
-    return p`
+    return g`
       <main class="format-dialog-container">
         <header class="format-dialog-container__header">
           <div class="format-dialog-container__header-title ${e}">
             <h1>${this.dialogTitle}</h1>
-            ${this.dialogSubtitle ? p`<h4>${this.dialogSubtitle}</h4>` : c}
+            ${this.dialogSubtitle ? g`<h4>${this.dialogSubtitle}</h4>` : c}
           </div>
           <div class="format-dialog-container__header-action">
             <button
@@ -3157,29 +3188,29 @@ const ke = "swim-large-format-dialog-content", be = class be extends A {
   }
 };
 be.styles = [Ie, vt];
-let g = be;
+let p = be;
 B([
   d({ type: String, reflect: !0 })
-], g.prototype, "format");
+], p.prototype, "format");
 B([
   d({ type: String, attribute: "dialog-title" })
-], g.prototype, "dialogTitle");
+], p.prototype, "dialogTitle");
 B([
   d({ type: String, attribute: "dialog-subtitle" })
-], g.prototype, "dialogSubtitle");
+], p.prototype, "dialogSubtitle");
 B([
   d({ type: String, attribute: "dialog-action-title" })
-], g.prototype, "dialogActionTitle");
+], p.prototype, "dialogActionTitle");
 B([
   d({ type: String, attribute: "dialog-dirty-action-title" })
-], g.prototype, "dialogDirtyActionTitle");
+], p.prototype, "dialogDirtyActionTitle");
 B([
   d({ type: Boolean, reflect: !0, converter: De })
-], g.prototype, "dirty");
+], p.prototype, "dirty");
 B([
   q()
-], g.prototype, "_hasFooterSlot");
-customElements.get(ke) || customElements.define(ke, g);
+], p.prototype, "_hasFooterSlot");
+customElements.get(ke) || customElements.define(ke, p);
 const xt = [
   K,
   C`
@@ -3233,7 +3264,7 @@ const Oe = "swim-large-format-dialog-footer", me = class me extends A {
     super(...arguments), this.format = "large", this.align = "center";
   }
   render() {
-    return p` <div class="format-dialog-footer"><slot></slot></div> `;
+    return g` <div class="format-dialog-footer"><slot></slot></div> `;
   }
 };
 me.styles = xt;
@@ -3248,6 +3279,6 @@ customElements.get(Oe) || customElements.define(Oe, W);
 export {
   H as DialogFormat,
   f as SwimDialog,
-  g as SwimLargeFormatDialogContent,
+  p as SwimLargeFormatDialogContent,
   W as SwimLargeFormatDialogFooter
 };

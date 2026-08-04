@@ -35,7 +35,7 @@ const he = (i) => new se(typeof i == "string" ? i : i + "", void 0, I), W = (i, 
     const r = document.createElement("style"), s = H.litNonce;
     s !== void 0 && r.setAttribute("nonce", s), r.textContent = t.cssText, i.appendChild(r);
   }
-}, q = j ? (i) => i : (i) => i instanceof CSSStyleSheet ? ((e) => {
+}, F = j ? (i) => i : (i) => i instanceof CSSStyleSheet ? ((e) => {
   let t = "";
   for (const r of e.cssRules) t += r.cssText;
   return he(t);
@@ -45,7 +45,7 @@ const he = (i) => new se(typeof i == "string" ? i : i + "", void 0, I), W = (i, 
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const { is: ge, defineProperty: be, getOwnPropertyDescriptor: pe, getOwnPropertyNames: de, getOwnPropertySymbols: ue, getPrototypeOf: me } = Object, m = globalThis, F = m.trustedTypes, fe = F ? F.emptyScript : "", N = m.reactiveElementPolyfillSupport, S = (i, e) => i, B = { toAttribute(i, e) {
+const { is: ge, defineProperty: be, getOwnPropertyDescriptor: pe, getOwnPropertyNames: de, getOwnPropertySymbols: ue, getPrototypeOf: me } = Object, m = globalThis, q = m.trustedTypes, fe = q ? q.emptyScript : "", N = m.reactiveElementPolyfillSupport, S = (i, e) => i, B = { toAttribute(i, e) {
   switch (e) {
     case Boolean:
       i = i ? fe : null;
@@ -129,8 +129,8 @@ let _ = class extends HTMLElement {
     const t = [];
     if (Array.isArray(e)) {
       const r = new Set(e.flat(1 / 0).reverse());
-      for (const s of r) t.unshift(q(s));
-    } else e !== void 0 && t.push(q(e));
+      for (const s of r) t.unshift(F(s));
+    } else e !== void 0 && t.push(F(e));
     return t;
   }
   static _$Eu(e, t) {
@@ -284,9 +284,9 @@ _.elementStyles = [], _.shadowRootOptions = { mode: "open" }, _[S("elementProper
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const E = globalThis, G = (i) => i, M = E.trustedTypes, J = M ? M.createPolicy("lit-html", { createHTML: (i) => i }) : void 0, oe = "$lit$", u = `lit$${Math.random().toFixed(9).slice(2)}$`, le = "?" + u, $e = `<${le}>`, w = document, k = () => w.createComment(""), C = (i) => i === null || typeof i != "object" && typeof i != "function", X = Array.isArray, ye = (i) => X(i) || typeof (i == null ? void 0 : i[Symbol.iterator]) == "function", R = `[ 	
+const k = globalThis, G = (i) => i, O = k.trustedTypes, J = O ? O.createPolicy("lit-html", { createHTML: (i) => i }) : void 0, oe = "$lit$", u = `lit$${Math.random().toFixed(9).slice(2)}$`, le = "?" + u, ye = `<${le}>`, w = document, E = () => w.createComment(""), C = (i) => i === null || typeof i != "object" && typeof i != "function", X = Array.isArray, $e = (i) => X(i) || typeof (i == null ? void 0 : i[Symbol.iterator]) == "function", R = `[ 	
 \f\r]`, A = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, K = /-->/g, Q = />/g, f = RegExp(`>|${R}(?:([^\\s"'>=/]+)(${R}*=${R}*(?:[^ 	
-\f\r"'\`<>=]|("|')|))|$)`, "g"), Y = /'/g, ee = /"/g, ne = /^(?:script|style|textarea|title)$/i, v = Symbol.for("lit-noChange"), g = Symbol.for("lit-nothing"), te = /* @__PURE__ */ new WeakMap(), $ = w.createTreeWalker(w, 129);
+\f\r"'\`<>=]|("|')|))|$)`, "g"), Y = /'/g, ee = /"/g, ne = /^(?:script|style|textarea|title)$/i, v = Symbol.for("lit-noChange"), g = Symbol.for("lit-nothing"), te = /* @__PURE__ */ new WeakMap(), y = w.createTreeWalker(w, 129);
 function ae(i, e) {
   if (!X(i) || !i.hasOwnProperty("raw")) throw Error("invalid template strings array");
   return J !== void 0 ? J.createHTML(e) : e;
@@ -299,7 +299,7 @@ const we = (i, e) => {
     let c, b, h = -1, p = 0;
     for (; p < n.length && (o.lastIndex = p, b = o.exec(n), b !== null); ) p = o.lastIndex, o === A ? b[1] === "!--" ? o = K : b[1] !== void 0 ? o = Q : b[2] !== void 0 ? (ne.test(b[2]) && (s = RegExp("</" + b[2], "g")), o = f) : b[3] !== void 0 && (o = f) : o === f ? b[0] === ">" ? (o = s ?? A, h = -1) : b[1] === void 0 ? h = -2 : (h = o.lastIndex - b[2].length, c = b[1], o = b[3] === void 0 ? f : b[3] === '"' ? ee : Y) : o === ee || o === Y ? o = f : o === K || o === Q ? o = A : (o = f, s = void 0);
     const d = o === f && i[a + 1].startsWith("/>") ? " " : "";
-    l += o === A ? n + $e : h >= 0 ? (r.push(c), n.slice(0, h) + oe + n.slice(h) + u + d) : n + u + (h === -2 ? a : d);
+    l += o === A ? n + ye : h >= 0 ? (r.push(c), n.slice(0, h) + oe + n.slice(h) + u + d) : n + u + (h === -2 ? a : d);
   }
   return [ae(i, l + (i[t] || "<?>") + (e === 2 ? "</svg>" : e === 3 ? "</math>" : "")), r];
 };
@@ -309,11 +309,11 @@ class P {
     this.parts = [];
     let l = 0, o = 0;
     const a = e.length - 1, n = this.parts, [c, b] = we(e, t);
-    if (this.el = P.createElement(c, r), $.currentNode = this.el.content, t === 2 || t === 3) {
+    if (this.el = P.createElement(c, r), y.currentNode = this.el.content, t === 2 || t === 3) {
       const h = this.el.content.firstChild;
       h.replaceWith(...h.childNodes);
     }
-    for (; (s = $.nextNode()) !== null && n.length < a; ) {
+    for (; (s = y.nextNode()) !== null && n.length < a; ) {
       if (s.nodeType === 1) {
         if (s.hasAttributes()) for (const h of s.getAttributeNames()) if (h.endsWith(oe)) {
           const p = b[o++], d = s.getAttribute(h).split(u), U = /([.?@])?(.*)/.exec(p);
@@ -322,9 +322,9 @@ class P {
         if (ne.test(s.tagName)) {
           const h = s.textContent.split(u), p = h.length - 1;
           if (p > 0) {
-            s.textContent = M ? M.emptyScript : "";
-            for (let d = 0; d < p; d++) s.append(h[d], k()), $.nextNode(), n.push({ type: 2, index: ++l });
-            s.append(h[p], k());
+            s.textContent = O ? O.emptyScript : "";
+            for (let d = 0; d < p; d++) s.append(h[d], E()), y.nextNode(), n.push({ type: 2, index: ++l });
+            s.append(h[p], E());
           }
         }
       } else if (s.nodeType === 8) if (s.data === le) n.push({ type: 2, index: l });
@@ -359,16 +359,16 @@ class _e {
   }
   u(e) {
     const { el: { content: t }, parts: r } = this._$AD, s = ((e == null ? void 0 : e.creationScope) ?? w).importNode(t, !0);
-    $.currentNode = s;
-    let l = $.nextNode(), o = 0, a = 0, n = r[0];
+    y.currentNode = s;
+    let l = y.nextNode(), o = 0, a = 0, n = r[0];
     for (; n !== void 0; ) {
       if (o === n.index) {
         let c;
         n.type === 2 ? c = new z(l, l.nextSibling, this, e) : n.type === 1 ? c = new n.ctor(l, n.name, n.strings, this, e) : n.type === 6 && (c = new Se(l, this, e)), this._$AV.push(c), n = r[++a];
       }
-      o !== (n == null ? void 0 : n.index) && (l = $.nextNode(), o++);
+      o !== (n == null ? void 0 : n.index) && (l = y.nextNode(), o++);
     }
-    return $.currentNode = w, s;
+    return y.currentNode = w, s;
   }
   p(e) {
     let t = 0;
@@ -395,7 +395,7 @@ class z {
     return this._$AB;
   }
   _$AI(e, t = this) {
-    e = x(this, e, t), C(e) ? e === g || e == null || e === "" ? (this._$AH !== g && this._$AR(), this._$AH = g) : e !== this._$AH && e !== v && this._(e) : e._$litType$ !== void 0 ? this.$(e) : e.nodeType !== void 0 ? this.T(e) : ye(e) ? this.k(e) : this._(e);
+    e = x(this, e, t), C(e) ? e === g || e == null || e === "" ? (this._$AH !== g && this._$AR(), this._$AH = g) : e !== this._$AH && e !== v && this._(e) : e._$litType$ !== void 0 ? this.$(e) : e.nodeType !== void 0 ? this.T(e) : $e(e) ? this.k(e) : this._(e);
   }
   O(e) {
     return this._$AA.parentNode.insertBefore(e, this._$AB);
@@ -423,7 +423,7 @@ class z {
     X(this._$AH) || (this._$AH = [], this._$AR());
     const t = this._$AH;
     let r, s = 0;
-    for (const l of e) s === t.length ? t.push(r = new z(this.O(k()), this.O(k()), this, this.options)) : r = t[s], r._$AI(l), s++;
+    for (const l of e) s === t.length ? t.push(r = new z(this.O(E()), this.O(E()), this, this.options)) : r = t[s], r._$AI(l), s++;
     s < t.length && (this._$AR(r && r._$AB.nextSibling, s), t.length = s);
   }
   _$AR(e = this._$AA.nextSibling, t) {
@@ -504,14 +504,14 @@ class Se {
     x(this, e);
   }
 }
-const L = E.litHtmlPolyfillSupport;
-L == null || L(P, z), (E.litHtmlVersions ?? (E.litHtmlVersions = [])).push("3.3.2");
-const Ee = (i, e, t) => {
+const L = k.litHtmlPolyfillSupport;
+L == null || L(P, z), (k.litHtmlVersions ?? (k.litHtmlVersions = [])).push("3.3.2");
+const ke = (i, e, t) => {
   const r = (t == null ? void 0 : t.renderBefore) ?? e;
   let s = r._$litPart$;
   if (s === void 0) {
     const l = (t == null ? void 0 : t.renderBefore) ?? null;
-    r._$litPart$ = s = new z(e.insertBefore(k(), l), l, void 0, t ?? {});
+    r._$litPart$ = s = new z(e.insertBefore(E(), l), l, void 0, t ?? {});
   }
   return s._$AI(i), s;
 };
@@ -520,8 +520,8 @@ const Ee = (i, e, t) => {
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const y = globalThis;
-class O extends _ {
+const $ = globalThis;
+class M extends _ {
   constructor() {
     super(...arguments), this.renderOptions = { host: this }, this._$Do = void 0;
   }
@@ -532,7 +532,7 @@ class O extends _ {
   }
   update(e) {
     const t = this.render();
-    this.hasUpdated || (this.renderOptions.isConnected = this.isConnected), super.update(e), this._$Do = Ee(t, this.renderRoot, this.renderOptions);
+    this.hasUpdated || (this.renderOptions.isConnected = this.isConnected), super.update(e), this._$Do = ke(t, this.renderRoot, this.renderOptions);
   }
   connectedCallback() {
     var e;
@@ -547,10 +547,10 @@ class O extends _ {
   }
 }
 var re;
-O._$litElement$ = !0, O.finalized = !0, (re = y.litElementHydrateSupport) == null || re.call(y, { LitElement: O });
-const D = y.litElementPolyfillSupport;
-D == null || D({ LitElement: O });
-(y.litElementVersions ?? (y.litElementVersions = [])).push("4.2.2");
+M._$litElement$ = !0, M.finalized = !0, (re = $.litElementHydrateSupport) == null || re.call($, { LitElement: M });
+const D = $.litElementPolyfillSupport;
+D == null || D({ LitElement: M });
+($.litElementVersions ?? ($.litElementVersions = [])).push("4.2.2");
 const Pe = W`
   :host {
     /* Colors - Blue */
@@ -728,18 +728,6 @@ const Pe = W`
     box-sizing: border-box;
   }
 `, Ue = W`
-  /* Only set standard scrollbar props in browsers that don't support -webkit-scrollbar.
-   * Chrome 121+ disables ::-webkit-scrollbar (and thumb :hover) when scrollbar-color/width are set. */
-  @supports not selector(::-webkit-scrollbar) {
-    .swim-scroll,
-    .swim-scroll-overlay,
-    .swim-scroll-muted,
-    .swim-scroll * {
-      scrollbar-width: thin;
-      scrollbar-color: rgb(80, 92, 117) transparent;
-    }
-  }
-
   /* Base: make element scrollable so scrollbar styling applies (matches overlay/muted) */
   .swim-scroll {
     overflow: auto;
@@ -845,6 +833,49 @@ const Pe = W`
   .swim-scroll-muted:hover::-webkit-scrollbar-thumb:hover {
     background-color: rgb(80, 92, 117);
   }
+
+  /*
+   * Firefox 153+: ::-webkit-scrollbar is recognized but not fully styled.
+   * Non-zero width/height creates unstyled (black) classic scrollbar gutters.
+   *
+   * Do not set scrollbar-width/color globally — Chrome 121+ disables
+   * ::-webkit-scrollbar (and thumb :hover) when those properties are set.
+   * Scope standard scrollbar props + webkit size reset to Firefox only.
+   * Matches ngx-ui scrollbars.scss (SPT-67000).
+   */
+  @supports (-moz-appearance: none) {
+    .swim-scroll,
+    .swim-scroll-overlay,
+    .swim-scroll-muted,
+    .swim-scroll * {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(80, 92, 117, 0.5) transparent;
+    }
+
+    .swim-scroll::-webkit-scrollbar,
+    .swim-scroll-overlay::-webkit-scrollbar,
+    .swim-scroll-muted::-webkit-scrollbar,
+    .swim-scroll *::-webkit-scrollbar {
+      width: auto;
+      height: auto;
+    }
+
+    .swim-scroll-overlay {
+      scrollbar-width: none;
+    }
+
+    .swim-scroll-overlay:hover {
+      scrollbar-width: thin;
+    }
+
+    .swim-scroll-muted {
+      scrollbar-color: rgba(80, 92, 117, 0.3) transparent;
+    }
+
+    .swim-scroll-muted:hover {
+      scrollbar-color: rgba(80, 92, 117, 0.5) transparent;
+    }
+  }
 `, He = {
   // Blue
   blue100: "rgb(224, 239, 255)",
@@ -932,7 +963,7 @@ const Pe = W`
   // Base
   white: "rgb(255, 255, 255)",
   black: "rgb(0, 0, 0)"
-}, Oe = {
+}, Me = {
   // Font sizes
   fontSizeBase: "16px",
   fontSizeXXS: "0.625rem",
@@ -967,7 +998,7 @@ const Pe = W`
   fontWeightRegular: "400",
   fontWeightSemibold: "600",
   fontWeightBold: "700"
-}, Me = {
+}, Oe = {
   spacing0: "0",
   spacing2: "2px",
   spacing4: "4px",
@@ -987,6 +1018,6 @@ export {
   ze as globalStyles,
   Te as radius,
   Ue as scrollbarStyles,
-  Me as spacing,
-  Oe as typography
+  Oe as spacing,
+  Me as typography
 };

@@ -45,7 +45,7 @@ const at = (o) => new rt(typeof o == "string" ? o : o + "", void 0, Se), H = (o,
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const { is: vt, defineProperty: yt, getOwnPropertyDescriptor: xt, getOwnPropertyNames: Mt, getOwnPropertySymbols: At, getPrototypeOf: Dt } = Object, j = globalThis, Be = j.trustedTypes, _t = Be ? Be.emptyScript : "", be = j.reactiveElementPolyfillSupport, ee = (o, e) => o, ce = { toAttribute(o, e) {
+const { is: vt, defineProperty: yt, getOwnPropertyDescriptor: xt, getOwnPropertyNames: Mt, getOwnPropertySymbols: At, getPrototypeOf: Dt } = Object, j = globalThis, Be = j.trustedTypes, _t = Be ? Be.emptyScript : "", pe = j.reactiveElementPolyfillSupport, ee = (o, e) => o, ce = { toAttribute(o, e) {
   switch (e) {
     case Boolean:
       o = o ? _t : null;
@@ -278,15 +278,15 @@ let W = class extends HTMLElement {
   firstUpdated(e) {
   }
 };
-W.elementStyles = [], W.shadowRootOptions = { mode: "open" }, W[ee("elementProperties")] = /* @__PURE__ */ new Map(), W[ee("finalized")] = /* @__PURE__ */ new Map(), be == null || be({ ReactiveElement: W }), (j.reactiveElementVersions ?? (j.reactiveElementVersions = [])).push("2.1.2");
+W.elementStyles = [], W.shadowRootOptions = { mode: "open" }, W[ee("elementProperties")] = /* @__PURE__ */ new Map(), W[ee("finalized")] = /* @__PURE__ */ new Map(), pe == null || pe({ ReactiveElement: W }), (j.reactiveElementVersions ?? (j.reactiveElementVersions = [])).push("2.1.2");
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const te = globalThis, Le = (o) => o, de = te.trustedTypes, je = de ? de.createPolicy("lit-html", { createHTML: (o) => o }) : void 0, lt = "$lit$", L = `lit$${Math.random().toFixed(9).slice(2)}$`, ct = "?" + L, kt = `<${ct}>`, N = document, ie = () => N.createComment(""), oe = (o) => o === null || typeof o != "object" && typeof o != "function", Ye = Array.isArray, Et = (o) => Ye(o) || typeof (o == null ? void 0 : o[Symbol.iterator]) == "function", fe = `[ 	
+const te = globalThis, Le = (o) => o, de = te.trustedTypes, je = de ? de.createPolicy("lit-html", { createHTML: (o) => o }) : void 0, lt = "$lit$", L = `lit$${Math.random().toFixed(9).slice(2)}$`, ct = "?" + L, kt = `<${ct}>`, Q = document, ie = () => Q.createComment(""), oe = (o) => o === null || typeof o != "object" && typeof o != "function", Ye = Array.isArray, Et = (o) => Ye(o) || typeof (o == null ? void 0 : o[Symbol.iterator]) == "function", fe = `[ 	
 \f\r]`, X = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, Ve = /-->/g, Ue = />/g, U = RegExp(`>|${fe}(?:([^\\s"'>=/]+)(${fe}*=${fe}*(?:[^ 	
-\f\r"'\`<>=]|("|')|))|$)`, "g"), Re = /'/g, Qe = /"/g, dt = /^(?:script|style|textarea|title)$/i, St = (o) => (e, ...t) => ({ _$litType$: o, strings: e, values: t }), g = St(1), O = Symbol.for("lit-noChange"), u = Symbol.for("lit-nothing"), Ne = /* @__PURE__ */ new WeakMap(), R = N.createTreeWalker(N, 129);
+\f\r"'\`<>=]|("|')|))|$)`, "g"), Re = /'/g, Ne = /"/g, dt = /^(?:script|style|textarea|title)$/i, St = (o) => (e, ...t) => ({ _$litType$: o, strings: e, values: t }), g = St(1), O = Symbol.for("lit-noChange"), u = Symbol.for("lit-nothing"), Qe = /* @__PURE__ */ new WeakMap(), R = Q.createTreeWalker(Q, 129);
 function ht(o, e) {
   if (!Ye(o) || !o.hasOwnProperty("raw")) throw Error("invalid template strings array");
   return je !== void 0 ? je.createHTML(e) : e;
@@ -296,10 +296,10 @@ const Ct = (o, e) => {
   let n, r = e === 2 ? "<svg>" : e === 3 ? "<math>" : "", s = X;
   for (let a = 0; a < t; a++) {
     const c = o[a];
-    let d, w, p = -1, y = 0;
-    for (; y < c.length && (s.lastIndex = y, w = s.exec(c), w !== null); ) y = s.lastIndex, s === X ? w[1] === "!--" ? s = Ve : w[1] !== void 0 ? s = Ue : w[2] !== void 0 ? (dt.test(w[2]) && (n = RegExp("</" + w[2], "g")), s = U) : w[3] !== void 0 && (s = U) : s === U ? w[0] === ">" ? (s = n ?? X, p = -1) : w[1] === void 0 ? p = -2 : (p = s.lastIndex - w[2].length, d = w[1], s = w[3] === void 0 ? U : w[3] === '"' ? Qe : Re) : s === Qe || s === Re ? s = U : s === Ve || s === Ue ? s = X : (s = U, n = void 0);
+    let d, w, b = -1, y = 0;
+    for (; y < c.length && (s.lastIndex = y, w = s.exec(c), w !== null); ) y = s.lastIndex, s === X ? w[1] === "!--" ? s = Ve : w[1] !== void 0 ? s = Ue : w[2] !== void 0 ? (dt.test(w[2]) && (n = RegExp("</" + w[2], "g")), s = U) : w[3] !== void 0 && (s = U) : s === U ? w[0] === ">" ? (s = n ?? X, b = -1) : w[1] === void 0 ? b = -2 : (b = s.lastIndex - w[2].length, d = w[1], s = w[3] === void 0 ? U : w[3] === '"' ? Ne : Re) : s === Ne || s === Re ? s = U : s === Ve || s === Ue ? s = X : (s = U, n = void 0);
     const M = s === U && o[a + 1].startsWith("/>") ? " " : "";
-    r += s === X ? c + kt : p >= 0 ? (i.push(d), c.slice(0, p) + lt + c.slice(p) + L + M) : c + L + (p === -2 ? a : M);
+    r += s === X ? c + kt : b >= 0 ? (i.push(d), c.slice(0, b) + lt + c.slice(b) + L + M) : c + L + (b === -2 ? a : M);
   }
   return [ht(o, r + (o[t] || "<?>") + (e === 2 ? "</svg>" : e === 3 ? "</math>" : "")), i];
 };
@@ -310,33 +310,33 @@ class ne {
     let r = 0, s = 0;
     const a = e.length - 1, c = this.parts, [d, w] = Ct(e, t);
     if (this.el = ne.createElement(d, i), R.currentNode = this.el.content, t === 2 || t === 3) {
-      const p = this.el.content.firstChild;
-      p.replaceWith(...p.childNodes);
+      const b = this.el.content.firstChild;
+      b.replaceWith(...b.childNodes);
     }
     for (; (n = R.nextNode()) !== null && c.length < a; ) {
       if (n.nodeType === 1) {
-        if (n.hasAttributes()) for (const p of n.getAttributeNames()) if (p.endsWith(lt)) {
-          const y = w[s++], M = n.getAttribute(p).split(L), q = /([.?@])?(.*)/.exec(y);
-          c.push({ type: 1, index: r, name: q[2], strings: M, ctor: q[1] === "." ? zt : q[1] === "?" ? Tt : q[1] === "@" ? Ot : me }), n.removeAttribute(p);
-        } else p.startsWith(L) && (c.push({ type: 6, index: r }), n.removeAttribute(p));
+        if (n.hasAttributes()) for (const b of n.getAttributeNames()) if (b.endsWith(lt)) {
+          const y = w[s++], M = n.getAttribute(b).split(L), q = /([.?@])?(.*)/.exec(y);
+          c.push({ type: 1, index: r, name: q[2], strings: M, ctor: q[1] === "." ? zt : q[1] === "?" ? Tt : q[1] === "@" ? Ot : me }), n.removeAttribute(b);
+        } else b.startsWith(L) && (c.push({ type: 6, index: r }), n.removeAttribute(b));
         if (dt.test(n.tagName)) {
-          const p = n.textContent.split(L), y = p.length - 1;
+          const b = n.textContent.split(L), y = b.length - 1;
           if (y > 0) {
             n.textContent = de ? de.emptyScript : "";
-            for (let M = 0; M < y; M++) n.append(p[M], ie()), R.nextNode(), c.push({ type: 2, index: ++r });
-            n.append(p[y], ie());
+            for (let M = 0; M < y; M++) n.append(b[M], ie()), R.nextNode(), c.push({ type: 2, index: ++r });
+            n.append(b[y], ie());
           }
         }
       } else if (n.nodeType === 8) if (n.data === ct) c.push({ type: 2, index: r });
       else {
-        let p = -1;
-        for (; (p = n.data.indexOf(L, p + 1)) !== -1; ) c.push({ type: 7, index: r }), p += L.length - 1;
+        let b = -1;
+        for (; (b = n.data.indexOf(L, b + 1)) !== -1; ) c.push({ type: 7, index: r }), b += L.length - 1;
       }
       r++;
     }
   }
   static createElement(e, t) {
-    const i = N.createElement("template");
+    const i = Q.createElement("template");
     return i.innerHTML = e, i;
   }
 }
@@ -358,7 +358,7 @@ class Yt {
     return this._$AM._$AU;
   }
   u(e) {
-    const { el: { content: t }, parts: i } = this._$AD, n = ((e == null ? void 0 : e.creationScope) ?? N).importNode(t, !0);
+    const { el: { content: t }, parts: i } = this._$AD, n = ((e == null ? void 0 : e.creationScope) ?? Q).importNode(t, !0);
     R.currentNode = n;
     let r = R.nextNode(), s = 0, a = 0, c = i[0];
     for (; c !== void 0; ) {
@@ -368,7 +368,7 @@ class Yt {
       }
       s !== (c == null ? void 0 : c.index) && (r = R.nextNode(), s++);
     }
-    return R.currentNode = N, n;
+    return R.currentNode = Q, n;
   }
   p(e) {
     let t = 0;
@@ -404,7 +404,7 @@ class se {
     this._$AH !== e && (this._$AR(), this._$AH = this.O(e));
   }
   _(e) {
-    this._$AH !== u && oe(this._$AH) ? this._$AA.nextSibling.data = e : this.T(N.createTextNode(e)), this._$AH = e;
+    this._$AH !== u && oe(this._$AH) ? this._$AA.nextSibling.data = e : this.T(Q.createTextNode(e)), this._$AH = e;
   }
   $(e) {
     var r;
@@ -416,8 +416,8 @@ class se {
     }
   }
   _$AC(e) {
-    let t = Ne.get(e.strings);
-    return t === void 0 && Ne.set(e.strings, t = new ne(e)), t;
+    let t = Qe.get(e.strings);
+    return t === void 0 && Qe.set(e.strings, t = new ne(e)), t;
   }
   k(e) {
     Ye(this._$AH) || (this._$AH = [], this._$AR());
@@ -520,7 +520,7 @@ const Pt = (o, e, t) => {
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const Q = globalThis;
+const N = globalThis;
 let B = class extends W {
   constructor() {
     super(...arguments), this.renderOptions = { host: this }, this._$Do = void 0;
@@ -547,10 +547,10 @@ let B = class extends W {
   }
 };
 var st;
-B._$litElement$ = !0, B.finalized = !0, (st = Q.litElementHydrateSupport) == null || st.call(Q, { LitElement: B });
-const we = Q.litElementPolyfillSupport;
+B._$litElement$ = !0, B.finalized = !0, (st = N.litElementHydrateSupport) == null || st.call(N, { LitElement: B });
+const we = N.litElementPolyfillSupport;
 we == null || we({ LitElement: B });
-(Q.litElementVersions ?? (Q.litElementVersions = [])).push("4.2.2");
+(N.litElementVersions ?? (N.litElementVersions = [])).push("4.2.2");
 /**
  * @license
  * Copyright 2017 Google LLC
@@ -848,7 +848,7 @@ H`
     box-sizing: border-box;
   }
 `;
-const ut = "swim-ui-icon", Qt = H`
+const ut = "swim-ui-icon", Nt = H`
   .swim-icon.lit-3d-rotate::before {
     content: '\\ea01';
   }
@@ -2133,7 +2133,7 @@ const ut = "swim-ui-icon", Qt = H`
   .swim-icon.lit-x-small::before {
     content: '\\ebac';
   }
-`, ve = at(`'${ut}'`), Nt = H`
+`, ve = at(`'${ut}'`), Qt = H`
   :host {
     /* inline-flex keeps the host box tight to the glyph and centers the shadow icon in contexts
        (e.g. swim-button) where inherited line-height would otherwise grow the line box asymmetrically */
@@ -2256,7 +2256,7 @@ const ut = "swim-ui-icon", Qt = H`
     animation: swim-icon-spin 1s linear infinite;
   }
 
-  ${Qt}
+  ${Nt}
 `, De = "data-swim-ui-icon-font-face";
 let ye = !1;
 function qt() {
@@ -2379,7 +2379,7 @@ const Ze = "swim-icon", Te = class Te extends B {
     `;
   }
 };
-Te.styles = [re, Nt];
+Te.styles = [re, Qt];
 let V = Te;
 ae([
   l({ type: String, attribute: "font-icon" })
@@ -2398,18 +2398,6 @@ ae([
 ], V.prototype, "_cssClasses");
 customElements.get(Ze) || customElements.define(Ze, V);
 const mt = H`
-  /* Only set standard scrollbar props in browsers that don't support -webkit-scrollbar.
-   * Chrome 121+ disables ::-webkit-scrollbar (and thumb :hover) when scrollbar-color/width are set. */
-  @supports not selector(::-webkit-scrollbar) {
-    .swim-scroll,
-    .swim-scroll-overlay,
-    .swim-scroll-muted,
-    .swim-scroll * {
-      scrollbar-width: thin;
-      scrollbar-color: rgb(80, 92, 117) transparent;
-    }
-  }
-
   /* Base: make element scrollable so scrollbar styling applies (matches overlay/muted) */
   .swim-scroll {
     overflow: auto;
@@ -2514,6 +2502,49 @@ const mt = H`
 
   .swim-scroll-muted:hover::-webkit-scrollbar-thumb:hover {
     background-color: rgb(80, 92, 117);
+  }
+
+  /*
+   * Firefox 153+: ::-webkit-scrollbar is recognized but not fully styled.
+   * Non-zero width/height creates unstyled (black) classic scrollbar gutters.
+   *
+   * Do not set scrollbar-width/color globally — Chrome 121+ disables
+   * ::-webkit-scrollbar (and thumb :hover) when those properties are set.
+   * Scope standard scrollbar props + webkit size reset to Firefox only.
+   * Matches ngx-ui scrollbars.scss (SPT-67000).
+   */
+  @supports (-moz-appearance: none) {
+    .swim-scroll,
+    .swim-scroll-overlay,
+    .swim-scroll-muted,
+    .swim-scroll * {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(80, 92, 117, 0.5) transparent;
+    }
+
+    .swim-scroll::-webkit-scrollbar,
+    .swim-scroll-overlay::-webkit-scrollbar,
+    .swim-scroll-muted::-webkit-scrollbar,
+    .swim-scroll *::-webkit-scrollbar {
+      width: auto;
+      height: auto;
+    }
+
+    .swim-scroll-overlay {
+      scrollbar-width: none;
+    }
+
+    .swim-scroll-overlay:hover {
+      scrollbar-width: thin;
+    }
+
+    .swim-scroll-muted {
+      scrollbar-color: rgba(80, 92, 117, 0.3) transparent;
+    }
+
+    .swim-scroll-muted:hover {
+      scrollbar-color: rgba(80, 92, 117, 0.5) transparent;
+    }
   }
 `, Kt = H`
   :host {
@@ -2856,14 +2887,14 @@ const mt = H`
     font-size: 1em;
   }
 `;
-var I = /* @__PURE__ */ ((o) => (o.text = "text", o.password = "password", o.email = "email", o.number = "number", o.tel = "tel", o.url = "url", o.textarea = "textarea", o))(I || {}), pt = /* @__PURE__ */ ((o) => (o.legacy = "legacy", o.fill = "fill", o))(pt || {}), bt = /* @__PURE__ */ ((o) => (o.sm = "sm", o.md = "md", o.lg = "lg", o))(bt || {});
+var I = /* @__PURE__ */ ((o) => (o.text = "text", o.password = "password", o.email = "email", o.number = "number", o.tel = "tel", o.url = "url", o.textarea = "textarea", o))(I || {}), bt = /* @__PURE__ */ ((o) => (o.legacy = "legacy", o.fill = "fill", o))(bt || {}), pt = /* @__PURE__ */ ((o) => (o.sm = "sm", o.md = "md", o.lg = "lg", o))(pt || {});
 function _(o) {
   return o != null && `${o}` != "false";
 }
 function ft(o, e = null) {
   return isNaN(parseFloat(o)) || isNaN(Number(o)) ? e : Number(o);
 }
-const pe = {
+const be = {
   fromAttribute: (o) => o !== "false",
   /** Omit attribute when true (default); set explicit `="false"` only when off. */
   toAttribute: (o) => o ? null : "false"
@@ -2883,7 +2914,7 @@ var $t = Object.defineProperty, ei = Object.getOwnPropertyDescriptor, v = (o, e,
 };
 const We = "swim-input", he = class he extends B {
   constructor() {
-    super(), this.type = I.text, this.label = "", this.placeholder = "", this.hint = "", this._value = "", this.name = "", this.id = `swim-input-${Math.random().toString(36).substr(2, 9)}`, this._disabled = !1, this._readonly = !1, this._required = !1, this._autofocus = !1, this.autocomplete = "off", this.appearance = pt.legacy, this.size = bt.sm, this._withMargin = !0, this._withHint = !0, this._passwordToggleEnabled = !1, this.textareaRows = 3, this.requiredIndicator = "*", this._focused = !1, this._passwordVisible = !1, this._touched = !1, this._dirty = !1, this._invalid = !1, this._internals = this.attachInternals();
+    super(), this.type = I.text, this.label = "", this.placeholder = "", this.hint = "", this._value = "", this.name = "", this.id = `swim-input-${Math.random().toString(36).substr(2, 9)}`, this._disabled = !1, this._readonly = !1, this._required = !1, this._autofocus = !1, this.autocomplete = "off", this.appearance = bt.legacy, this.size = pt.sm, this._withMargin = !0, this._withHint = !0, this._passwordToggleEnabled = !1, this.textareaRows = 3, this.requiredIndicator = "*", this._focused = !1, this._passwordVisible = !1, this._touched = !1, this._dirty = !1, this._invalid = !1, this._internals = this.attachInternals();
   }
   get value() {
     return this._value;
@@ -3198,7 +3229,7 @@ v([
   l({ type: Boolean, reflect: !0, attribute: "marginless", converter: Y })
 ], f.prototype, "marginless", 1);
 v([
-  l({ type: Boolean, converter: pe })
+  l({ type: Boolean, converter: be })
 ], f.prototype, "withHint", 1);
 v([
   l({ type: Boolean, attribute: "password-toggle-enabled", converter: Y })
@@ -3551,8 +3582,8 @@ function z(o) {
   if (r > 0) {
     const d = Ge(t, i - 1);
     for (let w = r - 1; w >= 0; w--) {
-      const p = new Date(t, i - 1, d - w);
-      s.push(xe(p, i, e));
+      const b = new Date(t, i - 1, d - w);
+      s.push(xe(b, i, e));
     }
   }
   for (let d = 1; d <= n; d++)
@@ -3618,7 +3649,7 @@ const si = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"
   llll: "ddd, MMM D, YYYY h:mm A",
   LT: "h:mm A",
   LTS: "h:mm:ss A"
-}, b = {
+}, p = {
   shortDate: "l",
   shortTime: "LT",
   shortDateTime: "l LT",
@@ -3778,7 +3809,7 @@ function ui(o, e, t, i) {
   }
 }
 function mi(o) {
-  return b[o] || o;
+  return p[o] || o;
 }
 function K(o, e, t) {
   const i = ke(t);
@@ -3801,21 +3832,21 @@ function K(o, e, t) {
   }
   n = a;
   const c = gt(o, i), d = n.replace(hi, (y) => ui(y, c, o, i));
-  let w = "", p = 0;
-  for (; p < d.length; ) {
-    const y = d.indexOf("\0", p);
+  let w = "", b = 0;
+  for (; b < d.length; ) {
+    const y = d.indexOf("\0", b);
     if (y === -1) {
-      w += d.slice(p);
+      w += d.slice(b);
       break;
     }
-    w += d.slice(p, y);
+    w += d.slice(b, y);
     let M = y + 1;
     for (; M < d.length && d[M] >= "0" && d[M] <= "9"; ) M++;
     if (d[M] === "\0" && M > y + 1) {
       const q = parseInt(d.slice(y + 1, M), 10);
-      w += r[q] ?? "", p = M + 1;
+      w += r[q] ?? "", b = M + 1;
     } else
-      w += d.slice(y, M || y + 1), p = M || y + 1;
+      w += d.slice(y, M || y + 1), b = M || y + 1;
   }
   return w;
 }
@@ -3885,38 +3916,38 @@ function et(o, e) {
   ], n = i.findIndex(([r]) => r === e);
   return n >= 0 && i[n][1](), t;
 }
-function pi(o, e, t) {
+function bi(o, e, t) {
   switch (o) {
     case T.HUMAN:
     case T.TIMEZONE:
       switch (e) {
         case x.date:
-          return t === "month" ? b.timezoneDateMonth : t === "year" ? b.timezoneDateYear : b.timezoneDate;
+          return t === "month" ? p.timezoneDateMonth : t === "year" ? p.timezoneDateYear : p.timezoneDate;
         case x.time:
-          return b.timezoneTime;
+          return p.timezoneTime;
         default:
-          return b.timezoneDateTime;
+          return p.timezoneDateTime;
       }
     case T.LOCAL:
       switch (e) {
         case x.date:
-          return t === "month" ? b.dateMonth : t === "year" ? b.dateYear : b.localeDate;
+          return t === "month" ? p.dateMonth : t === "year" ? p.dateYear : p.localeDate;
         case x.time:
-          return b.localeTime;
+          return p.localeTime;
         default:
-          return b.localeDateTime;
+          return p.localeDateTime;
       }
     case T.CUSTOM:
       switch (e) {
         case x.date:
-          return t === "month" ? b.dateMonth : t === "year" ? b.dateYear : b.date;
+          return t === "month" ? p.dateMonth : t === "year" ? p.dateYear : p.date;
         case x.time:
-          return b.time;
+          return p.time;
         default:
-          return b.dateTime;
+          return p.dateTime;
       }
     default:
-      return b.localeDate;
+      return p.localeDate;
   }
 }
 function Ei(o, e, t) {
@@ -3925,32 +3956,32 @@ function Ei(o, e, t) {
     case T.TIMEZONE:
       switch (e) {
         case x.date:
-          return t === "month" ? b.fullDateMonth : t === "year" ? b.fullDateYear : b.fullDate;
+          return t === "month" ? p.fullDateMonth : t === "year" ? p.fullDateYear : p.fullDate;
         case x.time:
-          return b.fullTime;
+          return p.fullTime;
         default:
-          return b.fullDateTime;
+          return p.fullDateTime;
       }
     case T.LOCAL:
       switch (e) {
         case x.date:
-          return t === "month" ? b.dateMonth : t === "year" ? b.dateYear : b.localeDate;
+          return t === "month" ? p.dateMonth : t === "year" ? p.dateYear : p.localeDate;
         case x.time:
-          return b.localeTime;
+          return p.localeTime;
         default:
-          return b.localeDateTime;
+          return p.localeDateTime;
       }
     case T.CUSTOM:
       switch (e) {
         case x.date:
-          return t === "month" ? b.dateMonth : t === "year" ? b.dateYear : b.date;
+          return t === "month" ? p.dateMonth : t === "year" ? p.dateYear : p.date;
         case x.time:
-          return b.time;
+          return p.time;
         default:
-          return b.dateTime;
+          return p.dateTime;
       }
     default:
-      return b.localeDate;
+      return p.localeDate;
   }
 }
 function ke(o) {
@@ -3977,10 +4008,10 @@ function tt(o, e, t) {
   const i = e ? J(e) : null, n = t ? J(t) : null;
   return !!(i && k(i) && o < i || n && k(n) && o > n);
 }
-var bi = Object.defineProperty, fi = Object.getOwnPropertyDescriptor, F = (o, e, t, i) => {
+var pi = Object.defineProperty, fi = Object.getOwnPropertyDescriptor, F = (o, e, t, i) => {
   for (var n = i > 1 ? void 0 : i ? fi(e, t) : e, r = o.length - 1, s; r >= 0; r--)
     (s = o[r]) && (n = (i ? s(e, t, n) : s(n)) || n);
-  return i && n && bi(e, t, n), n;
+  return i && n && pi(e, t, n), n;
 };
 const it = "swim-calendar", Oe = class Oe extends B {
   constructor() {
@@ -4845,13 +4876,13 @@ E([
   })
 ], D.prototype, "showBackdrop", 2);
 E([
-  l({ type: Boolean, attribute: "close-button", converter: pe })
+  l({ type: Boolean, attribute: "close-button", converter: be })
 ], D.prototype, "closeButton", 1);
 E([
-  l({ type: Boolean, attribute: "close-on-blur", converter: pe })
+  l({ type: Boolean, attribute: "close-on-blur", converter: be })
 ], D.prototype, "closeOnBlur", 1);
 E([
-  l({ type: Boolean, attribute: "close-on-escape", converter: pe })
+  l({ type: Boolean, attribute: "close-on-escape", converter: be })
 ], D.prototype, "closeOnEscape", 1);
 E([
   l({ type: Boolean, reflect: !0, converter: Y })
@@ -5347,7 +5378,7 @@ const nt = "swim-date-time", ue = class ue extends B {
     return this._displayMode ? this._displayMode : this.timezone ? T.TIMEZONE : T.LOCAL;
   }
   get _effectiveFormat() {
-    return this.format ? mi(this.format) : pi(
+    return this.format ? mi(this.format) : bi(
       this._effectiveDisplayMode,
       this._effectiveInputType,
       this.precision
@@ -5774,7 +5805,7 @@ export {
   h as SwimDateTime,
   K as formatDate,
   Ei as getEffectiveDisplayFormat,
-  pi as getEffectiveInputFormat,
+  bi as getEffectiveInputFormat,
   tt as isOutOfRange,
   k as isValidDate,
   ke as normalizeTimezone,

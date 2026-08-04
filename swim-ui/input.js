@@ -284,9 +284,9 @@ B.elementStyles = [], B.shadowRootOptions = { mode: "open" }, B[F("elementProper
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const G = globalThis, he = (o) => o, q = G.trustedTypes, pe = q ? q.createPolicy("lit-html", { createHTML: (o) => o }) : void 0, ke = "$lit$", A = `lit$${Math.random().toFixed(9).slice(2)}$`, Oe = "?" + A, Re = `<${Oe}>`, z = document, W = () => z.createComment(""), X = (o) => o === null || typeof o != "object" && typeof o != "function", le = Array.isArray, Ue = (o) => le(o) || typeof (o == null ? void 0 : o[Symbol.iterator]) == "function", _ = `[ 	
+const G = globalThis, he = (o) => o, q = G.trustedTypes, pe = q ? q.createPolicy("lit-html", { createHTML: (o) => o }) : void 0, ke = "$lit$", A = `lit$${Math.random().toFixed(9).slice(2)}$`, Me = "?" + A, Re = `<${Me}>`, z = document, W = () => z.createComment(""), X = (o) => o === null || typeof o != "object" && typeof o != "function", le = Array.isArray, Ue = (o) => le(o) || typeof (o == null ? void 0 : o[Symbol.iterator]) == "function", _ = `[ 	
 \f\r]`, I = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, me = /-->/g, ue = />/g, C = RegExp(`>|${_}(?:([^\\s"'>=/]+)(${_}*=${_}*(?:[^ 	
-\f\r"'\`<>=]|("|')|))|$)`, "g"), we = /'/g, ge = /"/g, Me = /^(?:script|style|textarea|title)$/i, Ze = (o) => (e, ...t) => ({ _$litType$: o, strings: e, values: t }), u = Ze(1), w = Symbol.for("lit-noChange"), f = Symbol.for("lit-nothing"), ve = /* @__PURE__ */ new WeakMap(), O = z.createTreeWalker(z, 129);
+\f\r"'\`<>=]|("|')|))|$)`, "g"), we = /'/g, ge = /"/g, Oe = /^(?:script|style|textarea|title)$/i, Ze = (o) => (e, ...t) => ({ _$litType$: o, strings: e, values: t }), u = Ze(1), w = Symbol.for("lit-noChange"), f = Symbol.for("lit-nothing"), ve = /* @__PURE__ */ new WeakMap(), M = z.createTreeWalker(z, 129);
 function ze(o, e) {
   if (!le(o) || !o.hasOwnProperty("raw")) throw Error("invalid template strings array");
   return pe !== void 0 ? pe.createHTML(e) : e;
@@ -297,7 +297,7 @@ const Le = (o, e) => {
   for (let a = 0; a < t; a++) {
     const l = o[a];
     let p, m, h = -1, g = 0;
-    for (; g < l.length && (r.lastIndex = g, m = r.exec(l), m !== null); ) g = r.lastIndex, r === I ? m[1] === "!--" ? r = me : m[1] !== void 0 ? r = ue : m[2] !== void 0 ? (Me.test(m[2]) && (n = RegExp("</" + m[2], "g")), r = C) : m[3] !== void 0 && (r = C) : r === C ? m[0] === ">" ? (r = n ?? I, h = -1) : m[1] === void 0 ? h = -2 : (h = r.lastIndex - m[2].length, p = m[1], r = m[3] === void 0 ? C : m[3] === '"' ? ge : we) : r === ge || r === we ? r = C : r === me || r === ue ? r = I : (r = C, n = void 0);
+    for (; g < l.length && (r.lastIndex = g, m = r.exec(l), m !== null); ) g = r.lastIndex, r === I ? m[1] === "!--" ? r = me : m[1] !== void 0 ? r = ue : m[2] !== void 0 ? (Oe.test(m[2]) && (n = RegExp("</" + m[2], "g")), r = C) : m[3] !== void 0 && (r = C) : r === C ? m[0] === ">" ? (r = n ?? I, h = -1) : m[1] === void 0 ? h = -2 : (h = r.lastIndex - m[2].length, p = m[1], r = m[3] === void 0 ? C : m[3] === '"' ? ge : we) : r === ge || r === we ? r = C : r === me || r === ue ? r = I : (r = C, n = void 0);
     const y = r === C && o[a + 1].startsWith("/>") ? " " : "";
     s += r === I ? l + Re : h >= 0 ? (i.push(p), l.slice(0, h) + ke + l.slice(h) + A + y) : l + A + (h === -2 ? a : y);
   }
@@ -309,25 +309,25 @@ class R {
     this.parts = [];
     let s = 0, r = 0;
     const a = e.length - 1, l = this.parts, [p, m] = Le(e, t);
-    if (this.el = R.createElement(p, i), O.currentNode = this.el.content, t === 2 || t === 3) {
+    if (this.el = R.createElement(p, i), M.currentNode = this.el.content, t === 2 || t === 3) {
       const h = this.el.content.firstChild;
       h.replaceWith(...h.childNodes);
     }
-    for (; (n = O.nextNode()) !== null && l.length < a; ) {
+    for (; (n = M.nextNode()) !== null && l.length < a; ) {
       if (n.nodeType === 1) {
         if (n.hasAttributes()) for (const h of n.getAttributeNames()) if (h.endsWith(ke)) {
           const g = m[r++], y = n.getAttribute(h).split(A), L = /([.?@])?(.*)/.exec(g);
           l.push({ type: 1, index: s, name: L[2], strings: y, ctor: L[1] === "." ? Ye : L[1] === "?" ? qe : L[1] === "@" ? Ne : V }), n.removeAttribute(h);
         } else h.startsWith(A) && (l.push({ type: 6, index: s }), n.removeAttribute(h));
-        if (Me.test(n.tagName)) {
+        if (Oe.test(n.tagName)) {
           const h = n.textContent.split(A), g = h.length - 1;
           if (g > 0) {
             n.textContent = q ? q.emptyScript : "";
-            for (let y = 0; y < g; y++) n.append(h[y], W()), O.nextNode(), l.push({ type: 2, index: ++s });
+            for (let y = 0; y < g; y++) n.append(h[y], W()), M.nextNode(), l.push({ type: 2, index: ++s });
             n.append(h[g], W());
           }
         }
-      } else if (n.nodeType === 8) if (n.data === Oe) l.push({ type: 2, index: s });
+      } else if (n.nodeType === 8) if (n.data === Me) l.push({ type: 2, index: s });
       else {
         let h = -1;
         for (; (h = n.data.indexOf(A, h + 1)) !== -1; ) l.push({ type: 7, index: s }), h += A.length - 1;
@@ -359,16 +359,16 @@ class Je {
   }
   u(e) {
     const { el: { content: t }, parts: i } = this._$AD, n = ((e == null ? void 0 : e.creationScope) ?? z).importNode(t, !0);
-    O.currentNode = n;
-    let s = O.nextNode(), r = 0, a = 0, l = i[0];
+    M.currentNode = n;
+    let s = M.nextNode(), r = 0, a = 0, l = i[0];
     for (; l !== void 0; ) {
       if (r === l.index) {
         let p;
         l.type === 2 ? p = new U(s, s.nextSibling, this, e) : l.type === 1 ? p = new l.ctor(s, l.name, l.strings, this, e) : l.type === 6 && (p = new Ve(s, this, e)), this._$AV.push(p), l = i[++a];
       }
-      r !== (l == null ? void 0 : l.index) && (s = O.nextNode(), r++);
+      r !== (l == null ? void 0 : l.index) && (s = M.nextNode(), r++);
     }
-    return O.currentNode = z, n;
+    return M.currentNode = z, n;
   }
   p(e) {
     let t = 0;
@@ -520,7 +520,7 @@ const Ke = (o, e, t) => {
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const M = globalThis;
+const O = globalThis;
 let H = class extends B {
   constructor() {
     super(...arguments), this.renderOptions = { host: this }, this._$Do = void 0;
@@ -547,10 +547,10 @@ let H = class extends B {
   }
 };
 var Ee;
-H._$litElement$ = !0, H.finalized = !0, (Ee = M.litElementHydrateSupport) == null || Ee.call(M, { LitElement: H });
-const ee = M.litElementPolyfillSupport;
+H._$litElement$ = !0, H.finalized = !0, (Ee = O.litElementHydrateSupport) == null || Ee.call(O, { LitElement: H });
+const ee = O.litElementPolyfillSupport;
 ee == null || ee({ LitElement: H });
-(M.litElementVersions ?? (M.litElementVersions = [])).push("4.2.2");
+(O.litElementVersions ?? (O.litElementVersions = [])).push("4.2.2");
 /**
  * @license
  * Copyright 2017 Google LLC
@@ -2398,18 +2398,6 @@ Z([
 ], S.prototype, "_cssClasses");
 customElements.get(xe) || customElements.define(xe, S);
 const mt = j`
-  /* Only set standard scrollbar props in browsers that don't support -webkit-scrollbar.
-   * Chrome 121+ disables ::-webkit-scrollbar (and thumb :hover) when scrollbar-color/width are set. */
-  @supports not selector(::-webkit-scrollbar) {
-    .swim-scroll,
-    .swim-scroll-overlay,
-    .swim-scroll-muted,
-    .swim-scroll * {
-      scrollbar-width: thin;
-      scrollbar-color: rgb(80, 92, 117) transparent;
-    }
-  }
-
   /* Base: make element scrollable so scrollbar styling applies (matches overlay/muted) */
   .swim-scroll {
     overflow: auto;
@@ -2514,6 +2502,49 @@ const mt = j`
 
   .swim-scroll-muted:hover::-webkit-scrollbar-thumb:hover {
     background-color: rgb(80, 92, 117);
+  }
+
+  /*
+   * Firefox 153+: ::-webkit-scrollbar is recognized but not fully styled.
+   * Non-zero width/height creates unstyled (black) classic scrollbar gutters.
+   *
+   * Do not set scrollbar-width/color globally — Chrome 121+ disables
+   * ::-webkit-scrollbar (and thumb :hover) when those properties are set.
+   * Scope standard scrollbar props + webkit size reset to Firefox only.
+   * Matches ngx-ui scrollbars.scss (SPT-67000).
+   */
+  @supports (-moz-appearance: none) {
+    .swim-scroll,
+    .swim-scroll-overlay,
+    .swim-scroll-muted,
+    .swim-scroll * {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(80, 92, 117, 0.5) transparent;
+    }
+
+    .swim-scroll::-webkit-scrollbar,
+    .swim-scroll-overlay::-webkit-scrollbar,
+    .swim-scroll-muted::-webkit-scrollbar,
+    .swim-scroll *::-webkit-scrollbar {
+      width: auto;
+      height: auto;
+    }
+
+    .swim-scroll-overlay {
+      scrollbar-width: none;
+    }
+
+    .swim-scroll-overlay:hover {
+      scrollbar-width: thin;
+    }
+
+    .swim-scroll-muted {
+      scrollbar-color: rgba(80, 92, 117, 0.3) transparent;
+    }
+
+    .swim-scroll-muted:hover {
+      scrollbar-color: rgba(80, 92, 117, 0.5) transparent;
+    }
   }
 `, ut = j`
   :host {
