@@ -25,6 +25,7 @@ import { Column } from './column/column.types';
   styleUrls: ['./columns.component.scss'],
   standalone: false,
   encapsulation: ViewEncapsulation.None,
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
   changeDetection: ChangeDetectionStrategy.Eager,
   host: {
     class: 'ngx-columns',

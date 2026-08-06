@@ -211,6 +211,7 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
     this.onTouchedCallback = fn;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onChangeCallback(_: any) {
     // placeholder
   }

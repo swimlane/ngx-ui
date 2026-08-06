@@ -8,6 +8,7 @@ import { SelectionListNavigationEvent } from '../types/selection-list-navigation
   styleUrl: './selection-list.component.scss',
   standalone: false,
   encapsulation: ViewEncapsulation.None,
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
   changeDetection: ChangeDetectionStrategy.Eager,
   host: {
     class: 'ngx-selection-list'

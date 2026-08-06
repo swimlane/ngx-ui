@@ -5,6 +5,7 @@ import { SliderComponent } from '../slider.component';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'slider-fixture',
   templateUrl: 'slider.fixture.html',
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })

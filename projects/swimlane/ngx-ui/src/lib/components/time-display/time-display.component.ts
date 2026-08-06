@@ -36,6 +36,7 @@ export interface ITimeValues {
   templateUrl: './time-display.component.html',
   styleUrls: ['./time-display.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })

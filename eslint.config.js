@@ -16,6 +16,7 @@ module.exports = tseslint.config(
       security
     },
     linterOptions: {
+      // Historical inline disables remain for rules still off below; keep from failing lint
       reportUnusedDisableDirectives: 'off'
     },
     languageOptions: {
@@ -40,17 +41,10 @@ module.exports = tseslint.config(
       '@angular-eslint/no-output-on-prefix': 'off',
       '@angular-eslint/prefer-standalone': 'off',
       '@angular-eslint/prefer-inject': 'off',
-      '@angular-eslint/prefer-on-push-component-change-detection': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
-      '@typescript-eslint/no-explicit-any': 'off',
-      // Recommended-preset noise not previously enforced here
-      '@typescript-eslint/no-unused-vars': 'off',
-      '@typescript-eslint/no-empty-function': 'off',
-      '@typescript-eslint/ban-ts-comment': 'off',
-      'no-useless-escape': 'off',
-      'no-useless-assignment': 'off',
-      // Keep plugin registered so existing eslint-disable comments resolve; do not newly enforce
-      'security/detect-object-injection': 'off'
+      '@typescript-eslint/no-explicit-any': 'off'
+      // Angular 22 recommended rules (prefer-on-push, no-unused-vars, etc.) stay enforced;
+      // existing violations are silenced with inline eslint-disable comments.
     }
   },
   {

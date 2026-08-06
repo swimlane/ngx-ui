@@ -120,6 +120,7 @@ export class DateUtils {
     return fallback;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static getDefaultPresets(_parseFn: (expr: string) => Date): {
     label: string;
     range: () => [Date | null, Date | null];

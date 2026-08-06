@@ -5,6 +5,7 @@ import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/
   templateUrl: './layout-page.component.html',
   styleUrls: ['./layout-page.component.scss'],
   encapsulation: ViewEncapsulation.Emulated,
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })

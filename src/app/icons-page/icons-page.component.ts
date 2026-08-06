@@ -5,6 +5,7 @@ import iconsData from '@swimlane/ngx-ui/assets/icons/json/icons.json';
 @Component({
   selector: 'app-icons-page',
   templateUrl: './icons-page.component.html',
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })

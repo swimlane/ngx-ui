@@ -5,6 +5,7 @@ import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
   selector: 'app-button-toggle-page',
   templateUrl: './button-toggle-page.component.html',
   styleUrls: ['./button-toggle-page.component.scss'],
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })

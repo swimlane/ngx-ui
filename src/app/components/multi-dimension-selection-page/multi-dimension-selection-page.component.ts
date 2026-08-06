@@ -5,6 +5,7 @@ import { exampleSelectionList, exampleSelectionListValue } from './examples/mock
 @Component({
   selector: 'app-multi-dimension-selection-page',
   templateUrl: './multi-dimension-selection-page.component.html',
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })

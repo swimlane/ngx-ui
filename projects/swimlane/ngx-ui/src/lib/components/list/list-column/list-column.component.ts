@@ -22,6 +22,7 @@ export interface ListColumnInput {
   host: {
     class: 'ngx-list-column'
   },
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
   changeDetection: ChangeDetectionStrategy.Eager,
   encapsulation: ViewEncapsulation.None
 })

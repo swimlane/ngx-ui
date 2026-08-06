@@ -153,6 +153,7 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onToggleClick(_: Event): void {
     this.open = !this.open;
 

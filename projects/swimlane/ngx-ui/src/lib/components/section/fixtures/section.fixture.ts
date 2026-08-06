@@ -6,6 +6,7 @@ import { SectionComponent } from '../section.component';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'section-fixture',
   templateUrl: 'section.fixture.html',
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })

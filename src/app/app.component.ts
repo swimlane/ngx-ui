@@ -12,6 +12,7 @@ import pkg from '../../projects/swimlane/ngx-ui/package.json';
   styleUrls: ['./app.component.scss'],
   templateUrl: './app.template.html',
   encapsulation: ViewEncapsulation.None,
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })

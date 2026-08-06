@@ -33,6 +33,7 @@ import { getListSortDirection, getNextListSort, sortListRows } from './list-sort
   styleUrl: './list.component.scss',
   standalone: false,
   encapsulation: ViewEncapsulation.None,
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
   changeDetection: ChangeDetectionStrategy.Eager,
   host: {
     class: 'ngx-list'

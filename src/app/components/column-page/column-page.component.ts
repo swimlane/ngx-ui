@@ -5,6 +5,7 @@ import { ColumnTestContentComponent } from './column-test.component';
 @Component({
   selector: 'app-column-page',
   templateUrl: './column-page.component.html',
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })

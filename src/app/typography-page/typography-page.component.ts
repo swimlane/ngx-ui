@@ -7,6 +7,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   selector: 'app-typography-page',
   templateUrl: './typography-page.component.html',
   styleUrls: ['./typography-page.component.scss'],
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
   changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
