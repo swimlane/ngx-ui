@@ -295,7 +295,7 @@ export class ObjectNode implements OnInit, OnChanges {
       return;
     }
     this.model = this.model ?? {};
-    const props = this.schemaBuilderMode ? this.schemaRef?.properties ?? {} : this.model ?? {};
+    const props = this.schemaBuilderMode ? (this.schemaRef?.properties ?? {}) : (this.model ?? {});
 
     for (const prop in props) {
       if (this.isIndexed(prop)) {

@@ -1,4 +1,4 @@
-<ng-container *ngTemplateOutlet="imageTemplate?.template"></ng-container>
+<ng-container *ngTemplateOutlet="$safeNavigationMigration(imageTemplate?.template)"></ng-container>
 <div class="ngx-large-format-dialog-header-title__wrapper">
   <div
     class="ngx-large-format-dialog-header-title__text-wrapper"
@@ -7,17 +7,16 @@
         ? ['ngx-large-format-dialog-header-title__text-wrapper--title']
         : ['ngx-large-format-dialog-header-title__text-wrapper--title-center']
     "
-    >
+  >
     <h1>{{ dialogTitle }}</h1>
   </div>
   @if (dialogSubtitle || dialogSubtitleTemplate) {
-    <div class="ngx-large-format-dialog-header-title__text-wrapper">
-      @if (dialogSubtitle) {
-        <h4>{{ dialogSubtitle }}</h4>
-      }
-      @if (!dialogSubtitle && dialogSubtitleTemplate) {
-        <ng-container *ngTemplateOutlet="dialogSubtitleTemplate"></ng-container>
-      }
-    </div>
+  <div class="ngx-large-format-dialog-header-title__text-wrapper">
+    @if (dialogSubtitle) {
+    <h4>{{ dialogSubtitle }}</h4>
+    } @if (!dialogSubtitle && dialogSubtitleTemplate) {
+    <ng-container *ngTemplateOutlet="dialogSubtitleTemplate"></ng-container>
+    }
+  </div>
   }
 </div>

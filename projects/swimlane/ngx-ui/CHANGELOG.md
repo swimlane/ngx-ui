@@ -2,6 +2,10 @@
 
 ## HEAD (unreleased)
 
+- Enhancement: Added support for Angular 22
+- Breaking: Removing Angular 19 support (peers are now `20.x || 21.x || 22.x`)
+- Chore: Migrated ESLint to flat config (`eslint.config.js`) required by angular-eslint v22
+- Chore: CI/Volta pin updated to Node 24.18.0
 - Fix (`scrollbars`): Firefox 153+ partially honors `::-webkit-scrollbar` with non-zero width/height but does not style thumbs/tracks, which produced black scrollbar rectangles under `.ngx-scroll *`. Keep Chromium/Safari webkit styling; under Firefox apply standard `scrollbar-width` / `scrollbar-color` and reset webkit sizing. (SPT-67000)
 
 ## 52.2.1 (2026-07-31)

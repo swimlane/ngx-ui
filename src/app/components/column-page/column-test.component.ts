@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-column-test-content',
@@ -23,6 +23,7 @@ import { Component } from '@angular/core';
       }
     `
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true
 })
 export class ColumnTestContentComponent {}

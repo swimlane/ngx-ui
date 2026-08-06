@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Column } from '@swimlane/ngx-ui';
 import { ColumnTestContentComponent } from './column-test.component';
 
 @Component({
   selector: 'app-column-page',
   templateUrl: './column-page.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class ColumnPageComponent {

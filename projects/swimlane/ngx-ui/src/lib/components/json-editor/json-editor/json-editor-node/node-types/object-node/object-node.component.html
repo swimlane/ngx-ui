@@ -44,7 +44,11 @@
         <div
           class="title"
           ngx-tooltip
-          [tooltipTitle]="$any(prop)?.description ? $any(prop)?.description : $any(prop)?.propertyName"
+[tooltipTitle]="
+            $any(prop)?.description
+              ? $safeNavigationMigration($any(prop)?.description)
+              : $safeNavigationMigration($any(prop)?.propertyName)
+          "
         >
           {{ $any(prop)?.title ? $any(prop)?.title : $any(prop)?.propertyName }}
           @if (requiredCache[$any(prop).propertyName]) {

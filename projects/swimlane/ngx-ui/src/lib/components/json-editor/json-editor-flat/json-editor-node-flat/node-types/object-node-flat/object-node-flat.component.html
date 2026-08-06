@@ -104,7 +104,7 @@
             [type]="
               (prop.value.format || ($any(prop.value.type) | titlecase)) + (prop.value.enum?.length ? ' + Enum' : '')
             "
-            [description]="prop.value?.description"
+[description]="$safeNavigationMigration(prop.value?.description)"
             [examples]="prop.value.examples"
             [required]="required"
           >
