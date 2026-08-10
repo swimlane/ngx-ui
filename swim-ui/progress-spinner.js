@@ -983,25 +983,25 @@ const Ge = 50, Ze = 100, X = 100, F = X / 2, Xe = F * 2 * Math.PI, Je = "cloud-u
         </svg>
 
         ${e ? u`
-              <div class="swim-progress-spinner__icon-in-progress">
-                ${this.hasSlotContent("in-progress-icon") ? u`<slot name="in-progress-icon"></slot>` : u`<swim-icon font-icon="${this.effectiveInProgressIcon}"></swim-icon>`}
-              </div>
-            ` : t ? u`
-              <div class="swim-progress-spinner__icon-complete">
-                ${this.hasSlotContent("complete-icon") ? u`<slot name="complete-icon"></slot>` : u`<swim-icon font-icon="${this.effectiveCompleteIcon}"></swim-icon>`}
-              </div>
-            ` : s ? u`
-              <div class="swim-progress-spinner__icon-failure">
-                ${this.hasSlotContent("fail-icon") ? u`<slot name="fail-icon"></slot>` : u`<swim-icon font-icon="${this.effectiveFailIcon}"></swim-icon>`}
-              </div>
-            ` : c}
+                <div class="swim-progress-spinner__icon-in-progress">
+                  ${this.hasSlotContent("in-progress-icon") ? u`<slot name="in-progress-icon"></slot>` : u`<swim-icon font-icon="${this.effectiveInProgressIcon}"></swim-icon>`}
+                </div>
+              ` : t ? u`
+                  <div class="swim-progress-spinner__icon-complete">
+                    ${this.hasSlotContent("complete-icon") ? u`<slot name="complete-icon"></slot>` : u`<swim-icon font-icon="${this.effectiveCompleteIcon}"></swim-icon>`}
+                  </div>
+                ` : s ? u`
+                    <div class="swim-progress-spinner__icon-failure">
+                      ${this.hasSlotContent("fail-icon") ? u`<slot name="fail-icon"></slot>` : u`<swim-icon font-icon="${this.effectiveFailIcon}"></swim-icon>`}
+                    </div>
+                  ` : c}
       </div>
 
       ${this.spinnerLabel ? u`
-            <div class="swim-progress-spinner__label" part="label">
-              ${!this.isComplete && this.spinnerLabel.inProgressLabel ? u`<h4>${this.spinnerLabel.inProgressLabel}</h4>` : this.isComplete && !this.isFailure && this.spinnerLabel.completeLabel ? u`<h4>${this.spinnerLabel.completeLabel}</h4>` : this.isComplete && this.isFailure && this.spinnerLabel.failLabel ? u`<h4>${this.spinnerLabel.failLabel}</h4>` : c}
-            </div>
-          ` : c}
+              <div class="swim-progress-spinner__label" part="label">
+                ${!this.isComplete && this.spinnerLabel.inProgressLabel ? u`<h4>${this.spinnerLabel.inProgressLabel}</h4>` : this.isComplete && !this.isFailure && this.spinnerLabel.completeLabel ? u`<h4>${this.spinnerLabel.completeLabel}</h4>` : this.isComplete && this.isFailure && this.spinnerLabel.failLabel ? u`<h4>${this.spinnerLabel.failLabel}</h4>` : c}
+              </div>
+            ` : c}
     `;
   }
 };
