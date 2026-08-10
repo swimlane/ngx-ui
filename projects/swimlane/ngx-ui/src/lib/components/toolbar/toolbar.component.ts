@@ -49,7 +49,10 @@ export class ToolbarComponent implements OnInit {
     });
   }
 
-  constructor(private renderer: Renderer2, private elRef: ElementRef) {}
+  constructor(
+    private renderer: Renderer2,
+    private elRef: ElementRef
+  ) {}
 
   onMenuClicked(item: ToolbarMenuItem, $event: Event): void {
     if (item.click) {

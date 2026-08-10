@@ -231,15 +231,17 @@ export class SwimToggle extends LitElement {
           @blur="${this._onBlur}"
         >
           <span class="swim-toggle__thumb" part="thumb"></span>
-          ${this.showIcons
-            ? this._checked
-              ? html`<span class="swim-toggle__icon swim-toggle__icon--on" aria-hidden="true"
-                  ><swim-icon font-icon="check"></swim-icon
-                ></span>`
-              : html`<span class="swim-toggle__icon swim-toggle__icon--off" aria-hidden="true"
-                  ><swim-icon font-icon="x"></swim-icon
-                ></span>`
-            : ''}
+          ${
+            this.showIcons
+              ? this._checked
+                ? html`<span class="swim-toggle__icon swim-toggle__icon--on" aria-hidden="true"
+                    ><swim-icon font-icon="check"></swim-icon
+                  ></span>`
+                : html`<span class="swim-toggle__icon swim-toggle__icon--off" aria-hidden="true"
+                    ><swim-icon font-icon="x"></swim-icon
+                  ></span>`
+              : ''
+          }
         </div>
         <label class="swim-toggle__text" part="text" id="${textId}" for="${this.id}">
           ${this.label ? html`<span>${this.label}</span>` : ''}

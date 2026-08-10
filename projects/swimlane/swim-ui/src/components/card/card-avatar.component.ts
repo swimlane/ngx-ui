@@ -30,10 +30,10 @@ export class SwimCardAvatar extends LitElement {
       this.status === CardStatus.Success
         ? 'swim-card-avatar__avatar--success'
         : this.status === CardStatus.Error
-        ? 'swim-card-avatar__avatar--error'
-        : this.status === CardStatus.Disabled
-        ? 'swim-card-avatar__avatar--disabled'
-        : '';
+          ? 'swim-card-avatar__avatar--error'
+          : this.status === CardStatus.Disabled
+            ? 'swim-card-avatar__avatar--disabled'
+            : '';
 
     return html`
       <div
@@ -42,17 +42,19 @@ export class SwimCardAvatar extends LitElement {
         aria-label="${this.status || ''}"
       >
         <div class="swim-card-avatar__inner">
-          ${this.src
-            ? html`
-                <img
-                  class="swim-card-avatar__img ${this.removeImageBackground ? 'swim-card-avatar__img--no-bg' : ''}"
-                  src="${this.src}"
-                  alt=""
-                  draggable="false"
-                  loading="lazy"
-                />
-              `
-            : html`<span class="swim-card-avatar__content"><slot></slot></span>`}
+          ${
+            this.src
+              ? html`
+                  <img
+                    class="swim-card-avatar__img ${this.removeImageBackground ? 'swim-card-avatar__img--no-bg' : ''}"
+                    src="${this.src}"
+                    alt=""
+                    draggable="false"
+                    loading="lazy"
+                  />
+                `
+              : html`<span class="swim-card-avatar__content"><slot></slot></span>`
+          }
         </div>
       </div>
     `;

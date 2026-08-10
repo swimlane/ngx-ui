@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-controls-page',
   templateUrl: './controls-page.component.html',
   styleUrls: ['./controls-page.component.scss'],
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class ControlsPageComponent {

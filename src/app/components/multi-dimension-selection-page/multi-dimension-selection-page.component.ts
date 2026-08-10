@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { SelectionList, SelectionListOption } from '@swimlane/ngx-ui';
 import { exampleSelectionList, exampleSelectionListValue } from './examples/mock-selection-lists';
 
 @Component({
   selector: 'app-multi-dimension-selection-page',
   templateUrl: './multi-dimension-selection-page.component.html',
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class MultiDimensionSelectionPageComponent implements OnInit {

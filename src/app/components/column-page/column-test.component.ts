@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-column-test-content',
@@ -23,6 +23,8 @@ import { Component } from '@angular/core';
       }
     `
   ],
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true
 })
 export class ColumnTestContentComponent {}

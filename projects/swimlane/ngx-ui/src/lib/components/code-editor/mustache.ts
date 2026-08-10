@@ -5,6 +5,7 @@ CodeMirror.defineMode(
   'mustache',
   /* istanbul ignore next */ function (config: any, parserConfig: any) {
     const mustacheOverlay = {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       token(stream: any, _: any) {
         let ch: any;
         if (stream.match('{{')) {

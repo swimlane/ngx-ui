@@ -28,7 +28,10 @@ export class DialogService<T = DialogComponent> extends InjectionRegistryService
   protected type: any = DialogComponent;
   private zIndex = 995;
 
-  constructor(readonly injectionService: InjectionService, readonly overlayService: OverlayService) {
+  constructor(
+    readonly injectionService: InjectionService,
+    readonly overlayService: OverlayService
+  ) {
     super(injectionService);
   }
 

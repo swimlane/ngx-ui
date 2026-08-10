@@ -141,7 +141,7 @@ export class SwimSelect extends LitElement {
    */
   @property()
   get value(): any | any[] {
-    return this.multiple ? this._value : this._value[0] ?? null;
+    return this.multiple ? this._value : (this._value[0] ?? null);
   }
   set value(val: any | any[]) {
     const oldValue = this._value;
@@ -150,7 +150,7 @@ export class SwimSelect extends LitElement {
     } else {
       this._value = val ? [val] : [];
     }
-    this._internals.setFormValue(this.multiple ? JSON.stringify(this._value) : this._value[0] ?? '');
+    this._internals.setFormValue(this.multiple ? JSON.stringify(this._value) : (this._value[0] ?? ''));
     this.requestUpdate('value', oldValue);
     this._updateActiveState();
   }
@@ -340,8 +340,7 @@ export class SwimSelect extends LitElement {
 
   disconnectedCallback() {
     const dd = this.shadowRoot?.querySelector('.select-dropdown') as
-      | (HTMLElement & { hidePopover?: () => void })
-      | null;
+      (HTMLElement & { hidePopover?: () => void }) | null;
     this._teardownDropdownTopLayer(dd);
     super.disconnectedCallback();
     this._removeClickOutsideListener();
@@ -484,18 +483,20 @@ export class SwimSelect extends LitElement {
               >
                 <div class="select-value">${this._renderValue()}</div>
                 <div class="select-controls">
-                  ${showClear
-                    ? html`
-                        <button
-                          type="button"
-                          class="select-clear"
-                          aria-label="Clear selection"
-                          @click="${this._handleClear}"
-                        >
-                          <swim-icon font-icon="x"></swim-icon>
-                        </button>
-                      `
-                    : nothing}
+                  ${
+                    showClear
+                      ? html`
+                          <button
+                            type="button"
+                            class="select-clear"
+                            aria-label="Clear selection"
+                            @click="${this._handleClear}"
+                          >
+                            <swim-icon font-icon="x"></swim-icon>
+                          </button>
+                        `
+                      : nothing
+                  }
                   <button
                     type="button"
                     class="select-caret"
@@ -516,61 +517,73 @@ export class SwimSelect extends LitElement {
         <div class="select-underline">
           <div class="underline-fill"></div>
         </div>
-        ${showHint
-          ? html`
-              <div class="select-hint">
-                <slot name="hint">${this.hint}</slot>
-              </div>
-            `
-          : nothing}
-        ${this._open
-          ? html`
-              <div
-                class="select-dropdown swim-scroll"
-                part="dropdown"
-                role="listbox"
-                id="${this.id}-listbox"
-                popover="${SELECT_POPOVER_TOP_LAYER ? 'manual' : nothing}"
-              >
-                ${this.filterable
-                  ? html`
-                      <div
-                        class="select-filter ${this.loading ? 'select-filter--loading' : ''}"
-                        aria-busy="${this.loading}"
-                      >
-                        <input
-                          type="text"
-                          class="select-filter-input"
-                          placeholder="${this.filterPlaceholder}"
-                          ?disabled="${this.disabled}"
-                          ?readonly="${this.loading}"
-                          .value="${this._filterQuery}"
-                          @input="${this._handleFilterInput}"
-                          @keydown="${this._handleFilterKeyDown}"
-                        />
-                      </div>
-                    `
-                  : nothing}
-                ${showList
-                  ? html`
-                      <ul
-                        class="select-options ${this.grouped && this._listHasGroupHeadings(filteredOptions)
-                          ? 'select-options--grouped'
-                          : ''}"
-                      >
-                        ${this.grouped
-                          ? this._renderGroupedOptionRows(filteredOptions)
-                          : repeat(
-                              filteredOptions,
-                              option => this._getOptionValue(option),
-                              (option, index) => this._renderOption(option, index)
-                            )}
-                      </ul>
-                    `
-                  : html`<div class="select-empty">${this._emptyDropdownMessage()}</div>`}
-              </div>
-            `
-          : nothing}
+        ${
+          showHint
+            ? html`
+                <div class="select-hint">
+                  <slot name="hint">${this.hint}</slot>
+                </div>
+              `
+            : nothing
+        }
+        ${
+          this._open
+            ? html`
+                <div
+                  class="select-dropdown swim-scroll"
+                  part="dropdown"
+                  role="listbox"
+                  id="${this.id}-listbox"
+                  popover="${SELECT_POPOVER_TOP_LAYER ? 'manual' : nothing}"
+                >
+                  ${
+                    this.filterable
+                      ? html`
+                          <div
+                            class="select-filter ${this.loading ? 'select-filter--loading' : ''}"
+                            aria-busy="${this.loading}"
+                          >
+                            <input
+                              type="text"
+                              class="select-filter-input"
+                              placeholder="${this.filterPlaceholder}"
+                              ?disabled="${this.disabled}"
+                              ?readonly="${this.loading}"
+                              .value="${this._filterQuery}"
+                              @input="${this._handleFilterInput}"
+                              @keydown="${this._handleFilterKeyDown}"
+                            />
+                          </div>
+                        `
+                      : nothing
+                  }
+                  ${
+                    showList
+                      ? html`
+                          <ul
+                            class="select-options ${
+                              this.grouped && this._listHasGroupHeadings(filteredOptions)
+                                ? 'select-options--grouped'
+                                : ''
+                            }"
+                          >
+                            ${
+                              this.grouped
+                                ? this._renderGroupedOptionRows(filteredOptions)
+                                : repeat(
+                                    filteredOptions,
+                                    option => this._getOptionValue(option),
+                                    (option, index) => this._renderOption(option, index)
+                                  )
+                            }
+                          </ul>
+                        `
+                      : html`<div class="select-empty">${this._emptyDropdownMessage()}</div>`
+                  }
+                </div>
+              `
+            : nothing
+        }
       </div>
     `;
   }
@@ -655,18 +668,20 @@ export class SwimSelect extends LitElement {
     return html`
       <div class="select-chip">
         <span class="select-chip-label">${label}</span>
-        ${!this.disabled
-          ? html`
-              <button
-                type="button"
-                class="select-chip-remove"
-                aria-label="Remove ${label}"
-                @click="${(e: Event) => this._removeChip(e, option)}"
-              >
-                <swim-icon font-icon="x"></swim-icon>
-              </button>
-            `
-          : nothing}
+        ${
+          !this.disabled
+            ? html`
+                <button
+                  type="button"
+                  class="select-chip-remove"
+                  aria-label="Remove ${label}"
+                  @click="${(e: Event) => this._removeChip(e, option)}"
+                >
+                  <swim-icon font-icon="x"></swim-icon>
+                </button>
+              `
+            : nothing
+        }
       </div>
     `;
   }
@@ -871,8 +886,7 @@ export class SwimSelect extends LitElement {
 
   private _closeDropdown() {
     const dd = this.shadowRoot?.querySelector('.select-dropdown') as
-      | (HTMLElement & { hidePopover?: () => void })
-      | null;
+      (HTMLElement & { hidePopover?: () => void }) | null;
     this._teardownDropdownTopLayer(dd);
     this._open = false;
     this.dispatchEvent(new Event('dropdown-close', { bubbles: false, composed: false }));
@@ -989,8 +1003,7 @@ export class SwimSelect extends LitElement {
   private _layoutOpenDropdownPanel(): void {
     if (!this._open || !SELECT_POPOVER_TOP_LAYER) return;
     const dd = this.shadowRoot?.querySelector('.select-dropdown') as
-      | (HTMLElement & { showPopover?: () => void })
-      | null;
+      (HTMLElement & { showPopover?: () => void }) | null;
     if (!dd || !this.selectInput || typeof dd.showPopover !== 'function') {
       return;
     }

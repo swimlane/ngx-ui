@@ -12,6 +12,7 @@ export function stubIntersectionObserverIfNeeded(): void {
     readonly rootMargin = '';
     readonly thresholds: ReadonlyArray<number> = [];
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     constructor(_cb: IntersectionObserverCallback, _options?: IntersectionObserverInit) {}
 
     disconnect(): void {}

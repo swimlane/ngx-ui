@@ -595,6 +595,7 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
   }
 
   /* istanbul ignore next */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private onChangeCallback(_: any): void {
     // placeholder
   }

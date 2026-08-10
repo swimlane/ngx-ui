@@ -5,7 +5,7 @@
       <ngx-dropdown ngxDropdownPortal portalPanelClass="ngx-json-editor-dropdown-panel" [portalOffsetX]="16">
         <ngx-dropdown-toggle>
           <div class="type-icon" tooltipPlacement="top">
-            <ngx-icon [fontIcon]="schemas[i]?.$meta.icon"> </ngx-icon>
+            <ngx-icon [fontIcon]="$safeNavigationMigration(schemas[i]?.$meta.icon)"> </ngx-icon>
           </div>
         </ngx-dropdown-toggle>
         <ngx-dropdown-menu class="ngx-dropdown-menu">

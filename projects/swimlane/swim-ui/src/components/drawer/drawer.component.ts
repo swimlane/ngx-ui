@@ -217,8 +217,8 @@ export class SwimDrawer extends LitElement {
     const directionClass = this._isLeft
       ? 'swim-drawer--left'
       : this._isRight
-      ? 'swim-drawer--right'
-      : 'swim-drawer--bottom';
+        ? 'swim-drawer--right'
+        : 'swim-drawer--bottom';
     const classes = ['swim-drawer', directionClass, this.isRoot ? 'swim-drawer--root' : 'swim-drawer--contained'];
     if (this.open && !this._closing) classes.push('swim-drawer--open');
     if (this._closing) classes.push('swim-drawer--closing');
@@ -247,9 +247,11 @@ export class SwimDrawer extends LitElement {
     if (!this._isVisible) return nothing;
 
     return html`
-      ${this.isRoot
-        ? html` <div class="swim-drawer__backdrop" aria-hidden="true" @click="${this._backdropClickBound}"></div> `
-        : nothing}
+      ${
+        this.isRoot
+          ? html` <div class="swim-drawer__backdrop" aria-hidden="true" @click="${this._backdropClickBound}"></div> `
+          : nothing
+      }
       <div
         class="swim-drawer__panel swim-scroll"
         style="width: ${this._widthSize}; height: ${this._heightSize}; z-index: ${this.zIndex};"
