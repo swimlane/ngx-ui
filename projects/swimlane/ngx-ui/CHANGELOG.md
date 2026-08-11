@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 53.0.0 (2026-07-28)
+
 - Enhancement: Added support for Angular 22
 - Breaking: Require Angular 22 (peers are now `22.x`); drop Angular 19/20/21. Uses Angular 22-only APIs such as `ChangeDetectionStrategy.Eager` and `$safeNavigationMigration`.
 - Chore: Migrated ESLint to flat config (`eslint.config.js`) required by angular-eslint v22
