@@ -1,5 +1,5 @@
 /**
- * jsdom does not implement IntersectionObserver; ng-in-viewport (e.g. dropdown menu) requires it.
+ * jsdom does not implement IntersectionObserver; in-viewport observers (e.g. dropdown menu) require it.
  * Call from `beforeAll` in specs that render those components.
  */
 export function stubIntersectionObserverIfNeeded(): void {

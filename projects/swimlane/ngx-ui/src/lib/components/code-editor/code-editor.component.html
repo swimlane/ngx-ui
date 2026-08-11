@@ -1,6 +1,6 @@
-<div visibilityObserver (visible)="onVisible()">
-  <textarea #host></textarea>
-  <div #content>
+<div class="ngx-codemirror__shell" visibilityObserver (visible)="onVisible()">
+  <div #host class="ngx-codemirror__host"></div>
+  <div #content class="ngx-codemirror__content">
     <ng-content></ng-content>
   </div>
 </div>

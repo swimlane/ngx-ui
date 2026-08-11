@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 import { DirectivesModule } from '../../directives/directives.module';
 import { CodeEditorComponent } from './code-editor.component';
@@ -8,6 +9,6 @@ import { CodeEditorComponent } from './code-editor.component';
 @NgModule({
   declarations: [CodeEditorComponent],
   exports: [CodeEditorComponent],
-  imports: [CommonModule, FormsModule, DirectivesModule]
+  imports: [CommonModule, FormsModule, DirectivesModule, OverlayModule]
 })
 export class CodeEditorModule {}

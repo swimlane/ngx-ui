@@ -2,6 +2,10 @@
 
 ## HEAD (unreleased)
 
+- Breaking: Replaced Ajv in `SchemaValidatorService` with `@cfworker/json-schema` (interpretive, CSP-safe — no `new Function`). Removed peer dependency `ajv`. JSON editor validation errors still expose `dataPath` + `message` for path highlighting.
+- Breaking: Removed peer dependency `ng-in-viewport`. Viewport detection for dropdowns/selects/filters now uses a built-in CSP-safe `IntersectionObserver` directive (`InViewportModule` / `[inViewport]`). Event payload is `{ visible, target, entry }` (no `InViewportMetadata` symbol). Consumers may drop `ng-in-viewport` from their package installs.
+- Enhancement (`ngx-codemirror`): Enable as-you-type autocomplete when `autocompleteTokens` is unset so language packs (e.g. Python) can surface completions without requiring Mod-Space.
+- Breaking (`ngx-codemirror`): Migrated the code editor from CodeMirror 5 to CodeMirror 6. `instance` is now `EditorView` (not CM5 `EditorFromTextArea`). Host DOM uses `.cm-editor` instead of `.CodeMirror`. Peer dependency `codemirror@5` is replaced by `@codemirror/*` packages and `@uiw/codemirror-theme-*`. Mode strings (`javascript`, `json`, `yaml`, `python`, `htmlmixed`, `mustache`/`handlebars`, `spreadsheet`, `powershell`) are mapped to CM6 languages. New optional `extensions` input for app-specific languages. Search, fold gutter, bracket matching, and lint (JSON parse / soft JS) are enabled by default or via existing `lint` / `gutters` inputs.
 - Fix (`scrollbars`): Firefox 153+ partially honors `::-webkit-scrollbar` with non-zero width/height but does not style thumbs/tracks, which produced black scrollbar rectangles under `.ngx-scroll *`. Keep Chromium/Safari webkit styling; under Firefox apply standard `scrollbar-width` / `scrollbar-color` and reset webkit sizing. (SPT-67000)
 
 ## 52.2.1 (2026-07-31)

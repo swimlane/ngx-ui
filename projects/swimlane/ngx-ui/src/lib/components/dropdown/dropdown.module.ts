@@ -6,11 +6,10 @@ import { DropdownComponent } from './dropdown.component';
 import { DropdownToggleDirective } from './dropdown-toggle.directive';
 import { DropdownMenuDirective } from './dropdown-menu.directive';
 import { DropdownPortalDirective } from './dropdown-portal.directive';
-import { InViewportModule } from 'ng-in-viewport';
 
 @NgModule({
   declarations: [DropdownComponent, DropdownToggleDirective, DropdownMenuDirective, DropdownPortalDirective],
   exports: [DropdownComponent, DropdownToggleDirective, DropdownMenuDirective, DropdownPortalDirective],
-  imports: [CommonModule, OverlayModule, InViewportModule]
+  imports: [CommonModule, OverlayModule]
 })
 export class DropdownModule {}

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import * as CodeMirror from 'codemirror';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { EditorView } from '@codemirror/view';
 
 import { CodeEditorComponent } from './code-editor.component';
 
@@ -9,7 +10,6 @@ describe('CodeEditorComponent', () => {
   let fixture: ComponentFixture<CodeEditorComponent>;
 
   beforeAll(() => {
-    // CodeMirror 5 uses Range.prototype.getBoundingClientRect, getClientRects, and related layout APIs. jsdom doesn’t implement getBoundingClientRect / getClientRects on Range
     if (typeof Range === 'undefined') {
       return;
     }
@@ -30,6 +30,7 @@ describe('CodeEditorComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
+      imports: [OverlayModule],
       declarations: [CodeEditorComponent]
     });
   });
@@ -42,6 +43,7 @@ describe('CodeEditorComponent', () => {
 
   it('should be defined', () => {
     expect(component).toBeTruthy();
+    expect(component.instance).toBeInstanceOf(EditorView);
   });
 
   describe('value', () => {
@@ -71,43 +73,28 @@ describe('CodeEditorComponent', () => {
   });
 
   describe('onVisible', () => {
-    it('should refresh instance for sizing', () => {
-      const spy = vi.spyOn(component.instance, 'refresh');
+    it('should request a layout measure', () => {
+      const spy = vi.spyOn(component.instance, 'requestMeasure');
       component.onVisible();
       expect(spy).toHaveBeenCalled();
     });
   });
 
-  describe('onKeyUp', () => {
-    afterEach(() => {
-      vi.restoreAllMocks();
-    });
-
-    it('should call autocomplete', () => {
-      const spy = vi.spyOn(CodeMirror.commands as any, 'autocomplete').mockImplementation(() => undefined);
-      component.onKeyUp(component.instance, { keyCode: 219 } as any);
-      expect(spy).toHaveBeenCalled();
-    });
-
-    it('should not call autocomplete', () => {
-      const spy = vi.spyOn(CodeMirror.commands as any, 'autocomplete').mockImplementation(() => undefined);
-      component.onKeyUp(component.instance, { keyCode: 32 } as any);
-      expect(spy).not.toHaveBeenCalled();
-    });
-  });
-
   describe('onChange', () => {
     it('should update value on instance change', () => {
-      component.instance.setValue('testing123');
-      component.onChange();
+      component.instance.dispatch({
+        changes: { from: 0, to: component.instance.state.doc.length, insert: 'testing123' }
+      });
       expect(component.value).toBe('testing123');
     });
   });
 
   describe('onBlur', () => {
     it('should emit value on blur', () => {
+      component.instance.dispatch({
+        changes: { from: 0, to: component.instance.state.doc.length, insert: 'testing123' }
+      });
       const spy = vi.spyOn(component.blur, 'emit');
-      component.instance.setValue('testing123');
       component.onBlur();
       expect(spy).toHaveBeenCalledWith('testing123');
     });
@@ -122,14 +109,15 @@ describe('CodeEditorComponent', () => {
   });
 
   describe('writeValue', () => {
-    it('should write value to component and codemirror instance', () => {
-      const spy = vi.spyOn(component.instance, 'setValue');
+    it('should write value to component and editor view', () => {
+      const spy = vi.spyOn(component.instance, 'dispatch');
       component.writeValue('testing123');
-      expect(spy).toHaveBeenCalledWith('testing123');
+      expect(spy).toHaveBeenCalled();
+      expect(component.instance.state.doc.toString()).toBe('testing123');
     });
 
     it("should not write value if value hasn't changed", () => {
-      const spy = vi.spyOn(component.instance, 'setValue');
+      const spy = vi.spyOn(component.instance, 'dispatch');
       component.value = 'testing123';
       component.writeValue('testing123');
       expect(spy).not.toHaveBeenCalled();
@@ -171,12 +159,26 @@ describe('CodeEditorComponent', () => {
         console.log("test2");
       `;
       fixture.detectChanges();
-      component.instance.setCursor(1);
     });
 
-    it('should retrieve list of options', () => {
-      const options = component.config.hintOptions.hint(component.instance);
-      expect(options).toBeDefined();
+    it('should create an editor with autocomplete tokens', () => {
+      expect(component.instance).toBeInstanceOf(EditorView);
+      expect(component.autocompleteTokens).toEqual(['test', 'test2']);
+    });
+  });
+
+  describe('setters', () => {
+    it('should reconfigure line numbers', () => {
+      const spy = vi.spyOn(component.instance, 'dispatch');
+      component.setLineNumbers(true);
+      expect(spy).toHaveBeenCalled();
+    });
+
+    it('should reconfigure theme', () => {
+      const spy = vi.spyOn(component.instance, 'dispatch');
+      component.setTheme('monokai');
+      expect(component.theme).toBe('monokai');
+      expect(spy).toHaveBeenCalled();
     });
   });
 });

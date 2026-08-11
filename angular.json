@@ -22,9 +22,7 @@
             },
             "allowedCommonJsDependencies": [
               "moment-timezone",
-              "mousetrap",
-              "ajv",
-              "codemirror"
+              "mousetrap"
             ],
             "aot": true,
             "preserveSymlinks": true,

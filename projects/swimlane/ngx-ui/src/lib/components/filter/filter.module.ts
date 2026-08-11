@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { InViewportModule } from 'ng-in-viewport';
 import { TooltipModule } from '../tooltip/tooltip.module';
 
 import { FilterComponent } from './filter.component';
@@ -15,7 +14,6 @@ export { FilterCustomDropdown } from './filter.custom-component.interface';
   exports: [FilterComponent],
   imports: [
     CommonModule,
-    InViewportModule,
     TooltipModule,
     SelectModule,
     DropdownModule,

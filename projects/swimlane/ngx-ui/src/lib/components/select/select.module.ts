@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { InViewportModule } from 'ng-in-viewport';
+import { InViewportModule } from '../../directives/in-viewport/in-viewport.module';
 import { TooltipModule } from '../tooltip/tooltip.module';
 import { SelectDropdownComponent } from './select-dropdown.component';
 import { SelectInputComponent } from './select-input.component';

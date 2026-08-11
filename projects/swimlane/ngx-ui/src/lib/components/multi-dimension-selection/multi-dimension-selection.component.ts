@@ -12,7 +12,7 @@ import {
   viewChild,
   ViewEncapsulation
 } from '@angular/core';
-import { InViewportDirective } from 'ng-in-viewport';
+import { InViewportDirective } from '../../directives/in-viewport/in-viewport.directive';
 import { debounceable } from '../../decorators/debounceable/debounceable.decorator';
 import { SelectionList } from './types/selection-list';
 import { SelectionListOption } from './types/selection-list-option';

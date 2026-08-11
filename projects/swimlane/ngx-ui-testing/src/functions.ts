@@ -92,10 +92,11 @@ export function findInput(element: JQuery<Element>): JQuery<Element> {
       return element.find('input[type="range"]');
     case NGX.RADIOBUTTON:
       return element.find('input[type="radio"]');
-    case NGX.CODEMIRROR:
-      const $cm = element.find('div.CodeMirror');
+    case NGX.CODEMIRROR: {
+      const $cm = element.find('.cm-editor .cm-content');
       cy.wrap($cm, LOG).click(LOG);
-      return $cm.find('textarea');
+      return $cm;
+    }
     case NGX.SELECT:
       return element.find('input[type="search"]');
   }
@@ -153,8 +154,8 @@ export function clear(element: JQuery<Element>): Cypress.Chainable<JQuery<any>> 
 export function getValue(element: JQuery<Element>): string | number | string[] | undefined | boolean {
   switch (getTagName(element)) {
     case NGX.CODEMIRROR: {
-      const $el = element.find('.CodeMirror');
-      return $el[0]['CodeMirror']?.getValue() || '';
+      const $el = element.find('.cm-editor .cm-content');
+      return $el.text() || '';
     }
     case NGX.SELECT: {
       if (element.hasClass('multi-selection')) {

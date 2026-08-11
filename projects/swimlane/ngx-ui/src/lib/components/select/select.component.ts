@@ -19,7 +19,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import type { QueryList } from '@angular/core';
 
 import { Appearance } from '../../mixins/appearance/appearance.enum';
-import { InViewportMetadata } from 'ng-in-viewport';
+import { InViewportActionEvent } from '../../directives/in-viewport/in-viewport.types';
 import { take } from 'rxjs/operators';
 import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 import { sizeMixin } from '../../mixins/size/size.mixin';
@@ -457,13 +457,9 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
     });
   }
 
-  private adjustMenuDirection(event: {
-    [InViewportMetadata]: { entry: IntersectionObserverEntry };
-    target: HTMLElement;
-    visible: boolean;
-  }): void {
-    const { entry } = event[InViewportMetadata];
-    if (!this.forceDownwardOpening && this.isIntersectingBottom(entry) && !this.isIntersectingTop(entry)) {
+  private adjustMenuDirection(event: InViewportActionEvent): void {
+    const entry = event.entry;
+    if (entry && !this.forceDownwardOpening && this.isIntersectingBottom(entry) && !this.isIntersectingTop(entry)) {
       this._renderer.addClass(this.selectDropdown.element, 'ngx-select-dropdown--upwards');
     } else {
       this._renderer.addClass(this.selectDropdown.element, 'ngx-select-dropdown--downwards');

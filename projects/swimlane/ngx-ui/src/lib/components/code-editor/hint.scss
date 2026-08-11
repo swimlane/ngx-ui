@@ -6,40 +6,33 @@ $dropdown-bg-active: colors.$color-blue-grey-750;
 $dropdown-bg-hover: colors.$color-blue-grey-800;
 $dropdown-color: colors.$color-blue-grey-150;
 
-.CodeMirror-hints {
-  position: absolute;
-  z-index: 10;
-  overflow: hidden;
-  list-style: none;
-
-  margin: 0;
-  padding: 0;
-
+.cm-tooltip.cm-tooltip-autocomplete {
+  // Rendered in the CDK overlay host — keep above sibling chrome inside the pane.
+  z-index: 11001;
+  pointer-events: auto;
+  background: $dropdown-bg;
+  box-shadow: shadows.$shadow-3;
+  border: none;
   font-size: 90%;
   font-family: monospace;
 
-  background: $dropdown-bg;
-  box-shadow: shadows.$shadow-3;
+  > ul {
+    max-height: 20em;
+    font-family: inherit;
+  }
 
-  max-height: 20em;
-  overflow-y: auto;
-}
+  > ul > li {
+    padding: 5px 20px;
+    color: $dropdown-color;
+    font-size: 0.9em;
+    cursor: pointer;
+  }
 
-.CodeMirror-hint {
-  margin: 0;
-  padding: 5px 20px;
-  white-space: pre;
-  background: transparent;
-  box-shadow: none;
-  color: $dropdown-color;
-  font-size: 0.9em;
-  cursor: pointer;
-}
+  > ul > li[aria-selected] {
+    background: $dropdown-bg-active;
+  }
 
-li.CodeMirror-hint-active {
-  background: $dropdown-bg-active;
-}
-
-li.CodeMirror-hint:hover {
-  background: $dropdown-bg-hover;
+  > ul > li:hover {
+    background: $dropdown-bg-hover;
+  }
 }

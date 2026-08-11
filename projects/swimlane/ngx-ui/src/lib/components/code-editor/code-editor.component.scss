@@ -1,7 +1,76 @@
-.CodeMirror {
-  height: auto;
-  font-size: 13px;
-  margin-top: 0.7em;
-  margin-bottom: 0.7em;
-  border-radius: var(--radius-4);
+.ngx-codemirror {
+  display: block;
+  position: relative;
+  box-sizing: border-box;
+  // Default to filling a sized parent. Prefer flex:1;height:0;min-height:0 on
+  // flex children so the used height is definite (required for CM scrolling).
+  height: 100%;
+  min-height: 0;
+  max-height: 100%;
+  overflow: auto;
+
+  // Fill the host box with a definite size for EditorView / fillHostHeight().
+  &__shell {
+    position: absolute;
+    inset: 0;
+    display: block;
+    overflow: hidden;
+  }
+
+  &__host {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  &__content {
+    display: none;
+  }
+
+  .cm-editor {
+    box-sizing: border-box;
+    width: 100%;
+    height: 100% !important;
+    max-height: 100%;
+    min-height: 0 !important;
+    margin: 0;
+    font-size: 13px;
+    border-radius: var(--radius-4);
+    overflow: hidden !important;
+  }
+
+  .cm-scroller {
+    box-sizing: border-box;
+    min-height: 0 !important;
+    font-family: var(--font-family-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
+    overflow-x: auto !important;
+    overflow-y: auto !important;
+    scrollbar-gutter: stable;
+  }
+
+  .cm-gutters {
+    min-height: 100%;
+  }
+
+  .cm-focused {
+    outline: none;
+  }
+}
+
+// Host for CM tooltips portaled into the CDK overlay container.
+.ngx-codemirror-tooltip-host {
+  pointer-events: none;
+
+  .cm-tooltip {
+    pointer-events: auto;
+  }
+}
+
+.cdk-overlay-pane.ngx-codemirror-tooltip-overlay {
+  // Sit above ngx dialogs / drawers and app overlays that clip editor chrome.
+  z-index: 11000 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  pointer-events: none;
 }

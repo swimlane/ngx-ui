@@ -35,8 +35,64 @@ export const addPackages = (options: Schema) => {
         version: `0.5.34`
       },
       {
-        name: 'codemirror',
-        version: '5.65.5'
+        name: '@codemirror/state',
+        version: '^6.5.2'
+      },
+      {
+        name: '@codemirror/view',
+        version: '^6.36.0'
+      },
+      {
+        name: '@codemirror/commands',
+        version: '^6.8.0'
+      },
+      {
+        name: '@codemirror/language',
+        version: '^6.11.0'
+      },
+      {
+        name: '@codemirror/autocomplete',
+        version: '^6.18.0'
+      },
+      {
+        name: '@codemirror/lint',
+        version: '^6.8.0'
+      },
+      {
+        name: '@codemirror/search',
+        version: '^6.5.0'
+      },
+      {
+        name: '@codemirror/lang-javascript',
+        version: '^6.2.0'
+      },
+      {
+        name: '@codemirror/lang-json',
+        version: '^6.0.0'
+      },
+      {
+        name: '@codemirror/lang-yaml',
+        version: '^6.1.0'
+      },
+      {
+        name: '@codemirror/lang-python',
+        version: '^6.1.0'
+      },
+      {
+        name: '@codemirror/lang-html',
+        version: '^6.4.0'
+      },
+      {
+        name: '@uiw/codemirror-theme-dracula',
+        version: '^4.23.0'
+      },
+      {
+        name: '@uiw/codemirror-theme-monokai',
+        version: '^4.23.0'
+      },
+      {
+        name: '@uiw/codemirror-theme-eclipse',
+        version: '^4.23.0'
       },
       {
         name: 'json-schema',
@@ -48,21 +104,8 @@ export const addPackages = (options: Schema) => {
         type: NodeDependencyType.Dev
       },
       {
-        name: 'ajv',
-        version: '^6.12.6'
-      },
-      {
-        name: '@types/codemirror',
-        version: '5.60.5',
-        type: NodeDependencyType.Dev
-      },
-      {
         name: 'ngx-autosize-input',
         version: '^2.3.7'
-      },
-      {
-        name: 'ng-in-viewport',
-        version: '^6.1.5'
       },
       {
         name: 'resize-observer-polyfill',

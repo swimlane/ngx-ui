@@ -16,7 +16,7 @@ import { DropdownMenuDirective } from './dropdown-menu.directive';
 import { DropdownToggleDirective } from './dropdown-toggle.directive';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { InViewportMetadata } from 'ng-in-viewport';
+import { InViewportActionEvent } from '../../directives/in-viewport/in-viewport.types';
 import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
 
 @Component({
@@ -111,13 +111,9 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
     }
   }
 
-  adjustMenuDirection(event: {
-    [InViewportMetadata]: { entry: IntersectionObserverEntry };
-    target: HTMLElement;
-    visible: boolean;
-  }): void {
+  adjustMenuDirection(event: InViewportActionEvent): void {
     if (!event.visible && this.open) {
-      if (!this.forceDownwardOpening && this.isIntersectingBottom(event[InViewportMetadata].entry)) {
+      if (!this.forceDownwardOpening && event.entry && this.isIntersectingBottom(event.entry)) {
         this.renderer.addClass(this.dropdownMenu.element, 'ngx-dropdown-menu--upwards');
       } else {
         this.renderer.removeClass(this.dropdownMenu.element, 'ngx-dropdown-menu--upwards');

@@ -5,7 +5,7 @@ Component & Style Library for Angular by Swimlane.
 ## Installing
 
 - `npm i @swimlane/ngx-ui --S`
-- Install the project's [peer dependencies](https://github.com/swimlane/ngx-ui/blob/master/projects/swimlane/ngx-ui/package.json#L27) (moment, moment-timezone, ngx-moment, ng-in-viewport, codemirror, angular/cdk, resize-observer-polyfill)
+- Install the project's [peer dependencies](https://github.com/swimlane/ngx-ui/blob/master/projects/swimlane/ngx-ui/package.json#L27) (moment, moment-timezone, ngx-moment, CodeMirror 6 packages, angular/cdk, resize-observer-polyfill)
 - Add `NgxUIModule` and `IconModule` to your application module
 - Add the ngx-ui theme in the angular.json file (`node_modules/@swimlane/ngx-ui/index.css`)
 

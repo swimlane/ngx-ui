@@ -12,7 +12,7 @@ import {
   ViewChild
 } from '@angular/core';
 
-import { InViewportDirective } from 'ng-in-viewport';
+import { InViewportDirective } from '../../directives/in-viewport/in-viewport.directive';
 
 import { debounceable } from '../../decorators/debounceable/debounceable.decorator';
 import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
