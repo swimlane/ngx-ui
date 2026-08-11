@@ -42,7 +42,8 @@ export class RadioButtonComponent implements ControlValueAccessor {
   @HostListener('click', ['$event']) onClick(ev: Event) {
     ev.preventDefault();
     if (!this.disabled) {
-      this.toggle();
+      // Radios are select-only: clicking an already selected radio must not deselect it.
+      this.checked = true;
     }
   }
 
@@ -139,6 +140,10 @@ export class RadioButtonComponent implements ControlValueAccessor {
     this.checked = true;
   }
 
+  /**
+   * @deprecated Radios are select-only; toggling can leave the radio group value out of sync
+   * with the rendered state. Set `checked` to `true` or change the group value instead.
+   */
   toggle(): void {
     this.checked = !this.checked;
   }

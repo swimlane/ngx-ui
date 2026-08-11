@@ -22,6 +22,8 @@ import { RadioButtonComponent } from './radiobutton.component';
       [checked]="checked$ | async"
       [disabled]="disabled$ | async"
     ></ngx-radiobutton>
+
+    <ngx-radiobutton #three tabindex="2" value="three" [disabled]="disabled$ | async"></ngx-radiobutton>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false
@@ -36,4 +38,7 @@ export class RadioButtonComponentFixture {
 
   @ViewChild('two', { static: false })
   readonly two: RadioButtonComponent;
+
+  @ViewChild('three', { static: false })
+  readonly three: RadioButtonComponent;
 }
