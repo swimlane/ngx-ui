@@ -2,6 +2,10 @@
 
 ## HEAD (unreleased)
 
+## 53.0.1 (2026-08-12)
+
+- Chore: Synced the `52.2.x` maintenance line into the Angular 22 (`53.x`) release line.
+
 ## 53.0.0 (2026-07-28)
 
 - Enhancement: Added support for Angular 22
