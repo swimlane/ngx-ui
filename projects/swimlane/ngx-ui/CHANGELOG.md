@@ -4,6 +4,10 @@
 
 - Fix (`ngx-radiobutton`): Radios are select-only. Clicking an already selected radio toggled `checked` off, which visually cleared the radio while the radio group / form value stayed unchanged. Clicking a selected radio is now a no-op, matching native radio behaviour and the existing Space key handling. `RadioButtonComponent.toggle()` is deprecated.
 
+## 53.0.1 (2026-08-12)
+
+- Chore: Synced the `52.2.x` maintenance line into the Angular 22 (`53.x`) release line.
+
 ## 53.0.0 (2026-07-28)
 
 - Enhancement: Added support for Angular 22
