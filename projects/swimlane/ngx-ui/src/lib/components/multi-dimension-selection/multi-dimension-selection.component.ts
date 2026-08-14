@@ -10,7 +10,8 @@ import {
   output,
   SimpleChanges,
   viewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { InViewportDirective } from '../../directives/in-viewport/in-viewport.directive';
 import { debounceable } from '../../decorators/debounceable/debounceable.decorator';
@@ -25,6 +26,8 @@ import { InputComponent } from '../input/input.component';
   styleUrl: './multi-dimension-selection.component.scss',
   standalone: false,
   encapsulation: ViewEncapsulation.None,
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
+  changeDetection: ChangeDetectionStrategy.Eager,
   host: {
     class: 'ngx-multi-dimension-selection',
     '[class.ngx-multi-dimension-selection__detached]': 'detached()'

@@ -102,6 +102,7 @@ export class CheckboxComponent implements ControlValueAccessor {
 
   constructor(private readonly cdr: ChangeDetectorRef) {}
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onBlur(_: any) {
     this.onTouchedCallback();
   }
@@ -139,6 +140,7 @@ export class CheckboxComponent implements ControlValueAccessor {
     // placeholder
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private onChangeCallback = (_: any) => {
     // placeholder
   };

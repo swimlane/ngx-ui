@@ -1,10 +1,12 @@
-import { Component, Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
+import { Component, Input, ViewEncapsulation, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'ngx-json-editor-node-info',
   templateUrl: './node-info.component.html',
   styleUrls: ['./node-info.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class JsonEditorNodeInfoComponent {

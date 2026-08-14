@@ -233,6 +233,7 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onToggle(_ev?: PointerEvent): void {
     // Future: this should stopPropagation
     // not happening now to ensure closeOnBodyClick is triggered

@@ -6,7 +6,19 @@
 - Breaking: Removed peer dependency `ng-in-viewport`. Viewport detection for dropdowns/selects/filters now uses a built-in CSP-safe `IntersectionObserver` directive (`InViewportModule` / `[inViewport]`). Event payload is `{ visible, target, entry }` (no `InViewportMetadata` symbol). Consumers may drop `ng-in-viewport` from their package installs.
 - Enhancement (`ngx-codemirror`): Enable as-you-type autocomplete when `autocompleteTokens` is unset so language packs (e.g. Python) can surface completions without requiring Mod-Space.
 - Breaking (`ngx-codemirror`): Migrated the code editor from CodeMirror 5 to CodeMirror 6. `instance` is now `EditorView` (not CM5 `EditorFromTextArea`). Host DOM uses `.cm-editor` instead of `.CodeMirror`. Peer dependency `codemirror@5` is replaced by `@codemirror/*` packages and `@uiw/codemirror-theme-*`. Mode strings (`javascript`, `json`, `yaml`, `python`, `htmlmixed`, `mustache`/`handlebars`, `spreadsheet`, `powershell`) are mapped to CM6 languages. New optional `extensions` input for app-specific languages. Search, fold gutter, bracket matching, and lint (JSON parse / soft JS) are enabled by default or via existing `lint` / `gutters` inputs.
-- Fix (`scrollbars`): Firefox 153+ partially honors `::-webkit-scrollbar` with non-zero width/height but does not style thumbs/tracks, which produced black scrollbar rectangles under `.ngx-scroll *`. Keep Chromium/Safari webkit styling; under Firefox apply standard `scrollbar-width` / `scrollbar-color` and reset webkit sizing. (SPT-67000)
+- Fix (`ngx-radiobutton`): Radios are select-only. Clicking an already selected radio toggled `checked` off, which visually cleared the radio while the radio group / form value stayed unchanged. Clicking a selected radio is now a no-op, matching native radio behaviour and the existing Space key handling. `RadioButtonComponent.toggle()` is deprecated.
+
+## 53.0.1 (2026-08-12)
+
+- Chore: Synced the `52.2.x` maintenance line into the Angular 22 (`53.x`) release line.
+
+## 53.0.0 (2026-07-28)
+
+- Enhancement: Added support for Angular 22
+- Breaking: Require Angular 22 (peers are now `22.x`); drop Angular 19/20/21. Uses Angular 22-only APIs such as `ChangeDetectionStrategy.Eager` and `$safeNavigationMigration`.
+- Chore: Migrated ESLint to flat config (`eslint.config.js`) required by angular-eslint v22
+- Chore: CI/Volta pin updated to Node 24.18.0
+- Fix (`scrollbars`): Firefox 153+ partially honors `::-webkit-scrollbar` with non-zero width/height but does not style thumbs/tracks, which produced black scrollbar rectangles under `.ngx-scroll *`. Keep Chromium/Safari webkit styling; under Firefox apply standard `scrollbar-width` / `scrollbar-color` and reset webkit sizing.
 
 ## 52.2.1 (2026-07-31)
 

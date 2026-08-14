@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 const counts = {};
 
@@ -17,6 +17,8 @@ const counts = {};
       </span>
     </h2>
   `,
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class CounterComponent implements OnInit {

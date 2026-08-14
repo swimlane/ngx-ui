@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -62,5 +62,48 @@ describe('RadioButtonGroupComponent', () => {
         expect(component.radioButtonGroup.selected.value).toEqual(component.value as any);
       });
     });
+  });
+
+  describe('click', () => {
+    function clickRadio(index: number) {
+      const hosts: HTMLElement[] = Array.from(fixture.nativeElement.querySelectorAll('ngx-radiobutton'));
+      hosts[index].dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+      tick();
+      fixture.detectChanges();
+    }
+
+    it('should keep the selected radio checked when it is clicked again', fakeAsync(() => {
+      const radios = component.radioButtonGroup._radios.toArray();
+      expect(radios[0].checked).toBe(true);
+
+      clickRadio(0);
+
+      expect(radios[0].checked).toBe(true);
+      expect(component.radioButtonGroup.value).toBe('one');
+      expect(component.value).toBe('one');
+    }));
+
+    it('should select a sibling and deselect the previous radio', fakeAsync(() => {
+      const radios = component.radioButtonGroup._radios.toArray();
+
+      clickRadio(1);
+
+      expect(radios[0].checked).toBe(false);
+      expect(radios[1].checked).toBe(true);
+      expect(component.radioButtonGroup.value).toBe('two');
+      expect(component.radioButtonGroup.selected).toBe(radios[1]);
+    }));
+
+    it('should not change selection when the group is disabled', fakeAsync(() => {
+      component.disabled$.next(true);
+      fixture.detectChanges();
+      const radios = component.radioButtonGroup._radios.toArray();
+
+      clickRadio(1);
+
+      expect(radios[0].checked).toBe(true);
+      expect(radios[1].checked).toBe(false);
+      expect(component.radioButtonGroup.value).toBe('one');
+    }));
   });
 });

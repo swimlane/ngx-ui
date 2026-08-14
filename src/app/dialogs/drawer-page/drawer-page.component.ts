@@ -17,7 +17,10 @@ export class DrawerPageComponent {
 
   readonly DrawerDirection = DrawerDirection;
 
-  constructor(readonly drawerService: DrawerService, private readonly el: ElementRef<HTMLElement>) {}
+  constructor(
+    readonly drawerService: DrawerService,
+    private readonly el: ElementRef<HTMLElement>
+  ) {}
 
   dateChanged(val: Date | string) {
     console.log('date changed!', val);

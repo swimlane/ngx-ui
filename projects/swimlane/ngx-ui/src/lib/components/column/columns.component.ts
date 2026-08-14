@@ -13,7 +13,8 @@ import {
   OnDestroy,
   inject,
   NgZone,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { ColumnComponent, ColumnTabClickEvent } from './column/column.component';
 import { Column } from './column/column.types';
@@ -24,6 +25,8 @@ import { Column } from './column/column.types';
   styleUrls: ['./columns.component.scss'],
   standalone: false,
   encapsulation: ViewEncapsulation.None,
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
+  changeDetection: ChangeDetectionStrategy.Eager,
   host: {
     class: 'ngx-columns',
     '[style.minHeight]': 'height ? height + "px" : "400px"',

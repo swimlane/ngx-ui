@@ -94,7 +94,10 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
   private _closeOnMouseLeave = false;
   private _leaveTimeout = null;
 
-  constructor(private readonly renderer: Renderer2, private readonly cd: ChangeDetectorRef) {}
+  constructor(
+    private readonly renderer: Renderer2,
+    private readonly cd: ChangeDetectorRef
+  ) {}
 
   ngAfterContentInit(): void {
     if (this.dropdownToggle) {
@@ -146,6 +149,7 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onToggleClick(_: Event): void {
     this.open = !this.open;
 

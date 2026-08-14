@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { getComputedStyle, rgb2hex } from '../app.utils';
 
 @Component({
   selector: 'app-colors-page',
   templateUrl: './colors-page.component.html',
   styleUrls: ['./colors-page.component.scss'],
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class ColorsPageComponent {

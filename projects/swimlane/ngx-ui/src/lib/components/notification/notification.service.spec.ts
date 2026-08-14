@@ -22,6 +22,7 @@ describe('NotificationService', () => {
           }
           return Promise.resolve(result);
         });
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         constructor(_title?: string, _options?: unknown) {}
         close(): void {}
         onerror: null | ((this: globalThis.Notification, ev: Event) => any) = null;

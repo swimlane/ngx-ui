@@ -313,44 +313,48 @@ export class SwimInput extends LitElement {
           <div class="input-flex-wrap-inner">
             <div class="input-box-wrap">
               ${isTextarea ? this._renderTextarea() : this._renderInput(inputType)}
-              ${showSpinner
-                ? html`
-                    <div class="numeric-spinner">
+              ${
+                showSpinner
+                  ? html`
+                      <div class="numeric-spinner">
+                        <button
+                          type="button"
+                          class="spinner-btn"
+                          @mousedown="${this._incrementValue}"
+                          @mouseup="${this._stopSpinner}"
+                          @mouseleave="${this._stopSpinner}"
+                          aria-label="Increment"
+                        >
+                          <swim-icon font-icon="chevron-bold-up"></swim-icon>
+                        </button>
+                        <button
+                          type="button"
+                          class="spinner-btn"
+                          @mousedown="${this._decrementValue}"
+                          @mouseup="${this._stopSpinner}"
+                          @mouseleave="${this._stopSpinner}"
+                          aria-label="Decrement"
+                        >
+                          <swim-icon font-icon="chevron-bold-down"></swim-icon>
+                        </button>
+                      </div>
+                    `
+                  : nothing
+              }
+              ${
+                showPasswordToggle
+                  ? html`
                       <button
                         type="button"
-                        class="spinner-btn"
-                        @mousedown="${this._incrementValue}"
-                        @mouseup="${this._stopSpinner}"
-                        @mouseleave="${this._stopSpinner}"
-                        aria-label="Increment"
+                        class="password-toggle"
+                        @click="${this._togglePassword}"
+                        aria-label="Toggle password visibility"
                       >
-                        <swim-icon font-icon="chevron-bold-up"></swim-icon>
+                        <swim-icon font-icon="${this._passwordVisible ? 'eye-disabled' : 'eye'}"></swim-icon>
                       </button>
-                      <button
-                        type="button"
-                        class="spinner-btn"
-                        @mousedown="${this._decrementValue}"
-                        @mouseup="${this._stopSpinner}"
-                        @mouseleave="${this._stopSpinner}"
-                        aria-label="Decrement"
-                      >
-                        <swim-icon font-icon="chevron-bold-down"></swim-icon>
-                      </button>
-                    </div>
-                  `
-                : nothing}
-              ${showPasswordToggle
-                ? html`
-                    <button
-                      type="button"
-                      class="password-toggle"
-                      @click="${this._togglePassword}"
-                      aria-label="Toggle password visibility"
-                    >
-                      <swim-icon font-icon="${this._passwordVisible ? 'eye-disabled' : 'eye'}"></swim-icon>
-                    </button>
-                  `
-                : nothing}
+                    `
+                  : nothing
+              }
             </div>
             <label class="input-label" part="label" for="${this.id}">
               ${this.label} ${this.required ? html`<span>${this.requiredIndicator}</span>` : nothing}

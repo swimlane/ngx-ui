@@ -26,7 +26,8 @@ import {
   Output,
   SimpleChanges,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { DateRangeForm, TooltipDateItem } from './models/date-range.model';
 
@@ -47,6 +48,8 @@ const guessTimeZone = moment.tz.guess();
   templateUrl: './date-range-picker.component.html',
   styleUrls: ['./date-range-picker.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DateRangePickerComponent implements OnInit, OnChanges {
@@ -368,29 +371,35 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
     this.timeValueStart = {};
     if (start) {
       const startMoment = this.createMoment(start);
-      this.timeValueStart = Object.keys(this.timezones).reduce((timezoneAcc, timezoneKey) => {
-        const timezoneValue = this.timezones[timezoneKey] || guessTimeZone;
-        const dateInTimezone = startMoment.clone().tz(timezoneValue);
-        timezoneAcc[timezoneKey] = {
-          key: timezoneKey,
-          clip: dateInTimezone.format(DATE_DISPLAY_FORMATS.fullDateTime),
-          display: dateInTimezone.format(DATE_DISPLAY_FORMATS.fullDateTime)
-        };
-        return timezoneAcc;
-      }, {} as Record<string, { key: string; clip: string; display: string }>);
+      this.timeValueStart = Object.keys(this.timezones).reduce(
+        (timezoneAcc, timezoneKey) => {
+          const timezoneValue = this.timezones[timezoneKey] || guessTimeZone;
+          const dateInTimezone = startMoment.clone().tz(timezoneValue);
+          timezoneAcc[timezoneKey] = {
+            key: timezoneKey,
+            clip: dateInTimezone.format(DATE_DISPLAY_FORMATS.fullDateTime),
+            display: dateInTimezone.format(DATE_DISPLAY_FORMATS.fullDateTime)
+          };
+          return timezoneAcc;
+        },
+        {} as Record<string, { key: string; clip: string; display: string }>
+      );
     }
     if (end) {
       const endMoment = this.createMoment(end);
-      this.timeValueEnd = Object.keys(this.timezones).reduce((timezoneAcc, timezoneKey) => {
-        const timezoneValue = this.timezones[timezoneKey] || guessTimeZone;
-        const dateInTimezone = endMoment.clone().tz(timezoneValue);
-        timezoneAcc[timezoneKey] = {
-          key: timezoneKey,
-          clip: dateInTimezone.format(DATE_DISPLAY_FORMATS.fullDateTime),
-          display: dateInTimezone.format(DATE_DISPLAY_FORMATS.fullDateTime)
-        };
-        return timezoneAcc;
-      }, {} as Record<string, { key: string; clip: string; display: string }>);
+      this.timeValueEnd = Object.keys(this.timezones).reduce(
+        (timezoneAcc, timezoneKey) => {
+          const timezoneValue = this.timezones[timezoneKey] || guessTimeZone;
+          const dateInTimezone = endMoment.clone().tz(timezoneValue);
+          timezoneAcc[timezoneKey] = {
+            key: timezoneKey,
+            clip: dateInTimezone.format(DATE_DISPLAY_FORMATS.fullDateTime),
+            display: dateInTimezone.format(DATE_DISPLAY_FORMATS.fullDateTime)
+          };
+          return timezoneAcc;
+        },
+        {} as Record<string, { key: string; clip: string; display: string }>
+      );
     }
     this.cdr.detectChanges();
   }

@@ -58,4 +58,58 @@ describe('RadioButtonComponent', () => {
       expect(component.one.checked).toBe(true);
     });
   });
+
+  describe('onClick', () => {
+    function clickThree() {
+      const hosts: HTMLElement[] = Array.from(fixture.nativeElement.querySelectorAll('ngx-radiobutton'));
+      hosts[2].dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+      fixture.detectChanges();
+    }
+
+    it('should check an unchecked radio', () => {
+      expect(component.three.checked).toBe(false);
+
+      clickThree();
+
+      expect(component.three.checked).toBe(true);
+    });
+
+    it('should stay checked when an already checked radio is clicked', () => {
+      component.three.checked = true;
+      fixture.detectChanges();
+
+      clickThree();
+
+      expect(component.three.checked).toBe(true);
+    });
+
+    it('should not emit change when an already checked radio is clicked', () => {
+      component.three.checked = true;
+      fixture.detectChanges();
+      const spy = vi.spyOn(component.three.change, 'emit');
+
+      clickThree();
+
+      expect(spy).not.toHaveBeenCalled();
+    });
+
+    it('should ignore clicks when disabled', () => {
+      component.disabled$.next(true);
+      fixture.detectChanges();
+
+      clickThree();
+
+      expect(component.three.checked).toBe(false);
+    });
+  });
+
+  describe('onSpace', () => {
+    it('should check an unchecked radio', () => {
+      expect(component.three.checked).toBe(false);
+
+      component.three.onSpace(new KeyboardEvent('keydown', { key: ' ', code: 'Space' }));
+
+      expect(component.three.checked).toBe(true);
+    });
+  });
 });
