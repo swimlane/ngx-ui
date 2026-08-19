@@ -12,6 +12,11 @@ describe('list-nest.utils', () => {
       expect(listDataSourceNeedsFlatten([{ id: 1, children: [{ id: 2 }] }])).toBe(true);
       expect(listDataSourceNeedsFlatten([{ id: 1 }, { id: 2, parentId: 1 }])).toBe(true);
     });
+
+    it('returns false when children are primitives rather than nested rows', () => {
+      expect(listDataSourceNeedsFlatten([{ id: 1, children: ['a', 'b'] }])).toBe(false);
+      expect(listDataSourceNeedsFlatten([{ id: 1, children: [1, 2] }])).toBe(false);
+    });
   });
 
   describe('flattenListDataSource', () => {
@@ -25,6 +30,45 @@ describe('list-nest.utils', () => {
         { id: 'a', name: 'A', [LIST_ID_KEY]: 'a', [LIST_PARENT_ID_KEY]: null, [LIST_DEPTH_KEY]: 0 },
         { id: 'b', name: 'B', [LIST_ID_KEY]: 'b', [LIST_PARENT_ID_KEY]: null, [LIST_DEPTH_KEY]: 0 }
       ]);
+    });
+
+    it('leaves primitive children arrays on flat rows instead of treating them as nested rows', () => {
+      const rows = flattenListDataSource([
+        { id: 'a', name: 'A', children: ['related-1', 'related-2'] },
+        { id: 'b', name: 'B', children: [10, 20] }
+      ]);
+
+      expect(rows).toEqual([
+        {
+          id: 'a',
+          name: 'A',
+          children: ['related-1', 'related-2'],
+          [LIST_ID_KEY]: 'a',
+          [LIST_PARENT_ID_KEY]: null,
+          [LIST_DEPTH_KEY]: 0
+        },
+        {
+          id: 'b',
+          name: 'B',
+          children: [10, 20],
+          [LIST_ID_KEY]: 'b',
+          [LIST_PARENT_ID_KEY]: null,
+          [LIST_DEPTH_KEY]: 0
+        }
+      ]);
+    });
+
+    it('keeps primitive sibling entries when mixed with nested row children', () => {
+      const rows = flattenListDataSource([
+        {
+          id: 'root',
+          name: 'Root',
+          children: [{ id: 'child', name: 'Child' }, 'label-only']
+        }
+      ]);
+
+      expect(rows.map(row => row.id)).toEqual(['root', 'child']);
+      expect(rows[0].children).toBeUndefined();
     });
 
     it('flattens nested children depth-first and strips children from display rows', () => {

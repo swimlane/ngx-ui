@@ -5,6 +5,7 @@
         class="ngx-list__select-all"
         [checked]="allRowsSelected"
         [indeterminate]="someRowsSelected"
+        [disabled]="!hasSelectableRows"
         (checkedChange)="onSelectAllChange($event)"
         aria-label="Select all rows"
       ></ngx-checkbox>

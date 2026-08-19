@@ -1214,6 +1214,9 @@
         <ngx-list-header>
           <ng-template ngx-list-header-template>Origin of Attack</ng-template>
         </ngx-list-header>
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Severity</ng-template>
+        </ngx-list-header>
 
         <ngx-list-column>
           <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
@@ -1223,6 +1226,9 @@
         </ngx-list-column>
         <ngx-list-column>
           <ng-template ngx-list-column-template let-row="row">{{ row.origin }}</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.severity }}</ng-template>
         </ngx-list-column>
 
         <ngx-list-row [status]="rowStatus"></ngx-list-row>
@@ -1253,6 +1259,9 @@
     <ngx-list-header>
       <ng-template ngx-list-header-template>Origin of Attack</ng-template>
     </ngx-list-header>
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Severity</ng-template>
+    </ngx-list-header>
 
     <ngx-list-column>
       <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
@@ -1262,6 +1271,9 @@
     </ngx-list-column>
     <ngx-list-column>
       <ng-template ngx-list-column-template let-row="row">{{ row.origin }}</ng-template>
+    </ngx-list-column>
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.severity }}</ng-template>
     </ngx-list-column>
 
     <ngx-list-row [status]="rowStatus"></ngx-list-row>
@@ -1280,14 +1292,15 @@
   })
   export class AppComponent {
     cascadeData = [
-      { id: 'apt', type: 'APT campaign', date: '4/1/2025', origin: 'Unknown' },
-      { id: 'access', parentId: 'apt', type: 'Initial access', date: '4/1/2025', origin: 'Unknown' },
-      { id: 'persistence', parentId: 'access', type: 'Persistence', date: '4/2/2025', origin: 'Unknown' },
-      { id: 'privilege', parentId: 'persistence', type: 'Privilege escalation', date: '4/2/2025', origin: 'Unknown' },
-      { id: 'exfil', parentId: 'apt', type: 'Exfiltration plan', date: '4/4/2025', origin: 'Unknown' },
-      { id: 'staging', parentId: 'exfil', type: 'Staging', date: '4/4/2025', origin: 'Unknown' },
-      { id: 'transfer', parentId: 'staging', type: 'Data transfer', date: '4/5/2025', origin: 'Unknown' },
-      { id: 'ransomware', type: 'Ransomware', date: '4/6/2025', origin: 'North Korea' }
+      { id: 'apt', type: 'APT campaign', date: '4/1/2025', origin: 'Unknown', severity: 'Critical' },
+      { id: 'access', parentId: 'apt', type: 'Initial access', date: '4/1/2025', origin: 'Unknown', severity: 'High' },
+      { id: 'persistence', parentId: 'access', type: 'Persistence', date: '4/2/2025', origin: 'Unknown', severity: 'High' },
+      { id: 'privilege', parentId: 'persistence', type: 'Privilege escalation', date: '4/2/2025', origin: 'Unknown', severity: 'Critical' },
+      { id: 'exfil', parentId: 'apt', type: 'Exfiltration plan', date: '4/4/2025', origin: 'Unknown', severity: 'High' },
+      { id: 'staging', parentId: 'exfil', type: 'Staging', date: '4/4/2025', origin: 'Unknown', severity: 'Medium' },
+      { id: 'transfer', parentId: 'staging', type: 'Data transfer', date: '4/5/2025', origin: 'Unknown', severity: 'High' },
+      { id: 'ransomware', type: 'Ransomware', date: '4/6/2025', origin: 'North Korea', severity: 'Critical' },
+      { id: 'encryption', parentId: 'ransomware', type: 'Encryption payload', date: '4/6/2025', origin: 'North Korea', severity: 'Critical' }
     ];
 
     cascadeSelectedIds = ['persistence', 'privilege', 'staging', 'transfer'];
@@ -1341,6 +1354,9 @@
         <ngx-list-header>
           <ng-template ngx-list-header-template>Origin of Attack</ng-template>
         </ngx-list-header>
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Severity</ng-template>
+        </ngx-list-header>
 
         <ngx-list-column>
           <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
@@ -1350,6 +1366,9 @@
         </ngx-list-column>
         <ngx-list-column>
           <ng-template ngx-list-column-template let-row="row">{{ row.origin }}</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.severity }}</ng-template>
         </ngx-list-column>
 
         <ngx-list-row [status]="rowStatus"></ngx-list-row>
@@ -1389,12 +1408,12 @@
         <ngx-tab label="TypeScript">
           <!-- prettier-ignore -->
           <app-prism language="js">
-<![CDATA[alignedCascadeColumnLayout = { gridTemplateColumns: '16rem 1fr 1fr' };
+<![CDATA[alignedCascadeColumnLayout = { gridTemplateColumns: '16rem 1fr 1fr 1fr' };
 
   cascadeData = [
-    { id: 'apt', type: 'APT campaign', date: '4/1/2025', origin: 'Unknown' },
-    { id: 'access', parentId: 'apt', type: 'Initial access', date: '4/1/2025', origin: 'Unknown' },
-    { id: 'persistence', parentId: 'access', type: 'Persistence', date: '4/2/2025', origin: 'Unknown' }
+    { id: 'apt', type: 'APT campaign', date: '4/1/2025', origin: 'Unknown', severity: 'Critical' },
+    { id: 'access', parentId: 'apt', type: 'Initial access', date: '4/1/2025', origin: 'Unknown', severity: 'High' },
+    { id: 'persistence', parentId: 'access', type: 'Persistence', date: '4/2/2025', origin: 'Unknown', severity: 'High' }
   ];]]>
           </app-prism>
         </ngx-tab>

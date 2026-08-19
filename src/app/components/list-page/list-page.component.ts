@@ -18,20 +18,49 @@ import {
 })
 export class ListPageComponent {
   cascadeData: Array<Record<string, unknown>> = [
-    { id: 'apt', type: 'APT campaign', date: '4/1/2025', origin: 'Unknown' },
-    { id: 'access', parentId: 'apt', type: 'Initial access', date: '4/1/2025', origin: 'Unknown' },
-    { id: 'persistence', parentId: 'access', type: 'Persistence', date: '4/2/2025', origin: 'Unknown' },
-    { id: 'privilege', parentId: 'persistence', type: 'Privilege escalation', date: '4/2/2025', origin: 'Unknown' },
-    { id: 'exfil', parentId: 'apt', type: 'Exfiltration plan', date: '4/4/2025', origin: 'Unknown' },
-    { id: 'staging', parentId: 'exfil', type: 'Staging', date: '4/4/2025', origin: 'Unknown' },
-    { id: 'transfer', parentId: 'staging', type: 'Data transfer', date: '4/5/2025', origin: 'Unknown' },
-    { id: 'ransomware', type: 'Ransomware', date: '4/6/2025', origin: 'North Korea' }
+    { id: 'apt', type: 'APT campaign', date: '4/1/2025', origin: 'Unknown', severity: 'Critical' },
+    { id: 'access', parentId: 'apt', type: 'Initial access', date: '4/1/2025', origin: 'Unknown', severity: 'High' },
+    {
+      id: 'persistence',
+      parentId: 'access',
+      type: 'Persistence',
+      date: '4/2/2025',
+      origin: 'Unknown',
+      severity: 'High'
+    },
+    {
+      id: 'privilege',
+      parentId: 'persistence',
+      type: 'Privilege escalation',
+      date: '4/2/2025',
+      origin: 'Unknown',
+      severity: 'Critical'
+    },
+    { id: 'exfil', parentId: 'apt', type: 'Exfiltration plan', date: '4/4/2025', origin: 'Unknown', severity: 'High' },
+    { id: 'staging', parentId: 'exfil', type: 'Staging', date: '4/4/2025', origin: 'Unknown', severity: 'Medium' },
+    {
+      id: 'transfer',
+      parentId: 'staging',
+      type: 'Data transfer',
+      date: '4/5/2025',
+      origin: 'Unknown',
+      severity: 'High'
+    },
+    { id: 'ransomware', type: 'Ransomware', date: '4/6/2025', origin: 'North Korea', severity: 'Critical' },
+    {
+      id: 'encryption',
+      parentId: 'ransomware',
+      type: 'Encryption payload',
+      date: '4/6/2025',
+      origin: 'North Korea',
+      severity: 'Critical'
+    }
   ];
 
   cascadeSelectedIds: ListRowId[] = ['persistence', 'privilege', 'staging', 'transfer'];
 
   alignedCascadeColumnLayout: Partial<CSSStyleDeclaration> = {
-    gridTemplateColumns: '16rem 1fr 1fr'
+    gridTemplateColumns: '16rem 1fr 1fr 1fr'
   };
 
   alignedCascadeSelectedIds: ListRowId[] = [];

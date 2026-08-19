@@ -12,6 +12,17 @@ const DEFAULT_OPTIONS: Required<FlattenListOptions> = {
   childrenKey: 'children'
 };
 
+function isListRowObject(value: unknown): value is ListItemModel {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+function nestedRowChildren(value: unknown): ListItemModel[] {
+  if (!Array.isArray(value) || !value.length) {
+    return [];
+  }
+  return value.filter(isListRowObject);
+}
+
 export function listDataSourceNeedsFlatten(
   rows: Array<Record<string, unknown>> | null | undefined,
   options: FlattenListOptions = {}
@@ -23,8 +34,7 @@ export function listDataSourceNeedsFlatten(
   const { parentIdKey, childrenKey } = { ...DEFAULT_OPTIONS, ...options };
 
   return rows.some(row => {
-    const children = row[childrenKey];
-    if (Array.isArray(children) && children.length > 0) {
+    if (nestedRowChildren(row[childrenKey]).length > 0) {
       return true;
     }
 
@@ -43,7 +53,7 @@ export function flattenListDataSource(
 
   const opts = { ...DEFAULT_OPTIONS, ...options };
 
-  if (rows.some(row => Array.isArray(row[opts.childrenKey]) && (row[opts.childrenKey] as unknown[]).length > 0)) {
+  if (rows.some(row => nestedRowChildren(row[opts.childrenKey]).length > 0)) {
     return flattenTreeRows(rows as ListItemModel[], opts, 0, null);
   }
 
@@ -82,13 +92,21 @@ function flattenTreeRows(
   const result: Array<Record<string, unknown>> = [];
 
   rows.forEach(row => {
-    const id = resolveRowId(row, opts.idKey, anonymousIdForRow);
-    const { [opts.childrenKey]: children, ...rest } = row;
-    result.push(annotateRow(rest, id, parentId, depth));
-
-    if (Array.isArray(children) && children.length) {
-      result.push(...flattenTreeRows(children as ListItemModel[], opts, depth + 1, id));
+    if (!isListRowObject(row)) {
+      return;
     }
+
+    const id = resolveRowId(row, opts.idKey, anonymousIdForRow);
+    const childRows = nestedRowChildren(row[opts.childrenKey]);
+
+    if (childRows.length) {
+      const { [opts.childrenKey]: _children, ...rest } = row;
+      result.push(annotateRow(rest, id, parentId, depth));
+      result.push(...flattenTreeRows(childRows, opts, depth + 1, id));
+      return;
+    }
+
+    result.push(annotateRow(row, id, parentId, depth));
   });
 
   return result;

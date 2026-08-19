@@ -449,6 +449,27 @@ describe('ListComponent', () => {
       expect(component.allRowsSelected).toBe(false);
     });
 
+    it('ignores select-all when there are no selectable rows', () => {
+      component.selectable = true;
+      component.selectedIds = [];
+      component.dataSource = [
+        { id: 'a', name: 'A', disabled: true },
+        { id: 'b', name: 'B', selectable: false }
+      ];
+      component.ngAfterContentInit();
+
+      const selectionSpy = vi.spyOn(component.onSelectionChange, 'emit');
+
+      expect(component.hasSelectableRows).toBe(false);
+      expect(component.allRowsSelected).toBe(false);
+
+      component.onSelectAllChange(true);
+
+      expect(component.selectedIds).toEqual([]);
+      expect(component.allRowsSelected).toBe(false);
+      expect(selectionSpy).not.toHaveBeenCalled();
+    });
+
     it('preserves host selection for disabled rows across select-all toggles', () => {
       component.selectable = true;
       component.selectedIds = ['b'];

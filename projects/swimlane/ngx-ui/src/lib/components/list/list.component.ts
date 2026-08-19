@@ -166,6 +166,10 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnChanges
     return this.scrollbarWidth > 0 ? `calc(1rem + ${this.scrollbarWidth}px)` : null;
   }
 
+  get hasSelectableRows(): boolean {
+    return this.selectableIds.length > 0;
+  }
+
   /**
    * @function onHeaderSort
    *
@@ -288,7 +292,7 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnChanges
   };
 
   onSelectAllChange(selected: boolean): void {
-    if (selected === this.allRowsSelected) {
+    if (!this.selectableIds.length || selected === this.allRowsSelected) {
       return;
     }
 
