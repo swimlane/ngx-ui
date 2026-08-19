@@ -6,9 +6,6 @@ import { ListNestMode } from '../models/list-nest-mode.type';
 import { getListRowDepth } from '../list-nest.utils';
 import { shrinkFirstColumnTrack } from '../list-layout.utils';
 
-/** Matches the row stylesheet's base horizontal margin. */
-const ROW_BASE_MARGIN_PX = 16;
-
 @Component({
   selector: 'ngx-list-row',
   templateUrl: './list-row.component.html',
@@ -23,7 +20,7 @@ const ROW_BASE_MARGIN_PX = 16;
     '[class.ngx-list-row--selected]': 'selected',
     '[class.ngx-list-row--disabled]': 'data?.disabled === true',
     '[style.height.px]': 'rowHeight',
-    '[style.margin-left.px]': 'marginLeftPx'
+    '[style.margin-left]': 'marginLeft'
   },
   // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
   changeDetection: ChangeDetectionStrategy.Eager,
@@ -55,8 +52,8 @@ export class ListRowComponent {
     return getListRowDepth(this.data);
   }
 
-  get marginLeftPx(): number {
-    return ROW_BASE_MARGIN_PX + this.indentPx;
+  get marginLeft(): string | null {
+    return this.indentPx > 0 ? `calc(1rem + ${this.indentPx}px)` : null;
   }
 
   get rowColumnLayout(): Partial<CSSStyleDeclaration> {

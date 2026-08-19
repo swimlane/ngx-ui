@@ -17,17 +17,17 @@ describe('ListRowComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('leaves top level rows at the base margin', () => {
+  it('leaves top level rows on the stylesheet margin', () => {
     component.data = { id: 'a', [LIST_DEPTH_KEY]: 0 };
 
     expect(component.depth).toBe(0);
-    expect(component.marginLeftPx).toBe(16);
+    expect(component.marginLeft).toBeNull();
   });
 
-  it('steps the whole row card in by one indent per depth', () => {
+  it('steps nested rows with calc(1rem + depth indent)', () => {
     component.data = { id: 'a', [LIST_DEPTH_KEY]: 2 };
 
-    expect(component.marginLeftPx).toBe(56);
+    expect(component.marginLeft).toBe('calc(1rem + 40px)');
   });
 
   describe('getCellAlign', () => {
