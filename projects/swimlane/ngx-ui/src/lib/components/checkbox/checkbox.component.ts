@@ -53,9 +53,6 @@ export class CheckboxComponent implements ControlValueAccessor {
   @Input() name?: string;
   @Input() diameter = '18px';
 
-  /** Names the native input for assistive tech when no projected label content is provided. */
-  @Input() ariaLabel?: string;
-
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('checked')
   set value(value: boolean) {

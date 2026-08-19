@@ -5,7 +5,7 @@
         class="ngx-list-row__checkbox"
         [checked]="selected"
         [disabled]="data?.disabled === true"
-        [ariaLabel]="checkboxAriaLabel"
+        [attr.aria-label]="checkboxAriaLabel"
         (checkedChange)="onCheckboxChange($event)"
         (click)="$event.stopPropagation()"
       ></ngx-checkbox>

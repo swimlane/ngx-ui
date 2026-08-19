@@ -27,21 +27,6 @@ describe('CheckboxComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('ariaLabel', () => {
-    const nativeInput = () => fixture.nativeElement.querySelector('input');
-
-    it('leaves the input unnamed by default', () => {
-      expect(nativeInput().hasAttribute('aria-label')).toBe(false);
-    });
-
-    it('names the native input rather than the host', () => {
-      fixture.componentRef.setInput('ariaLabel', 'Select row');
-      fixture.detectChanges();
-
-      expect(nativeInput().getAttribute('aria-label')).toBe('Select row');
-    });
-  });
-
   describe('value', () => {
     it('should set value', () => {
       component.value = false;
