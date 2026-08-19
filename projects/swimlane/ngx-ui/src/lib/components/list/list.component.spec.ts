@@ -449,6 +449,26 @@ describe('ListComponent', () => {
       expect(component.allRowsSelected).toBe(false);
     });
 
+    it('preserves host selection for disabled rows across select-all toggles', () => {
+      component.selectable = true;
+      component.selectedIds = ['b'];
+      component.dataSource = [
+        { id: 'a', name: 'A' },
+        { id: 'b', name: 'B', disabled: true },
+        { id: 'c', name: 'C' }
+      ];
+      component.ngAfterContentInit();
+
+      component.onSelectAllChange(true);
+      expect(component.selectedIds).toEqual(['b', 'a', 'c']);
+      expect(component.allRowsSelected).toBe(true);
+
+      component.onSelectAllChange(false);
+      expect(component.selectedIds).toEqual(['b']);
+      expect(component.allRowsSelected).toBe(false);
+      expect(component.someRowsSelected).toBe(false);
+    });
+
     it('reports an indeterminate state for a partial selection', () => {
       component.selectable = true;
       component.selectedIds = ['a'];

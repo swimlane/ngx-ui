@@ -81,38 +81,6 @@ export class ListPageComponent {
     gridTemplateColumns: '2fr 1fr 1fr 1fr'
   };
 
-  nestedTreeData: Array<Record<string, unknown>> = [
-    {
-      id: 'sol-1',
-      name: 'Incident Response',
-      type: 'Solution',
-      children: [
-        {
-          id: 'app-1',
-          name: 'Phishing Cases',
-          type: 'Application',
-          children: [
-            { id: 'pb-1', name: 'Triage Playbook', type: 'Playbook' },
-            { id: 'pb-2', name: 'Enrichment Playbook', type: 'Playbook', disabled: true }
-          ]
-        },
-        {
-          id: 'app-2',
-          name: 'Malware Cases',
-          type: 'Application',
-          children: [{ id: 'comp-1', name: 'Sandbox Connector', type: 'Component' }]
-        }
-      ]
-    },
-    {
-      id: 'sol-2',
-      name: 'Vulnerability Mgmt',
-      type: 'Solution',
-      children: [{ id: 'app-3', name: 'CVE Tracker', type: 'Application' }]
-    }
-  ];
-
-  nestedSelectedIds: ListRowId[] = ['sol-1', 'app-1', 'pb-1'];
   parentIdSelectedIds: ListRowId[] = ['pkg', 'sol-a'];
 
   nestedColumnLayout: Partial<CSSStyleDeclaration> = {

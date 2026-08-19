@@ -288,7 +288,10 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnChanges
       return;
     }
 
-    this.applySelection(selected ? [...this.selectableIds] : []);
+    // Only toggle selectable rows; preserve host selection for disabled / non-selectable ids.
+    const selectableSet = new Set(this.selectableIds);
+    const preserved = (this.selectedIds ?? []).filter(id => !selectableSet.has(id));
+    this.applySelection(selected ? [...preserved, ...this.selectableIds] : preserved);
   }
 
   private applySelection(selectedIds: ListRowId[], change?: Pick<ListSelectionEvent, 'row' | 'selected'>): void {
