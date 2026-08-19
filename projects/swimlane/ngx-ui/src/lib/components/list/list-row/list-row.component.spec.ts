@@ -30,6 +30,25 @@ describe('ListRowComponent', () => {
     expect(component.marginLeft).toBe('calc(1rem + 40px)');
   });
 
+  describe('showSelectionGutter', () => {
+    it('stays off for flat lists without selection', () => {
+      expect(component.showSelectionGutter).toBe(false);
+    });
+
+    it('reserves the gutter for rows that opted out of selection', () => {
+      component.selectionEnabled = true;
+      component.selectable = false;
+
+      expect(component.showSelectionGutter).toBe(true);
+    });
+
+    it('reserves the gutter for a standalone selectable row', () => {
+      component.selectable = true;
+
+      expect(component.showSelectionGutter).toBe(true);
+    });
+  });
+
   describe('getCellAlign', () => {
     it('honours the column align when the list is flat', () => {
       component.nested = false;

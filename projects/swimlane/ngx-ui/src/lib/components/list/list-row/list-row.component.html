@@ -1,13 +1,17 @@
-@if (selectable) {
+@if (showSelectionGutter) {
   <div class="ngx-list-row__content">
-    <ngx-checkbox
-      class="ngx-list-row__checkbox"
-      [checked]="selected"
-      [disabled]="data?.disabled === true"
-      [attr.aria-label]="checkboxAriaLabel"
-      (checkedChange)="onCheckboxChange($event)"
-      (click)="$event.stopPropagation()"
-    ></ngx-checkbox>
+    @if (selectable) {
+      <ngx-checkbox
+        class="ngx-list-row__checkbox"
+        [checked]="selected"
+        [disabled]="data?.disabled === true"
+        [ariaLabel]="checkboxAriaLabel"
+        (checkedChange)="onCheckboxChange($event)"
+        (click)="$event.stopPropagation()"
+      ></ngx-checkbox>
+    } @else {
+      <span class="ngx-list-row__checkbox-spacer" aria-hidden="true"></span>
+    }
     <div class="ngx-list-row__columns" [ngStyle]="rowColumnLayout">
       <ng-container *ngTemplateOutlet="columnsTemplate"></ng-container>
     </div>

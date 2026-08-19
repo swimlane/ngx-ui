@@ -47,9 +47,17 @@ ngx-list-row {
       overflow: hidden;
     }
 
-    .ngx-list-row__checkbox {
+    .ngx-list-row__checkbox,
+    .ngx-list-row__checkbox-spacer {
       flex: 0 0 auto;
+    }
 
+    // Non-selectable rows keep the gutter so their columns line up with the headers.
+    .ngx-list-row__checkbox-spacer {
+      width: 18px;
+    }
+
+    .ngx-list-row__checkbox {
       // ngx-checkbox reserves trailing label margin; list checkboxes have no label.
       .ngx-checkbox--box {
         margin-right: 0;

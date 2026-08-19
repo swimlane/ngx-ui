@@ -38,6 +38,7 @@ export class ListRowComponent {
   @Input() nested = false;
   @Input() nestMode: ListNestMode = 'stagger';
   @Input() selectable = false;
+  @Input() selectionEnabled = false;
   @Input() selected = false;
   @Input() onCheckedChange: (data: Record<string, unknown>, index: number, selected: boolean) => void;
 
@@ -50,6 +51,11 @@ export class ListRowComponent {
 
   get depth(): number {
     return getListRowDepth(this.data);
+  }
+
+  /** Rows opted out of selection still reserve the checkbox gutter so columns stay aligned. */
+  get showSelectionGutter(): boolean {
+    return this.selectionEnabled || this.selectable;
   }
 
   get marginLeft(): string | null {
