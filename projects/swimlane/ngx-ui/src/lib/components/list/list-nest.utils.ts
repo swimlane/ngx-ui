@@ -42,9 +42,10 @@ export function flattenListDataSource(
   }
 
   const opts = { ...DEFAULT_OPTIONS, ...options };
+  const nextAnonId = createAnonIdFactory();
 
   if (rows.some(row => Array.isArray(row[opts.childrenKey]) && (row[opts.childrenKey] as unknown[]).length > 0)) {
-    return flattenTreeRows(rows as ListItemModel[], opts, 0, null);
+    return flattenTreeRows(rows as ListItemModel[], opts, 0, null, nextAnonId);
   }
 
   if (
@@ -53,27 +54,33 @@ export function flattenListDataSource(
       return parentId !== undefined && parentId !== null && parentId !== '';
     })
   ) {
-    return flattenParentLinkedRows(rows as ListItemModel[], opts);
+    return flattenParentLinkedRows(rows as ListItemModel[], opts, nextAnonId);
   }
 
-  return rows.map((row, index) => annotateRow(row, resolveRowId(row, opts.idKey, index), null, 0));
+  return rows.map(row => annotateRow(row, resolveRowId(row, opts.idKey, nextAnonId), null, 0));
+}
+
+function createAnonIdFactory(): () => string {
+  let sequence = 0;
+  return () => `__list-${sequence++}`;
 }
 
 function flattenTreeRows(
   rows: ListItemModel[],
   opts: Required<FlattenListOptions>,
   depth: number,
-  parentId: ListRowId | null
+  parentId: ListRowId | null,
+  nextAnonId: () => string
 ): Array<Record<string, unknown>> {
   const result: Array<Record<string, unknown>> = [];
 
-  rows.forEach((row, index) => {
-    const id = resolveRowId(row, opts.idKey, index);
+  rows.forEach(row => {
+    const id = resolveRowId(row, opts.idKey, nextAnonId);
     const { [opts.childrenKey]: children, ...rest } = row;
     result.push(annotateRow(rest, id, parentId, depth));
 
     if (Array.isArray(children) && children.length) {
-      result.push(...flattenTreeRows(children as ListItemModel[], opts, depth + 1, id));
+      result.push(...flattenTreeRows(children as ListItemModel[], opts, depth + 1, id, nextAnonId));
     }
   });
 
@@ -82,15 +89,16 @@ function flattenTreeRows(
 
 function flattenParentLinkedRows(
   rows: ListItemModel[],
-  opts: Required<FlattenListOptions>
+  opts: Required<FlattenListOptions>,
+  nextAnonId: () => string
 ): Array<Record<string, unknown>> {
-  const byParent = new Map<string, ListItemModel[]>();
-  const ids = new Set<string>();
-
+  const rowIds = new Map<ListItemModel, ListRowId>();
   rows.forEach(row => {
-    const id = String(resolveRowId(row, opts.idKey, 0));
-    ids.add(id);
+    rowIds.set(row, resolveRowId(row, opts.idKey, nextAnonId));
   });
+
+  const byParent = new Map<string, ListItemModel[]>();
+  const ids = new Set(Array.from(rowIds.values(), id => String(id)));
 
   rows.forEach(row => {
     const parentId = row[opts.parentIdKey];
@@ -107,8 +115,8 @@ function flattenParentLinkedRows(
   const result: Array<Record<string, unknown>> = [];
   const visit = (parentKey: string, depth: number, parentId: ListRowId | null): void => {
     const children = byParent.get(parentKey) ?? [];
-    children.forEach((row, siblingIndex) => {
-      const id = resolveRowId(row, opts.idKey, siblingIndex);
+    children.forEach(row => {
+      const id = rowIds.get(row) as ListRowId;
       result.push(annotateRow(row, id, parentId, depth));
       visit(String(id), depth + 1, id);
     });
@@ -132,12 +140,16 @@ function annotateRow(
   };
 }
 
-export function resolveRowId(row: Record<string, unknown>, idKey: string, fallbackIndex: number): ListRowId {
+export function resolveRowId(
+  row: Record<string, unknown>,
+  idKey: string,
+  fallback: number | (() => ListRowId)
+): ListRowId {
   const value = row[idKey];
   if (typeof value === 'string' || typeof value === 'number') {
     return value;
   }
-  return fallbackIndex;
+  return typeof fallback === 'function' ? fallback() : fallback;
 }
 
 export function getListRowDepth(row: Record<string, unknown> | null | undefined): number {

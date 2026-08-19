@@ -59,6 +59,32 @@ describe('list-nest.utils', () => {
       expect(rows.map(row => row.id)).toEqual(['a', 'c', 'd', 'b']);
       expect(rows.map(row => row[LIST_DEPTH_KEY])).toEqual([0, 1, 2, 0]);
     });
+
+    it('assigns unique fallback ids when nested rows omit id', () => {
+      const rows = flattenListDataSource([
+        {
+          name: 'Root A',
+          children: [{ name: 'Child A1' }, { name: 'Child A2' }]
+        },
+        {
+          name: 'Root B',
+          children: [{ name: 'Child B1' }]
+        }
+      ]);
+
+      const ids = rows.map(row => row[LIST_ID_KEY]);
+      expect(ids).toEqual(['__list-0', '__list-1', '__list-2', '__list-3', '__list-4']);
+      expect(new Set(ids).size).toBe(ids.length);
+      expect(rows.map(row => row[LIST_PARENT_ID_KEY])).toEqual([null, '__list-0', '__list-0', null, '__list-3']);
+    });
+
+    it('assigns unique fallback ids for parentId rows that omit id', () => {
+      const rows = flattenListDataSource([{ name: 'Root' }, { name: 'Child', parentId: 'missing' }, { name: 'Other' }]);
+
+      const ids = rows.map(row => row[LIST_ID_KEY]);
+      expect(new Set(ids).size).toBe(ids.length);
+      expect(ids.every(id => typeof id === 'string' && String(id).startsWith('__list-'))).toBe(true);
+    });
   });
 
   describe('row helpers', () => {
