@@ -85,6 +85,26 @@ describe('list-nest.utils', () => {
       expect(new Set(ids).size).toBe(ids.length);
       expect(ids.every(id => typeof id === 'string' && String(id).startsWith('__list-'))).toBe(true);
     });
+
+    it('breaks parentId cycles without dropping rows or overflowing', () => {
+      const cyclic = flattenListDataSource([
+        { id: 'a', name: 'A', parentId: 'b' },
+        { id: 'b', name: 'B', parentId: 'a' }
+      ]);
+
+      expect(cyclic.map(row => row.id)).toEqual(['a', 'b']);
+      expect(cyclic.map(row => row[LIST_DEPTH_KEY])).toEqual([0, 1]);
+
+      const mixed = flattenListDataSource([
+        { id: 'root', name: 'Root' },
+        { id: 'child', name: 'Child', parentId: 'root' },
+        { id: 'x', name: 'X', parentId: 'y' },
+        { id: 'y', name: 'Y', parentId: 'x' }
+      ]);
+
+      expect(mixed.map(row => row.id)).toEqual(['root', 'child', 'x', 'y']);
+      expect(mixed.map(row => row[LIST_DEPTH_KEY])).toEqual([0, 1, 0, 1]);
+    });
   });
 
   describe('row helpers', () => {

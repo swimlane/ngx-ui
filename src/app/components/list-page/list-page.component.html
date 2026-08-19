@@ -1290,7 +1290,7 @@
       { id: 'ransomware', type: 'Ransomware', date: '4/6/2025', origin: 'North Korea' }
     ];
 
-    cascadeSelectedIds = ['persistence', 'privilege', 'lateral', 'staging', 'transfer'];
+    cascadeSelectedIds = ['persistence', 'privilege', 'staging', 'transfer'];
     rowStatus = ListRowStatus.Error;
 
     onCascadeSelectionChange(event: ListSelectionEvent) {
@@ -1465,9 +1465,9 @@
   nestedColumnLayout = { gridTemplateColumns: '16rem 1fr' };
 
   largeNestedData = [
-    { id: 'pkg', name: 'Export Package', type: 'Package' },
-    { id: 'sol-a', name: 'SOC Solution', type: 'Solution', parentId: 'pkg' },
-    { id: 'app-a', name: 'Alerts App', type: 'Application', parentId: 'sol-a' }
+    { id: 'sol-0', name: 'Solution 0', type: 'Solution' },
+    { id: 'sol-0-app-0', name: 'Application 0.0', type: 'Application', parentId: 'sol-0' },
+    { id: 'sol-0-app-0-pb', name: 'Playbook 0.0', type: 'Playbook', parentId: 'sol-0-app-0' }
   ];
 ]]>
           </app-prism>

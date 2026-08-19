@@ -28,7 +28,7 @@ export class ListPageComponent {
     { id: 'ransomware', type: 'Ransomware', date: '4/6/2025', origin: 'North Korea' }
   ];
 
-  cascadeSelectedIds: ListRowId[] = ['persistence', 'privilege', 'lateral', 'staging', 'transfer'];
+  cascadeSelectedIds: ListRowId[] = ['persistence', 'privilege', 'staging', 'transfer'];
 
   alignedCascadeColumnLayout: Partial<CSSStyleDeclaration> = {
     gridTemplateColumns: '16rem 1fr 1fr'
@@ -81,7 +81,7 @@ export class ListPageComponent {
     gridTemplateColumns: '2fr 1fr 1fr 1fr'
   };
 
-  parentIdSelectedIds: ListRowId[] = ['pkg', 'sol-a'];
+  parentIdSelectedIds: ListRowId[] = ['sol-0', 'sol-0-app-0'];
 
   nestedColumnLayout: Partial<CSSStyleDeclaration> = {
     gridTemplateColumns: '16rem 1fr'

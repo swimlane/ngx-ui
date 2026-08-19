@@ -113,16 +113,36 @@ function flattenParentLinkedRows(
   });
 
   const result: Array<Record<string, unknown>> = [];
+  const visited = new Set<string>();
+
   const visit = (parentKey: string, depth: number, parentId: ListRowId | null): void => {
     const children = byParent.get(parentKey) ?? [];
     children.forEach(row => {
       const id = rowIds.get(row) as ListRowId;
+      const idKey = String(id);
+      if (visited.has(idKey)) {
+        return;
+      }
+      visited.add(idKey);
       result.push(annotateRow(row, id, parentId, depth));
-      visit(String(id), depth + 1, id);
+      visit(idKey, depth + 1, id);
     });
   };
 
   visit('', 0, null);
+
+  // Cycles with no true root never enter visit(''). Promote remaining rows as roots.
+  rows.forEach(row => {
+    const id = rowIds.get(row) as ListRowId;
+    const idKey = String(id);
+    if (visited.has(idKey)) {
+      return;
+    }
+    visited.add(idKey);
+    result.push(annotateRow(row, id, null, 0));
+    visit(idKey, 1, id);
+  });
+
   return result;
 }
 
