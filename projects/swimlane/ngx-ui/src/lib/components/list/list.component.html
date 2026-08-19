@@ -19,7 +19,7 @@
 <hr />
 @if (virtualScroll) {
   <cdk-virtual-scroll-viewport #virtualScrollViewport [style.height.px]="height" [itemSize]="rowHeight">
-    <div *cdkVirtualFor="let data of displayDataSource; track data; index as i">
+    <div *cdkVirtualFor="let data of displayDataSource; trackBy: trackRowBy; index as i">
       <ng-container
         *ngComponentOutlet="
           rowComponent;
@@ -46,7 +46,7 @@
   </cdk-virtual-scroll-viewport>
 } @else {
   <div #listRowsContainer [style.height.px]="height" class="ngx-list__rows-container">
-    @for (data of displayDataSource; track data; let idx = $index) {
+    @for (data of displayDataSource; track trackRowBy($index, data); let idx = $index) {
       <ng-container
         *ngComponentOutlet="
           rowComponent;

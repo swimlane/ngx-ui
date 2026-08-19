@@ -258,6 +258,10 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnChanges
     return this.selectable && data?.selectable !== false;
   };
 
+  trackRowBy = (index: number, data: Record<string, unknown>): ListRowId => {
+    return getListRowId(data, index);
+  };
+
   isRowSelected = (data: Record<string, unknown>, index: number): boolean => {
     return this.selectedIdSet.has(getListRowId(data, index));
   };

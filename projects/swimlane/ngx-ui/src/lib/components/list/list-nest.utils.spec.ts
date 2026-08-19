@@ -73,9 +73,17 @@ describe('list-nest.utils', () => {
       ]);
 
       const ids = rows.map(row => row[LIST_ID_KEY]);
-      expect(ids).toEqual(['__list-0', '__list-1', '__list-2', '__list-3', '__list-4']);
       expect(new Set(ids).size).toBe(ids.length);
-      expect(rows.map(row => row[LIST_PARENT_ID_KEY])).toEqual([null, '__list-0', '__list-0', null, '__list-3']);
+      expect(ids.every(id => typeof id === 'string' && String(id).startsWith('__list-'))).toBe(true);
+      expect(rows.map(row => row[LIST_PARENT_ID_KEY])).toEqual([null, ids[0], ids[0], null, ids[3]]);
+    });
+
+    it('keeps the same fallback id when the same source row is flattened again', () => {
+      const root = { name: 'Root', children: [{ name: 'Child' }] };
+      const first = flattenListDataSource([root]);
+      const second = flattenListDataSource([root]);
+
+      expect(second.map(row => row[LIST_ID_KEY])).toEqual(first.map(row => row[LIST_ID_KEY]));
     });
 
     it('assigns unique fallback ids for parentId rows that omit id', () => {
