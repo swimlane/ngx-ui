@@ -1,38 +1,96 @@
-<div
-  [ngStyle]="_columnLayout"
-  class="ngx-list__headers-container"
-  [class.ngx-list__headers-container__scrollable]="hasScrollbar"
->
-  @for (header of headers; track header) {
-  <ng-container
-    *ngComponentOutlet="
-      headerComponent;
-      inputs: { header: header, sortDir: getSortDirection(header), onHeaderSort: onHeaderSort }
-    "
-  ></ng-container>
-  }
-</div>
+@if (selectable) {
+  <div class="ngx-list__headers-wrapper">
+    @if (showSelectAll) {
+      <ngx-checkbox
+        class="ngx-list__select-all"
+        [checked]="allRowsSelected"
+        [indeterminate]="someRowsSelected"
+        (checkedChange)="onSelectAllChange($event)"
+        aria-label="Select all rows"
+      ></ngx-checkbox>
+    } @else {
+      <span class="ngx-list__select-all-spacer" aria-hidden="true"></span>
+    }
+    <ng-container *ngTemplateOutlet="headersTemplate"></ng-container>
+  </div>
+} @else {
+  <ng-container *ngTemplateOutlet="headersTemplate"></ng-container>
+}
 <hr />
 @if (virtualScroll) {
-<cdk-virtual-scroll-viewport #virtualScrollViewport [style.height.px]="height" [itemSize]="rowHeight">
-  <div *cdkVirtualFor="let data of displayDataSource; track: data; index as i">
-    <ng-container
-      *ngComponentOutlet="
-        rowComponent;
-        inputs: { columnLayout: _columnLayout, columns, data, row, rowHeight, index: i, status: row.status }
-      "
-    ></ng-container>
-  </div>
-</cdk-virtual-scroll-viewport>
+  <cdk-virtual-scroll-viewport #virtualScrollViewport [style.height.px]="height" [itemSize]="rowHeight">
+    <div *cdkVirtualFor="let data of displayDataSource; track data; index as i">
+      <ng-container
+        *ngComponentOutlet="
+          rowComponent;
+          inputs: {
+            columnLayout: _columnLayout,
+            columns,
+            data,
+            row,
+            rowHeight,
+            index: i,
+            status: row.status,
+            nestIndent,
+            indentColumn,
+            nested: isNested,
+            nestMode,
+            selectable: isRowSelectable(data),
+            selected: isRowSelected(data, i),
+            onCheckedChange: onRowCheckedChange
+          }
+        "
+      ></ng-container>
+    </div>
+  </cdk-virtual-scroll-viewport>
 } @else {
-<div #listRowsContainer [style.height.px]="height" class="ngx-list__rows-container">
-  @for (data of displayDataSource; track data; let idx = $index) {
-  <ng-container
-    *ngComponentOutlet="
-      rowComponent;
-      inputs: { columnLayout: _columnLayout, columns, data, row, rowHeight, index: idx, status: row.status }
-    "
-  ></ng-container>
-  }
-</div>
+  <div #listRowsContainer [style.height.px]="height" class="ngx-list__rows-container">
+    @for (data of displayDataSource; track data; let idx = $index) {
+      <ng-container
+        *ngComponentOutlet="
+          rowComponent;
+          inputs: {
+            columnLayout: _columnLayout,
+            columns,
+            data,
+            row,
+            rowHeight,
+            index: idx,
+            status: row.status,
+            nestIndent,
+            indentColumn,
+            nested: isNested,
+            nestMode,
+            selectable: isRowSelectable(data),
+            selected: isRowSelected(data, idx),
+            onCheckedChange: onRowCheckedChange
+          }
+        "
+      ></ng-container>
+    }
+  </div>
 }
+
+<ng-template #headersTemplate>
+  <div
+    [ngStyle]="_columnLayout"
+    class="ngx-list__headers-container"
+    [class.ngx-list__headers-container__scrollable]="hasScrollbar"
+    [style.paddingLeft]="headersPaddingLeft"
+    [style.marginRight]="headersMarginRight"
+  >
+    @for (header of headers; track header; let headerIndex = $index) {
+      <ng-container
+        *ngComponentOutlet="
+          headerComponent;
+          inputs: {
+            header: header,
+            sortDir: getSortDirection(header),
+            onHeaderSort: onHeaderSort,
+            align: getColumnAlign(headerIndex)
+          }
+        "
+      ></ng-container>
+    }
+  </div>
+</ng-template>

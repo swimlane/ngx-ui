@@ -2,7 +2,9 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import {
   defaultListSortComparator,
   parseListSortDate,
+  ListRowId,
   ListRowStatus,
+  ListSelectionEvent,
   ListSortEvent,
   ListSortPropDir
 } from '@swimlane/ngx-ui';
@@ -15,6 +17,110 @@ import {
   standalone: false
 })
 export class ListPageComponent {
+  cascadeData: Array<Record<string, unknown>> = [
+    { id: 'apt', type: 'APT campaign', date: '4/1/2025', origin: 'Unknown' },
+    { id: 'access', parentId: 'apt', type: 'Initial access', date: '4/1/2025', origin: 'Unknown' },
+    { id: 'persistence', parentId: 'access', type: 'Persistence', date: '4/2/2025', origin: 'Unknown' },
+    { id: 'privilege', parentId: 'persistence', type: 'Privilege escalation', date: '4/2/2025', origin: 'Unknown' },
+    { id: 'exfil', parentId: 'apt', type: 'Exfiltration plan', date: '4/4/2025', origin: 'Unknown' },
+    { id: 'staging', parentId: 'exfil', type: 'Staging', date: '4/4/2025', origin: 'Unknown' },
+    { id: 'transfer', parentId: 'staging', type: 'Data transfer', date: '4/5/2025', origin: 'Unknown' },
+    { id: 'ransomware', type: 'Ransomware', date: '4/6/2025', origin: 'North Korea' }
+  ];
+
+  cascadeSelectedIds: ListRowId[] = ['persistence', 'privilege', 'lateral', 'staging', 'transfer'];
+
+  alignedCascadeColumnLayout: Partial<CSSStyleDeclaration> = {
+    gridTemplateColumns: '16rem 1fr 1fr'
+  };
+
+  alignedCascadeSelectedIds: ListRowId[] = [];
+
+  alignmentData: Array<Record<string, unknown>> = [
+    {
+      id: 'sol-1',
+      name: 'Incident Response',
+      type: 'Solution',
+      owner: 'SOC Team',
+      updated: '4/1/2025',
+      children: [
+        {
+          id: 'app-1',
+          name: 'Phishing Cases',
+          type: 'Application',
+          owner: 'SOC Team',
+          updated: '4/2/2025',
+          children: [
+            { id: 'pb-1', name: 'Triage Playbook', type: 'Playbook', owner: 'A. Khan', updated: '4/3/2025' },
+            { id: 'pb-2', name: 'Enrichment Playbook', type: 'Playbook', owner: 'A. Khan', updated: '4/3/2025' }
+          ]
+        },
+        {
+          id: 'app-2',
+          name: 'Malware Cases',
+          type: 'Application',
+          owner: 'IR Team',
+          updated: '4/4/2025',
+          children: [
+            { id: 'comp-1', name: 'Sandbox Connector', type: 'Component', owner: 'IR Team', updated: '4/5/2025' }
+          ]
+        }
+      ]
+    },
+    {
+      id: 'sol-2',
+      name: 'Vulnerability Mgmt',
+      type: 'Solution',
+      owner: 'VM Team',
+      updated: '4/6/2025',
+      children: [{ id: 'app-3', name: 'CVE Tracker', type: 'Application', owner: 'VM Team', updated: '4/7/2025' }]
+    }
+  ];
+
+  alignmentColumnLayout: Partial<CSSStyleDeclaration> = {
+    gridTemplateColumns: '2fr 1fr 1fr 1fr'
+  };
+
+  nestedTreeData: Array<Record<string, unknown>> = [
+    {
+      id: 'sol-1',
+      name: 'Incident Response',
+      type: 'Solution',
+      children: [
+        {
+          id: 'app-1',
+          name: 'Phishing Cases',
+          type: 'Application',
+          children: [
+            { id: 'pb-1', name: 'Triage Playbook', type: 'Playbook' },
+            { id: 'pb-2', name: 'Enrichment Playbook', type: 'Playbook', disabled: true }
+          ]
+        },
+        {
+          id: 'app-2',
+          name: 'Malware Cases',
+          type: 'Application',
+          children: [{ id: 'comp-1', name: 'Sandbox Connector', type: 'Component' }]
+        }
+      ]
+    },
+    {
+      id: 'sol-2',
+      name: 'Vulnerability Mgmt',
+      type: 'Solution',
+      children: [{ id: 'app-3', name: 'CVE Tracker', type: 'Application' }]
+    }
+  ];
+
+  nestedSelectedIds: ListRowId[] = ['sol-1', 'app-1', 'pb-1'];
+  parentIdSelectedIds: ListRowId[] = ['pkg', 'sol-a'];
+
+  nestedColumnLayout: Partial<CSSStyleDeclaration> = {
+    gridTemplateColumns: '16rem 1fr'
+  };
+
+  largeNestedData = this.buildLargeNestedData();
+
   data: Array<Record<string, unknown>> = [
     {
       type: 'Malware',
@@ -196,7 +302,58 @@ export class ListPageComponent {
     console.log('NON-VIRTUALIZED EXAMPLE PAGE NUMBER: ', event);
   }
 
+  onNestedSelectionChange(event: ListSelectionEvent): void {
+    console.log('NESTED SELECTION CHANGE: ', event);
+  }
+
+  onCascadeSelectionChange(event: ListSelectionEvent): void {
+    if (!event.row) {
+      this.cascadeSelectedIds = event.selectedIds;
+      return;
+    }
+
+    const next = new Set(event.selectedIds);
+    for (const id of this.getDescendantIds(event.row['id'] as ListRowId)) {
+      if (event.selected) {
+        next.add(id);
+      } else {
+        next.delete(id);
+      }
+    }
+
+    this.cascadeSelectedIds = Array.from(next);
+  }
+
+  onAlignedCascadeSelectionChange(event: ListSelectionEvent): void {
+    this.alignedCascadeSelectedIds = event.selectedIds;
+  }
+
   scrollTo(id: string) {
     (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  private getDescendantIds(parentId: ListRowId): ListRowId[] {
+    const direct = this.cascadeData.filter(row => row['parentId'] === parentId).map(row => row['id'] as ListRowId);
+
+    return direct.flatMap(id => [id, ...this.getDescendantIds(id)]);
+  }
+
+  private buildLargeNestedData(): Array<Record<string, unknown>> {
+    const rows: Array<Record<string, unknown>> = [];
+    for (let i = 0; i < 40; i++) {
+      const solutionId = `sol-${i}`;
+      rows.push({ id: solutionId, name: `Solution ${i}`, type: 'Solution' });
+      for (let j = 0; j < 3; j++) {
+        const appId = `${solutionId}-app-${j}`;
+        rows.push({ id: appId, name: `Application ${i}.${j}`, type: 'Application', parentId: solutionId });
+        rows.push({
+          id: `${appId}-pb`,
+          name: `Playbook ${i}.${j}`,
+          type: 'Playbook',
+          parentId: appId
+        });
+      }
+    }
+    return rows;
   }
 }

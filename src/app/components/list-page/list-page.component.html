@@ -125,6 +125,7 @@
         </ngx-tab>
       </ngx-tabs>
     </ngx-section>
+
     <ngx-section class="shadow" sectionTitle="Custom Column Layout">
       <ngx-list [dataSource]="data" [columnLayout]="columnLayout">
         <ngx-list-header>
@@ -1189,6 +1190,403 @@
         </ngx-tab>
       </ngx-tabs>
     </ngx-section>
+    <ngx-section class="shadow" sectionTitle="Nested Selectable Rows (Cascade Outside List)">
+      <p>
+        Rows are related through <code>parentId</code> (or nested <code>children</code>). The list flattens them and
+        steps each row card in by depth, so nesting reads as a tree. Because the card also narrows as it steps, the list
+        offsets the header row to a mid-depth position, which lands every header on the centre of its own column's
+        values. Cascading a parent's selection to its descendants is host logic driven by
+        <code>onSelectionChange</code>.
+      </p>
+      <ngx-list
+        [dataSource]="cascadeData"
+        [selectable]="true"
+        [selectedIds]="cascadeSelectedIds"
+        [height]="300"
+        (onSelectionChange)="onCascadeSelectionChange($event)"
+      >
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Attack Type</ng-template>
+        </ngx-list-header>
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Date of Attack</ng-template>
+        </ngx-list-header>
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Origin of Attack</ng-template>
+        </ngx-list-header>
+
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.date }}</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.origin }}</ng-template>
+        </ngx-list-column>
+
+        <ngx-list-row [status]="rowStatus"></ngx-list-row>
+      </ngx-list>
+      <p>Selected: {{ cascadeSelectedIds | json }}</p>
+
+      <br />
+      <br />
+
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <!-- prettier-ignore -->
+          <app-prism ngNonBindable>
+  <![CDATA[
+  <ngx-list
+    [dataSource]="cascadeData"
+    [selectable]="true"
+    [selectedIds]="cascadeSelectedIds"
+    [height]="300"
+    (onSelectionChange)="onCascadeSelectionChange($event)"
+  >
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Attack Type</ng-template>
+    </ngx-list-header>
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Date of Attack</ng-template>
+    </ngx-list-header>
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Origin of Attack</ng-template>
+    </ngx-list-header>
+
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
+    </ngx-list-column>
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.date }}</ng-template>
+    </ngx-list-column>
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.origin }}</ng-template>
+    </ngx-list-column>
+
+    <ngx-list-row [status]="rowStatus"></ngx-list-row>
+  </ngx-list>
+  ]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <!-- prettier-ignore -->
+          <app-prism language="js">
+<![CDATA[import { ListRowStatus, ListSelectionEvent } from '@swimlane/ngx-ui';
+
+  @Component({
+    selector: 'app',
+    templateUrl: './app.template.html'
+  })
+  export class AppComponent {
+    cascadeData = [
+      { id: 'apt', type: 'APT campaign', date: '4/1/2025', origin: 'Unknown' },
+      { id: 'access', parentId: 'apt', type: 'Initial access', date: '4/1/2025', origin: 'Unknown' },
+      { id: 'persistence', parentId: 'access', type: 'Persistence', date: '4/2/2025', origin: 'Unknown' },
+      { id: 'privilege', parentId: 'persistence', type: 'Privilege escalation', date: '4/2/2025', origin: 'Unknown' },
+      { id: 'exfil', parentId: 'apt', type: 'Exfiltration plan', date: '4/4/2025', origin: 'Unknown' },
+      { id: 'staging', parentId: 'exfil', type: 'Staging', date: '4/4/2025', origin: 'Unknown' },
+      { id: 'transfer', parentId: 'staging', type: 'Data transfer', date: '4/5/2025', origin: 'Unknown' },
+      { id: 'ransomware', type: 'Ransomware', date: '4/6/2025', origin: 'North Korea' }
+    ];
+
+    cascadeSelectedIds = ['persistence', 'privilege', 'lateral', 'staging', 'transfer'];
+    rowStatus = ListRowStatus.Error;
+
+    onCascadeSelectionChange(event: ListSelectionEvent) {
+      if (!event.row) {
+        this.cascadeSelectedIds = event.selectedIds;
+        return;
+      }
+
+      const next = new Set(event.selectedIds);
+      for (const id of this.getDescendantIds(event.row.id)) {
+        event.selected ? next.add(id) : next.delete(id);
+      }
+      this.cascadeSelectedIds = Array.from(next);
+    }
+
+    private getDescendantIds(parentId) {
+      const direct = this.cascadeData.filter(row => row.parentId === parentId).map(row => row.id);
+      return direct.flatMap(id => [id, ...this.getDescendantIds(id)]);
+    }
+  }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    </ngx-section>
+
+    <ngx-section class="shadow" sectionTitle="Nested Selectable Rows (Aligned Columns)">
+      <p>
+        The same nesting with <code>nestMode="aligned"</code>. The card still steps in by depth, but the first column's
+        track gives back exactly what the indent took, so every other column holds one fixed position at every depth.
+        Because the values no longer drift, the headers stay plainly left aligned instead of being centered. This mode
+        needs the first track of <code>columnLayout</code> to be a fixed length so it has room to give back.
+      </p>
+      <ngx-list
+        [dataSource]="cascadeData"
+        [columnLayout]="alignedCascadeColumnLayout"
+        nestMode="aligned"
+        [selectable]="true"
+        [selectedIds]="alignedCascadeSelectedIds"
+        [height]="320"
+        (onSelectionChange)="onAlignedCascadeSelectionChange($event)"
+      >
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Attack Type</ng-template>
+        </ngx-list-header>
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Date of Attack</ng-template>
+        </ngx-list-header>
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Origin of Attack</ng-template>
+        </ngx-list-header>
+
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.date }}</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.origin }}</ng-template>
+        </ngx-list-column>
+
+        <ngx-list-row [status]="rowStatus"></ngx-list-row>
+      </ngx-list>
+
+      <br />
+
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <!-- prettier-ignore -->
+          <app-prism ngNonBindable>
+  <![CDATA[
+  <ngx-list
+    [dataSource]="cascadeData"
+    [columnLayout]="alignedCascadeColumnLayout"
+    nestMode="aligned"
+    [selectable]="true"
+    [selectedIds]="alignedCascadeSelectedIds"
+    [height]="320"
+    (onSelectionChange)="onAlignedCascadeSelectionChange($event)"
+  >
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Attack Type</ng-template>
+    </ngx-list-header>
+    <!-- ...remaining headers... -->
+
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
+    </ngx-list-column>
+    <!-- ...remaining columns... -->
+
+    <ngx-list-row></ngx-list-row>
+  </ngx-list>
+  ]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <!-- prettier-ignore -->
+          <app-prism language="js">
+<![CDATA[alignedCascadeColumnLayout = { gridTemplateColumns: '16rem 1fr 1fr' };
+
+  cascadeData = [
+    { id: 'apt', type: 'APT campaign', date: '4/1/2025', origin: 'Unknown' },
+    { id: 'access', parentId: 'apt', type: 'Initial access', date: '4/1/2025', origin: 'Unknown' },
+    { id: 'persistence', parentId: 'access', type: 'Persistence', date: '4/2/2025', origin: 'Unknown' }
+  ];]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    </ngx-section>
+
+    <ngx-section class="shadow" sectionTitle="Nested Selectable List (parentId + virtual scroll)">
+      <p>
+        Flat <code>parentId</code> input (preferred for large export trees). Nesting is indent-only so CDK virtual
+        scroll keeps a fixed row height. This tree uses <code>nestMode="aligned"</code>, so only Name steps with depth
+        while Type holds one position and both headers stay left aligned.
+      </p>
+      <ngx-list
+        [dataSource]="largeNestedData"
+        [columnLayout]="nestedColumnLayout"
+        nestMode="aligned"
+        [selectable]="true"
+        [(selectedIds)]="parentIdSelectedIds"
+        [height]="360"
+        [virtualScroll]="true"
+        [rowHeight]="40"
+        (onSelectionChange)="onNestedSelectionChange($event)"
+      >
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Name</ng-template>
+        </ngx-list-header>
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Type</ng-template>
+        </ngx-list-header>
+
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.name }}</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
+        </ngx-list-column>
+
+        <ngx-list-row></ngx-list-row>
+      </ngx-list>
+      <p>Selected count: {{ parentIdSelectedIds.length }}</p>
+
+      <br />
+      <br />
+
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <!-- prettier-ignore -->
+          <app-prism ngNonBindable>
+  <![CDATA[
+  <ngx-list
+    [dataSource]="largeNestedData"
+    [columnLayout]="nestedColumnLayout"
+    nestMode="aligned"
+    [selectable]="true"
+    [(selectedIds)]="parentIdSelectedIds"
+    [height]="360"
+    [virtualScroll]="true"
+  >
+    ...
+  </ngx-list>
+  ]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <!-- prettier-ignore -->
+          <app-prism language="js">
+<![CDATA[
+  nestedColumnLayout = { gridTemplateColumns: '16rem 1fr' };
+
+  largeNestedData = [
+    { id: 'pkg', name: 'Export Package', type: 'Package' },
+    { id: 'sol-a', name: 'SOC Solution', type: 'Solution', parentId: 'pkg' },
+    { id: 'app-a', name: 'Alerts App', type: 'Application', parentId: 'sol-a' }
+  ];
+]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    </ngx-section>
+
+    <ngx-section class="shadow" sectionTitle="Nested Rows with Centered Headers (3 levels)">
+      <p>
+        The list detects that this data has children and switches on its nested layout: each row card steps in by depth
+        and narrows by the same amount, so the tree column (Name) marches right while columns further along drift only
+        slightly. The component then offsets the header row to a mid-depth position and centers the data columns, so
+        each header sits over the centre of its own values. Flat lists are untouched — they keep their left-aligned
+        headers (and any per-column <code>align</code>).
+      </p>
+      <ngx-list [dataSource]="alignmentData" [columnLayout]="alignmentColumnLayout" [selectable]="true">
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Name</ng-template>
+        </ngx-list-header>
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Type</ng-template>
+        </ngx-list-header>
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Owner</ng-template>
+        </ngx-list-header>
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Updated</ng-template>
+        </ngx-list-header>
+
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.name }}</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.owner }}</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.updated }}</ng-template>
+        </ngx-list-column>
+
+        <ngx-list-row></ngx-list-row>
+      </ngx-list>
+
+      <br />
+      <br />
+
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <!-- prettier-ignore -->
+          <app-prism ngNonBindable>
+  <![CDATA[
+  <ngx-list [dataSource]="alignmentData" [columnLayout]="alignmentColumnLayout" [selectable]="true">
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Name</ng-template>
+    </ngx-list-header>
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Type</ng-template>
+    </ngx-list-header>
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Owner</ng-template>
+    </ngx-list-header>
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Updated</ng-template>
+    </ngx-list-header>
+
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.name }}</ng-template>
+    </ngx-list-column>
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
+    </ngx-list-column>
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.owner }}</ng-template>
+    </ngx-list-column>
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.updated }}</ng-template>
+    </ngx-list-column>
+
+    <ngx-list-row></ngx-list-row>
+  </ngx-list>
+  ]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <!-- prettier-ignore -->
+          <app-prism language="js">
+<![CDATA[
+  // Three levels: Solution > Application > Playbook
+  alignmentData = [
+    {
+      id: 'sol-1',
+      name: 'Incident Response',
+      type: 'Solution',
+      owner: 'SOC Team',
+      updated: '4/1/2025',
+      children: [
+        {
+          id: 'app-1',
+          name: 'Phishing Cases',
+          type: 'Application',
+          owner: 'SOC Team',
+          updated: '4/2/2025',
+          children: [
+            { id: 'pb-1', name: 'Triage Playbook', type: 'Playbook', owner: 'A. Khan', updated: '4/3/2025' },
+            { id: 'pb-2', name: 'Enrichment Playbook', type: 'Playbook', owner: 'A. Khan', updated: '4/3/2025' }
+          ]
+        }
+      ]
+    }
+  ];
+
+  alignmentColumnLayout = { gridTemplateColumns: '2fr 1fr 1fr 1fr' };
+]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    </ngx-section>
   </ngx-tab>
   <ngx-tab label="API">
     <h3>Table of Contents</h3>
@@ -1283,6 +1681,60 @@
           </th>
           <td>Whether virtual scrolling is enabled.</td>
         </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>selectable: boolean = false</code>
+          </th>
+          <td>
+            When <code>true</code>, rows render a built-in checkbox. Individual rows can opt out with
+            <code>selectable: false</code> or <code>disabled: true</code> on the row model. Selection state is owned by
+            the host via <code>selectedIds</code>.
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>selectedIds: Array&lt;string | number&gt; = []</code>
+          </th>
+          <td>Host-controlled selected row ids. Supports two-way binding with <code>selectedIdsChange</code>.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>nestIndent: number = 20</code>
+          </th>
+          <td>
+            Left indentation (px) applied per nesting depth after the list flattens <code>children</code> or
+            <code>parentId</code> relationships. Each row card is stepped in by <code>depth * nestIndent</code> and
+            narrowed by the same amount. When child rows are present the list treats itself as nested, offsets the
+            header row by half the deepest indent, and centers each data column's header and cells together.
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>indentColumn: number = 0</code>
+          </th>
+          <td>
+            Index of the tree column. On a <code>stagger</code> nested list this column stays left aligned so its
+            stepped values read as a tree, while the remaining data columns are centered.
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>nestMode: 'stagger' | 'aligned' = 'stagger'</code>
+          </th>
+          <td>
+            How depth is rendered. <code>stagger</code> steps the whole card in, letting every column drift a little,
+            and centers each header over its column's values to compensate. <code>aligned</code> steps the card in but
+            has the first column's track absorb the indent, so every other column keeps one fixed position and the
+            headers stay left aligned. <code>aligned</code> requires the first track of
+            <code>columnLayout.gridTemplateColumns</code> to be a fixed length; otherwise the track is left alone and
+            the columns drift.
+          </td>
+        </tr>
       </tbody>
     </table>
     <hr />
@@ -1322,6 +1774,23 @@
           </th>
           <td>
             Event emitted when a sortable header is clicked. The payload includes the next <code>sort</code> state.
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Output()</code>
+            <code>selectedIdsChange: EventEmitter&lt;Array&lt;string | number&gt;&gt;</code>
+          </th>
+          <td>Emitted when selection changes; use with <code>[(selectedIds)]</code> two-way binding.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Output()</code>
+            <code>onSelectionChange: EventEmitter&lt;ListSelectionEvent&gt;</code>
+          </th>
+          <td>
+            Emitted when a row checkbox is toggled. Includes the full <code>selectedIds</code> set plus the changed
+            <code>row</code> and its new <code>selected</code> state.
           </td>
         </tr>
       </tbody>
@@ -1402,7 +1871,26 @@
     <hr />
 
     <h3 class="style-header" id="ngx-list-column-inputs">ngx-list-column Inputs</h3>
-    <h4>No component inputs to display.</h4>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>align: 'left' | 'center' | 'right' = 'left'</code>
+          </th>
+          <td>
+            Horizontal alignment for this column's cells. On a flat list the list mirrors it onto the matching header;
+            on a nested list the component centers the headers itself, so this controls the cell values only.
+          </td>
+        </tr>
+      </tbody>
+    </table>
     <hr />
     <h3 class="style-header" id="ngx-list-column-outputs">ngx-list-column Outputs</h3>
     <h4>No component outputs to display.</h4>

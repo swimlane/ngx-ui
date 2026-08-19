@@ -7,6 +7,7 @@ import { ListColumnTemplateDirective } from './list-column/list-column-template.
 import { ListHeaderComponent } from './list-header/list-header.component';
 import { ListHeaderTemplateDirective } from './list-header/list-header-template.directive';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { CheckboxModule } from '../checkbox/checkbox.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     ListHeaderTemplateDirective,
     ListColumnTemplateDirective
   ],
-  imports: [CommonModule, ScrollingModule],
+  imports: [CommonModule, ScrollingModule, CheckboxModule],
   exports: [
     ListComponent,
     ListRowComponent,

@@ -1,5 +1,36 @@
-<div [ngStyle]="columnLayout">
-  @for (column of columns; track column) {
-  <ng-container *ngComponentOutlet="columnComponent; inputs: { column, data, rowIndex: index }"></ng-container>
+@if (selectable) {
+  <div class="ngx-list-row__content">
+    <ngx-checkbox
+      class="ngx-list-row__checkbox"
+      [checked]="selected"
+      [disabled]="data?.disabled === true"
+      [attr.aria-label]="checkboxAriaLabel"
+      (checkedChange)="onCheckboxChange($event)"
+      (click)="$event.stopPropagation()"
+    ></ngx-checkbox>
+    <div class="ngx-list-row__columns" [ngStyle]="rowColumnLayout">
+      <ng-container *ngTemplateOutlet="columnsTemplate"></ng-container>
+    </div>
+  </div>
+} @else {
+  <div [ngStyle]="rowColumnLayout">
+    <ng-container *ngTemplateOutlet="columnsTemplate"></ng-container>
+  </div>
+}
+
+<ng-template #columnsTemplate>
+  @for (column of columns; track column; let columnIndex = $index) {
+    <ng-container
+      *ngComponentOutlet="
+        columnComponent;
+        inputs: {
+          column,
+          data,
+          rowIndex: index,
+          depth,
+          align: getCellAlign(columnIndex, column)
+        }
+      "
+    ></ng-container>
   }
-</div>
+</ng-template>
