@@ -100,7 +100,8 @@ function flattenTreeRows(
     const childRows = nestedRowChildren(row[opts.childrenKey]);
 
     if (childRows.length) {
-      const { [opts.childrenKey]: _children, ...rest } = row;
+      const rest = { ...row };
+      delete rest[opts.childrenKey];
       result.push(annotateRow(rest, id, parentId, depth));
       result.push(...flattenTreeRows(childRows, opts, depth + 1, id));
       return;
