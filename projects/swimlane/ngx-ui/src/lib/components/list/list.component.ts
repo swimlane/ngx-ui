@@ -57,6 +57,7 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnChanges
   @Input() selectable = false;
   @Input() showSelectAll = true;
   @Input() selectedIds: ListRowId[] = [];
+  @Input() indeterminateIds: ListRowId[] = [];
   @Input() nestIndent = 20;
   @Input() indentColumn = 0;
   @Input() nestMode: ListNestMode = 'stagger';
@@ -95,6 +96,7 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnChanges
   private destroy$ = new Subject<void>();
   private selectableIds: ListRowId[] = [];
   private selectedIdSet = new Set<ListRowId>();
+  private indeterminateIdSet = new Set<ListRowId>();
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['sort']) {
@@ -105,7 +107,7 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnChanges
       this.updateDisplayDataSource();
     }
 
-    if (changes['selectedIds'] || changes['selectable']) {
+    if (changes['selectedIds'] || changes['indeterminateIds'] || changes['selectable']) {
       this.refreshSelectionState();
     }
   }
@@ -270,6 +272,11 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnChanges
     return this.selectedIdSet.has(getListRowId(data, index));
   };
 
+  isRowIndeterminate = (data: Record<string, unknown>, index: number): boolean => {
+    const id = getListRowId(data, index);
+    return !this.selectedIdSet.has(id) && this.indeterminateIdSet.has(id);
+  };
+
   onRowCheckedChange = (data: Record<string, unknown>, index: number, selected: boolean): void => {
     if (!this.isRowSelectable(data) || data?.disabled === true) {
       return;
@@ -311,6 +318,7 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnChanges
 
   private refreshSelectionState(): void {
     this.selectedIdSet = new Set(this.selectedIds ?? []);
+    this.indeterminateIdSet = new Set(this.indeterminateIds ?? []);
 
     const total = this.selectableIds.length;
     let selectedCount = 0;

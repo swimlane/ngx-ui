@@ -1202,6 +1202,7 @@
         [dataSource]="cascadeData"
         [selectable]="true"
         [selectedIds]="cascadeSelectedIds"
+        [indeterminateIds]="cascadeIndeterminateIds"
         [height]="300"
         (onSelectionChange)="onCascadeSelectionChange($event)"
       >
@@ -1247,6 +1248,7 @@
     [dataSource]="cascadeData"
     [selectable]="true"
     [selectedIds]="cascadeSelectedIds"
+    [indeterminateIds]="cascadeIndeterminateIds"
     [height]="300"
     (onSelectionChange)="onCascadeSelectionChange($event)"
   >
@@ -1303,20 +1305,60 @@
       { id: 'encryption', parentId: 'ransomware', type: 'Encryption payload', date: '4/6/2025', origin: 'North Korea', severity: 'Critical' }
     ];
 
-    cascadeSelectedIds = ['persistence', 'privilege', 'staging', 'transfer'];
+    cascadeSelectedIds = ['persistence', 'staging', 'transfer'];
+    cascadeIndeterminateIds = [];
     rowStatus = ListRowStatus.Error;
 
+    constructor() {
+      this.syncCascadeState(new Set(this.cascadeSelectedIds));
+    }
+
     onCascadeSelectionChange(event: ListSelectionEvent) {
-      if (!event.row) {
-        this.cascadeSelectedIds = event.selectedIds;
-        return;
+      const next = new Set(event.selectedIds);
+
+      if (event.row) {
+        for (const id of this.getDescendantIds(event.row.id)) {
+          event.selected ? next.add(id) : next.delete(id);
+        }
       }
 
-      const next = new Set(event.selectedIds);
-      for (const id of this.getDescendantIds(event.row.id)) {
-        event.selected ? next.add(id) : next.delete(id);
+      this.syncCascadeState(next);
+    }
+
+    private syncCascadeState(selected) {
+      const indeterminate = new Set();
+
+      for (const id of this.getCascadeIdsDeepestFirst()) {
+        const descendants = this.getDescendantIds(id);
+        if (!descendants.length) {
+          continue;
+        }
+
+        const selectedCount = descendants.filter(descendantId => selected.has(descendantId)).length;
+        const hasPartialDescendant = descendants.some(descendantId => indeterminate.has(descendantId));
+
+        if (!hasPartialDescendant && selectedCount === descendants.length) {
+          selected.add(id);
+          continue;
+        }
+
+        selected.delete(id);
+        if (hasPartialDescendant || selectedCount > 0) {
+          indeterminate.add(id);
+        }
       }
-      this.cascadeSelectedIds = Array.from(next);
+
+      this.cascadeSelectedIds = Array.from(selected);
+      this.cascadeIndeterminateIds = Array.from(indeterminate);
+    }
+
+    private getCascadeIdsDeepestFirst() {
+      return this.cascadeData.map(row => row.id).sort((a, b) => this.getCascadeDepth(b) - this.getCascadeDepth(a));
+    }
+
+    private getCascadeDepth(id) {
+      const parentId = this.cascadeData.find(row => row.id === id)?.parentId;
+      return parentId === undefined ? 0 : this.getCascadeDepth(parentId) + 1;
     }
 
     private getDescendantIds(parentId) {
@@ -1717,6 +1759,16 @@
             <code>selectedIds: Array&lt;string | number&gt; = []</code>
           </th>
           <td>Host-controlled selected row ids. Supports two-way binding with <code>selectedIdsChange</code>.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>indeterminateIds: Array&lt;string | number&gt; = []</code>
+          </th>
+          <td>
+            Host-controlled row ids that render a mixed checkbox, typically a parent whose descendants are only partly
+            selected. An id listed in <code>selectedIds</code> renders as checked and ignores this list.
+          </td>
         </tr>
         <tr>
           <th>

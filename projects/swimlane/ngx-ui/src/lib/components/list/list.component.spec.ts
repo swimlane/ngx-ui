@@ -503,6 +503,34 @@ describe('ListComponent', () => {
       expect(component.someRowsSelected).toBe(true);
     });
 
+    it('marks host supplied rows indeterminate until they are selected outright', () => {
+      component.selectable = true;
+      component.selectedIds = ['child'];
+      component.indeterminateIds = ['parent'];
+      component.dataSource = [
+        { id: 'parent', name: 'Parent' },
+        { id: 'child', name: 'Child', parentId: 'parent' }
+      ];
+      component.ngAfterContentInit();
+
+      const [parent, child] = component.displayDataSource;
+
+      expect(component.isRowIndeterminate(parent, 0)).toBe(true);
+      expect(component.isRowSelected(parent, 0)).toBe(false);
+      expect(component.isRowIndeterminate(child, 1)).toBe(false);
+    });
+
+    it('drops the indeterminate state once a row becomes selected', () => {
+      component.selectable = true;
+      component.selectedIds = ['parent'];
+      component.indeterminateIds = ['parent'];
+      component.dataSource = [{ id: 'parent', name: 'Parent' }];
+      component.ngAfterContentInit();
+
+      expect(component.isRowSelected(component.displayDataSource[0], 0)).toBe(true);
+      expect(component.isRowIndeterminate(component.displayDataSource[0], 0)).toBe(false);
+    });
+
     it('emits host-owned selection changes when a selectable row is toggled', () => {
       component.selectable = true;
       component.selectedIds = [];

@@ -4,6 +4,7 @@
       <ngx-checkbox
         class="ngx-list-row__checkbox"
         [checked]="selected"
+        [indeterminate]="indeterminate"
         [disabled]="data?.disabled === true"
         [attr.aria-label]="checkboxAriaLabel"
         (checkedChange)="onCheckboxChange($event)"

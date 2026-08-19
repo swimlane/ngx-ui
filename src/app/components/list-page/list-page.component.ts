@@ -57,7 +57,8 @@ export class ListPageComponent {
     }
   ];
 
-  cascadeSelectedIds: ListRowId[] = ['persistence', 'privilege', 'staging', 'transfer'];
+  cascadeSelectedIds: ListRowId[] = ['persistence', 'staging', 'transfer'];
+  cascadeIndeterminateIds: ListRowId[] = [];
 
   alignedCascadeColumnLayout: Partial<CSSStyleDeclaration> = {
     gridTemplateColumns: '16rem 1fr 1fr 1fr'
@@ -117,6 +118,10 @@ export class ListPageComponent {
   };
 
   largeNestedData = this.buildLargeNestedData();
+
+  constructor() {
+    this.syncCascadeState(new Set(this.cascadeSelectedIds));
+  }
 
   data: Array<Record<string, unknown>> = [
     {
@@ -304,21 +309,19 @@ export class ListPageComponent {
   }
 
   onCascadeSelectionChange(event: ListSelectionEvent): void {
-    if (!event.row) {
-      this.cascadeSelectedIds = event.selectedIds;
-      return;
-    }
-
     const next = new Set(event.selectedIds);
-    for (const id of this.getDescendantIds(event.row['id'] as ListRowId)) {
-      if (event.selected) {
-        next.add(id);
-      } else {
-        next.delete(id);
+
+    if (event.row) {
+      for (const id of this.getDescendantIds(event.row['id'] as ListRowId)) {
+        if (event.selected) {
+          next.add(id);
+        } else {
+          next.delete(id);
+        }
       }
     }
 
-    this.cascadeSelectedIds = Array.from(next);
+    this.syncCascadeState(next);
   }
 
   onAlignedCascadeSelectionChange(event: ListSelectionEvent): void {
@@ -333,6 +336,45 @@ export class ListPageComponent {
     const direct = this.cascadeData.filter(row => row['parentId'] === parentId).map(row => row['id'] as ListRowId);
 
     return direct.flatMap(id => [id, ...this.getDescendantIds(id)]);
+  }
+
+  private syncCascadeState(selected: Set<ListRowId>): void {
+    const indeterminate = new Set<ListRowId>();
+
+    for (const id of this.getCascadeIdsDeepestFirst()) {
+      const descendants = this.getDescendantIds(id);
+      if (!descendants.length) {
+        continue;
+      }
+
+      const selectedCount = descendants.filter(descendantId => selected.has(descendantId)).length;
+      const hasPartialDescendant = descendants.some(descendantId => indeterminate.has(descendantId));
+
+      if (!hasPartialDescendant && selectedCount === descendants.length) {
+        selected.add(id);
+        continue;
+      }
+
+      selected.delete(id);
+      if (hasPartialDescendant || selectedCount > 0) {
+        indeterminate.add(id);
+      }
+    }
+
+    this.cascadeSelectedIds = Array.from(selected);
+    this.cascadeIndeterminateIds = Array.from(indeterminate);
+  }
+
+  private getCascadeIdsDeepestFirst(): ListRowId[] {
+    return this.cascadeData
+      .map(row => row['id'] as ListRowId)
+      .sort((a, b) => this.getCascadeDepth(b) - this.getCascadeDepth(a));
+  }
+
+  private getCascadeDepth(id: ListRowId): number {
+    const parentId = this.cascadeData.find(row => row['id'] === id)?.['parentId'] as ListRowId | undefined;
+
+    return parentId === undefined ? 0 : this.getCascadeDepth(parentId) + 1;
   }
 
   private buildLargeNestedData(): Array<Record<string, unknown>> {

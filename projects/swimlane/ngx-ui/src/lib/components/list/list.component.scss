@@ -5,7 +5,7 @@ ngx-list.ngx-list {
     &__headers-wrapper {
       align-items: center;
       display: flex;
-      gap: 1rem;
+      gap: var(--spacing-16);
       padding-left: 2rem;
 
       .ngx-list__headers-container {
@@ -32,7 +32,7 @@ ngx-list.ngx-list {
       margin-inline: 1rem;
 
       &__scrollable {
-        margin-right: 1.75rem;
+        margin-right: 1.75rem; // Account for scrollbar to maintain column header alignment
       }
     }
 

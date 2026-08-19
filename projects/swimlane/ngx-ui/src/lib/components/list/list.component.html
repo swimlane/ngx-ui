@@ -39,6 +39,7 @@
             selectable: isRowSelectable(data),
             selectionEnabled: selectable,
             selected: isRowSelected(data, i),
+            indeterminate: isRowIndeterminate(data, i),
             onCheckedChange: onRowCheckedChange
           }
         "
@@ -66,6 +67,7 @@
             selectable: isRowSelectable(data),
             selectionEnabled: selectable,
             selected: isRowSelected(data, idx),
+            indeterminate: isRowIndeterminate(data, idx),
             onCheckedChange: onRowCheckedChange
           }
         "

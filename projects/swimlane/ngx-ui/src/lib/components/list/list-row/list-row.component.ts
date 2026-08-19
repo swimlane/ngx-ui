@@ -40,6 +40,7 @@ export class ListRowComponent {
   @Input() selectable = false;
   @Input() selectionEnabled = false;
   @Input() selected = false;
+  @Input() indeterminate = false;
   @Input() onCheckedChange: (data: Record<string, unknown>, index: number, selected: boolean) => void;
 
   columnComponent = ListColumnComponent;
