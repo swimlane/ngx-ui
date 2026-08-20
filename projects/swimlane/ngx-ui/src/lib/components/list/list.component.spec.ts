@@ -7,11 +7,11 @@ import { of } from 'rxjs';
 describe('ListComponent', () => {
   let component: ListComponent;
   const mockScrollEvent = { target: { scrollTop: 0 } } as unknown as Event;
-  let listRowsScrollMetrics: { clientHeight: number; scrollHeight: number };
+  let listRowsScrollMetrics: { clientHeight: number; scrollHeight: number; offsetWidth: number; clientWidth: number };
 
   const createListRowsNativeElement = () => {
     const el = document.createElement('div');
-    listRowsScrollMetrics = { clientHeight: 400, scrollHeight: 0 };
+    listRowsScrollMetrics = { clientHeight: 400, scrollHeight: 0, offsetWidth: 500, clientWidth: 500 };
     Object.defineProperty(el, 'clientHeight', {
       configurable: true,
       get: () => listRowsScrollMetrics.clientHeight
@@ -19,6 +19,14 @@ describe('ListComponent', () => {
     Object.defineProperty(el, 'scrollHeight', {
       configurable: true,
       get: () => listRowsScrollMetrics.scrollHeight
+    });
+    Object.defineProperty(el, 'offsetWidth', {
+      configurable: true,
+      get: () => listRowsScrollMetrics.offsetWidth
+    });
+    Object.defineProperty(el, 'clientWidth', {
+      configurable: true,
+      get: () => listRowsScrollMetrics.clientWidth
     });
     el.scrollTo = vi.fn() as unknown as HTMLDivElement['scrollTo'];
     return el;
@@ -57,6 +65,81 @@ describe('ListComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  describe('getColumnAlign', () => {
+    beforeEach(() => {
+      component.columns = {
+        get: (index: number) => [{ align: 'left' }, { align: 'center' }, { align: 'right' }][index]
+      } as any;
+    });
+
+    it('mirrors each column alignment onto the header when the list is flat', () => {
+      component.isNested = false;
+
+      expect(component.getColumnAlign(0)).toBe('left');
+      expect(component.getColumnAlign(1)).toBe('center');
+      expect(component.getColumnAlign(2)).toBe('right');
+    });
+
+    it('centers data headers but keeps the tree column header left aligned when nested', () => {
+      component.isNested = true;
+      component.indentColumn = 1;
+
+      expect(component.getColumnAlign(0)).toBe('center');
+      expect(component.getColumnAlign(1)).toBe('left');
+      expect(component.getColumnAlign(2)).toBe('center');
+    });
+
+    it('leaves alignment to each column when nested rows keep their columns aligned', () => {
+      component.isNested = true;
+      component.nestMode = 'aligned';
+      component.indentColumn = 0;
+
+      expect(component.getColumnAlign(0)).toBe('left');
+      expect(component.getColumnAlign(1)).toBe('center');
+      expect(component.getColumnAlign(2)).toBe('right');
+    });
+
+    it('falls back to left when no column is declared at that index', () => {
+      component.isNested = false;
+      component.columns = { get: () => undefined } as any;
+
+      expect(component.getColumnAlign(5)).toBe('left');
+    });
+  });
+
+  describe('headersPaddingLeft', () => {
+    beforeEach(() => {
+      component.nestIndent = 20;
+      component.maxDepth = 4;
+      component.isNested = true;
+    });
+
+    it('gives the header grid the geometry of a mid-depth row', () => {
+      component.selectable = true;
+
+      expect(component.headersPaddingLeft).toBe('40px');
+    });
+
+    it('keeps the base padding when there is no select-all wrapper', () => {
+      component.selectable = false;
+
+      expect(component.headersPaddingLeft).toBe('calc(1rem + 40px)');
+    });
+
+    it('needs no offset when nested rows keep their columns aligned', () => {
+      component.nestMode = 'aligned';
+
+      expect(component.headersPaddingLeft).toBeNull();
+    });
+
+    it('leaves flat lists untouched', () => {
+      component.isNested = false;
+      component.maxDepth = 0;
+
+      expect(component.headersPaddingLeft).toBeNull();
+    });
+  });
+
   it('ngAfterContentInit', () => {
     const generateLayoutSpy = vi.spyOn(component, 'generateLayout');
 
@@ -80,6 +163,7 @@ describe('ListComponent', () => {
     it('should call initScrollListener and determine there is a scrollbar', fakeAsync(() => {
       const initScrollListenerSpy = vi.spyOn(component, 'initScrollListener');
       listRowsScrollMetrics.scrollHeight = 800;
+      listRowsScrollMetrics.clientWidth = 485;
 
       component.ngAfterViewInit();
 
@@ -87,6 +171,19 @@ describe('ListComponent', () => {
 
       expect(initScrollListenerSpy).toHaveBeenCalled();
       expect(component.hasScrollbar).toBe(true);
+      expect(component.scrollbarWidth).toBe(15);
+      expect(component.headersMarginRight).toBe('calc(1rem + 15px)');
+    }));
+
+    it('reserves no header gutter for an overlay scrollbar that takes no layout width', fakeAsync(() => {
+      listRowsScrollMetrics.scrollHeight = 800;
+
+      component.ngAfterViewInit();
+
+      tick();
+
+      expect(component.hasScrollbar).toBe(false);
+      expect(component.headersMarginRight).toBeNull();
     }));
 
     it('should call initScrollListener and scroll to the correct page when the paginationConfig Input is provided', fakeAsync(() => {
@@ -289,6 +386,175 @@ describe('ListComponent', () => {
 
       expect(scrollToSpy).toHaveBeenCalledWith({ top: 0 });
       expect(component.page).toBe(1);
+    });
+  });
+
+  describe('nesting and selection', () => {
+    it('flattens nested children into display rows with depth', () => {
+      component.dataSource = [
+        {
+          id: 'root',
+          name: 'Root',
+          children: [{ id: 'child', name: 'Child' }]
+        }
+      ];
+      component.ngOnChanges({
+        dataSource: {
+          currentValue: component.dataSource,
+          previousValue: [],
+          firstChange: true,
+          isFirstChange: () => true
+        }
+      });
+
+      expect(component.displayDataSource.map(row => row.name)).toEqual(['Root', 'Child']);
+      expect(component.displayDataSource.map(row => row['_listDepth'])).toEqual([0, 1]);
+    });
+
+    it('ignores row changes that match the current selection state', () => {
+      component.selectable = true;
+      component.selectedIds = ['a'];
+      component.dataSource = [{ id: 'a', name: 'A' }];
+      component.ngAfterContentInit();
+
+      const selectedIdsSpy = vi.spyOn(component.selectedIdsChange, 'emit');
+
+      component.onRowCheckedChange(component.displayDataSource[0], 0, true);
+
+      expect(selectedIdsSpy).not.toHaveBeenCalled();
+    });
+
+    it('selects and clears every selectable row from the header checkbox', () => {
+      component.selectable = true;
+      component.selectedIds = [];
+      component.dataSource = [
+        { id: 'a', name: 'A' },
+        { id: 'b', name: 'B', disabled: true },
+        { id: 'c', name: 'C' }
+      ];
+      component.ngAfterContentInit();
+
+      const selectionSpy = vi.spyOn(component.onSelectionChange, 'emit');
+
+      component.onSelectAllChange(true);
+
+      expect(component.selectedIds).toEqual(['a', 'c']);
+      expect(component.allRowsSelected).toBe(true);
+      expect(component.someRowsSelected).toBe(false);
+      expect(selectionSpy).toHaveBeenCalledWith({ selectedIds: ['a', 'c'] });
+
+      component.onSelectAllChange(false);
+
+      expect(component.selectedIds).toEqual([]);
+      expect(component.allRowsSelected).toBe(false);
+    });
+
+    it('ignores select-all when there are no selectable rows', () => {
+      component.selectable = true;
+      component.selectedIds = [];
+      component.dataSource = [
+        { id: 'a', name: 'A', disabled: true },
+        { id: 'b', name: 'B', selectable: false }
+      ];
+      component.ngAfterContentInit();
+
+      const selectionSpy = vi.spyOn(component.onSelectionChange, 'emit');
+
+      expect(component.hasSelectableRows).toBe(false);
+      expect(component.allRowsSelected).toBe(false);
+
+      component.onSelectAllChange(true);
+
+      expect(component.selectedIds).toEqual([]);
+      expect(component.allRowsSelected).toBe(false);
+      expect(selectionSpy).not.toHaveBeenCalled();
+    });
+
+    it('preserves host selection for disabled rows across select-all toggles', () => {
+      component.selectable = true;
+      component.selectedIds = ['b'];
+      component.dataSource = [
+        { id: 'a', name: 'A' },
+        { id: 'b', name: 'B', disabled: true },
+        { id: 'c', name: 'C' }
+      ];
+      component.ngAfterContentInit();
+
+      component.onSelectAllChange(true);
+      expect(component.selectedIds).toEqual(['b', 'a', 'c']);
+      expect(component.allRowsSelected).toBe(true);
+
+      component.onSelectAllChange(false);
+      expect(component.selectedIds).toEqual(['b']);
+      expect(component.allRowsSelected).toBe(false);
+      expect(component.someRowsSelected).toBe(false);
+    });
+
+    it('reports an indeterminate state for a partial selection', () => {
+      component.selectable = true;
+      component.selectedIds = ['a'];
+      component.dataSource = [
+        { id: 'a', name: 'A' },
+        { id: 'b', name: 'B' }
+      ];
+      component.ngAfterContentInit();
+
+      expect(component.allRowsSelected).toBe(false);
+      expect(component.someRowsSelected).toBe(true);
+    });
+
+    it('marks host supplied rows indeterminate until they are selected outright', () => {
+      component.selectable = true;
+      component.selectedIds = ['child'];
+      component.indeterminateIds = ['parent'];
+      component.dataSource = [
+        { id: 'parent', name: 'Parent' },
+        { id: 'child', name: 'Child', parentId: 'parent' }
+      ];
+      component.ngAfterContentInit();
+
+      const [parent, child] = component.displayDataSource;
+
+      expect(component.isRowIndeterminate(parent, 0)).toBe(true);
+      expect(component.isRowSelected(parent, 0)).toBe(false);
+      expect(component.isRowIndeterminate(child, 1)).toBe(false);
+    });
+
+    it('drops the indeterminate state once a row becomes selected', () => {
+      component.selectable = true;
+      component.selectedIds = ['parent'];
+      component.indeterminateIds = ['parent'];
+      component.dataSource = [{ id: 'parent', name: 'Parent' }];
+      component.ngAfterContentInit();
+
+      expect(component.isRowSelected(component.displayDataSource[0], 0)).toBe(true);
+      expect(component.isRowIndeterminate(component.displayDataSource[0], 0)).toBe(false);
+    });
+
+    it('emits host-owned selection changes when a selectable row is toggled', () => {
+      component.selectable = true;
+      component.selectedIds = [];
+      component.dataSource = [
+        { id: 'a', name: 'A' },
+        { id: 'b', name: 'B', selectable: false }
+      ];
+      component.ngAfterContentInit();
+
+      const selectedIdsSpy = vi.spyOn(component.selectedIdsChange, 'emit');
+      const selectionSpy = vi.spyOn(component.onSelectionChange, 'emit');
+
+      expect(component.isRowSelectable(component.displayDataSource[0])).toBe(true);
+      expect(component.isRowSelectable(component.displayDataSource[1])).toBe(false);
+
+      component.onRowCheckedChange(component.displayDataSource[0], 0, true);
+
+      expect(component.selectedIds).toEqual(['a']);
+      expect(selectedIdsSpy).toHaveBeenCalledWith(['a']);
+      expect(selectionSpy).toHaveBeenCalledWith({
+        selectedIds: ['a'],
+        row: component.displayDataSource[0],
+        selected: true
+      });
     });
   });
 });

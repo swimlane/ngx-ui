@@ -32,5 +32,42 @@ ngx-list-row {
     &--warning::before {
       background-color: colors.$color-orange-400;
     }
+
+    &--disabled {
+      opacity: 0.55;
+    }
+
+    .ngx-list-row__content {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-16);
+      min-width: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .ngx-list-row__checkbox,
+    .ngx-list-row__checkbox-spacer {
+      flex: 0 0 auto;
+    }
+
+    // Non-selectable rows keep the gutter so their columns line up with the headers.
+    .ngx-list-row__checkbox-spacer {
+      width: 18px;
+    }
+
+    .ngx-list-row__checkbox {
+      // ngx-checkbox reserves trailing label margin; list checkboxes have no label.
+      .ngx-checkbox--box {
+        margin-right: 0;
+      }
+    }
+
+    .ngx-list-row__columns {
+      flex: 1 1 auto;
+      min-width: 0;
+      align-items: center;
+      overflow: hidden;
+    }
   }
 }

@@ -25,7 +25,12 @@ import { ListPaginationConfig } from './models/list-pagination-config';
 import { ListSortEvent } from './models/list-sort-event';
 import { ListSortPropDir } from './models/list-sort-prop-dir';
 import { ListSortDirection } from './models/list-sort-direction.type';
+import { ListColumnAlign } from './models/list-column-align.type';
+import { ListNestMode } from './models/list-nest-mode.type';
+import { LIST_DEPTH_KEY, LIST_PARENT_ID_KEY, ListRowId } from './models/list-item.model';
+import { ListSelectionEvent } from './models/list-selection-event';
 import { getListSortDirection, getNextListSort, sortListRows } from './list-sort.utils';
+import { flattenListDataSource, getListRowId } from './list-nest.utils';
 
 @Component({
   selector: 'ngx-list',
@@ -36,7 +41,8 @@ import { getListSortDirection, getNextListSort, sortListRows } from './list-sort
   // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
   changeDetection: ChangeDetectionStrategy.Eager,
   host: {
-    class: 'ngx-list'
+    class: 'ngx-list',
+    '[class.ngx-list--selectable]': 'selectable'
   }
 })
 export class ListComponent implements AfterContentInit, AfterViewInit, OnChanges, OnDestroy {
@@ -48,10 +54,19 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnChanges
   @Input() paginationConfig: ListPaginationConfig;
   @Input() virtualScroll = false;
   @Input() rowHeight = 40;
+  @Input() selectable = false;
+  @Input() showSelectAll = true;
+  @Input() selectedIds: ListRowId[] = [];
+  @Input() indeterminateIds: ListRowId[] = [];
+  @Input() nestIndent = 20;
+  @Input() indentColumn = 0;
+  @Input() nestMode: ListNestMode = 'stagger';
 
   @Output() onPageChange = new EventEmitter<number>();
   @Output() onScroll = new EventEmitter<number>();
   @Output() onSort = new EventEmitter<ListSortEvent>();
+  @Output() selectedIdsChange = new EventEmitter<ListRowId[]>();
+  @Output() onSelectionChange = new EventEmitter<ListSelectionEvent>();
 
   @ContentChild(ListRowComponent) row: ListRowComponent;
 
@@ -69,11 +84,19 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnChanges
     gap: '1rem'
   };
   displayDataSource: Array<Record<string, unknown>> = [];
+  isNested = false;
+  maxDepth = 0;
   hasScrollbar = false;
+  scrollbarWidth = 0;
   page = 1;
+  allRowsSelected = false;
+  someRowsSelected = false;
 
   private _sort: ListSortPropDir | null = null;
   private destroy$ = new Subject<void>();
+  private selectableIds: ListRowId[] = [];
+  private selectedIdSet = new Set<ListRowId>();
+  private indeterminateIdSet = new Set<ListRowId>();
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['sort']) {
@@ -82,6 +105,10 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnChanges
 
     if (changes['dataSource'] || changes['sort']) {
       this.updateDisplayDataSource();
+    }
+
+    if (changes['selectedIds'] || changes['indeterminateIds'] || changes['selectable']) {
+      this.refreshSelectionState();
     }
   }
 
@@ -96,12 +123,9 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnChanges
       this.initScrollListener();
 
       if (this.virtualScroll) {
-        this.hasScrollbar =
-          this.virtualScrollViewport.elementRef.nativeElement.scrollHeight >
-          this.virtualScrollViewport.elementRef.nativeElement.clientHeight;
+        this.measureScrollbar(this.virtualScrollViewport.elementRef.nativeElement);
       } else {
-        this.hasScrollbar =
-          this.listRowsContainer.nativeElement.scrollHeight > this.listRowsContainer.nativeElement.clientHeight;
+        this.measureScrollbar(this.listRowsContainer.nativeElement);
 
         if (this.paginationConfig) {
           const { index, pageSize } = this.paginationConfig;
@@ -122,6 +146,30 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnChanges
 
   getSortDirection(header: ListHeaderComponent): ListSortDirection | undefined {
     return getListSortDirection(this._sort, header.prop);
+  }
+
+  getColumnAlign = (columnIndex: number): ListColumnAlign => {
+    if (this.isNested && this.nestMode === 'stagger') {
+      return columnIndex === this.indentColumn ? 'left' : 'center';
+    }
+    return this.columns?.get(columnIndex)?.align ?? 'left';
+  };
+
+  get headersPaddingLeft(): string | null {
+    const staggered = this.isNested && this.nestMode === 'stagger';
+    const offset = staggered ? Math.round((this.maxDepth * (this.nestIndent ?? 0)) / 2) : 0;
+    if (!offset) {
+      return null;
+    }
+    return this.selectable ? `${offset}px` : `calc(1rem + ${offset}px)`;
+  }
+
+  get headersMarginRight(): string | null {
+    return this.scrollbarWidth > 0 ? `calc(1rem + ${this.scrollbarWidth}px)` : null;
+  }
+
+  get hasSelectableRows(): boolean {
+    return this.selectableIds.length > 0;
   }
 
   /**
@@ -212,15 +260,138 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnChanges
     }
   }
 
-  private updateDisplayDataSource(): void {
-    const rows = this.dataSource ?? [];
+  isRowSelectable = (data: Record<string, unknown>): boolean => {
+    return this.selectable && data?.selectable !== false;
+  };
 
-    if (this.externalSorting || !this._sort) {
-      this.displayDataSource = [...rows];
+  trackRowBy = (index: number, data: Record<string, unknown>): ListRowId => {
+    return getListRowId(data, index);
+  };
+
+  isRowSelected = (data: Record<string, unknown>, index: number): boolean => {
+    return this.selectedIdSet.has(getListRowId(data, index));
+  };
+
+  isRowIndeterminate = (data: Record<string, unknown>, index: number): boolean => {
+    const id = getListRowId(data, index);
+    return !this.selectedIdSet.has(id) && this.indeterminateIdSet.has(id);
+  };
+
+  onRowCheckedChange = (data: Record<string, unknown>, index: number, selected: boolean): void => {
+    if (!this.isRowSelectable(data) || data?.disabled === true) {
       return;
     }
 
-    this.displayDataSource = sortListRows(rows, this._sort, this.getHeaderList());
+    const id = getListRowId(data, index);
+    // Ignore no-op echoes from rebinding `[checked]`.
+    if (this.selectedIdSet.has(id) === selected) {
+      return;
+    }
+
+    const next = new Set(this.selectedIdSet);
+    if (selected) {
+      next.add(id);
+    } else {
+      next.delete(id);
+    }
+
+    this.applySelection(Array.from(next), { row: data, selected });
+  };
+
+  onSelectAllChange(selected: boolean): void {
+    if (!this.selectableIds.length || selected === this.allRowsSelected) {
+      return;
+    }
+
+    // Only toggle selectable rows; preserve host selection for disabled / non-selectable ids.
+    const selectableSet = new Set(this.selectableIds);
+    const preserved = (this.selectedIds ?? []).filter(id => !selectableSet.has(id));
+    this.applySelection(selected ? [...preserved, ...this.selectableIds] : preserved);
+  }
+
+  private applySelection(selectedIds: ListRowId[], change?: Pick<ListSelectionEvent, 'row' | 'selected'>): void {
+    this.selectedIds = selectedIds;
+    this.refreshSelectionState();
+    this.selectedIdsChange.emit(selectedIds);
+    this.onSelectionChange.emit({ selectedIds, ...change });
+  }
+
+  private refreshSelectionState(): void {
+    this.selectedIdSet = new Set(this.selectedIds ?? []);
+    this.indeterminateIdSet = new Set(this.indeterminateIds ?? []);
+
+    const total = this.selectableIds.length;
+    let selectedCount = 0;
+    for (const id of this.selectableIds) {
+      if (this.selectedIdSet.has(id)) {
+        selectedCount++;
+      }
+    }
+
+    this.allRowsSelected = total > 0 && selectedCount === total;
+    this.someRowsSelected = selectedCount > 0 && selectedCount < total;
+  }
+
+  private updateDisplayDataSource(): void {
+    const rows = flattenListDataSource(this.dataSource ?? []);
+
+    if (this.externalSorting || !this._sort) {
+      this.displayDataSource = rows;
+    } else {
+      this.displayDataSource = this.sortFlattenedRows(rows);
+    }
+
+    this.maxDepth = this.displayDataSource.reduce(
+      (deepest, row) => Math.max(deepest, (row[LIST_DEPTH_KEY] as number) ?? 0),
+      0
+    );
+    this.isNested = this.maxDepth > 0;
+
+    this.selectableIds = this.displayDataSource
+      .map((row, index) => ({ row, id: getListRowId(row, index) }))
+      .filter(({ row }) => row?.selectable !== false && row?.disabled !== true)
+      .map(({ id }) => id);
+
+    this.refreshSelectionState();
+  }
+
+  private sortFlattenedRows(rows: Array<Record<string, unknown>>): Array<Record<string, unknown>> {
+    if (!this._sort) {
+      return rows;
+    }
+
+    const roots = rows.filter(row => (row[LIST_DEPTH_KEY] as number) === 0);
+    if (!roots.length) {
+      return sortListRows(rows, this._sort, this.getHeaderList());
+    }
+
+    // Sort roots only; keep relative child order under each root.
+    const childrenByParent = new Map<string, Array<Record<string, unknown>>>();
+    rows.forEach(row => {
+      const depth = row[LIST_DEPTH_KEY] as number;
+      if (!depth) {
+        return;
+      }
+      const parentId = String(row[LIST_PARENT_ID_KEY]);
+      const bucket = childrenByParent.get(parentId) ?? [];
+      bucket.push(row);
+      childrenByParent.set(parentId, bucket);
+    });
+
+    const sortedRoots = sortListRows(roots, this._sort, this.getHeaderList());
+    const result: Array<Record<string, unknown>> = [];
+    const appendWithChildren = (row: Record<string, unknown>): void => {
+      result.push(row);
+      const id = String(getListRowId(row));
+      (childrenByParent.get(id) ?? []).forEach(appendWithChildren);
+    };
+    sortedRoots.forEach(appendWithChildren);
+    return result;
+  }
+
+  private measureScrollbar(element: HTMLElement): void {
+    this.scrollbarWidth = Math.max(element.offsetWidth - element.clientWidth, 0);
+    this.hasScrollbar = this.scrollbarWidth > 0;
   }
 
   private getHeaderList(): ListHeaderComponent[] {

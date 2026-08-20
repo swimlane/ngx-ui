@@ -2,6 +2,6 @@
 
 <ng-template #template>
   @if (column) {
-  <ng-container *ngTemplateOutlet="column.columnTemplate; context: { row: data, rowIndex }"></ng-container>
+    <ng-container *ngTemplateOutlet="column.columnTemplate; context: { row: data, rowIndex, depth }"></ng-container>
   }
 </ng-template>

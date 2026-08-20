@@ -2,6 +2,31 @@
 
 ngx-list.ngx-list {
   .ngx-list {
+    &__headers-wrapper {
+      align-items: center;
+      display: flex;
+      gap: var(--spacing-16);
+      padding-left: 2rem;
+
+      .ngx-list__headers-container {
+        flex: 1 1 auto;
+        margin-left: 0;
+        min-width: 0;
+        padding-left: 0;
+      }
+    }
+
+    &__select-all,
+    &__select-all-spacer {
+      flex: 0 0 auto;
+      width: 18px;
+    }
+
+    &__select-all .ngx-checkbox--box {
+      // ngx-checkbox reserves trailing label margin; select-all has no label.
+      margin-right: 0;
+    }
+
     &__headers-container {
       padding-inline: 1rem;
       margin-inline: 1rem;
