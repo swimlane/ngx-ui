@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix (`ngx-plus-menu`): Added check for items to prevent error
+
 ## 53.2.0 (2026-08-21)
 
 - Feature (`ngx-list`): Added nested rows (`children` / `parentId`) with depth indent, host-owned multi-select (`selectedIds` / `onSelectionChange`, select-all + indeterminate), and `nestMode` (`stagger` | `aligned`).
