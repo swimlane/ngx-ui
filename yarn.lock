@@ -2961,7 +2961,7 @@ __metadata:
     eslint-visitor-keys: "npm:^3.4.3"
   peerDependencies:
     eslint: ^6.0.0 || ^7.0.0 || >=8.0.0
-  checksum: 10c0/b514586655698bc6b74db72a496c77e813c78b63e36a83429845ac7057dd77113b0b6c31e6e590d5baaeee2abae6ea22363a41209bcafa078d895ab83ce83011
+  checksum: 10c0/5ca0e9e69baae0916a011d2e93e0e1ccad25ef85338712b0a809e95b7016b4396b3e28edc16982e7b41a89c03b6b3e1b9b6519cc64cf74a37d7635b5d0c2df76
   languageName: node
   linkType: hard
 

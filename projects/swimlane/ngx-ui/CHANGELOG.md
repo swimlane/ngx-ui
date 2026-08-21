@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 53.2.0 (2026-08-21)
+
 - Feature (`ngx-list`): Added nested rows (`children` / `parentId`) with depth indent, host-owned multi-select (`selectedIds` / `onSelectionChange`, select-all + indeterminate), and `nestMode` (`stagger` | `aligned`).
 
 - Fix (`ngx-radiobutton`): Radios are select-only. Clicking an already selected radio toggled `checked` off, which visually cleared the radio while the radio group / form value stayed unchanged. Clicking a selected radio is now a no-op, matching native radio behaviour and the existing Space key handling. `RadioButtonComponent.toggle()` is deprecated.
