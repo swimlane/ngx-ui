@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix (`ngx-list`): Stop passing an undeclared `row` input through `NgComponentOutlet`, which threw NG0303 under `errorOnUnknownProperties`.
+
 ## 53.2.0 (2026-08-21)
 
 - Feature (`ngx-list`): Added nested rows (`children` / `parentId`) with depth indent, host-owned multi-select (`selectedIds` / `onSelectionChange`, select-all + indeterminate), and `nestMode` (`stagger` | `aligned`).
