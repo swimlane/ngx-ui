@@ -41,11 +41,11 @@ export class PlusMenuComponent implements OnInit, OnDestroy {
   @Output() toggleMenu = new EventEmitter<boolean>();
 
   get itemColor0() {
-    return this.items[0].color || this.menuColor;
+    return this.items[0]?.color || this.menuColor;
   }
 
   get itemColor1() {
-    return this.items[1].color || this.menuColor;
+    return this.items[1]?.color || this.menuColor;
   }
 
   get itemColor2() {
