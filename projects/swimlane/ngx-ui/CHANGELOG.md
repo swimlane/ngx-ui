@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 53.2.1 (2026-08-25)
+
 - Fix (`ngx-list`): Stop passing an undeclared `row` input through `NgComponentOutlet`, which threw NG0303 under `errorOnUnknownProperties`.
 
 - Fix (`ngx-plus-menu`): Added check for items to prevent error
