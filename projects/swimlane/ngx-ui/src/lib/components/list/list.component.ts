@@ -47,7 +47,7 @@ import { flattenListDataSource, getListRowId } from './list-nest.utils';
 })
 export class ListComponent implements AfterContentInit, AfterViewInit, OnChanges, OnDestroy {
   @Input() columnLayout: Partial<CSSStyleDeclaration>;
-  @Input() dataSource: Array<Record<string, unknown>> = [];
+  @Input() dataSource: Array<Record<string, unknown> | undefined> = [];
   @Input() externalSorting = false;
   @Input() sort: ListSortPropDir | null = null;
   @Input() height: number;
@@ -83,7 +83,7 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnChanges
     display: 'grid',
     gap: '1rem'
   };
-  displayDataSource: Array<Record<string, unknown>> = [];
+  displayDataSource: Array<Record<string, unknown> | undefined> = [];
   isNested = false;
   maxDepth = 0;
   hasScrollbar = false;
@@ -260,25 +260,28 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnChanges
     }
   }
 
-  isRowSelectable = (data: Record<string, unknown>): boolean => {
-    return this.selectable && data?.selectable !== false;
+  isRowSelectable = (data: Record<string, unknown> | null | undefined): boolean => {
+    return this.selectable && !!data && data.selectable !== false;
   };
 
-  trackRowBy = (index: number, data: Record<string, unknown>): ListRowId => {
+  trackRowBy = (index: number, data: Record<string, unknown> | null | undefined): ListRowId => {
     return getListRowId(data, index);
   };
 
-  isRowSelected = (data: Record<string, unknown>, index: number): boolean => {
-    return this.selectedIdSet.has(getListRowId(data, index));
+  isRowSelected = (data: Record<string, unknown> | null | undefined, index: number): boolean => {
+    return !!data && this.selectedIdSet.has(getListRowId(data, index));
   };
 
-  isRowIndeterminate = (data: Record<string, unknown>, index: number): boolean => {
+  isRowIndeterminate = (data: Record<string, unknown> | null | undefined, index: number): boolean => {
+    if (!data) {
+      return false;
+    }
     const id = getListRowId(data, index);
     return !this.selectedIdSet.has(id) && this.indeterminateIdSet.has(id);
   };
 
-  onRowCheckedChange = (data: Record<string, unknown>, index: number, selected: boolean): void => {
-    if (!this.isRowSelectable(data) || data?.disabled === true) {
+  onRowCheckedChange = (data: Record<string, unknown> | null | undefined, index: number, selected: boolean): void => {
+    if (!data || !this.isRowSelectable(data) || data.disabled === true) {
       return;
     }
 
@@ -342,32 +345,35 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnChanges
     }
 
     this.maxDepth = this.displayDataSource.reduce(
-      (deepest, row) => Math.max(deepest, (row[LIST_DEPTH_KEY] as number) ?? 0),
+      (deepest, row) => Math.max(deepest, (row?.[LIST_DEPTH_KEY] as number) ?? 0),
       0
     );
     this.isNested = this.maxDepth > 0;
 
     this.selectableIds = this.displayDataSource
       .map((row, index) => ({ row, id: getListRowId(row, index) }))
-      .filter(({ row }) => row?.selectable !== false && row?.disabled !== true)
+      .filter(({ row }) => !!row && row.selectable !== false && row.disabled !== true)
       .map(({ id }) => id);
 
     this.refreshSelectionState();
   }
 
-  private sortFlattenedRows(rows: Array<Record<string, unknown>>): Array<Record<string, unknown>> {
+  private sortFlattenedRows(
+    rows: Array<Record<string, unknown> | undefined>
+  ): Array<Record<string, unknown> | undefined> {
     if (!this._sort) {
       return rows;
     }
 
-    const roots = rows.filter(row => (row[LIST_DEPTH_KEY] as number) === 0);
+    const definedRows = rows.filter((row): row is Record<string, unknown> => !!row);
+    const roots = definedRows.filter(row => (row[LIST_DEPTH_KEY] as number) === 0);
     if (!roots.length) {
-      return sortListRows(rows, this._sort, this.getHeaderList());
+      return sortListRows(definedRows, this._sort, this.getHeaderList());
     }
 
     // Sort roots only; keep relative child order under each root.
     const childrenByParent = new Map<string, Array<Record<string, unknown>>>();
-    rows.forEach(row => {
+    definedRows.forEach(row => {
       const depth = row[LIST_DEPTH_KEY] as number;
       if (!depth) {
         return;

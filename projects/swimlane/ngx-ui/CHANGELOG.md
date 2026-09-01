@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix (`ngx-list`): Nested flatten/sort no longer assume every dataSource slot is a row object. Virtual/paged lists keep unloaded indexes as `undefined` (length matches totalCount), so search results spanning more than one page no longer throw.
+
 ## 53.2.1 (2026-08-25)
 
 - Fix (`ngx-list`): Stop passing an undeclared `row` input through `NgComponentOutlet`, which threw NG0303 under `errorOnUnknownProperties`.

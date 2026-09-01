@@ -88,6 +88,12 @@ describe('list-sort.utils', () => {
       sortListRows(rows, { prop: 'name', dir: 'asc' }, [header('name')]);
       expect(rows.map(r => r.name)).toEqual(['B', 'A']);
     });
+
+    it('should skip undefined placeholder rows', () => {
+      const rows = [undefined, { name: 'B' }, undefined, { name: 'A' }];
+      const sorted = sortListRows(rows, { prop: 'name', dir: 'asc' }, [header('name')]);
+      expect(sorted.map(r => r.name)).toEqual(['A', 'B']);
+    });
   });
 
   describe('parseListSortDate', () => {

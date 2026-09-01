@@ -23,8 +23,21 @@ function nestedRowChildren(value: unknown): ListItemModel[] {
   return value.filter(isListRowObject);
 }
 
+function rowHasNestedChildren(row: unknown, childrenKey: string): boolean {
+  return isListRowObject(row) && nestedRowChildren(row[childrenKey]).length > 0;
+}
+
+function rowHasParentLink(row: unknown, parentIdKey: string): boolean {
+  if (!isListRowObject(row)) {
+    return false;
+  }
+
+  const parentId = row[parentIdKey];
+  return parentId !== undefined && parentId !== null && parentId !== '';
+}
+
 export function listDataSourceNeedsFlatten(
-  rows: Array<Record<string, unknown>> | null | undefined,
+  rows: Array<Record<string, unknown> | null | undefined> | null | undefined,
   options: FlattenListOptions = {}
 ): boolean {
   if (!rows?.length) {
@@ -33,40 +46,30 @@ export function listDataSourceNeedsFlatten(
 
   const { parentIdKey, childrenKey } = { ...DEFAULT_OPTIONS, ...options };
 
-  return rows.some(row => {
-    if (nestedRowChildren(row[childrenKey]).length > 0) {
-      return true;
-    }
-
-    const parentId = row[parentIdKey];
-    return parentId !== undefined && parentId !== null && parentId !== '';
-  });
+  return rows.some(row => rowHasNestedChildren(row, childrenKey) || rowHasParentLink(row, parentIdKey));
 }
 
 export function flattenListDataSource(
-  rows: Array<Record<string, unknown>> | null | undefined,
+  rows: Array<Record<string, unknown> | null | undefined> | null | undefined,
   options: FlattenListOptions = {}
-): Array<Record<string, unknown>> {
+): Array<Record<string, unknown> | undefined> {
   if (!rows?.length) {
     return [];
   }
 
   const opts = { ...DEFAULT_OPTIONS, ...options };
 
-  if (rows.some(row => nestedRowChildren(row[opts.childrenKey]).length > 0)) {
-    return flattenTreeRows(rows as ListItemModel[], opts, 0, null);
+  if (rows.some(row => rowHasNestedChildren(row, opts.childrenKey))) {
+    return flattenTreeRows(rows, opts, 0, null);
   }
 
-  if (
-    rows.some(row => {
-      const parentId = row[opts.parentIdKey];
-      return parentId !== undefined && parentId !== null && parentId !== '';
-    })
-  ) {
-    return flattenParentLinkedRows(rows as ListItemModel[], opts);
+  if (rows.some(row => rowHasParentLink(row, opts.parentIdKey))) {
+    return flattenParentLinkedRows(rows, opts);
   }
 
-  return rows.map(row => annotateRow(row, resolveRowId(row, opts.idKey, anonymousIdForRow), null, 0));
+  return rows.map(row =>
+    isListRowObject(row) ? annotateRow(row, resolveRowId(row, opts.idKey, anonymousIdForRow), null, 0) : undefined
+  );
 }
 
 /** Stable across re-flattens of the same source object so track-by-id survives sort/refresh. */
@@ -84,7 +87,7 @@ function anonymousIdForRow(row: Record<string, unknown>): string {
 }
 
 function flattenTreeRows(
-  rows: ListItemModel[],
+  rows: Array<Record<string, unknown> | null | undefined>,
   opts: Required<FlattenListOptions>,
   depth: number,
   parentId: ListRowId | null
@@ -114,11 +117,14 @@ function flattenTreeRows(
 }
 
 function flattenParentLinkedRows(
-  rows: ListItemModel[],
+  rows: Array<Record<string, unknown> | null | undefined>,
   opts: Required<FlattenListOptions>
 ): Array<Record<string, unknown>> {
   const rowIds = new Map<ListItemModel, ListRowId>();
   rows.forEach(row => {
+    if (!isListRowObject(row)) {
+      return;
+    }
     rowIds.set(row, resolveRowId(row, opts.idKey, anonymousIdForRow));
   });
 
@@ -126,6 +132,9 @@ function flattenParentLinkedRows(
   const ids = new Set(Array.from(rowIds.values(), id => String(id)));
 
   rows.forEach(row => {
+    if (!isListRowObject(row)) {
+      return;
+    }
     const parentId = row[opts.parentIdKey];
     const parentKey =
       parentId === undefined || parentId === null || parentId === '' || !ids.has(String(parentId))
@@ -158,6 +167,9 @@ function flattenParentLinkedRows(
 
   // Cycles with no true root never enter visit(''). Promote remaining rows as roots.
   rows.forEach(row => {
+    if (!isListRowObject(row)) {
+      return;
+    }
     const id = rowIds.get(row) as ListRowId;
     const idKey = String(id);
     if (visited.has(idKey)) {
@@ -186,15 +198,15 @@ function annotateRow(
 }
 
 export function resolveRowId(
-  row: Record<string, unknown>,
+  row: Record<string, unknown> | null | undefined,
   idKey: string,
   fallback: number | ((row: Record<string, unknown>) => ListRowId)
 ): ListRowId {
-  const value = row[idKey];
+  const value = row?.[idKey];
   if (typeof value === 'string' || typeof value === 'number') {
     return value;
   }
-  return typeof fallback === 'function' ? fallback(row) : fallback;
+  return typeof fallback === 'function' ? fallback(row ?? {}) : fallback;
 }
 
 export function getListRowDepth(row: Record<string, unknown> | null | undefined): number {

@@ -308,13 +308,13 @@ describe('ListComponent', () => {
       const header = createSortableHeader('name');
 
       component.onHeaderSort(header);
-      expect(component.displayDataSource.map(row => row.name)).toEqual(['Alice', 'Bob', 'Charlie']);
+      expect(component.displayDataSource.map(row => row?.name)).toEqual(['Alice', 'Bob', 'Charlie']);
 
       component.onHeaderSort(header);
-      expect(component.displayDataSource.map(row => row.name)).toEqual(['Charlie', 'Bob', 'Alice']);
+      expect(component.displayDataSource.map(row => row?.name)).toEqual(['Charlie', 'Bob', 'Alice']);
 
       component.onHeaderSort(header);
-      expect(component.displayDataSource.map(row => row.name)).toEqual(['Alice', 'Bob', 'Charlie']);
+      expect(component.displayDataSource.map(row => row?.name)).toEqual(['Alice', 'Bob', 'Charlie']);
     });
 
     it('should not reorder rows in external sorting mode', () => {
@@ -323,7 +323,7 @@ describe('ListComponent', () => {
 
       component.onHeaderSort(header);
 
-      expect(component.displayDataSource.map(row => row.name)).toEqual(['Charlie', 'Alice', 'Bob']);
+      expect(component.displayDataSource.map(row => row?.name)).toEqual(['Charlie', 'Alice', 'Bob']);
     });
 
     it('should respect pre-seeded sort input', () => {
@@ -343,7 +343,7 @@ describe('ListComponent', () => {
         }
       });
 
-      expect(component.displayDataSource.map(row => row.name)).toEqual(['Alice', 'Bob', 'Charlie']);
+      expect(component.displayDataSource.map(row => row?.name)).toEqual(['Alice', 'Bob', 'Charlie']);
       expect(component.getSortDirection(createSortableHeader('name'))).toBe('asc');
     });
 
@@ -364,7 +364,7 @@ describe('ListComponent', () => {
         }
       });
 
-      expect(component.displayDataSource.map(row => row.name)).toEqual(['Amy', 'Zoe']);
+      expect(component.displayDataSource.map(row => row?.name)).toEqual(['Amy', 'Zoe']);
     });
 
     it('should reset scroll position after local sort', () => {
@@ -407,8 +407,28 @@ describe('ListComponent', () => {
         }
       });
 
-      expect(component.displayDataSource.map(row => row.name)).toEqual(['Root', 'Child']);
-      expect(component.displayDataSource.map(row => row['_listDepth'])).toEqual([0, 1]);
+      expect(component.displayDataSource.map(row => row?.name)).toEqual(['Root', 'Child']);
+      expect(component.displayDataSource.map(row => row?.['_listDepth'])).toEqual([0, 1]);
+    });
+
+    it('keeps undefined virtual-scroll placeholders without throwing', () => {
+      component.dataSource = [undefined, { id: 'a', name: 'A' }, undefined, { id: 'b', name: 'B' }];
+      component.selectable = true;
+      component.ngOnChanges({
+        dataSource: {
+          currentValue: component.dataSource,
+          previousValue: [],
+          firstChange: true,
+          isFirstChange: () => true
+        }
+      });
+
+      expect(component.displayDataSource).toHaveLength(4);
+      expect(component.displayDataSource[0]).toBeUndefined();
+      expect(component.displayDataSource[1]?.name).toBe('A');
+      expect(component.isRowSelectable(undefined)).toBe(false);
+      expect(component.isRowSelected(undefined, 0)).toBe(false);
+      expect(component.onRowCheckedChange(undefined, 0, true)).toBeUndefined();
     });
 
     it('ignores row changes that match the current selection state', () => {
