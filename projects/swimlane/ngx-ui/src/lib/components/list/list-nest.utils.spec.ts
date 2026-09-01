@@ -17,9 +17,36 @@ describe('list-nest.utils', () => {
       expect(listDataSourceNeedsFlatten([{ id: 1, children: ['a', 'b'] }])).toBe(false);
       expect(listDataSourceNeedsFlatten([{ id: 1, children: [1, 2] }])).toBe(false);
     });
+
+    it('ignores undefined placeholder rows used by virtual scrolling', () => {
+      expect(listDataSourceNeedsFlatten([undefined, { id: 1, name: 'a' }, undefined])).toBe(false);
+      expect(listDataSourceNeedsFlatten([undefined, { id: 1, children: [{ id: 2 }] }])).toBe(true);
+    });
   });
 
   describe('flattenListDataSource', () => {
+    it('keeps undefined placeholder rows in place for virtual scrolling', () => {
+      const rows = flattenListDataSource([undefined, { id: 'a', name: 'A' }, undefined, { id: 'b', name: 'B' }]);
+
+      expect(rows).toHaveLength(4);
+      expect(rows[0]).toBeUndefined();
+      expect(rows[2]).toBeUndefined();
+      expect(rows[1]).toEqual({
+        id: 'a',
+        name: 'A',
+        [LIST_ID_KEY]: 'a',
+        [LIST_PARENT_ID_KEY]: null,
+        [LIST_DEPTH_KEY]: 0
+      });
+      expect(rows[3]).toEqual({
+        id: 'b',
+        name: 'B',
+        [LIST_ID_KEY]: 'b',
+        [LIST_PARENT_ID_KEY]: null,
+        [LIST_DEPTH_KEY]: 0
+      });
+    });
+
     it('annotates plain flat rows with depth 0', () => {
       const rows = flattenListDataSource([
         { id: 'a', name: 'A' },
@@ -104,6 +131,17 @@ describe('list-nest.utils', () => {
       expect(rows.map(row => row[LIST_DEPTH_KEY])).toEqual([0, 1, 2, 0]);
     });
 
+    it('skips undefined placeholder rows when flattening parentId-linked data', () => {
+      const rows = flattenListDataSource([
+        undefined,
+        { id: 'c', name: 'Child', parentId: 'a' },
+        undefined,
+        { id: 'a', name: 'Root' }
+      ]);
+
+      expect(rows.map(row => row?.id)).toEqual(['a', 'c']);
+    });
+
     it('assigns unique fallback ids when nested rows omit id', () => {
       const rows = flattenListDataSource([
         {
@@ -165,6 +203,8 @@ describe('list-nest.utils', () => {
       expect(getListRowDepth(row)).toBe(2);
       expect(getListRowId(row)).toBe('x');
       expect(getListRowDepth({})).toBe(0);
+      expect(getListRowDepth(undefined)).toBe(0);
+      expect(getListRowId(undefined, 3)).toBe(3);
     });
   });
 });

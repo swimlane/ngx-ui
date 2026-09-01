@@ -87,21 +87,22 @@ export function getNextListSort(
 }
 
 export function sortListRows(
-  rows: Array<Record<string, unknown>>,
+  rows: Array<Record<string, unknown> | null | undefined>,
   sort: ListSortPropDir | null,
   headers: Iterable<ListHeaderComponent>
 ): Array<Record<string, unknown>> {
+  const definedRows = rows.filter((row): row is Record<string, unknown> => !!row);
   if (!sort?.prop) {
-    return [...rows];
+    return [...definedRows];
   }
 
   const header = Array.from(headers).find(item => item?.prop === sort.prop);
-  const isDateSort = !header.comparator && getListHeaderSortType(header ?? { prop: sort.prop }) === 'date';
-  const comparator = header.comparator ? header.comparator : defaultListSortComparator;
+  const isDateSort = !header?.comparator && getListHeaderSortType(header ?? { prop: sort.prop }) === 'date';
+  const comparator = header?.comparator ? header.comparator : defaultListSortComparator;
 
-  const parsedDates = isDateSort ? new Map(rows.map(row => [row, parseListSortDate(row[sort.prop])])) : null;
+  const parsedDates = isDateSort ? new Map(definedRows.map(row => [row, parseListSortDate(row[sort.prop])])) : null;
 
-  return [...rows].sort((rowA, rowB) => {
+  return [...definedRows].sort((rowA, rowB) => {
     let result: number;
     if (parsedDates) {
       const valueA = parsedDates.get(rowA);
