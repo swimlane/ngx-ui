@@ -2,18 +2,18 @@
 
 ## HEAD (unreleased)
 
+## 53.2.2 (2026-09-01)
+
 - Fix (`ngx-list`): Nested flatten/sort no longer assume every dataSource slot is a row object. Virtual/paged lists keep unloaded indexes as `undefined` (length matches totalCount), so search results spanning more than one page no longer throw.
 
 ## 53.2.1 (2026-08-25)
 
 - Fix (`ngx-list`): Stop passing an undeclared `row` input through `NgComponentOutlet`, which threw NG0303 under `errorOnUnknownProperties`.
-
 - Fix (`ngx-plus-menu`): Added check for items to prevent error
 
 ## 53.2.0 (2026-08-21)
 
 - Feature (`ngx-list`): Added nested rows (`children` / `parentId`) with depth indent, host-owned multi-select (`selectedIds` / `onSelectionChange`, select-all + indeterminate), and `nestMode` (`stagger` | `aligned`).
-
 - Fix (`ngx-radiobutton`): Radios are select-only. Clicking an already selected radio toggled `checked` off, which visually cleared the radio while the radio group / form value stayed unchanged. Clicking a selected radio is now a no-op, matching native radio behaviour and the existing Space key handling. `RadioButtonComponent.toggle()` is deprecated.
 
 ## 53.0.1 (2026-08-12)
