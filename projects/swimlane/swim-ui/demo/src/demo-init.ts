@@ -425,6 +425,9 @@ function setupSelectDemos(): void {
   const basicSelect = document.getElementById('basicSelect') as any;
   if (basicSelect) basicSelect.options = attackTypeOptions;
 
+  const customHintSelect = document.getElementById('customHintSelect') as any;
+  if (customHintSelect) customHintSelect.options = attackTypeOptions;
+
   const groupedOptionsDemo = [
     { name: 'Apples', value: 'apples', group: 'Produce' },
     { name: 'Carrots', value: 'carrots', group: 'Produce' },
@@ -517,6 +520,9 @@ function setupSelectDemos(): void {
 
   const filterIconSelect = document.getElementById('filterIconSelect') as any;
   if (filterIconSelect) filterIconSelect.options = countries;
+
+  const customEmptySelect = document.getElementById('customEmptySelect') as any;
+  if (customEmptySelect) customEmptySelect.options = countries;
 
   setupGithubUserAsyncSelect('githubUserSelect', 'githubUserSelectValue');
   setupGithubUserAsyncSelect('dialogMediumGithubUserSelect', 'dialogMediumGithubUserSelectValue');

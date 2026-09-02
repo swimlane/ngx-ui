@@ -429,6 +429,10 @@ export const selectStyles = css`
     font-style: italic;
   }
 
+  .select-empty--custom {
+    font-style: normal;
+  }
+
   /* Multiple selection */
   :host([multiple]) .select-value {
     display: flex;

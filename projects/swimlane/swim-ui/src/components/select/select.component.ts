@@ -27,6 +27,7 @@ import './select-option.component';
  *
  * @slot - swim-option children for declarative options
  * @slot hint - Custom hint content
+ * @slot empty - Custom empty-state content when the dropdown has no options to show
  *
  * @fires change - Fired when selection changes (does not bubble; listen on this element).
  * @fires dropdown-open - Options panel opened (does not bubble).
@@ -35,6 +36,7 @@ import './select-option.component';
  *
  * @csspart select - The select input element
  * @csspart dropdown - The dropdown container
+ * @csspart empty - The empty-state container (string placeholder or slotted content)
  */
 const SELECT_TAG = 'swim-select';
 
@@ -296,6 +298,10 @@ export class SwimSelect extends LitElement {
   @state()
   private _hasSlottedHint = false;
 
+  /** Direct child assigned to `slot="empty"` (kept in sync via `_setupChildObserver`). */
+  @state()
+  private _hasSlottedEmpty = false;
+
   @state()
   private _open = false;
 
@@ -340,6 +346,7 @@ export class SwimSelect extends LitElement {
     super.connectedCallback();
     this._collectSlottedOptions();
     this._syncSlottedHintPresence();
+    this._syncSlottedEmptyPresence();
     this._setupChildObserver();
     this._updateActiveState();
   }
@@ -386,10 +393,18 @@ export class SwimSelect extends LitElement {
     }
   }
 
+  private _syncSlottedEmptyPresence() {
+    const next = Array.from(this.children).some(el => el.slot === 'empty');
+    if (next !== this._hasSlottedEmpty) {
+      this._hasSlottedEmpty = next;
+    }
+  }
+
   private _setupChildObserver() {
     this._childObserver = new MutationObserver(() => {
       this._collectSlottedOptions();
       this._syncSlottedHintPresence();
+      this._syncSlottedEmptyPresence();
     });
     this._childObserver.observe(this, {
       childList: true,
@@ -616,7 +631,7 @@ export class SwimSelect extends LitElement {
                             }
                           </ul>
                         `
-                      : html`<div class="select-empty">${this._emptyDropdownMessage()}</div>`
+                      : this._renderEmptyState()
                   }
                 </div>
               `
@@ -699,6 +714,16 @@ export class SwimSelect extends LitElement {
         : this.emptyPlaceholder;
     }
     return this.filterEmptyPlaceholder;
+  }
+
+  // Renders empty dropdown content or custom empty slot
+  private _renderEmptyState() {
+    const useEmptySlot = this._hasSlottedEmpty && !this.loading;
+    return html`
+      <div class="select-empty ${useEmptySlot ? 'select-empty--custom' : ''}" part="empty">
+        ${useEmptySlot ? html`<slot name="empty"></slot>` : this._emptyDropdownMessage()}
+      </div>
+    `;
   }
 
   private _renderChip(option: SelectOption) {
