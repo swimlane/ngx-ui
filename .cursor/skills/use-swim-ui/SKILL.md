@@ -86,7 +86,7 @@ Use `event.detail` for payloads where the component defines it.
 Common patterns:
 
 - **Default slot**: main content (e.g. `swim-card`, `swim-dialog`, `swim-drawer`, `swim-tab` body).
-- **Named slots**: `slot="header"`, `slot="footer"`, `slot="hint"`, `slot="prefix"`, `slot="suffix"`, `slot="content"` (tooltip), `slot="label"` (tab), `slot="avatar"`, `slot="title"`, `slot="subtitle"`.
+- **Named slots**: `slot="header"`, `slot="footer"`, `slot="hint"`, `slot="empty"` (select empty-state), `slot="prefix"`, `slot="suffix"`, `slot="content"` (tooltip), `slot="label"` (tab), `slot="avatar"`, `slot="title"`, `slot="subtitle"`.
 
 Use the component’s JSDoc `@slot` in `projects/swimlane/swim-ui/src/components/<name>/*.component.ts` for the exact list.
 
