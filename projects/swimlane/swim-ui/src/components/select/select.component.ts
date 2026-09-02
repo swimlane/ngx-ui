@@ -85,6 +85,12 @@ export class SwimSelect extends LitElement {
   filterPlaceholder = 'Filter options...';
 
   /**
+   * Icon name for the filter field; '' hides it. Default: 'search'.
+   */
+  @property({ type: String, attribute: 'filter-icon' })
+  filterIcon = 'search';
+
+  /**
    * When the filter matches nothing (sync) or async search returned no users
    */
   @property({ type: String, attribute: 'filter-empty-placeholder' })
@@ -540,19 +546,51 @@ export class SwimSelect extends LitElement {
                     this.filterable
                       ? html`
                           <div
-                            class="select-filter ${this.loading ? 'select-filter--loading' : ''}"
+                            class="select-filter ${this.loading ? 'select-filter--loading' : ''} ${
+                              this.filterIcon ? 'select-filter--has-icon' : ''
+                            }"
                             aria-busy="${this.loading}"
                           >
+                            ${
+                              this.filterIcon
+                                ? html`
+                                    <swim-icon
+                                      class="select-filter-icon"
+                                      font-icon="${this.filterIcon}"
+                                      aria-hidden="true"
+                                    ></swim-icon>
+                                  `
+                                : nothing
+                            }
                             <input
-                              type="text"
+                              type="search"
                               class="select-filter-input"
                               placeholder="${this.filterPlaceholder}"
+                              autocomplete="off"
+                              autocorrect="off"
+                              spellcheck="false"
                               ?disabled="${this.disabled}"
                               ?readonly="${this.loading}"
                               .value="${this._filterQuery}"
                               @input="${this._handleFilterInput}"
                               @keydown="${this._handleFilterKeyDown}"
+                              @change="${(e: Event) => e.stopPropagation()}"
                             />
+                            ${
+                              this._filterQuery
+                                ? html`
+                                    <button
+                                      type="button"
+                                      class="select-filter-clear"
+                                      aria-label="Clear filter"
+                                      ?disabled="${this.disabled || this.loading}"
+                                      @click="${this._clearFilter}"
+                                    >
+                                      <swim-icon font-icon="x"></swim-icon>
+                                    </button>
+                                  `
+                                : nothing
+                            }
                           </div>
                         `
                       : nothing
@@ -812,6 +850,27 @@ export class SwimSelect extends LitElement {
         this._emitFilterChange(q);
       }, this.filterDebounceMs);
     }
+  }
+
+  private _clearFilter(e: Event) {
+    e.stopPropagation();
+    if (this.disabled || this.loading) {
+      return;
+    }
+    this._filterQuery = '';
+    this._focusedIndex = 0;
+    if (this.filterInput) {
+      this.filterInput.value = '';
+      this.filterInput.focus({ preventScroll: true });
+    }
+    if (this.asyncFilter) {
+      if (this._filterDebounceTimer !== undefined) {
+        clearTimeout(this._filterDebounceTimer);
+        this._filterDebounceTimer = undefined;
+      }
+      this._emitFilterChange('');
+    }
+    this.requestUpdate();
   }
 
   private _handleFilterKeyDown(e: KeyboardEvent) {

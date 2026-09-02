@@ -515,6 +515,9 @@ function setupSelectDemos(): void {
   const filterableSelect = document.getElementById('filterableSelect') as any;
   if (filterableSelect) filterableSelect.options = countries;
 
+  const filterIconSelect = document.getElementById('filterIconSelect') as any;
+  if (filterIconSelect) filterIconSelect.options = countries;
+
   setupGithubUserAsyncSelect('githubUserSelect', 'githubUserSelectValue');
   setupGithubUserAsyncSelect('dialogMediumGithubUserSelect', 'dialogMediumGithubUserSelectValue');
 

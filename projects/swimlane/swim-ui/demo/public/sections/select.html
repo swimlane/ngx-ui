@@ -326,17 +326,32 @@
         label="Search countries"
         placeholder="Select a country..."
         filterable
-        hint="Type to filter options"
+        hint="Type to filter options (default search icon)"
+      ></swim-select>
+      <swim-select
+        id="filterIconSelect"
+        label="Custom filter icon"
+        placeholder="Select a country..."
+        filterable
+        filter-icon="globe"
+        hint='filter-icon="globe" (any swim-icon name)'
       ></swim-select>
       <swim-select id="noFilterSelect" label="No Filter" placeholder="Select..." filterable="false"></swim-select>
     </div>
     <pre class="demo-pre"
-    ><code>&lt;!-- Filterable (default: true) --&gt;
+    ><code>&lt;!-- Filterable (default: true) — filter shows search icon by default --&gt;
 &lt;swim-select
   label="Search countries"
   placeholder="Select a country..."
   filterable
   hint="Type to filter options"
+&gt;&lt;/swim-select&gt;
+
+&lt;!-- Override filter icon with any swim-icon name --&gt;
+&lt;swim-select
+  label="Custom filter icon"
+  filterable
+  filter-icon="globe"
 &gt;&lt;/swim-select&gt;
 
 &lt;!-- Filtering disabled --&gt;
@@ -475,6 +490,7 @@
             <tr><td><code>.options</code></td><td><code>Array&lt;SelectOption&gt;</code></td><td><code>[]</code></td><td>Options; may include <code>group</code> when <code>grouped</code> is set</td></tr>
             <tr><td><code>multiple</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Enable multi-select mode</td></tr>
             <tr><td><code>filterable</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Enable type-to-filter</td></tr>
+            <tr><td><code>filter-icon</code></td><td><code>string</code></td><td><code>'search'</code></td><td>Filter field icon name (swim-icon <code>font-icon</code>); empty hides icon</td></tr>
             <tr><td><code>dropdown-align</code></td><td><code>'start' | 'center'</code></td><td><code>'start'</code></td><td>With popover layer: <code>center</code> sizes and anchors the panel to the host (centered columns / dialogs)</td></tr>
             <tr><td><code>grouped</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Show section headers from each option’s <code>group</code></td></tr>
             <tr><td><code>allow-clear</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Show clear button when value selected</td></tr>
