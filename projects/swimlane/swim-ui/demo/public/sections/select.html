@@ -2,6 +2,19 @@
 <h1 id="select" class="page-title">Select Component</h1>
 <p class="subtitle">Dropdown select with filtering and multi-select support</p>
 <p class="section-desc" style="margin-top: 0; margin-bottom: 1.5rem;"><strong>CDN:</strong> <code>import 'https://widgets.swimlane.app/swim-ui/select.js';</code></p>
+<style>
+  .select-demo-empty {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    color: var(--grey-200);
+  }
+  .select-demo-empty swim-icon {
+    font-size: 1.25rem;
+    color: var(--grey-350);
+    margin-top: 0.1rem;
+  }
+</style>
 
 <!-- Single Select (mirrors ngx-ui selects-page: Basic, Required) -->
 <section class="section">
@@ -24,6 +37,14 @@
         value="breach"
       ></swim-select>
     </div>
+    <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--grey-300)">Custom hint slot</h4>
+    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+      <swim-select id="customHintSelect" label="Attack Type" placeholder="Select...">
+        <span slot="hint">
+          Prefer <a href="#select" style="color: var(--blue-400)">this guide</a> before choosing.
+        </span>
+      </swim-select>
+    </div>
     <pre class="demo-pre"
     ><code>&lt;!-- Basic --&gt;
 &lt;swim-select label="Attack Type" placeholder="Select..."&gt;&lt;/swim-select&gt;
@@ -33,6 +54,13 @@
 
 &lt;!-- Disabled (with pre-selected value) --&gt;
 &lt;swim-select label="Attack Type" disabled placeholder="Select..." value="breach"&gt;&lt;/swim-select&gt;
+
+&lt;!-- Custom hint (slot) --&gt;
+&lt;swim-select label="Attack Type" placeholder="Select..."&gt;
+  &lt;span slot="hint"&gt;
+    Prefer &lt;a href="#"&gt;this guide&lt;/a&gt; before choosing.
+  &lt;/span&gt;
+&lt;/swim-select&gt;
 
 &lt;script&gt;
   const options = [
@@ -326,12 +354,20 @@
         label="Search countries"
         placeholder="Select a country..."
         filterable
-        hint="Type to filter options"
+        hint="Type to filter options (default search icon)"
+      ></swim-select>
+      <swim-select
+        id="filterIconSelect"
+        label="Custom filter icon"
+        placeholder="Select a country..."
+        filterable
+        filter-icon="globe"
+        hint='filter-icon="globe" (any swim-icon name)'
       ></swim-select>
       <swim-select id="noFilterSelect" label="No Filter" placeholder="Select..." filterable="false"></swim-select>
     </div>
     <pre class="demo-pre"
-    ><code>&lt;!-- Filterable (default: true) --&gt;
+    ><code>&lt;!-- Filterable (default: true) — filter shows search icon by default --&gt;
 &lt;swim-select
   label="Search countries"
   placeholder="Select a country..."
@@ -339,8 +375,55 @@
   hint="Type to filter options"
 &gt;&lt;/swim-select&gt;
 
+&lt;!-- Override filter icon with any swim-icon name --&gt;
+&lt;swim-select
+  label="Custom filter icon"
+  filterable
+  filter-icon="globe"
+&gt;&lt;/swim-select&gt;
+
 &lt;!-- Filtering disabled --&gt;
 &lt;swim-select label="No Filter" placeholder="Select..." filterable="false"&gt;&lt;/swim-select&gt;</code></pre>
+  </swim-section>
+</section>
+
+<!-- Custom empty state -->
+<section class="section">
+  <swim-section section-title="Custom empty state">
+    <p style="color: var(--grey-300); margin-bottom: 1rem">
+      Pass custom markup with <code>slot="empty"</code> to replace the default
+      <code>empty-placeholder</code> / <code>filter-empty-placeholder</code> text when the list has
+      nothing to show. While <code>loading</code>, the string
+      <code>filter-searching-placeholder</code> is still used.
+    </p>
+    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+      <swim-select
+        id="customEmptySelect"
+        label="Search countries"
+        placeholder="Select a country..."
+        filterable
+        filter-placeholder="Try typing zzzz…"
+        hint="Open and filter until nothing matches to see the custom empty template"
+      >
+        <div slot="empty" class="select-demo-empty">
+          <swim-icon font-icon="search"></swim-icon>
+          <div>
+            <strong>No countries match</strong>
+            <div style="font-size: var(--font-size-s); color: var(--grey-350); margin-top: 0.25rem">
+              Clear the filter or try another name.
+            </div>
+          </div>
+        </div>
+      </swim-select>
+    </div>
+    <pre class="demo-pre"
+    ><code>&lt;swim-select label="Search countries" filterable&gt;
+  &lt;div slot="empty"&gt;
+    &lt;swim-icon font-icon="search"&gt;&lt;/swim-icon&gt;
+    &lt;strong&gt;No countries match&lt;/strong&gt;
+    &lt;div&gt;Clear the filter or try another name.&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/swim-select&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -475,6 +558,7 @@
             <tr><td><code>.options</code></td><td><code>Array&lt;SelectOption&gt;</code></td><td><code>[]</code></td><td>Options; may include <code>group</code> when <code>grouped</code> is set</td></tr>
             <tr><td><code>multiple</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Enable multi-select mode</td></tr>
             <tr><td><code>filterable</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Enable type-to-filter</td></tr>
+            <tr><td><code>filter-icon</code></td><td><code>string</code></td><td><code>'search'</code></td><td>Filter field icon name (swim-icon <code>font-icon</code>); empty hides icon</td></tr>
             <tr><td><code>dropdown-align</code></td><td><code>'start' | 'center'</code></td><td><code>'start'</code></td><td>With popover layer: <code>center</code> sizes and anchors the panel to the host (centered columns / dialogs)</td></tr>
             <tr><td><code>grouped</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Show section headers from each option’s <code>group</code></td></tr>
             <tr><td><code>allow-clear</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Show clear button when value selected</td></tr>
@@ -496,6 +580,17 @@
             <tr><td><code>disabled</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Whether the option is disabled</td></tr>
             <tr><td><code>hidden</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Whether the option is hidden from the list</td></tr>
             <tr><td><code>group</code></td><td><code>string</code></td><td><code>''</code></td><td>Section label (with parent <code>grouped</code> on <code>swim-select</code>)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 class="api-heading">Slots</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Name</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><em>(default)</em></td><td><code>swim-option</code> children for declarative options</td></tr>
+            <tr><td><code>hint</code></td><td>Custom hint content below the select</td></tr>
+            <tr><td><code>empty</code></td><td>Custom empty-state when the dropdown has no options to show (overrides string placeholders; not used while <code>loading</code>)</td></tr>
           </tbody>
         </table>
       </div>
