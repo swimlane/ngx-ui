@@ -4,10 +4,10 @@
     (keydown)="onKeyDown($event)"
     (keyup)="onGlobalKeyUp($event)"
     class="ngx-select-input-box"
-    (click)="onClick()"
+    (click)="onClick($event)"
     (focus)="onFocus()"
     #inputContainer
-    >
+  >
     @if (label) {
       <label class="ngx-select-label" [attr.for]="selectId">
         <span>{{ label }}</span>
@@ -16,7 +16,7 @@
     }
     @if (!selected?.length) {
       @if (placeholder) {
-      <span class="ngx-select-placeholder" [innerHTML]="placeholder"> </span>
+        <span class="ngx-select-placeholder" [innerHTML]="placeholder"> </span>
       } @else if (placeholderTemplate) {
         <div class="ngx-select-placeholder template">
           <ng-container [ngTemplateOutlet]="placeholderTemplate"></ng-container>
@@ -24,25 +24,35 @@
       }
     }
     @if (tagging || selectedOptions?.length) {
-      <ul
-        class="horizontal-list ngx-select-input-list"
-        [class.no-selections]="!selected?.length"
-        >
-        @for (option of selectedOptions; track option) {
+      <ul class="horizontal-list ngx-select-input-list" [class.no-selections]="!selected?.length">
+        @for (option of selectedOptions; track trackChip(option); let index = $index) {
           <li
             class="ngx-select-input-option"
             [class.disabled]="multiple && selectedOptions.length > 1 && option.disabled"
-            >
+            [class.ngx-select-input-option--invalid]="isFreeTagging && !!taggingValidator && isOptionInvalid(option)"
+            [class.ngx-select-input-option--active]="isFreeTagging && selectedChipIndex === index"
+            (click)="onChipClick($event, index)"
+            (dblclick)="onChipDoubleClick($event, index)"
+          >
             @if (option.inputTemplate) {
-              <ng-template
-                [ngTemplateOutlet]="option.inputTemplate"
-                [ngTemplateOutletContext]="{ option: option }"
-                >
+              <ng-template [ngTemplateOutlet]="option.inputTemplate" [ngTemplateOutletContext]="{ option: option }">
               </ng-template>
             }
             @if (!option.inputTemplate) {
-              <span class="ngx-select-input-name" [innerHTML]="option.name || option.value">
-              </span>
+              @if (isFreeTagging) {
+                @let tip = chipTooltip(option);
+                <span
+                  class="ngx-select-input-name"
+                  ngx-tooltip
+                  [tooltipTitle]="tip"
+                  [tooltipDisabled]="!tip"
+                  [tooltipType]="'tooltip'"
+                  [tooltipPlacement]="'top'"
+                  [innerHTML]="option.name || option.value"
+                ></span>
+              } @else {
+                <span class="ngx-select-input-name" [innerHTML]="option.name || option.value"></span>
+              }
             }
             @if (allowClear && (multiple || tagging) && !option.disabled) {
               <button
@@ -50,7 +60,7 @@
                 title="Remove Selection"
                 class="ngx-select-clear"
                 (click)="onOptionRemove($event, option)"
-                >
+              >
                 <i class="ngx-icon ngx-x-small"></i>
               </button>
             }
@@ -58,27 +68,45 @@
         }
         @if (tagging) {
           <li class="ngx-select-input-box-wrapper">
-            <input
-              #tagInput
-              type="search"
-              class="ngx-select-text-box"
-              autocomplete="off"
-              autocorrect="off"
-              spellcheck="off"
-              (keydown)="onInputKeyDown($event)"
-              (keyup)="onInputKeyUp($event)"
-              (change)="$event.stopPropagation()"
-              (blur)="clearInput()"
+            @if (isFreeTagging) {
+              <textarea
+                #tagInput
+                class="ngx-select-text-box"
+                rows="1"
+                [disabled]="disabled"
+                autocomplete="off"
+                autocorrect="off"
+                spellcheck="false"
+                (keydown)="onInputKeyDown($event)"
+                (keyup)="onInputKeyUp($event)"
+                (input)="onInputValueChange()"
+                (paste)="onInputPaste($event)"
+                (change)="$event.stopPropagation()"
+                (blur)="onInputBlur($event)"
+              ></textarea>
+            } @else {
+              <input
+                #tagInput
+                type="search"
+                class="ngx-select-text-box"
+                autocomplete="off"
+                autocorrect="off"
+                spellcheck="off"
+                (keydown)="onInputKeyDown($event)"
+                (keyup)="onInputKeyUp($event)"
+                (change)="$event.stopPropagation()"
+                (blur)="clearInput()"
               />
-            @if (tagInput.value) {
-              <button
-                type="button"
-                aria-label="Clear"
-                class="ngx-select-clear-tagging-input"
-                (click)="onClearTaggingInput($event)"
+              @if (tagInput.value) {
+                <button
+                  type="button"
+                  aria-label="Clear"
+                  class="ngx-select-clear-tagging-input"
+                  (click)="onClearTaggingInput($event)"
                 >
-                <i class="ngx-icon ngx-x-small"></i>
-              </button>
+                  <i class="ngx-icon ngx-x-small"></i>
+                </button>
+              }
             }
           </li>
         }
@@ -94,17 +122,12 @@
           aria-label="Clear Selections"
           class="ngx-select-clear"
           (click)="onClear($event)"
-          >
+        >
           <i class="ngx-icon ngx-x-small"></i>
         </button>
       }
       @if (caretVisible) {
-        <button
-          type="button"
-          aria-label="Toggle Dropdown"
-          class="ngx-select-caret"
-          (click)="onToggle($event)"
-          >
+        <button type="button" aria-label="Toggle Dropdown" class="ngx-select-caret" (click)="onToggle($event)">
           @if (!selectCaret) {
             <i class="ngx-icon ngx-chevron-bold-down"></i>
           }

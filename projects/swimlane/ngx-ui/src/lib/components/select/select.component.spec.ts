@@ -327,6 +327,28 @@ describe('SelectComponent', () => {
       component.select.value = ['test', 'test1'];
       expect(component.select.invalid).toBeTruthy();
     });
+
+    it('should be true when a tagging entry was rejected', () => {
+      component.select.onTaggingError('Invalid tag');
+      expect(component.select.invalid).toBeTruthy();
+      expect(component.select.inputHint).toBe('Invalid tag');
+    });
+
+    it('should validate existing tagging values', () => {
+      component.select.tagging = true;
+      component.select.disableDropdown = true;
+      component.select.taggingValidator = value => (value === 'invalid' ? 'Invalid tag' : null);
+      component.select.value = ['invalid'];
+      expect(component.select.invalid).toBeTruthy();
+    });
+
+    it('should clear taggingError after dropdown selection path', () => {
+      component.select.onTaggingError('Invalid tag');
+      expect(component.select.invalid).toBeTruthy();
+      component.select.onClear();
+      expect(component.select.taggingError).toBe('');
+      expect(component.select.invalid).toBeFalsy();
+    });
   });
 
   describe('requiredIndicatorView', () => {

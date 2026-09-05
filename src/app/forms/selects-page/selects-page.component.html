@@ -702,13 +702,23 @@
 <br />
 
 <h4>No Options</h4>
-<ngx-select [filterable]="false" [tagging]="true">
+<p>Free tagging with no dropdown. Paste comma/semicolon values. Double-click a chip to edit. Hover a long chip for a tooltip.</p>
+<ngx-select
+  label="Free Tagging"
+  [tagging]="true"
+  [filterable]="false"
+  [disableDropdown]="true"
+  [(ngModel)]="taggingDemoValues">
+  @for (tag of taggingDemoValues; track tag) {
+    <ngx-select-option [name]="tag" [value]="tag"></ngx-select-option>
+  }
 </ngx-select>
 
 <app-prism>
   <![CDATA[<ngx-select
   [filterable]="false"
-  [tagging]="true">
+  [tagging]="true"
+  [disableDropdown]="true">
 </ngx-select>
 ]]>
 </app-prism>
