@@ -184,6 +184,7 @@ describe('Selects', () => {
       const text = 'Other';
 
       // TODO(ngx-ui-testing): support ngxFill for tagging
+      // Basic tagging (with options) still uses <input>; free tagging uses <textarea>.
       cy.get('@CUT').find('input').click().type(text).type('{enter}');
       cy.get('@CUT').ngxGetValue().should('equal', text);
 
@@ -199,6 +200,17 @@ describe('Selects', () => {
 
       cy.get('@CUT').find('.ngx-select-clear').first().click();
       cy.get('@CUT').find('.ngx-select-clear').first().click();
+    });
+
+    it('supports free tagging entry and chip editing', () => {
+      cy.get('@SUT').find('ngx-select').eq(1).as('freeTagging');
+
+      cy.get('@freeTagging').find('textarea').type('one,two{enter}');
+      cy.get('@freeTagging').find('.ngx-select-input-option').should('contain.text', 'one');
+      cy.get('@freeTagging').find('.ngx-select-input-option').should('contain.text', 'two');
+
+      cy.get('@freeTagging').find('.ngx-select-input-option').contains('alpha').dblclick();
+      cy.get('@freeTagging').find('textarea').should('have.value', 'alpha');
     });
 
     it('is keyboard accessible', () => {
