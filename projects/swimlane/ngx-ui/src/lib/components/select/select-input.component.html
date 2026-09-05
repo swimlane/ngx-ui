@@ -5,7 +5,7 @@
     (keyup)="onGlobalKeyUp($event)"
     class="ngx-select-input-box"
     (click)="onClick($event)"
-    (focus)="onFocus()"
+    (focusin)="onFocus($event)"
     #inputContainer
   >
     @if (label) {
