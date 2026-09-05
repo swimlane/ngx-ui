@@ -338,10 +338,11 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
     if (this.tagging) this.focusInput();
   }
 
-  onFocus() {
-    if (!this.disabled && this.tagging) {
-      this.onClick();
-    }
+  onFocus(event?: FocusEvent) {
+    if (this.disabled || !this.tagging) return;
+    // focusin bubbles from buttons (clear/caret); don't treat those as field activation.
+    if ((event?.target as HTMLElement | null)?.closest?.('button')) return;
+    this.onClick();
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -369,11 +370,10 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   }
 
   focus() {
-    if (this.tagging) {
-      this.focusInput();
-    } else {
-      this.inputContainer.nativeElement.focus();
-    }
+    // Prefer the container so classic tagging still runs onFocus → open dropdown.
+    // Free tagging then moves focus into the textarea via onFocus/onClick.
+    this.inputContainer?.nativeElement.focus();
+    if (this.isFreeTagging) this.focusInput();
   }
 
   isOptionInvalid(option: SelectDropdownOption): boolean {
