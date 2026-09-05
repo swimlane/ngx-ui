@@ -70,7 +70,8 @@ describe('SelectInputComponent', () => {
         preventDefault: () => undefined,
         stopPropagation: () => undefined,
         key: '',
-        target: { value: '' }
+        code: '',
+        target: { value: '', selectionStart: 0, selectionEnd: 0 }
       };
     });
 
@@ -82,13 +83,14 @@ describe('SelectInputComponent', () => {
 
     describe('enter', () => {
       beforeEach(() => {
+        component.tagging = true;
         event.key = event.code = KeyboardKeys.ENTER;
       });
 
       it('should select value when not selected', () => {
         const spy = vi.spyOn(component.selection, 'emit');
         event.target.value = 'test';
-        component.onInputKeyUp(event);
+        component.onInputKeyDown(event);
         expect(spy).toHaveBeenCalled();
       });
 
@@ -96,13 +98,13 @@ describe('SelectInputComponent', () => {
         component.selected = ['test'];
         const spy = vi.spyOn(component.selection, 'emit');
         event.target.value = 'test';
-        component.onInputKeyUp(event);
+        component.onInputKeyDown(event);
         expect(spy).not.toHaveBeenCalled();
       });
 
       it('should do nothing if !value', () => {
         const spy = vi.spyOn(component.selection, 'emit');
-        component.onInputKeyUp(event);
+        component.onInputKeyDown(event);
         expect(spy).not.toHaveBeenCalled();
       });
     });
@@ -149,6 +151,158 @@ describe('SelectInputComponent', () => {
       component.tagging = false;
       component.onKeyDown(event);
       expect(spy).toHaveBeenCalled();
+    });
+  });
+
+  describe('tagging', () => {
+    beforeEach(() => {
+      fixture.componentRef.setInput('tagging', true);
+      // No-option / free tagging path under test.
+      component.disableDropdown = true;
+      component.options = [];
+      component.selected = [];
+      fixture.detectChanges();
+    });
+
+    it('splits and normalizes pasted values', () => {
+      const spy = vi.spyOn(component.selection, 'emit');
+      const event = {
+        preventDefault: vi.fn(),
+        stopPropagation: vi.fn(),
+        clipboardData: { getData: () => ' <b>one</b>, two\u200B;three\nfour' },
+        target: { value: '', selectionStart: 0, selectionEnd: 0 }
+      } as any;
+
+      component.onInputPaste(event);
+
+      expect(spy).toHaveBeenCalledWith(['one', 'two', 'three', 'four']);
+      expect(event.preventDefault).toHaveBeenCalled();
+    });
+
+    it('commits values with Tab', () => {
+      const spy = vi.spyOn(component.selection, 'emit');
+      const event = {
+        key: KeyboardKeys.TAB,
+        code: KeyboardKeys.TAB,
+        preventDefault: vi.fn(),
+        stopPropagation: vi.fn(),
+        target: { value: '42', selectionStart: 2, selectionEnd: 2 }
+      } as any;
+
+      component.onInputKeyDown(event);
+
+      expect(spy).toHaveBeenCalledWith(['42']);
+      expect(event.preventDefault).toHaveBeenCalled();
+    });
+
+    it('rejects invalid values and surfaces the error', () => {
+      const selectionSpy = vi.spyOn(component.selection, 'emit');
+      const errorSpy = vi.spyOn(component.taggingError, 'emit');
+      component.taggingValidator = value => (value.length > 3 ? 'Too long' : null);
+      const event = {
+        key: KeyboardKeys.ENTER,
+        code: KeyboardKeys.ENTER,
+        preventDefault: vi.fn(),
+        stopPropagation: vi.fn(),
+        target: { value: 'lengthy', selectionStart: 7, selectionEnd: 7 }
+      } as any;
+
+      component.onInputKeyDown(event);
+
+      expect(selectionSpy).not.toHaveBeenCalled();
+      expect(errorSpy).toHaveBeenCalledWith('Too long');
+    });
+
+    it('commits pending input on blur', () => {
+      const spy = vi.spyOn(component.selection, 'emit');
+      component.inputElement.nativeElement.value = 'pending';
+
+      component.onInputBlur({ relatedTarget: null } as FocusEvent);
+
+      expect(spy).toHaveBeenCalledWith(['pending']);
+    });
+
+    it('does not commit filter text on blur when tagging has options', () => {
+      component.disableDropdown = false;
+      component.options = [{ name: 'DDOS', value: 'ddos' }];
+      fixture.detectChanges();
+
+      const spy = vi.spyOn(component.selection, 'emit');
+      const clearSpy = vi.spyOn(component, 'clearInput');
+      component.inputElement.nativeElement.value = 'dd';
+
+      // Classic path uses clearInput on blur, not commit.
+      component.clearInput();
+
+      expect(spy).not.toHaveBeenCalled();
+      expect(component.isFreeTagging).toBe(false);
+      expect(clearSpy).toHaveBeenCalled();
+    });
+
+    it('selects and removes chips with the keyboard', () => {
+      const spy = vi.spyOn(component.selection, 'emit');
+      component.selected = ['one', 'two'];
+      const event = {
+        key: KeyboardKeys.ARROW_LEFT,
+        code: KeyboardKeys.ARROW_LEFT,
+        preventDefault: vi.fn(),
+        stopPropagation: vi.fn(),
+        target: { value: '', selectionStart: 0, selectionEnd: 0 }
+      } as any;
+
+      component.onInputKeyDown(event);
+      expect(component.selectedChipIndex).toBe(1);
+
+      event.key = event.code = KeyboardKeys.ARROW_LEFT;
+      component.onInputKeyDown(event);
+      expect(component.selectedChipIndex).toBe(0);
+
+      event.key = event.code = KeyboardKeys.DELETE;
+      component.onInputKeyDown(event);
+      expect(spy).toHaveBeenCalledWith(['two']);
+    });
+
+    it('highlights the last chip on first Backspace before removing', () => {
+      const spy = vi.spyOn(component.selection, 'emit');
+      component.selected = ['one', 'two'];
+      const event = {
+        key: KeyboardKeys.BACKSPACE,
+        code: KeyboardKeys.BACKSPACE,
+        preventDefault: vi.fn(),
+        stopPropagation: vi.fn(),
+        target: { value: '', selectionStart: 0, selectionEnd: 0 }
+      } as any;
+
+      component.onInputKeyDown(event);
+      expect(component.selectedChipIndex).toBe(1);
+      expect(spy).not.toHaveBeenCalled();
+
+      component.onInputKeyDown(event);
+      expect(spy).toHaveBeenCalledWith(['one']);
+    });
+
+    it('moves a double-clicked chip into the editor', () => {
+      const spy = vi.spyOn(component.selection, 'emit');
+      component.selected = ['one', 'two'];
+
+      component.onChipDoubleClick({ preventDefault: vi.fn(), stopPropagation: vi.fn() } as any, 0);
+
+      expect(spy).toHaveBeenCalledWith(['two']);
+      expect(component.inputElement.nativeElement.value).toBe('one');
+    });
+
+    it('leaves an empty Tab available for native navigation', () => {
+      const event = {
+        key: KeyboardKeys.TAB,
+        code: KeyboardKeys.TAB,
+        preventDefault: vi.fn(),
+        stopPropagation: vi.fn(),
+        target: { value: '', selectionStart: 0, selectionEnd: 0 }
+      } as any;
+
+      component.onInputKeyDown(event);
+
+      expect(event.preventDefault).not.toHaveBeenCalled();
     });
   });
 

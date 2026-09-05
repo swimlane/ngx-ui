@@ -30,6 +30,7 @@ import { SelectInputComponent } from './select-input.component';
 import { SelectOptionDirective } from './select-option.directive';
 import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
 import { CoerceNumberProperty } from '../../utils/coerce/coerce-number';
+import { SelectTaggingValidator } from './select-tagging.interface';
 
 let nextId = 0;
 
@@ -63,6 +64,7 @@ function arrayEquals(a, b) {
     '[class.lg]': 'size === "lg"',
     '[class.invalid]': 'invalid && touched',
     '[class.tagging-selection]': 'tagging',
+    '[class.free-tagging-selection]': 'isFreeTagging',
     '[class.multi-selection]': 'multiple',
     '[class.single-selection]': 'isSingleSelect',
     '[class.disabled]': 'disabled',
@@ -171,6 +173,8 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   @CoerceBooleanProperty()
   tagging = false;
 
+  @Input() taggingValidator?: SelectTaggingValidator;
+
   @Input()
   @CoerceBooleanProperty()
   multiple = false;
@@ -228,11 +232,27 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
     this._cdr.markForCheck();
   }
 
+  get isFreeTagging(): boolean {
+    return this.tagging && (this.disableDropdown || !this.options?.length);
+  }
+
   get invalid() {
+    if (this.taggingError) return true;
     if (this.required && this.checkInvalidValue(this.value)) return true;
     if (this.maxSelections !== undefined && this.value && this.value.length > this.maxSelections) return true;
     if (this.minSelections !== undefined && (!this.value || this.value.length < this.minSelections)) return true;
+    if (
+      this.isFreeTagging &&
+      this.taggingValidator &&
+      this.value?.some(value => !!this.taggingValidator(value, this.value))
+    ) {
+      return true;
+    }
     return false;
+  }
+
+  get inputHint(): string {
+    return this.taggingError || this.hint;
   }
 
   get requiredIndicatorView() {
@@ -280,6 +300,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   focusIndex = -1;
   dropdownActive = false;
   touched = false;
+  taggingError = '';
 
   private _optionTemplates: QueryList<SelectOptionDirective>;
   private _value: any[] = [];
@@ -328,12 +349,24 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
     if (this.tagging) {
       this.inputComponent.clearInput();
     }
+    this.clearTaggingError();
 
     if (shouldClose) this.onClose(true);
   }
 
   onInputSelection(selections: any[]): void {
     this.value = selections;
+  }
+
+  onTaggingError(error: string): void {
+    this.taggingError = error;
+    this._cdr.markForCheck();
+  }
+
+  private clearTaggingError(): void {
+    if (!this.taggingError) return;
+    this.taggingError = '';
+    this._cdr.markForCheck();
   }
 
   onFocus(): void {
@@ -359,6 +392,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
 
   onClear(): void {
     this.value = [];
+    this.clearTaggingError();
   }
 
   onBodyClick(event: Event): void {
@@ -418,7 +452,8 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   onKeyUp({ event, value }: { event: KeyboardEvent; value?: string }): void {
     if (event && event.key === (KeyboardKeys.ARROW_DOWN as any) && this.focusIndex < this.options.length) {
       ++this.focusIndex;
-    } else {
+    } else if (this.filterQuery !== value) {
+      // Skip no-op writes so typing the same filtered value does not dirty CD.
       this.filterQuery = value;
     }
 
@@ -429,6 +464,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
     /* istanbul ignore else */
     if (val !== this._value) {
       this._value = val;
+      this.clearTaggingError();
       this._cdr.markForCheck();
     }
   }

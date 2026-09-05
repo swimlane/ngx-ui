@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Enhancement (`ngx-select`): Free / no-option tagging now commits with Enter/Tab/comma, cleans bulk paste, commits on blur, supports chip keyboard nav/edit, shows long chip text via tooltip, and accepts an optional `taggingValidator`. Tagging-with-options and other select modes are unchanged.
+
 ## 53.2.2 (2026-09-01)
 
 - Fix (`ngx-list`): Nested flatten/sort no longer assume every dataSource slot is a row object. Virtual/paged lists keep unloaded indexes as `undefined` (length matches totalCount), so search results spanning more than one page no longer throw.
