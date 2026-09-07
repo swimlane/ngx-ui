@@ -1,0 +1,88 @@
+.buttons-page {
+  .muted-tight {
+    color: var(--grey-300);
+    margin: var(--spacing-0) var(--spacing-0) var(--spacing-12);
+  }
+
+  .muted {
+    color: var(--grey-300);
+    margin-bottom: var(--spacing-16);
+  }
+
+  .code-caption {
+    color: var(--grey-400);
+    margin: var(--spacing-12) var(--spacing-0) var(--spacing-4);
+    font-size: var(--font-size-s);
+  }
+
+  .code-ref {
+    color: var(--grey-400);
+    margin-top: var(--spacing-20);
+    margin-bottom: var(--spacing-6);
+    font-size: var(--font-size-s);
+  }
+
+  .host-pill {
+    --swim-button-padding: 0.5em 1.5em;
+    --swim-button-outline-color: var(--orange-400);
+  }
+
+  .host-dense {
+    --swim-button-padding: 0.4em;
+    --swim-button-border-width: 2px;
+    --swim-button-border-color: var(--green-400);
+    --swim-button-hover-border-color: var(--green-500);
+    --swim-button-color: var(--green-400);
+    --swim-button-hover-color: var(--green-500);
+    --swim-button-background: var(--grey-800);
+    --swim-button-hover-background: var(--grey-750);
+  }
+
+  .host-gradient {
+    --swim-button-padding: 0.65em 1.1em;
+    --swim-button-background: linear-gradient(120deg, var(--purple-500), var(--blue-500));
+    --swim-button-hover-background: linear-gradient(120deg, var(--purple-600), var(--blue-600));
+    --swim-button-border-width: 2px;
+    --swim-button-border-style: solid;
+    --swim-button-border-color: rgba(255, 255, 255, 0.35);
+    --swim-button-hover-border-color: rgba(255, 255, 255, 0.55);
+    --swim-button-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
+  }
+
+  .icon-row-wrap {
+    align-items: center;
+    gap: var(--spacing-12);
+    flex-wrap: wrap;
+  }
+
+  .icon-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35em;
+  }
+
+  .icon-row-mb {
+    align-items: center;
+    gap: var(--spacing-12);
+    flex-wrap: wrap;
+    margin-bottom: var(--spacing-16);
+  }
+
+  .hint {
+    color: var(--grey-400);
+    margin-bottom: var(--spacing-8);
+    font-size: var(--font-size-s);
+  }
+
+  .icon-row {
+    align-items: center;
+    gap: var(--spacing-12);
+    flex-wrap: wrap;
+    margin-bottom: var(--spacing-12);
+  }
+
+  .cdn {
+    margin-top: var(--spacing-0);
+    margin-bottom: var(--spacing-24);
+  }
+}

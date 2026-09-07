@@ -1,34 +1,22 @@
+<div class="select-page">
 <hr class="section-divider" />
 <h1 id="select" class="page-title">Select Component</h1>
 <p class="subtitle">Dropdown select with filtering and multi-select support</p>
-<p class="section-desc" style="margin-top: 0; margin-bottom: 1.5rem;"><strong>CDN:</strong> <code>import 'https://widgets.swimlane.app/swim-ui/select.js';</code></p>
-<style>
-  .select-demo-empty {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    color: var(--grey-200);
-  }
-  .select-demo-empty swim-icon {
-    font-size: 1.25rem;
-    color: var(--grey-350);
-    margin-top: 0.1rem;
-  }
-</style>
+<p class="section-desc cdn"><strong>CDN:</strong> <code>import 'https://widgets.swimlane.app/swim-ui/select.js';</code></p>
 
 <!-- Single Select (mirrors ngx-ui selects-page: Basic, Required) -->
 <section class="section">
   <swim-section section-title="Single Select">
-    <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--grey-300)">Basic</h4>
-    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+    <h4 class="subhead">Basic</h4>
+    <div class="stack">
       <swim-select id="basicSelect" label="Attack Type" placeholder="Select..."></swim-select>
     </div>
-    <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--grey-300)">Required</h4>
-    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+    <h4 class="subhead-spaced">Required</h4>
+    <div class="stack">
       <swim-select id="requiredSelect" label="Attack Type" required placeholder="Please select..."></swim-select>
     </div>
-    <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--grey-300)">Disabled</h4>
-    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+    <h4 class="subhead-spaced">Disabled</h4>
+    <div class="stack">
       <swim-select
         id="singleSelectDisabled"
         label="Attack Type"
@@ -37,11 +25,11 @@
         value="breach"
       ></swim-select>
     </div>
-    <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--grey-300)">Custom hint slot</h4>
-    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+    <h4 class="subhead-spaced">Custom hint slot</h4>
+    <div class="stack">
       <swim-select id="customHintSelect" label="Attack Type" placeholder="Select...">
         <span slot="hint">
-          Prefer <a href="#select" style="color: var(--blue-400)">this guide</a> before choosing.
+          Prefer <a class="link-accent" href="#select">this guide</a> before choosing.
         </span>
       </swim-select>
     </div>
@@ -76,10 +64,10 @@
 <!-- Declarative Options (swim-option children) -->
 <section class="section">
   <swim-section section-title="Declarative Options (swim-option)">
-    <p style="color: var(--grey-300); margin-bottom: 1rem">
+    <p class="muted">
       Options can be defined inline as <code>&lt;swim-option&gt;</code> children instead of setting the <code>.options</code> property via JavaScript.
     </p>
-    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+    <div class="stack">
       <swim-select label="Attack Type" required filterable="false">
         <swim-option name="Breach" value="breach"></swim-option>
         <swim-option name="DDOS" value="ddos"></swim-option>
@@ -112,17 +100,17 @@
 <!-- Grouped options: group -->
 <section class="section">
   <swim-section section-title="Grouped options">
-    <p style="color: var(--grey-300); margin-bottom: 1.25rem">
+    <p class="muted-lg">
       Set <code>grouped</code> on <code>&lt;swim-select&gt;</code> to show section headers from each option’s
       <code>group</code>. Omit <code>grouped</code> and the same data renders as a flat list
       (metadata is still on each option). With <code>grouped</code> and filtering on, typing a section name (e.g.
       “Pantry”) matches options in that section.
     </p>
 
-    <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--grey-300)">
+    <h4 class="subhead">
       Programmatic, with <code>grouped</code>
     </h4>
-    <div style="max-width: 500px; margin-bottom: 1rem">
+    <div class="narrow-mb">
       <swim-select
         id="groupedSelectProgrammatic"
         grouped
@@ -146,10 +134,10 @@
   ];
 &lt;/script&gt;</code></pre>
 
-    <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--grey-300)">
+    <h4 class="subhead-spaced">
       Same options without <code>grouped</code> (flat list)
     </h4>
-    <div style="max-width: 500px; margin-bottom: 1rem">
+    <div class="narrow-mb">
       <swim-select
         id="groupedSelectFlat"
         label="Food (flat)"
@@ -173,8 +161,8 @@
   ];
 &lt;/script&gt;</code></pre>
 
-    <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--grey-300)">Declarative</h4>
-    <div style="max-width: 500px; margin-bottom: 1rem">
+    <h4 class="subhead-spaced">Declarative</h4>
+    <div class="narrow-mb">
       <swim-select grouped label="Drinks (declarative)" placeholder="Select…" filterable="false">
         <swim-option group="Cold" name="Iced tea" value="iced-tea"></swim-option>
         <swim-option group="Cold" name="Soda" value="soda"></swim-option>
@@ -190,8 +178,8 @@
   &lt;swim-option group="Hot" name="Tea" value="hot-tea"&gt;&lt;/swim-option&gt;
 &lt;/swim-select&gt;</code></pre>
 
-    <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--grey-300)">Multi-select</h4>
-    <div style="max-width: 500px; margin-bottom: 1rem">
+    <h4 class="subhead-spaced">Multi-select</h4>
+    <div class="narrow-mb">
       <swim-select
         id="groupedSelectMulti"
         grouped
@@ -218,7 +206,7 @@
 <!-- Select Appearances Section -->
 <section class="section">
   <swim-section section-title="Select Appearances">
-    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+    <div class="stack">
       <swim-select
         id="legacySelect"
         appearance="legacy"
@@ -237,7 +225,7 @@
 <!-- Select Sizes Section -->
 <section class="section">
   <swim-section section-title="Select Sizes">
-    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+    <div class="stack">
       <swim-select id="smallSelect" size="sm" label="Small Select" placeholder="Select..."></swim-select>
       <swim-select id="mediumSelect" size="md" label="Medium Select" placeholder="Select..."></swim-select>
       <swim-select id="largeSelect" size="lg" label="Large Select" placeholder="Select..."></swim-select>
@@ -254,7 +242,7 @@
 <!-- Multiple Selection Section -->
 <section class="section">
   <swim-section section-title="Multiple Selection">
-    <div style="max-width: 500px">
+    <div class="narrow">
       <swim-select
         id="multiSelect"
         label="Choose multiple colors"
@@ -286,14 +274,14 @@
 <!-- Remote search: GitHub users -->
 <section class="section">
   <swim-section section-title="Remote search (GitHub users)">
-    <p style="color: var(--grey-300); margin-bottom: 1rem">
+    <p class="muted">
       Type at least <strong>2 characters</strong> to search public GitHub users via the
-      <a href="https://docs.github.com/en/rest/search/search#search-users" style="color: var(--blue-400)"
+      <a class="link-accent" href="https://docs.github.com/en/rest/search/search#search-users"
         >Search users</a
       >
       API. Results load after the default <strong>500ms</strong> debounce on <code>filter-change</code>.
     </p>
-    <div style="display: flex; flex-direction: column; gap: 0.75rem; max-width: 500px">
+    <div class="stack-sm">
       <swim-select
         id="githubUserSelect"
         label="GitHub user"
@@ -307,8 +295,8 @@
         dropdown-align="center"
         hint="Uses https://api.github.com/search/users (rate limits apply without auth)."
       ></swim-select>
-      <p style="font-size: var(--font-size-s); color: var(--grey-350); margin: 0">
-        Selected: <code id="githubUserSelectValue" style="color: var(--grey-200)">—</code>
+      <p class="value">
+        Selected: <code id="githubUserSelectValue">—</code>
       </p>
     </div>
     <pre class="demo-pre"
@@ -348,7 +336,7 @@
 <!-- Filtering Section -->
 <section class="section">
   <swim-section section-title="With Filtering">
-    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+    <div class="stack">
       <swim-select
         id="filterableSelect"
         label="Search countries"
@@ -390,13 +378,13 @@
 <!-- Custom empty state -->
 <section class="section">
   <swim-section section-title="Custom empty state">
-    <p style="color: var(--grey-300); margin-bottom: 1rem">
+    <p class="muted">
       Pass custom markup with <code>slot="empty"</code> to replace the default
       <code>empty-placeholder</code> / <code>filter-empty-placeholder</code> text when the list has
       nothing to show. While <code>loading</code>, the string
       <code>filter-searching-placeholder</code> is still used.
     </p>
-    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+    <div class="stack">
       <swim-select
         id="customEmptySelect"
         label="Search countries"
@@ -409,7 +397,7 @@
           <swim-icon font-icon="search"></swim-icon>
           <div>
             <strong>No countries match</strong>
-            <div style="font-size: var(--font-size-s); color: var(--grey-350); margin-top: 0.25rem">
+            <div class="hint-sm">
               Clear the filter or try another name.
             </div>
           </div>
@@ -430,7 +418,7 @@
 <!-- Select States Section -->
 <section class="section">
   <swim-section section-title="Select States">
-    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+    <div class="stack">
       <swim-select id="normalSelect" label="Normal" placeholder="Select..."></swim-select>
       <swim-select id="withValueSelect" label="With Value" placeholder="Select..." value="option2"></swim-select>
       <swim-select id="disabledSelect" label="Disabled" placeholder="Select..." disabled></swim-select>
@@ -454,7 +442,7 @@
 <!-- Form Integration Section -->
 <section class="section">
   <swim-section section-title="Form Integration">
-    <form id="selectForm" style="max-width: 500px">
+    <form class="narrow" id="selectForm">
       <swim-select
         id="formSelect1"
         name="category"
@@ -473,9 +461,9 @@
         hint="Select one or more tags"
       ></swim-select>
 
-      <div style="margin-top: 1rem">
+      <div class="mt">
         <swim-button type="submit" variant="primary">Submit Form</swim-button>
-        <swim-button type="reset" variant="bordered" style="margin-left: 0.5rem">Reset</swim-button>
+        <swim-button class="ml-sm" type="reset" variant="bordered">Reset</swim-button>
       </div>
     </form>
     <pre class="demo-pre"
@@ -515,7 +503,7 @@
 <!-- Select Usage Section -->
 <section class="section">
   <swim-section section-title="Select Usage">
-    <p style="color: var(--grey-300); margin-bottom: 1rem">Import and use the select component in your application:</p>
+    <p class="muted">Import and use the select component in your application:</p>
     <pre class="demo-pre"
     ><code>&lt;script type="module"&gt;
   import '@swimlane/swim-ui/select';
@@ -569,7 +557,7 @@
           </tbody>
         </table>
       </div>
-      <div style="margin-top: 1.5rem"><span class="api-tag-name">&lt;swim-option&gt;</span></div>
+      <div class="mt-lg"><span class="api-tag-name">&lt;swim-option&gt;</span></div>
       <h4 class="api-heading">Properties (swim-option)</h4>
       <div class="api-table-wrap">
         <table class="api-table">
@@ -609,3 +597,4 @@
     </div>
   </swim-section>
 </section>
+</div>

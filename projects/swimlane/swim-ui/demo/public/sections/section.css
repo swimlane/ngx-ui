@@ -1,0 +1,27 @@
+.section-page {
+  .cdn-tight {
+    margin-top: var(--spacing-0);
+    margin-bottom: var(--spacing-12);
+  }
+
+  .api-tag-gap {
+    margin-top: var(--spacing-20);
+  }
+
+  .host-section-theme {
+    --swim-section-background: var(--grey-850);
+    --swim-section-header-background: var(--grey-800);
+    --swim-section-header-hover-background: var(--blue-500);
+    --swim-section-content-background: var(--grey-825);
+  }
+
+  .desc-readable {
+    margin-top: var(--spacing-0);
+    max-width: 48rem;
+  }
+
+  .cdn {
+    margin-top: var(--spacing-0);
+    margin-bottom: var(--spacing-24);
+  }
+}

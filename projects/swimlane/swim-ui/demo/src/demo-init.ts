@@ -109,12 +109,9 @@ function setupEventBubblingMatrixDemo(): void {
   if (mount && !mount.querySelector('[data-matrix-shadow-demo]')) {
     const host = document.createElement('div');
     host.dataset.matrixShadowDemo = '';
-    host.setAttribute(
-      'style',
-      'padding:1rem;background:var(--grey-800);border-radius:4px;border:1px solid var(--grey-600)'
-    );
+    host.className = 'matrix-shadow-host';
     const title = document.createElement('div');
-    title.style.cssText = 'font-size:0.875rem;color:var(--grey-300);margin-bottom:0.5rem';
+    title.className = 'matrix-shadow-title';
     title.textContent = 'Shadow host (open shadow contains swim-checkbox below)';
     host.appendChild(title);
     const shadow = host.attachShadow({ mode: 'open' });
@@ -188,6 +185,22 @@ async function loadSection(sectionId: string): Promise<string> {
   return html;
 }
 
+function loadSectionCss(sectionId: string): Promise<void> {
+  const linkId = `section-css-${sectionId}`;
+  if (document.getElementById(linkId)) {
+    return Promise.resolve();
+  }
+  return new Promise(resolve => {
+    const link = document.createElement('link');
+    link.id = linkId;
+    link.rel = 'stylesheet';
+    link.href = `${getDemoBasePath()}sections/${sectionId}.css`;
+    link.onload = () => resolve();
+    link.onerror = () => resolve();
+    document.head.appendChild(link);
+  });
+}
+
 function getSectionIdFromHash(): string {
   const hash = window.location.hash.slice(1).toLowerCase();
   return SECTION_SET.has(hash) ? hash : DEFAULT_SECTION;
@@ -201,7 +214,7 @@ async function showSection(sectionId: string): Promise<void> {
     cyclingStateIntervalId = null;
   }
   try {
-    const html = await loadSection(sectionId);
+    const [html] = await Promise.all([loadSection(sectionId), loadSectionCss(sectionId)]);
     container.innerHTML = html;
     setupDemos();
   } catch (err) {
