@@ -17,31 +17,18 @@ import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 import { SelectDropdownOption } from './select-dropdown-option.interface';
 import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
 import { SelectTaggingValidator } from './select-tagging.interface';
+import { freeTagPlainLabel, splitFreeTagBatch } from './select-tagging.util';
 
-const TAG_SEPARATOR_PATTERN = /[,;\n\r\t]+/;
-/** Approx. truncated chip width (~18rem); shorter labels need no tooltip. */
 const CHIP_TOOLTIP_MIN_LENGTH = 32;
 
-function cleanTag(value: string): string {
-  return (
-    value
-      .replace(/<[^>]*>/g, '')
-      .replace(/&nbsp;/gi, ' ')
-      .replace(/&amp;/gi, '&')
-      .replace(/&lt;/gi, '<')
-      .replace(/&gt;/gi, '>')
-      .replace(/&quot;/gi, '"')
-      .replace(/&#39;/g, "'")
-      // eslint-disable-next-line no-control-regex -- strip control chars from pasted text
-      .replace(/[\u0000-\u001f\u007f]/g, '')
-      .replace(/[\u200b-\u200d\ufeff]/g, '')
-      .replace(/\u00a0/g, ' ')
-      .trim()
-  );
-}
-
-function plainChipLabel(option: SelectDropdownOption): string {
-  return `${option?.name ?? option?.value ?? ''}`.replace(/<[^>]*>/g, '').trim();
+/** Derived chip presentation — never mutates consumer option objects. */
+interface SelectedChipView {
+  readonly option: SelectDropdownOption;
+  readonly trackBy: unknown;
+  /** Plain text label for free-tagging display and chip edit. */
+  readonly labelText: string;
+  readonly tooltipTitle: string;
+  readonly invalid: boolean;
 }
 
 @Component({
@@ -104,7 +91,7 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   }
   set selected(val: any[]) {
     this._selected = val;
-    this.selectedOptions = this.calcSelectedOptions(val);
+    this.rebuildSelectedChips(val);
     if (this.selectedChipIndex != null && this.selectedChipIndex >= (val?.length || 0)) {
       this.setSelectedChipIndex(val?.length ? val.length - 1 : null);
     }
@@ -124,6 +111,9 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   @ViewChild('tagInput')
   readonly inputElement?: ElementRef<HTMLInputElement | HTMLTextAreaElement>;
 
+  /** Derived chip view models (tooltip / invalid / plain label). */
+  selectedChips: SelectedChipView[] = [];
+  /** Option list mirrored from selectedChips for existing callers/tests. */
   selectedOptions: SelectDropdownOption[] = [];
   selectedChipIndex: number | null = null;
 
@@ -144,7 +134,7 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   }
 
   get clearVisible() {
-    return this.allowClear && !this.multiple && !this.tagging && this.selectedOptions?.length > 0;
+    return this.allowClear && !this.multiple && !this.tagging && this.selectedChips?.length > 0;
   }
 
   get hasControls(): boolean {
@@ -156,8 +146,15 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if ('options' in changes || 'taggingValidator' in changes) {
-      this.selectedOptions = this.calcSelectedOptions(this.selected);
+    if (
+      'options' in changes ||
+      'taggingValidator' in changes ||
+      'tagging' in changes ||
+      'disableDropdown' in changes ||
+      'identifier' in changes ||
+      'allowAdditions' in changes
+    ) {
+      this.rebuildSelectedChips(this.selected);
     }
   }
 
@@ -227,7 +224,8 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
     if (!this.isFreeTagging) return;
 
     const pasted = event.clipboardData?.getData('text') || '';
-    if (!TAG_SEPARATOR_PATTERN.test(pasted)) {
+    // Decide multi-value after sanitization so `&amp;` is not treated as a `;` separator.
+    if (splitFreeTagBatch(pasted).length <= 1) {
       setTimeout(() => this.syncInputHeight());
       return;
     }
@@ -266,15 +264,15 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
     event.preventDefault();
     event.stopPropagation();
 
-    const option = this.selectedOptions[index];
-    if (!option || option.disabled) return;
+    const chip = this.selectedChips[index];
+    if (!chip || chip.option.disabled) return;
 
     const selections = [...(this.selected || [])];
     selections.splice(index, 1);
     this.selection.emit(selections);
     this.setSelectedChipIndex(null);
     if (this.inputElement?.nativeElement) {
-      this.inputElement.nativeElement.value = `${option.name ?? option.value ?? ''}`;
+      this.inputElement.nativeElement.value = chip.labelText;
       this.syncInputHeight();
     }
     this.emitTaggingError('');
@@ -376,23 +374,6 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
     if (this.isFreeTagging) this.focusInput();
   }
 
-  isOptionInvalid(option: SelectDropdownOption): boolean {
-    return !!this.taggingValidator?.(option.value, this.selected || []);
-  }
-
-  /** Full label for tooltip, or empty when short enough that truncation is unlikely. */
-  chipTooltip(option: SelectDropdownOption): string {
-    const text = plainChipLabel(option);
-    return text.length >= CHIP_TOOLTIP_MIN_LENGTH ? text : '';
-  }
-
-  trackChip(option: SelectDropdownOption): unknown {
-    if (this.identifier && option?.value != null) {
-      return option.value[this.identifier];
-    }
-    return option?.value ?? option;
-  }
-
   private onFreeTaggingKeyDown(event: KeyboardEvent): void {
     const input = event.target as HTMLTextAreaElement;
     const value = input.value || '';
@@ -487,7 +468,7 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   private commitInput(raw: string): void {
     if (!raw) return;
 
-    const values = raw.split(TAG_SEPARATOR_PATTERN).map(cleanTag).filter(Boolean);
+    const values = splitFreeTagBatch(raw);
 
     if (!values.length) {
       this.clearInput();
@@ -558,12 +539,20 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
     el.style.height = `${el.scrollHeight}px`;
   }
 
-  private calcSelectedOptions(selected: any[]) {
-    const results: SelectDropdownOption[] = [];
+  private rebuildSelectedChips(selected: any[] | null | undefined): void {
+    this.selectedChips = this.buildSelectedChips(selected);
+    this.selectedOptions = this.selectedChips.map(chip => chip.option);
+  }
+
+  private buildSelectedChips(selected: any[] | null | undefined): SelectedChipView[] {
+    const results: SelectedChipView[] = [];
     if (!selected) return results;
 
+    const free = this.isFreeTagging;
+    const validator = free ? this.taggingValidator : undefined;
+
     for (const selection of selected) {
-      let match: SelectDropdownOption;
+      let match: SelectDropdownOption | undefined;
 
       if (this.options) {
         match = this.options.find(option => {
@@ -575,12 +564,32 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
       }
 
       if ((this.tagging || this.allowAdditions) && !match) {
-        match = { value: selection, name: selection };
+        const label = freeTagPlainLabel(selection);
+        match = { value: selection, name: label };
       }
 
-      if (match) results.push(match);
+      if (!match) continue;
+
+      const labelText = free ? freeTagPlainLabel(match.value, match.name) : '';
+      const tooltipTitle = free && labelText.length >= CHIP_TOOLTIP_MIN_LENGTH ? labelText : '';
+      const invalid = validator ? !!validator(match.value, selected) : false;
+
+      results.push({
+        option: match,
+        trackBy: this.resolveTrackBy(match),
+        labelText,
+        tooltipTitle,
+        invalid
+      });
     }
 
     return results;
+  }
+
+  private resolveTrackBy(option: SelectDropdownOption): unknown {
+    if (this.identifier && option?.value != null) {
+      return option.value[this.identifier];
+    }
+    return option?.value ?? option;
   }
 }

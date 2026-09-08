@@ -7,9 +7,11 @@ import {
   EventEmitter,
   forwardRef,
   Input,
+  OnChanges,
   OnDestroy,
   Output,
   Renderer2,
+  SimpleChanges,
   TemplateRef,
   ViewChild,
   ViewEncapsulation
@@ -82,7 +84,7 @@ function arrayEquals(a, b) {
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false
 })
-export class SelectComponent extends _InputMixinBase implements ControlValueAccessor, OnDestroy {
+export class SelectComponent extends _InputMixinBase implements ControlValueAccessor, OnChanges, OnDestroy {
   @Input() id = `select-${++nextId}`;
   @Input() name: string;
   @Input() label: string;
@@ -173,7 +175,14 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   @CoerceBooleanProperty()
   tagging = false;
 
-  @Input() taggingValidator?: SelectTaggingValidator;
+  @Input()
+  get taggingValidator(): SelectTaggingValidator | undefined {
+    return this._taggingValidator;
+  }
+  set taggingValidator(value: SelectTaggingValidator | undefined) {
+    this._taggingValidator = value;
+    this.refreshInvalidFreeTags();
+  }
 
   @Input()
   @CoerceBooleanProperty()
@@ -229,6 +238,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
       }
     }
 
+    this.refreshInvalidFreeTags();
     this._cdr.markForCheck();
   }
 
@@ -241,13 +251,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
     if (this.required && this.checkInvalidValue(this.value)) return true;
     if (this.maxSelections !== undefined && this.value && this.value.length > this.maxSelections) return true;
     if (this.minSelections !== undefined && (!this.value || this.value.length < this.minSelections)) return true;
-    if (
-      this.isFreeTagging &&
-      this.taggingValidator &&
-      this.value?.some(value => !!this.taggingValidator(value, this.value))
-    ) {
-      return true;
-    }
+    if (this._hasInvalidFreeTags) return true;
     return false;
   }
 
@@ -283,6 +287,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   set value(val: any[]) {
     if (val !== this._value) {
       this._value = val;
+      this.refreshInvalidFreeTags();
       this.onChangeCallback(this._value);
       this.change.emit(this._value);
       this._cdr.markForCheck();
@@ -307,6 +312,9 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   private _autosizeMinWidth = '60px';
   private _options: SelectDropdownOption[] = [];
   private _boundByOptionsInput = false;
+  /** Cached free-tag validator result; refreshed when value/options/validator change. */
+  private _hasInvalidFreeTags = false;
+  private _taggingValidator?: SelectTaggingValidator;
 
   constructor(
     private readonly _element: ElementRef,
@@ -316,8 +324,22 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
     super();
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('taggingValidator' in changes || 'tagging' in changes || 'disableDropdown' in changes || 'options' in changes) {
+      this.refreshInvalidFreeTags();
+    }
+  }
+
   ngOnDestroy(): void {
     this.toggleDropdown(false);
+  }
+
+  private refreshInvalidFreeTags(): void {
+    this._hasInvalidFreeTags = !!(
+      this.isFreeTagging &&
+      this.taggingValidator &&
+      this.value?.some(value => !!this.taggingValidator!(value, this.value))
+    );
   }
 
   onDropdownSelection(selection: SelectDropdownOption, shouldClose = this.closeOnSelect || !this.multiple): void {
@@ -464,6 +486,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
     /* istanbul ignore else */
     if (val !== this._value) {
       this._value = val;
+      this.refreshInvalidFreeTags();
       this.clearTaggingError();
       this._cdr.markForCheck();
     }

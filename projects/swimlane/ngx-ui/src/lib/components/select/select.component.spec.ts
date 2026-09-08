@@ -337,9 +337,19 @@ describe('SelectComponent', () => {
     it('should validate existing tagging values', () => {
       component.select.tagging = true;
       component.select.disableDropdown = true;
-      component.select.taggingValidator = value => (value === 'invalid' ? 'Invalid tag' : null);
+      component.select.taggingValidator = (value: unknown) => (value === 'invalid' ? 'Invalid tag' : null);
       component.select.value = ['invalid'];
       expect(component.select.invalid).toBeTruthy();
+    });
+
+    it('should clear free-tag invalid state after removing bad values', () => {
+      component.select.tagging = true;
+      component.select.disableDropdown = true;
+      component.select.taggingValidator = (value: unknown) => (value === 'invalid' ? 'Invalid tag' : null);
+      component.select.value = ['invalid'];
+      expect(component.select.invalid).toBeTruthy();
+      component.select.value = ['ok'];
+      expect(component.select.invalid).toBeFalsy();
     });
 
     it('should clear taggingError after dropdown selection path', () => {
