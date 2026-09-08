@@ -23,43 +23,48 @@
         </div>
       }
     }
-    @if (tagging || selectedOptions?.length) {
+    @if (tagging || selectedChips?.length) {
       <ul class="horizontal-list ngx-select-input-list" [class.no-selections]="!selected?.length">
-        @for (option of selectedOptions; track trackChip(option); let index = $index) {
+        @for (chip of selectedChips; track chip.trackBy; let index = $index) {
           <li
             class="ngx-select-input-option"
-            [class.disabled]="multiple && selectedOptions.length > 1 && option.disabled"
-            [class.ngx-select-input-option--invalid]="isFreeTagging && !!taggingValidator && isOptionInvalid(option)"
+            [class.disabled]="multiple && selectedChips.length > 1 && chip.option.disabled"
+            [class.ngx-select-input-option--invalid]="chip.invalid"
             [class.ngx-select-input-option--active]="isFreeTagging && selectedChipIndex === index"
+            [attr.aria-invalid]="chip.invalid ? true : null"
             (click)="onChipClick($event, index)"
             (dblclick)="onChipDoubleClick($event, index)"
           >
-            @if (option.inputTemplate) {
-              <ng-template [ngTemplateOutlet]="option.inputTemplate" [ngTemplateOutletContext]="{ option: option }">
+            @if (chip.option.inputTemplate) {
+              <ng-template
+                [ngTemplateOutlet]="chip.option.inputTemplate"
+                [ngTemplateOutletContext]="{ option: chip.option }"
+              >
               </ng-template>
             }
-            @if (!option.inputTemplate) {
+            @if (!chip.option.inputTemplate) {
               @if (isFreeTagging) {
-                @let tip = chipTooltip(option);
                 <span
                   class="ngx-select-input-name"
                   ngx-tooltip
-                  [tooltipTitle]="tip"
-                  [tooltipDisabled]="!tip"
-                  [tooltipType]="'tooltip'"
-                  [tooltipPlacement]="'top'"
-                  [innerHTML]="option.name || option.value"
-                ></span>
+                  [tooltipTitle]="chip.tooltipTitle"
+                  [tooltipDisabled]="!chip.tooltipTitle"
+                  tooltipType="tooltip"
+                  tooltipPlacement="top"
+                >
+                  {{ chip.labelText }}
+                </span>
               } @else {
-                <span class="ngx-select-input-name" [innerHTML]="option.name || option.value"></span>
+                <span class="ngx-select-input-name" [innerHTML]="chip.option.name || chip.option.value"></span>
               }
             }
-            @if (allowClear && (multiple || tagging) && !option.disabled) {
+            @if (allowClear && (multiple || tagging) && !chip.option.disabled) {
               <button
                 type="button"
                 title="Remove Selection"
+                aria-label="Remove Selection"
                 class="ngx-select-clear"
-                (click)="onOptionRemove($event, option)"
+                (click)="onOptionRemove($event, chip.option)"
               >
                 <i class="ngx-icon ngx-x-small"></i>
               </button>

@@ -198,7 +198,8 @@ describe('SelectInputComponent', () => {
     it('rejects invalid values and surfaces the error', () => {
       const selectionSpy = vi.spyOn(component.selection, 'emit');
       const errorSpy = vi.spyOn(component.taggingError, 'emit');
-      component.taggingValidator = value => (value.length > 3 ? 'Too long' : null);
+      component.taggingValidator = (value: unknown) =>
+        typeof value === 'string' && value.length > 3 ? 'Too long' : null;
       const event = {
         key: KeyboardKeys.ENTER,
         code: KeyboardKeys.ENTER,
@@ -211,6 +212,108 @@ describe('SelectInputComponent', () => {
 
       expect(selectionSpy).not.toHaveBeenCalled();
       expect(errorSpy).toHaveBeenCalledWith('Too long');
+    });
+
+    it('passes domain values to the validator, not chip view models', () => {
+      const seen: { value: unknown; selected: readonly unknown[] }[] = [];
+      component.selected = ['alpha'];
+      component.taggingValidator = (value, selected) => {
+        seen.push({ value, selected: [...selected] });
+        return null;
+      };
+
+      component.onInputKeyDown({
+        key: KeyboardKeys.ENTER,
+        code: KeyboardKeys.ENTER,
+        preventDefault: vi.fn(),
+        stopPropagation: vi.fn(),
+        target: { value: 'beta', selectionStart: 4, selectionEnd: 4 }
+      } as any);
+
+      expect(seen).toEqual([{ value: 'beta', selected: ['alpha'] }]);
+    });
+
+    it('decodes entities and strips tags when committing paste batches', () => {
+      const spy = vi.spyOn(component.selection, 'emit');
+      component.onInputPaste({
+        preventDefault: vi.fn(),
+        stopPropagation: vi.fn(),
+        clipboardData: { getData: () => 'AT&amp;T, hello <b>world</b>' },
+        target: { value: '', selectionStart: 0, selectionEnd: 0 }
+      } as any);
+
+      expect(spy).toHaveBeenCalledWith(['AT&T', 'hello world']);
+    });
+
+    it('ignores whitespace-only commits', () => {
+      const spy = vi.spyOn(component.selection, 'emit');
+      component.onInputKeyDown({
+        key: KeyboardKeys.ENTER,
+        code: KeyboardKeys.ENTER,
+        preventDefault: vi.fn(),
+        stopPropagation: vi.fn(),
+        target: { value: '   ', selectionStart: 3, selectionEnd: 3 }
+      } as any);
+
+      expect(spy).not.toHaveBeenCalled();
+    });
+
+    it('skips duplicate free tags', () => {
+      const spy = vi.spyOn(component.selection, 'emit');
+      component.selected = ['one'];
+
+      component.onInputKeyDown({
+        key: KeyboardKeys.ENTER,
+        code: KeyboardKeys.ENTER,
+        preventDefault: vi.fn(),
+        stopPropagation: vi.fn(),
+        target: { value: 'one', selectionStart: 3, selectionEnd: 3 }
+      } as any);
+
+      expect(spy).not.toHaveBeenCalled();
+    });
+
+    it('precomputes plain label, tooltip, and invalid chip state', () => {
+      const long = 'x'.repeat(40);
+      component.taggingValidator = (value: unknown) => (value === 'bad' ? 'Nope' : null);
+      component.selected = ['ok', 'bad', long];
+
+      expect(component.selectedChips).toHaveLength(3);
+      expect(component.selectedChips[0]).toMatchObject({
+        labelText: 'ok',
+        tooltipTitle: '',
+        invalid: false
+      });
+      expect(component.selectedChips[1]).toMatchObject({
+        labelText: 'bad',
+        tooltipTitle: '',
+        invalid: true
+      });
+      expect(component.selectedChips[2]).toMatchObject({
+        labelText: long,
+        tooltipTitle: long,
+        invalid: false
+      });
+      expect(component.selectedChips[2].option).not.toHaveProperty('tooltipTitle');
+    });
+
+    it('keeps free-tag labels as plain text without mutating option objects', () => {
+      const option = { name: 'Shared', value: 'shared' };
+      component.options = [option];
+      component.selected = ['shared'];
+
+      expect(component.selectedChips[0].labelText).toBe('Shared');
+      expect(option).toEqual({ name: 'Shared', value: 'shared' });
+    });
+
+    it('updates chip invalid state when selections are removed', () => {
+      component.taggingValidator = (value: unknown) => (value === 'bad' ? 'Nope' : null);
+      component.selected = ['bad', 'ok'];
+      expect(component.selectedChips[0].invalid).toBe(true);
+
+      component.selected = ['ok'];
+      expect(component.selectedChips).toHaveLength(1);
+      expect(component.selectedChips[0].invalid).toBe(false);
     });
 
     it('commits pending input on blur', () => {
