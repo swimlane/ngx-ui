@@ -1,29 +1,74 @@
-/**
- * Decode common entities and strip complete HTML tags from free-tag text.
- * Does not remove control characters or trim — callers do that per fragment
- * after splitting so `\n` / `\t` remain available as separators.
- *
- * This is paste/cleanup normalization — not an HTML security boundary.
- * Safety for free tags comes from rendering them as text, not as HTML.
- *
- * Entity decoding is a single pass (e.g. `&amp;amp;` → `&amp;`).
- * Must run on the full batch *before* splitting on `;`, otherwise `&amp;T` breaks apart.
- */
-export function decodeFreeTagMarkup(value: string): string {
+const NAMED_ENTITIES: Readonly<Record<string, string>> = {
+  amp: '&',
+  lt: '<',
+  gt: '>',
+  quot: '"',
+  apos: "'",
+  nbsp: ' '
+};
+
+const TAG_SEPARATOR_PATTERN = /[,;\n\r\t\v\f\u2028\u2029]+/;
+
+function expandWhitespaceEscapes(value: string): string {
   return value
-    .replace(/<[^>]*>/g, '')
-    .replace(/&nbsp;/gi, ' ')
-    .replace(/&amp;/gi, '&')
-    .replace(/&lt;/gi, '<')
-    .replace(/&gt;/gi, '>')
-    .replace(/&quot;/gi, '"')
-    .replace(/&#39;/g, "'");
+    .replace(/\\r\\n/gi, '\n')
+    .replace(/\\n/gi, '\n')
+    .replace(/\\r/gi, '\n')
+    .replace(/\\t/gi, '\t');
 }
 
-/** Clean a single free-tag fragment (control chars, zero-width spaces, trim). */
+function prepareFreeTagBatch(raw: string): string {
+  return expandWhitespaceEscapes(decodeFreeTagMarkup(raw));
+}
+
+function decodeEntityReference(
+  match: string,
+  named: string | undefined,
+  dec: string | undefined,
+  hex: string | undefined
+): string {
+  if (named) {
+    const decoded = NAMED_ENTITIES[named.toLowerCase()];
+    return decoded !== undefined ? decoded : match;
+  }
+
+  const codePoint = hex ? parseInt(hex, 16) : parseInt(dec!, 10);
+  if (!Number.isFinite(codePoint) || codePoint < 0 || codePoint > 0x10ffff) {
+    return match;
+  }
+
+  try {
+    return String.fromCodePoint(codePoint);
+  } catch {
+    return match;
+  }
+}
+
+function decodeEntitiesOnce(value: string): string {
+  return value.replace(/&(?:([a-z]+)|#(\d+)|#x([0-9a-f]+));/gi, decodeEntityReference);
+}
+
+function stripMarkup(value: string): string {
+  let previous = '';
+  let next = value;
+  while (next !== previous) {
+    previous = next;
+    next = next.replace(/<[^>]*>/g, '');
+  }
+  return next.replace(/[<>]/g, '');
+}
+
+export function decodeFreeTagMarkup(value: string): string {
+  return stripMarkup(decodeEntitiesOnce(value));
+}
+
+export function freeTagBatchHasSeparator(raw: string): boolean {
+  return TAG_SEPARATOR_PATTERN.test(prepareFreeTagBatch(raw));
+}
+
 export function normalizeFreeTagInput(value: string): string {
   return (
-    decodeFreeTagMarkup(value)
+    prepareFreeTagBatch(value)
       // eslint-disable-next-line no-control-regex -- strip control chars from pasted text
       .replace(/[\u0000-\u001f\u007f]/g, '')
       .replace(/[\u200b-\u200d\ufeff]/g, '')
@@ -32,13 +77,9 @@ export function normalizeFreeTagInput(value: string): string {
   );
 }
 
-/**
- * Split a typed/pasted free-tag batch into normalized plain tags.
- * Decodes markup on the whole payload before separator split so entity `;` is preserved.
- */
 export function splitFreeTagBatch(raw: string): string[] {
-  return decodeFreeTagMarkup(raw)
-    .split(/[,;\n\r\t]+/)
+  return prepareFreeTagBatch(raw)
+    .split(TAG_SEPARATOR_PATTERN)
     .map(part =>
       part
         // eslint-disable-next-line no-control-regex -- strip residual control chars per fragment
@@ -50,7 +91,6 @@ export function splitFreeTagBatch(raw: string): string[] {
     .filter(Boolean);
 }
 
-/** Plain display/edit label for a free-tag domain value. Avoids `[object Object]`. */
 export function freeTagPlainLabel(value: unknown, name?: unknown): string {
   if (typeof name === 'string') return name;
   if (typeof value === 'string') return value;
