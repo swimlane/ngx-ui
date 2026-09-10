@@ -1,0 +1,130 @@
+.dialog-page {
+  .mt-0 {
+    margin-top: var(--spacing-0);
+  }
+
+  .events-log {
+    margin-top: var(--spacing-16);
+    max-height: 14rem;
+    overflow: auto;
+    text-align: left;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .row-center {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-12);
+  }
+
+  .desc-center-wide {
+    margin-top: var(--spacing-0);
+    max-width: 46rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .center-mt-sm {
+    text-align: center;
+    margin-top: var(--spacing-8);
+  }
+
+  .value-center {
+    font-size: var(--font-size-s);
+    color: var(--grey-350);
+    margin: var(--spacing-0);
+    text-align: center;
+  }
+
+  .value-center code {
+    color: var(--grey-200);
+  }
+
+  .stack-center-narrow {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-12);
+    width: 100%;
+    max-width: 500px;
+    margin: var(--spacing-0) auto;
+  }
+
+  .muted-center {
+    color: var(--grey-300);
+    margin: var(--spacing-0) var(--spacing-0) var(--spacing-16) var(--spacing-0);
+    text-align: center;
+    max-width: 36rem;
+  }
+
+  .stack-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .link-accent {
+    color: var(--blue-400);
+  }
+
+  .desc-center {
+    margin-top: var(--spacing-0);
+    max-width: 42rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .row-center-wrap {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .muted-flush {
+    color: var(--grey-300);
+    margin: var(--spacing-0);
+  }
+
+  .row-center-mt {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-12);
+    margin-top: var(--spacing-8);
+  }
+
+  .m-0 {
+    margin: var(--spacing-0);
+  }
+
+  .host-dialog-theme {
+    --swim-dialog-bg: var(--grey-725);
+    --swim-dialog-header-color: var(--lightblue-300);
+    --swim-dialog-body-color: var(--grey-100);
+  }
+
+  .desc-center-wide-mt {
+    margin-top: var(--spacing-24);
+    max-width: 46rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .host-format-theme {
+    --swim-format-dialog-bg: var(--grey-900);
+    --swim-format-body-padding: var(--spacing-40);
+    --swim-format-header-padding-x: var(--spacing-40);
+    --swim-format-header-padding-end: var(--spacing-48);
+    --swim-format-border-radius: var(--radius-24);
+    --swim-format-divider: var(--spacing-2) solid var(--blue-500);
+    --swim-format-footer-gap: var(--spacing-16);
+  }
+
+  .cdn {
+    margin-top: var(--spacing-0);
+    margin-bottom: var(--spacing-24);
+  }
+}

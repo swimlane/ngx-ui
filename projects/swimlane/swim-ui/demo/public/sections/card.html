@@ -1,70 +1,11 @@
-<style>
-  .demo-row--cards {
-    gap: 2rem;
-    align-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .demo-label--spaced {
-    margin-top: 1rem;
-  }
-
-  .card-demo-stats {
-    display: flex;
-    gap: 1rem;
-    width: 100%;
-    margin-bottom: var(--spacing-20);
-  }
-
-  .card-demo-stat-item {
-    flex: 1;
-    background: var(--grey-750);
-    border-radius: var(--radius-4);
-    padding: 12px;
-    text-align: center;
-  }
-
-  .card-demo-stat-value {
-    font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-semibold);
-    color: var(--grey-050);
-  }
-
-  .card-demo-stat-label {
-    font-size: var(--font-size-xxs);
-    color: var(--grey-350);
-    text-transform: uppercase;
-  }
-
-  .card-demo-meta {
-    font-size: var(--font-size-s);
-    color: var(--grey-350);
-  }
-
-  .card-demo-actions {
-    display: flex;
-    gap: var(--spacing-16);
-    align-items: center;
-  }
-
-  .card-demo-icon {
-    cursor: pointer;
-    font-size: 1.2em;
-    color: var(--grey-300);
-  }
-
-  .card-demo--mt {
-    margin-top: 1rem;
-  }
-</style>
-
+<div class="card-page">
 <h1 id="card" class="page-title">Card</h1>
 <p class="subtitle">
   Card container with horizontal or vertical layout, optional status, selection, and outline. Use
   <code>swim-card</code> with <code>swim-card-header</code>, <code>swim-card-footer</code>,
   <code>swim-card-avatar</code>, and <code>swim-card-placeholder</code>.
 </p>
-<p class="section-desc" style="margin-top: 0; margin-bottom: 1.5rem;"><strong>CDN:</strong> <code>import 'https://widgets.swimlane.app/swim-ui/card.js';</code></p>
+<p class="section-desc cdn"><strong>CDN:</strong> <code>import 'https://widgets.swimlane.app/swim-ui/card.js';</code></p>
 
 <section class="section">
   <swim-section section-title="Horizontal card">
@@ -280,26 +221,6 @@
       Card with <code>swim-card-body</code> containing free-form content — badges, multi-line text, and metadata.
       Styled as a clickable SOC signal card from the AI SOC Platform.
     </p>
-    <style>
-      .soc-card-demo { --swim-card-min-width: 0; cursor: pointer; }
-      .soc-card-demo:hover { filter: brightness(1.15); }
-      .soc-card-demo:focus-visible { outline: 2px solid var(--blue-500); outline-offset: 2px; border-radius: var(--radius-4); }
-      .soc-badge-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-      .soc-badge {
-        display: inline-flex; align-items: center;
-        padding: 2px 8px; border-radius: 3px;
-        font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold);
-        text-transform: uppercase; letter-spacing: 0.03em; white-space: nowrap;
-      }
-      .soc-badge--id { font-weight: var(--font-weight-semibold); }
-      .soc-badge--malicious { background: rgba(255, 69, 52, 0.15); color: var(--red-400); }
-      .soc-badge--suspicious { background: rgba(255, 168, 20, 0.15); color: var(--orange-400); }
-      .soc-badge--benign { background: rgba(46, 204, 113, 0.15); color: var(--green-400); }
-      .soc-badge--escalated { background: rgba(255, 69, 52, 0.12); color: var(--red-400); }
-      .soc-badge--new { background: rgba(20, 131, 255, 0.12); color: var(--blue-400); }
-      .soc-confidence { font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold); }
-      .soc-meta { display: flex; align-items: center; gap: 12px; font-size: var(--font-size-xs); color: var(--grey-300); flex-wrap: wrap; }
-    </style>
     <div class="demo-row demo-row--column">
       <div class="demo-label">Malicious signal (escalated)</div>
       <swim-card class="soc-card-demo" hide-accent role="button" tabindex="0"
@@ -310,7 +231,7 @@
           <div class="soc-badge-row">
             <span class="soc-badge--id">SIG-10421</span>
             <span class="soc-badge soc-badge--malicious">Malicious</span>
-            <span class="soc-confidence" style="color: var(--red-400)">92%</span>
+            <span class="soc-confidence color-red">92%</span>
             <span class="soc-badge soc-badge--escalated">Escalated</span>
           </div>
           <div>Suspicious outbound traffic to 185.220.101.34 detected on finance-srv-02</div>
@@ -329,7 +250,7 @@
           <div class="soc-badge-row">
             <span class="soc-badge--id">SIG-10427</span>
             <span class="soc-badge soc-badge--suspicious">Suspicious</span>
-            <span class="soc-confidence" style="color: var(--orange-400)">72%</span>
+            <span class="soc-confidence color-orange">72%</span>
             <span class="soc-badge soc-badge--new">New</span>
           </div>
           <div>Anomalous data transfer of 2.3GB from database server DB-PROD-01 to external IP</div>
@@ -347,7 +268,7 @@
           <div class="soc-badge-row">
             <span class="soc-badge--id">SIG-10425</span>
             <span class="soc-badge soc-badge--benign">Benign</span>
-            <span class="soc-confidence" style="color: var(--green-400)">88%</span>
+            <span class="soc-confidence color-green">88%</span>
             <span class="soc-badge soc-badge--new">Triaged</span>
           </div>
           <div>VPN connection from user jsmith from location inconsistent with travel records</div>
@@ -418,7 +339,7 @@
           </tbody>
         </table>
       </div>
-      <div style="margin-top:1.25rem"><span class="api-tag-name">&lt;swim-card-header / swim-card-body / swim-card-footer&gt;</span></div>
+      <div class="api-tag-gap"><span class="api-tag-name">&lt;swim-card-header / swim-card-body / swim-card-footer&gt;</span></div>
       <h4 class="api-heading">Child Properties</h4>
       <div class="api-table-wrap">
         <table class="api-table">
@@ -434,3 +355,4 @@
     </div>
   </swim-section>
 </section>
+</div>

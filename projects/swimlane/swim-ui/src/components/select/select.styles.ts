@@ -274,6 +274,50 @@ export const selectStyles = css`
     border-top-right-radius: var(--radius-4);
   }
 
+  .select-filter-icon,
+  .select-filter-clear {
+    position: absolute;
+    top: 50%;
+    color: var(--grey-350);
+  }
+
+  .select-filter-icon {
+    left: var(--spacing-10);
+    font-size: var(--font-size-s);
+    margin-top: -6px;
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .select-filter-clear {
+    right: var(--spacing-10);
+    margin-top: -4.5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: var(--font-size-xxs);
+    line-height: 1;
+    color: var(--grey-350);
+  }
+
+  .select-filter-clear:hover:not(:disabled) {
+    color: var(--grey-300);
+  }
+
+  .select-filter-clear:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .select-filter-clear swim-icon {
+    display: block;
+    font-size: inherit;
+  }
+
   .select-filter-input {
     width: 100%;
     background: transparent;
@@ -283,6 +327,22 @@ export const selectStyles = css`
     font-size: var(--font-size-m);
     font-family: inherit;
     padding: var(--spacing-4);
+    display: block;
+  }
+
+  .select-filter--has-icon .select-filter-input {
+    padding-left: var(--spacing-20);
+  }
+
+  .select-filter:has(.select-filter-clear) .select-filter-input {
+    padding-right: var(--spacing-20);
+  }
+
+  .select-filter-input::-webkit-search-decoration,
+  .select-filter-input::-webkit-search-cancel-button,
+  .select-filter-input::-webkit-search-results-button,
+  .select-filter-input::-webkit-search-results-decoration {
+    -webkit-appearance: none;
   }
 
   .select-filter-input::placeholder {
@@ -297,10 +357,6 @@ export const selectStyles = css`
   .select-filter--loading .select-filter-input {
     opacity: 0.85;
     cursor: wait;
-  }
-
-  .select-filter--loading {
-    position: relative;
   }
 
   .select-options {
@@ -371,6 +427,10 @@ export const selectStyles = css`
     font-size: var(--font-size-m);
     color: var(--grey-300);
     font-style: italic;
+  }
+
+  .select-empty--custom {
+    font-style: normal;
   }
 
   /* Multiple selection */

@@ -1,7 +1,8 @@
+<div class="input-page">
 <hr class="section-divider" />
 <h1 id="input" class="page-title">Input Component</h1>
 <p class="subtitle">Text inputs with floating labels and validation</p>
-<p class="section-desc" style="margin-top: 0; margin-bottom: 1.5rem;"><strong>CDN:</strong> <code>import 'https://widgets.swimlane.app/swim-ui/input.js';</code></p>
+<p class="section-desc cdn"><strong>CDN:</strong> <code>import 'https://widgets.swimlane.app/swim-ui/input.js';</code></p>
 
 <!-- Input Types (mirrors ngx-ui inputs-page: Text and type variants) -->
 <section class="section">
@@ -43,7 +44,7 @@
 <!-- Input Sizes Section -->
 <section class="section">
   <swim-section section-title="Input Sizes">
-    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+    <div class="stack">
       <swim-input size="sm" label="Small Input" placeholder="Small size"></swim-input>
       <swim-input size="md" label="Medium Input" placeholder="Medium size"></swim-input>
       <swim-input size="lg" label="Large Input" placeholder="Large size"></swim-input>
@@ -58,7 +59,7 @@
 <!-- Input Appearances Section -->
 <section class="section">
   <swim-section section-title="Input Appearances">
-    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+    <div class="stack">
       <swim-input appearance="legacy" label="Legacy Appearance" placeholder="Default style"></swim-input>
       <swim-input appearance="fill" label="Fill Appearance" placeholder="Filled background"></swim-input>
     </div>
@@ -71,7 +72,7 @@
 <!-- Textarea Section -->
 <section class="section">
   <swim-section section-title="Textarea">
-    <div style="max-width: 500px">
+    <div class="narrow">
       <swim-input
         type="textarea"
         label="Comments"
@@ -94,7 +95,7 @@
 <!-- Input States Section -->
 <section class="section">
   <swim-section section-title="Input States">
-    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+    <div class="stack">
       <swim-input label="Normal" placeholder="Normal input"></swim-input>
       <swim-input label="With Value" value="Has a value"></swim-input>
       <swim-input label="Required Field" required placeholder="This is required"></swim-input>
@@ -115,7 +116,7 @@
 <!-- Form Validation Section -->
 <section class="section">
   <swim-section section-title="Form Validation">
-    <form id="demoForm" style="max-width: 500px">
+    <form class="narrow" id="demoForm">
       <swim-input
         id="nameInput"
         name="name"
@@ -146,9 +147,9 @@
         hint="Must be between 18 and 100"
       ></swim-input>
 
-      <div style="margin-top: 1rem">
+      <div class="mt">
         <swim-button type="submit" variant="primary">Submit Form</swim-button>
-        <swim-button type="reset" variant="bordered" style="margin-left: 0.5rem">Reset</swim-button>
+        <swim-button class="ml-sm" type="reset" variant="bordered">Reset</swim-button>
       </div>
     </form>
     <pre class="demo-pre"
@@ -166,7 +167,7 @@
 <!-- Advanced Features Section -->
 <section class="section">
   <swim-section section-title="Advanced Features">
-    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+    <div class="stack">
       <swim-input
         type="password"
         label="Password with Toggle"
@@ -184,8 +185,8 @@
       ></swim-input>
 
       <swim-input appearance="fill" label="Fill with Prefix/Suffix" value="example">
-        <span slot="prefix" style="color: var(--grey-300)">https://</span>
-        <span slot="suffix" style="color: var(--grey-300)">.com</span>
+        <span class="color-muted" slot="prefix">https://</span>
+        <span class="color-muted" slot="suffix">.com</span>
       </swim-input>
     </div>
     <pre class="demo-pre"
@@ -205,7 +206,7 @@
 <!-- Input Usage Section -->
 <section class="section">
   <swim-section section-title="Input Usage">
-    <p style="color: var(--grey-300); margin-bottom: 1rem">Import and use the input component in your application:</p>
+    <p class="muted">Import and use the input component in your application:</p>
     <pre class="demo-pre"
     ><code>&lt;script type="module"&gt;
   import '@swimlane/swim-ui/input';
@@ -259,4 +260,5 @@
   </swim-section>
 </section>
 
-<hr style="border: none; border-top: 1px solid var(--grey-700); margin: 4rem 0" />
+<hr class="divider" />
+</div>

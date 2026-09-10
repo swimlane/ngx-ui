@@ -1,0 +1,11 @@
+.navbar-page {
+  .navbar-page--container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .cdn {
+    margin-top: var(--spacing-0);
+    margin-bottom: var(--spacing-24);
+  }
+}
