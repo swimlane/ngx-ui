@@ -312,7 +312,6 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   private _autosizeMinWidth = '60px';
   private _options: SelectDropdownOption[] = [];
   private _boundByOptionsInput = false;
-  /** Cached free-tag validator result; refreshed when value/options/validator change. */
   private _hasInvalidFreeTags = false;
   private _taggingValidator?: SelectTaggingValidator;
 
@@ -335,10 +334,11 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   }
 
   private refreshInvalidFreeTags(): void {
+    const values = this.value;
     this._hasInvalidFreeTags = !!(
       this.isFreeTagging &&
       this.taggingValidator &&
-      this.value?.some(value => !!this.taggingValidator!(value, this.value))
+      values?.some((value, index) => !!this.taggingValidator!(value, values.filter((_, i) => i !== index)))
     );
   }
 

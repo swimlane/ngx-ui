@@ -81,29 +81,38 @@ describe('SelectInputComponent', () => {
       expect(spy).toHaveBeenCalledWith({ event, value: '' });
     });
 
-    describe('enter', () => {
+    describe('classic tagging enter', () => {
       beforeEach(() => {
         component.tagging = true;
+        component.disableDropdown = false;
+        component.options = [{ name: 'Test', value: 'test-option' }];
         event.key = event.code = KeyboardKeys.ENTER;
       });
 
-      it('should select value when not selected', () => {
+      it('should select value on keyup when not selected', () => {
         const spy = vi.spyOn(component.selection, 'emit');
         event.target.value = 'test';
-        component.onInputKeyDown(event);
-        expect(spy).toHaveBeenCalled();
+        component.onInputKeyUp(event);
+        expect(spy).toHaveBeenCalledWith(['test']);
       });
 
       it('should not select value when already selected', () => {
         component.selected = ['test'];
         const spy = vi.spyOn(component.selection, 'emit');
         event.target.value = 'test';
-        component.onInputKeyDown(event);
+        component.onInputKeyUp(event);
         expect(spy).not.toHaveBeenCalled();
       });
 
       it('should do nothing if !value', () => {
         const spy = vi.spyOn(component.selection, 'emit');
+        component.onInputKeyUp(event);
+        expect(spy).not.toHaveBeenCalled();
+      });
+
+      it('should not select value on keydown (commit stays on keyup)', () => {
+        const spy = vi.spyOn(component.selection, 'emit');
+        event.target.value = 'test';
         component.onInputKeyDown(event);
         expect(spy).not.toHaveBeenCalled();
       });
@@ -157,7 +166,6 @@ describe('SelectInputComponent', () => {
   describe('tagging', () => {
     beforeEach(() => {
       fixture.componentRef.setInput('tagging', true);
-      // No-option / free tagging path under test.
       component.disableDropdown = true;
       component.options = [];
       component.selected = [];
@@ -177,6 +185,56 @@ describe('SelectInputComponent', () => {
 
       expect(spy).toHaveBeenCalledWith(['one', 'two', 'three', 'four']);
       expect(event.preventDefault).toHaveBeenCalled();
+    });
+
+    it('splits tab-separated paste into chips', () => {
+      const spy = vi.spyOn(component.selection, 'emit');
+      component.onInputPaste({
+        preventDefault: vi.fn(),
+        stopPropagation: vi.fn(),
+        clipboardData: { getData: (type: string) => (type === 'text/plain' ? 'one\ttwo' : '') },
+        target: { value: '', selectionStart: 0, selectionEnd: 0 }
+      } as any);
+
+      expect(spy).toHaveBeenCalledWith(['one', 'two']);
+    });
+
+    it('splits semicolon and newline paste into chips', () => {
+      const spy = vi.spyOn(component.selection, 'emit');
+      component.onInputPaste({
+        preventDefault: vi.fn(),
+        stopPropagation: vi.fn(),
+        clipboardData: { getData: (type: string) => (type === 'text/plain' ? 'a;b\nc' : '') },
+        target: { value: '', selectionStart: 0, selectionEnd: 0 }
+      } as any);
+
+      expect(spy).toHaveBeenCalledWith(['a', 'b', 'c']);
+    });
+
+    it('splits pasted text that contains \\n escape sequences into chips', () => {
+      const spy = vi.spyOn(component.selection, 'emit');
+      component.onInputPaste({
+        preventDefault: vi.fn(),
+        stopPropagation: vi.fn(),
+        clipboardData: { getData: (type: string) => (type === 'text/plain' ? 'a;b\\nc' : '') },
+        target: { value: '', selectionStart: 0, selectionEnd: 0 }
+      } as any);
+
+      expect(spy).toHaveBeenCalledWith(['a', 'b', 'c']);
+    });
+
+    it('inserts a single pasted value without committing', () => {
+      const spy = vi.spyOn(component.selection, 'emit');
+      const target = { value: '', selectionStart: 0, selectionEnd: 0, setSelectionRange: vi.fn() };
+      component.onInputPaste({
+        preventDefault: vi.fn(),
+        stopPropagation: vi.fn(),
+        clipboardData: { getData: () => 'hello <b>world</b>' },
+        target
+      } as any);
+
+      expect(spy).not.toHaveBeenCalled();
+      expect(target.value).toBe('hello world');
     });
 
     it('commits values with Tab', () => {
@@ -316,6 +374,22 @@ describe('SelectInputComponent', () => {
       expect(component.selectedChips[0].invalid).toBe(false);
     });
 
+    it('revalidates chips with peers only so uniqueness validators stay valid', () => {
+      component.taggingValidator = (value, selected) => (selected.includes(value) ? 'Already selected' : null);
+      component.selected = ['one', 'two'];
+
+      expect(component.selectedChips.every(chip => !chip.invalid)).toBe(true);
+    });
+
+    it('marks chips invalid when a peer-based constraint fails', () => {
+      component.taggingValidator = (value, selected) =>
+        value === 'b' && selected.includes('a') ? 'Conflicts with a' : null;
+      component.selected = ['a', 'b'];
+
+      expect(component.selectedChips[0].invalid).toBe(false);
+      expect(component.selectedChips[1].invalid).toBe(true);
+    });
+
     it('commits pending input on blur', () => {
       const spy = vi.spyOn(component.selection, 'emit');
       component.inputElement.nativeElement.value = 'pending';
@@ -334,7 +408,6 @@ describe('SelectInputComponent', () => {
       const clearSpy = vi.spyOn(component, 'clearInput');
       component.inputElement.nativeElement.value = 'dd';
 
-      // Classic path uses clearInput on blur, not commit.
       component.clearInput();
 
       expect(spy).not.toHaveBeenCalled();
@@ -406,6 +479,60 @@ describe('SelectInputComponent', () => {
       component.onInputKeyDown(event);
 
       expect(event.preventDefault).not.toHaveBeenCalled();
+    });
+
+    it('ignores auto-repeat Backspace after a chip is highlighted', () => {
+      const spy = vi.spyOn(component.selection, 'emit');
+      component.selected = ['one', 'two'];
+      const event = {
+        key: KeyboardKeys.BACKSPACE,
+        code: KeyboardKeys.BACKSPACE,
+        repeat: false,
+        preventDefault: vi.fn(),
+        stopPropagation: vi.fn(),
+        target: { value: '', selectionStart: 0, selectionEnd: 0 }
+      } as any;
+
+      component.onInputKeyDown(event);
+      expect(component.selectedChipIndex).toBe(1);
+      expect(spy).not.toHaveBeenCalled();
+
+      event.repeat = true;
+      component.onInputKeyDown(event);
+      expect(spy).not.toHaveBeenCalled();
+    });
+
+    it('ignores auto-repeat Enter when committing', () => {
+      const spy = vi.spyOn(component.selection, 'emit');
+      const event = {
+        key: KeyboardKeys.ENTER,
+        code: KeyboardKeys.ENTER,
+        repeat: true,
+        preventDefault: vi.fn(),
+        stopPropagation: vi.fn(),
+        target: { value: 'tag', selectionStart: 3, selectionEnd: 3 }
+      } as any;
+
+      component.onInputKeyDown(event);
+      expect(spy).not.toHaveBeenCalled();
+    });
+
+    it('rejects commits that would exceed maxSelections', () => {
+      const selectionSpy = vi.spyOn(component.selection, 'emit');
+      const errorSpy = vi.spyOn(component.taggingError, 'emit');
+      component.maxSelections = 1;
+      component.selected = ['one'];
+
+      component.onInputKeyDown({
+        key: KeyboardKeys.ENTER,
+        code: KeyboardKeys.ENTER,
+        preventDefault: vi.fn(),
+        stopPropagation: vi.fn(),
+        target: { value: 'two', selectionStart: 3, selectionEnd: 3 }
+      } as any);
+
+      expect(selectionSpy).not.toHaveBeenCalled();
+      expect(errorSpy).toHaveBeenCalledWith('A maximum of 1 selections is allowed.');
     });
   });
 

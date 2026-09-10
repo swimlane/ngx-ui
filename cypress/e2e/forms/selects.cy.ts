@@ -184,7 +184,6 @@ describe('Selects', () => {
       const text = 'Other';
 
       // TODO(ngx-ui-testing): support ngxFill for tagging
-      // Basic tagging (with options) still uses <input>; free tagging uses <textarea>.
       cy.get('@CUT').find('input').click().type(text).type('{enter}');
       cy.get('@CUT').ngxGetValue().should('equal', text);
 
@@ -246,15 +245,25 @@ describe('Selects', () => {
       cy.focused().type('{backspace}{backspace}{backspace}'); // For some reason needs three backspaces in testing
     });
 
-    it('supports free tagging entry and chip editing', () => {
-      cy.get('@SUT').find('ngx-select').eq(1).as('freeTagging');
+    it('supports inline tagging entry and chip editing', () => {
+      cy.get('@SUT').find('[data-cy=inline-tagging]').as('inlineTagging');
 
-      cy.get('@freeTagging').find('textarea').type('one,two{enter}');
-      cy.get('@freeTagging').find('.ngx-select-input-option').should('contain.text', 'one');
-      cy.get('@freeTagging').find('.ngx-select-input-option').should('contain.text', 'two');
+      cy.get('@inlineTagging').should('have.class', 'fill');
+      cy.get('@inlineTagging').find('textarea').type('one,two{enter}');
+      cy.get('@inlineTagging').find('.ngx-select-input-option').should('contain.text', 'one');
+      cy.get('@inlineTagging').find('.ngx-select-input-option').should('contain.text', 'two');
 
-      cy.get('@freeTagging').find('.ngx-select-input-option').contains('alpha').dblclick();
-      cy.get('@freeTagging').find('textarea').should('have.value', 'alpha');
+      cy.get('@inlineTagging').find('.ngx-select-input-option').contains('alpha').dblclick();
+      cy.get('@inlineTagging').find('textarea').should('have.value', 'alpha');
+    });
+
+    it('supports inline tagging in fill appearance with textarea and chips', () => {
+      cy.get('[data-cy=inline-tagging-fill-autosize]').as('inlineFill');
+
+      cy.get('@inlineFill').should('have.class', 'fill');
+      cy.get('@inlineFill').find('textarea.ngx-select-text-box').should('exist').type('gamma{enter}');
+      cy.get('@inlineFill').find('.ngx-select-input-option').should('contain.text', 'gamma');
+      cy.get('@inlineFill').find('textarea.ngx-select-text-box').should('exist');
     });
   });
 

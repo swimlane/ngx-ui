@@ -17,15 +17,13 @@ import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 import { SelectDropdownOption } from './select-dropdown-option.interface';
 import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
 import { SelectTaggingValidator } from './select-tagging.interface';
-import { freeTagPlainLabel, splitFreeTagBatch } from './select-tagging.util';
+import { freeTagPlainLabel, freeTagBatchHasSeparator, splitFreeTagBatch } from './select-tagging.util';
 
 const CHIP_TOOLTIP_MIN_LENGTH = 32;
 
-/** Derived chip presentation — never mutates consumer option objects. */
 interface SelectedChipView {
   readonly option: SelectDropdownOption;
   readonly trackBy: unknown;
-  /** Plain text label for free-tagging display and chip edit. */
   readonly labelText: string;
   readonly tooltipTitle: string;
   readonly invalid: boolean;
@@ -111,9 +109,7 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   @ViewChild('tagInput')
   readonly inputElement?: ElementRef<HTMLInputElement | HTMLTextAreaElement>;
 
-  /** Derived chip view models (tooltip / invalid / plain label). */
   selectedChips: SelectedChipView[] = [];
-  /** Option list mirrored from selectedChips for existing callers/tests. */
   selectedOptions: SelectDropdownOption[] = [];
   selectedChipIndex: number | null = null;
 
@@ -123,7 +119,6 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
 
   constructor(private readonly _cdr: ChangeDetectorRef) {}
 
-  /** Enhanced chip UX only when tagging has no usable options dropdown. */
   get isFreeTagging(): boolean {
     return !!this.tagging && (this.disableDropdown || !this.options?.length);
   }
@@ -174,7 +169,6 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
       return;
     }
 
-    // Classic tagging-with-options: preserve prior Enter/Escape behavior only.
     switch (event.code) {
       case KeyboardKeys.ENTER:
         event.preventDefault();
@@ -199,7 +193,6 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
       return;
     }
 
-    // Classic tagging-with-options keyup (unchanged contract).
     switch (event.code) {
       case KeyboardKeys.ENTER:
         event.preventDefault();
@@ -223,21 +216,27 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   onInputPaste(event: ClipboardEvent): void {
     if (!this.isFreeTagging) return;
 
-    const pasted = event.clipboardData?.getData('text') || '';
-    // Decide multi-value after sanitization so `&amp;` is not treated as a `;` separator.
-    if (splitFreeTagBatch(pasted).length <= 1) {
-      setTimeout(() => this.syncInputHeight());
-      return;
-    }
-
     event.preventDefault();
     event.stopPropagation();
 
+    const pasted = event.clipboardData?.getData('text/plain') || event.clipboardData?.getData('text') || '';
     const input = event.target as HTMLTextAreaElement;
     const value = input.value || '';
     const start = input.selectionStart ?? value.length;
     const end = input.selectionEnd ?? value.length;
-    this.commitInput(`${value.slice(0, start)}${pasted}${value.slice(end)}`);
+    const merged = `${value.slice(0, start)}${pasted}${value.slice(end)}`;
+
+    if (freeTagBatchHasSeparator(pasted) || splitFreeTagBatch(merged).length > 1) {
+      this.commitInput(merged);
+      return;
+    }
+
+    const inserted = splitFreeTagBatch(pasted)[0] ?? '';
+    input.value = `${value.slice(0, start)}${inserted}${value.slice(end)}`;
+    const caret = start + inserted.length;
+    input.setSelectionRange(caret, caret);
+    this.syncInputHeight();
+    this._cdr.markForCheck();
   }
 
   onInputValueChange(): void {
@@ -338,7 +337,6 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
 
   onFocus(event?: FocusEvent) {
     if (this.disabled || !this.tagging) return;
-    // focusin bubbles from buttons (clear/caret); don't treat those as field activation.
     if ((event?.target as HTMLElement | null)?.closest?.('button')) return;
     this.onClick();
   }
@@ -368,8 +366,6 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   }
 
   focus() {
-    // Prefer the container so classic tagging still runs onFocus → open dropdown.
-    // Free tagging then moves focus into the textarea via onFocus/onClick.
     this.inputContainer?.nativeElement.focus();
     if (this.isFreeTagging) this.focusInput();
   }
@@ -381,6 +377,13 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
     const caret = input.selectionStart ?? 0;
     const atStart = caret === 0 && (input.selectionEnd ?? 0) === 0;
     const key = event.key;
+
+    if (
+      event.repeat &&
+      (key === KeyboardKeys.BACKSPACE || key === KeyboardKeys.DELETE || key === KeyboardKeys.ENTER || key === ',')
+    ) {
+      return;
+    }
 
     if (key === KeyboardKeys.ARROW_LEFT && (empty || atStart) && this.selected?.length) {
       event.preventDefault();
@@ -551,7 +554,7 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
     const free = this.isFreeTagging;
     const validator = free ? this.taggingValidator : undefined;
 
-    for (const selection of selected) {
+    selected.forEach((selection, index) => {
       let match: SelectDropdownOption | undefined;
 
       if (this.options) {
@@ -568,11 +571,12 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
         match = { value: selection, name: label };
       }
 
-      if (!match) continue;
+      if (!match) return;
 
       const labelText = free ? freeTagPlainLabel(match.value, match.name) : '';
       const tooltipTitle = free && labelText.length >= CHIP_TOOLTIP_MIN_LENGTH ? labelText : '';
-      const invalid = validator ? !!validator(match.value, selected) : false;
+      const peers = selected.filter((_, i) => i !== index);
+      const invalid = validator ? !!validator(match.value, peers) : false;
 
       results.push({
         option: match,
@@ -581,7 +585,7 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
         tooltipTitle,
         invalid
       });
-    }
+    });
 
     return results;
   }

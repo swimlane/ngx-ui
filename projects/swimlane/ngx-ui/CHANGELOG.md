@@ -2,7 +2,7 @@
 
 ## HEAD (unreleased)
 
-- Enhancement (`ngx-select`): Free / no-option tagging now commits with Enter/Tab/comma, cleans bulk paste, commits on blur, supports chip keyboard nav/edit, shows long chip text via tooltip, and accepts an optional `taggingValidator`. Chip presentation (tooltip/invalid) is precomputed; free tags render as plain text. Tagging-with-options and other select modes are unchanged.
+- Enhancement (`ngx-select`): Inline / no-option tagging now commits with Enter/Tab/comma, cleans bulk paste, commits on blur, supports chip keyboard nav/edit, shows long chip text via tooltip, and accepts an optional `taggingValidator` (inline tagging only). Chip presentation (tooltip/invalid) is precomputed; tags render as plain text. Tagging-with-options and other select modes are unchanged.
 
 ## 53.2.2 (2026-09-01)
 

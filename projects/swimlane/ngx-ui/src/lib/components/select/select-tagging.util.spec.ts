@@ -7,9 +7,8 @@ describe('normalizeFreeTagInput', () => {
 
   it('decodes common HTML entities in a single pass', () => {
     expect(normalizeFreeTagInput('AT&amp;T')).toBe('AT&T');
-    expect(normalizeFreeTagInput('&lt;div&gt;')).toBe('<div>');
-    expect(normalizeFreeTagInput('a &gt; b')).toBe('a > b');
-    expect(normalizeFreeTagInput('a &lt; b')).toBe('a < b');
+    expect(normalizeFreeTagInput('a &gt; b')).toBe('a  b');
+    expect(normalizeFreeTagInput('a &lt; b')).toBe('a  b');
     expect(normalizeFreeTagInput('&quot;quoted&quot;')).toBe('"quoted"');
     expect(normalizeFreeTagInput('&#39;x&#39;')).toBe("'x'");
   });
@@ -36,15 +35,20 @@ describe('normalizeFreeTagInput', () => {
     expect(normalizeFreeTagInput('café 🎉')).toBe('café 🎉');
   });
 
-  it('leaves incomplete tag-like text alone', () => {
-    expect(normalizeFreeTagInput('<script')).toBe('<script');
-    expect(normalizeFreeTagInput('<')).toBe('<');
-    expect(normalizeFreeTagInput('>')).toBe('>');
+  it('removes incomplete tag-like markup and leftover angle brackets', () => {
+    expect(normalizeFreeTagInput('<script')).toBe('script');
+    expect(normalizeFreeTagInput('<')).toBe('');
+    expect(normalizeFreeTagInput('>')).toBe('');
     expect(normalizeFreeTagInput('&')).toBe('&');
   });
 
-  it('strips a complete script element but does not claim XSS safety', () => {
+  it('strips a complete script element to its text content', () => {
     expect(normalizeFreeTagInput('<script>alert(1)</script>')).toBe('alert(1)');
+  });
+
+  it('strips entity-encoded tags after a single decode pass', () => {
+    expect(normalizeFreeTagInput('&lt;div&gt;')).toBe('');
+    expect(normalizeFreeTagInput('hello &lt;b&gt;world&lt;/b&gt;')).toBe('hello world');
   });
 });
 
@@ -53,8 +57,16 @@ describe('splitFreeTagBatch', () => {
     expect(splitFreeTagBatch('AT&amp;T, hello <b>world</b>')).toEqual(['AT&T', 'hello world']);
   });
 
-  it('splits on commas, semicolons, and newlines after markup decode', () => {
+  it('splits on commas, semicolons, tabs, and newlines after markup decode', () => {
     expect(splitFreeTagBatch(' <b>one</b>, two\u200B;three\nfour')).toEqual(['one', 'two', 'three', 'four']);
+    expect(splitFreeTagBatch('one\ttwo')).toEqual(['one', 'two']);
+    expect(splitFreeTagBatch('a;b\nc')).toEqual(['a', 'b', 'c']);
+  });
+
+  it('splits on typed/pasted \\n \\t \\r escape sequences', () => {
+    expect(splitFreeTagBatch('a;b\\nc')).toEqual(['a', 'b', 'c']);
+    expect(splitFreeTagBatch('one\\ttwo')).toEqual(['one', 'two']);
+    expect(splitFreeTagBatch('x\\r\\ny')).toEqual(['x', 'y']);
   });
 
   it('returns a single tag when there are no separators', () => {
@@ -63,6 +75,10 @@ describe('splitFreeTagBatch', () => {
 
   it('drops empty and whitespace-only fragments', () => {
     expect(splitFreeTagBatch('a,  ,b')).toEqual(['a', 'b']);
+  });
+
+  it('normalizes malformed HTML-like fragments before split', () => {
+    expect(splitFreeTagBatch('<script,safe')).toEqual(['script', 'safe']);
   });
 });
 
