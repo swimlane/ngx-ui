@@ -355,8 +355,7 @@ describe('SelectComponent', () => {
     it('should stay valid for uniqueness validators that check selected peers', () => {
       component.select.tagging = true;
       component.select.disableDropdown = true;
-      component.select.taggingValidator = (value, selected) =>
-        selected.includes(value) ? 'Already selected' : null;
+      component.select.taggingValidator = (value, selected) => (selected.includes(value) ? 'Already selected' : null);
       component.select.value = ['one', 'two'];
       expect(component.select.invalid).toBeFalsy();
     });

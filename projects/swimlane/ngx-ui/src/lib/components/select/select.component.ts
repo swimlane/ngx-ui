@@ -338,7 +338,13 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
     this._hasInvalidFreeTags = !!(
       this.isFreeTagging &&
       this.taggingValidator &&
-      values?.some((value, index) => !!this.taggingValidator!(value, values.filter((_, i) => i !== index)))
+      values?.some(
+        (value, index) =>
+          !!this.taggingValidator!(
+            value,
+            values.filter((_, i) => i !== index)
+          )
+      )
     );
   }
 
