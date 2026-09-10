@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { fixture, removeAndFlush, assertAccessible, createFormWithControl, waitForUpdate } from '../../test-utils.js';
+import '../../../../swim-ui/src/components/select/index.js';
 
 const sampleOptions = [
   { name: 'A', value: 'a' },
@@ -11,8 +12,6 @@ async function openDropdown(el: HTMLElement) {
   trigger.click();
   await waitForUpdate(el);
 }
-
-import '../../../../swim-ui/src/components/select/index.js';
 
 describe('swim-select', () => {
   it('renders without throwing', async () => {
