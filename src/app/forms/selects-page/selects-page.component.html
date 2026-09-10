@@ -701,14 +701,27 @@
 <br />
 <br />
 
-<h4>No Options</h4>
-<ngx-select [filterable]="false" [tagging]="true">
+<h4>Inline Tagging</h4>
+<p>Inline tagging with no dropdown. Paste comma/semicolon values. Double-click a chip to edit. Hover a long chip for a tooltip.</p>
+<ngx-select
+  data-cy="inline-tagging"
+  appearance="fill"
+  label="Inline Tagging"
+  [tagging]="true"
+  [filterable]="false"
+  [disableDropdown]="true"
+  [(ngModel)]="taggingDemoValues">
+  @for (tag of taggingDemoValues; track tag) {
+    <ngx-select-option [name]="tag" [value]="tag"></ngx-select-option>
+  }
 </ngx-select>
 
 <app-prism>
   <![CDATA[<ngx-select
+  appearance="fill"
   [filterable]="false"
-  [tagging]="true">
+  [tagging]="true"
+  [disableDropdown]="true">
 </ngx-select>
 ]]>
 </app-prism>
@@ -814,8 +827,8 @@
 
   <br />
 
-  <ngx-select [filterable]="false" [tagging]="true" appearance="fill" label="Fill Tagging With No Options"
-    autosize="true">
+  <ngx-select data-cy="inline-tagging-fill-autosize" [filterable]="false" [tagging]="true" appearance="fill"
+    label="Inline Tagging" autosize="true">
   </ngx-select>
 
   <br />
@@ -1239,7 +1252,8 @@
             <code class="component-type">&#64;Input()</code>
             <code>maxSelections: number</code>
           </th>
-          <td class="component-description">The maximum number of selections to display.</td>
+          <td class="component-description">Maximum selections (multi-select and tagging). For inline tagging,
+            enforced when committing a new tag.</td>
         </tr>
         <tr>
           <th>
@@ -1297,6 +1311,15 @@
             <code>tagging: boolean</code>
           </th>
           <td class="component-description">Whether selected options are displayed as tags.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>taggingValidator: SelectTaggingValidator</code>
+          </th>
+          <td class="component-description">Per-tag validator for inline tagging only
+            (<code>tagging &amp;&amp; (disableDropdown || !options?.length)</code>).
+            Return an error message to reject, or null to accept.</td>
         </tr>
         <tr>
           <th>

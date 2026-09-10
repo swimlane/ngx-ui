@@ -23,6 +23,7 @@ export class SelectsPageComponent implements OnInit {
   selects = this._results;
   selectsModel = [this.selects[0]];
   singleSelectModel = this.selects[0];
+  taggingDemoValues = ['alpha', 'a long tag that truncates — hover to see the full value in a tooltip'];
   asyncOptions$: Observable<any>;
   form = new UntypedFormGroup({
     formCtrl1: new UntypedFormControl([]),

@@ -327,6 +327,56 @@ describe('SelectComponent', () => {
       component.select.value = ['test', 'test1'];
       expect(component.select.invalid).toBeTruthy();
     });
+
+    it('should be true when a tagging entry was rejected', () => {
+      component.select.onTaggingError('Invalid tag');
+      expect(component.select.invalid).toBeTruthy();
+      expect(component.select.inputHint).toBe('Invalid tag');
+    });
+
+    it('should validate existing tagging values', () => {
+      component.select.tagging = true;
+      component.select.disableDropdown = true;
+      component.select.taggingValidator = (value: unknown) => (value === 'invalid' ? 'Invalid tag' : null);
+      component.select.value = ['invalid'];
+      expect(component.select.invalid).toBeTruthy();
+    });
+
+    it('should clear free-tag invalid state after removing bad values', () => {
+      component.select.tagging = true;
+      component.select.disableDropdown = true;
+      component.select.taggingValidator = (value: unknown) => (value === 'invalid' ? 'Invalid tag' : null);
+      component.select.value = ['invalid'];
+      expect(component.select.invalid).toBeTruthy();
+      component.select.value = ['ok'];
+      expect(component.select.invalid).toBeFalsy();
+    });
+
+    it('should stay valid for uniqueness validators that check selected peers', () => {
+      component.select.tagging = true;
+      component.select.disableDropdown = true;
+      component.select.taggingValidator = (value, selected) => (selected.includes(value) ? 'Already selected' : null);
+      component.select.value = ['one', 'two'];
+      expect(component.select.invalid).toBeFalsy();
+    });
+
+    it('should not apply taggingValidator when tagging has options (not inline)', () => {
+      component.select.tagging = true;
+      component.select.disableDropdown = false;
+      component.select.options = [{ name: 'DDOS', value: 'ddos' }];
+      component.select.taggingValidator = () => 'always invalid';
+      component.select.value = ['ddos'];
+      expect(component.select.isFreeTagging).toBeFalsy();
+      expect(component.select.invalid).toBeFalsy();
+    });
+
+    it('should clear taggingError after dropdown selection path', () => {
+      component.select.onTaggingError('Invalid tag');
+      expect(component.select.invalid).toBeTruthy();
+      component.select.onClear();
+      expect(component.select.taggingError).toBe('');
+      expect(component.select.invalid).toBeFalsy();
+    });
   });
 
   describe('requiredIndicatorView', () => {

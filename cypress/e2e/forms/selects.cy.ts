@@ -202,6 +202,7 @@ describe('Selects', () => {
     });
 
     it('is keyboard accessible', () => {
+      cy.get('@CUT').clear();
       cy.get('@SUT').find('h4').contains('Basic').realClick();
 
       cy.get('@CUT').within(() => {
@@ -242,6 +243,27 @@ describe('Selects', () => {
 
       // Clears with backspace
       cy.focused().type('{backspace}{backspace}{backspace}'); // For some reason needs three backspaces in testing
+    });
+
+    it('supports inline tagging entry and chip editing', () => {
+      cy.get('@SUT').find('[data-cy=inline-tagging]').as('inlineTagging');
+
+      cy.get('@inlineTagging').should('have.class', 'fill');
+      cy.get('@inlineTagging').find('textarea').type('one,two{enter}');
+      cy.get('@inlineTagging').find('.ngx-select-input-option').should('contain.text', 'one');
+      cy.get('@inlineTagging').find('.ngx-select-input-option').should('contain.text', 'two');
+
+      cy.get('@inlineTagging').find('.ngx-select-input-option').contains('alpha').dblclick();
+      cy.get('@inlineTagging').find('textarea').should('have.value', 'alpha');
+    });
+
+    it('supports inline tagging in fill appearance with textarea and chips', () => {
+      cy.get('[data-cy=inline-tagging-fill-autosize]').as('inlineFill');
+
+      cy.get('@inlineFill').should('have.class', 'fill');
+      cy.get('@inlineFill').find('textarea.ngx-select-text-box').should('exist').type('gamma{enter}');
+      cy.get('@inlineFill').find('.ngx-select-input-option').should('contain.text', 'gamma');
+      cy.get('@inlineFill').find('textarea.ngx-select-text-box').should('exist');
     });
   });
 
