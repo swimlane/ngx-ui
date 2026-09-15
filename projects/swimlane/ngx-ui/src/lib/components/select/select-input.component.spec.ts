@@ -457,14 +457,27 @@ describe('SelectInputComponent', () => {
       expect(spy).toHaveBeenCalledWith(['one']);
     });
 
-    it('moves a double-clicked chip into the editor', () => {
+    it('edits a double-clicked chip in place', () => {
       const spy = vi.spyOn(component.selection, 'emit');
       component.selected = ['one', 'two'];
+      fixture.detectChanges();
 
       component.onChipDoubleClick({ preventDefault: vi.fn(), stopPropagation: vi.fn() } as any, 0);
+      expect(component.editingChipIndex).toBe(0);
+      expect(spy).not.toHaveBeenCalled();
 
-      expect(spy).toHaveBeenCalledWith(['two']);
-      expect(component.inputElement.nativeElement.value).toBe('one');
+      fixture.detectChanges();
+      const edit = component.chipEditInput.nativeElement;
+      edit.value = 'uno';
+      component.onChipEditKeyDown({
+        key: KeyboardKeys.ENTER,
+        stopPropagation: vi.fn(),
+        preventDefault: vi.fn(),
+        target: edit
+      } as any);
+
+      expect(spy).toHaveBeenCalledWith(['uno', 'two']);
+      expect(component.editingChipIndex).toBeNull();
     });
 
     it('leaves an empty Tab available for native navigation', () => {

@@ -254,7 +254,11 @@ describe('Selects', () => {
       cy.get('@inlineTagging').find('.ngx-select-input-option').should('contain.text', 'two');
 
       cy.get('@inlineTagging').find('.ngx-select-input-option').contains('alpha').dblclick();
-      cy.get('@inlineTagging').find('textarea').should('have.value', 'alpha');
+      cy.get('@inlineTagging')
+        .find('.ngx-select-input-option--editing textarea.ngx-select-chip-edit')
+        .should('have.value', 'alpha')
+        .type('{selectall}edited{enter}');
+      cy.get('@inlineTagging').find('.ngx-select-input-option').should('contain.text', 'edited');
     });
 
     it('supports inline tagging in fill appearance with textarea and chips', () => {
