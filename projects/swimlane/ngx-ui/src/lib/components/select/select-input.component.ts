@@ -17,7 +17,12 @@ import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 import { SelectDropdownOption } from './select-dropdown-option.interface';
 import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
 import { SelectTaggingValidator } from './select-tagging.interface';
-import { freeTagPlainLabel, freeTagBatchHasSeparator, splitFreeTagBatch } from './select-tagging.util';
+import {
+  freeTagPlainLabel,
+  freeTagBatchHasSeparator,
+  splitFreeTagBatch,
+  normalizeFreeTagInput
+} from './select-tagging.util';
 
 const CHIP_TOOLTIP_MIN_LENGTH = 32;
 
@@ -109,9 +114,14 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   @ViewChild('tagInput')
   readonly inputElement?: ElementRef<HTMLInputElement | HTMLTextAreaElement>;
 
+  @ViewChild('chipEditInput')
+  readonly chipEditInput?: ElementRef<HTMLTextAreaElement>;
+
   selectedChips: SelectedChipView[] = [];
   selectedOptions: SelectDropdownOption[] = [];
   selectedChipIndex: number | null = null;
+  /** Chip currently being edited in place (inline tagging only). */
+  editingChipIndex: number | null = null;
 
   private _selected: any[];
   private _lastTaggingError = '';
@@ -244,14 +254,14 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   }
 
   onInputBlur(event: FocusEvent): void {
-    if (!this.isFreeTagging) return;
+    if (!this.isFreeTagging || this.editingChipIndex != null) return;
     const next = event.relatedTarget as Node | null;
     if (next && this.inputContainer?.nativeElement.contains(next)) return;
     this.commitInput(this.inputElement?.nativeElement.value || '');
   }
 
   onChipClick(event: MouseEvent, index: number): void {
-    if (!this.isFreeTagging) return;
+    if (!this.isFreeTagging || this.editingChipIndex != null) return;
     event.stopPropagation();
     this.commitInput(this.inputElement?.nativeElement.value || '');
     this.setSelectedChipIndex(index);
@@ -266,16 +276,42 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
     const chip = this.selectedChips[index];
     if (!chip || chip.option.disabled) return;
 
-    const selections = [...(this.selected || [])];
-    selections.splice(index, 1);
-    this.selection.emit(selections);
+    this.commitInput(this.inputElement?.nativeElement.value || '');
+    this.editingChipIndex = index;
     this.setSelectedChipIndex(null);
-    if (this.inputElement?.nativeElement) {
-      this.inputElement.nativeElement.value = chip.labelText;
-      this.syncInputHeight();
+    this._cdr.markForCheck();
+
+    setTimeout(() => {
+      const el = this.chipEditInput?.nativeElement;
+      if (!el) return;
+      el.value = chip.labelText;
+      el.focus();
+      el.select();
+    });
+  }
+
+  onChipEditKeyDown(event: KeyboardEvent): void {
+    event.stopPropagation();
+    if (event.repeat) return;
+
+    if (event.key === KeyboardKeys.ESCAPE) {
+      event.preventDefault();
+      this.suppressEscapeToggle = true;
+      this.editingChipIndex = null;
+      this._cdr.markForCheck();
+      this.focusInput();
+      return;
     }
-    this.emitTaggingError('');
-    this.focusInput();
+
+    if (event.key === KeyboardKeys.ENTER || event.key === KeyboardKeys.TAB) {
+      event.preventDefault();
+      this.commitChipEdit((event.target as HTMLTextAreaElement).value || '');
+    }
+  }
+
+  onChipEditBlur(event: FocusEvent): void {
+    if (this.editingChipIndex == null) return;
+    this.commitChipEdit((event.target as HTMLTextAreaElement).value || '');
   }
 
   clearInput() {
@@ -327,6 +363,11 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
 
   onClick(event?: MouseEvent): void {
     if (this.disabled || (event?.target as HTMLElement | null)?.closest?.('button')) return;
+    if ((event?.target as HTMLElement | null)?.closest?.('.ngx-select-input-option')) return;
+
+    if (this.editingChipIndex != null) {
+      this.commitChipEdit(this.chipEditInput?.nativeElement.value || '');
+    }
 
     if (!this.disableDropdown) {
       this.activate.emit();
@@ -337,8 +378,11 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
 
   onFocus(event?: FocusEvent) {
     if (this.disabled || !this.tagging) return;
-    if ((event?.target as HTMLElement | null)?.closest?.('button')) return;
-    this.onClick();
+    const target = event?.target as HTMLElement | null;
+    if (target?.closest?.('button')) return;
+    // Focusing the in-chip editor bubbles as focusin — don't treat it as field activation.
+    if (target?.closest?.('.ngx-select-chip-edit') || this.editingChipIndex != null) return;
+    this.onClick(event as unknown as MouseEvent);
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -505,6 +549,43 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
     this.clearInput();
   }
 
+  private commitChipEdit(raw: string): void {
+    const index = this.editingChipIndex;
+    if (index == null) return;
+
+    const value = normalizeFreeTagInput(raw);
+    const next = [...(this.selected || [])];
+    this.editingChipIndex = null;
+    this._cdr.markForCheck();
+
+    if (!value) {
+      next.splice(index, 1);
+      this.selection.emit(next);
+      this.focusInput();
+      return;
+    }
+
+    if (value !== next[index]) {
+      const peers = next.filter((_, i) => i !== index);
+      if (peers.includes(value)) {
+        this.focusInput();
+        return;
+      }
+
+      const reason = this.taggingValidator?.(value, peers) || '';
+      if (reason) {
+        this.emitTaggingError(reason);
+        this.focusInput();
+        return;
+      }
+
+      next[index] = value;
+      this.selection.emit(next);
+    }
+
+    this.focusInput();
+  }
+
   private removeOptionAt(index: number): void {
     if (index < 0 || index >= (this.selected || []).length) return;
 
@@ -530,6 +611,7 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
 
   private focusInput(): void {
     setTimeout(() => {
+      if (this.editingChipIndex != null) return;
       this.inputElement?.nativeElement.focus();
       this.syncInputHeight();
     }, 30);

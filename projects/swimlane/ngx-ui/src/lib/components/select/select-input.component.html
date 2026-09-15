@@ -31,34 +31,53 @@
             [class.disabled]="multiple && selectedChips.length > 1 && chip.option.disabled"
             [class.ngx-select-input-option--invalid]="chip.invalid"
             [class.ngx-select-input-option--active]="isFreeTagging && selectedChipIndex === index"
+            [class.ngx-select-input-option--editing]="isFreeTagging && editingChipIndex === index"
             [attr.aria-invalid]="chip.invalid ? true : null"
             (click)="onChipClick($event, index)"
             (dblclick)="onChipDoubleClick($event, index)"
           >
-            @if (chip.option.inputTemplate) {
-              <ng-template
-                [ngTemplateOutlet]="chip.option.inputTemplate"
-                [ngTemplateOutletContext]="{ option: chip.option }"
-              >
-              </ng-template>
-            }
-            @if (!chip.option.inputTemplate) {
-              @if (isFreeTagging) {
-                <span
-                  class="ngx-select-input-name"
-                  ngx-tooltip
-                  [tooltipTitle]="chip.tooltipTitle"
-                  [tooltipDisabled]="!chip.tooltipTitle"
-                  tooltipType="tooltip"
-                  tooltipPlacement="top"
+            @if (isFreeTagging && editingChipIndex === index) {
+              <textarea
+                #chipEditInput
+                class="ngx-select-chip-edit"
+                rows="1"
+                [disabled]="disabled"
+                autocomplete="off"
+                autocorrect="off"
+                spellcheck="false"
+                (keydown)="onChipEditKeyDown($event)"
+                (keyup)="$event.stopPropagation()"
+                (mousedown)="$event.stopPropagation()"
+                (click)="$event.stopPropagation()"
+                (focusin)="$event.stopPropagation()"
+                (blur)="onChipEditBlur($event)"
+              ></textarea>
+            } @else {
+              @if (chip.option.inputTemplate) {
+                <ng-template
+                  [ngTemplateOutlet]="chip.option.inputTemplate"
+                  [ngTemplateOutletContext]="{ option: chip.option }"
                 >
-                  {{ chip.labelText }}
-                </span>
-              } @else {
-                <span class="ngx-select-input-name" [innerHTML]="chip.option.name || chip.option.value"></span>
+                </ng-template>
+              }
+              @if (!chip.option.inputTemplate) {
+                @if (isFreeTagging) {
+                  <span
+                    class="ngx-select-input-name"
+                    ngx-tooltip
+                    [tooltipTitle]="chip.tooltipTitle"
+                    [tooltipDisabled]="!chip.tooltipTitle"
+                    tooltipType="tooltip"
+                    tooltipPlacement="top"
+                  >
+                    {{ chip.labelText }}
+                  </span>
+                } @else {
+                  <span class="ngx-select-input-name" [innerHTML]="chip.option.name || chip.option.value"></span>
+                }
               }
             }
-            @if (allowClear && (multiple || tagging) && !chip.option.disabled) {
+            @if (allowClear && (multiple || tagging) && !chip.option.disabled && editingChipIndex !== index) {
               <button
                 type="button"
                 title="Remove Selection"
