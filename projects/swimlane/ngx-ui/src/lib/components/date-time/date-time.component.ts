@@ -97,6 +97,7 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
   @Input() precision: moment.unitOfTime.StartOf;
   @Input() timezone: string;
   @Input() inputFormats: any[] = DATE_DISPLAY_INPUT_FORMATS;
+  @Input() hideDisabledTimeUnits = false;
 
   @Input()
   set value(val: Date | string) {
@@ -538,6 +539,10 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
       // Escape	Close the calendar pop-up
       this.close();
     }
+  }
+
+  shouldShowTimeUnit(unit: moment.unitOfTime.StartOf): boolean {
+    return !(this.hideDisabledTimeUnits && this.isTimeDisabled(unit));
   }
 
   private roundTo(val: moment.Moment, key: string): moment.Moment {

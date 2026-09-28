@@ -1,4 +1,4 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { EmbeddedViewRef, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import moment from 'moment-timezone';
@@ -724,6 +724,142 @@ describe('DateTimeComponent', () => {
     it('should be false', () => {
       component.precision = 'hours';
       expect(component.isTimeDisabled('hours')).toBeFalsy();
+    });
+  });
+
+  describe('hideDisabledTimeUnits', () => {
+    let dialogView: EmbeddedViewRef<unknown>;
+
+    afterEach(() => {
+      dialogView?.destroy();
+    });
+
+    function renderDialog(): HTMLElement {
+      component.ngOnChanges({});
+      if (!component.dialogModel) {
+        component.setDialogDate(MOON_LANDING);
+      }
+
+      dialogView = component.calendarTpl.createEmbeddedView({} as any);
+      dialogView.detectChanges();
+
+      const host = document.createElement('div');
+      dialogView.rootNodes.forEach(node => host.appendChild(node));
+      return host;
+    }
+
+    function timeInput(host: HTMLElement, unit: string): Element | null {
+      return host.querySelector(`#${component.id}-${unit}`);
+    }
+
+    it('should default to false', () => {
+      expect(component.hideDisabledTimeUnits).toBe(false);
+      expect(component.shouldShowTimeUnit('hour')).toBe(true);
+    });
+
+    it('should keep disabled time inputs visible when the flag is false', () => {
+      component.inputType = 'datetime';
+      component.precision = 'hour';
+      component.hideDisabledTimeUnits = false;
+      fixture.detectChanges();
+
+      const host = renderDialog();
+
+      expect(component.shouldShowTimeUnit('hour')).toBe(true);
+      expect(host.querySelector('.time-row')).toBeTruthy();
+      expect(timeInput(host, 'hour')).toBeTruthy();
+      expect(timeInput(host, 'minute')).toBeTruthy();
+      expect(timeInput(host, 'second')).toBeTruthy();
+      expect(timeInput(host, 'millisecond')).toBeTruthy();
+      expect(host.querySelectorAll('.ampm').length).toBe(2);
+    });
+
+    it('should hide minute, second, and millisecond inputs when precision is hour', () => {
+      component.inputType = 'datetime';
+      component.precision = 'hour';
+      component.hideDisabledTimeUnits = true;
+      fixture.detectChanges();
+
+      const host = renderDialog();
+
+      expect(component.isTimeDisabled('hour')).toBe(false);
+      expect(component.isTimeDisabled('minute')).toBe(true);
+      expect(component.shouldShowTimeUnit('hour')).toBe(true);
+      expect(timeInput(host, 'hour')).toBeTruthy();
+      expect(timeInput(host, 'minute')).toBeNull();
+      expect(timeInput(host, 'second')).toBeNull();
+      expect(timeInput(host, 'millisecond')).toBeNull();
+      expect(host.querySelectorAll('.ampm').length).toBe(2);
+    });
+
+    it('should hide second and millisecond inputs when precision is minute', () => {
+      component.inputType = 'datetime';
+      component.precision = 'minute';
+      component.hideDisabledTimeUnits = true;
+      fixture.detectChanges();
+
+      const host = renderDialog();
+
+      expect(component.isTimeDisabled('minute')).toBe(false);
+      expect(component.isTimeDisabled('second')).toBe(true);
+      expect(timeInput(host, 'hour')).toBeTruthy();
+      expect(timeInput(host, 'minute')).toBeTruthy();
+      expect(timeInput(host, 'second')).toBeNull();
+      expect(timeInput(host, 'millisecond')).toBeNull();
+    });
+
+    it('should hide only the millisecond input when precision is second', () => {
+      component.inputType = 'datetime';
+      component.precision = 'second';
+      component.hideDisabledTimeUnits = true;
+      fixture.detectChanges();
+
+      const host = renderDialog();
+
+      expect(timeInput(host, 'hour')).toBeTruthy();
+      expect(timeInput(host, 'minute')).toBeTruthy();
+      expect(timeInput(host, 'second')).toBeTruthy();
+      expect(timeInput(host, 'millisecond')).toBeNull();
+    });
+
+    it('should hide the time row when precision disables the hour', () => {
+      component.inputType = 'datetime';
+      component.precision = 'year';
+      component.hideDisabledTimeUnits = true;
+      fixture.detectChanges();
+
+      const host = renderDialog();
+
+      expect(component.isTimeDisabled('hour')).toBe(true);
+      expect(component.shouldShowTimeUnit('hour')).toBe(false);
+      expect(host.querySelector('.time-row')).toBeNull();
+      expect(host.querySelector('.ngx-dialog-footer')).toBeTruthy();
+    });
+
+    it('should hide the time row for a time input when the hour is disabled', () => {
+      component.inputType = 'time';
+      component.precision = 'month';
+      component.hideDisabledTimeUnits = true;
+      fixture.detectChanges();
+
+      const host = renderDialog();
+
+      expect(component.shouldShowTimeUnit('hour')).toBe(false);
+      expect(host.querySelector('.time-row')).toBeNull();
+    });
+
+    it('should show the time row when hour is disabled but the flag is false', () => {
+      component.inputType = 'datetime';
+      component.precision = 'month';
+      component.hideDisabledTimeUnits = false;
+      fixture.detectChanges();
+
+      const host = renderDialog();
+
+      expect(component.shouldShowTimeUnit('hour')).toBe(true);
+      expect(host.querySelector('.time-row')).toBeTruthy();
+      expect(timeInput(host, 'hour')).toBeTruthy();
+      expect(timeInput(host, 'minute')).toBeTruthy();
     });
   });
 

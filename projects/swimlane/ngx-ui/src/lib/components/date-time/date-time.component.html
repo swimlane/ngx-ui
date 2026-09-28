@@ -80,7 +80,7 @@
       >
     </ngx-calendar>
   }
-  @if (inputType === 'time' || inputType === 'datetime') {
+  @if ((inputType === 'time' || inputType === 'datetime') && shouldShowTimeUnit('hour')) {
     <div class="time-row">
       <div>
         <ngx-input
@@ -88,54 +88,60 @@
           hint="Hour"
           [id]="id + '-hour'"
           [ngModel]="hour"
-          min="1"
-          max="12"
+          [min]="1"
+          [max]="12"
           (change)="hourChanged($event)"
           [disabled]="isTimeDisabled('hour')"
           >
         </ngx-input>
       </div>
-      <div>
-        <ngx-input
-          type="number"
-          hint="Minute"
-          [id]="id + '-minute'"
-          [ngModel]="minute"
-          min="0"
-          max="59"
-          (change)="minuteChanged($event)"
-          [disabled]="isTimeDisabled('minute')"
-          >
-        </ngx-input>
-      </div>
-      <div>
-        <ngx-input
-          type="number"
-          hint="Second"
-          [id]="id + '-second'"
-          [ngModel]="second"
-          min="0"
-          max="59"
-          (change)="secondChanged($event)"
-          [disabled]="isTimeDisabled('second')"
-          >
-        </ngx-input>
-      </div>
-      <div>
-        <ngx-input
-          type="number"
-          hint="Millisecond"
-          [id]="id + '-millisecond'"
-          [ngModel]="millisecond"
-          min="0"
-          max="999"
-          (change)="millisecondChanged($event)"
-          [disabled]="isTimeDisabled('millisecond')"
-          class="milliseconds"
-          >
-        </ngx-input>
-      </div>
-      <div>
+      @if (shouldShowTimeUnit('minute')) {
+        <div>
+          <ngx-input
+            type="number"
+            hint="Minute"
+            [id]="id + '-minute'"
+            [ngModel]="minute"
+            [min]="0"
+            [max]="59"
+            (change)="minuteChanged($event)"
+            [disabled]="isTimeDisabled('minute')"
+            >
+          </ngx-input>
+        </div>
+      }
+      @if (shouldShowTimeUnit('second')) {
+        <div>
+          <ngx-input
+            type="number"
+            hint="Second"
+            [id]="id + '-second'"
+            [ngModel]="second"
+            [min]="0"
+            [max]="59"
+            (change)="secondChanged($event)"
+            [disabled]="isTimeDisabled('second')"
+            >
+          </ngx-input>
+        </div>
+      }
+      @if (shouldShowTimeUnit('millisecond')) {
+        <div>
+          <ngx-input
+            type="number"
+            hint="Millisecond"
+            [id]="id + '-millisecond'"
+            [ngModel]="millisecond"
+            [min]="0"
+            [max]="999"
+            (change)="millisecondChanged($event)"
+            [disabled]="isTimeDisabled('millisecond')"
+            class="milliseconds"
+            >
+          </ngx-input>
+        </div>
+      }
+      <div class="ampm-container">
         <button
           class="ampm"
           type="button"
