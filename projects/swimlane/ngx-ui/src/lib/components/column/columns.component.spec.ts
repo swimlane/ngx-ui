@@ -305,4 +305,51 @@ describe('ColumnsComponent', () => {
     expect((component as any).selectedChildIds.has('c1')).toBe(false);
     expect((component as any).selectedChildTitles.has('c1')).toBe(false);
   });
+
+  it('should not arm scroll-to-end when the input is off', () => {
+    component.onColumnNavigation({ columnId: 'missing', content: {} } as any);
+    expect((component as any).shouldScrollToEnd).toBe(false);
+    expect((component as any).scrollToEndObserver).toBeNull();
+  });
+
+  it('should scroll the host to the end after a content expand', fakeAsync(() => {
+    fixture.componentRef.setInput('scrollToEndOnExpand', true);
+    const el = fixture.nativeElement as HTMLElement;
+    Object.defineProperty(el, 'scrollWidth', { configurable: true, value: 480 });
+    Object.defineProperty(el, 'clientWidth', { configurable: true, value: 200 });
+    const disconnect = vi.fn();
+    vi.stubGlobal(
+      'ResizeObserver',
+      class {
+        observe() {}
+        unobserve() {}
+        disconnect = disconnect;
+      }
+    );
+
+    try {
+      component.onColumnNavigation({ columnId: 'missing', content: { component: 'X' } } as any);
+      fixture.detectChanges();
+      tick(32);
+
+      expect(el.scrollLeft).toBe(480);
+      expect((component as any).shouldScrollToEnd).toBe(false);
+      component.ngOnDestroy();
+      expect(disconnect).toHaveBeenCalled();
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  }));
+
+  it('should keep scroll-to-end pending when the host does not overflow', () => {
+    fixture.componentRef.setInput('scrollToEndOnExpand', true);
+    (component as any).shouldScrollToEnd = true;
+    const el = fixture.nativeElement as HTMLElement;
+    Object.defineProperty(el, 'scrollWidth', { configurable: true, value: 100 });
+    Object.defineProperty(el, 'clientWidth', { configurable: true, value: 100 });
+
+    (component as any).scrollHostToEndIfNeeded();
+
+    expect((component as any).shouldScrollToEnd).toBe(true);
+  });
 });

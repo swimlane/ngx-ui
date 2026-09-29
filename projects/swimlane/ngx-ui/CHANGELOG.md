@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Feature (`ngx-columns`): Added opt-in `scrollToEndOnExpand`. When a leaf expand causes horizontal overflow, the columns host scrolls to the end.
+
 ## 53.2.2 (2026-09-01)
 
 - Fix (`ngx-list`): Nested flatten/sort no longer assume every dataSource slot is a row object. Virtual/paged lists keep unloaded indexes as `undefined` (length matches totalCount), so search results spanning more than one page no longer throw.
