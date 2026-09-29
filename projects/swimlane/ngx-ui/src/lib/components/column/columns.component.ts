@@ -14,7 +14,8 @@ import {
   inject,
   NgZone,
   ChangeDetectorRef,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  ElementRef
 } from '@angular/core';
 import { ColumnComponent, ColumnTabClickEvent } from './column/column.component';
 import { Column } from './column/column.types';
@@ -37,6 +38,8 @@ export class ColumnsComponent implements OnChanges, AfterViewChecked, OnDestroy 
   column = input<Column | null>(null);
   height = input<string>('');
   headerTemplate = input<TemplateRef<any> | null>(null);
+  /** When true, scroll the host to the end if a leaf expand causes horizontal overflow. */
+  scrollToEndOnExpand = input(false);
   onColumnChange = output<ColumnTabClickEvent>();
   columnHeight = signal('');
   columns: Array<Column>;
@@ -45,6 +48,7 @@ export class ColumnsComponent implements OnChanges, AfterViewChecked, OnDestroy 
   @ViewChildren(ColumnComponent) columnComponents!: QueryList<ColumnComponent>;
   private ngZone = inject(NgZone);
   private cdr = inject(ChangeDetectorRef);
+  private readonly host = inject(ElementRef<HTMLElement>);
 
   private scrollPositions: Map<string, number> = new Map();
   private selectedChildIds: Map<string, string> = new Map();
@@ -54,6 +58,8 @@ export class ColumnsComponent implements OnChanges, AfterViewChecked, OnDestroy 
   private rafId2: number | null = null;
   private restoreAttempts = 0;
   private readonly MAX_RESTORE_ATTEMPTS = 6;
+  private shouldScrollToEnd = false;
+  private scrollToEndObserver: ResizeObserver | null = null;
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.column?.currentValue) {
@@ -80,6 +86,8 @@ export class ColumnsComponent implements OnChanges, AfterViewChecked, OnDestroy 
 
   ngOnDestroy(): void {
     this.cancelPendingRestore();
+    this.scrollToEndObserver?.disconnect();
+    this.scrollToEndObserver = null;
   }
 
   /**
@@ -119,6 +127,7 @@ export class ColumnsComponent implements OnChanges, AfterViewChecked, OnDestroy 
       this.rafId1 = requestAnimationFrame(() => {
         this.rafId2 = requestAnimationFrame(() => {
           const restored = this.restoreScrollPositions();
+          this.scrollHostToEndIfNeeded();
           // Only clear flag if restoration was successful or we've exhausted attempts
           if (restored || this.restoreAttempts >= this.MAX_RESTORE_ATTEMPTS) {
             this.shouldRestoreScroll = false;
@@ -288,8 +297,33 @@ export class ColumnsComponent implements OnChanges, AfterViewChecked, OnDestroy 
       }
     }
 
+    if (this.scrollToEndOnExpand()) {
+      this.shouldScrollToEnd = !!event.content;
+      this.ensureScrollToEndObserver();
+    }
+
     this.onColumnChange.emit(event);
     this.columns = this.getCurrentColumns();
     this.scheduleScrollRestore();
+  }
+
+  private ensureScrollToEndObserver(): void {
+    if (this.scrollToEndObserver || typeof ResizeObserver === 'undefined') {
+      return;
+    }
+    this.scrollToEndObserver = new ResizeObserver(() => this.scrollHostToEndIfNeeded());
+    this.scrollToEndObserver.observe(this.host.nativeElement);
+  }
+
+  private scrollHostToEndIfNeeded(): void {
+    if (!this.scrollToEndOnExpand() || !this.shouldScrollToEnd) {
+      return;
+    }
+    const el = this.host.nativeElement;
+    if (el.scrollWidth <= el.clientWidth) {
+      return;
+    }
+    el.scrollLeft = el.scrollWidth;
+    this.shouldScrollToEnd = false;
   }
 }
