@@ -63,27 +63,43 @@
         /* Typography – align with swim-ui global and typography/font */
         --font-family: 'Source Sans Pro', 'Open Sans', Arial, sans-serif;
         --font-size-base: 16px;
+        --font-size-xxs: 0.625rem;
         --font-size-xs: 0.75rem;
-        --font-size-s: 0.8125rem;
+        --font-size-s: 0.875rem;
         --font-size-m: 1rem;
+        --font-size-l: 1.125rem;
         --font-size-xl: 1.25rem;
+        --font-size-2xl: 1.5rem;
+        --font-size-3xl: 1.75rem;
+        --font-size-4xl: 2rem;
+        --font-size-5xl: 2.25rem;
+        --font-size-6xl: 3rem;
         --font-weight-bold: 700;
         --font-weight-semibold: 600;
         --font-line-height: 1.4;
         --font-line-height-400: 40px;
 
-        --spacing-0: 0;
+        --spacing-0: 0px;
         --spacing-2: 2px;
         --spacing-4: 4px;
+        --spacing-6: 6px;
         --spacing-8: 8px;
         --spacing-10: 10px;
+        --spacing-12: 12px;
+        --spacing-14: 14px;
         --spacing-16: 16px;
+        --spacing-18: 18px;
         --spacing-20: 20px;
         --spacing-24: 24px;
+        --spacing-30: 30px;
+        --spacing-36: 36px;
+        --spacing-40: 40px;
+        --spacing-48: 48px;
 
-        --radius-0: 0;
+        --radius-0: 0px;
         --radius-2: 2px;
         --radius-4: 4px;
+        --radius-6: 6px;
         --radius-8: 8px;
 
         --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.3);
@@ -302,7 +318,9 @@
 
       /* No leading gap or rule when section content loads (all sections consistent) */
       #page-sections > hr:first-child,
-      #page-sections > .section-divider:first-child {
+      #page-sections > .section-divider:first-child,
+      #page-sections > div:first-child > hr:first-child,
+      #page-sections > div:first-child > .section-divider:first-child {
         display: none;
       }
       #page-sections > *:first-child {

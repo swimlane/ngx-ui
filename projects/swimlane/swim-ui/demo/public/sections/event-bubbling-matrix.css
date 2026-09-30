@@ -1,0 +1,31 @@
+.event-bubbling-matrix-page {
+  .matrix-shadow-host {
+    padding: var(--spacing-16);
+    background: var(--grey-800);
+    border-radius: var(--radius-4);
+    border: 1px solid var(--grey-600);
+  }
+
+  .matrix-shadow-title {
+    font-size: var(--font-size-s);
+    color: var(--grey-300);
+    margin-bottom: var(--spacing-8);
+  }
+
+  .log {
+    min-height: 12rem;
+    white-space: pre-wrap;
+  }
+
+  .mt-lg {
+    margin-top: var(--spacing-24);
+  }
+
+  .mb {
+    margin-bottom: var(--spacing-16);
+  }
+
+  .mb-xl {
+    margin-bottom: var(--spacing-30);
+  }
+}

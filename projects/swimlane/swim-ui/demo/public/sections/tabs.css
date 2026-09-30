@@ -1,0 +1,19 @@
+.tabs-page {
+  .api-tag-gap {
+    margin-top: var(--spacing-20);
+  }
+
+  .muted {
+    color: var(--grey-300);
+    margin-bottom: var(--spacing-16);
+  }
+
+  .medium {
+    max-width: 600px;
+  }
+
+  .cdn {
+    margin-top: var(--spacing-0);
+    margin-bottom: var(--spacing-24);
+  }
+}

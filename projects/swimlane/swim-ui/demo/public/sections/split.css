@@ -1,0 +1,33 @@
+.split-page {
+  .split-example {
+    height: 500px;
+    margin: var(--spacing-20) var(--spacing-0);
+  }
+  .demo-split-panel-left {
+    background: var(--grey-700);
+    padding: var(--spacing-16);
+  }
+  .demo-split-panel-right {
+    background: var(--grey-600);
+    padding: var(--spacing-16);
+  }
+  .demo-split-panel-header {
+    flex: 0 0 50px;
+    background: var(--grey-750);
+    padding: var(--spacing-16);
+  }
+  .demo-split-nested-wrap {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .api-tag-gap {
+    margin-top: var(--spacing-20);
+  }
+
+  .cdn {
+    margin-top: var(--spacing-0);
+    margin-bottom: var(--spacing-24);
+  }
+}

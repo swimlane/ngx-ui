@@ -1,9 +1,10 @@
+<div class="dialog-page">
 <hr class="section-divider" />
 <h1 id="dialog" class="page-title">Dialog</h1>
 <p class="subtitle">
   Modal dialog with title, slot content, and optional close button. Matches @swimlane/ngx-ui dialog behavior.
 </p>
-<p class="section-desc" style="margin-top: 0; margin-bottom: 1.5rem;"><strong>CDN:</strong> <code>import 'https://widgets.swimlane.app/swim-ui/dialog.js';</code></p>
+<p class="section-desc cdn"><strong>CDN:</strong> <code>import 'https://widgets.swimlane.app/swim-ui/dialog.js';</code></p>
 
 <section class="section">
   <swim-section section-title="Content">
@@ -19,7 +20,7 @@
 
 <section class="section">
   <swim-section section-title="Backdrop and Escape">
-    <p class="section-desc" style="margin-top: 0; max-width: 42rem; margin-left: auto; margin-right: auto; text-align: center">
+    <p class="section-desc desc-center">
       Match ngx <code>closeOnBlur</code> / <code>closeOnEscape</code> with <code>close-on-blur</code> and
       <code>close-on-escape</code> on <code>swim-dialog</code>. This dialog keeps the dimmed backdrop but does
       <strong>not</strong> close when you click it; use Escape, the close button, or programmatic <code>hide()</code>.
@@ -122,32 +123,20 @@
 
 <section class="section">
   <swim-section section-title="Theming (CSS variables)">
-    <p class="section-desc" style="margin-top: 0; max-width: 46rem; margin-left: auto; margin-right: auto; text-align: center">
+    <p class="section-desc desc-center-wide">
       Set <code>--swim-format-*</code> on <code>swim-dialog</code> or an ancestor; they inherit into
       <code>swim-large-format-dialog-content</code> (padding, radius, dividers, footer gap, background). Regular dialogs
       respect <code>--swim-dialog-bg</code>, <code>--swim-dialog-header-color</code>, and
       <code>--swim-dialog-body-color</code>. Layout tokens such as <code>--spacing-40</code> from ngx-ui
       <code>layouts/_vars.scss</code> work as values when your app defines them on <code>:root</code>.
     </p>
-    <swim-dialog
-      id="dialogThemeVarsLargeDemo"
-      format="large"
-      style="
-        --swim-format-dialog-bg: var(--grey-900);
-        --swim-format-body-padding: var(--spacing-40, 2.5rem);
-        --swim-format-header-padding-x: var(--spacing-40, 2.5rem);
-        --swim-format-header-padding-end: var(--spacing-48, 3rem);
-        --swim-format-border-radius: var(--radius-24, 24px);
-        --swim-format-divider: 2px solid var(--blue-500);
-        --swim-format-footer-gap: var(--spacing-16, 1rem);
-      "
-    >
+    <swim-dialog class="host-format-theme" id="dialogThemeVarsLargeDemo" format="large">
       <swim-large-format-dialog-content
         format="large"
         dialog-title="Themed large dialog"
         dialog-subtitle="Variables set on swim-dialog"
       >
-        <p style="margin-top: 0">
+        <p class="mt-0">
           This panel uses wider body padding, a larger corner radius, blue dividers, and a darker shell background via
           inherited custom properties.
         </p>
@@ -157,24 +146,16 @@
         </swim-large-format-dialog-footer>
       </swim-large-format-dialog-content>
     </swim-dialog>
-    <div class="demo-row" style="flex-wrap: wrap; justify-content: center; gap: 0.75rem">
+    <div class="demo-row row-center">
       <swim-button type="button" id="dialogThemeVarsLargeOpen">Open themed large dialog</swim-button>
     </div>
-    <p class="section-desc" style="margin-top: 1.5rem; max-width: 46rem; margin-left: auto; margin-right: auto; text-align: center">
+    <p class="section-desc desc-center-wide-mt">
       Regular format: panel colors from <code>--swim-dialog-*</code> on the host.
     </p>
-    <swim-dialog
-      id="dialogThemeVarsRegularDemo"
-      dialog-title="Themed regular dialog"
-      style="
-        --swim-dialog-bg: var(--grey-725);
-        --swim-dialog-header-color: var(--lightblue-300);
-        --swim-dialog-body-color: var(--grey-100);
-      "
-    >
-      <p style="margin: 0">Header and body colors follow the variables above.</p>
+    <swim-dialog class="host-dialog-theme" id="dialogThemeVarsRegularDemo" dialog-title="Themed regular dialog">
+      <p class="m-0">Header and body colors follow the variables above.</p>
     </swim-dialog>
-    <div class="demo-row" style="flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-top: 0.5rem">
+    <div class="demo-row row-center-mt">
       <swim-button type="button" id="dialogThemeVarsRegularOpen">Open themed regular dialog</swim-button>
     </div>
     <br /><br />
@@ -200,7 +181,7 @@
 
 <section class="section">
   <swim-section section-title="Large format footer alignment">
-    <p class="section-desc" style="margin-top: 0; max-width: 42rem; margin-left: auto; margin-right: auto; text-align: center">
+    <p class="section-desc desc-center">
       <code>swim-large-format-dialog-footer</code> uses the <code>align</code> attribute for horizontal layout
       (<code>start</code> | <code>center</code> | <code>end</code> | <code>space-between</code> | <code>space-around</code> |
       <code>space-evenly</code>). Open the same dialog with different values to compare the footer row.
@@ -211,7 +192,7 @@
         dialog-title="Footer alignment"
         dialog-subtitle="align maps to flex justify-content"
       >
-        <p style="color: var(--grey-300); margin: 0">
+        <p class="muted-flush">
           Current <code>align</code> is set before the dialog opens. Default is <code>center</code>.
         </p>
         <swim-large-format-dialog-footer id="dialogFooterAlignFooter" slot="footer" format="medium" align="center">
@@ -220,7 +201,7 @@
         </swim-large-format-dialog-footer>
       </swim-large-format-dialog-content>
     </swim-dialog>
-    <div class="demo-row" style="flex-wrap: wrap; justify-content: center">
+    <div class="demo-row row-center-wrap">
       <swim-button type="button" id="dialogFooterAlignOpenStart">Open (align start)</swim-button>
       <swim-button type="button" id="dialogFooterAlignOpenCenter">Open (align center)</swim-button>
       <swim-button type="button" id="dialogFooterAlignOpenEnd">Open (align end)</swim-button>
@@ -236,10 +217,10 @@
 
 <section class="section">
   <swim-section section-title="Medium Format">
-    <p class="section-desc" style="margin-top: 0; max-width: 42rem; margin-left: auto; margin-right: auto; text-align: center">
+    <p class="section-desc desc-center">
       This example uses the same <strong>Remote search (GitHub users)</strong> pattern as the Select demo: type at least
       <strong>2 characters</strong> to query the
-      <a href="https://docs.github.com/en/rest/search/search#search-users" style="color: var(--blue-400)"
+      <a class="link-accent" href="https://docs.github.com/en/rest/search/search#search-users"
         >Search users</a
       >
       API inside a medium-format dialog body.
@@ -251,12 +232,12 @@
         dialog-title="Medium format dialog"
         dialog-subtitle="Remote search (GitHub users)"
       >
-        <div style="display: flex; flex-direction: column; align-items: center; width: 100%; box-sizing: border-box">
-          <p style="color: var(--grey-300); margin: 0 0 1rem 0; text-align: center; max-width: 36rem">
+        <div class="stack-center">
+          <p class="muted-center">
             Type at least <strong>2 characters</strong> to search public GitHub users.<br />
             Results load after the default <strong>500ms</strong> debounce on <code>filter-change</code>.
           </p>
-          <div style="display: flex; flex-direction: column; gap: 0.75rem; width: 100%; max-width: 500px; margin: 0 auto">
+          <div class="stack-center-narrow">
             <swim-select
               id="dialogMediumGithubUserSelect"
               label="GitHub user"
@@ -270,8 +251,8 @@
               dropdown-align="center"
               hint="Uses https://api.github.com/search/users (rate limits apply without auth)."
             ></swim-select>
-            <p style="font-size: var(--font-size-s); color: var(--grey-350); margin: 0; text-align: center">
-              Selected: <code id="dialogMediumGithubUserSelectValue" style="color: var(--grey-200)">—</code>
+            <p class="value-center">
+              Selected: <code id="dialogMediumGithubUserSelectValue">—</code>
             </p>
           </div>
         </div>
@@ -281,7 +262,7 @@
         </swim-large-format-dialog-footer>
       </swim-large-format-dialog-content>
     </swim-dialog>
-    <div style="text-align: center; margin-top: 0.5rem">
+    <div class="center-mt-sm">
       <swim-button type="button" id="dialogMediumFormatOpen">Open Medium Format Dialog</swim-button>
     </div>
     <br /><br />
@@ -386,21 +367,17 @@
 
 <section class="section">
   <swim-section section-title="Events (open, close, close-or-cancel)">
-    <p class="section-desc" style="margin-top: 0; max-width: 46rem; margin-left: auto; margin-right: auto; text-align: center">
+    <p class="section-desc desc-center-wide">
       <code>swim-dialog</code> dispatches <code>open</code> when <code>visible</code> becomes true and <code>close</code> when it becomes false. Host events use
       <code>bubbles: false</code> and <code>composed: false</code>, so attach listeners on the <code>swim-dialog</code> element itself, not on a parent for delegation.
       For large/medium layout, <code>swim-large-format-dialog-content</code> dispatches <code>close-or-cancel</code> (detail: dirty boolean) from the header control — listen on
       that element, then set the parent dialog’s <code>visible</code> to <code>false</code> if you want the overlay to dismiss.
     </p>
-    <div class="demo-row" style="flex-wrap: wrap; justify-content: center; gap: 0.75rem">
+    <div class="demo-row row-center">
       <swim-button type="button" id="dialogEventsOpen">Open dialog</swim-button>
       <swim-button type="button" variant="bordered" id="dialogEventsClearLog">Clear log</swim-button>
     </div>
-    <pre
-      id="dialogEventsLog"
-      class="demo-pre"
-      style="margin-top: 1rem; max-height: 14rem; overflow: auto; text-align: left; white-space: pre-wrap; word-break: break-word"
-    >(no events yet — open the dialog and try closing from the header, backdrop, Escape, or the footer button)</pre>
+    <pre id="dialogEventsLog" class="demo-pre events-log">(no events yet — open the dialog and try closing from the header, backdrop, Escape, or the footer button)</pre>
     <swim-dialog id="dialogEventsDemo" format="medium">
       <swim-large-format-dialog-content
         id="dialogEventsLargeContent"
@@ -408,7 +385,7 @@
         dialog-title="Dialog events"
         dialog-subtitle="Try different dismiss paths"
       >
-        <p style="margin-top: 0">
+        <p class="mt-0">
           Use the header close, click outside the panel, press <kbd>Escape</kbd>, or the footer button. Watch the log above.
         </p>
         <swim-large-format-dialog-footer slot="footer" format="medium">
@@ -462,3 +439,4 @@ panel?.addEventListener('close-or-cancel', e => {
     </div>
   </swim-section>
 </section>
+</div>

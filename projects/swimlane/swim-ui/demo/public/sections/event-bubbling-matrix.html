@@ -1,3 +1,4 @@
+<div class="event-bubbling-matrix-page">
 <section class="section" id="event-bubbling-matrix">
   <h1 class="page-title">Event propagation matrix</h1>
   <p class="section-desc">
@@ -12,7 +13,7 @@
     <p class="section-desc">
       Wrapper <code>.matrix-wrap-light</code> → <code>swim-checkbox</code>. Listeners: checkbox, wrapper (bubble), <code>document</code> (bubble).
     </p>
-    <div class="matrix-wrap-light demo-card-container" style="margin-bottom: 2rem">
+    <div class="matrix-wrap-light demo-card-container mb-xl">
       <swim-checkbox id="matrixCbLight" label="Toggle (light DOM)"></swim-checkbox>
     </div>
 
@@ -21,13 +22,14 @@
       The checkbox lives in an element's shadow root. With non-bubbling events, a listener on <code>document</code> does
       <strong>not</strong> receive <code>change</code> from inside the shadow subtree; listen on the checkbox node or the shadow host.
     </p>
-    <div id="matrixShadowMount" class="demo-card-container" style="margin-bottom: 1rem"></div>
+    <div id="matrixShadowMount" class="demo-card-container mb"></div>
 
     <div class="demo-row">
       <swim-button id="matrixClearLog" variant="bordered">Clear log</swim-button>
     </div>
 
-    <h3 class="style-header" style="margin-top: 1.5rem">Log</h3>
-    <pre id="eventBubblingMatrixLog" class="demo-pre" style="min-height: 12rem; white-space: pre-wrap"></pre>
+    <h3 class="style-header mt-lg">Log</h3>
+    <pre id="eventBubblingMatrixLog" class="demo-pre log"></pre>
   </div>
 </section>
+</div>

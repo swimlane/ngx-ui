@@ -27,6 +27,7 @@ import './select-option.component';
  *
  * @slot - swim-option children for declarative options
  * @slot hint - Custom hint content
+ * @slot empty - Custom empty-state content when the dropdown has no options to show
  *
  * @fires change - Fired when selection changes (does not bubble; listen on this element).
  * @fires dropdown-open - Options panel opened (does not bubble).
@@ -35,6 +36,7 @@ import './select-option.component';
  *
  * @csspart select - The select input element
  * @csspart dropdown - The dropdown container
+ * @csspart empty - The empty-state container (string placeholder or slotted content)
  */
 const SELECT_TAG = 'swim-select';
 
@@ -83,6 +85,12 @@ export class SwimSelect extends LitElement {
    */
   @property({ type: String, attribute: 'filter-placeholder' })
   filterPlaceholder = 'Filter options...';
+
+  /**
+   * Icon name for the filter field; '' hides it. Default: 'search'.
+   */
+  @property({ type: String, attribute: 'filter-icon' })
+  filterIcon = 'search';
 
   /**
    * When the filter matches nothing (sync) or async search returned no users
@@ -290,6 +298,10 @@ export class SwimSelect extends LitElement {
   @state()
   private _hasSlottedHint = false;
 
+  /** Direct child assigned to `slot="empty"` (kept in sync via `_setupChildObserver`). */
+  @state()
+  private _hasSlottedEmpty = false;
+
   @state()
   private _open = false;
 
@@ -334,6 +346,7 @@ export class SwimSelect extends LitElement {
     super.connectedCallback();
     this._collectSlottedOptions();
     this._syncSlottedHintPresence();
+    this._syncSlottedEmptyPresence();
     this._setupChildObserver();
     this._updateActiveState();
   }
@@ -380,10 +393,18 @@ export class SwimSelect extends LitElement {
     }
   }
 
+  private _syncSlottedEmptyPresence() {
+    const next = Array.from(this.children).some(el => el.slot === 'empty');
+    if (next !== this._hasSlottedEmpty) {
+      this._hasSlottedEmpty = next;
+    }
+  }
+
   private _setupChildObserver() {
     this._childObserver = new MutationObserver(() => {
       this._collectSlottedOptions();
       this._syncSlottedHintPresence();
+      this._syncSlottedEmptyPresence();
     });
     this._childObserver.observe(this, {
       childList: true,
@@ -540,19 +561,51 @@ export class SwimSelect extends LitElement {
                     this.filterable
                       ? html`
                           <div
-                            class="select-filter ${this.loading ? 'select-filter--loading' : ''}"
+                            class="select-filter ${this.loading ? 'select-filter--loading' : ''} ${
+                              this.filterIcon ? 'select-filter--has-icon' : ''
+                            }"
                             aria-busy="${this.loading}"
                           >
+                            ${
+                              this.filterIcon
+                                ? html`
+                                    <swim-icon
+                                      class="select-filter-icon"
+                                      font-icon="${this.filterIcon}"
+                                      aria-hidden="true"
+                                    ></swim-icon>
+                                  `
+                                : nothing
+                            }
                             <input
-                              type="text"
+                              type="search"
                               class="select-filter-input"
                               placeholder="${this.filterPlaceholder}"
+                              autocomplete="off"
+                              autocorrect="off"
+                              spellcheck="false"
                               ?disabled="${this.disabled}"
                               ?readonly="${this.loading}"
                               .value="${this._filterQuery}"
                               @input="${this._handleFilterInput}"
                               @keydown="${this._handleFilterKeyDown}"
+                              @change="${(e: Event) => e.stopPropagation()}"
                             />
+                            ${
+                              this._filterQuery
+                                ? html`
+                                    <button
+                                      type="button"
+                                      class="select-filter-clear"
+                                      aria-label="Clear filter"
+                                      ?disabled="${this.disabled || this.loading}"
+                                      @click="${this._clearFilter}"
+                                    >
+                                      <swim-icon font-icon="x"></swim-icon>
+                                    </button>
+                                  `
+                                : nothing
+                            }
                           </div>
                         `
                       : nothing
@@ -578,7 +631,7 @@ export class SwimSelect extends LitElement {
                             }
                           </ul>
                         `
-                      : html`<div class="select-empty">${this._emptyDropdownMessage()}</div>`
+                      : this._renderEmptyState()
                   }
                 </div>
               `
@@ -661,6 +714,16 @@ export class SwimSelect extends LitElement {
         : this.emptyPlaceholder;
     }
     return this.filterEmptyPlaceholder;
+  }
+
+  // Renders empty dropdown content or custom empty slot
+  private _renderEmptyState() {
+    const useEmptySlot = this._hasSlottedEmpty && !this.loading;
+    return html`
+      <div class="select-empty ${useEmptySlot ? 'select-empty--custom' : ''}" part="empty">
+        ${useEmptySlot ? html`<slot name="empty"></slot>` : this._emptyDropdownMessage()}
+      </div>
+    `;
   }
 
   private _renderChip(option: SelectOption) {
@@ -812,6 +875,27 @@ export class SwimSelect extends LitElement {
         this._emitFilterChange(q);
       }, this.filterDebounceMs);
     }
+  }
+
+  private _clearFilter(e: Event) {
+    e.stopPropagation();
+    if (this.disabled || this.loading) {
+      return;
+    }
+    this._filterQuery = '';
+    this._focusedIndex = 0;
+    if (this.filterInput) {
+      this.filterInput.value = '';
+      this.filterInput.focus({ preventScroll: true });
+    }
+    if (this.asyncFilter) {
+      if (this._filterDebounceTimer !== undefined) {
+        clearTimeout(this._filterDebounceTimer);
+        this._filterDebounceTimer = undefined;
+      }
+      this._emitFilterChange('');
+    }
+    this.requestUpdate();
   }
 
   private _handleFilterKeyDown(e: KeyboardEvent) {

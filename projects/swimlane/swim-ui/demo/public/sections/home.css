@@ -1,0 +1,9 @@
+.home-page {
+  h2.style-header {
+    margin-top: var(--spacing-48);
+  }
+
+  .list-indent {
+    margin: var(--spacing-8) var(--spacing-0) var(--spacing-16) var(--spacing-24);
+  }
+}

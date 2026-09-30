@@ -1,7 +1,8 @@
+<div class="datetime-page">
 <hr class="section-divider" />
 <h1 id="datetime" class="page-title">Date Time</h1>
 <p class="subtitle">Date, time, and datetime picker with formatting, timezone support, and form association.</p>
-<p class="section-desc" style="margin-top: 0; margin-bottom: 1.5rem;"><strong>CDN:</strong> <code>import 'https://widgets.swimlane.app/swim-ui/date-time.js';</code></p>
+<p class="section-desc cdn"><strong>CDN:</strong> <code>import 'https://widgets.swimlane.app/swim-ui/date-time.js';</code></p>
 
 <!-- ================================================================ -->
 <!-- Date Input -->
@@ -289,21 +290,21 @@
 <!-- ================================================================ -->
 <section class="section">
   <swim-section section-title="Appearances">
-    <table style="width: 100%; border-collapse: collapse">
+    <table class="table-full">
       <thead>
         <tr>
-          <th style="text-align: left; padding: 8px; color: var(--grey-300); width: 20%"></th>
-          <th style="text-align: left; padding: 8px; color: var(--grey-300); width: 40%">Default</th>
-          <th style="text-align: left; padding: 8px; color: var(--grey-300); width: 40%">Fill</th>
+          <th class="th-label"></th>
+          <th class="th-col">Default</th>
+          <th class="th-col">Fill</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td style="padding: 8px; color: var(--grey-300)">Filled</td>
-          <td style="padding: 8px">
+          <td class="td-label">Filled</td>
+          <td class="td">
             <swim-date-time id="appFilled" label="Label" hint="A brief bit of help text"></swim-date-time>
           </td>
-          <td style="padding: 8px">
+          <td class="td">
             <swim-date-time
               id="appFilledFill"
               appearance="fill"
@@ -313,11 +314,11 @@
           </td>
         </tr>
         <tr>
-          <td style="padding: 8px; color: var(--grey-300)">Required</td>
-          <td style="padding: 8px">
+          <td class="td-label">Required</td>
+          <td class="td">
             <swim-date-time id="appRequired" required label="Label" hint="A brief bit of help text"></swim-date-time>
           </td>
-          <td style="padding: 8px">
+          <td class="td">
             <swim-date-time
               id="appRequiredFill"
               appearance="fill"
@@ -328,22 +329,22 @@
           </td>
         </tr>
         <tr>
-          <td style="padding: 8px; color: var(--grey-300)">Empty w/o Placeholder</td>
-          <td style="padding: 8px"><swim-date-time label="Label" hint="A brief bit of help text"></swim-date-time></td>
-          <td style="padding: 8px">
+          <td class="td-label">Empty w/o Placeholder</td>
+          <td class="td"><swim-date-time label="Label" hint="A brief bit of help text"></swim-date-time></td>
+          <td class="td">
             <swim-date-time appearance="fill" label="Label" hint="A brief bit of help text"></swim-date-time>
           </td>
         </tr>
         <tr>
-          <td style="padding: 8px; color: var(--grey-300)">Empty w/ Placeholder</td>
-          <td style="padding: 8px">
+          <td class="td-label">Empty w/ Placeholder</td>
+          <td class="td">
             <swim-date-time
               label="Label"
               hint="A brief bit of help text"
               placeholder="Placeholder Text"
             ></swim-date-time>
           </td>
-          <td style="padding: 8px">
+          <td class="td">
             <swim-date-time
               appearance="fill"
               label="Label"
@@ -353,8 +354,8 @@
           </td>
         </tr>
         <tr>
-          <td style="padding: 8px; color: var(--grey-300)">Time</td>
-          <td style="padding: 8px">
+          <td class="td-label">Time</td>
+          <td class="td">
             <swim-date-time
               id="appTime"
               input-type="time"
@@ -363,7 +364,7 @@
               placeholder="Placeholder Text"
             ></swim-date-time>
           </td>
-          <td style="padding: 8px">
+          <td class="td">
             <swim-date-time
               id="appTimeFill"
               input-type="time"
@@ -375,8 +376,8 @@
           </td>
         </tr>
         <tr>
-          <td style="padding: 8px; color: var(--grey-300)">Date/Time</td>
-          <td style="padding: 8px">
+          <td class="td-label">Date/Time</td>
+          <td class="td">
             <swim-date-time
               id="appDateTime"
               input-type="datetime"
@@ -385,7 +386,7 @@
               placeholder="Placeholder Text"
             ></swim-date-time>
           </td>
-          <td style="padding: 8px">
+          <td class="td">
             <swim-date-time
               id="appDateTimeFill"
               input-type="datetime"
@@ -397,8 +398,8 @@
           </td>
         </tr>
         <tr>
-          <td style="padding: 8px; color: var(--grey-300)">Disabled</td>
-          <td style="padding: 8px">
+          <td class="td-label">Disabled</td>
+          <td class="td">
             <swim-date-time
               id="appDisabled"
               disabled
@@ -407,7 +408,7 @@
               placeholder="Placeholder Text"
             ></swim-date-time>
           </td>
-          <td style="padding: 8px">
+          <td class="td">
             <swim-date-time
               id="appDisabledFill"
               disabled
@@ -446,175 +447,175 @@
   @date-time-selected="\${handleSelected}"
 &gt;&lt;/swim-date-time&gt;</code></pre>
 
-    <h3 class="section-title" style="margin-top: 2rem">Properties</h3>
-    <table style="width: 100%; border-collapse: collapse">
+    <h3 class="section-title mt-xl">Properties</h3>
+    <table class="table-full">
       <thead>
         <tr>
-          <th style="text-align: left; padding: 8px; color: var(--grey-300); border-bottom: 1px solid var(--grey-700)">
+          <th class="th-api">
             Property
           </th>
-          <th style="text-align: left; padding: 8px; color: var(--grey-300); border-bottom: 1px solid var(--grey-700)">
+          <th class="th-api">
             Attribute
           </th>
-          <th style="text-align: left; padding: 8px; color: var(--grey-300); border-bottom: 1px solid var(--grey-700)">
+          <th class="th-api">
             Type
           </th>
-          <th style="text-align: left; padding: 8px; color: var(--grey-300); border-bottom: 1px solid var(--grey-700)">
+          <th class="th-api">
             Default
           </th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td style="padding: 6px 8px"><code>value</code></td>
-          <td style="padding: 6px 8px">—</td>
-          <td style="padding: 6px 8px">Date | string</td>
-          <td style="padding: 6px 8px">null</td>
+          <td class="td-api"><code>value</code></td>
+          <td class="td-api">—</td>
+          <td class="td-api">Date | string</td>
+          <td class="td-api">null</td>
         </tr>
         <tr>
-          <td style="padding: 6px 8px"><code>inputType</code></td>
-          <td style="padding: 6px 8px">input-type</td>
-          <td style="padding: 6px 8px">'date' | 'time' | 'datetime'</td>
-          <td style="padding: 6px 8px">'date'</td>
+          <td class="td-api"><code>inputType</code></td>
+          <td class="td-api">input-type</td>
+          <td class="td-api">'date' | 'time' | 'datetime'</td>
+          <td class="td-api">'date'</td>
         </tr>
         <tr>
-          <td style="padding: 6px 8px"><code>label</code></td>
-          <td style="padding: 6px 8px">label</td>
-          <td style="padding: 6px 8px">string</td>
-          <td style="padding: 6px 8px">''</td>
+          <td class="td-api"><code>label</code></td>
+          <td class="td-api">label</td>
+          <td class="td-api">string</td>
+          <td class="td-api">''</td>
         </tr>
         <tr>
-          <td style="padding: 6px 8px"><code>hint</code></td>
-          <td style="padding: 6px 8px">hint</td>
-          <td style="padding: 6px 8px">string</td>
-          <td style="padding: 6px 8px">''</td>
+          <td class="td-api"><code>hint</code></td>
+          <td class="td-api">hint</td>
+          <td class="td-api">string</td>
+          <td class="td-api">''</td>
         </tr>
         <tr>
-          <td style="padding: 6px 8px"><code>placeholder</code></td>
-          <td style="padding: 6px 8px">placeholder</td>
-          <td style="padding: 6px 8px">string</td>
-          <td style="padding: 6px 8px">''</td>
+          <td class="td-api"><code>placeholder</code></td>
+          <td class="td-api">placeholder</td>
+          <td class="td-api">string</td>
+          <td class="td-api">''</td>
         </tr>
         <tr>
-          <td style="padding: 6px 8px"><code>format</code></td>
-          <td style="padding: 6px 8px">format</td>
-          <td style="padding: 6px 8px">string</td>
-          <td style="padding: 6px 8px">auto</td>
+          <td class="td-api"><code>format</code></td>
+          <td class="td-api">format</td>
+          <td class="td-api">string</td>
+          <td class="td-api">auto</td>
         </tr>
         <tr>
-          <td style="padding: 6px 8px"><code>precision</code></td>
-          <td style="padding: 6px 8px">precision</td>
-          <td style="padding: 6px 8px">'year' | 'month' | 'hour' | 'minute' | 'second' | 'millisecond'</td>
-          <td style="padding: 6px 8px">—</td>
+          <td class="td-api"><code>precision</code></td>
+          <td class="td-api">precision</td>
+          <td class="td-api">'year' | 'month' | 'hour' | 'minute' | 'second' | 'millisecond'</td>
+          <td class="td-api">—</td>
         </tr>
         <tr>
-          <td style="padding: 6px 8px"><code>timezone</code></td>
-          <td style="padding: 6px 8px">timezone</td>
-          <td style="padding: 6px 8px">string (IANA)</td>
-          <td style="padding: 6px 8px">—</td>
+          <td class="td-api"><code>timezone</code></td>
+          <td class="td-api">timezone</td>
+          <td class="td-api">string (IANA)</td>
+          <td class="td-api">—</td>
         </tr>
         <tr>
-          <td style="padding: 6px 8px"><code>displayMode</code></td>
-          <td style="padding: 6px 8px">display-mode</td>
-          <td style="padding: 6px 8px">'human' | 'timezone' | 'local' | 'custom'</td>
-          <td style="padding: 6px 8px">'local'</td>
+          <td class="td-api"><code>displayMode</code></td>
+          <td class="td-api">display-mode</td>
+          <td class="td-api">'human' | 'timezone' | 'local' | 'custom'</td>
+          <td class="td-api">'local'</td>
         </tr>
         <tr>
-          <td style="padding: 6px 8px"><code>size</code></td>
-          <td style="padding: 6px 8px">size</td>
-          <td style="padding: 6px 8px">'sm' | 'md' | 'lg'</td>
-          <td style="padding: 6px 8px">'sm'</td>
+          <td class="td-api"><code>size</code></td>
+          <td class="td-api">size</td>
+          <td class="td-api">'sm' | 'md' | 'lg'</td>
+          <td class="td-api">'sm'</td>
         </tr>
         <tr>
-          <td style="padding: 6px 8px"><code>appearance</code></td>
-          <td style="padding: 6px 8px">appearance</td>
-          <td style="padding: 6px 8px">'legacy' | 'fill'</td>
-          <td style="padding: 6px 8px">'legacy'</td>
+          <td class="td-api"><code>appearance</code></td>
+          <td class="td-api">appearance</td>
+          <td class="td-api">'legacy' | 'fill'</td>
+          <td class="td-api">'legacy'</td>
         </tr>
         <tr>
-          <td style="padding: 6px 8px"><code>disabled</code></td>
-          <td style="padding: 6px 8px">disabled</td>
-          <td style="padding: 6px 8px">boolean</td>
-          <td style="padding: 6px 8px">false</td>
+          <td class="td-api"><code>disabled</code></td>
+          <td class="td-api">disabled</td>
+          <td class="td-api">boolean</td>
+          <td class="td-api">false</td>
         </tr>
         <tr>
-          <td style="padding: 6px 8px"><code>required</code></td>
-          <td style="padding: 6px 8px">required</td>
-          <td style="padding: 6px 8px">boolean</td>
-          <td style="padding: 6px 8px">false</td>
+          <td class="td-api"><code>required</code></td>
+          <td class="td-api">required</td>
+          <td class="td-api">boolean</td>
+          <td class="td-api">false</td>
         </tr>
         <tr>
-          <td style="padding: 6px 8px"><code>minDate</code></td>
-          <td style="padding: 6px 8px">min-date</td>
-          <td style="padding: 6px 8px">string | Date</td>
-          <td style="padding: 6px 8px">—</td>
+          <td class="td-api"><code>minDate</code></td>
+          <td class="td-api">min-date</td>
+          <td class="td-api">string | Date</td>
+          <td class="td-api">—</td>
         </tr>
         <tr>
-          <td style="padding: 6px 8px"><code>maxDate</code></td>
-          <td style="padding: 6px 8px">max-date</td>
-          <td style="padding: 6px 8px">string | Date</td>
-          <td style="padding: 6px 8px">—</td>
+          <td class="td-api"><code>maxDate</code></td>
+          <td class="td-api">max-date</td>
+          <td class="td-api">string | Date</td>
+          <td class="td-api">—</td>
         </tr>
         <tr>
-          <td style="padding: 6px 8px"><code>autosize</code></td>
-          <td style="padding: 6px 8px">autosize</td>
-          <td style="padding: 6px 8px">boolean</td>
-          <td style="padding: 6px 8px">false</td>
+          <td class="td-api"><code>autosize</code></td>
+          <td class="td-api">autosize</td>
+          <td class="td-api">boolean</td>
+          <td class="td-api">false</td>
         </tr>
         <tr>
-          <td style="padding: 6px 8px"><code>marginless</code></td>
-          <td style="padding: 6px 8px">marginless</td>
-          <td style="padding: 6px 8px">boolean</td>
-          <td style="padding: 6px 8px">false</td>
+          <td class="td-api"><code>marginless</code></td>
+          <td class="td-api">marginless</td>
+          <td class="td-api">boolean</td>
+          <td class="td-api">false</td>
         </tr>
       </tbody>
     </table>
 
-    <h3 class="section-title" style="margin-top: 2rem">Events</h3>
-    <table style="width: 100%; border-collapse: collapse">
+    <h3 class="section-title mt-xl">Events</h3>
+    <table class="table-full">
       <thead>
         <tr>
-          <th style="text-align: left; padding: 8px; color: var(--grey-300); border-bottom: 1px solid var(--grey-700)">
+          <th class="th-api">
             Event
           </th>
-          <th style="text-align: left; padding: 8px; color: var(--grey-300); border-bottom: 1px solid var(--grey-700)">
+          <th class="th-api">
             Detail
           </th>
-          <th style="text-align: left; padding: 8px; color: var(--grey-300); border-bottom: 1px solid var(--grey-700)">
+          <th class="th-api">
             Description
           </th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td style="padding: 6px 8px"><code>change</code></td>
-          <td style="padding: 6px 8px">Date | null</td>
-          <td style="padding: 6px 8px">Emitted when the value is valid or cleared.</td>
+          <td class="td-api"><code>change</code></td>
+          <td class="td-api">Date | null</td>
+          <td class="td-api">Emitted when the value is valid or cleared.</td>
         </tr>
         <tr>
-          <td style="padding: 6px 8px"><code>value-change</code></td>
-          <td style="padding: 6px 8px">any</td>
-          <td style="padding: 6px 8px">Emitted on any value change (valid or invalid).</td>
+          <td class="td-api"><code>value-change</code></td>
+          <td class="td-api">any</td>
+          <td class="td-api">Emitted on any value change (valid or invalid).</td>
         </tr>
         <tr>
-          <td style="padding: 6px 8px"><code>input-change</code></td>
-          <td style="padding: 6px 8px">any</td>
-          <td style="padding: 6px 8px">Emitted when the user types in the text input.</td>
+          <td class="td-api"><code>input-change</code></td>
+          <td class="td-api">any</td>
+          <td class="td-api">Emitted when the user types in the text input.</td>
         </tr>
         <tr>
-          <td style="padding: 6px 8px"><code>date-time-selected</code></td>
-          <td style="padding: 6px 8px">Date</td>
-          <td style="padding: 6px 8px">Emitted when a date is selected from the picker.</td>
+          <td class="td-api"><code>date-time-selected</code></td>
+          <td class="td-api">Date</td>
+          <td class="td-api">Emitted when a date is selected from the picker.</td>
         </tr>
         <tr>
-          <td style="padding: 6px 8px"><code>focus</code></td>
-          <td style="padding: 6px 8px">—</td>
-          <td style="padding: 6px 8px">Input focused.</td>
+          <td class="td-api"><code>focus</code></td>
+          <td class="td-api">—</td>
+          <td class="td-api">Input focused.</td>
         </tr>
         <tr>
-          <td style="padding: 6px 8px"><code>blur</code></td>
-          <td style="padding: 6px 8px">—</td>
-          <td style="padding: 6px 8px">Input blurred.</td>
+          <td class="td-api"><code>blur</code></td>
+          <td class="td-api">—</td>
+          <td class="td-api">Input blurred.</td>
         </tr>
       </tbody>
     </table>
@@ -666,3 +667,4 @@
     </div>
   </swim-section>
 </section>
+</div>
