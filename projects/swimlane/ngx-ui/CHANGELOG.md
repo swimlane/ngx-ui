@@ -2,9 +2,7 @@
 
 ## HEAD (unreleased)
 
-## 53.2.3 (2026-09-29)
-
-- Feature (`ngx-date-time`): Added a new input `hideDisabledTimeUnits` to `ngx-date-time` which is by default `false`. When true it hides the time units that are disables due to precision.
+- Feature (`ngx-date-time`): Added a new input `hideDisabledTimeUnits` to `ngx-date-time` which is by default `false`. When true it hides the time units that are disabled due to precision.
 
 ## 53.2.2 (2026-09-01)
 
