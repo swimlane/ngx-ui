@@ -166,21 +166,26 @@ $input-invalid-color: var(--red-500);
     padding: var(--spacing-8) var(--spacing-16) var(--spacing-8) var(--spacing-16);
     margin-top: var(--spacing-0);
     height: 94px;
+    width: 270px; // Same as ngx-calendar width
     flex-direction: row;
     box-sizing: border-box;
     display: flex;
     place-content: stretch center;
     align-items: baseline;
-    justify-content: space-between;
+    gap: var(--spacing-8);
 
     > * {
+      flex: 1;
+    }
+
+    .ampm-container {
       flex: 0 0 calc(15% - 6px);
     }
 
     .ngx-input {
       margin-top: var(--spacing-0);
       padding-top: var(--spacing-0);
-      width: 35px;
+      width: 100%;
 
       &.milliseconds {
         width: 55px;

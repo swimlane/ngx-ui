@@ -266,6 +266,22 @@
       >
       </ngx-date-time>
 
+      <ngx-date-time
+        label="Hour (hide disabled units)"
+        precision="hour"
+        [hideDisabledTimeUnits]="true"
+        [(value)]="precisionDate"
+      >
+      </ngx-date-time>
+
+      <ngx-date-time
+        label="Minutes (hide disabled units)"
+        precision="minute"
+        [hideDisabledTimeUnits]="true"
+        [(value)]="precisionDate"
+      >
+      </ngx-date-time>
+
       <app-prism>
     <![CDATA[<ngx-date-time
       label="Year"
@@ -291,6 +307,22 @@
       <ngx-date-time
       label="Minutes"
       precision="minute"
+      [(value)]="precisionDate"
+    >
+    </ngx-date-time>
+
+    <ngx-date-time
+      label="Hour (hide disabled units)"
+      precision="hour"
+      [hideDisabledTimeUnits]="true"
+      [(value)]="precisionDate"
+    >
+    </ngx-date-time>
+
+    <ngx-date-time
+      label="Minutes (hide disabled units)"
+      precision="minute"
+      [hideDisabledTimeUnits]="true"
       [(value)]="precisionDate"
     >
     </ngx-date-time>]]>
@@ -526,6 +558,17 @@
             <code>format: string</code>
           </th>
           <td>The display format for date/time values. Considers if mode is user (has timezone) or local (no timezone).</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>hideDisabledTimeUnits: boolean = false</code>
+          </th>
+          <td>
+            When <code>true</code>, time inputs disabled by <code>precision</code> are hidden.
+            Minute, second, and millisecond inputs are omitted when that unit is disabled.
+            If the hour input is also disabled (precision coarser than hour, such as year or month), the entire time row is hidden.
+          </td>
         </tr>
         <tr>
           <th>
