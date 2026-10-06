@@ -105,10 +105,12 @@ describe('SelectInputComponent', () => {
         expect(spy).not.toHaveBeenCalled();
       });
 
-      it('should do nothing if !value', () => {
-        const spy = vi.spyOn(component.selection, 'emit');
+      it('should not select a custom tag if !value', () => {
+        const selectionSpy = vi.spyOn(component.selection, 'emit');
+        const keyupSpy = vi.spyOn(component.keyup, 'emit');
         component.onInputKeyUp(event);
-        expect(spy).not.toHaveBeenCalled();
+        expect(selectionSpy).not.toHaveBeenCalled();
+        expect(keyupSpy).toHaveBeenCalledWith({ event, value: '' });
       });
 
       it('should not select value on keydown (commit stays on keyup)', () => {

@@ -511,6 +511,15 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   }
 
   onKeyUp({ event, value }: { event: KeyboardEvent; value?: string }): void {
+    if (event?.key === (KeyboardKeys.ENTER as any) && this.tagging && this.dropdownActive) {
+      const option = this.options?.[this.focusIndex];
+      if (option && !option.disabled) {
+        this.onDropdownSelection(option, false);
+      }
+      this.keyup.emit({ event, value });
+      return;
+    }
+
     if (event && event.key === (KeyboardKeys.ARROW_DOWN as any) && this.focusIndex < this.options.length) {
       ++this.focusIndex;
     } else if (this.filterQuery !== value) {
@@ -533,7 +542,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
       this._cdr.markForCheck();
     };
 
-    if (!this.filterDebounce) {
+    if (!this.filterDebounce || !value) {
       apply();
       return;
     }

@@ -237,7 +237,9 @@ export class SelectInputComponent implements AfterViewInit, OnChanges, OnDestroy
             this.selection.emit([...(this.selected || []), value]);
             this.clearInput();
           }
+          return;
         }
+        this.keyup.emit({ event, value });
         return;
       case KeyboardKeys.ESCAPE:
         event.preventDefault();

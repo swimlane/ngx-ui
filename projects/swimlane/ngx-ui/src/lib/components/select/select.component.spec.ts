@@ -317,6 +317,23 @@ describe('SelectComponent', () => {
       expect(component.select.value).toEqual(['physical', 'ddos']);
       expect(component.select.inputComponent.editingChipIndex).toBeNull();
     });
+
+    it('selects the focused option on empty enter when tagging', () => {
+      component.tagging$.next(true);
+      fixture.detectChanges();
+      component.select.toggleDropdown(true);
+      component.select.focusIndex = 1;
+      const option = component.select.options[1];
+      component.select.onKeyUp({ event: { key: KeyboardKeys.ENTER } as KeyboardEvent, value: '' });
+      expect(component.select.value).toContain(option.value);
+    });
+
+    it('clears filterQuery immediately when the search is emptied', () => {
+      component.select.filterDebounce = 200;
+      component.select.filterQuery = 'Other';
+      component.select.onKeyUp({ event, value: '' });
+      expect(component.select.filterQuery).toEqual('');
+    });
   });
 
   describe('invalid', () => {
