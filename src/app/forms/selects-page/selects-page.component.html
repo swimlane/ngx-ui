@@ -702,7 +702,7 @@
 <br />
 
 <h4>Inline Tagging</h4>
-<p>Inline tagging with no dropdown. Paste comma/semicolon values. Double-click a chip to edit it in place. Hover a long chip for a tooltip.</p>
+<p>Inline tagging with no dropdown. Paste comma/semicolon values. Pause after typing to add or save a chip, or use Enter/Tab/comma. Click a chip to edit it in place (caret at click). Hover a long chip for a tooltip.</p>
 <ngx-select
   data-cy="inline-tagging"
   appearance="fill"
@@ -722,6 +722,41 @@
   [filterable]="false"
   [tagging]="true"
   [disableDropdown]="true">
+</ngx-select>
+]]>
+</app-prism>
+
+<br />
+<br />
+<br />
+
+<h4>Tagging with Dropdown</h4>
+<p>Create new tokens or pick from options. Typing filters the dropdown (debounced via <code>filterDebounce</code>). Click a chip to edit in place; picking an option replaces that chip.</p>
+<ngx-select
+  data-cy="tagging-with-dropdown"
+  appearance="fill"
+  label="Tagging with Dropdown"
+  [tagging]="true"
+  [filterable]="true"
+  [allowAdditions]="true"
+  [filterDebounce]="200"
+  [(ngModel)]="taggingDropdownValues"
+  (keyup)="onSelectKeyUp($event)">
+  <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+  <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+  <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+  <ngx-select-option name="Phishing" value="phishing"></ngx-select-option>
+  <ngx-select-option name="Coca Cola" value="coca-cola"></ngx-select-option>
+</ngx-select>
+
+<app-prism>
+  <![CDATA[<ngx-select
+  appearance="fill"
+  [tagging]="true"
+  [filterable]="true"
+  [allowAdditions]="true"
+  [filterDebounce]="200">
+  <ngx-select-option name="Coca Cola" value="coca-cola"></ngx-select-option>
 </ngx-select>
 ]]>
 </app-prism>
@@ -1175,6 +1210,24 @@
             <code>filterCaseSensitive: boolean</code>
           </th>
           <td>Whether the component's filter is case-sensitive.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>filterDebounce: number = 200</code>
+          </th>
+          <td>Milliseconds to wait before applying <code>filterQuery</code> from typing. Use <code>0</code> for
+            immediate updates. Apps can listen to <code>(keyup)</code> and swap <code>options</code> from a remote
+            search; ngx-select itself does not call HTTP.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>tagCommitDebounce: number = 1000</code>
+          </th>
+          <td>Milliseconds to wait after typing stops before adding uncommitted free-tag text as a chip, or saving an
+            in-place chip edit. Enter, Tab, comma, and blur still commit immediately. Use <code>0</code> to disable
+            idle commit.</td>
         </tr>
         <tr>
           <th>

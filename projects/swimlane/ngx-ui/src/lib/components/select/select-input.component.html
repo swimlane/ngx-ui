@@ -31,27 +31,29 @@
             [class.disabled]="multiple && selectedChips.length > 1 && chip.option.disabled"
             [class.ngx-select-input-option--invalid]="chip.invalid"
             [class.ngx-select-input-option--active]="isFreeTagging && selectedChipIndex === index"
-            [class.ngx-select-input-option--editing]="isFreeTagging && editingChipIndex === index"
+            [class.ngx-select-input-option--editing]="tagging && editingChipIndex === index"
             [attr.aria-invalid]="chip.invalid ? true : null"
+            (mousedown)="onChipMouseDown($event, index)"
             (click)="onChipClick($event, index)"
-            (dblclick)="onChipDoubleClick($event, index)"
           >
-            @if (isFreeTagging && editingChipIndex === index) {
-              <textarea
+            @if (tagging && editingChipIndex === index) {
+              <input
                 #chipEditInput
+                type="text"
                 class="ngx-select-chip-edit"
-                rows="1"
+                size="1"
                 [disabled]="disabled"
                 autocomplete="off"
                 autocorrect="off"
                 spellcheck="false"
                 (keydown)="onChipEditKeyDown($event)"
-                (keyup)="$event.stopPropagation()"
+                (keyup)="onChipEditKeyUp($event)"
+                (input)="onChipEditValueChange()"
                 (mousedown)="$event.stopPropagation()"
                 (click)="$event.stopPropagation()"
                 (focusin)="$event.stopPropagation()"
                 (blur)="onChipEditBlur($event)"
-              ></textarea>
+              />
             } @else {
               @if (chip.option.inputTemplate) {
                 <ng-template

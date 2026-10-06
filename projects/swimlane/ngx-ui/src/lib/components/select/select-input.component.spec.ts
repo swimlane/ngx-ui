@@ -4,6 +4,7 @@ import { NO_ERRORS_SCHEMA, ElementRef } from '@angular/core';
 import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 import { SelectInputComponent } from './select-input.component';
 import { selectDropdownOptionMock } from './select-dropdown-option.mock';
+import * as chipCaret from './select-chip-caret.util';
 
 describe('SelectInputComponent', () => {
   let component: SelectInputComponent;
@@ -237,6 +238,37 @@ describe('SelectInputComponent', () => {
       expect(target.value).toBe('hello world');
     });
 
+    it('commits typed text after idle debounce, not on each key', () => {
+      vi.useFakeTimers();
+      component.tagCommitDebounce = 1000;
+      const spy = vi.spyOn(component.selection, 'emit');
+      const el = component.inputElement.nativeElement;
+
+      el.value = 'hel';
+      component.onInputValueChange();
+      el.value = 'hello';
+      component.onInputValueChange();
+      expect(spy).not.toHaveBeenCalled();
+
+      vi.advanceTimersByTime(999);
+      expect(spy).not.toHaveBeenCalled();
+
+      vi.advanceTimersByTime(1);
+      expect(spy).toHaveBeenCalledWith(['hello']);
+      vi.useRealTimers();
+    });
+
+    it('does not idle-commit when tagCommitDebounce is 0', () => {
+      vi.useFakeTimers();
+      component.tagCommitDebounce = 0;
+      const spy = vi.spyOn(component.selection, 'emit');
+      component.inputElement.nativeElement.value = 'hello';
+      component.onInputValueChange();
+      vi.advanceTimersByTime(2000);
+      expect(spy).not.toHaveBeenCalled();
+      vi.useRealTimers();
+    });
+
     it('commits values with Tab', () => {
       const spy = vi.spyOn(component.selection, 'emit');
       const event = {
@@ -457,13 +489,30 @@ describe('SelectInputComponent', () => {
       expect(spy).toHaveBeenCalledWith(['one']);
     });
 
-    it('edits a double-clicked chip in place', () => {
+    it('edits a single-clicked chip in place', () => {
       const spy = vi.spyOn(component.selection, 'emit');
       component.selected = ['one', 'two'];
       fixture.detectChanges();
 
-      component.onChipDoubleClick({ preventDefault: vi.fn(), stopPropagation: vi.fn() } as any, 0);
+      const name = document.createElement('span');
+      name.className = 'ngx-select-input-name';
+      Object.defineProperty(name, 'getBoundingClientRect', {
+        value: () => ({ width: 36, height: 24, left: 0, top: 0, right: 36, bottom: 24 })
+      });
+      const chipEl = document.createElement('li');
+      chipEl.appendChild(name);
+      component.onChipClick(
+        {
+          stopPropagation: vi.fn(),
+          target: name,
+          currentTarget: chipEl,
+          clientX: 20,
+          clientY: 12
+        } as any,
+        0
+      );
       expect(component.editingChipIndex).toBe(0);
+      expect(component.editingChipMinWidth).toBe(36);
       expect(spy).not.toHaveBeenCalled();
 
       fixture.detectChanges();
@@ -478,6 +527,99 @@ describe('SelectInputComponent', () => {
 
       expect(spy).toHaveBeenCalledWith(['uno', 'two']);
       expect(component.editingChipIndex).toBeNull();
+    });
+
+    it('does not turn filter text into a tag when a chip is clicked', () => {
+      component.disableDropdown = false;
+      component.options = [{ name: 'DDOS', value: 'ddos' }];
+      component.selected = ['breach'];
+      fixture.detectChanges();
+
+      const spy = vi.spyOn(component.selection, 'emit');
+      component.inputElement.nativeElement.value = 'dd';
+
+      const name = document.createElement('span');
+      name.className = 'ngx-select-input-name';
+      const chipEl = document.createElement('li');
+      chipEl.appendChild(name);
+      component.onChipClick(
+        {
+          stopPropagation: vi.fn(),
+          target: name,
+          currentTarget: chipEl,
+          clientX: 20,
+          clientY: 12
+        } as any,
+        0
+      );
+
+      expect(spy).not.toHaveBeenCalled();
+      expect(component.inputElement.nativeElement.value).toBe('');
+      expect(component.editingChipIndex).toBe(0);
+    });
+
+    it('saves an in-place chip edit after idle debounce', () => {
+      vi.useFakeTimers();
+      component.tagCommitDebounce = 1000;
+      component.selected = ['one', 'two'];
+      fixture.detectChanges();
+
+      const name = document.createElement('span');
+      name.className = 'ngx-select-input-name';
+      const chipEl = document.createElement('li');
+      chipEl.appendChild(name);
+      component.onChipClick(
+        {
+          stopPropagation: vi.fn(),
+          target: name,
+          currentTarget: chipEl,
+          clientX: 20,
+          clientY: 12
+        } as any,
+        0
+      );
+
+      const spy = vi.spyOn(component.selection, 'emit');
+      const edit = component.chipEditInput.nativeElement;
+      edit.value = 'uno';
+      component.onChipEditValueChange();
+      expect(spy).not.toHaveBeenCalled();
+      expect(component.editingChipIndex).toBe(0);
+
+      vi.advanceTimersByTime(999);
+      expect(spy).not.toHaveBeenCalled();
+
+      vi.advanceTimersByTime(1);
+      expect(spy).toHaveBeenCalledWith(['uno', 'two']);
+      expect(component.editingChipIndex).toBeNull();
+      vi.useRealTimers();
+    });
+
+    it('places the caret at the clicked character offset', () => {
+      component.selected = ['abcdefghij'];
+      fixture.detectChanges();
+      vi.spyOn(chipCaret, 'caretOffsetAtClientX').mockReturnValue(4);
+
+      const chipEl = document.createElement('li');
+      Object.defineProperty(chipEl, 'getBoundingClientRect', {
+        value: () => ({ width: 120, height: 24, left: 0, top: 0, right: 120, bottom: 24 })
+      });
+      const name = document.createElement('span');
+      name.className = 'ngx-select-input-name';
+      component.onChipMouseDown(
+        {
+          preventDefault: vi.fn(),
+          stopPropagation: vi.fn(),
+          target: name,
+          currentTarget: chipEl,
+          clientX: 40,
+          clientY: 12
+        } as any,
+        0
+      );
+
+      expect(component.chipEditInput.nativeElement.selectionStart).toBe(4);
+      expect(component.chipEditInput.nativeElement.selectionEnd).toBe(4);
     });
 
     it('leaves an empty Tab available for native navigation', () => {

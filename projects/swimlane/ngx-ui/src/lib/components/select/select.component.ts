@@ -163,6 +163,16 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   @CoerceBooleanProperty()
   filterable = true;
 
+  /** Debounce (ms) before applying filterQuery from typing. 0 = immediate. */
+  @Input()
+  @CoerceNumberProperty()
+  filterDebounce = 200;
+
+  /** Idle ms before uncommitted tag text is added, or an in-place chip edit is saved. 0 disables. */
+  @Input()
+  @CoerceNumberProperty()
+  tagCommitDebounce = 1000;
+
   @Input()
   @CoerceBooleanProperty()
   required = false;
@@ -314,6 +324,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   private _boundByOptionsInput = false;
   private _hasInvalidFreeTags = false;
   private _taggingValidator?: SelectTaggingValidator;
+  private filterDebounceTimer: ReturnType<typeof setTimeout> | null = null;
 
   constructor(
     private readonly _element: ElementRef,
@@ -330,6 +341,10 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   }
 
   ngOnDestroy(): void {
+    if (this.filterDebounceTimer != null) {
+      clearTimeout(this.filterDebounceTimer);
+      this.filterDebounceTimer = null;
+    }
     this.toggleDropdown(false);
   }
 
@@ -350,6 +365,23 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
 
   onDropdownSelection(selection: SelectDropdownOption, shouldClose = this.closeOnSelect || !this.multiple): void {
     if (selection.disabled) return;
+
+    const editIndex = this.inputComponent?.editingChipIndex;
+    if (this.tagging && editIndex != null) {
+      const existingIdx = this.findIndex(selection);
+      if (existingIdx !== -1 && existingIdx !== editIndex) {
+        this.inputComponent.cancelChipEdit();
+        this.afterSelect(shouldClose);
+        return;
+      }
+      const next = [...(this.value || [])];
+      next[editIndex] = selection.value;
+      this.value = next;
+      this.inputComponent.cancelChipEdit();
+      this.afterSelect(shouldClose);
+      return;
+    }
+
     if (this.value.length === this.maxSelections) return;
 
     const idx = this.findIndex(selection);
@@ -376,6 +408,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
     // if tagging, we need to clear current text
     if (this.tagging) {
       this.inputComponent.clearInput();
+      this.inputComponent.cancelChipEdit();
     }
     this.clearTaggingError();
 
@@ -481,11 +514,31 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
     if (event && event.key === (KeyboardKeys.ARROW_DOWN as any) && this.focusIndex < this.options.length) {
       ++this.focusIndex;
     } else if (this.filterQuery !== value) {
-      // Skip no-op writes so typing the same filtered value does not dirty CD.
-      this.filterQuery = value;
+      this.scheduleFilterQuery(value);
     }
 
     this.keyup.emit({ event, value });
+  }
+
+  private scheduleFilterQuery(value: string | undefined): void {
+    if (this.filterDebounceTimer != null) {
+      clearTimeout(this.filterDebounceTimer);
+      this.filterDebounceTimer = null;
+    }
+
+    const apply = () => {
+      this.filterDebounceTimer = null;
+      if (this.filterQuery === value) return;
+      this.filterQuery = value;
+      this._cdr.markForCheck();
+    };
+
+    if (!this.filterDebounce) {
+      apply();
+      return;
+    }
+
+    this.filterDebounceTimer = setTimeout(apply, this.filterDebounce);
   }
 
   writeValue(val: any[]): void {

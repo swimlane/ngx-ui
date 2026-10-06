@@ -294,8 +294,28 @@ describe('SelectComponent', () => {
     });
 
     it('should set filter when not arrow down', () => {
+      component.select.filterDebounce = 0;
       component.select.onKeyUp({ event, value: 'test' });
       expect(component.select.filterQuery).toEqual('test');
+    });
+
+    it('should debounce filterQuery updates', () => {
+      vi.useFakeTimers();
+      component.select.filterDebounce = 200;
+      component.select.onKeyUp({ event, value: 'co' });
+      expect(component.select.filterQuery).not.toEqual('co');
+      vi.advanceTimersByTime(200);
+      expect(component.select.filterQuery).toEqual('co');
+      vi.useRealTimers();
+    });
+
+    it('should replace the editing chip when a dropdown option is selected', () => {
+      component.select.tagging = true;
+      component.select.value = ['breach', 'ddos'];
+      component.select.inputComponent.editingChipIndex = 0;
+      component.select.onDropdownSelection({ name: 'Physical', value: 'physical' });
+      expect(component.select.value).toEqual(['physical', 'ddos']);
+      expect(component.select.inputComponent.editingChipIndex).toBeNull();
     });
   });
 

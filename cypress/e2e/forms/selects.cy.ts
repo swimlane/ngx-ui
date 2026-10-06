@@ -253,12 +253,20 @@ describe('Selects', () => {
       cy.get('@inlineTagging').find('.ngx-select-input-option').should('contain.text', 'one');
       cy.get('@inlineTagging').find('.ngx-select-input-option').should('contain.text', 'two');
 
-      cy.get('@inlineTagging').find('.ngx-select-input-option').contains('alpha').dblclick();
+      cy.get('@inlineTagging').find('.ngx-select-input-option').contains('alpha').click();
       cy.get('@inlineTagging')
-        .find('.ngx-select-input-option--editing textarea.ngx-select-chip-edit')
+        .find('.ngx-select-input-option--editing input.ngx-select-chip-edit')
         .should('have.value', 'alpha')
         .type('{selectall}edited{enter}');
       cy.get('@inlineTagging').find('.ngx-select-input-option').should('contain.text', 'edited');
+    });
+
+    it('supports tagging with dropdown autocomplete', () => {
+      cy.get('@SUT').find('[data-cy=tagging-with-dropdown]').as('taggingDropdown');
+
+      cy.get('@taggingDropdown').find('input.ngx-select-text-box').click().type('dd');
+      cy.get('@taggingDropdown').find('.ngx-select-dropdown-option').contains('DDOS').click();
+      cy.get('@taggingDropdown').find('.ngx-select-input-option').should('contain.text', 'DDOS');
     });
 
     it('supports inline tagging in fill appearance with textarea and chips', () => {

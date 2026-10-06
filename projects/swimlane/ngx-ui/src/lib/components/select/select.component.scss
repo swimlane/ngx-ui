@@ -280,6 +280,56 @@ $color-chip-text: #ffffff;
     }
   }
 
+  // In-place chip edit + clear centering for all tagging modes (with or without dropdown).
+  &.tagging-selection {
+    .ngx-select-input {
+      .ngx-select-input-option {
+        .ngx-select-clear {
+          align-self: center;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          top: 0;
+          height: auto;
+          line-height: 1;
+          padding: var(--spacing-0);
+        }
+
+        &.ngx-select-input-option--editing {
+          max-width: 100%;
+          overflow: visible;
+          flex: 0 0 auto;
+          width: max-content;
+          // No blue outline — keep focus on the typed text inside the token.
+          box-shadow: none;
+        }
+
+        .ngx-select-chip-edit {
+          background: transparent;
+          border: none;
+          outline: none;
+          appearance: none;
+          color: inherit;
+          flex: 0 0 auto;
+          font: inherit;
+          line-height: 1.4em;
+          margin: 0;
+          min-width: 1ch;
+          padding: 0;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: clip;
+          text-shadow: none;
+          box-sizing: content-box;
+
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+    }
+  }
+
   &.free-tagging-selection {
     &.tagging-selection .ngx-select-input-option {
       align-items: center;
@@ -308,45 +358,17 @@ $color-chip-text: #ffffff;
           min-width: 0;
         }
 
-        .ngx-select-clear {
-          align-self: center;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          top: 0;
-          height: auto;
-          line-height: 1;
-          padding: var(--spacing-0);
-        }
-
         &.ngx-select-input-option--invalid {
           box-shadow: inset 0 0 0 1px var(--red-500);
         }
 
-        &.ngx-select-input-option--active,
-        &.ngx-select-input-option--editing {
+        &.ngx-select-input-option--active {
           box-shadow: inset 0 0 0 2px var(--blue-400);
           background: var(--grey-700);
         }
 
-        .ngx-select-chip-edit {
-          background: transparent;
-          border: none;
-          outline: none;
-          appearance: none;
-          color: inherit;
-          flex: 1 1 auto;
-          font: inherit;
-          line-height: 1.4em;
-          margin: 0;
-          min-width: 2rem;
-          padding: 0;
-          resize: none;
-          width: 100%;
-
-          &:focus {
-            outline: none;
-          }
+        &.ngx-select-input-option--editing {
+          background: $color-chip-bg;
         }
       }
 
