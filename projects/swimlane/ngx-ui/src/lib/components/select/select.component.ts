@@ -409,6 +409,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
     if (this.tagging) {
       this.inputComponent.clearInput();
       this.inputComponent.cancelChipEdit();
+      this.scheduleFilterQuery('');
     }
     this.clearTaggingError();
 
@@ -417,6 +418,14 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
 
   onInputSelection(selections: any[]): void {
     this.value = selections;
+    this.scheduleFilterQuery('');
+  }
+
+  onClear(): void {
+    this.value = [];
+    this.clearTaggingError();
+    this.inputComponent?.clearInput();
+    this.scheduleFilterQuery('');
   }
 
   onTaggingError(error: string): void {
@@ -449,11 +458,6 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   focusOn(index: number): void {
     if (index < 0) index = this.options.length + index;
     this.focusIndex = index;
-  }
-
-  onClear(): void {
-    this.value = [];
-    this.clearTaggingError();
   }
 
   onBodyClick(event: Event): void {
@@ -493,6 +497,8 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
     this.toggle.emit(this.dropdownActive);
 
     if (this.dropdownActive) {
+      this.syncFilterQueryOnOpen();
+
       // if open
       if (this.closeOnBodyClick) {
         this.toggleListener = this._renderer.listen(document.body, 'click', this.onBodyClick.bind(this));
@@ -522,11 +528,25 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
 
     if (event && event.key === (KeyboardKeys.ARROW_DOWN as any) && this.focusIndex < this.options.length) {
       ++this.focusIndex;
-    } else if (this.filterQuery !== value) {
+    } else if (this.filterable) {
       this.scheduleFilterQuery(value);
+    } else if (this.filterQuery) {
+      this.scheduleFilterQuery('');
     }
 
     this.keyup.emit({ event, value });
+  }
+
+  private syncFilterQueryOnOpen(): void {
+    if (this.filterDebounceTimer != null) {
+      clearTimeout(this.filterDebounceTimer);
+      this.filterDebounceTimer = null;
+    }
+
+    const next = this.filterable ? this.inputComponent?.inputElement?.nativeElement?.value || '' : '';
+    if ((this.filterQuery || '') === next) return;
+    this.filterQuery = next;
+    this._cdr.markForCheck();
   }
 
   private scheduleFilterQuery(value: string | undefined): void {
@@ -535,14 +555,16 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
       this.filterDebounceTimer = null;
     }
 
+    const next = value || '';
     const apply = () => {
       this.filterDebounceTimer = null;
-      if (this.filterQuery === value) return;
-      this.filterQuery = value;
+      if ((this.filterQuery || '') === next) return;
+      this.filterQuery = next;
       this._cdr.markForCheck();
     };
 
-    if (!this.filterDebounce || !value) {
+    // Empty query must apply immediately so the option list is not left filtered.
+    if (!this.filterDebounce || !next) {
       apply();
       return;
     }

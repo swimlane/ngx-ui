@@ -294,6 +294,7 @@ describe('SelectComponent', () => {
     });
 
     it('should set filter when not arrow down', () => {
+      component.select.filterable = true;
       component.select.filterDebounce = 0;
       component.select.onKeyUp({ event, value: 'test' });
       expect(component.select.filterQuery).toEqual('test');
@@ -301,6 +302,7 @@ describe('SelectComponent', () => {
 
     it('should debounce filterQuery updates', () => {
       vi.useFakeTimers();
+      component.select.filterable = true;
       component.select.filterDebounce = 200;
       component.select.onKeyUp({ event, value: 'co' });
       expect(component.select.filterQuery).not.toEqual('co');
@@ -329,10 +331,18 @@ describe('SelectComponent', () => {
     });
 
     it('clears filterQuery immediately when the search is emptied', () => {
+      component.select.filterable = true;
       component.select.filterDebounce = 200;
       component.select.filterQuery = 'Other';
       component.select.onKeyUp({ event, value: '' });
       expect(component.select.filterQuery).toEqual('');
+    });
+
+    it('does not filter when filterable is false', () => {
+      component.select.filterable = false;
+      component.select.filterDebounce = 0;
+      component.select.onKeyUp({ event, value: 'Other' });
+      expect(component.select.filterQuery || '').toEqual('');
     });
   });
 
