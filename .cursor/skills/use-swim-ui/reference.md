@@ -72,10 +72,10 @@ Use this when you need exact property names, attribute names, events, and slots 
 
 ## swim-select
 
-**Properties:** `label`, `placeholder`, `hint`, `empty-placeholder`, `filter-placeholder`, `options` (array of {name, value, …}), `value` (single or array if multiple), `name`, `id`, `disabled`, `required`, `appearance`, `size`, `marginless`, `withHint`, `filterable`, `multiple`.  
-**Slots:** default (swim-option children), `hint`.  
-**Events:** `change`, `dropdown-open`, `dropdown-close`.  
-**Parts:** `select`, `dropdown`.  
+**Properties:** `label`, `placeholder`, `hint`, `empty-placeholder`, `filter-placeholder`, `filter-icon` (swim-icon name, default `search`; empty hides), `filter-empty-placeholder`, `options` (array of {name, value, …}), `value` (single or array if multiple), `name`, `id`, `disabled`, `required`, `appearance`, `size`, `marginless`, `withHint`, `filterable`, `multiple`.  
+**Slots:** default (swim-option children), `hint`, `empty` (custom empty-state when the dropdown has nothing to show; not used while `loading`).  
+**Events:** `change`, `filter-change`, `dropdown-open`, `dropdown-close`.  
+**Parts:** `select`, `dropdown`, `empty`.  
 **Options:** Use `<swim-option name="Label" value="val">` or `options` property.
 
 ---

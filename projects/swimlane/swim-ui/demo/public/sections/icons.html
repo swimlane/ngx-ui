@@ -1,91 +1,11 @@
-<style>
-  .icon-search-wrap {
-    position: relative;
-    max-width: 320px;
-    margin-bottom: 1.5rem;
-  }
-  .icon-search-wrap .icon-search-icon {
-    position: absolute;
-    left: 0.75rem;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--grey-400);
-    font-size: 1.125rem;
-    width: 1.125rem;
-    height: 1.125rem;
-    pointer-events: none;
-  }
-  .icon-search-input {
-    width: 100%;
-    height: 40px;
-    padding: 0 0.75rem 0 2.25rem;
-    background: var(--grey-800);
-    border: 1px solid var(--grey-700);
-    border-radius: var(--radius-4);
-    color: var(--grey-050);
-    font-size: 0.9375rem;
-  }
-  .icon-search-input::placeholder {
-    color: var(--grey-400);
-  }
-  .icon-search-input:focus {
-    outline: none;
-    border-color: var(--blue-500);
-  }
-  .icons-preview li.icon-search-hidden {
-    display: none;
-  }
-  .icons-preview {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 0;
-  }
-  @media (max-width: 1200px) {
-    .icons-preview {
-      grid-template-columns: repeat(4, 1fr);
-    }
-  }
-  @media (max-width: 768px) {
-    .icons-preview {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-  .icons-preview li {
-    height: 150px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 5px;
-    text-align: center;
-    margin: 10px;
-    border: solid 1px var(--grey-800);
-    border-radius: var(--radius-2);
-    background: var(--grey-800);
-  }
-  .icons-preview li .icon-name {
-    color: var(--grey-400);
-    font-size: 0.9rem;
-    line-height: 1rem;
-    margin-top: 0.5rem;
-  }
-  .icons-preview li swim-icon {
-    font-size: 50px;
-    line-height: 1em;
-    color: var(--white);
-  }
-</style>
+<div class="icons-page">
 <!-- ICON COMPONENT DEMOS (last in nav order) -->
 <h1 id="icons" class="page-title">Icon</h1>
 <p class="subtitle">
   Font icons and inline SVG, matching swim-ui (see src/app/icons-page). Uses swim-icon; the icon font is self-loaded by
   the component (no separate icon CSS required).
 </p>
-<p class="section-desc" style="margin-top: 0; margin-bottom: 1.5rem;"><strong>CDN:</strong> <code>import 'https://widgets.swimlane.app/swim-ui/icon.js';</code></p>
+<p class="section-desc cdn"><strong>CDN:</strong> <code>import 'https://widgets.swimlane.app/swim-ui/icon.js';</code></p>
 
 <section class="section">
   <swim-section section-title="Icons">
@@ -126,14 +46,14 @@
   <swim-section section-title="With alt (accessibility)">
     <div class="demo-item">
       <swim-icon font-icon="x" alt="Close"></swim-icon>
-      <span style="margin-left: 0.5rem">Icon with accessible name for screen readers</span>
+      <span class="ml-sm">Icon with accessible name for screen readers</span>
     </div>
   </swim-section>
 </section>
 
 <section class="section">
   <swim-section section-title="Icon Usage">
-    <p style="color: var(--grey-300); margin-bottom: 1rem">
+    <p class="muted">
       Import the icon component; the swim-icon font is self-loaded (no separate CSS required):
     </p>
     <pre class="demo-pre"
@@ -166,3 +86,4 @@
     </div>
   </swim-section>
 </section>
+</div>

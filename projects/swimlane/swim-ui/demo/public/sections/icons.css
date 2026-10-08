@@ -1,0 +1,95 @@
+.icons-page {
+  .icon-search-wrap {
+    position: relative;
+    max-width: 320px;
+    margin-bottom: var(--spacing-24);
+  }
+  .icon-search-wrap .icon-search-icon {
+    position: absolute;
+    left: var(--spacing-12);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--grey-400);
+    font-size: var(--font-size-l);
+    width: var(--font-size-l);
+    height: var(--font-size-l);
+    pointer-events: none;
+  }
+  .icon-search-input {
+    width: 100%;
+    height: var(--spacing-40);
+    padding: var(--spacing-0) var(--spacing-12) var(--spacing-0) var(--spacing-36);
+    background: var(--grey-800);
+    border: 1px solid var(--grey-700);
+    border-radius: var(--radius-4);
+    color: var(--grey-050);
+    font-size: var(--font-size-s);
+  }
+  .icon-search-input::placeholder {
+    color: var(--grey-400);
+  }
+  .icon-search-input:focus {
+    outline: none;
+    border-color: var(--blue-500);
+  }
+  .icons-preview li.icon-search-hidden {
+    display: none;
+  }
+  .icons-preview {
+    list-style: none;
+    padding: var(--spacing-0);
+    margin: var(--spacing-0);
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: var(--spacing-0);
+  }
+  @media (max-width: 1200px) {
+    .icons-preview {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  @media (max-width: 768px) {
+    .icons-preview {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .icons-preview li {
+    height: 150px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-10) var(--spacing-4);
+    text-align: center;
+    margin: var(--spacing-10);
+    border: solid 1px var(--grey-800);
+    border-radius: var(--radius-2);
+    background: var(--grey-800);
+  }
+  .icons-preview li .icon-name {
+    color: var(--grey-400);
+    font-size: var(--font-size-s);
+    line-height: var(--font-size-m);
+    margin-top: var(--spacing-8);
+  }
+  .icons-preview li swim-icon {
+    font-size: 50px;
+    line-height: 1em;
+    color: var(--white);
+  }
+
+  .muted {
+    color: var(--grey-300);
+    margin-bottom: var(--spacing-16);
+  }
+
+  .ml-sm {
+    margin-left: var(--spacing-8);
+  }
+
+  .cdn {
+    margin-top: var(--spacing-0);
+    margin-bottom: var(--spacing-24);
+  }
+}

@@ -1,0 +1,24 @@
+.button-group-page {
+  .muted {
+    color: var(--grey-300);
+    margin-bottom: var(--spacing-16);
+  }
+
+  .mb-sm {
+    margin-bottom: var(--spacing-8);
+  }
+
+  .stack-lg {
+    flex-direction: column;
+    gap: var(--spacing-24);
+  }
+
+  .grid-wide {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+
+  .cdn {
+    margin-top: var(--spacing-0);
+    margin-bottom: var(--spacing-24);
+  }
+}
