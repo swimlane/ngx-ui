@@ -280,7 +280,6 @@ $color-chip-text: #ffffff;
     }
   }
 
-  // In-place chip edit + clear centering for all tagging modes (with or without dropdown).
   &.tagging-selection {
     .ngx-select-input {
       .ngx-select-input-option {
@@ -300,7 +299,6 @@ $color-chip-text: #ffffff;
           overflow: visible;
           flex: 0 0 auto;
           width: max-content;
-          // No blue outline — keep focus on the typed text inside the token.
           box-shadow: none;
         }
 
@@ -363,8 +361,6 @@ $color-chip-text: #ffffff;
         }
 
         &.ngx-select-input-option--active {
-          box-shadow: inset 0 0 0 2px var(--blue-400);
-          background: var(--grey-700);
         }
 
         &.ngx-select-input-option--editing {

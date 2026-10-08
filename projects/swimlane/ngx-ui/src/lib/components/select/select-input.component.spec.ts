@@ -240,9 +240,8 @@ describe('SelectInputComponent', () => {
       expect(target.value).toBe('hello world');
     });
 
-    it('commits typed text after idle debounce, not on each key', () => {
+    it('does NOT auto-commit typed text after idle pause', () => {
       vi.useFakeTimers();
-      component.tagCommitDebounce = 1000;
       const spy = vi.spyOn(component.selection, 'emit');
       const el = component.inputElement.nativeElement;
 
@@ -256,17 +255,6 @@ describe('SelectInputComponent', () => {
       expect(spy).not.toHaveBeenCalled();
 
       vi.advanceTimersByTime(1);
-      expect(spy).toHaveBeenCalledWith(['hello']);
-      vi.useRealTimers();
-    });
-
-    it('does not idle-commit when tagCommitDebounce is 0', () => {
-      vi.useFakeTimers();
-      component.tagCommitDebounce = 0;
-      const spy = vi.spyOn(component.selection, 'emit');
-      component.inputElement.nativeElement.value = 'hello';
-      component.onInputValueChange();
-      vi.advanceTimersByTime(2000);
       expect(spy).not.toHaveBeenCalled();
       vi.useRealTimers();
     });
@@ -560,9 +548,8 @@ describe('SelectInputComponent', () => {
       expect(component.editingChipIndex).toBe(0);
     });
 
-    it('saves an in-place chip edit after idle debounce', () => {
+    it('does NOT auto-commit an in-place chip edit after idle pause', () => {
       vi.useFakeTimers();
-      component.tagCommitDebounce = 1000;
       component.selected = ['one', 'two'];
       fixture.detectChanges();
 
@@ -592,8 +579,8 @@ describe('SelectInputComponent', () => {
       expect(spy).not.toHaveBeenCalled();
 
       vi.advanceTimersByTime(1);
-      expect(spy).toHaveBeenCalledWith(['uno', 'two']);
-      expect(component.editingChipIndex).toBeNull();
+      expect(spy).not.toHaveBeenCalled();
+      expect(component.editingChipIndex).toBe(0);
       vi.useRealTimers();
     });
 
@@ -622,6 +609,87 @@ describe('SelectInputComponent', () => {
 
       expect(component.chipEditInput.nativeElement.selectionStart).toBe(4);
       expect(component.chipEditInput.nativeElement.selectionEnd).toBe(4);
+    });
+
+    it('does not run validator when editing chips in dropdown tagging mode', () => {
+      component.tagging = true;
+      component.disableDropdown = false;
+      component.options = [{ name: 'Option A', value: 'a' }];
+      component.selected = ['short'];
+      component.taggingValidator = vi.fn(() => 'Must be longer');
+      fixture.detectChanges();
+
+      const name = document.createElement('span');
+      name.className = 'ngx-select-input-name';
+      const chipEl = document.createElement('li');
+      chipEl.appendChild(name);
+
+      component.onChipClick(
+        { stopPropagation: vi.fn(), target: name, currentTarget: chipEl, clientX: 20, clientY: 12 } as any,
+        0
+      );
+
+      const spy = vi.spyOn(component.selection, 'emit');
+      component.commitChipEdit('edited');
+
+      expect(component.taggingValidator).not.toHaveBeenCalled();
+      expect(spy).toHaveBeenCalledWith(['edited']);
+    });
+
+    it('suppresses keyup when Enter starts chip edit in dropdown tagging mode', () => {
+      component.tagging = true;
+      component.disableDropdown = false;
+      component.options = [{ name: 'Option A', value: 'a' }];
+      component.selected = ['existing'];
+      fixture.detectChanges();
+
+      const keydownEvent = {
+        key: KeyboardKeys.ENTER,
+        code: KeyboardKeys.ENTER,
+        preventDefault: vi.fn(),
+        stopPropagation: vi.fn(),
+        target: { value: '', selectionStart: 0, selectionEnd: 0 }
+      } as any;
+
+      const keyupSpy = vi.spyOn(component.keyup, 'emit');
+
+      component.onInputKeyDown(keydownEvent);
+      expect(component.editingChipIndex).toBe(0);
+
+      const keyupEvent = {
+        code: KeyboardKeys.ENTER,
+        preventDefault: vi.fn(),
+        stopPropagation: vi.fn(),
+        target: { value: '' }
+      } as any;
+
+      component.onInputKeyUp(keyupEvent);
+
+      expect(keyupSpy).not.toHaveBeenCalled();
+    });
+
+    it('runs validator when editing chips in free tagging mode', () => {
+      component.tagging = true;
+      component.disableDropdown = true;
+      component.selected = ['short'];
+      component.taggingValidator = vi.fn(() => 'Must be longer');
+      fixture.detectChanges();
+
+      const name = document.createElement('span');
+      name.className = 'ngx-select-input-name';
+      const chipEl = document.createElement('li');
+      chipEl.appendChild(name);
+
+      component.onChipClick(
+        { stopPropagation: vi.fn(), target: name, currentTarget: chipEl, clientX: 20, clientY: 12 } as any,
+        0
+      );
+
+      const spy = vi.spyOn(component.selection, 'emit');
+      component.commitChipEdit('edited');
+
+      expect(component.taggingValidator).toHaveBeenCalledWith('edited', []);
+      expect(spy).not.toHaveBeenCalled();
     });
 
     it('leaves an empty Tab available for native navigation', () => {

@@ -17,7 +17,6 @@ import {
 import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 import { SelectDropdownOption } from './select-dropdown-option.interface';
 import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
-import { CoerceNumberProperty } from '../../utils/coerce/coerce-number';
 import { SelectTaggingValidator } from './select-tagging.interface';
 import {
   freeTagPlainLabel,
@@ -70,11 +69,6 @@ export class SelectInputComponent implements AfterViewInit, OnChanges, OnDestroy
   @Input() withHint = true;
   @Input() maxSelections?: number;
   @Input() taggingValidator?: SelectTaggingValidator;
-
-  /** Idle ms before uncommitted tag text is added or an in-place chip edit is saved. 0 disables. */
-  @Input()
-  @CoerceNumberProperty()
-  tagCommitDebounce = 1000;
 
   @Input()
   @CoerceBooleanProperty()
@@ -145,7 +139,7 @@ export class SelectInputComponent implements AfterViewInit, OnChanges, OnDestroy
   private _selected: any[];
   private _lastTaggingError = '';
   private suppressEscapeToggle = false;
-  private tagCommitTimer: ReturnType<typeof setTimeout> | null = null;
+  private suppressEnterKeyup = false;
   private pendingChipCaret: { index: number; offset: number; text: string } | null = null;
 
   constructor(private readonly _cdr: ChangeDetectorRef) {}
@@ -185,7 +179,6 @@ export class SelectInputComponent implements AfterViewInit, OnChanges, OnDestroy
   }
 
   ngOnDestroy(): void {
-    this.clearTagCommitTimer();
   }
 
   ngAfterViewInit(): void {
@@ -204,13 +197,35 @@ export class SelectInputComponent implements AfterViewInit, OnChanges, OnDestroy
       return;
     }
 
+    const input = event.target as HTMLInputElement;
+    const value = input.value || '';
+    const empty = !value;
+
+    if ((event.key === KeyboardKeys.ENTER || event.key === 'F2') && empty && this.selected?.length) {
+      event.preventDefault();
+      this.suppressEnterKeyup = true;
+      const lastIndex = this.selected.length - 1;
+      if (lastIndex >= 0) {
+        const chip = this.selectedChips[lastIndex];
+        if (chip && !chip.option.disabled) {
+          this.beginChipEdit(lastIndex, 0, chip.labelText.length);
+        }
+      }
+      return;
+    }
+
+    if (event.key === KeyboardKeys.BACKSPACE && empty && this.selected?.length) {
+      event.preventDefault();
+      this.removeOptionAt(this.selected.length - 1);
+      return;
+    }
+
     switch (event.code) {
       case KeyboardKeys.ENTER:
         event.preventDefault();
         break;
       case KeyboardKeys.ESCAPE: {
-        const value = (event.target as HTMLInputElement).value;
-        if (value === '') {
+        if (value === '' && this.selected?.length) {
           const newSelections = this.selected.slice(0, this.selected.length - 1);
           this.selection.emit(newSelections);
         }
@@ -231,6 +246,10 @@ export class SelectInputComponent implements AfterViewInit, OnChanges, OnDestroy
     switch (event.code) {
       case KeyboardKeys.ENTER:
         event.preventDefault();
+        if (this.suppressEnterKeyup) {
+          this.suppressEnterKeyup = false;
+          return;
+        }
         if (value !== '') {
           const hasSelection = this.selected?.find(selection => value === selection);
           if (!hasSelection) {
@@ -273,14 +292,12 @@ export class SelectInputComponent implements AfterViewInit, OnChanges, OnDestroy
     const caret = start + inserted.length;
     input.setSelectionRange(caret, caret);
     this.syncInputHeight();
-    this.scheduleTagCommit();
     this._cdr.markForCheck();
   }
 
   onInputValueChange(): void {
     if (!this.isFreeTagging) return;
     this.syncInputHeight();
-    this.scheduleTagCommit();
   }
 
   onInputBlur(event: FocusEvent): void {
@@ -304,21 +321,89 @@ export class SelectInputComponent implements AfterViewInit, OnChanges, OnDestroy
     this.startChipEdit(event, index);
   }
 
+  /**
+   * Handles keyboard input while editing a chip in-place.
+   * Manages cursor movement, commit/cancel, and arrow key navigation.
+   */
   onChipEditKeyDown(event: KeyboardEvent): void {
     event.stopPropagation();
     if (event.repeat) return;
+
+    const input = event.target as HTMLInputElement;
+    const value = input.value || '';
+    const atStart = input.selectionStart === 0 && input.selectionEnd === 0;
+    const atEnd = input.selectionStart === value.length && input.selectionEnd === value.length;
+    const currentIndex = this.editingChipIndex;
 
     if (event.key === KeyboardKeys.ESCAPE) {
       event.preventDefault();
       this.suppressEscapeToggle = true;
       this.cancelChipEdit();
       this.focusInput();
+      if (!this.isFreeTagging) {
+        this.keyup.emit({ event: undefined, value: '' });
+      }
       return;
     }
 
-    if (event.key === KeyboardKeys.ENTER || event.key === KeyboardKeys.TAB) {
+    if (event.key === KeyboardKeys.ENTER) {
       event.preventDefault();
-      this.commitChipEdit((event.target as HTMLInputElement).value || '');
+      this.commitChipEdit(value);
+      this.focusInput();
+      return;
+    }
+
+    if (event.key === KeyboardKeys.TAB) {
+      event.preventDefault();
+      this.commitChipEdit(value);
+
+      if (event.shiftKey) {
+        if (currentIndex === 0) {
+          this.inputContainer?.nativeElement.blur();
+        } else {
+          this.focusInput();
+        }
+      } else {
+        const isLast = currentIndex != null && currentIndex === (this.selected?.length ?? 0) - 1;
+        if (isLast) {
+          this.inputContainer?.nativeElement.blur();
+        } else {
+          this.focusInput();
+        }
+      }
+      return;
+    }
+
+    if (event.key === KeyboardKeys.ARROW_LEFT && atStart) {
+      event.preventDefault();
+      this.commitChipEdit(value);
+
+      if (currentIndex != null && currentIndex > 0) {
+        const prevIndex = currentIndex - 1;
+        const prevChip = this.selectedChips[prevIndex];
+        if (prevChip && !prevChip.option.disabled) {
+          this.beginChipEdit(prevIndex, 0, prevChip.labelText.length);
+        }
+      } else {
+        this.focusInput();
+      }
+      return;
+    }
+
+    if (event.key === KeyboardKeys.ARROW_RIGHT && atEnd) {
+      event.preventDefault();
+      this.commitChipEdit(value);
+
+      if (currentIndex != null && currentIndex < (this.selected?.length ?? 0) - 1) {
+        const nextIndex = currentIndex + 1;
+        const nextChip = this.selectedChips[nextIndex];
+        if (nextChip && !nextChip.option.disabled) {
+          this.beginChipEdit(nextIndex, 0, 0);
+        }
+      } else {
+        this.focusInput();
+      }
+      return;
     }
   }
 
@@ -331,19 +416,17 @@ export class SelectInputComponent implements AfterViewInit, OnChanges, OnDestroy
 
   onChipEditValueChange(): void {
     this.syncChipEditWidth();
-    this.scheduleTagCommit();
     if (this.isFreeTagging || this.editingChipIndex == null) return;
     this.keyup.emit({ event: undefined, value: this.chipEditInput?.nativeElement.value || '' });
   }
 
   onChipEditBlur(event: FocusEvent): void {
     if (this.editingChipIndex == null) return;
+    if (event.target !== this.chipEditInput?.nativeElement) return;
     this.commitChipEdit((event.target as HTMLInputElement).value || '');
   }
 
-  /** Exit in-place edit without committing (e.g. after dropdown pick). */
   cancelChipEdit(): void {
-    this.clearTagCommitTimer();
     this.editingChipIndex = null;
     this.editingChipMinWidth = null;
     this._cdr.markForCheck();
@@ -399,7 +482,7 @@ export class SelectInputComponent implements AfterViewInit, OnChanges, OnDestroy
   onClick(event?: MouseEvent): void {
     const target = event ? eventElement(event) : null;
     if (this.disabled || target?.closest?.('button')) return;
-    if (target?.closest?.('.ngx-select-input-option')) return;
+    if (this.tagging && target?.closest?.('.ngx-select-input-option')) return;
 
     if (this.editingChipIndex != null) {
       this.commitChipEdit(this.chipEditInput?.nativeElement.value || '');
@@ -461,6 +544,18 @@ export class SelectInputComponent implements AfterViewInit, OnChanges, OnDestroy
       event.repeat &&
       (key === KeyboardKeys.BACKSPACE || key === KeyboardKeys.DELETE || key === KeyboardKeys.ENTER || key === ',')
     ) {
+      return;
+    }
+
+    if ((key === KeyboardKeys.ENTER || key === 'F2') && empty && this.selected?.length) {
+      event.preventDefault();
+      const targetIndex = this.selectedChipIndex ?? this.selected.length - 1;
+      if (targetIndex >= 0) {
+        const chip = this.selectedChips[targetIndex];
+        if (chip && !chip.option.disabled) {
+          this.beginChipEdit(targetIndex, 0, chip.labelText.length);
+        }
+      }
       return;
     }
 
@@ -526,7 +621,6 @@ export class SelectInputComponent implements AfterViewInit, OnChanges, OnDestroy
   private onFreeTaggingKeyUp(event: KeyboardEvent, value: string): void {
     if (event.code === KeyboardKeys.ESCAPE) {
       event.preventDefault();
-      this.clearTagCommitTimer();
       if (this.suppressEscapeToggle) {
         this.suppressEscapeToggle = false;
         return;
@@ -549,7 +643,6 @@ export class SelectInputComponent implements AfterViewInit, OnChanges, OnDestroy
   }
 
   private commitInput(raw: string, retainOnError = false): void {
-    this.clearTagCommitTimer();
     if (!raw) return;
 
     const values = splitFreeTagBatch(raw);
@@ -601,36 +694,6 @@ export class SelectInputComponent implements AfterViewInit, OnChanges, OnDestroy
     const minWidth = label?.getBoundingClientRect().width ?? 0;
     const caretOffset = label ? caretOffsetAtClientX(label, text, event.clientX) : text.length;
     this.beginChipEdit(index, minWidth, caretOffset);
-  }
-
-  private scheduleTagCommit(): void {
-    this.clearTagCommitTimer();
-    if (this.disabled || !this.tagCommitDebounce) return;
-
-    if (this.editingChipIndex != null) {
-      this.tagCommitTimer = setTimeout(() => {
-        this.tagCommitTimer = null;
-        if (this.editingChipIndex == null) return;
-        this.commitChipEdit(this.chipEditInput?.nativeElement.value || '');
-      }, this.tagCommitDebounce);
-      return;
-    }
-
-    if (!this.isFreeTagging) return;
-    const raw = this.inputElement?.nativeElement.value || '';
-    if (!splitFreeTagBatch(raw).length) return;
-
-    this.tagCommitTimer = setTimeout(() => {
-      this.tagCommitTimer = null;
-      if (this.editingChipIndex != null) return;
-      this.commitInput(this.inputElement?.nativeElement.value || '', true);
-    }, this.tagCommitDebounce);
-  }
-
-  private clearTagCommitTimer(): void {
-    if (this.tagCommitTimer == null) return;
-    clearTimeout(this.tagCommitTimer);
-    this.tagCommitTimer = null;
   }
 
   private discardOrCommitTrailingInput(): void {
@@ -697,7 +760,6 @@ export class SelectInputComponent implements AfterViewInit, OnChanges, OnDestroy
   }
 
   private commitChipEdit(raw: string): void {
-    this.clearTagCommitTimer();
     const index = this.editingChipIndex;
     if (index == null) return;
 
@@ -719,11 +781,13 @@ export class SelectInputComponent implements AfterViewInit, OnChanges, OnDestroy
         return;
       }
 
-      const reason = this.taggingValidator?.(value, peers) || '';
-      if (reason) {
-        this.emitTaggingError(reason);
-        this.focusInput();
-        return;
+      if (this.isFreeTagging) {
+        const reason = this.taggingValidator?.(value, peers) || '';
+        if (reason) {
+          this.emitTaggingError(reason);
+          this.focusInput();
+          return;
+        }
       }
 
       next[index] = value;

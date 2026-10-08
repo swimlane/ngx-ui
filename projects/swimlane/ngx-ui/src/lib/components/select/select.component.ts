@@ -168,11 +168,6 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   @CoerceNumberProperty()
   filterDebounce = 200;
 
-  /** Idle ms before uncommitted tag text is added, or an in-place chip edit is saved. 0 disables. */
-  @Input()
-  @CoerceNumberProperty()
-  tagCommitDebounce = 1000;
-
   @Input()
   @CoerceBooleanProperty()
   required = false;
@@ -518,7 +513,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
 
   onKeyUp({ event, value }: { event: KeyboardEvent; value?: string }): void {
     if (event?.key === (KeyboardKeys.ENTER as any) && this.tagging && this.dropdownActive) {
-      const option = this.options?.[this.focusIndex];
+      const option = this.getFocusedOption();
       if (option && !option.disabled) {
         this.onDropdownSelection(option, false);
       }
@@ -535,6 +530,24 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
     }
 
     this.keyup.emit({ event, value });
+  }
+
+  private getFocusedOption(): SelectDropdownOption | undefined {
+    if (!this.selectDropdown?.groups || this.focusIndex < 0) {
+      return undefined;
+    }
+
+    let currentIndex = 0;
+    for (const group of this.selectDropdown.groups) {
+      for (const item of group.options) {
+        if (currentIndex === this.focusIndex) {
+          return item.option;
+        }
+        currentIndex++;
+      }
+    }
+
+    return undefined;
   }
 
   private syncFilterQueryOnOpen(): void {
@@ -563,7 +576,6 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
       this._cdr.markForCheck();
     };
 
-    // Empty query must apply immediately so the option list is not left filtered.
     if (!this.filterDebounce || !next) {
       apply();
       return;
