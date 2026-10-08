@@ -5,9 +5,6 @@
 ## 53.4.0 (2026-10-08)
 
 - Feature (`ngx-columns`): Added opt-in `scrollToEndOnExpand`. When a leaf expand causes horizontal overflow, the columns host scrolls to the end.
-
-## 53.3.0 (2026-09-30)
-
 - Feature (`ngx-date-time`): Added a new input `hideDisabledTimeUnits` to `ngx-date-time` which is by default `false`. When true it hides the time units that are disabled due to precision.
 
 ## 53.2.2 (2026-09-01)
