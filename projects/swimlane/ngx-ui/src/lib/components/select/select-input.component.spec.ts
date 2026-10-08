@@ -437,9 +437,11 @@ describe('SelectInputComponent', () => {
       expect(clearSpy).toHaveBeenCalled();
     });
 
-    it('selects and removes chips with the keyboard', () => {
+    it('starts editing chips with Left arrow and deletes with Backspace outside', () => {
       const spy = vi.spyOn(component.selection, 'emit');
       component.selected = ['one', 'two'];
+      fixture.detectChanges();
+
       const event = {
         key: KeyboardKeys.ARROW_LEFT,
         code: KeyboardKeys.ARROW_LEFT,
@@ -449,18 +451,16 @@ describe('SelectInputComponent', () => {
       } as any;
 
       component.onInputKeyDown(event);
-      expect(component.selectedChipIndex).toBe(1);
+      expect(component.editingChipIndex).toBe(1);
 
-      event.key = event.code = KeyboardKeys.ARROW_LEFT;
-      component.onInputKeyDown(event);
-      expect(component.selectedChipIndex).toBe(0);
+      component.cancelChipEdit();
 
-      event.key = event.code = KeyboardKeys.DELETE;
+      event.key = event.code = KeyboardKeys.BACKSPACE;
       component.onInputKeyDown(event);
-      expect(spy).toHaveBeenCalledWith(['two']);
+      expect(spy).toHaveBeenCalledWith(['one']);
     });
 
-    it('highlights the last chip on first Backspace before removing', () => {
+    it('deletes the last chip with Backspace', () => {
       const spy = vi.spyOn(component.selection, 'emit');
       component.selected = ['one', 'two'];
       const event = {
@@ -470,10 +470,6 @@ describe('SelectInputComponent', () => {
         stopPropagation: vi.fn(),
         target: { value: '', selectionStart: 0, selectionEnd: 0 }
       } as any;
-
-      component.onInputKeyDown(event);
-      expect(component.selectedChipIndex).toBe(1);
-      expect(spy).not.toHaveBeenCalled();
 
       component.onInputKeyDown(event);
       expect(spy).toHaveBeenCalledWith(['one']);
@@ -706,23 +702,18 @@ describe('SelectInputComponent', () => {
       expect(event.preventDefault).not.toHaveBeenCalled();
     });
 
-    it('ignores auto-repeat Backspace after a chip is highlighted', () => {
+    it('ignores auto-repeat Backspace', () => {
       const spy = vi.spyOn(component.selection, 'emit');
       component.selected = ['one', 'two'];
       const event = {
         key: KeyboardKeys.BACKSPACE,
         code: KeyboardKeys.BACKSPACE,
-        repeat: false,
+        repeat: true,
         preventDefault: vi.fn(),
         stopPropagation: vi.fn(),
         target: { value: '', selectionStart: 0, selectionEnd: 0 }
       } as any;
 
-      component.onInputKeyDown(event);
-      expect(component.selectedChipIndex).toBe(1);
-      expect(spy).not.toHaveBeenCalled();
-
-      event.repeat = true;
       component.onInputKeyDown(event);
       expect(spy).not.toHaveBeenCalled();
     });

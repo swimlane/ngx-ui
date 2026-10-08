@@ -7,7 +7,6 @@ import {
   EventEmitter,
   Input,
   OnChanges,
-  OnDestroy,
   Output,
   SimpleChanges,
   TemplateRef,
@@ -55,7 +54,7 @@ interface SelectedChipView {
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false
 })
-export class SelectInputComponent implements AfterViewInit, OnChanges, OnDestroy {
+export class SelectInputComponent implements AfterViewInit, OnChanges {
   @Input() selectId: string;
   @Input() placeholder: string;
   @Input() placeholderTemplate: TemplateRef<any>;
@@ -178,9 +177,6 @@ export class SelectInputComponent implements AfterViewInit, OnChanges, OnDestroy
     }
   }
 
-  ngOnDestroy(): void {
-  }
-
   ngAfterViewInit(): void {
     if (this.tagging && this.autofocus) {
       setTimeout(() => this.inputElement?.nativeElement.focus(), 5);
@@ -200,6 +196,16 @@ export class SelectInputComponent implements AfterViewInit, OnChanges, OnDestroy
     const input = event.target as HTMLInputElement;
     const value = input.value || '';
     const empty = !value;
+
+    if (event.key === KeyboardKeys.ARROW_LEFT && empty && this.selected?.length) {
+      event.preventDefault();
+      const lastIndex = this.selected.length - 1;
+      const chip = this.selectedChips[lastIndex];
+      if (chip && !chip.option.disabled) {
+        this.beginChipEdit(lastIndex, 0, chip.labelText.length);
+      }
+      return;
+    }
 
     if ((event.key === KeyboardKeys.ENTER || event.key === 'F2') && empty && this.selected?.length) {
       event.preventDefault();
@@ -561,9 +567,18 @@ export class SelectInputComponent implements AfterViewInit, OnChanges, OnDestroy
 
     if (key === KeyboardKeys.ARROW_LEFT && (empty || atStart) && this.selected?.length) {
       event.preventDefault();
-      this.setSelectedChipIndex(
-        this.selectedChipIndex == null ? this.selected.length - 1 : Math.max(0, this.selectedChipIndex - 1)
-      );
+      if (this.selectedChipIndex != null) {
+        const chip = this.selectedChips[this.selectedChipIndex];
+        if (chip && !chip.option.disabled) {
+          this.beginChipEdit(this.selectedChipIndex, 0, chip.labelText.length);
+        }
+      } else {
+        const lastIndex = this.selected.length - 1;
+        const chip = this.selectedChips[lastIndex];
+        if (chip && !chip.option.disabled) {
+          this.beginChipEdit(lastIndex, 0, chip.labelText.length);
+        }
+      }
       return;
     }
 
@@ -581,7 +596,7 @@ export class SelectInputComponent implements AfterViewInit, OnChanges, OnDestroy
 
     if (key === KeyboardKeys.BACKSPACE && empty && atStart && this.selected?.length) {
       event.preventDefault();
-      this.setSelectedChipIndex(this.selected.length - 1);
+      this.removeOptionAt(this.selected.length - 1);
       return;
     }
 
