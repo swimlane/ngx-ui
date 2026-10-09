@@ -437,7 +437,7 @@ describe('SelectInputComponent', () => {
       expect(clearSpy).toHaveBeenCalled();
     });
 
-    it('moves the caret between chips with Left/Right without entering edit', () => {
+    it('enters edit mode when pressing Left/Right between chips', () => {
       component.selected = ['one', 'two'];
       fixture.detectChanges();
       expect(component.inputInsertIndex).toBe(2);
@@ -451,12 +451,12 @@ describe('SelectInputComponent', () => {
       } as any;
 
       component.onInputKeyDown(left);
-      expect(component.inputInsertIndex).toBe(1);
-      expect(component.editingChipIndex).toBeNull();
+      fixture.detectChanges();
+      expect(component.editingChipIndex).toBe(1);
 
-      component.onInputKeyDown(left);
-      expect(component.inputInsertIndex).toBe(0);
-      expect(component.editingChipIndex).toBeNull();
+      component.cancelChipEdit();
+      component.inputInsertIndex = 0;
+      fixture.detectChanges();
 
       const right = {
         key: KeyboardKeys.ARROW_RIGHT,
@@ -467,13 +467,11 @@ describe('SelectInputComponent', () => {
       } as any;
 
       component.onInputKeyDown(right);
-      expect(component.inputInsertIndex).toBe(1);
-
-      component.onInputKeyDown(right);
-      expect(component.inputInsertIndex).toBe(2);
+      fixture.detectChanges();
+      expect(component.editingChipIndex).toBe(0);
     });
 
-    it('leaves chip edit with caret before/after the chip on Left/Right at boundaries', () => {
+    it('places caret correctly after Tab/Enter and exits edit on Left/Right at boundaries', () => {
       component.selected = ['one', 'two', 'three'];
       fixture.detectChanges();
 
@@ -482,25 +480,27 @@ describe('SelectInputComponent', () => {
       expect(component.editingChipIndex).toBe(1);
 
       component.onChipEditKeyDown({
-        key: KeyboardKeys.ARROW_LEFT,
+        key: KeyboardKeys.ENTER,
         stopPropagation: vi.fn(),
         preventDefault: vi.fn(),
-        target: { value: 'two', selectionStart: 0, selectionEnd: 0 }
+        target: { value: 'two' }
       } as any);
 
       expect(component.editingChipIndex).toBeNull();
-      expect(component.inputInsertIndex).toBe(1);
+      expect(component.inputInsertIndex).toBe(2);
 
       (component as any).beginChipEdit(0, 0, 0);
       fixture.detectChanges();
+
       component.onChipEditKeyDown({
-        key: KeyboardKeys.ARROW_LEFT,
+        key: KeyboardKeys.TAB,
+        shiftKey: true,
         stopPropagation: vi.fn(),
         preventDefault: vi.fn(),
         target: { value: 'one', selectionStart: 0, selectionEnd: 0 }
       } as any);
+
       expect(component.editingChipIndex).toBeNull();
-      expect(component.inputInsertIndex).toBe(0);
 
       (component as any).beginChipEdit(1, 0, 3);
       fixture.detectChanges();
@@ -516,23 +516,20 @@ describe('SelectInputComponent', () => {
       expect(component.inputInsertIndex).toBe(2);
     });
 
-    it('deletes the chip before the caret with Backspace', () => {
+    it('deletes the chip before the caret with Backspace when between chips', () => {
       const spy = vi.spyOn(component.selection, 'emit');
       component.selected = ['one', 'two'];
+      component.inputInsertIndex = 1;
       fixture.detectChanges();
 
       const event = {
-        key: KeyboardKeys.ARROW_LEFT,
-        code: KeyboardKeys.ARROW_LEFT,
+        key: KeyboardKeys.BACKSPACE,
+        code: KeyboardKeys.BACKSPACE,
         preventDefault: vi.fn(),
         stopPropagation: vi.fn(),
         target: { value: '', selectionStart: 0, selectionEnd: 0 }
       } as any;
 
-      component.onInputKeyDown(event);
-      expect(component.inputInsertIndex).toBe(1);
-
-      event.key = event.code = KeyboardKeys.BACKSPACE;
       component.onInputKeyDown(event);
       expect(spy).toHaveBeenCalledWith(['two']);
       expect(component.inputInsertIndex).toBe(0);
@@ -704,7 +701,7 @@ describe('SelectInputComponent', () => {
       );
 
       const spy = vi.spyOn(component.selection, 'emit');
-      component.commitChipEdit('edited');
+      (component as any).commitChipEdit('edited');
 
       expect(component.taggingValidator).not.toHaveBeenCalled();
       expect(spy).toHaveBeenCalledWith(['edited']);
@@ -760,7 +757,7 @@ describe('SelectInputComponent', () => {
       );
 
       const spy = vi.spyOn(component.selection, 'emit');
-      component.commitChipEdit('edited');
+      (component as any).commitChipEdit('edited');
 
       expect(component.taggingValidator).toHaveBeenCalledWith('edited', []);
       expect(spy).not.toHaveBeenCalled();

@@ -346,7 +346,12 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
 
     if (event.key === KeyboardKeys.ENTER) {
       event.preventDefault();
-      this.commitChipEdit(value);
+      this.commitChipEdit(value, false);
+      if (this.isFreeTagging && currentIndex != null) {
+        this.setInputInsertIndex(currentIndex + 1);
+      } else {
+        this.focusInput();
+      }
       return;
     }
 
@@ -357,6 +362,8 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
       if (event.shiftKey) {
         if (currentIndex === 0) {
           this.inputContainer?.nativeElement.blur();
+        } else if (this.isFreeTagging && currentIndex != null) {
+          this.setInputInsertIndex(currentIndex);
         } else {
           this.focusInput();
         }
@@ -364,6 +371,8 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
         const isLast = currentIndex != null && currentIndex === (this.selected?.length ?? 0) - 1;
         if (isLast) {
           this.inputContainer?.nativeElement.blur();
+        } else if (this.isFreeTagging && currentIndex != null) {
+          this.setInputInsertIndex(currentIndex + 1);
         } else {
           this.focusInput();
         }
@@ -551,15 +560,27 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
       return;
     }
 
-    if (key === KeyboardKeys.ARROW_LEFT && (empty || atStart) && this.inputInsertIndex > 0) {
+    if (key === KeyboardKeys.ARROW_LEFT && (empty || atStart)) {
       event.preventDefault();
-      this.setInputInsertIndex(this.inputInsertIndex - 1);
+      if (this.inputInsertIndex > 0) {
+        const targetIndex = this.inputInsertIndex - 1;
+        const chip = this.selectedChips[targetIndex];
+        if (chip && !chip.option.disabled) {
+          this.beginChipEdit(targetIndex, 0, chip.labelText.length);
+        }
+      }
       return;
     }
 
-    if (key === KeyboardKeys.ARROW_RIGHT && (empty || atEnd) && this.inputInsertIndex < chipCount) {
+    if (key === KeyboardKeys.ARROW_RIGHT && (empty || atEnd)) {
       event.preventDefault();
-      this.setInputInsertIndex(this.inputInsertIndex + 1);
+      if (this.inputInsertIndex < chipCount) {
+        const targetIndex = this.inputInsertIndex;
+        const chip = this.selectedChips[targetIndex];
+        if (chip && !chip.option.disabled) {
+          this.beginChipEdit(targetIndex, 0, 0);
+        }
+      }
       return;
     }
 
@@ -663,6 +684,7 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
     this.emitTaggingError(lastError);
     if (lastError && retainOnError && !added) return;
     this.clearInput();
+    this.setInputInsertIndex(this.inputInsertIndex);
   }
 
   private canStartChipEdit(event: Event, index: number): boolean {
@@ -836,7 +858,7 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
         el.style.width = '';
       } else {
         el.style.width = '0px';
-        el.style.width = `${el.scrollWidth + 2}px`;
+        el.style.width = `${el.scrollWidth + 4}px`;
       }
       return;
     }

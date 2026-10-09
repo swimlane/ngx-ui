@@ -378,7 +378,6 @@ $color-chip-text: #ffffff;
           flex: 0 0 auto;
           width: auto;
           min-width: 0;
-          max-width: min(100%, 18rem);
           margin-right: calc(-0.5 * var(--spacing-5));
         }
 
@@ -405,12 +404,11 @@ $color-chip-text: #ffffff;
         &--caret textarea.ngx-select-text-box {
           width: 1px;
           min-width: 1px;
-          max-width: none;
           height: 1.4em;
           min-height: 1.4em;
-          white-space: pre;
-          overflow-wrap: normal;
-          word-break: normal;
+          white-space: nowrap;
+          overflow: hidden;
+          resize: none;
         }
       }
     }
