@@ -26,11 +26,15 @@
     @if (tagging || selectedChips?.length) {
       <ul class="horizontal-list ngx-select-input-list" [class.no-selections]="!selected?.length">
         @for (chip of selectedChips; track chip.trackBy; let index = $index) {
+          @if (tagging && isFreeTagging && inputInsertIndex === index) {
+            <li class="ngx-select-input-box-wrapper ngx-select-input-box-wrapper--caret">
+              <ng-container *ngTemplateOutlet="freeTagInput"></ng-container>
+            </li>
+          }
           <li
             class="ngx-select-input-option"
             [class.disabled]="multiple && selectedChips.length > 1 && chip.option.disabled"
             [class.ngx-select-input-option--invalid]="chip.invalid"
-            [class.ngx-select-input-option--active]="isFreeTagging && selectedChipIndex === index"
             [class.ngx-select-input-option--editing]="tagging && editingChipIndex === index"
             [attr.aria-invalid]="chip.invalid ? true : null"
             (mousedown)="onChipMouseDown($event, index)"
@@ -92,24 +96,10 @@
             }
           </li>
         }
-        @if (tagging) {
+        @if (tagging && (!isFreeTagging || isInputAtEnd)) {
           <li class="ngx-select-input-box-wrapper">
             @if (isFreeTagging) {
-              <textarea
-                #tagInput
-                class="ngx-select-text-box"
-                rows="1"
-                [disabled]="disabled"
-                autocomplete="off"
-                autocorrect="off"
-                spellcheck="false"
-                (keydown)="onInputKeyDown($event)"
-                (keyup)="onInputKeyUp($event)"
-                (input)="onInputValueChange()"
-                (paste)="onInputPaste($event)"
-                (change)="$event.stopPropagation()"
-                (blur)="onInputBlur($event)"
-              ></textarea>
+              <ng-container *ngTemplateOutlet="freeTagInput"></ng-container>
             } @else {
               <input
                 #tagInput
@@ -176,3 +166,22 @@
   }
   <ng-content select="ngx-input-hint"></ng-content>
 </div>
+
+<ng-template #freeTagInput>
+  <textarea
+    #tagInput
+    class="ngx-select-text-box"
+    rows="1"
+    cols="1"
+    [disabled]="disabled"
+    autocomplete="off"
+    autocorrect="off"
+    spellcheck="false"
+    (keydown)="onInputKeyDown($event)"
+    (keyup)="onInputKeyUp($event)"
+    (input)="onInputValueChange()"
+    (paste)="onInputPaste($event)"
+    (change)="$event.stopPropagation()"
+    (blur)="onInputBlur($event)"
+  ></textarea>
+</ng-template>

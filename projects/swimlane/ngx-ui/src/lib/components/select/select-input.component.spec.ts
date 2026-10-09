@@ -437,7 +437,86 @@ describe('SelectInputComponent', () => {
       expect(clearSpy).toHaveBeenCalled();
     });
 
-    it('starts editing chips with Left arrow and deletes with Backspace outside', () => {
+    it('moves the caret between chips with Left/Right without entering edit', () => {
+      component.selected = ['one', 'two'];
+      fixture.detectChanges();
+      expect(component.inputInsertIndex).toBe(2);
+
+      const left = {
+        key: KeyboardKeys.ARROW_LEFT,
+        code: KeyboardKeys.ARROW_LEFT,
+        preventDefault: vi.fn(),
+        stopPropagation: vi.fn(),
+        target: { value: '', selectionStart: 0, selectionEnd: 0 }
+      } as any;
+
+      component.onInputKeyDown(left);
+      expect(component.inputInsertIndex).toBe(1);
+      expect(component.editingChipIndex).toBeNull();
+
+      component.onInputKeyDown(left);
+      expect(component.inputInsertIndex).toBe(0);
+      expect(component.editingChipIndex).toBeNull();
+
+      const right = {
+        key: KeyboardKeys.ARROW_RIGHT,
+        code: KeyboardKeys.ARROW_RIGHT,
+        preventDefault: vi.fn(),
+        stopPropagation: vi.fn(),
+        target: { value: '', selectionStart: 0, selectionEnd: 0 }
+      } as any;
+
+      component.onInputKeyDown(right);
+      expect(component.inputInsertIndex).toBe(1);
+
+      component.onInputKeyDown(right);
+      expect(component.inputInsertIndex).toBe(2);
+    });
+
+    it('leaves chip edit with caret before/after the chip on Left/Right at boundaries', () => {
+      component.selected = ['one', 'two', 'three'];
+      fixture.detectChanges();
+
+      (component as any).beginChipEdit(1, 0, 0);
+      fixture.detectChanges();
+      expect(component.editingChipIndex).toBe(1);
+
+      component.onChipEditKeyDown({
+        key: KeyboardKeys.ARROW_LEFT,
+        stopPropagation: vi.fn(),
+        preventDefault: vi.fn(),
+        target: { value: 'two', selectionStart: 0, selectionEnd: 0 }
+      } as any);
+
+      expect(component.editingChipIndex).toBeNull();
+      expect(component.inputInsertIndex).toBe(1);
+
+      (component as any).beginChipEdit(0, 0, 0);
+      fixture.detectChanges();
+      component.onChipEditKeyDown({
+        key: KeyboardKeys.ARROW_LEFT,
+        stopPropagation: vi.fn(),
+        preventDefault: vi.fn(),
+        target: { value: 'one', selectionStart: 0, selectionEnd: 0 }
+      } as any);
+      expect(component.editingChipIndex).toBeNull();
+      expect(component.inputInsertIndex).toBe(0);
+
+      (component as any).beginChipEdit(1, 0, 3);
+      fixture.detectChanges();
+
+      component.onChipEditKeyDown({
+        key: KeyboardKeys.ARROW_RIGHT,
+        stopPropagation: vi.fn(),
+        preventDefault: vi.fn(),
+        target: { value: 'two', selectionStart: 3, selectionEnd: 3 }
+      } as any);
+
+      expect(component.editingChipIndex).toBeNull();
+      expect(component.inputInsertIndex).toBe(2);
+    });
+
+    it('deletes the chip before the caret with Backspace', () => {
       const spy = vi.spyOn(component.selection, 'emit');
       component.selected = ['one', 'two'];
       fixture.detectChanges();
@@ -451,13 +530,12 @@ describe('SelectInputComponent', () => {
       } as any;
 
       component.onInputKeyDown(event);
-      expect(component.editingChipIndex).toBe(1);
-
-      component.cancelChipEdit();
+      expect(component.inputInsertIndex).toBe(1);
 
       event.key = event.code = KeyboardKeys.BACKSPACE;
       component.onInputKeyDown(event);
-      expect(spy).toHaveBeenCalledWith(['one']);
+      expect(spy).toHaveBeenCalledWith(['two']);
+      expect(component.inputInsertIndex).toBe(0);
     });
 
     it('deletes the last chip with Backspace', () => {
