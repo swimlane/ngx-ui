@@ -6,6 +6,7 @@
 
 - Feature (`ngx-columns`): Added opt-in `scrollToEndOnExpand`. When a leaf expand causes horizontal overflow, the columns host scrolls to the end.
 - Feature (`ngx-date-time`): Added a new input `hideDisabledTimeUnits` to `ngx-date-time` which is by default `false`. When true it hides the time units that are disabled due to precision.
+- Enhancement (`ngx-select`): Inline tagging with keyboard navigation: Left/Right arrows move between chips and edit in-place; Enter/Tab/comma/blur commit; Escape reverts. Single-click a chip to edit (caret at click position; chips expand to full text; no blue outline). Paste splits on comma/semicolon/tab/newline. Optional `taggingValidator` for inline-only tagging. Dropdown tagging: `filterDebounce` (default 200ms) filters options while typing; selecting an option replaces the edited chip. Chip presentation (tooltip/invalid) is precomputed; tags render as plain text.
 
 ## 53.2.2 (2026-09-01)
 

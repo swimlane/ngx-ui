@@ -294,8 +294,55 @@ describe('SelectComponent', () => {
     });
 
     it('should set filter when not arrow down', () => {
+      component.select.filterable = true;
+      component.select.filterDebounce = 0;
       component.select.onKeyUp({ event, value: 'test' });
       expect(component.select.filterQuery).toEqual('test');
+    });
+
+    it('should debounce filterQuery updates', () => {
+      vi.useFakeTimers();
+      component.select.filterable = true;
+      component.select.filterDebounce = 200;
+      component.select.onKeyUp({ event, value: 'co' });
+      expect(component.select.filterQuery).not.toEqual('co');
+      vi.advanceTimersByTime(200);
+      expect(component.select.filterQuery).toEqual('co');
+      vi.useRealTimers();
+    });
+
+    it('should replace the editing chip when a dropdown option is selected', () => {
+      component.select.tagging = true;
+      component.select.value = ['breach', 'ddos'];
+      component.select.inputComponent.editingChipIndex = 0;
+      component.select.onDropdownSelection({ name: 'Physical', value: 'physical' });
+      expect(component.select.value).toEqual(['physical', 'ddos']);
+      expect(component.select.inputComponent.editingChipIndex).toBeNull();
+    });
+
+    it('selects the focused option on empty enter when tagging', () => {
+      component.tagging$.next(true);
+      fixture.detectChanges();
+      component.select.toggleDropdown(true);
+      component.select.focusIndex = 1;
+      const option = component.select.options[1];
+      component.select.onKeyUp({ event: { key: KeyboardKeys.ENTER } as KeyboardEvent, value: '' });
+      expect(component.select.value).toContain(option.value);
+    });
+
+    it('clears filterQuery immediately when the search is emptied', () => {
+      component.select.filterable = true;
+      component.select.filterDebounce = 200;
+      component.select.filterQuery = 'Other';
+      component.select.onKeyUp({ event, value: '' });
+      expect(component.select.filterQuery).toEqual('');
+    });
+
+    it('does not filter when filterable is false', () => {
+      component.select.filterable = false;
+      component.select.filterDebounce = 0;
+      component.select.onKeyUp({ event, value: 'Other' });
+      expect(component.select.filterQuery || '').toEqual('');
     });
   });
 
@@ -326,6 +373,56 @@ describe('SelectComponent', () => {
       component.select.maxSelections = 1;
       component.select.value = ['test', 'test1'];
       expect(component.select.invalid).toBeTruthy();
+    });
+
+    it('should be true when a tagging entry was rejected', () => {
+      component.select.onTaggingError('Invalid tag');
+      expect(component.select.invalid).toBeTruthy();
+      expect(component.select.inputHint).toBe('Invalid tag');
+    });
+
+    it('should validate existing tagging values', () => {
+      component.select.tagging = true;
+      component.select.disableDropdown = true;
+      component.select.taggingValidator = (value: unknown) => (value === 'invalid' ? 'Invalid tag' : null);
+      component.select.value = ['invalid'];
+      expect(component.select.invalid).toBeTruthy();
+    });
+
+    it('should clear free-tag invalid state after removing bad values', () => {
+      component.select.tagging = true;
+      component.select.disableDropdown = true;
+      component.select.taggingValidator = (value: unknown) => (value === 'invalid' ? 'Invalid tag' : null);
+      component.select.value = ['invalid'];
+      expect(component.select.invalid).toBeTruthy();
+      component.select.value = ['ok'];
+      expect(component.select.invalid).toBeFalsy();
+    });
+
+    it('should stay valid for uniqueness validators that check selected peers', () => {
+      component.select.tagging = true;
+      component.select.disableDropdown = true;
+      component.select.taggingValidator = (value, selected) => (selected.includes(value) ? 'Already selected' : null);
+      component.select.value = ['one', 'two'];
+      expect(component.select.invalid).toBeFalsy();
+    });
+
+    it('should not apply taggingValidator when tagging has options (not inline)', () => {
+      component.select.tagging = true;
+      component.select.disableDropdown = false;
+      component.select.options = [{ name: 'DDOS', value: 'ddos' }];
+      component.select.taggingValidator = () => 'always invalid';
+      component.select.value = ['ddos'];
+      expect(component.select.isFreeTagging).toBeFalsy();
+      expect(component.select.invalid).toBeFalsy();
+    });
+
+    it('should clear taggingError after dropdown selection path', () => {
+      component.select.onTaggingError('Invalid tag');
+      expect(component.select.invalid).toBeTruthy();
+      component.select.onClear();
+      expect(component.select.taggingError).toBe('');
+      expect(component.select.invalid).toBeFalsy();
     });
   });
 

@@ -7,9 +7,11 @@ import {
   EventEmitter,
   forwardRef,
   Input,
+  OnChanges,
   OnDestroy,
   Output,
   Renderer2,
+  SimpleChanges,
   TemplateRef,
   ViewChild,
   ViewEncapsulation
@@ -30,6 +32,7 @@ import { SelectInputComponent } from './select-input.component';
 import { SelectOptionDirective } from './select-option.directive';
 import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
 import { CoerceNumberProperty } from '../../utils/coerce/coerce-number';
+import { SelectTaggingValidator } from './select-tagging.interface';
 
 let nextId = 0;
 
@@ -63,6 +66,7 @@ function arrayEquals(a, b) {
     '[class.lg]': 'size === "lg"',
     '[class.invalid]': 'invalid && touched',
     '[class.tagging-selection]': 'tagging',
+    '[class.free-tagging-selection]': 'isFreeTagging',
     '[class.multi-selection]': 'multiple',
     '[class.single-selection]': 'isSingleSelect',
     '[class.disabled]': 'disabled',
@@ -80,7 +84,7 @@ function arrayEquals(a, b) {
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false
 })
-export class SelectComponent extends _InputMixinBase implements ControlValueAccessor, OnDestroy {
+export class SelectComponent extends _InputMixinBase implements ControlValueAccessor, OnChanges, OnDestroy {
   @Input() id = `select-${++nextId}`;
   @Input() name: string;
   @Input() label: string;
@@ -159,6 +163,11 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   @CoerceBooleanProperty()
   filterable = true;
 
+  /** Debounce (ms) before applying filterQuery from typing. 0 = immediate. */
+  @Input()
+  @CoerceNumberProperty()
+  filterDebounce = 200;
+
   @Input()
   @CoerceBooleanProperty()
   required = false;
@@ -170,6 +179,15 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   @Input()
   @CoerceBooleanProperty()
   tagging = false;
+
+  @Input()
+  get taggingValidator(): SelectTaggingValidator | undefined {
+    return this._taggingValidator;
+  }
+  set taggingValidator(value: SelectTaggingValidator | undefined) {
+    this._taggingValidator = value;
+    this.refreshInvalidFreeTags();
+  }
 
   @Input()
   @CoerceBooleanProperty()
@@ -225,14 +243,25 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
       }
     }
 
+    this.refreshInvalidFreeTags();
     this._cdr.markForCheck();
   }
 
+  get isFreeTagging(): boolean {
+    return this.tagging && (this.disableDropdown || !this.options?.length);
+  }
+
   get invalid() {
+    if (this.taggingError) return true;
     if (this.required && this.checkInvalidValue(this.value)) return true;
     if (this.maxSelections !== undefined && this.value && this.value.length > this.maxSelections) return true;
     if (this.minSelections !== undefined && (!this.value || this.value.length < this.minSelections)) return true;
+    if (this._hasInvalidFreeTags) return true;
     return false;
+  }
+
+  get inputHint(): string {
+    return this.taggingError || this.hint;
   }
 
   get requiredIndicatorView() {
@@ -263,6 +292,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   set value(val: any[]) {
     if (val !== this._value) {
       this._value = val;
+      this.refreshInvalidFreeTags();
       this.onChangeCallback(this._value);
       this.change.emit(this._value);
       this._cdr.markForCheck();
@@ -280,12 +310,16 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   focusIndex = -1;
   dropdownActive = false;
   touched = false;
+  taggingError = '';
 
   private _optionTemplates: QueryList<SelectOptionDirective>;
   private _value: any[] = [];
   private _autosizeMinWidth = '60px';
   private _options: SelectDropdownOption[] = [];
   private _boundByOptionsInput = false;
+  private _hasInvalidFreeTags = false;
+  private _taggingValidator?: SelectTaggingValidator;
+  private filterDebounceTimer: ReturnType<typeof setTimeout> | null = null;
 
   constructor(
     private readonly _element: ElementRef,
@@ -295,12 +329,54 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
     super();
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('taggingValidator' in changes || 'tagging' in changes || 'disableDropdown' in changes || 'options' in changes) {
+      this.refreshInvalidFreeTags();
+    }
+  }
+
   ngOnDestroy(): void {
+    if (this.filterDebounceTimer != null) {
+      clearTimeout(this.filterDebounceTimer);
+      this.filterDebounceTimer = null;
+    }
     this.toggleDropdown(false);
+  }
+
+  private refreshInvalidFreeTags(): void {
+    const values = this.value;
+    this._hasInvalidFreeTags = !!(
+      this.isFreeTagging &&
+      this.taggingValidator &&
+      values?.some(
+        (value, index) =>
+          !!this.taggingValidator!(
+            value,
+            values.filter((_, i) => i !== index)
+          )
+      )
+    );
   }
 
   onDropdownSelection(selection: SelectDropdownOption, shouldClose = this.closeOnSelect || !this.multiple): void {
     if (selection.disabled) return;
+
+    const editIndex = this.inputComponent?.editingChipIndex;
+    if (this.tagging && editIndex != null) {
+      const existingIdx = this.findIndex(selection);
+      if (existingIdx !== -1 && existingIdx !== editIndex) {
+        this.inputComponent.cancelChipEdit();
+        this.afterSelect(shouldClose);
+        return;
+      }
+      const next = [...(this.value || [])];
+      next[editIndex] = selection.value;
+      this.value = next;
+      this.inputComponent.cancelChipEdit();
+      this.afterSelect(shouldClose);
+      return;
+    }
+
     if (this.value.length === this.maxSelections) return;
 
     const idx = this.findIndex(selection);
@@ -327,13 +403,35 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
     // if tagging, we need to clear current text
     if (this.tagging) {
       this.inputComponent.clearInput();
+      this.inputComponent.cancelChipEdit();
+      this.scheduleFilterQuery('');
     }
+    this.clearTaggingError();
 
     if (shouldClose) this.onClose(true);
   }
 
   onInputSelection(selections: any[]): void {
     this.value = selections;
+    this.scheduleFilterQuery('');
+  }
+
+  onClear(): void {
+    this.value = [];
+    this.clearTaggingError();
+    this.inputComponent?.clearInput();
+    this.scheduleFilterQuery('');
+  }
+
+  onTaggingError(error: string): void {
+    this.taggingError = error;
+    this._cdr.markForCheck();
+  }
+
+  private clearTaggingError(): void {
+    if (!this.taggingError) return;
+    this.taggingError = '';
+    this._cdr.markForCheck();
   }
 
   onFocus(): void {
@@ -355,10 +453,6 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   focusOn(index: number): void {
     if (index < 0) index = this.options.length + index;
     this.focusIndex = index;
-  }
-
-  onClear(): void {
-    this.value = [];
   }
 
   onBodyClick(event: Event): void {
@@ -398,6 +492,8 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
     this.toggle.emit(this.dropdownActive);
 
     if (this.dropdownActive) {
+      this.syncFilterQueryOnOpen();
+
       // if open
       if (this.closeOnBodyClick) {
         this.toggleListener = this._renderer.listen(document.body, 'click', this.onBodyClick.bind(this));
@@ -416,19 +512,84 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   }
 
   onKeyUp({ event, value }: { event: KeyboardEvent; value?: string }): void {
+    if (event?.key === (KeyboardKeys.ENTER as any) && this.tagging && this.dropdownActive) {
+      const option = this.getFocusedOption();
+      if (option && !option.disabled) {
+        this.onDropdownSelection(option, false);
+      }
+      this.keyup.emit({ event, value });
+      return;
+    }
+
     if (event && event.key === (KeyboardKeys.ARROW_DOWN as any) && this.focusIndex < this.options.length) {
       ++this.focusIndex;
-    } else {
-      this.filterQuery = value;
+    } else if (this.filterable) {
+      this.scheduleFilterQuery(value);
+    } else if (this.filterQuery) {
+      this.scheduleFilterQuery('');
     }
 
     this.keyup.emit({ event, value });
+  }
+
+  private getFocusedOption(): SelectDropdownOption | undefined {
+    if (!this.selectDropdown?.groups || this.focusIndex < 0) {
+      return undefined;
+    }
+
+    let currentIndex = 0;
+    for (const group of this.selectDropdown.groups) {
+      for (const item of group.options) {
+        if (currentIndex === this.focusIndex) {
+          return item.option;
+        }
+        currentIndex++;
+      }
+    }
+
+    return undefined;
+  }
+
+  private syncFilterQueryOnOpen(): void {
+    if (this.filterDebounceTimer != null) {
+      clearTimeout(this.filterDebounceTimer);
+      this.filterDebounceTimer = null;
+    }
+
+    const next = this.filterable ? this.inputComponent?.inputElement?.nativeElement?.value || '' : '';
+    if ((this.filterQuery || '') === next) return;
+    this.filterQuery = next;
+    this._cdr.markForCheck();
+  }
+
+  private scheduleFilterQuery(value: string | undefined): void {
+    if (this.filterDebounceTimer != null) {
+      clearTimeout(this.filterDebounceTimer);
+      this.filterDebounceTimer = null;
+    }
+
+    const next = value || '';
+    const apply = () => {
+      this.filterDebounceTimer = null;
+      if ((this.filterQuery || '') === next) return;
+      this.filterQuery = next;
+      this._cdr.markForCheck();
+    };
+
+    if (!this.filterDebounce || !next) {
+      apply();
+      return;
+    }
+
+    this.filterDebounceTimer = setTimeout(apply, this.filterDebounce);
   }
 
   writeValue(val: any[]): void {
     /* istanbul ignore else */
     if (val !== this._value) {
       this._value = val;
+      this.refreshInvalidFreeTags();
+      this.clearTaggingError();
       this._cdr.markForCheck();
     }
   }
