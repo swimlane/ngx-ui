@@ -6,6 +6,9 @@ import { SelectInputComponent } from './select-input.component';
 import { selectDropdownOptionMock } from './select-dropdown-option.mock';
 import { SelectTaggingService } from './select-tagging.service';
 
+/** Must match FOCUS_DELAY_MS in the component. */
+const FOCUS_DELAY = 30;
+
 /** Simulate a chip click to start editing via the public API. */
 function clickChip(component: SelectInputComponent, index: number): void {
   const name = document.createElement('span');
@@ -81,13 +84,13 @@ describe('SelectInputComponent', () => {
       fixture.detectChanges();
     });
 
-    it('should focus input', async () => {
+    it('should focus input', () => {
+      vi.useFakeTimers();
       const spy = vi.spyOn(component.inputElement.nativeElement, 'focus');
       component.ngAfterViewInit();
-
-      setTimeout(() => {
-        expect(spy).toHaveBeenCalled();
-      }, 5);
+      vi.advanceTimersByTime(10);
+      expect(spy).toHaveBeenCalled();
+      vi.useRealTimers();
     });
   });
 
@@ -964,23 +967,23 @@ describe('SelectInputComponent', () => {
       expect(spy).not.toHaveBeenCalled();
     });
 
-    it('should focus input if tagging', async () => {
+    it('should focus input if tagging', () => {
+      vi.useFakeTimers();
       const spy = vi.spyOn(component.inputElement.nativeElement, 'focus');
       component.onClick();
-
-      setTimeout(() => {
-        expect(spy).toHaveBeenCalled();
-      }, 5);
+      vi.advanceTimersByTime(FOCUS_DELAY);
+      expect(spy).toHaveBeenCalled();
+      vi.useRealTimers();
     });
 
-    it('should emit activate but not focus is !tagging', async () => {
+    it('should emit activate but not focus if !tagging', () => {
+      vi.useFakeTimers();
       const spy = vi.spyOn(component.inputElement.nativeElement, 'focus');
       component.tagging = false;
       component.onClick();
-
-      setTimeout(() => {
-        expect(spy).toHaveBeenCalled();
-      }, 5);
+      vi.advanceTimersByTime(FOCUS_DELAY);
+      expect(spy).not.toHaveBeenCalled();
+      vi.useRealTimers();
     });
   });
 
