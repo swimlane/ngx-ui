@@ -744,7 +744,10 @@ export class SelectInputComponent implements AfterViewInit, OnChanges, OnDestroy
     }
 
     // Suppress keyup for undo/redo shortcuts
-    if ((event.ctrlKey || event.metaKey) && (event.key === 'z' || event.key === 'Z' || event.key === 'y' || event.key === 'Y')) {
+    if (
+      (event.ctrlKey || event.metaKey) &&
+      (event.key === 'z' || event.key === 'Z' || event.key === 'y' || event.key === 'Y')
+    ) {
       return;
     }
 
