@@ -66,7 +66,7 @@ function arrayEquals(a, b) {
     '[class.lg]': 'size === "lg"',
     '[class.invalid]': 'invalid && touched',
     '[class.tagging-selection]': 'tagging',
-    '[class.free-tagging-selection]': 'isFreeTagging',
+    '[class.inline-tagging-selection]': 'isInlineTagging',
     '[class.multi-selection]': 'multiple',
     '[class.single-selection]': 'isSingleSelect',
     '[class.disabled]': 'disabled',
@@ -186,7 +186,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   }
   set taggingValidator(value: SelectTaggingValidator | undefined) {
     this._taggingValidator = value;
-    this.refreshInvalidFreeTags();
+    this.refreshInvalidInlineTags();
   }
 
   @Input()
@@ -243,11 +243,11 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
       }
     }
 
-    this.refreshInvalidFreeTags();
+    this.refreshInvalidInlineTags();
     this._cdr.markForCheck();
   }
 
-  get isFreeTagging(): boolean {
+  get isInlineTagging(): boolean {
     return this.tagging && (this.disableDropdown || !this.options?.length);
   }
 
@@ -256,7 +256,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
     if (this.required && this.checkInvalidValue(this.value)) return true;
     if (this.maxSelections !== undefined && this.value && this.value.length > this.maxSelections) return true;
     if (this.minSelections !== undefined && (!this.value || this.value.length < this.minSelections)) return true;
-    if (this._hasInvalidFreeTags) return true;
+    if (this._hasInvalidInlineTags) return true;
     return false;
   }
 
@@ -292,7 +292,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   set value(val: any[]) {
     if (val !== this._value) {
       this._value = val;
-      this.refreshInvalidFreeTags();
+      this.refreshInvalidInlineTags();
       this.onChangeCallback(this._value);
       this.change.emit(this._value);
       this._cdr.markForCheck();
@@ -317,7 +317,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   private _autosizeMinWidth = '60px';
   private _options: SelectDropdownOption[] = [];
   private _boundByOptionsInput = false;
-  private _hasInvalidFreeTags = false;
+  private _hasInvalidInlineTags = false;
   private _taggingValidator?: SelectTaggingValidator;
   private filterDebounceTimer: ReturnType<typeof setTimeout> | null = null;
 
@@ -331,7 +331,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
 
   ngOnChanges(changes: SimpleChanges): void {
     if ('taggingValidator' in changes || 'tagging' in changes || 'disableDropdown' in changes || 'options' in changes) {
-      this.refreshInvalidFreeTags();
+      this.refreshInvalidInlineTags();
     }
   }
 
@@ -343,10 +343,10 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
     this.toggleDropdown(false);
   }
 
-  private refreshInvalidFreeTags(): void {
+  private refreshInvalidInlineTags(): void {
     const values = this.value;
-    this._hasInvalidFreeTags = !!(
-      this.isFreeTagging &&
+    this._hasInvalidInlineTags = !!(
+      this.isInlineTagging &&
       this.taggingValidator &&
       values?.some(
         (value, index) =>
@@ -588,7 +588,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
     /* istanbul ignore else */
     if (val !== this._value) {
       this._value = val;
-      this.refreshInvalidFreeTags();
+      this.refreshInvalidInlineTags();
       this.clearTaggingError();
       this._cdr.markForCheck();
     }

@@ -4,7 +4,31 @@ import { NO_ERRORS_SCHEMA, ElementRef } from '@angular/core';
 import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 import { SelectInputComponent } from './select-input.component';
 import { selectDropdownOptionMock } from './select-dropdown-option.mock';
-import * as chipCaret from './select-chip-caret.util';
+import { SelectTaggingService } from './select-tagging.service';
+
+/** Simulate a chip click to start editing via the public API. */
+function clickChip(component: SelectInputComponent, index: number): void {
+  const name = document.createElement('span');
+  name.className = 'ngx-select-input-name';
+  const chipEl = document.createElement('li');
+  chipEl.appendChild(name);
+  component.onChipClick(
+    { stopPropagation: vi.fn(), target: name, currentTarget: chipEl, clientX: 0, clientY: 0 } as any,
+    index
+  );
+}
+
+/** Simulate committing a chip edit via Enter through the public API. */
+function commitChipEditViaEnter(component: SelectInputComponent, value: string): void {
+  const input = component.chipEditInput?.nativeElement;
+  if (input) input.value = value;
+  component.onChipEditKeyDown({
+    key: KeyboardKeys.ENTER,
+    stopPropagation: vi.fn(),
+    preventDefault: vi.fn(),
+    target: input ?? { value }
+  } as any);
+}
 
 describe('SelectInputComponent', () => {
   let component: SelectInputComponent;
@@ -31,6 +55,10 @@ describe('SelectInputComponent', () => {
     component.disableDropdown = false;
 
     fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    component.ngOnDestroy();
   });
 
   it('can load instance', () => {
@@ -377,7 +405,7 @@ describe('SelectInputComponent', () => {
       expect(component.selectedChips[2].option).not.toHaveProperty('tooltipTitle');
     });
 
-    it('keeps free-tag labels as plain text without mutating option objects', () => {
+    it('keeps inline-tag labels as plain text without mutating option objects', () => {
       const option = { name: 'Shared', value: 'shared' };
       component.options = [option];
       component.selected = ['shared'];
@@ -433,7 +461,7 @@ describe('SelectInputComponent', () => {
       component.clearInput();
 
       expect(spy).not.toHaveBeenCalled();
-      expect(component.isFreeTagging).toBe(false);
+      expect(component.isInlineTagging).toBe(false);
       expect(clearSpy).toHaveBeenCalled();
     });
 
@@ -475,21 +503,16 @@ describe('SelectInputComponent', () => {
       component.selected = ['one', 'two', 'three'];
       fixture.detectChanges();
 
-      (component as any).beginChipEdit(1, 0, 0);
+      clickChip(component, 1);
       fixture.detectChanges();
       expect(component.editingChipIndex).toBe(1);
 
-      component.onChipEditKeyDown({
-        key: KeyboardKeys.ENTER,
-        stopPropagation: vi.fn(),
-        preventDefault: vi.fn(),
-        target: { value: 'two' }
-      } as any);
+      commitChipEditViaEnter(component, 'two');
 
       expect(component.editingChipIndex).toBeNull();
       expect(component.inputInsertIndex).toBe(2);
 
-      (component as any).beginChipEdit(0, 0, 0);
+      clickChip(component, 0);
       fixture.detectChanges();
 
       component.onChipEditKeyDown({
@@ -502,7 +525,7 @@ describe('SelectInputComponent', () => {
 
       expect(component.editingChipIndex).toBeNull();
 
-      (component as any).beginChipEdit(1, 0, 3);
+      clickChip(component, 1);
       fixture.detectChanges();
 
       component.onChipEditKeyDown({
@@ -577,14 +600,7 @@ describe('SelectInputComponent', () => {
       expect(spy).not.toHaveBeenCalled();
 
       fixture.detectChanges();
-      const edit = component.chipEditInput.nativeElement;
-      edit.value = 'uno';
-      component.onChipEditKeyDown({
-        key: KeyboardKeys.ENTER,
-        stopPropagation: vi.fn(),
-        preventDefault: vi.fn(),
-        target: edit
-      } as any);
+      commitChipEditViaEnter(component, 'uno');
 
       expect(spy).toHaveBeenCalledWith(['uno', 'two']);
       expect(component.editingChipIndex).toBeNull();
@@ -624,20 +640,7 @@ describe('SelectInputComponent', () => {
       component.selected = ['one', 'two'];
       fixture.detectChanges();
 
-      const name = document.createElement('span');
-      name.className = 'ngx-select-input-name';
-      const chipEl = document.createElement('li');
-      chipEl.appendChild(name);
-      component.onChipClick(
-        {
-          stopPropagation: vi.fn(),
-          target: name,
-          currentTarget: chipEl,
-          clientX: 20,
-          clientY: 12
-        } as any,
-        0
-      );
+      clickChip(component, 0);
 
       const spy = vi.spyOn(component.selection, 'emit');
       const edit = component.chipEditInput.nativeElement;
@@ -658,7 +661,9 @@ describe('SelectInputComponent', () => {
     it('places the caret at the clicked character offset', () => {
       component.selected = ['abcdefghij'];
       fixture.detectChanges();
-      vi.spyOn(chipCaret, 'caretOffsetAtClientX').mockReturnValue(4);
+
+      const taggingService = TestBed.inject(SelectTaggingService);
+      vi.spyOn(taggingService, 'caretOffsetAtClientX').mockReturnValue(4);
 
       const chipEl = document.createElement('li');
       Object.defineProperty(chipEl, 'getBoundingClientRect', {
@@ -690,18 +695,10 @@ describe('SelectInputComponent', () => {
       component.taggingValidator = vi.fn(() => 'Must be longer');
       fixture.detectChanges();
 
-      const name = document.createElement('span');
-      name.className = 'ngx-select-input-name';
-      const chipEl = document.createElement('li');
-      chipEl.appendChild(name);
-
-      component.onChipClick(
-        { stopPropagation: vi.fn(), target: name, currentTarget: chipEl, clientX: 20, clientY: 12 } as any,
-        0
-      );
+      clickChip(component, 0);
 
       const spy = vi.spyOn(component.selection, 'emit');
-      (component as any).commitChipEdit('edited');
+      commitChipEditViaEnter(component, 'edited');
 
       expect(component.taggingValidator).not.toHaveBeenCalled();
       expect(spy).toHaveBeenCalledWith(['edited']);
@@ -739,25 +736,17 @@ describe('SelectInputComponent', () => {
       expect(keyupSpy).not.toHaveBeenCalled();
     });
 
-    it('runs validator when editing chips in free tagging mode', () => {
+    it('runs validator when editing chips in inline tagging mode', () => {
       component.tagging = true;
       component.disableDropdown = true;
       component.selected = ['short'];
       component.taggingValidator = vi.fn(() => 'Must be longer');
       fixture.detectChanges();
 
-      const name = document.createElement('span');
-      name.className = 'ngx-select-input-name';
-      const chipEl = document.createElement('li');
-      chipEl.appendChild(name);
-
-      component.onChipClick(
-        { stopPropagation: vi.fn(), target: name, currentTarget: chipEl, clientX: 20, clientY: 12 } as any,
-        0
-      );
+      clickChip(component, 0);
 
       const spy = vi.spyOn(component.selection, 'emit');
-      (component as any).commitChipEdit('edited');
+      commitChipEditViaEnter(component, 'edited');
 
       expect(component.taggingValidator).toHaveBeenCalledWith('edited', []);
       expect(spy).not.toHaveBeenCalled();
@@ -824,6 +813,132 @@ describe('SelectInputComponent', () => {
 
       expect(selectionSpy).not.toHaveBeenCalled();
       expect(errorSpy).toHaveBeenCalledWith('A maximum of 1 selections is allowed.');
+    });
+
+    it('allows repeated Backspace while editing chip text', () => {
+      component.selected = ['hello'];
+      fixture.detectChanges();
+
+      clickChip(component, 0);
+
+      const edit = component.chipEditInput.nativeElement;
+      edit.value = 'hel';
+
+      const repeatEvent = {
+        key: KeyboardKeys.BACKSPACE,
+        repeat: true,
+        stopPropagation: vi.fn(),
+        preventDefault: vi.fn(),
+        target: edit
+      } as any;
+
+      component.onChipEditKeyDown(repeatEvent);
+      expect(repeatEvent.preventDefault).not.toHaveBeenCalled();
+      expect(component.editingChipIndex).toBe(0);
+    });
+
+    it('blocks repeated Enter while editing chip text', () => {
+      component.selected = ['hello'];
+      fixture.detectChanges();
+
+      clickChip(component, 0);
+
+      const edit = component.chipEditInput.nativeElement;
+      edit.value = 'hello';
+
+      const repeatEvent = {
+        key: KeyboardKeys.ENTER,
+        repeat: true,
+        stopPropagation: vi.fn(),
+        preventDefault: vi.fn(),
+        target: edit
+      } as any;
+
+      const spy = vi.spyOn(component.selection, 'emit');
+      component.onChipEditKeyDown(repeatEvent);
+      expect(spy).not.toHaveBeenCalled();
+    });
+
+    it('supports undo/redo of chip additions with Ctrl+Z/Ctrl+Shift+Z', () => {
+      const spy = vi.spyOn(component.selection, 'emit');
+
+      component.onInputKeyDown({
+        key: KeyboardKeys.ENTER,
+        code: KeyboardKeys.ENTER,
+        preventDefault: vi.fn(),
+        stopPropagation: vi.fn(),
+        target: { value: 'alpha', selectionStart: 5, selectionEnd: 5 }
+      } as any);
+
+      expect(spy).toHaveBeenCalledWith(['alpha']);
+      spy.calls?.at(-1);
+
+      component.selected = ['alpha'];
+      fixture.detectChanges();
+
+      component.onInputKeyDown({
+        key: KeyboardKeys.ENTER,
+        code: KeyboardKeys.ENTER,
+        preventDefault: vi.fn(),
+        stopPropagation: vi.fn(),
+        target: { value: 'beta', selectionStart: 4, selectionEnd: 4 }
+      } as any);
+
+      expect(spy).toHaveBeenCalledWith(['alpha', 'beta']);
+
+      component.selected = ['alpha', 'beta'];
+      fixture.detectChanges();
+
+      component.onInputKeyDown({
+        key: 'z',
+        ctrlKey: true,
+        preventDefault: vi.fn(),
+        stopPropagation: vi.fn(),
+        target: { value: '', selectionStart: 0, selectionEnd: 0 }
+      } as any);
+
+      expect(spy).toHaveBeenCalledWith(['alpha']);
+
+      component.selected = ['alpha'];
+      fixture.detectChanges();
+
+      component.onInputKeyDown({
+        key: 'z',
+        ctrlKey: true,
+        shiftKey: true,
+        preventDefault: vi.fn(),
+        stopPropagation: vi.fn(),
+        target: { value: '', selectionStart: 0, selectionEnd: 0 }
+      } as any);
+
+      expect(spy).toHaveBeenCalledWith(['alpha', 'beta']);
+    });
+
+    it('resets undo stack on blur', () => {
+      component.onInputKeyDown({
+        key: KeyboardKeys.ENTER,
+        code: KeyboardKeys.ENTER,
+        preventDefault: vi.fn(),
+        stopPropagation: vi.fn(),
+        target: { value: 'alpha', selectionStart: 5, selectionEnd: 5 }
+      } as any);
+
+      component.selected = ['alpha'];
+      fixture.detectChanges();
+
+      component.onInputBlur({ relatedTarget: null } as FocusEvent);
+
+      const spy = vi.spyOn(component.selection, 'emit');
+
+      component.onInputKeyDown({
+        key: 'z',
+        ctrlKey: true,
+        preventDefault: vi.fn(),
+        stopPropagation: vi.fn(),
+        target: { value: '', selectionStart: 0, selectionEnd: 0 }
+      } as any);
+
+      expect(spy).not.toHaveBeenCalled();
     });
   });
 

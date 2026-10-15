@@ -413,7 +413,7 @@ describe('SelectComponent', () => {
       component.select.options = [{ name: 'DDOS', value: 'ddos' }];
       component.select.taggingValidator = () => 'always invalid';
       component.select.value = ['ddos'];
-      expect(component.select.isFreeTagging).toBeFalsy();
+      expect(component.select.isInlineTagging).toBeFalsy();
       expect(component.select.invalid).toBeFalsy();
     });
 
