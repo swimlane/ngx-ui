@@ -648,7 +648,11 @@ export class SelectInputComponent implements AfterViewInit, OnChanges, OnDestroy
 
     if (
       event.repeat &&
-      (key === KeyboardKeys.BACKSPACE || key === KeyboardKeys.DELETE || key === KeyboardKeys.ENTER || key === ',')
+      (key === KeyboardKeys.BACKSPACE ||
+        key === KeyboardKeys.DELETE ||
+        key === KeyboardKeys.ENTER ||
+        key === ',' ||
+        key === ';')
     ) {
       return;
     }
@@ -712,7 +716,7 @@ export class SelectInputComponent implements AfterViewInit, OnChanges, OnDestroy
       this.emitTaggingError('');
     }
 
-    if (key === KeyboardKeys.ENTER || key === KeyboardKeys.TAB || key === ',') {
+    if (key === KeyboardKeys.ENTER || key === KeyboardKeys.TAB || key === ',' || key === ';') {
       if (!value) {
         if (key !== KeyboardKeys.TAB) event.preventDefault();
         return;
@@ -738,7 +742,8 @@ export class SelectInputComponent implements AfterViewInit, OnChanges, OnDestroy
       event.key === KeyboardKeys.TAB ||
       event.key === KeyboardKeys.ARROW_LEFT ||
       event.key === KeyboardKeys.ARROW_RIGHT ||
-      event.key === ','
+      event.key === ',' ||
+      event.key === ';'
     ) {
       return;
     }
