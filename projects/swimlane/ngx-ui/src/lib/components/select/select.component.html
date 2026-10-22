@@ -14,9 +14,11 @@
         [identifier]="identifier"
         [tagging]="tagging"
         [allowAdditions]="allowAdditions"
+        [maxSelections]="maxSelections"
+        [taggingValidator]="taggingValidator"
         [selectCaret]="selectCaret"
         [selected]="value"
-        [hint]="hint"
+        [hint]="inputHint"
         [withHint]="withHint"
         [disableDropdown]="disableDropdown"
         [disabled]="disabled"
@@ -26,7 +28,8 @@
         (activate)="onFocus()"
         (activateLast)="onFocusLast()"
         (selection)="onInputSelection($event)"
-        >
+        (taggingError)="onTaggingError($event)"
+      >
       </ngx-select-input>
     </div>
   </div>
@@ -55,7 +58,7 @@
       (deselection)="onDropdownDeselection($event)"
       (keyboardSelection)="onDropdownSelection($event, false)"
       (keyboardDeselection)="onDropdownDeselection($event, false)"
-      >
+    >
     </ngx-select-dropdown>
   }
 </div>

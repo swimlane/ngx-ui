@@ -248,6 +248,7 @@ export * from './lib/components/select/select-option-input-template.directive';
 export * from './lib/components/select/select-input.component';
 export * from './lib/components/select/select-dropdown.component';
 export * from './lib/components/select/select-dropdown-option.interface';
+export * from './lib/components/select/select-tagging.interface';
 
 export * from './lib/components/slider/slider.module';
 export * from './lib/components/slider/slider.component';
