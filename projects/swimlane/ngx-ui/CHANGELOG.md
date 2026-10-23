@@ -2,6 +2,10 @@
 
 ## HEAD (unreleased)
 
+## 53.4.1 (2026-10-23)
+
+- Fix (`ngx-select`, `ngx-filter`, `ngx-dropdown`): Menu direction no longer throws when `IntersectionObserverEntry.rootBounds` is null inside a cross-origin iframe. Placement falls back to the frame viewport and still applies an upward or downward class.
+
 ## 53.4.0 (2026-10-08)
 
 - Feature (`ngx-columns`): Added opt-in `scrollToEndOnExpand`. When a leaf expand causes horizontal overflow, the columns host scrolls to the end.
