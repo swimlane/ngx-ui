@@ -34,6 +34,10 @@ import { FilterIconPositionTypes } from './filter.icon-position-types.enum';
 import { FilterCustomDropdown } from './filter.custom-component.interface';
 import { DropdownComponent } from '../dropdown/dropdown.component';
 import { PlacementTypes } from '../../utils/position/placement-type.enum';
+import {
+  isIntersectingViewportBottom,
+  isIntersectingViewportTop
+} from '../../utils/position/viewport-intersection/viewport-intersection.util';
 import { SelectionList } from '../multi-dimension-selection/types/selection-list';
 import { SelectionListOption } from '../multi-dimension-selection/types/selection-list-option';
 import { MultiDimensionSelectionComponent } from '../multi-dimension-selection/multi-dimension-selection.component';
@@ -587,11 +591,11 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
   }
 
   private isIntersectingBottom(entry: IntersectionObserverEntry): boolean {
-    return entry.boundingClientRect.bottom >= entry.rootBounds.bottom;
+    return isIntersectingViewportBottom(entry);
   }
 
   private isIntersectingTop(entry: IntersectionObserverEntry): boolean {
-    return entry.boundingClientRect.top - entry.boundingClientRect.height <= entry.rootBounds.top;
+    return isIntersectingViewportTop(entry);
   }
 
   /* istanbul ignore next */
