@@ -2,8 +2,6 @@
 
 ## HEAD (unreleased)
 
-## 53.4.1 (2026-10-26)
-
 - Fix (`ngx-select`, `ngx-filter`, `ngx-dropdown`): Menu direction no longer throws when `IntersectionObserverEntry.rootBounds` is null inside a cross-origin iframe. Placement falls back to the frame viewport and still applies an upward or downward class.
 
 ## 53.4.0 (2026-10-08)
