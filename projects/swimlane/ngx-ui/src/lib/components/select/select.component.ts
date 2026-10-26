@@ -27,6 +27,7 @@ import { SelectDropdownOption } from './select-dropdown-option.interface';
 import { SelectDropdownComponent } from './select-dropdown.component';
 import { SelectInputComponent } from './select-input.component';
 
+import { ViewportIntersectionUtil } from '../../utils/position/viewport-intersection/viewport-intersection.util';
 import { SelectOptionDirective } from './select-option.directive';
 import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
 import { CoerceNumberProperty } from '../../utils/coerce/coerce-number';
@@ -471,11 +472,11 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   }
 
   private isIntersectingBottom(entry: IntersectionObserverEntry): boolean {
-    return entry.boundingClientRect.bottom >= entry.rootBounds.bottom;
+    return ViewportIntersectionUtil.isIntersectingBottom(entry);
   }
 
   private isIntersectingTop(entry: IntersectionObserverEntry): boolean {
-    return entry.boundingClientRect.top - entry.boundingClientRect.height <= entry.rootBounds.top;
+    return ViewportIntersectionUtil.isIntersectingTop(entry);
   }
 
   private checkInvalidValue(value: any): boolean {
