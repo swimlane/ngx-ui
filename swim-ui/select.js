@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 const N = globalThis, de = N.ShadowRoot && (N.ShadyCSS === void 0 || N.ShadyCSS.nativeShadow) && "adoptedStyleSheets" in Document.prototype && "replace" in CSSStyleSheet.prototype, he = Symbol(), we = /* @__PURE__ */ new WeakMap();
-let Be = class {
+let Qe = class {
   constructor(e, t, i) {
     if (this._$cssResult$ = !0, i !== he) throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");
     this.cssText = e, this.t = t;
@@ -22,13 +22,13 @@ let Be = class {
     return this.cssText;
   }
 };
-const Ie = (n) => new Be(typeof n == "string" ? n : n + "", void 0, he), j = (n, ...e) => {
+const Be = (n) => new Qe(typeof n == "string" ? n : n + "", void 0, he), j = (n, ...e) => {
   const t = n.length === 1 ? n[0] : e.reduce((i, o, r) => i + ((s) => {
     if (s._$cssResult$ === !0) return s.cssText;
     if (typeof s == "number") return s;
     throw Error("Value passed to 'css' function must be a 'css' function result: " + s + ". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.");
   })(o) + n[r + 1], n[0]);
-  return new Be(t, n, he);
+  return new Qe(t, n, he);
 }, qe = (n, e) => {
   if (de) n.adoptedStyleSheets = e.map((t) => t instanceof CSSStyleSheet ? t : t.styleSheet);
   else for (const t of e) {
@@ -38,14 +38,14 @@ const Ie = (n) => new Be(typeof n == "string" ? n : n + "", void 0, he), j = (n,
 }, ge = de ? (n) => n : (n) => n instanceof CSSStyleSheet ? ((e) => {
   let t = "";
   for (const i of e.cssRules) t += i.cssText;
-  return Ie(t);
+  return Be(t);
 })(n) : n;
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const { is: Ye, defineProperty: Ne, getOwnPropertyDescriptor: Ke, getOwnPropertyNames: Ve, getOwnPropertySymbols: _e, getPrototypeOf: $e } = Object, O = globalThis, ye = O.trustedTypes, et = ye ? ye.emptyScript : "", te = O.reactiveElementPolyfillSupport, W = (n, e) => n, K = { toAttribute(n, e) {
+const { is: Ye, defineProperty: Ne, getOwnPropertyDescriptor: Ke, getOwnPropertyNames: Ve, getOwnPropertySymbols: _e, getPrototypeOf: $e } = Object, k = globalThis, ye = k.trustedTypes, et = ye ? ye.emptyScript : "", te = k.reactiveElementPolyfillSupport, W = (n, e) => n, K = { toAttribute(n, e) {
   switch (e) {
     case Boolean:
       n = n ? et : null;
@@ -74,8 +74,8 @@ const { is: Ye, defineProperty: Ne, getOwnPropertyDescriptor: Ke, getOwnProperty
   }
   return t;
 } }, be = (n, e) => !Ye(n, e), ve = { attribute: !0, type: String, converter: K, reflect: !1, useDefault: !1, hasChanged: be };
-Symbol.metadata ?? (Symbol.metadata = Symbol("metadata")), O.litPropertyMetadata ?? (O.litPropertyMetadata = /* @__PURE__ */ new WeakMap());
-let I = class extends HTMLElement {
+Symbol.metadata ?? (Symbol.metadata = Symbol("metadata")), k.litPropertyMetadata ?? (k.litPropertyMetadata = /* @__PURE__ */ new WeakMap());
+let B = class extends HTMLElement {
   static addInitializer(e) {
     this._$Ei(), (this.l ?? (this.l = [])).push(e);
   }
@@ -194,8 +194,8 @@ let I = class extends HTMLElement {
     if (o !== void 0 && this._$Em !== o) {
       const l = i.getPropertyOptions(o), c = typeof l.converter == "function" ? { fromAttribute: l.converter } : ((r = l.converter) == null ? void 0 : r.fromAttribute) !== void 0 ? l.converter : K;
       this._$Em = o;
-      const b = c.fromAttribute(t, l.type);
-      this[o] = b ?? ((s = this._$Ej) == null ? void 0 : s.get(o)) ?? b, this._$Em = null;
+      const f = c.fromAttribute(t, l.type);
+      this[o] = f ?? ((s = this._$Ej) == null ? void 0 : s.get(o)) ?? f, this._$Em = null;
     }
   }
   requestUpdate(e, t, i, o = !1, r) {
@@ -278,48 +278,48 @@ let I = class extends HTMLElement {
   firstUpdated(e) {
   }
 };
-I.elementStyles = [], I.shadowRootOptions = { mode: "open" }, I[W("elementProperties")] = /* @__PURE__ */ new Map(), I[W("finalized")] = /* @__PURE__ */ new Map(), te == null || te({ ReactiveElement: I }), (O.reactiveElementVersions ?? (O.reactiveElementVersions = [])).push("2.1.2");
+B.elementStyles = [], B.shadowRootOptions = { mode: "open" }, B[W("elementProperties")] = /* @__PURE__ */ new Map(), B[W("finalized")] = /* @__PURE__ */ new Map(), te == null || te({ ReactiveElement: B }), (k.reactiveElementVersions ?? (k.reactiveElementVersions = [])).push("2.1.2");
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const X = globalThis, Ae = (n) => n, V = X.trustedTypes, xe = V ? V.createPolicy("lit-html", { createHTML: (n) => n }) : void 0, Fe = "$lit$", E = `lit$${Math.random().toFixed(9).slice(2)}$`, je = "?" + E, tt = `<${je}>`, Q = document, Z = () => Q.createComment(""), J = (n) => n === null || typeof n != "object" && typeof n != "function", fe = Array.isArray, it = (n) => fe(n) || typeof (n == null ? void 0 : n[Symbol.iterator]) == "function", ie = `[ 	
-\f\r]`, T = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, Se = /-->/g, Ce = />/g, D = RegExp(`>|${ie}(?:([^\\s"'>=/]+)(${ie}*=${ie}*(?:[^ 	
-\f\r"'\`<>=]|("|')|))|$)`, "g"), Ee = /'/g, Oe = /"/g, Ge = /^(?:script|style|textarea|title)$/i, ot = (n) => (e, ...t) => ({ _$litType$: n, strings: e, values: t }), g = ot(1), B = Symbol.for("lit-noChange"), p = Symbol.for("lit-nothing"), ke = /* @__PURE__ */ new WeakMap(), z = Q.createTreeWalker(Q, 129);
-function Te(n, e) {
+const X = globalThis, Ae = (n) => n, V = X.trustedTypes, xe = V ? V.createPolicy("lit-html", { createHTML: (n) => n }) : void 0, Fe = "$lit$", E = `lit$${Math.random().toFixed(9).slice(2)}$`, je = "?" + E, tt = `<${je}>`, L = document, Z = () => L.createComment(""), J = (n) => n === null || typeof n != "object" && typeof n != "function", fe = Array.isArray, it = (n) => fe(n) || typeof (n == null ? void 0 : n[Symbol.iterator]) == "function", ie = `[ 	
+\f\r]`, G = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g, Se = /-->/g, Ce = />/g, D = RegExp(`>|${ie}(?:([^\\s"'>=/]+)(${ie}*=${ie}*(?:[^ 	
+\f\r"'\`<>=]|("|')|))|$)`, "g"), Ee = /'/g, ke = /"/g, Te = /^(?:script|style|textarea|title)$/i, ot = (n) => (e, ...t) => ({ _$litType$: n, strings: e, values: t }), w = ot(1), Q = Symbol.for("lit-noChange"), p = Symbol.for("lit-nothing"), Oe = /* @__PURE__ */ new WeakMap(), z = L.createTreeWalker(L, 129);
+function Ge(n, e) {
   if (!fe(n) || !n.hasOwnProperty("raw")) throw Error("invalid template strings array");
   return xe !== void 0 ? xe.createHTML(e) : e;
 }
 const nt = (n, e) => {
   const t = n.length - 1, i = [];
-  let o, r = e === 2 ? "<svg>" : e === 3 ? "<math>" : "", s = T;
+  let o, r = e === 2 ? "<svg>" : e === 3 ? "<math>" : "", s = G;
   for (let l = 0; l < t; l++) {
     const c = n[l];
-    let b, w, a = -1, m = 0;
-    for (; m < c.length && (s.lastIndex = m, w = s.exec(c), w !== null); ) m = s.lastIndex, s === T ? w[1] === "!--" ? s = Se : w[1] !== void 0 ? s = Ce : w[2] !== void 0 ? (Ge.test(w[2]) && (o = RegExp("</" + w[2], "g")), s = D) : w[3] !== void 0 && (s = D) : s === D ? w[0] === ">" ? (s = o ?? T, a = -1) : w[1] === void 0 ? a = -2 : (a = s.lastIndex - w[2].length, b = w[1], s = w[3] === void 0 ? D : w[3] === '"' ? Oe : Ee) : s === Oe || s === Ee ? s = D : s === Se || s === Ce ? s = T : (s = D, o = void 0);
+    let f, g, a = -1, m = 0;
+    for (; m < c.length && (s.lastIndex = m, g = s.exec(c), g !== null); ) m = s.lastIndex, s === G ? g[1] === "!--" ? s = Se : g[1] !== void 0 ? s = Ce : g[2] !== void 0 ? (Te.test(g[2]) && (o = RegExp("</" + g[2], "g")), s = D) : g[3] !== void 0 && (s = D) : s === D ? g[0] === ">" ? (s = o ?? G, a = -1) : g[1] === void 0 ? a = -2 : (a = s.lastIndex - g[2].length, f = g[1], s = g[3] === void 0 ? D : g[3] === '"' ? ke : Ee) : s === ke || s === Ee ? s = D : s === Se || s === Ce ? s = G : (s = D, o = void 0);
     const u = s === D && n[l + 1].startsWith("/>") ? " " : "";
-    r += s === T ? c + tt : a >= 0 ? (i.push(b), c.slice(0, a) + Fe + c.slice(a) + E + u) : c + E + (a === -2 ? l : u);
+    r += s === G ? c + tt : a >= 0 ? (i.push(f), c.slice(0, a) + Fe + c.slice(a) + E + u) : c + E + (a === -2 ? l : u);
   }
-  return [Te(n, r + (n[t] || "<?>") + (e === 2 ? "</svg>" : e === 3 ? "</math>" : "")), i];
+  return [Ge(n, r + (n[t] || "<?>") + (e === 2 ? "</svg>" : e === 3 ? "</math>" : "")), i];
 };
 class U {
   constructor({ strings: e, _$litType$: t }, i) {
     let o;
     this.parts = [];
     let r = 0, s = 0;
-    const l = e.length - 1, c = this.parts, [b, w] = nt(e, t);
-    if (this.el = U.createElement(b, i), z.currentNode = this.el.content, t === 2 || t === 3) {
+    const l = e.length - 1, c = this.parts, [f, g] = nt(e, t);
+    if (this.el = U.createElement(f, i), z.currentNode = this.el.content, t === 2 || t === 3) {
       const a = this.el.content.firstChild;
       a.replaceWith(...a.childNodes);
     }
     for (; (o = z.nextNode()) !== null && c.length < l; ) {
       if (o.nodeType === 1) {
         if (o.hasAttributes()) for (const a of o.getAttributeNames()) if (a.endsWith(Fe)) {
-          const m = w[s++], u = o.getAttribute(a).split(E), y = /([.?@])?(.*)/.exec(m);
+          const m = g[s++], u = o.getAttribute(a).split(E), y = /([.?@])?(.*)/.exec(m);
           c.push({ type: 1, index: r, name: y[2], strings: u, ctor: y[1] === "." ? rt : y[1] === "?" ? lt : y[1] === "@" ? ct : $ }), o.removeAttribute(a);
         } else a.startsWith(E) && (c.push({ type: 6, index: r }), o.removeAttribute(a));
-        if (Ge.test(o.tagName)) {
+        if (Te.test(o.tagName)) {
           const a = o.textContent.split(E), m = a.length - 1;
           if (m > 0) {
             o.textContent = V ? V.emptyScript : "";
@@ -336,13 +336,13 @@ class U {
     }
   }
   static createElement(e, t) {
-    const i = Q.createElement("template");
+    const i = L.createElement("template");
     return i.innerHTML = e, i;
   }
 }
 function F(n, e, t = n, i) {
   var s, l;
-  if (e === B) return e;
+  if (e === Q) return e;
   let o = i !== void 0 ? (s = t._$Co) == null ? void 0 : s[i] : t._$Cl;
   const r = J(e) ? void 0 : e._$litDirective$;
   return (o == null ? void 0 : o.constructor) !== r && ((l = o == null ? void 0 : o._$AO) == null || l.call(o, !1), r === void 0 ? o = void 0 : (o = new r(n), o._$AT(n, t, i)), i !== void 0 ? (t._$Co ?? (t._$Co = []))[i] = o : t._$Cl = o), o !== void 0 && (e = F(n, o._$AS(n, e.values), o, i)), e;
@@ -358,24 +358,24 @@ class st {
     return this._$AM._$AU;
   }
   u(e) {
-    const { el: { content: t }, parts: i } = this._$AD, o = ((e == null ? void 0 : e.creationScope) ?? Q).importNode(t, !0);
+    const { el: { content: t }, parts: i } = this._$AD, o = ((e == null ? void 0 : e.creationScope) ?? L).importNode(t, !0);
     z.currentNode = o;
     let r = z.nextNode(), s = 0, l = 0, c = i[0];
     for (; c !== void 0; ) {
       if (s === c.index) {
-        let b;
-        c.type === 2 ? b = new G(r, r.nextSibling, this, e) : c.type === 1 ? b = new c.ctor(r, c.name, c.strings, this, e) : c.type === 6 && (b = new at(r, this, e)), this._$AV.push(b), c = i[++l];
+        let f;
+        c.type === 2 ? f = new T(r, r.nextSibling, this, e) : c.type === 1 ? f = new c.ctor(r, c.name, c.strings, this, e) : c.type === 6 && (f = new at(r, this, e)), this._$AV.push(f), c = i[++l];
       }
       s !== (c == null ? void 0 : c.index) && (r = z.nextNode(), s++);
     }
-    return z.currentNode = Q, o;
+    return z.currentNode = L, o;
   }
   p(e) {
     let t = 0;
     for (const i of this._$AV) i !== void 0 && (i.strings !== void 0 ? (i._$AI(e, i, t), t += i.strings.length - 2) : i._$AI(e[t])), t++;
   }
 }
-class G {
+class T {
   get _$AU() {
     var e;
     return ((e = this._$AM) == null ? void 0 : e._$AU) ?? this._$Cv;
@@ -395,7 +395,7 @@ class G {
     return this._$AB;
   }
   _$AI(e, t = this) {
-    e = F(this, e, t), J(e) ? e === p || e == null || e === "" ? (this._$AH !== p && this._$AR(), this._$AH = p) : e !== this._$AH && e !== B && this._(e) : e._$litType$ !== void 0 ? this.$(e) : e.nodeType !== void 0 ? this.T(e) : it(e) ? this.k(e) : this._(e);
+    e = F(this, e, t), J(e) ? e === p || e == null || e === "" ? (this._$AH !== p && this._$AR(), this._$AH = p) : e !== this._$AH && e !== Q && this._(e) : e._$litType$ !== void 0 ? this.$(e) : e.nodeType !== void 0 ? this.T(e) : it(e) ? this.k(e) : this._(e);
   }
   O(e) {
     return this._$AA.parentNode.insertBefore(e, this._$AB);
@@ -404,11 +404,11 @@ class G {
     this._$AH !== e && (this._$AR(), this._$AH = this.O(e));
   }
   _(e) {
-    this._$AH !== p && J(this._$AH) ? this._$AA.nextSibling.data = e : this.T(Q.createTextNode(e)), this._$AH = e;
+    this._$AH !== p && J(this._$AH) ? this._$AA.nextSibling.data = e : this.T(L.createTextNode(e)), this._$AH = e;
   }
   $(e) {
     var r;
-    const { values: t, _$litType$: i } = e, o = typeof i == "number" ? this._$AC(e) : (i.el === void 0 && (i.el = U.createElement(Te(i.h, i.h[0]), this.options)), i);
+    const { values: t, _$litType$: i } = e, o = typeof i == "number" ? this._$AC(e) : (i.el === void 0 && (i.el = U.createElement(Ge(i.h, i.h[0]), this.options)), i);
     if (((r = this._$AH) == null ? void 0 : r._$AD) === o) this._$AH.p(t);
     else {
       const s = new st(o, this), l = s.u(this.options);
@@ -416,14 +416,14 @@ class G {
     }
   }
   _$AC(e) {
-    let t = ke.get(e.strings);
-    return t === void 0 && ke.set(e.strings, t = new U(e)), t;
+    let t = Oe.get(e.strings);
+    return t === void 0 && Oe.set(e.strings, t = new U(e)), t;
   }
   k(e) {
     fe(this._$AH) || (this._$AH = [], this._$AR());
     const t = this._$AH;
     let i, o = 0;
-    for (const r of e) o === t.length ? t.push(i = new G(this.O(Z()), this.O(Z()), this, this.options)) : i = t[o], i._$AI(r), o++;
+    for (const r of e) o === t.length ? t.push(i = new T(this.O(Z()), this.O(Z()), this, this.options)) : i = t[o], i._$AI(r), o++;
     o < t.length && (this._$AR(i && i._$AB.nextSibling, o), t.length = o);
   }
   _$AR(e = this._$AA.nextSibling, t) {
@@ -451,11 +451,11 @@ class $ {
   _$AI(e, t = this, i, o) {
     const r = this.strings;
     let s = !1;
-    if (r === void 0) e = F(this, e, t, 0), s = !J(e) || e !== this._$AH && e !== B, s && (this._$AH = e);
+    if (r === void 0) e = F(this, e, t, 0), s = !J(e) || e !== this._$AH && e !== Q, s && (this._$AH = e);
     else {
       const l = e;
-      let c, b;
-      for (e = r[0], c = 0; c < r.length - 1; c++) b = F(this, l[i + c], t, c), b === B && (b = this._$AH[c]), s || (s = !J(b) || b !== this._$AH[c]), b === p ? e = p : e !== p && (e += (b ?? "") + r[c + 1]), this._$AH[c] = b;
+      let c, f;
+      for (e = r[0], c = 0; c < r.length - 1; c++) f = F(this, l[i + c], t, c), f === Q && (f = this._$AH[c]), s || (s = !J(f) || f !== this._$AH[c]), f === p ? e = p : e !== p && (e += (f ?? "") + r[c + 1]), this._$AH[c] = f;
     }
     s && !o && this.j(e);
   }
@@ -484,7 +484,7 @@ class ct extends $ {
     super(e, t, i, o, r), this.type = 5;
   }
   _$AI(e, t = this) {
-    if ((e = F(this, e, t, 0) ?? p) === B) return;
+    if ((e = F(this, e, t, 0) ?? p) === Q) return;
     const i = this._$AH, o = e === p && i !== p || e.capture !== i.capture || e.once !== i.once || e.passive !== i.passive, r = e !== p && (i === p || o);
     o && this.element.removeEventListener(this.name, this, i), r && this.element.addEventListener(this.name, this, e), this._$AH = e;
   }
@@ -504,14 +504,14 @@ class at {
     F(this, e);
   }
 }
-const dt = { I: G }, oe = X.litHtmlPolyfillSupport;
-oe == null || oe(U, G), (X.litHtmlVersions ?? (X.litHtmlVersions = [])).push("3.3.2");
+const dt = { I: T }, oe = X.litHtmlPolyfillSupport;
+oe == null || oe(U, T), (X.litHtmlVersions ?? (X.litHtmlVersions = [])).push("3.3.2");
 const ht = (n, e, t) => {
   const i = (t == null ? void 0 : t.renderBefore) ?? e;
   let o = i._$litPart$;
   if (o === void 0) {
     const r = (t == null ? void 0 : t.renderBefore) ?? null;
-    i._$litPart$ = o = new G(e.insertBefore(Z(), r), r, void 0, t ?? {});
+    i._$litPart$ = o = new T(e.insertBefore(Z(), r), r, void 0, t ?? {});
   }
   return o._$AI(n), o;
 };
@@ -521,7 +521,7 @@ const ht = (n, e, t) => {
  * SPDX-License-Identifier: BSD-3-Clause
  */
 const H = globalThis;
-let L = class extends I {
+let I = class extends B {
   constructor() {
     super(...arguments), this.renderOptions = { host: this }, this._$Do = void 0;
   }
@@ -543,13 +543,13 @@ let L = class extends I {
     super.disconnectedCallback(), (e = this._$Do) == null || e.setConnected(!1);
   }
   render() {
-    return B;
+    return Q;
   }
 };
-var Qe;
-L._$litElement$ = !0, L.finalized = !0, (Qe = H.litElementHydrateSupport) == null || Qe.call(H, { LitElement: L });
+var Le;
+I._$litElement$ = !0, I.finalized = !0, (Le = H.litElementHydrateSupport) == null || Le.call(H, { LitElement: I });
 const ne = H.litElementPolyfillSupport;
-ne == null || ne({ LitElement: L });
+ne == null || ne({ LitElement: I });
 (H.litElementVersions ?? (H.litElementVersions = [])).push("4.2.2");
 /**
  * @license
@@ -588,7 +588,7 @@ function h(n) {
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-function x(n) {
+function A(n) {
   return h({ ...n, state: !0, attribute: !1 });
 }
 /**
@@ -649,14 +649,14 @@ const { I: gt } = dt, Pe = (n) => n, De = () => document.createComment(""), R = 
   } else {
     const s = t._$AB.nextSibling, l = t._$AM, c = l !== n;
     if (c) {
-      let b;
-      (r = t._$AQ) == null || r.call(t, n), t._$AM = n, t._$AP !== void 0 && (b = n._$AU) !== l._$AU && t._$AP(b);
+      let f;
+      (r = t._$AQ) == null || r.call(t, n), t._$AM = n, t._$AP !== void 0 && (f = n._$AU) !== l._$AU && t._$AP(f);
     }
     if (s !== o || c) {
-      let b = t._$AA;
-      for (; b !== s; ) {
-        const w = Pe(b).nextSibling;
-        Pe(i).insertBefore(b, o), b = w;
+      let f = t._$AA;
+      for (; f !== s; ) {
+        const g = Pe(f).nextSibling;
+        Pe(i).insertBefore(f, o), f = g;
       }
     }
   }
@@ -692,31 +692,31 @@ const Me = (n, e, t) => {
     const o = At(n), { values: r, keys: s } = this.dt(e, t, i);
     if (!Array.isArray(o)) return this.ut = s, r;
     const l = this.ut ?? (this.ut = []), c = [];
-    let b, w, a = 0, m = o.length - 1, u = 0, y = r.length - 1;
+    let f, g, a = 0, m = o.length - 1, u = 0, y = r.length - 1;
     for (; a <= m && u <= y; ) if (o[a] === null) a++;
     else if (o[m] === null) m--;
     else if (l[a] === s[u]) c[u] = M(o[a], r[u]), a++, u++;
     else if (l[m] === s[y]) c[y] = M(o[m], r[y]), m--, y--;
     else if (l[a] === s[y]) c[y] = M(o[a], r[y]), R(n, c[y + 1], o[a]), a++, y--;
     else if (l[m] === s[u]) c[u] = M(o[m], r[u]), R(n, o[a], o[m]), m--, u++;
-    else if (b === void 0 && (b = Me(s, u, y), w = Me(l, a, m)), b.has(l[a])) if (b.has(l[m])) {
-      const A = w.get(s[u]), ee = A !== void 0 ? o[A] : null;
+    else if (f === void 0 && (f = Me(s, u, y), g = Me(l, a, m)), f.has(l[a])) if (f.has(l[m])) {
+      const x = g.get(s[u]), ee = x !== void 0 ? o[x] : null;
       if (ee === null) {
         const me = R(n, o[a]);
         M(me, r[u]), c[u] = me;
-      } else c[u] = M(ee, r[u]), R(n, o[a], ee), o[A] = null;
+      } else c[u] = M(ee, r[u]), R(n, o[a], ee), o[x] = null;
       u++;
     } else se(o[m]), m--;
     else se(o[a]), a++;
     for (; u <= y; ) {
-      const A = R(n, c[y + 1]);
-      M(A, r[u]), c[u++] = A;
+      const x = R(n, c[y + 1]);
+      M(x, r[u]), c[u++] = x;
     }
     for (; a <= m; ) {
-      const A = o[a++];
-      A !== null && se(A);
+      const x = o[a++];
+      x !== null && se(x);
     }
-    return this.ut = s, vt(n, c), B;
+    return this.ut = s, vt(n, c), Q;
   }
 }), We = j`
   :host {
@@ -1316,6 +1316,50 @@ const St = j`
     border-top-right-radius: var(--radius-4);
   }
 
+  .select-filter-icon,
+  .select-filter-clear {
+    position: absolute;
+    top: 50%;
+    color: var(--grey-350);
+  }
+
+  .select-filter-icon {
+    left: var(--spacing-10);
+    font-size: var(--font-size-s);
+    margin-top: -6px;
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .select-filter-clear {
+    right: var(--spacing-10);
+    margin-top: -4.5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: var(--font-size-xxs);
+    line-height: 1;
+    color: var(--grey-350);
+  }
+
+  .select-filter-clear:hover:not(:disabled) {
+    color: var(--grey-300);
+  }
+
+  .select-filter-clear:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .select-filter-clear swim-icon {
+    display: block;
+    font-size: inherit;
+  }
+
   .select-filter-input {
     width: 100%;
     background: transparent;
@@ -1325,6 +1369,22 @@ const St = j`
     font-size: var(--font-size-m);
     font-family: inherit;
     padding: var(--spacing-4);
+    display: block;
+  }
+
+  .select-filter--has-icon .select-filter-input {
+    padding-left: var(--spacing-20);
+  }
+
+  .select-filter:has(.select-filter-clear) .select-filter-input {
+    padding-right: var(--spacing-20);
+  }
+
+  .select-filter-input::-webkit-search-decoration,
+  .select-filter-input::-webkit-search-cancel-button,
+  .select-filter-input::-webkit-search-results-button,
+  .select-filter-input::-webkit-search-results-decoration {
+    -webkit-appearance: none;
   }
 
   .select-filter-input::placeholder {
@@ -1339,10 +1399,6 @@ const St = j`
   .select-filter--loading .select-filter-input {
     opacity: 0.85;
     cursor: wait;
-  }
-
-  .select-filter--loading {
-    position: relative;
   }
 
   .select-options {
@@ -1413,6 +1469,10 @@ const St = j`
     font-size: var(--font-size-m);
     color: var(--grey-300);
     font-style: italic;
+  }
+
+  .select-empty--custom {
+    font-style: normal;
   }
 
   /* Multiple selection */
@@ -1510,7 +1570,7 @@ function Xe(n, e, t, i) {
   }
   return !1;
 }
-function Ot(n, e, t) {
+function kt(n, e, t) {
   const i = e.trim();
   if (!i)
     return !0;
@@ -1539,7 +1599,7 @@ const pe = {
    * `[disabled]` / `[loading]` (common in resets and lazy-load styles) still match the host.
    */
   toAttribute: (n) => n ? "" : null
-}, Ue = "swim-ui-icon", kt = j`
+}, Ue = "swim-ui-icon", Ot = j`
   .swim-icon.lit-3d-rotate::before {
     content: '\\ea01';
   }
@@ -2824,7 +2884,7 @@ const pe = {
   .swim-icon.lit-x-small::before {
     content: '\\ebac';
   }
-`, re = Ie(`'${Ue}'`), Pt = j`
+`, re = Be(`'${Ue}'`), Pt = j`
   :host {
     /* inline-flex keeps the host box tight to the glyph and centers the shadow icon in contexts
        (e.g. swim-button) where inherited line-height would otherwise grow the line box asymmetrically */
@@ -2947,7 +3007,7 @@ const pe = {
     animation: swim-icon-spin 1s linear infinite;
   }
 
-  ${kt}
+  ${Ot}
 `, ae = "data-swim-ui-icon-font-face";
 let le = !1;
 function Dt() {
@@ -2992,14 +3052,14 @@ class Ht {
     return e.split(" ").map((i) => i.includes(":") ? i : `${t}:${i}`);
   }
 }
-const Lt = new Ht();
-var Qt = Object.defineProperty, q = (n, e, t, i) => {
+const It = new Ht();
+var Lt = Object.defineProperty, q = (n, e, t, i) => {
   for (var o = void 0, r = n.length - 1, s; r >= 0; r--)
     (s = n[r]) && (o = s(e, t, o) || o);
-  return o && Qt(e, t, o), o;
+  return o && Lt(e, t, o), o;
 };
 Mt();
-const ze = "swim-icon", ue = class ue extends L {
+const ze = "swim-icon", ue = class ue extends I {
   constructor() {
     super(...arguments), this.fontIcon = "", this.alt = "", this.fontSet = "lit", this.iconClass = "", this._cssClasses = [], this._iconClassTokensOnHost = [];
   }
@@ -3033,12 +3093,12 @@ const ze = "swim-icon", ue = class ue extends L {
       this._cssClasses = [];
       return;
     }
-    this._cssClasses = Lt.get(e, this.fontSet);
+    this._cssClasses = It.get(e, this.fontSet);
   }
   render() {
     var r;
     const e = this._cssClasses, t = !!this.alt, i = ((r = this.iconClass) == null ? void 0 : r.trim()) ?? "", o = i ? ` ${i}` : "";
-    return !e || e.length === 0 ? g`
+    return !e || e.length === 0 ? w`
         <span
           part="icon"
           class="${i}"
@@ -3048,7 +3108,7 @@ const ze = "swim-icon", ue = class ue extends L {
         >
           <slot></slot>
         </span>
-      ` : e.length === 1 ? g`
+      ` : e.length === 1 ? w`
         <i
           part="icon"
           class="swim-icon__i ${e[0]}${o}"
@@ -3056,7 +3116,7 @@ const ze = "swim-icon", ue = class ue extends L {
           aria-label="${t ? this.alt : p}"
           aria-hidden="${t ? "false" : "true"}"
         ></i>
-      ` : g`
+      ` : w`
       <span
         class="swim-icon__stack"
         role="${t ? "img" : "presentation"}"
@@ -3064,37 +3124,37 @@ const ze = "swim-icon", ue = class ue extends L {
         aria-hidden="${t ? "false" : "true"}"
       >
         ${e.map(
-      (s, l) => g`<i part="icon icon-${l}" class="swim-icon__i swim-icon__i--${l} ${s}${o}"></i>`
+      (s, l) => w`<i part="icon icon-${l}" class="swim-icon__i swim-icon__i--${l} ${s}${o}"></i>`
     )}
       </span>
     `;
   }
 };
 ue.styles = [We, Pt];
-let k = ue;
+let O = ue;
 q([
   h({ type: String, attribute: "font-icon" })
-], k.prototype, "fontIcon");
+], O.prototype, "fontIcon");
 q([
   h({ type: String })
-], k.prototype, "alt");
+], O.prototype, "alt");
 q([
   h({ type: String, attribute: "font-set" })
-], k.prototype, "fontSet");
+], O.prototype, "fontSet");
 q([
   h({ type: String, attribute: "icon-class" })
-], k.prototype, "iconClass");
+], O.prototype, "iconClass");
 q([
-  x()
-], k.prototype, "_cssClasses");
-customElements.get(ze) || customElements.define(ze, k);
-var Bt = Object.defineProperty, It = Object.getOwnPropertyDescriptor, P = (n, e, t, i) => {
-  for (var o = i > 1 ? void 0 : i ? It(e, t) : e, r = n.length - 1, s; r >= 0; r--)
+  A()
+], O.prototype, "_cssClasses");
+customElements.get(ze) || customElements.define(ze, O);
+var Qt = Object.defineProperty, Bt = Object.getOwnPropertyDescriptor, P = (n, e, t, i) => {
+  for (var o = i > 1 ? void 0 : i ? Bt(e, t) : e, r = n.length - 1, s; r >= 0; r--)
     (s = n[r]) && (o = (i ? s(e, t, o) : s(o)) || o);
-  return i && o && Bt(e, t, o), o;
+  return i && o && Qt(e, t, o), o;
 };
 const He = "swim-option";
-class C extends L {
+class C extends I {
   constructor() {
     super(...arguments), this.name = "", this.label = "", this.title = "", this.description = "", this.group = "", this._disabled = !1, this._hidden = !1;
   }
@@ -3114,7 +3174,7 @@ class C extends L {
     return this;
   }
   render() {
-    return g``;
+    return w``;
   }
   connectedCallback() {
     super.connectedCallback(), this.style.display = "none", this._notifyParent();
@@ -3155,14 +3215,14 @@ P([
   h({ type: Boolean, reflect: !0, converter: S })
 ], C.prototype, "hidden", 1);
 customElements.get(He) || customElements.define(He, C);
-var Ft = Object.defineProperty, jt = Object.getOwnPropertyDescriptor, f = (n, e, t, i) => {
+var Ft = Object.defineProperty, jt = Object.getOwnPropertyDescriptor, b = (n, e, t, i) => {
   for (var o = i > 1 ? void 0 : i ? jt(e, t) : e, r = n.length - 1, s; r >= 0; r--)
     (s = n[r]) && (o = (i ? s(e, t, o) : s(o)) || o);
   return i && o && Ft(e, t, o), o;
 };
-const Le = "swim-select", Y = typeof HTMLElement < "u" && typeof HTMLElement.prototype.showPopover == "function", _ = class _ extends L {
+const Ie = "swim-select", Y = typeof HTMLElement < "u" && typeof HTMLElement.prototype.showPopover == "function", _ = class _ extends I {
   constructor() {
-    super(), this.label = "", this.placeholder = "Select...", this.hint = "", this.emptyPlaceholder = "No options available", this.filterPlaceholder = "Filter options...", this.filterEmptyPlaceholder = "No matches", this.filterSearchingPlaceholder = "Searching…", this._asyncFilter = !1, this.filterDebounceMs = 500, this.filterMinLength = 2, this.dropdownAlign = "start", this._loading = !1, this.options = [], this._value = [], this.name = "", this.id = `swim-select-${Math.random().toString(36).substr(2, 9)}`, this._disabled = !1, this._required = !1, this.appearance = Ze.legacy, this.size = Je.sm, this._withMargin = !0, this._withHint = !0, this._filterable = !0, this._grouped = !1, this._multiple = !1, this._allowClear = !0, this.requiredIndicator = "*", this._slottedOptions = [], this._hasSlottedHint = !1, this._open = !1, this._focused = !1, this._touched = !1, this._invalid = !1, this._filterQuery = "", this._focusedIndex = -1, this._internals = this.attachInternals();
+    super(), this.label = "", this.placeholder = "Select...", this.hint = "", this.emptyPlaceholder = "No options available", this.filterPlaceholder = "Filter options...", this.filterIcon = "search", this.filterEmptyPlaceholder = "No matches", this.filterSearchingPlaceholder = "Searching…", this._asyncFilter = !1, this.filterDebounceMs = 500, this.filterMinLength = 2, this.dropdownAlign = "start", this._loading = !1, this.options = [], this._value = [], this.name = "", this.id = `swim-select-${Math.random().toString(36).substr(2, 9)}`, this._disabled = !1, this._required = !1, this.appearance = Ze.legacy, this.size = Je.sm, this._withMargin = !0, this._withHint = !0, this._filterable = !0, this._grouped = !1, this._multiple = !1, this._allowClear = !0, this.requiredIndicator = "*", this._slottedOptions = [], this._hasSlottedHint = !1, this._hasSlottedEmpty = !1, this._open = !1, this._focused = !1, this._touched = !1, this._invalid = !1, this._filterQuery = "", this._focusedIndex = -1, this._internals = this.attachInternals();
   }
   get asyncFilter() {
     return this._asyncFilter;
@@ -3239,7 +3299,7 @@ const Le = "swim-select", Y = typeof HTMLElement < "u" && typeof HTMLElement.pro
     return this.options.length > 0 && this._slottedOptions.length > 0 ? [...this.options, ...this._slottedOptions] : this.options.length > 0 ? this.options : this._slottedOptions;
   }
   connectedCallback() {
-    super.connectedCallback(), this._collectSlottedOptions(), this._syncSlottedHintPresence(), this._setupChildObserver(), this._updateActiveState();
+    super.connectedCallback(), this._collectSlottedOptions(), this._syncSlottedHintPresence(), this._syncSlottedEmptyPresence(), this._setupChildObserver(), this._updateActiveState();
   }
   disconnectedCallback() {
     var t, i;
@@ -3266,9 +3326,13 @@ const Le = "swim-select", Y = typeof HTMLElement < "u" && typeof HTMLElement.pro
     const e = Array.from(this.children).some((t) => t.slot === "hint");
     e !== this._hasSlottedHint && (this._hasSlottedHint = e);
   }
+  _syncSlottedEmptyPresence() {
+    const e = Array.from(this.children).some((t) => t.slot === "empty");
+    e !== this._hasSlottedEmpty && (this._hasSlottedEmpty = e);
+  }
   _setupChildObserver() {
     this._childObserver = new MutationObserver(() => {
-      this._collectSlottedOptions(), this._syncSlottedHintPresence();
+      this._collectSlottedOptions(), this._syncSlottedHintPresence(), this._syncSlottedEmptyPresence();
     }), this._childObserver.observe(this, {
       childList: !0,
       subtree: !1,
@@ -3285,7 +3349,7 @@ const Le = "swim-select", Y = typeof HTMLElement < "u" && typeof HTMLElement.pro
   }
   render() {
     const e = this._value.length > 0, t = this._getFilteredOptions(), i = this.allowClear && e && !this.disabled, o = t.length > 0 && !this.loading, r = this.withHint && (this.hint.trim() !== "" || this._hasSlottedHint);
-    return g`
+    return w`
       <div class="select-wrap">
         <div class="select-flex-wrap">
           <div class="select-flex-wrap-inner">
@@ -3306,7 +3370,7 @@ const Le = "swim-select", Y = typeof HTMLElement < "u" && typeof HTMLElement.pro
               >
                 <div class="select-value">${this._renderValue()}</div>
                 <div class="select-controls">
-                  ${i ? g`
+                  ${i ? w`
                           <button
                             type="button"
                             class="select-clear"
@@ -3328,7 +3392,7 @@ const Le = "swim-select", Y = typeof HTMLElement < "u" && typeof HTMLElement.pro
                 </div>
               </div>
               <label class="select-label" for="${this.id}">
-                ${this.label} ${this.required ? g`<span>${this.requiredIndicator}</span>` : p}
+                ${this.label} ${this.required ? w`<span>${this.requiredIndicator}</span>` : p}
               </label>
             </div>
           </div>
@@ -3336,12 +3400,12 @@ const Le = "swim-select", Y = typeof HTMLElement < "u" && typeof HTMLElement.pro
         <div class="select-underline">
           <div class="underline-fill"></div>
         </div>
-        ${r ? g`
+        ${r ? w`
                 <div class="select-hint">
                   <slot name="hint">${this.hint}</slot>
                 </div>
               ` : p}
-        ${this._open ? g`
+        ${this._open ? w`
                 <div
                   class="select-dropdown swim-scroll"
                   part="dropdown"
@@ -3349,24 +3413,46 @@ const Le = "swim-select", Y = typeof HTMLElement < "u" && typeof HTMLElement.pro
                   id="${this.id}-listbox"
                   popover="${Y ? "manual" : p}"
                 >
-                  ${this.filterable ? g`
+                  ${this.filterable ? w`
                           <div
-                            class="select-filter ${this.loading ? "select-filter--loading" : ""}"
+                            class="select-filter ${this.loading ? "select-filter--loading" : ""} ${this.filterIcon ? "select-filter--has-icon" : ""}"
                             aria-busy="${this.loading}"
                           >
+                            ${this.filterIcon ? w`
+                                    <swim-icon
+                                      class="select-filter-icon"
+                                      font-icon="${this.filterIcon}"
+                                      aria-hidden="true"
+                                    ></swim-icon>
+                                  ` : p}
                             <input
-                              type="text"
+                              type="search"
                               class="select-filter-input"
                               placeholder="${this.filterPlaceholder}"
+                              autocomplete="off"
+                              autocorrect="off"
+                              spellcheck="false"
                               ?disabled="${this.disabled}"
                               ?readonly="${this.loading}"
                               .value="${this._filterQuery}"
                               @input="${this._handleFilterInput}"
                               @keydown="${this._handleFilterKeyDown}"
+                              @change="${(s) => s.stopPropagation()}"
                             />
+                            ${this._filterQuery ? w`
+                                    <button
+                                      type="button"
+                                      class="select-filter-clear"
+                                      aria-label="Clear filter"
+                                      ?disabled="${this.disabled || this.loading}"
+                                      @click="${this._clearFilter}"
+                                    >
+                                      <swim-icon font-icon="x"></swim-icon>
+                                    </button>
+                                  ` : p}
                           </div>
                         ` : p}
-                  ${o ? g`
+                  ${o ? w`
                           <ul
                             class="select-options ${this.grouped && this._listHasGroupHeadings(t) ? "select-options--grouped" : ""}"
                           >
@@ -3376,7 +3462,7 @@ const Le = "swim-select", Y = typeof HTMLElement < "u" && typeof HTMLElement.pro
       (s, l) => this._renderOption(s, l)
     )}
                           </ul>
-                        ` : g`<div class="select-empty">${this._emptyDropdownMessage()}</div>`}
+                        ` : this._renderEmptyState()}
                 </div>
               ` : p}
       </div>
@@ -3384,9 +3470,9 @@ const Le = "swim-select", Y = typeof HTMLElement < "u" && typeof HTMLElement.pro
   }
   _renderValue() {
     if (this._value.length === 0)
-      return g`<span class="select-placeholder">${this.placeholder}</span>`;
+      return w`<span class="select-placeholder">${this.placeholder}</span>`;
     if (this.multiple)
-      return g`
+      return w`
         ${this._value.map((e) => {
         const t = this._allOptions.find((i) => this._getOptionValue(i) === e);
         return this._renderChip(t || { name: e, value: e });
@@ -3394,7 +3480,7 @@ const Le = "swim-select", Y = typeof HTMLElement < "u" && typeof HTMLElement.pro
       `;
     {
       const e = this._allOptions.find((i) => this._getOptionValue(i) === this._value[0]), t = e ? this._getOptionLabel(e) : String(this._value[0]);
-      return g`${t}`;
+      return w`${t}`;
     }
   }
   _getOptionLabel(e) {
@@ -3414,7 +3500,7 @@ const Le = "swim-select", Y = typeof HTMLElement < "u" && typeof HTMLElement.pro
     const i = [];
     for (let o = 0; o < e.length; o++) {
       const r = e[o], s = this._groupHeading(r);
-      s ? s !== t && (i.push(g`
+      s ? s !== t && (i.push(w`
             <li class="select-option-group" role="presentation">
               <span class="select-option-group-label">${s}</span>
             </li>
@@ -3425,12 +3511,21 @@ const Le = "swim-select", Y = typeof HTMLElement < "u" && typeof HTMLElement.pro
   _emptyDropdownMessage() {
     return this.loading ? this.filterSearchingPlaceholder : this.asyncFilter && this._filterQuery.trim().length < this.filterMinLength ? this.emptyPlaceholder : this._allOptions.length === 0 ? this.asyncFilter && this._filterQuery.trim().length > 0 ? this.filterEmptyPlaceholder : this.emptyPlaceholder : this.filterEmptyPlaceholder;
   }
+  // Renders empty dropdown content or custom empty slot
+  _renderEmptyState() {
+    const e = this._hasSlottedEmpty && !this.loading;
+    return w`
+      <div class="select-empty ${e ? "select-empty--custom" : ""}" part="empty">
+        ${e ? w`<slot name="empty"></slot>` : this._emptyDropdownMessage()}
+      </div>
+    `;
+  }
   _renderChip(e) {
     const t = this._getOptionLabel(e);
-    return g`
+    return w`
       <div class="select-chip">
         <span class="select-chip-label">${t}</span>
-        ${this.disabled ? p : g`
+        ${this.disabled ? p : w`
                 <button
                   type="button"
                   class="select-chip-remove"
@@ -3445,7 +3540,7 @@ const Le = "swim-select", Y = typeof HTMLElement < "u" && typeof HTMLElement.pro
   }
   _renderOption(e, t) {
     const i = this._getOptionValue(e), o = this._isSelected(i), r = t === this._focusedIndex;
-    return g`
+    return w`
       <li
         class="select-option"
         role="option"
@@ -3516,6 +3611,9 @@ const Le = "swim-select", Y = typeof HTMLElement < "u" && typeof HTMLElement.pro
       }, this.filterDebounceMs);
     }
   }
+  _clearFilter(e) {
+    e.stopPropagation(), !(this.disabled || this.loading) && (this._filterQuery = "", this._focusedIndex = 0, this.filterInput && (this.filterInput.value = "", this.filterInput.focus({ preventScroll: !0 })), this.asyncFilter && (this._filterDebounceTimer !== void 0 && (clearTimeout(this._filterDebounceTimer), this._filterDebounceTimer = void 0), this._emitFilterChange("")), this.requestUpdate());
+  }
   _handleFilterKeyDown(e) {
     var t;
     switch (e.key) {
@@ -3568,7 +3666,7 @@ const Le = "swim-select", Y = typeof HTMLElement < "u" && typeof HTMLElement.pro
   }
   _getFilteredOptions() {
     return this.asyncFilter ? this._allOptions : this._filterQuery.trim() ? this._allOptions.filter(
-      (e) => Ot(e, this._filterQuery, { filterCaseSensitive: !1 })
+      (e) => kt(e, this._filterQuery, { filterCaseSensitive: !1 })
     ) : this._allOptions;
   }
   _getOptionValue(e) {
@@ -3620,8 +3718,8 @@ const Le = "swim-select", Y = typeof HTMLElement < "u" && typeof HTMLElement.pro
   }
   _applyDropdownPanelGeometry(e, t) {
     const i = t.getBoundingClientRect(), o = this.getBoundingClientRect(), r = 8, s = Math.min(300, Math.max(0, window.innerHeight - i.bottom - r - 8)), l = this.dropdownAlign === "center", c = l ? o.width : i.width;
-    let b = l ? o.left : i.left;
-    l && (b = Math.min(Math.max(b, 8), window.innerWidth - c - 8)), e.style.setProperty("inset", "auto"), e.style.setProperty("margin", "0"), e.style.setProperty("height", "auto"), e.style.setProperty("position", "fixed"), e.style.setProperty("left", `${b}px`), e.style.setProperty("top", `${i.bottom + r}px`), e.style.setProperty("width", `${c}px`), e.style.setProperty("max-height", `${s}px`), e.style.setProperty("z-index", "2147483646"), e.style.setProperty("animation", "none"), e.style.setProperty("transform", "none");
+    let f = l ? o.left : i.left;
+    l && (f = Math.min(Math.max(f, 8), window.innerWidth - c - 8)), e.style.setProperty("inset", "auto"), e.style.setProperty("margin", "0"), e.style.setProperty("height", "auto"), e.style.setProperty("position", "fixed"), e.style.setProperty("left", `${f}px`), e.style.setProperty("top", `${i.bottom + r}px`), e.style.setProperty("width", `${c}px`), e.style.setProperty("max-height", `${s}px`), e.style.setProperty("z-index", "2147483646"), e.style.setProperty("animation", "none"), e.style.setProperty("transform", "none");
   }
   _clearDropdownPanelGeometry(e) {
     [
@@ -3669,118 +3767,124 @@ const Le = "swim-select", Y = typeof HTMLElement < "u" && typeof HTMLElement.pro
 };
 _.styles = [We, St, Ct], _.formAssociated = !0;
 let d = _;
-f([
+b([
   Re(".select-input")
 ], d.prototype, "selectInput", 2);
-f([
+b([
   Re(".select-filter-input")
 ], d.prototype, "filterInput", 2);
-f([
+b([
   h({ type: String })
 ], d.prototype, "label", 2);
-f([
+b([
   h({ type: String })
 ], d.prototype, "placeholder", 2);
-f([
+b([
   h({ type: String })
 ], d.prototype, "hint", 2);
-f([
+b([
   h({ type: String, attribute: "empty-placeholder" })
 ], d.prototype, "emptyPlaceholder", 2);
-f([
+b([
   h({ type: String, attribute: "filter-placeholder" })
 ], d.prototype, "filterPlaceholder", 2);
-f([
+b([
+  h({ type: String, attribute: "filter-icon" })
+], d.prototype, "filterIcon", 2);
+b([
   h({ type: String, attribute: "filter-empty-placeholder" })
 ], d.prototype, "filterEmptyPlaceholder", 2);
-f([
+b([
   h({ type: String, attribute: "filter-searching-placeholder" })
 ], d.prototype, "filterSearchingPlaceholder", 2);
-f([
+b([
   h({ type: Boolean, attribute: "async-filter", converter: S })
 ], d.prototype, "asyncFilter", 1);
-f([
+b([
   h({ type: Number, attribute: "filter-debounce-ms" })
 ], d.prototype, "filterDebounceMs", 2);
-f([
+b([
   h({ type: Number, attribute: "filter-min-length" })
 ], d.prototype, "filterMinLength", 2);
-f([
+b([
   h({ type: String, attribute: "dropdown-align" })
 ], d.prototype, "dropdownAlign", 2);
-f([
+b([
   h({ type: Boolean, reflect: !0, converter: S })
 ], d.prototype, "loading", 1);
-f([
+b([
   h({ type: Array })
 ], d.prototype, "options", 2);
-f([
+b([
   h()
 ], d.prototype, "value", 1);
-f([
+b([
   h({ type: String })
 ], d.prototype, "name", 2);
-f([
+b([
   h({ type: String })
 ], d.prototype, "id", 2);
-f([
+b([
   h({ type: Boolean, reflect: !0, converter: S })
 ], d.prototype, "disabled", 1);
-f([
+b([
   h({ type: Boolean, reflect: !0, converter: S })
 ], d.prototype, "required", 1);
-f([
+b([
   h({ type: String, reflect: !0 })
 ], d.prototype, "appearance", 2);
-f([
+b([
   h({ type: String, reflect: !0 })
 ], d.prototype, "size", 2);
-f([
+b([
   h({ type: Boolean, reflect: !0, attribute: "marginless", converter: S })
 ], d.prototype, "marginless", 1);
-f([
+b([
   h({ type: Boolean, converter: pe })
 ], d.prototype, "withHint", 1);
-f([
+b([
   h({ type: Boolean, converter: pe })
 ], d.prototype, "filterable", 1);
-f([
+b([
   h({ type: Boolean, reflect: !0, converter: S })
 ], d.prototype, "grouped", 1);
-f([
+b([
   h({ type: Boolean, reflect: !0, converter: S })
 ], d.prototype, "multiple", 1);
-f([
+b([
   h({ type: Boolean, attribute: "allow-clear", converter: pe })
 ], d.prototype, "allowClear", 1);
-f([
+b([
   h({ type: String, attribute: "required-indicator" })
 ], d.prototype, "requiredIndicator", 2);
-f([
-  x()
+b([
+  A()
 ], d.prototype, "_slottedOptions", 2);
-f([
-  x()
+b([
+  A()
 ], d.prototype, "_hasSlottedHint", 2);
-f([
-  x()
+b([
+  A()
+], d.prototype, "_hasSlottedEmpty", 2);
+b([
+  A()
 ], d.prototype, "_open", 2);
-f([
-  x()
+b([
+  A()
 ], d.prototype, "_focused", 2);
-f([
-  x()
+b([
+  A()
 ], d.prototype, "_touched", 2);
-f([
-  x()
+b([
+  A()
 ], d.prototype, "_invalid", 2);
-f([
-  x()
+b([
+  A()
 ], d.prototype, "_filterQuery", 2);
-f([
-  x()
+b([
+  A()
 ], d.prototype, "_focusedIndex", 2);
-customElements.get(Le) || customElements.define(Le, d);
+customElements.get(Ie) || customElements.define(Ie, d);
 export {
   C as SwimOption,
   d as SwimSelect

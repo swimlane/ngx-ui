@@ -1,0 +1,6 @@
+.slider-page {
+  .cdn {
+    margin-top: var(--spacing-0);
+    margin-bottom: var(--spacing-24);
+  }
+}

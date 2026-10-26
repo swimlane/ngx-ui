@@ -1,0 +1,84 @@
+.progress-spinner-page {
+  .progress-spinner-configurable-layout {
+    display: grid;
+    grid-template-columns: minmax(200px, 280px) 1fr;
+    gap: var(--spacing-30);
+    align-items: start;
+  }
+  @media (max-width: 720px) {
+    .progress-spinner-configurable-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+  .progress-spinner-configurable-controls {
+    position: sticky;
+    top: var(--spacing-16);
+  }
+  .progress-spinner-configurable-controls .demo-configurable-grid {
+    grid-template-columns: 1fr;
+  }
+  .progress-spinner-configurable-live {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-16);
+    min-width: 0;
+  }
+  .progress-spinner-configurable-preview {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 220px;
+    padding: var(--spacing-24);
+    background: var(--grey-800);
+    border-radius: var(--radius-4);
+    border: 1px solid var(--grey-750);
+  }
+  .progress-spinner-configurable-code {
+    margin: var(--spacing-0);
+  }
+  .progress-spinner-configurable-code code {
+    white-space: pre;
+    font-size: var(--font-size-xs);
+  }
+  .demo-configurable-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: var(--spacing-16);
+    align-items: end;
+  }
+  .demo-configurable-item label {
+    display: block;
+    font-size: var(--font-size-s);
+    color: var(--grey-300);
+    margin-bottom: var(--spacing-4);
+  }
+  .demo-configurable-item input,
+  .demo-configurable-item select {
+    width: 100%;
+    min-width: 0;
+    height: var(--spacing-36);
+    padding: var(--spacing-0) var(--spacing-8);
+    background: var(--grey-800);
+    border: 1px solid var(--grey-700);
+    border-radius: var(--radius-4);
+    color: var(--grey-050);
+    font-size: var(--font-size-s);
+  }
+  .demo-configurable-item input:focus,
+  .demo-configurable-item select:focus {
+    outline: none;
+    border-color: var(--blue-500);
+  }
+  .demo-configurable-item--toggle {
+    display: flex;
+    align-items: center;
+  }
+  .demo-configurable-item--toggle swim-toggle {
+    margin-top: var(--spacing-8);
+  }
+
+  .cdn {
+    margin-top: var(--spacing-0);
+    margin-bottom: var(--spacing-24);
+  }
+}

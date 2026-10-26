@@ -1,3 +1,4 @@
+<div class="buttons-page">
 <hr class="section-divider" />
 <h1 id="buttons" class="page-title">Buttons</h1>
 <p class="subtitle">
@@ -5,7 +6,7 @@
   <code>&lt;swim-icon&gt;</code> (leading, trailing, stacked, icon-only), host styling via <code>--swim-button-*</code> CSS
   variables, and states (active, in-progress, success, fail, disabled). Supports promise-based loading state.
 </p>
-<p class="section-desc" style="margin-top: 0; margin-bottom: 1.5rem;"><strong>CDN:</strong> <code>import 'https://widgets.swimlane.app/swim-ui/button.js';</code></p>
+<p class="section-desc cdn"><strong>CDN:</strong> <code>import 'https://widgets.swimlane.app/swim-ui/button.js';</code></p>
 
 <!-- Button variants (mirrors ngx-ui buttons-page) -->
 <section class="section">
@@ -64,21 +65,21 @@
 <!-- Buttons with text + swim-icons (mirrors ngx-ui "Buttons with Icons") -->
 <section class="section">
   <swim-section section-title="Buttons with swim-icons">
-    <p style="color: var(--grey-300); margin-bottom: 1rem">
+    <p class="muted">
       Combine label text with <code>&lt;swim-icon font-icon="…"&gt;</code> in the default slot. A short
       <code>inline-flex</code> wrapper with <code>gap</code> matches ngx-ui spacing (<code>has-text</code> /
       <code>has-text-left</code> on <code>ngx-icon</code>). Stacked icons use a JSON array on
       <code>font-icon</code> (same as the Icons demo).
     </p>
-    <div class="demo-row" style="align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.75rem">
+    <div class="demo-row icon-row">
       <swim-button variant="primary">
-        <span style="display: inline-flex; align-items: center; gap: 0.35em">
+        <span class="icon-label">
           <swim-icon font-icon="plus"></swim-icon>
           <span>Add</span>
         </span>
       </swim-button>
       <swim-button variant="primary">
-        <span style="display: inline-flex; align-items: center; gap: 0.35em">
+        <span class="icon-label">
           <span>Next</span>
           <swim-icon font-icon="chevron-bold-right"></swim-icon>
         </span>
@@ -87,15 +88,15 @@
         <swim-icon font-icon="arrow-bold-down"></swim-icon>
       </swim-button>
     </div>
-    <div class="demo-row" style="align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.75rem">
+    <div class="demo-row icon-row">
       <swim-button variant="bordered">
-        <span style="display: inline-flex; align-items: center; gap: 0.35em">
+        <span class="icon-label">
           <swim-icon font-icon="plus"></swim-icon>
           <span>Add</span>
         </span>
       </swim-button>
       <swim-button variant="bordered">
-        <span style="display: inline-flex; align-items: center; gap: 0.35em">
+        <span class="icon-label">
           <span>Next</span>
           <swim-icon font-icon="chevron-bold-right"></swim-icon>
         </span>
@@ -104,15 +105,15 @@
         <swim-icon font-icon="arrow-bold-down"></swim-icon>
       </swim-button>
     </div>
-    <div class="demo-row" style="align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.75rem">
+    <div class="demo-row icon-row">
       <swim-button variant="link">
-        <span style="display: inline-flex; align-items: center; gap: 0.35em">
+        <span class="icon-label">
           <swim-icon font-icon="plus"></swim-icon>
           <span>Link</span>
         </span>
       </swim-button>
       <swim-button variant="link">
-        <span style="display: inline-flex; align-items: center; gap: 0.35em">
+        <span class="icon-label">
           <span>Link</span>
           <swim-icon font-icon="chevron-bold-right"></swim-icon>
         </span>
@@ -121,15 +122,15 @@
         <swim-icon font-icon="arrow-bold-down"></swim-icon>
       </swim-button>
     </div>
-    <div class="demo-row" style="align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem">
+    <div class="demo-row icon-row-mb">
       <swim-button variant="primary" disabled>
-        <span style="display: inline-flex; align-items: center; gap: 0.35em">
+        <span class="icon-label">
           <swim-icon font-icon="plus"></swim-icon>
           <span>Add</span>
         </span>
       </swim-button>
       <swim-button variant="bordered" disabled>
-        <span style="display: inline-flex; align-items: center; gap: 0.35em">
+        <span class="icon-label">
           <span>Next</span>
           <swim-icon font-icon="chevron-bold-right"></swim-icon>
         </span>
@@ -138,12 +139,12 @@
         <swim-icon font-icon="arrow-bold-down"></swim-icon>
       </swim-button>
     </div>
-    <p style="color: var(--grey-400); margin-bottom: 0.5rem; font-size: 0.875rem">
+    <p class="hint">
       <strong>Stacked font icons</strong> — badge-style overlay (see Icons page for more stacks):
     </p>
-    <div class="demo-row" style="align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem">
+    <div class="demo-row icon-row-mb">
       <swim-button variant="primary">
-        <span style="display: inline-flex; align-items: center; gap: 0.35em">
+        <span class="icon-label">
           <swim-icon font-icon='["field-users", "circle-filled :text-red :icon-fx-badge"]'></swim-icon>
           <span>Assignees</span>
         </span>
@@ -184,11 +185,11 @@
 <!-- Icon-only buttons -->
 <section class="section">
   <swim-section section-title="Icon-only buttons">
-    <p style="color: var(--grey-300); margin-bottom: 1rem">
+    <p class="muted">
       Put a <code>&lt;swim-icon&gt;</code> in the default slot. Always set <code>aria-label</code> (or <code>title</code>) so the
       control has an accessible name when there is no visible text.
     </p>
-    <div class="demo-row" style="align-items: center; gap: 0.75rem; flex-wrap: wrap">
+    <div class="demo-row icon-row-wrap">
       <swim-button variant="default" aria-label="Add">
         <swim-icon font-icon="plus"></swim-icon>
       </swim-button>
@@ -214,7 +215,7 @@
         <swim-icon font-icon="cloud-upload"></swim-icon>
       </swim-button>
     </div>
-    <p style="color: var(--grey-400); margin-top: 1.25rem; margin-bottom: 0.35rem; font-size: 0.875rem">
+    <p class="code-ref">
       <strong>Code reference</strong> — import the icon entry when you use <code>&lt;swim-icon&gt;</code> (CDN or package path may differ).
     </p>
     <pre class="demo-pre"
@@ -253,66 +254,34 @@
 <!-- Host styling: CSS custom properties -->
 <section class="section">
   <swim-section section-title="Host styling (CSS custom properties)">
-    <p style="color: var(--grey-300); margin-bottom: 1rem">
+    <p class="muted">
       Set <code>--swim-button-*</code> on <code>&lt;swim-button&gt;</code> (or an ancestor). They override every
       <code>variant</code>, including hover fallbacks, unless you rely on the built-in token defaults.
     </p>
     <div class="demo-grid">
       <div class="demo-item">
         <div class="demo-label">Gradient + border + shadow</div>
-        <swim-button
-          variant="primary"
-          aria-label="Gradient action"
-          style="
-            --swim-button-padding: 0.65em 1.1em;
-            --swim-button-background: linear-gradient(120deg, var(--purple-500), var(--blue-500));
-            --swim-button-hover-background: linear-gradient(120deg, var(--purple-600), var(--blue-600));
-            --swim-button-border-width: 2px;
-            --swim-button-border-style: solid;
-            --swim-button-border-color: rgba(255, 255, 255, 0.35);
-            --swim-button-hover-border-color: rgba(255, 255, 255, 0.55);
-            --swim-button-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
-          "
-        >
+        <swim-button class="host-gradient" variant="primary" aria-label="Gradient action">
           Gradient
         </swim-button>
       </div>
       <div class="demo-item">
         <div class="demo-label">Dense icon-only (padding, border, surface)</div>
-        <swim-button
-          variant="bordered"
-          aria-label="Filter"
-          style="
-            --swim-button-padding: 0.4em;
-            --swim-button-border-width: 2px;
-            --swim-button-border-color: var(--green-400);
-            --swim-button-hover-border-color: var(--green-500);
-            --swim-button-color: var(--green-400);
-            --swim-button-hover-color: var(--green-500);
-            --swim-button-background: var(--grey-800);
-            --swim-button-hover-background: var(--grey-750);
-          "
-        >
+        <swim-button class="host-dense" variant="bordered" aria-label="Filter">
           <swim-icon font-icon="filter"></swim-icon>
         </swim-button>
       </div>
       <div class="demo-item">
         <div class="demo-label">Pill-style primary (padding + outline)</div>
-        <swim-button
-          variant="primary"
-          style="
-            --swim-button-padding: 0.5em 1.5em;
-            --swim-button-outline-color: var(--orange-400);
-          "
-        >
+        <swim-button class="host-pill" variant="primary">
           Pill outline
         </swim-button>
       </div>
     </div>
-    <p style="color: var(--grey-400); margin-top: 1.25rem; margin-bottom: 0.35rem; font-size: 0.875rem">
+    <p class="code-ref">
       <strong>Code reference</strong> — same <code>style</code> values as the examples above (tokens such as <code>var(--purple-500)</code> come from swim-ui base styles on the host).
     </p>
-    <p style="color: var(--grey-400); margin: 0.75rem 0 0.25rem; font-size: 0.8125rem">Gradient + border + shadow</p>
+    <p class="code-caption">Gradient + border + shadow</p>
     <pre class="demo-pre"
     ><code>&lt;swim-button
   variant="primary"
@@ -328,7 +297,7 @@
     --swim-button-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
   "
 &gt;Gradient&lt;/swim-button&gt;</code></pre>
-    <p style="color: var(--grey-400); margin: 0.75rem 0 0.25rem; font-size: 0.8125rem">Dense icon-only (padding, border, surface)</p>
+    <p class="code-caption">Dense icon-only (padding, border, surface)</p>
     <pre class="demo-pre"
     ><code>&lt;swim-button
   variant="bordered"
@@ -346,7 +315,7 @@
 &gt;
   &lt;swim-icon font-icon="filter"&gt;&lt;/swim-icon&gt;
 &lt;/swim-button&gt;</code></pre>
-    <p style="color: var(--grey-400); margin: 0.75rem 0 0.25rem; font-size: 0.8125rem">Pill-style primary (padding + focus ring)</p>
+    <p class="code-caption">Pill-style primary (padding + focus ring)</p>
     <pre class="demo-pre"
     ><code>&lt;swim-button
   variant="primary"
@@ -361,7 +330,7 @@
 <!-- Button States Section -->
 <section class="section">
   <swim-section section-title="Button States">
-    <p style="color: var(--grey-300); margin-bottom: 1rem">
+    <p class="muted">
       Static state examples. Use <code>timeout="0"</code> on in-progress, success, and fail so they do not auto-return to active.
     </p>
     <div class="demo-grid">
@@ -410,7 +379,7 @@
 <!-- Button state from JS variable (cycles periodically) -->
 <section class="section">
   <swim-section section-title="Cycling state (JS variable)">
-    <p style="color: var(--grey-300); margin-bottom: 1rem">
+    <p class="muted">
       The button below is bound to a variable that cycles through states every 2 seconds. Current state: <strong id="cyclingStateLabel">active</strong>.
     </p>
     <div class="demo-row">
@@ -432,7 +401,7 @@ setInterval(() =&gt; {
 <!-- Interactive Demo Section -->
 <section class="section">
   <swim-section section-title="Interactive Demo - Promise Handling">
-    <p style="color: var(--grey-300); margin-bottom: 1rem">
+    <p class="muted">
       These buttons demonstrate automatic state management with promises.
     </p>
     <div class="demo-row">
@@ -485,7 +454,7 @@ setInterval(() =&gt; {
 <!-- Usage Section -->
 <section class="section">
   <swim-section section-title="Usage">
-    <p style="color: var(--grey-300); margin-bottom: 1rem">Import and use the button component in your application:</p>
+    <p class="muted">Import and use the button component in your application:</p>
     <pre class="demo-pre"
     ><code>&lt;script type="module"&gt;
   import '@swimlane/swim-ui/button';
@@ -517,7 +486,7 @@ setInterval(() =&gt; {
         </table>
       </div>
       <h4 class="api-heading">CSS custom properties (host)</h4>
-      <p style="color: var(--grey-300); margin: 0 0 0.75rem">
+      <p class="muted-tight">
         Set on <code>&lt;swim-button&gt;</code> or an ancestor. Override built-in variant defaults (including hover).
       </p>
       <div class="api-table-wrap">
@@ -547,3 +516,4 @@ setInterval(() =&gt; {
     </div>
   </swim-section>
 </section>
+</div>
