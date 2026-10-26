@@ -27,10 +27,7 @@ import { SelectDropdownOption } from './select-dropdown-option.interface';
 import { SelectDropdownComponent } from './select-dropdown.component';
 import { SelectInputComponent } from './select-input.component';
 
-import {
-  isIntersectingViewportBottom,
-  isIntersectingViewportTop
-} from '../../utils/position/viewport-intersection/viewport-intersection.util';
+import { ViewportIntersectionUtil } from '../../utils/position/viewport-intersection/viewport-intersection.util';
 import { SelectOptionDirective } from './select-option.directive';
 import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
 import { CoerceNumberProperty } from '../../utils/coerce/coerce-number';
@@ -475,11 +472,11 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   }
 
   private isIntersectingBottom(entry: IntersectionObserverEntry): boolean {
-    return isIntersectingViewportBottom(entry);
+    return ViewportIntersectionUtil.isIntersectingBottom(entry);
   }
 
   private isIntersectingTop(entry: IntersectionObserverEntry): boolean {
-    return isIntersectingViewportTop(entry);
+    return ViewportIntersectionUtil.isIntersectingTop(entry);
   }
 
   private checkInvalidValue(value: any): boolean {

@@ -1,4 +1,4 @@
-import { isIntersectingViewportBottom, isIntersectingViewportTop } from './viewport-intersection.util';
+import { ViewportIntersectionUtil } from './viewport-intersection.util';
 
 function entry(rect: Partial<DOMRectReadOnly>, rootBounds: Partial<DOMRectReadOnly> | null): IntersectionObserverEntry {
   return {
@@ -30,20 +30,32 @@ function entry(rect: Partial<DOMRectReadOnly>, rootBounds: Partial<DOMRectReadOn
   } as IntersectionObserverEntry;
 }
 
-describe('viewport intersection', () => {
+describe('ViewportIntersectionUtil', () => {
   it('compares against rootBounds when the viewport rect is present', () => {
-    expect(isIntersectingViewportBottom(entry({ bottom: 900, height: 40, top: 860 }, { bottom: 800 }))).toBe(true);
-    expect(isIntersectingViewportBottom(entry({ bottom: 100, height: 40, top: 60 }, { bottom: 800 }))).toBe(false);
-    expect(isIntersectingViewportTop(entry({ top: 10, height: 40, bottom: 50 }, { top: 20 }))).toBe(true);
-    expect(isIntersectingViewportTop(entry({ top: 100, height: 40, bottom: 140 }, { top: 0 }))).toBe(false);
+    expect(
+      ViewportIntersectionUtil.isIntersectingBottom(entry({ bottom: 900, height: 40, top: 860 }, { bottom: 800 }))
+    ).toBe(true);
+    expect(
+      ViewportIntersectionUtil.isIntersectingBottom(entry({ bottom: 100, height: 40, top: 60 }, { bottom: 800 }))
+    ).toBe(false);
+    expect(ViewportIntersectionUtil.isIntersectingTop(entry({ top: 10, height: 40, bottom: 50 }, { top: 20 }))).toBe(
+      true
+    );
+    expect(ViewportIntersectionUtil.isIntersectingTop(entry({ top: 100, height: 40, bottom: 140 }, { top: 0 }))).toBe(
+      false
+    );
   });
 
   it('uses the frame viewport when rootBounds is null', () => {
     vi.spyOn(window, 'innerHeight', 'get').mockReturnValue(500);
 
-    expect(isIntersectingViewportBottom(entry({ bottom: 500, height: 40, top: 460 }, null))).toBe(true);
-    expect(isIntersectingViewportBottom(entry({ bottom: 100, height: 40, top: 60 }, null))).toBe(false);
-    expect(isIntersectingViewportTop(entry({ top: 10, height: 40, bottom: 50 }, null))).toBe(true);
-    expect(isIntersectingViewportTop(entry({ top: 100, height: 40, bottom: 140 }, null))).toBe(false);
+    expect(ViewportIntersectionUtil.isIntersectingBottom(entry({ bottom: 500, height: 40, top: 460 }, null))).toBe(
+      true
+    );
+    expect(ViewportIntersectionUtil.isIntersectingBottom(entry({ bottom: 100, height: 40, top: 60 }, null))).toBe(
+      false
+    );
+    expect(ViewportIntersectionUtil.isIntersectingTop(entry({ top: 10, height: 40, bottom: 50 }, null))).toBe(true);
+    expect(ViewportIntersectionUtil.isIntersectingTop(entry({ top: 100, height: 40, bottom: 140 }, null))).toBe(false);
   });
 });

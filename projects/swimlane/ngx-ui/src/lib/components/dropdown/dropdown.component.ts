@@ -18,7 +18,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { InViewportMetadata } from 'ng-in-viewport';
 import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
-import { isIntersectingViewportBottom } from '../../utils/position/viewport-intersection/viewport-intersection.util';
+import { ViewportIntersectionUtil } from '../../utils/position/viewport-intersection/viewport-intersection.util';
 
 @Component({
   exportAs: 'ngxDropdown',
@@ -134,7 +134,7 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
   }
 
   isIntersectingBottom(entry: IntersectionObserverEntry): boolean {
-    return isIntersectingViewportBottom(entry);
+    return ViewportIntersectionUtil.isIntersectingBottom(entry);
   }
 
   ngOnDestroy(): void {
