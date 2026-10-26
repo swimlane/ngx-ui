@@ -1,0 +1,31 @@
+.scrollbars-page {
+  .scrollbars-demo-box {
+    height: 300px;
+    width: 300px;
+    border: 1px solid var(--grey-600);
+  }
+  .scrollbars-demo-box--default {
+    overflow: auto;
+  }
+  .scrollbars-demo-content {
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-16);
+    padding: var(--spacing-8);
+  }
+  /* icon-class is reflected to the host, so .scrollbars-demo-icon matches and font-size inherits into the icon */
+  .scrollbars-demo-icon {
+    font-size: 300px;
+  }
+
+  .muted-sm {
+    color: var(--grey-300);
+    margin-bottom: var(--spacing-12);
+  }
+
+  .cdn {
+    margin-top: var(--spacing-0);
+    margin-bottom: var(--spacing-24);
+  }
+}

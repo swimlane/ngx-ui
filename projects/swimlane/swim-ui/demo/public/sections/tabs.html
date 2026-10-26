@@ -1,14 +1,15 @@
+<div class="tabs-page">
 <hr class="section-divider" />
 
 <!-- TABS COMPONENT DEMOS (mirrors ngx-ui components/tabs-page) -->
 <h1 id="tabs" class="page-title">Tabs Component</h1>
 <p class="subtitle">Tabbed content with legacy/light appearance and horizontal/vertical layout</p>
-<p class="section-desc" style="margin-top: 0; margin-bottom: 1.5rem;"><strong>CDN:</strong> <code>import 'https://widgets.swimlane.app/swim-ui/tabs.js';</code></p>
+<p class="section-desc cdn"><strong>CDN:</strong> <code>import 'https://widgets.swimlane.app/swim-ui/tabs.js';</code></p>
 
 <!-- Basic Tabs (mirrors ngx-ui Basic Tabs) -->
 <section class="section">
   <swim-section section-title="Basic Tabs">
-    <div style="max-width: 600px">
+    <div class="medium">
       <swim-tabs id="basicTabs">
         <swim-tab label="Tab 1" active>Content for tab 1.</swim-tab>
         <swim-tab label="Tab 2">Content for tab 2.</swim-tab>
@@ -27,7 +28,7 @@
 <!-- Light Appearance Section -->
 <section class="section">
   <swim-section section-title="Light Appearance">
-    <div style="max-width: 600px">
+    <div class="medium">
       <swim-tabs appearance="light">
         <swim-tab label="Overview" active>Overview panel content.</swim-tab>
         <swim-tab label="Details">Details panel content.</swim-tab>
@@ -46,7 +47,7 @@
 <!-- Vertical Tabs Section -->
 <section class="section">
   <swim-section section-title="Vertical Tabs">
-    <div style="max-width: 600px">
+    <div class="medium">
       <swim-tabs vertical>
         <swim-tab label="First" active>First tab content.</swim-tab>
         <swim-tab label="Second">Second tab content.</swim-tab>
@@ -65,7 +66,7 @@
 <!-- Vertical + Light Section -->
 <section class="section">
   <swim-section section-title="Vertical + Light">
-    <div style="max-width: 600px">
+    <div class="medium">
       <swim-tabs vertical appearance="light">
         <swim-tab label="Item A" active>Item A content.</swim-tab>
         <swim-tab label="Item B">Item B content.</swim-tab>
@@ -84,7 +85,7 @@
 <!-- Tabs with Disabled Section -->
 <section class="section">
   <swim-section section-title="With Disabled Tab">
-    <div style="max-width: 600px">
+    <div class="medium">
       <swim-tabs>
         <swim-tab label="Active" active>This tab is active.</swim-tab>
         <swim-tab label="Disabled" disabled>This tab is disabled.</swim-tab>
@@ -103,7 +104,7 @@
 <!-- Tabs Usage Section -->
 <section class="section">
   <swim-section section-title="Tabs Usage">
-    <p style="color: var(--grey-300); margin-bottom: 1rem">Import and use the tabs component in your application:</p>
+    <p class="muted">Import and use the tabs component in your application:</p>
     <pre class="demo-pre"
     ><code>&lt;script type="module"&gt;
   import '@swimlane/swim-ui';
@@ -140,7 +141,7 @@
           </tbody>
         </table>
       </div>
-      <div style="margin-top:1.25rem"><span class="api-tag-name">&lt;swim-tab&gt;</span></div>
+      <div class="api-tag-gap"><span class="api-tag-name">&lt;swim-tab&gt;</span></div>
       <h4 class="api-heading">Child Properties</h4>
       <div class="api-table-wrap">
         <table class="api-table">
@@ -155,3 +156,4 @@
     </div>
   </swim-section>
 </section>
+</div>

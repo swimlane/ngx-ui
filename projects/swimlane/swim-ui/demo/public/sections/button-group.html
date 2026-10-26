@@ -1,16 +1,17 @@
+<div class="button-group-page">
 <hr class="section-divider" />
 
 <!-- Button Group (mirrors ngx-ui button-group-page) -->
 <h1 id="button-group" class="page-title">Button Group</h1>
 <p class="subtitle">Group buttons with shared styling, orientation, and variant (contained or text).</p>
-<p class="section-desc" style="margin-top: 0; margin-bottom: 1.5rem;"><strong>CDN:</strong> <code>import 'https://widgets.swimlane.app/swim-ui/button-group.js';</code></p>
+<p class="section-desc cdn"><strong>CDN:</strong> <code>import 'https://widgets.swimlane.app/swim-ui/button-group.js';</code></p>
 
 <section class="section">
   <swim-section section-title="Color variants (button-group-style)">
-    <p style="color: var(--grey-300); margin-bottom: 1rem">
+    <p class="muted">
       All button group color styles: default (grey) and primary (blue).
     </p>
-    <div class="demo-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))">
+    <div class="demo-grid grid-wide">
       <div class="demo-item">
         <div class="demo-label">Default (horizontal)</div>
         <swim-button-group>
@@ -63,10 +64,10 @@
 
 <section class="section">
   <swim-section section-title="Variants (contained vs text)">
-    <p style="color: var(--grey-300); margin-bottom: 1rem">
+    <p class="muted">
       The <code>variant</code> attribute: contained (solid buttons) or text (link-style with dividers).
     </p>
-    <div class="demo-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))">
+    <div class="demo-grid grid-wide">
       <div class="demo-item">
         <div class="demo-label">Contained (default, horizontal)</div>
         <swim-button-group variant="contained">
@@ -117,9 +118,9 @@
 
 <section class="section">
   <swim-section section-title="Basic Button Group">
-    <div class="demo-row" style="flex-direction: column; gap: 1.5rem">
+    <div class="demo-row stack-lg">
       <div>
-        <div class="demo-label" style="margin-bottom: 0.5rem">Horizontal default</div>
+        <div class="demo-label mb-sm">Horizontal default</div>
         <swim-button-group>
           <swim-button type="button">Default</swim-button>
           <swim-button type="button">Default</swim-button>
@@ -127,7 +128,7 @@
         </swim-button-group>
       </div>
       <div>
-        <div class="demo-label" style="margin-bottom: 0.5rem">Horizontal primary</div>
+        <div class="demo-label mb-sm">Horizontal primary</div>
         <swim-button-group button-group-style="primary">
           <swim-button type="button">Primary</swim-button>
           <swim-button type="button">Primary</swim-button>
@@ -135,7 +136,7 @@
         </swim-button-group>
       </div>
       <div>
-        <div class="demo-label" style="margin-bottom: 0.5rem">Vertical primary</div>
+        <div class="demo-label mb-sm">Vertical primary</div>
         <swim-button-group button-group-style="primary" orientation="vertical">
           <swim-button type="button">Primary</swim-button>
           <swim-button type="button">Primary</swim-button>
@@ -177,7 +178,7 @@
 
 <section class="section">
   <swim-section section-title="Button Group Usage">
-    <p style="color: var(--grey-300); margin-bottom: 1rem">
+    <p class="muted">
       Import and use the button group component in your application:
     </p>
     <pre class="demo-pre"
@@ -212,3 +213,4 @@
     </div>
   </swim-section>
 </section>
+</div>
