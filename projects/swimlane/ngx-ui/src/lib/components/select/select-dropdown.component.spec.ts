@@ -190,13 +190,7 @@ describe('SelectDropdownComponent', () => {
     }));
 
     it('should display Add Value button when allow additions is true and there is at least still one option on dropdown', fakeAsync(() => {
-      // Avoid faker 1–2 letter names, which make a prefix filter an exact match.
-      component.options = [
-        { name: 'Alpha', value: 'alpha' },
-        { name: 'Beta', value: 'beta' },
-        { name: 'Gamma', value: 'gamma' }
-      ];
-      event.target.value = 'Al';
+      event.target.value = component.groups[0].options[0].option.name.substring(0, 2);
       component.allowAdditions = true;
       component.filterable = true;
 
@@ -212,12 +206,7 @@ describe('SelectDropdownComponent', () => {
     }));
 
     it('should not display Add Value button when allow additions is false', fakeAsync(() => {
-      component.options = [
-        { name: 'Alpha', value: 'alpha' },
-        { name: 'Beta', value: 'beta' },
-        { name: 'Gamma', value: 'gamma' }
-      ];
-      event.target.value = 'Al';
+      event.target.value = component.groups[0].options[0].option.name.substring(0, 2);
       component.allowAdditions = false;
       component.filterable = true;
 
