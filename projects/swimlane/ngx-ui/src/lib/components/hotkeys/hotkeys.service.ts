@@ -6,6 +6,7 @@ import { Hotkey } from './hotkey.interface';
 import { HotkeyStatus } from './hotkey-status.enum';
 
 let hotkeys: { [combo: string]: Hotkey[] } = {};
+const teardowns = new Map<Hotkey, () => void>();
 const hotkeyChangedSource = new Subject<{ [combo: string]: Hotkey[] }>();
 const isMac = /Mac|iPod|iPhone|iPad/.test(window.navigator.platform);
 const tags = ['INPUT', 'SELECT', 'TEXTAREA'];
@@ -40,6 +41,35 @@ function _getDisplay(combo: string) {
   return result;
 }
 
+/**
+ * Mousetrap has no API to remove the listeners it adds to `document`,
+ * so pass a target that records them and forwards them to `document`.
+ */
+function _createMousetrap() {
+  const listeners: [string, EventListener][] = [];
+  const target = {
+    addEventListener(type: string, listener: EventListener) {
+      listeners.push([type, listener]);
+      document.addEventListener(type, listener, false);
+    }
+  };
+
+  const mousetrap = new Mousetrap(target as unknown as Element);
+  const teardown = () => {
+    mousetrap.reset();
+    for (const [type, listener] of listeners) {
+      document.removeEventListener(type, listener, false);
+    }
+  };
+
+  return { mousetrap, teardown };
+}
+
+function _teardown(hotkey: Hotkey) {
+  teardowns.get(hotkey)?.();
+  teardowns.delete(hotkey);
+}
+
 export function _add(combo: string, opts: Hotkey) {
   opts.status = opts.status || HotkeyStatus.Active;
   opts.keys = _getDisplay(combo);
@@ -47,7 +77,8 @@ export function _add(combo: string, opts: Hotkey) {
 
   opts.allowIn = Array.isArray(opts.allowIn) ? opts.allowIn.map(tag => tag.toUpperCase()) : [];
 
-  const mousetrap = new Mousetrap();
+  const { mousetrap, teardown } = _createMousetrap();
+  teardowns.set(opts, teardown);
 
   if (opts.allowIn.length) {
     /* istanbul ignore next */
@@ -148,10 +179,12 @@ export function _deregister(comp: any) {
   for (const comb in hotkeys) {
     const hotkeyList = hotkeys[comb];
 
-    for (let i = 0; i < hotkeyList.length; i++) {
-      if (hotkeyList[i].component === comp) {
-        hotkeyList[i].status = HotkeyStatus.Disabled;
-        hotkeyList.splice(hotkeyList.indexOf(hotkeyList[i]), 1);
+    for (let i = hotkeyList.length - 1; i >= 0; i--) {
+      const hotkey = hotkeyList[i];
+      if (hotkey.component === comp) {
+        hotkey.status = HotkeyStatus.Disabled;
+        hotkeyList.splice(i, 1);
+        _teardown(hotkey);
       }
     }
 
@@ -210,6 +243,8 @@ export class HotkeysService {
   }
 
   clear() {
+    teardowns.forEach(teardown => teardown());
+    teardowns.clear();
     hotkeys = {};
     Mousetrap.reset();
   }

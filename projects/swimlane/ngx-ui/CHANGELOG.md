@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix (`HotkeysService`): `deregister()` and `clear()` now remove the `document` keyboard listeners that `add()` attached for each hotkey. Before, every add and deregister cycle left three listeners on `document`, so keystrokes got slower over time. `deregister()` also no longer skips a component's second hotkey on the same combo.
+
 ## 53.5.0 (2026-10-26)
 
 - Fix (`ngx-select`, `ngx-filter`, `ngx-dropdown`): Menu direction no longer throws when `IntersectionObserverEntry.rootBounds` is null inside a cross-origin iframe. Placement falls back to the frame viewport and still applies an upward or downward class.

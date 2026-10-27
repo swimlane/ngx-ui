@@ -18,6 +18,7 @@ describe('HotkeysService', () => {
 
   afterEach(() => {
     service.clear();
+    vi.restoreAllMocks();
   });
 
   it('can load instance', () => {
@@ -195,6 +196,61 @@ describe('HotkeysService', () => {
       service.deregister('test');
       service.deregister('test2');
       expect(service.hotKeys['ctrl+h']).toEqual([]);
+    });
+
+    it('should remove every hotkey of the component', () => {
+      service.add('ctrl+j', {
+        callback: () => ({}),
+        component: 'test4',
+        description: 'test'
+      });
+
+      service.add('ctrl+j', {
+        callback: () => ({}),
+        component: 'test4',
+        description: 'test2'
+      });
+
+      service.deregister('test4');
+      expect(service.hotKeys['ctrl+j']).toEqual([]);
+    });
+
+    it('should remove document listeners added for the hotkey', () => {
+      const addSpy = vi.spyOn(document, 'addEventListener');
+      const removeSpy = vi.spyOn(document, 'removeEventListener');
+
+      service.add('ctrl+k', {
+        callback: () => ({}),
+        component: 'test4',
+        description: 'test'
+      });
+      const added = addSpy.mock.calls.map(([type, listener]) => [type, listener]);
+
+      service.deregister('test4');
+      const removed = removeSpy.mock.calls.map(([type, listener]) => [type, listener]);
+
+      expect(added.length).toBeGreaterThan(0);
+      expect(removed).toEqual(expect.arrayContaining(added));
+    });
+  });
+
+  describe('clear', () => {
+    it('should remove document listeners added for all hotkeys', () => {
+      const addSpy = vi.spyOn(document, 'addEventListener');
+      const removeSpy = vi.spyOn(document, 'removeEventListener');
+
+      service.add('ctrl+h', {
+        callback: () => ({}),
+        component: 'test',
+        description: 'test'
+      });
+      const added = addSpy.mock.calls.map(([type, listener]) => [type, listener]);
+
+      service.clear();
+      const removed = removeSpy.mock.calls.map(([type, listener]) => [type, listener]);
+
+      expect(added.length).toBeGreaterThan(0);
+      expect(removed).toEqual(expect.arrayContaining(added));
     });
   });
 
