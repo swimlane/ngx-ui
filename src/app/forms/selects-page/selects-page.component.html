@@ -701,14 +701,62 @@
 <br />
 <br />
 
-<h4>No Options</h4>
-<ngx-select [filterable]="false" [tagging]="true">
+<h4>Inline Tagging</h4>
+<p>Inline tagging with no dropdown. Paste comma/semicolon values. Pause after typing to add or save a chip, or use Enter/Tab/comma. Click a chip to edit it in place (caret at click). Hover a long chip for a tooltip.</p>
+<ngx-select
+  data-cy="inline-tagging"
+  appearance="fill"
+  label="Inline Tagging"
+  [tagging]="true"
+  [filterable]="false"
+  [disableDropdown]="true"
+  [(ngModel)]="taggingDemoValues">
+  @for (tag of taggingDemoValues; track tag) {
+    <ngx-select-option [name]="tag" [value]="tag"></ngx-select-option>
+  }
 </ngx-select>
 
 <app-prism>
   <![CDATA[<ngx-select
+  appearance="fill"
   [filterable]="false"
-  [tagging]="true">
+  [tagging]="true"
+  [disableDropdown]="true">
+</ngx-select>
+]]>
+</app-prism>
+
+<br />
+<br />
+<br />
+
+<h4>Tagging with Dropdown</h4>
+<p>Create new tokens or pick from options. Typing filters the dropdown (debounced via <code>filterDebounce</code>). Click a chip to edit in place; picking an option replaces that chip.</p>
+<ngx-select
+  data-cy="tagging-with-dropdown"
+  appearance="fill"
+  label="Tagging with Dropdown"
+  [tagging]="true"
+  [filterable]="true"
+  [allowAdditions]="true"
+  [filterDebounce]="200"
+  [(ngModel)]="taggingDropdownValues"
+  (keyup)="onSelectKeyUp($event)">
+  <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+  <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+  <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+  <ngx-select-option name="Phishing" value="phishing"></ngx-select-option>
+  <ngx-select-option name="Coca Cola" value="coca-cola"></ngx-select-option>
+</ngx-select>
+
+<app-prism>
+  <![CDATA[<ngx-select
+  appearance="fill"
+  [tagging]="true"
+  [filterable]="true"
+  [allowAdditions]="true"
+  [filterDebounce]="200">
+  <ngx-select-option name="Coca Cola" value="coca-cola"></ngx-select-option>
 </ngx-select>
 ]]>
 </app-prism>
@@ -814,8 +862,8 @@
 
   <br />
 
-  <ngx-select [filterable]="false" [tagging]="true" appearance="fill" label="Fill Tagging With No Options"
-    autosize="true">
+  <ngx-select data-cy="inline-tagging-fill-autosize" [filterable]="false" [tagging]="true" appearance="fill"
+    label="Inline Tagging" autosize="true">
   </ngx-select>
 
   <br />
@@ -1166,6 +1214,15 @@
         <tr>
           <th>
             <code class="component-type">&#64;Input()</code>
+            <code>filterDebounce: number = 200</code>
+          </th>
+          <td>Milliseconds to wait before applying <code>filterQuery</code> from typing. Use <code>0</code> for
+            immediate updates. Apps can listen to <code>(keyup)</code> and swap <code>options</code> from a remote
+            search; ngx-select itself does not call HTTP.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
             <code>filterEmptyPlaceholder: string = 'No matches...'</code>
           </th>
           <td>Placeholder to display when the component has no selectable options that match the user's filter term.
@@ -1239,7 +1296,8 @@
             <code class="component-type">&#64;Input()</code>
             <code>maxSelections: number</code>
           </th>
-          <td class="component-description">The maximum number of selections to display.</td>
+          <td class="component-description">Maximum selections (multi-select and tagging). For inline tagging,
+            enforced when committing a new tag.</td>
         </tr>
         <tr>
           <th>
@@ -1297,6 +1355,15 @@
             <code>tagging: boolean</code>
           </th>
           <td class="component-description">Whether selected options are displayed as tags.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>taggingValidator: SelectTaggingValidator</code>
+          </th>
+          <td class="component-description">Per-tag validator for inline tagging only
+            (<code>tagging &amp;&amp; (disableDropdown || !options?.length)</code>).
+            Return an error message to reject, or null to accept.</td>
         </tr>
         <tr>
           <th>
