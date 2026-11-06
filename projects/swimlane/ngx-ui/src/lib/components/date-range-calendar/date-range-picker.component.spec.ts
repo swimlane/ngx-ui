@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, SimpleChange } from '@angular/core';
 import { DateRangePickerComponent } from './date-range-picker.component';
 import { InputModule } from '../input/input.module';
 import { DropdownModule } from '../dropdown/dropdown.module';
@@ -283,5 +283,41 @@ describe('DateRangePickerComponent', () => {
       expect(end && end.getDate()).toBe(new Date().getDate());
       expectValidRange(start, end);
     }
+  });
+
+  it('should reject custom input dates after maxDate', () => {
+    component.maxDate = endOfDay(new Date('2023-01-05'));
+    component.form.startRaw = '2023-01-01';
+    component.form.endRaw = '2023-01-10';
+    component.onCustomInputChange();
+    expect(component.validationError).toBe('Date cannot be after the maximum allowed date');
+  });
+
+  it('should cap the selected end date at maxDate', () => {
+    const maxDate = new Date(2024, 2, 5, 10, 0, 0);
+    component.maxDate = maxDate;
+    component.onRangeSelect({ startDate: new Date(2024, 2, 1), endDate: new Date(2024, 2, 1) });
+    component.onRangeSelect({ startDate: new Date(2024, 2, 5), endDate: new Date(2024, 2, 5) });
+    expect(component.form.endDate).toEqual(maxDate);
+    expect(component.validationError).toBeNull();
+  });
+
+  it('should cap calendar max dates when maxDate is set', () => {
+    const maxDate = endOfDay(new Date(2024, 2, 5));
+    component.maxDate = maxDate;
+    component.updateCalendarConstraints(new Date(2024, 2, 1));
+    expect(component.leftMaxDate).toEqual(maxDate);
+    expect(component.rightMaxDate).toEqual(maxDate);
+  });
+
+  it('should hide presets that extend beyond maxDate', () => {
+    const maxDate = endOfDay(new Date());
+    component.maxDate = maxDate;
+    component.ngOnChanges({ maxDate: new SimpleChange(null, maxDate, false) });
+    const labels = component.availablePresets.map(p => p.label);
+    expect(labels).not.toContain('Tomorrow');
+    expect(labels).not.toContain('Next week');
+    expect(labels).toContain('Today');
+    expect(labels).toContain('Custom range');
   });
 });

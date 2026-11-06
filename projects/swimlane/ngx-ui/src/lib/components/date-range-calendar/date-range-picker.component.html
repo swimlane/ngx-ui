@@ -4,7 +4,7 @@
     <div class="date-range-picker">
       <!-- Sidebar Presets -->
       <ul class="sidebar">
-        @for (preset of presets; track preset) {
+        @for (preset of availablePresets; track preset) {
         <li [class.active]="selectedPreset === preset.label" (click)="selectPreset(preset)">
           {{ preset.label }}
         </li>

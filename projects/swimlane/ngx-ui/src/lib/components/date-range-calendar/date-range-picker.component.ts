@@ -9,6 +9,7 @@
  *   [parseFn]="customParseFunction"               // Optional: function to parse expressions like now-7d
  *   [showTooltip]="true"                          // Optional: toggle tooltip
  *   [placeholders]="{ start: 'Start...', end: 'End...' }" // Optional: custom input placeholders
+ *   [maxDate]="endOfDay(new Date())"                    // Optional: disallow dates after maxDate
  *   (apply)="handleApply($event)"
  *   (cancel)="handleCancel()"
  * ></ngx-date-range-picker>
@@ -67,6 +68,7 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
     Local: ''
   };
   @Input() selectedRange: { start: string; end: string } | null = null;
+  @Input() maxDate: Date | null = null;
 
   @Output() apply = new EventEmitter<{
     start: Date;
@@ -108,6 +110,7 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
   rightMaxDate = null; // No upper limit or set manually
   timeValueStart: Record<string, { key: string; clip: string; display: string }> = {};
   timeValueEnd: Record<string, { key: string; clip: string; display: string }> = {};
+  availablePresets: DateRangePickerComponent['presets'] = [];
 
   get isApplyDisabled(): boolean {
     if (this.validationError) return true;
@@ -136,6 +139,8 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit() {
+    this.updateAvailablePresets();
+    this.updateCalendarConstraints();
     this.initializeFromSelectedRange();
   }
 
@@ -143,6 +148,21 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
     if (changes['selectedRange'] && changes['selectedRange'].currentValue) {
       this.initializeFromSelectedRange();
     }
+
+    if (changes['presets'] || changes['maxDate']) {
+      this.updateAvailablePresets();
+    }
+
+    if (changes['maxDate']) {
+      this.updateCalendarConstraints(this.form.startDate ?? undefined);
+    }
+  }
+
+  private updateAvailablePresets() {
+    this.availablePresets = this.presets.filter(preset => {
+      const [, end] = preset.range();
+      return !end || !this.isAfterMaxDate(end);
+    });
   }
 
   private initializeFromSelectedRange() {
@@ -181,8 +201,10 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
       this.form.startDate = startOfDay(range.startDate);
       this.form.endDate = null;
     } else {
-      // Normalize end date to 23:59:59.999 so the full selected day is included
-      this.form.endDate = endOfDay(range.startDate);
+      // Normalize end date to 23:59:59.999 so the full selected day is included,
+      // capped at maxDate when the last allowed day is picked
+      const endDate = endOfDay(range.startDate);
+      this.form.endDate = this.isAfterMaxDate(endDate) ? this.maxDate : endDate;
     }
 
     this.rangeModel = {
@@ -198,15 +220,24 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
     this.cdr.detectChanges();
   }
 
-  updateCalendarConstraints(selectedDate: Date) {
+  updateCalendarConstraints(selectedDate?: Date) {
+    const referenceDate = selectedDate ?? new Date();
+
     // Left calendar: allow dates in the selected month and earlier
     this.leftMinDate = null;
-    this.leftMaxDate = endOfMonth(selectedDate);
+    this.leftMaxDate = endOfMonth(referenceDate);
 
     // Right calendar: allow dates from the start of next month onward
-    const nextMonth = addMonths(startOfMonth(selectedDate), 1);
+    const nextMonth = addMonths(startOfMonth(referenceDate), 1);
     this.rightMinDate = nextMonth;
     this.rightMaxDate = null; // No upper limit unless needed
+
+    if (this.maxDate) {
+      if (!this.leftMaxDate || this.leftMaxDate > this.maxDate) {
+        this.leftMaxDate = this.maxDate;
+      }
+      this.rightMaxDate = this.maxDate;
+    }
   }
 
   onCustomInputChange() {
@@ -215,6 +246,11 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
 
     if (!start || !end || !isValid(start) || !isValid(end)) {
       this.validationError = `Invalid date expression`;
+      return;
+    }
+
+    if (this.isAfterMaxDate(start) || this.isAfterMaxDate(end)) {
+      this.validationError = 'Date cannot be after the maximum allowed date';
       return;
     }
 
@@ -285,6 +321,10 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
 
   isEqual(a: Date, b: Date): boolean {
     return a && b && Math.abs(a.getTime() - b.getTime()) < 60000;
+  }
+
+  private isAfterMaxDate(date: Date): boolean {
+    return !!this.maxDate && date.getTime() > this.maxDate.getTime();
   }
 
   onApply() {
