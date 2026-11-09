@@ -5,9 +5,9 @@
       <!-- Sidebar Presets -->
       <ul class="sidebar">
         @for (preset of availablePresets; track preset) {
-        <li [class.active]="selectedPreset === preset.label" (click)="selectPreset(preset)">
-          {{ preset.label }}
-        </li>
+          <li [class.active]="selectedPreset === preset.label" (click)="selectPreset(preset)">
+            {{ preset.label }}
+          </li>
         }
       </ul>
 
@@ -95,19 +95,19 @@
 </ngx-dropdown>
 
 <ng-template #startdefaultTooltipTemplate>
-  @for (item of (timeValueStart | keyvalue); track item) {
-  <div class="date-zone-display">
-    <span>{{ item.value.display }}</span>
-    <button class="btn small" (click)="onClick(item)"><ngx-icon fontIcon="copy"></ngx-icon> {{ item.key }}</button>
-  </div>
+  @for (item of timeValueStart | keyvalue; track item) {
+    <div class="date-zone-display">
+      <span>{{ item.value.display }}</span>
+      <button class="btn small" (click)="onClick(item)"><ngx-icon fontIcon="copy"></ngx-icon> {{ item.key }}</button>
+    </div>
   }
 </ng-template>
 
 <ng-template #enddefaultTooltipTemplate>
-  @for (item of (timeValueEnd | keyvalue); track item) {
-  <div class="date-zone-display">
-    <span>{{ item.value.display }}</span>
-    <button class="btn small" (click)="onClick(item)"><ngx-icon fontIcon="copy"></ngx-icon> {{ item.key }}</button>
-  </div>
+  @for (item of timeValueEnd | keyvalue; track item) {
+    <div class="date-zone-display">
+      <span>{{ item.value.display }}</span>
+      <button class="btn small" (click)="onClick(item)"><ngx-icon fontIcon="copy"></ngx-icon> {{ item.key }}</button>
+    </div>
   }
 </ng-template>

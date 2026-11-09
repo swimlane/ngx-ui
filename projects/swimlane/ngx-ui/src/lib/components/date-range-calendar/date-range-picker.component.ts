@@ -9,6 +9,7 @@
  *   [parseFn]="customParseFunction"               // Optional: function to parse expressions like now-7d
  *   [showTooltip]="true"                          // Optional: toggle tooltip
  *   [placeholders]="{ start: 'Start...', end: 'End...' }" // Optional: custom input placeholders
+ *   [minDate]="startOfDay(subDays(new Date(), 30))"     // Optional: disallow dates before minDate
  *   [maxDate]="endOfDay(new Date())"                    // Optional: disallow dates after maxDate
  *   (apply)="handleApply($event)"
  *   (cancel)="handleCancel()"
@@ -68,6 +69,7 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
     Local: ''
   };
   @Input() selectedRange: { start: string; end: string } | null = null;
+  @Input() minDate: Date | null = null;
   @Input() maxDate: Date | null = null;
 
   @Output() apply = new EventEmitter<{
@@ -149,19 +151,19 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
       this.initializeFromSelectedRange();
     }
 
-    if (changes['presets'] || changes['maxDate']) {
+    if (changes['presets'] || changes['minDate'] || changes['maxDate']) {
       this.updateAvailablePresets();
     }
 
-    if (changes['maxDate']) {
+    if (changes['minDate'] || changes['maxDate']) {
       this.updateCalendarConstraints(this.form.startDate ?? undefined);
     }
   }
 
   private updateAvailablePresets() {
     this.availablePresets = this.presets.filter(preset => {
-      const [, end] = preset.range();
-      return !end || !this.isAfterMaxDate(end);
+      const [start, end] = preset.range();
+      return (!start || !this.isBeforeMinDate(start)) && (!end || !this.isAfterMaxDate(end));
     });
   }
 
@@ -192,13 +194,17 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
   }
 
   onRangeSelect(range: { startDate: Date; endDate: Date }) {
+    // Start is normalized to 00:00:00, capped at minDate when the first allowed day is picked
+    const startDate = startOfDay(range.startDate);
+    const cappedStartDate = this.isBeforeMinDate(startDate) ? this.minDate : startDate;
+
     // If both dates already exist & user clicks again → reset to new start
     if (this.form.startDate && this.form.endDate) {
-      this.form.startDate = startOfDay(range.startDate);
+      this.form.startDate = cappedStartDate;
       this.form.endDate = null;
     } else if (!this.form.startDate || (this.form.startDate && range.startDate < this.form.startDate)) {
       // If startDate is not yet set, or clicked date is before current startDate
-      this.form.startDate = startOfDay(range.startDate);
+      this.form.startDate = cappedStartDate;
       this.form.endDate = null;
     } else {
       // Normalize end date to 23:59:59.999 so the full selected day is included,
@@ -232,6 +238,13 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
     this.rightMinDate = nextMonth;
     this.rightMaxDate = null; // No upper limit unless needed
 
+    if (this.minDate) {
+      this.leftMinDate = this.minDate;
+      if (this.rightMinDate < this.minDate) {
+        this.rightMinDate = this.minDate;
+      }
+    }
+
     if (this.maxDate) {
       if (!this.leftMaxDate || this.leftMaxDate > this.maxDate) {
         this.leftMaxDate = this.maxDate;
@@ -246,6 +259,11 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
 
     if (!start || !end || !isValid(start) || !isValid(end)) {
       this.validationError = `Invalid date expression`;
+      return;
+    }
+
+    if (this.isBeforeMinDate(start) || this.isBeforeMinDate(end)) {
+      this.validationError = 'Date cannot be before the minimum allowed date';
       return;
     }
 
@@ -321,6 +339,10 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
 
   isEqual(a: Date, b: Date): boolean {
     return a && b && Math.abs(a.getTime() - b.getTime()) < 60000;
+  }
+
+  private isBeforeMinDate(date: Date): boolean {
+    return !!this.minDate && date.getTime() < this.minDate.getTime();
   }
 
   private isAfterMaxDate(date: Date): boolean {

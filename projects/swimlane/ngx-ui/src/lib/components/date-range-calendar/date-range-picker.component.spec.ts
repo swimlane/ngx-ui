@@ -320,4 +320,45 @@ describe('DateRangePickerComponent', () => {
     expect(labels).toContain('Today');
     expect(labels).toContain('Custom range');
   });
+
+  it('should reject custom input dates before minDate', () => {
+    component.minDate = startOfDay(new Date(2023, 0, 5));
+    component.form.startRaw = '2023-01-01';
+    component.form.endRaw = '2023-01-10';
+    component.onCustomInputChange();
+    expect(component.validationError).toBe('Date cannot be before the minimum allowed date');
+  });
+
+  it('should cap the selected start date at minDate', () => {
+    const minDate = new Date(2024, 2, 5, 10, 0, 0);
+    component.minDate = minDate;
+    component.onRangeSelect({ startDate: new Date(2024, 2, 5), endDate: new Date(2024, 2, 5) });
+    expect(component.form.startDate).toEqual(minDate);
+    expect(component.validationError).toBeNull();
+  });
+
+  it('should apply minDate to calendar min dates', () => {
+    const minDate = startOfDay(new Date(2024, 2, 10));
+    component.minDate = minDate;
+    component.updateCalendarConstraints(new Date(2024, 2, 1));
+    expect(component.leftMinDate).toEqual(minDate);
+    expect(component.rightMinDate).toEqual(startOfMonth(new Date(2024, 3, 1)));
+
+    const laterMinDate = startOfDay(new Date(2024, 3, 10));
+    component.minDate = laterMinDate;
+    component.updateCalendarConstraints(new Date(2024, 2, 1));
+    expect(component.rightMinDate).toEqual(laterMinDate);
+  });
+
+  it('should hide presets that start before minDate', () => {
+    const minDate = startOfDay(new Date());
+    component.minDate = minDate;
+    component.ngOnChanges({ minDate: new SimpleChange(null, minDate, false) });
+    const labels = component.availablePresets.map(p => p.label);
+    expect(labels).not.toContain('Yesterday');
+    expect(labels).not.toContain('Last week');
+    expect(labels).toContain('Today');
+    expect(labels).toContain('Today so far');
+    expect(labels).toContain('Custom range');
+  });
 });
