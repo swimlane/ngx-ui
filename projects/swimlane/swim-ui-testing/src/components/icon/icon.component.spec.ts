@@ -53,6 +53,22 @@ describe('swim-icon', () => {
       expect(el.shadowRoot?.querySelector('[part="icon"]')?.className).toContain('lit-user');
     });
 
+    it('keeps a sized fallback box when src fails and no font icon is set', async () => {
+      const el = await fixture<HTMLElement & { alt: string }>('swim-icon', {
+        src: 'assets/does-not-exist.svg',
+        alt: 'Lit logo'
+      });
+      const img = el.shadowRoot?.querySelector('img');
+      expect(img?.hasAttribute('loading')).toBe(false);
+      img?.dispatchEvent(new Event('error'));
+      await waitForUpdate(el);
+
+      const fallback = el.shadowRoot?.querySelector('[part="icon"]');
+      expect(fallback?.tagName.toLowerCase()).toBe('span');
+      expect(fallback?.classList.contains('swim-icon__fallback')).toBe(true);
+      expect(fallback?.getAttribute('aria-label')).toBe('Lit logo');
+    });
+
     it('shows the new image after one update when src changes following a failed load', async () => {
       const el = await fixture<HTMLElement & { src: string; updateComplete: Promise<boolean> }>('swim-icon', {
         fontIcon: 'user',

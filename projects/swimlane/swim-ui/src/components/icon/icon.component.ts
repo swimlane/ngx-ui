@@ -11,6 +11,7 @@ scheduleEnsureSwimUiIconFontFace();
  * SwimIcon - Icon component matching @swimlane/ngx-ui design system.
  * Uses a font icon (`fontIcon` + `fontSet`), an image (`src`), or slotted content.
  * When `src` is set, the image is shown. If it fails to load, the font icon or slot is shown.
+ * A failed image with no font icon keeps the 1em box.
  * Existing `font-icon` usage is unchanged when `src` is empty.
  *
  * Registers @font-face for SWIM_ICON_FONT_FAMILY when this module loads (CDN / bundled apps).
@@ -133,7 +134,6 @@ export class SwimIcon extends LitElement {
           src=${src}
           alt=${hasAlt ? this.alt : ''}
           draggable="false"
-          loading="lazy"
           @error=${() => {
             this._srcFailed = true;
           }}
@@ -142,10 +142,12 @@ export class SwimIcon extends LitElement {
     }
 
     if (!classes || classes.length === 0) {
+      const fallbackClass = src ? 'swim-icon__fallback' : '';
+      const slotClass = [fallbackClass, iconClass].filter(Boolean).join(' ');
       return html`
         <span
           part="icon"
-          class="${iconClass}"
+          class="${slotClass}"
           role="${hasAlt ? 'img' : 'presentation'}"
           aria-label="${hasAlt ? this.alt : nothing}"
           aria-hidden="${hasAlt ? 'false' : 'true'}"
