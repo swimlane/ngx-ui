@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Feature (`ngx-date-range-picker`): Added optional `minDate` and `maxDate` inputs. Calendar days outside the range are disabled, presets that fall outside it are hidden, and typed dates outside it show a validation error.
+
 ## 53.5.0 (2026-10-26)
 
 - Fix (`ngx-select`, `ngx-filter`, `ngx-dropdown`): Menu direction no longer throws when `IntersectionObserverEntry.rootBounds` is null inside a cross-origin iframe. Placement falls back to the frame viewport and still applies an upward or downward class.

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, SimpleChange } from '@angular/core';
 import { DateRangePickerComponent } from './date-range-picker.component';
 import { InputModule } from '../input/input.module';
 import { DropdownModule } from '../dropdown/dropdown.module';
@@ -283,5 +283,91 @@ describe('DateRangePickerComponent', () => {
       expect(end && end.getDate()).toBe(new Date().getDate());
       expectValidRange(start, end);
     }
+  });
+
+  it('should reject custom input dates after maxDate', () => {
+    component.maxDate = endOfDay(new Date('2023-01-05'));
+    component.form.startRaw = '2023-01-01';
+    component.form.endRaw = '2023-01-10';
+    component.onCustomInputChange();
+    expect(component.validationError).toBe('Date cannot be after the maximum allowed date');
+  });
+
+  it('should cap the selected end date at maxDate', () => {
+    const maxDate = new Date(2024, 2, 5, 10, 0, 0);
+    component.maxDate = maxDate;
+    component.onRangeSelect({ startDate: new Date(2024, 2, 1), endDate: new Date(2024, 2, 1) });
+    component.onRangeSelect({ startDate: new Date(2024, 2, 5), endDate: new Date(2024, 2, 5) });
+    expect(component.form.endDate).toEqual(maxDate);
+    expect(component.validationError).toBeNull();
+  });
+
+  it('should cap calendar max dates when maxDate is set', () => {
+    const maxDate = endOfDay(new Date(2024, 2, 5));
+    component.maxDate = maxDate;
+    component.updateCalendarConstraints(new Date(2024, 2, 1));
+    expect(component.leftMaxDate).toEqual(maxDate);
+    expect(component.rightMaxDate).toEqual(maxDate);
+  });
+
+  it('should hide presets that extend beyond maxDate', () => {
+    const maxDate = endOfDay(new Date());
+    component.maxDate = maxDate;
+    component.ngOnChanges({ maxDate: new SimpleChange(null, maxDate, false) });
+    const labels = component.availablePresets.map(p => p.label);
+    expect(labels).not.toContain('Tomorrow');
+    expect(labels).not.toContain('Next week');
+    expect(labels).toContain('Today');
+    expect(labels).toContain('Custom range');
+  });
+
+  it('should reject custom input dates before minDate', () => {
+    component.minDate = startOfDay(new Date(2023, 0, 5));
+    component.form.startRaw = '2023-01-01';
+    component.form.endRaw = '2023-01-10';
+    component.onCustomInputChange();
+    expect(component.validationError).toBe('Date cannot be before the minimum allowed date');
+  });
+
+  it('should cap the selected start date at minDate', () => {
+    const minDate = new Date(2024, 2, 5, 10, 0, 0);
+    component.minDate = minDate;
+    component.onRangeSelect({ startDate: new Date(2024, 2, 5), endDate: new Date(2024, 2, 5) });
+    expect(component.form.startDate).toEqual(minDate);
+    expect(component.validationError).toBeNull();
+  });
+
+  it('should complete a single-day range on the minDate day', () => {
+    const minDate = new Date(2024, 2, 5, 10, 0, 0);
+    component.minDate = minDate;
+    component.onRangeSelect({ startDate: new Date(2024, 2, 5), endDate: new Date(2024, 2, 5) });
+    component.onRangeSelect({ startDate: new Date(2024, 2, 5), endDate: new Date(2024, 2, 5) });
+    expect(component.form.startDate).toEqual(minDate);
+    expect(component.form.endDate).toEqual(endOfDay(new Date(2024, 2, 5)));
+  });
+
+  it('should apply minDate to calendar min dates', () => {
+    const minDate = startOfDay(new Date(2024, 2, 10));
+    component.minDate = minDate;
+    component.updateCalendarConstraints(new Date(2024, 2, 1));
+    expect(component.leftMinDate).toEqual(minDate);
+    expect(component.rightMinDate).toEqual(startOfMonth(new Date(2024, 3, 1)));
+
+    const laterMinDate = startOfDay(new Date(2024, 3, 10));
+    component.minDate = laterMinDate;
+    component.updateCalendarConstraints(new Date(2024, 2, 1));
+    expect(component.rightMinDate).toEqual(laterMinDate);
+  });
+
+  it('should hide presets that start before minDate', () => {
+    const minDate = startOfDay(new Date());
+    component.minDate = minDate;
+    component.ngOnChanges({ minDate: new SimpleChange(null, minDate, false) });
+    const labels = component.availablePresets.map(p => p.label);
+    expect(labels).not.toContain('Yesterday');
+    expect(labels).not.toContain('Last week');
+    expect(labels).toContain('Today');
+    expect(labels).toContain('Today so far');
+    expect(labels).toContain('Custom range');
   });
 });

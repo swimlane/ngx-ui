@@ -22,6 +22,7 @@ import {
 import { Observable } from 'rxjs';
 import { fromFetch } from 'rxjs/fetch';
 import { switchMap } from 'rxjs/operators';
+import { endOfDay, startOfDay, subDays } from 'date-fns';
 import { exampleSelectionList } from '../multi-dimension-selection-page/examples/mock-selection-lists';
 
 export function forbiddenNameValidator(nameRe: RegExp): ValidatorFn {
@@ -139,6 +140,8 @@ export class FiltersPageComponent implements OnInit {
   selectionListExampleValue: Array<SelectionListOption> = [];
 
   labelForRange: string = 'Select a range';
+  dateRangeMinDate = startOfDay(subDays(new Date(), 30));
+  dateRangeMaxDate = endOfDay(new Date());
 
   private get _results() {
     let i = 50;
@@ -221,7 +224,8 @@ export class FiltersPageComponent implements OnInit {
         type: DateRangePickerComponent,
         options: {
           bindings: [
-            inputBinding('counter', () => 0),
+            inputBinding('minDate', () => this.dateRangeMinDate),
+            inputBinding('maxDate', () => this.dateRangeMaxDate),
             outputBinding('apply', event => this.onCustomDropdownDateRangeApply(event as string)),
             outputBinding('cancel', event => this.onCustomDropdownDateRangeCancel(event as string))
           ]
