@@ -337,6 +337,15 @@ describe('DateRangePickerComponent', () => {
     expect(component.validationError).toBeNull();
   });
 
+  it('should complete a single-day range on the minDate day', () => {
+    const minDate = new Date(2024, 2, 5, 10, 0, 0);
+    component.minDate = minDate;
+    component.onRangeSelect({ startDate: new Date(2024, 2, 5), endDate: new Date(2024, 2, 5) });
+    component.onRangeSelect({ startDate: new Date(2024, 2, 5), endDate: new Date(2024, 2, 5) });
+    expect(component.form.startDate).toEqual(minDate);
+    expect(component.form.endDate).toEqual(endOfDay(new Date(2024, 2, 5)));
+  });
+
   it('should apply minDate to calendar min dates', () => {
     const minDate = startOfDay(new Date(2024, 2, 10));
     component.minDate = minDate;

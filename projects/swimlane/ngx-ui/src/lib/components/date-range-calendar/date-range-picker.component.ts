@@ -202,7 +202,7 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
     if (this.form.startDate && this.form.endDate) {
       this.form.startDate = cappedStartDate;
       this.form.endDate = null;
-    } else if (!this.form.startDate || (this.form.startDate && range.startDate < this.form.startDate)) {
+    } else if (!this.form.startDate || cappedStartDate < this.form.startDate) {
       // If startDate is not yet set, or clicked date is before current startDate
       this.form.startDate = cappedStartDate;
       this.form.endDate = null;
