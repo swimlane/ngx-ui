@@ -79,6 +79,12 @@
     color: var(--white);
   }
 
+  .icon-src-demo swim-icon {
+    font-size: var(--font-size-4xl);
+    line-height: 1;
+    color: var(--white);
+  }
+
   .muted {
     color: var(--grey-300);
     margin-bottom: var(--spacing-16);

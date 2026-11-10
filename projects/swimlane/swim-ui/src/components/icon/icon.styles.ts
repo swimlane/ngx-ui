@@ -29,6 +29,14 @@ export const iconStyles = css`
     height: 1em;
   }
 
+  .swim-icon__img {
+    display: block;
+    flex-shrink: 0;
+    height: 1em;
+    object-fit: cover;
+    width: 1em;
+  }
+
   .swim-icon__stack {
     position: relative;
     display: inline-block;

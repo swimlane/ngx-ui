@@ -9,14 +9,16 @@ scheduleEnsureSwimUiIconFontFace();
 
 /**
  * SwimIcon - Icon component matching @swimlane/ngx-ui design system.
- * Uses swim lit font icons only (via fontIcon + fontSet) or slotted content (e.g. another swim-icon).
+ * Uses a font icon (`fontIcon` + `fontSet`), an image (`src`), or slotted content.
+ * When `src` is set, the image is shown. If it fails to load, the font icon or slot is shown.
+ * Existing `font-icon` usage is unchanged when `src` is empty.
  *
  * Registers @font-face for SWIM_ICON_FONT_FAMILY when this module loads (CDN / bundled apps).
  * Hosts may still override with their own @font-face if they prefer a different asset URL.
  *
- * @slot - Default content when no fontIcon (e.g. slotted swim-icon or image)
+ * @slot - Default content when no fontIcon and no src (e.g. slotted swim-icon or image)
  *
- * @csspart icon - The icon element (i or span)
+ * @csspart icon - The icon element (img, i, or span)
  */
 const ICON_TAG = 'swim-icon';
 export class SwimIcon extends LitElement {
@@ -47,8 +49,18 @@ export class SwimIcon extends LitElement {
   @property({ type: String, attribute: 'icon-class' })
   iconClass = '';
 
+  /**
+   * Image URL. When set, the image replaces the font icon until it fails to load.
+   * Same role as `src` on `ngx-card-avatar` / `swim-card-avatar`, sized to the icon box.
+   */
+  @property({ type: String })
+  src = '';
+
   @state()
   private _cssClasses: string[] = [];
+
+  @state()
+  private _srcFailed = false;
 
   private _iconClassTokensOnHost: string[] = [];
 
@@ -64,6 +76,9 @@ export class SwimIcon extends LitElement {
     }
     if (changedProperties.has('iconClass')) {
       this._syncIconClassToHost();
+    }
+    if (changedProperties.has('src')) {
+      this._srcFailed = false;
     }
   }
 
@@ -104,6 +119,23 @@ export class SwimIcon extends LitElement {
 
     const iconClass = this.iconClass?.trim() ?? '';
     const iconClassAttr = iconClass ? ` ${iconClass}` : '';
+    const src = this.src?.trim() ?? '';
+
+    if (src && !this._srcFailed) {
+      return html`
+        <img
+          part="icon"
+          class="swim-icon__img ${iconClass}"
+          src=${src}
+          alt=${hasAlt ? this.alt : ''}
+          draggable="false"
+          loading="lazy"
+          @error=${() => {
+            this._srcFailed = true;
+          }}
+        />
+      `;
+    }
 
     if (!classes || classes.length === 0) {
       return html`

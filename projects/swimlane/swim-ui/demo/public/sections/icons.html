@@ -1,89 +1,149 @@
 <div class="icons-page">
-<!-- ICON COMPONENT DEMOS (last in nav order) -->
-<h1 id="icons" class="page-title">Icon</h1>
-<p class="subtitle">
-  Font icons and inline SVG, matching swim-ui (see src/app/icons-page). Uses swim-icon; the icon font is self-loaded by
-  the component (no separate icon CSS required).
-</p>
-<p class="section-desc cdn"><strong>CDN:</strong> <code>import 'https://widgets.swimlane.app/swim-ui/icon.js';</code></p>
+  <!-- ICON COMPONENT DEMOS (last in nav order) -->
+  <h1 id="icons" class="page-title">Icon</h1>
+  <p class="subtitle">
+    Font icons and inline SVG, matching swim-ui (see src/app/icons-page). Uses swim-icon; the icon font is self-loaded
+    by the component (no separate icon CSS required).
+  </p>
+  <p class="section-desc cdn">
+    <strong>CDN:</strong> <code>import 'https://widgets.swimlane.app/swim-ui/icon.js';</code>
+  </p>
 
-<section class="section">
-  <swim-section section-title="Icons">
-    <div class="icon-search-wrap">
-      <swim-icon class="icon-search-icon" font-icon="search"></swim-icon>
-      <input
-        type="text"
-        id="iconSearch"
-        class="icon-search-input"
-        placeholder="Search icons by name..."
-        aria-label="Search icons"
-      />
-    </div>
-    <ul id="iconsPreview" class="icons-preview"></ul>
-  </swim-section>
-</section>
-
-<section class="section">
-  <swim-section section-title="Icons: stacking">
-    <div class="demo-grid">
-      <div class="demo-item">
-        <div class="demo-label">square + x</div>
-        <swim-icon font-icon='["square", "x"]'></swim-icon>
+  <!-- API Reference -->
+  <section class="section">
+    <swim-section section-title="API Reference" section-collapsed>
+      <div class="api-ref">
+        <div><span class="api-tag-name">&lt;swim-icon&gt;</span></div>
+        <h4 class="api-heading">Properties</h4>
+        <div class="api-table-wrap">
+          <table class="api-table">
+            <thead>
+              <tr>
+                <th>Attribute</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>font-icon</code></td>
+                <td><code>string</code></td>
+                <td><code>''</code></td>
+                <td>
+                  Icon name (e.g. "search", "user"). Shown when <code>src</code> is empty or the image fails to load.
+                </td>
+              </tr>
+              <tr>
+                <td><code>src</code></td>
+                <td><code>string</code></td>
+                <td><code>''</code></td>
+                <td>
+                  Image URL. When set, a circular image fills the icon box. A failed load falls back to
+                  <code>font-icon</code> or the slot.
+                </td>
+              </tr>
+              <tr>
+                <td><code>alt</code></td>
+                <td><code>string</code></td>
+                <td><code>''</code></td>
+                <td>Alternative text for accessibility</td>
+              </tr>
+              <tr>
+                <td><code>font-set</code></td>
+                <td><code>string</code></td>
+                <td><code>'lit'</code></td>
+                <td>Icon font set to use</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-      <div class="demo-item">
-        <div class="demo-label">square-filled + x (red x overlay)</div>
-        <swim-icon font-icon='["square-filled", "x :text-red"]'></swim-icon>
-      </div>
-      <div class="demo-item">
-        <div class="demo-label">field-users + circle-filled (badge)</div>
-        <swim-icon font-icon='["field-users", "circle-filled :text-red :icon-fx-badge"]'></swim-icon>
-      </div>
-    </div>
-  </swim-section>
-</section>
+    </swim-section>
+  </section>
 
-<section class="section">
-  <swim-section section-title="With alt (accessibility)">
-    <div class="demo-item">
-      <swim-icon font-icon="x" alt="Close"></swim-icon>
-      <span class="ml-sm">Icon with accessible name for screen readers</span>
-    </div>
-  </swim-section>
-</section>
+  <section class="section">
+    <swim-section section-title="Icons">
+      <div class="icon-search-wrap">
+        <swim-icon class="icon-search-icon" font-icon="search"></swim-icon>
+        <input
+          type="text"
+          id="iconSearch"
+          class="icon-search-input"
+          placeholder="Search icons by name..."
+          aria-label="Search icons"
+        />
+      </div>
+      <ul id="iconsPreview" class="icons-preview"></ul>
+    </swim-section>
+  </section>
 
-<section class="section">
-  <swim-section section-title="Icon Usage">
-    <p class="muted">
-      Import the icon component; the swim-icon font is self-loaded (no separate CSS required):
-    </p>
-    <pre class="demo-pre"
-    ><code>&lt;script type="module"&gt;
+  <section class="section">
+    <swim-section section-title="Icons: stacking">
+      <div class="demo-grid">
+        <div class="demo-item">
+          <div class="demo-label">square + x</div>
+          <swim-icon font-icon='["square", "x"]'></swim-icon>
+        </div>
+        <div class="demo-item">
+          <div class="demo-label">square-filled + x (red x overlay)</div>
+          <swim-icon font-icon='["square-filled", "x :text-red"]'></swim-icon>
+        </div>
+        <div class="demo-item">
+          <div class="demo-label">field-users + circle-filled (badge)</div>
+          <swim-icon font-icon='["field-users", "circle-filled :text-red :icon-fx-badge"]'></swim-icon>
+        </div>
+      </div>
+    </swim-section>
+  </section>
+
+  <section class="section">
+    <swim-section section-title="With alt (accessibility)">
+      <div class="demo-item">
+        <swim-icon font-icon="x" alt="Close"></swim-icon>
+        <span class="ml-sm">Icon with accessible name for screen readers</span>
+      </div>
+    </swim-section>
+  </section>
+
+  <section class="section">
+    <swim-section section-title="Icon Usage">
+      <p class="muted">Import the icon component; the swim-icon font is self-loaded (no separate CSS required):</p>
+      <pre class="demo-pre"><code>&lt;script type="module"&gt;
   import '@swimlane/swim-ui/icon';
 &lt;/script&gt;
 
 &lt;swim-icon font-icon="plus"&gt;&lt;/swim-icon&gt;
 &lt;swim-icon font-icon='["square-filled", "x :text-red"]'&gt;&lt;/swim-icon&gt;
-&lt;swim-icon font-icon="x" alt="Close"&gt;&lt;/swim-icon&gt;</code></pre>
-  </swim-section>
-</section>
+&lt;swim-icon font-icon="x" alt="Close"&gt;&lt;/swim-icon&gt;
+&lt;swim-icon src="/assets/lit-logo.svg" font-icon="user" alt="Lit logo"&gt;&lt;/swim-icon&gt;</code></pre>
+    </swim-section>
+  </section>
 
-<!-- API Reference -->
-<section class="section">
-  <swim-section section-title="API Reference" section-collapsed>
-    <div class="api-ref">
-      <div><span class="api-tag-name">&lt;swim-icon&gt;</span></div>
-      <h4 class="api-heading">Properties</h4>
-      <div class="api-table-wrap">
-        <table class="api-table">
-          <thead><tr><th>Attribute</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
-          <tbody>
-            <tr><td><code>font-icon</code></td><td><code>string</code></td><td><code>''</code></td><td>Icon name (e.g. "search", "user")</td></tr>
-            <tr><td><code>alt</code></td><td><code>string</code></td><td><code>''</code></td><td>Alternative text for accessibility</td></tr>
-            <tr><td><code>font-set</code></td><td><code>string</code></td><td><code>'lit'</code></td><td>Icon font set to use</td></tr>
-          </tbody>
-        </table>
+
+  <section class="section">
+    <swim-section section-title="Icon Usage with src">
+      <p class="muted">
+        Set <code>src</code> to show a circular image sized to the icon. If the image fails to load,
+        <code>font-icon</code> is shown instead.
+      </p>
+      <div class="demo-grid icon-src-demo">
+        <div class="demo-item">
+          <div class="demo-label">Image</div>
+          <swim-icon src="/assets/lit-logo.svg" alt="Lit logo"></swim-icon>
+        </div>
+        <div class="demo-item">
+          <div class="demo-label">Image with font-icon fallback</div>
+          <swim-icon src="/assets/swimlane.svg" font-icon="user" alt="Swimlane"></swim-icon>
+        </div>
+        <div class="demo-item">
+          <div class="demo-label">Broken image falls back to font-icon</div>
+          <swim-icon src="/assets/missing-icon.svg" font-icon="user" alt="User"></swim-icon>
+        </div>
       </div>
-    </div>
-  </swim-section>
-</section>
+      <pre class="demo-pre"><code>&lt;swim-icon src="/assets/lit-logo.svg" alt="Lit logo"&gt;&lt;/swim-icon&gt;
+&lt;swim-icon src="/assets/swimlane.svg" font-icon="user" alt="Swimlane"&gt;&lt;/swim-icon&gt;
+&lt;swim-icon src="/assets/missing-icon.svg" font-icon="user" alt="User"&gt;&lt;/swim-icon&gt;</code></pre>
+    </swim-section>
+  </section>
 </div>
