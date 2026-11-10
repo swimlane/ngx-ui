@@ -39,7 +39,7 @@
                 <td><code>string</code></td>
                 <td><code>''</code></td>
                 <td>
-                  Image URL. When set, a circular image fills the icon box. A failed load falls back to
+                  Image URL. When set, the image fills the icon box. A failed load falls back to
                   <code>font-icon</code> or the slot.
                 </td>
               </tr>
@@ -116,7 +116,7 @@
 &lt;swim-icon font-icon="plus"&gt;&lt;/swim-icon&gt;
 &lt;swim-icon font-icon='["square-filled", "x :text-red"]'&gt;&lt;/swim-icon&gt;
 &lt;swim-icon font-icon="x" alt="Close"&gt;&lt;/swim-icon&gt;
-&lt;swim-icon src="/assets/lit-logo.svg" font-icon="user" alt="Lit logo"&gt;&lt;/swim-icon&gt;</code></pre>
+&lt;swim-icon src="assets/lit-logo.svg" font-icon="user" alt="Lit logo"&gt;&lt;/swim-icon&gt;</code></pre>
     </swim-section>
   </section>
 
@@ -124,26 +124,26 @@
   <section class="section">
     <swim-section section-title="Icon Usage with src">
       <p class="muted">
-        Set <code>src</code> to show a circular image sized to the icon. If the image fails to load,
+        Set <code>src</code> to show an image sized to the icon. If the image fails to load,
         <code>font-icon</code> is shown instead.
       </p>
       <div class="demo-grid icon-src-demo">
         <div class="demo-item">
           <div class="demo-label">Image</div>
-          <swim-icon src="/assets/lit-logo.svg" alt="Lit logo"></swim-icon>
+          <swim-icon src="assets/lit-logo.svg" alt="Lit logo"></swim-icon>
         </div>
         <div class="demo-item">
           <div class="demo-label">Image with font-icon fallback</div>
-          <swim-icon src="/assets/swimlane.svg" font-icon="user" alt="Swimlane"></swim-icon>
+          <swim-icon src="assets/swimlane.svg" font-icon="user" alt="Swimlane"></swim-icon>
         </div>
         <div class="demo-item">
           <div class="demo-label">Broken image falls back to font-icon</div>
-          <swim-icon src="/assets/missing-icon.svg" font-icon="user" alt="User"></swim-icon>
+          <swim-icon src="assets/missing-icon.svg" font-icon="user" alt="User"></swim-icon>
         </div>
       </div>
-      <pre class="demo-pre"><code>&lt;swim-icon src="/assets/lit-logo.svg" alt="Lit logo"&gt;&lt;/swim-icon&gt;
-&lt;swim-icon src="/assets/swimlane.svg" font-icon="user" alt="Swimlane"&gt;&lt;/swim-icon&gt;
-&lt;swim-icon src="/assets/missing-icon.svg" font-icon="user" alt="User"&gt;&lt;/swim-icon&gt;</code></pre>
+      <pre class="demo-pre"><code>&lt;swim-icon src="assets/lit-logo.svg" alt="Lit logo"&gt;&lt;/swim-icon&gt;
+&lt;swim-icon src="assets/swimlane.svg" font-icon="user" alt="Swimlane"&gt;&lt;/swim-icon&gt;
+&lt;swim-icon src="assets/missing-icon.svg" font-icon="user" alt="User"&gt;&lt;/swim-icon&gt;</code></pre>
     </swim-section>
   </section>
 </div>

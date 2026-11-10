@@ -1,4 +1,4 @@
-import { LitElement, html, nothing } from 'lit';
+import { LitElement, html, nothing, type PropertyValues } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { iconStyles } from './icon.styles';
@@ -69,16 +69,20 @@ export class SwimIcon extends LitElement {
     this._updateFontIcon();
   }
 
-  updated(changedProperties: Map<string, unknown>) {
-    super.updated(changedProperties);
+  willUpdate(changedProperties: PropertyValues<this>): void {
+    super.willUpdate(changedProperties);
     if (changedProperties.has('fontIcon') || changedProperties.has('fontSet')) {
       this._updateFontIcon();
     }
-    if (changedProperties.has('iconClass')) {
-      this._syncIconClassToHost();
-    }
     if (changedProperties.has('src')) {
       this._srcFailed = false;
+    }
+  }
+
+  updated(changedProperties: PropertyValues<this>): void {
+    super.updated(changedProperties);
+    if (changedProperties.has('iconClass')) {
+      this._syncIconClassToHost();
     }
   }
 
