@@ -29,6 +29,22 @@ export const iconStyles = css`
     height: 1em;
   }
 
+  .swim-icon__img {
+    display: block;
+    flex-shrink: 0;
+    height: 1em;
+    object-fit: cover;
+    width: 1em;
+  }
+
+  /* Failed src with no font icon: keep the 1em box so layout and the accessible name do not collapse. */
+  .swim-icon__fallback {
+    display: inline-block;
+    flex-shrink: 0;
+    height: 1em;
+    width: 1em;
+  }
+
   .swim-icon__stack {
     position: relative;
     display: inline-block;

@@ -44,10 +44,60 @@ describe('swim-icon', () => {
 
   describe('dynamic property changes', () => {
     it('changes fontIcon after render', async () => {
-      const el = await fixture<HTMLElement & { fontIcon: string }>('swim-icon', { fontIcon: 'check' });
-      el.fontIcon = 'close';
+      const el = await fixture<HTMLElement & { fontIcon: string; updateComplete: Promise<boolean> }>('swim-icon', {
+        fontIcon: 'check'
+      });
+      el.fontIcon = 'user';
+      expect(await el.updateComplete).toBe(true);
+      expect(el.fontIcon).toBe('user');
+      expect(el.shadowRoot?.querySelector('[part="icon"]')?.className).toContain('lit-user');
+    });
+
+    it('keeps a sized fallback box when src fails and no font icon is set', async () => {
+      const el = await fixture<HTMLElement & { alt: string }>('swim-icon', {
+        src: 'assets/does-not-exist.svg',
+        alt: 'Lit logo'
+      });
+      const img = el.shadowRoot?.querySelector('img');
+      expect(img?.hasAttribute('loading')).toBe(false);
+      img?.dispatchEvent(new Event('error'));
       await waitForUpdate(el);
-      expect(el.fontIcon).toBe('close');
+
+      const fallback = el.shadowRoot?.querySelector('[part="icon"]');
+      expect(fallback?.tagName.toLowerCase()).toBe('span');
+      expect(fallback?.classList.contains('swim-icon__fallback')).toBe(true);
+      expect(fallback?.getAttribute('aria-label')).toBe('Lit logo');
+    });
+
+    it('shows the new image after one update when src changes following a failed load', async () => {
+      const el = await fixture<HTMLElement & { src: string; updateComplete: Promise<boolean> }>('swim-icon', {
+        fontIcon: 'user',
+        src: 'assets/does-not-exist.svg'
+      });
+      el.shadowRoot?.querySelector('img')?.dispatchEvent(new Event('error'));
+      await waitForUpdate(el);
+      expect(el.shadowRoot?.querySelector('img')).toBeNull();
+
+      el.src = 'assets/lit-logo.svg';
+      expect(await el.updateComplete).toBe(true);
+      expect(el.shadowRoot?.querySelector('img')?.getAttribute('src')).toBe('assets/lit-logo.svg');
+    });
+
+    it('ignores a late error from a previous src', async () => {
+      const el = await fixture<HTMLElement & { src: string; updateComplete: Promise<boolean> }>('swim-icon', {
+        fontIcon: 'user',
+        src: 'assets/old.svg'
+      });
+      const oldImg = el.shadowRoot?.querySelector('img');
+
+      el.src = 'assets/lit-logo.svg';
+      await el.updateComplete;
+      const newImg = el.shadowRoot?.querySelector('img');
+      expect(newImg).not.toBe(oldImg);
+
+      oldImg?.dispatchEvent(new Event('error'));
+      await el.updateComplete;
+      expect(el.shadowRoot?.querySelector('img')?.getAttribute('src')).toBe('assets/lit-logo.svg');
     });
 
     it('changes alt after render', async () => {

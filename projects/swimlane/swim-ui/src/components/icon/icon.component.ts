@@ -1,5 +1,6 @@
-import { LitElement, html, nothing } from 'lit';
+import { LitElement, html, nothing, type PropertyValues } from 'lit';
 import { property, state } from 'lit/decorators.js';
+import { keyed } from 'lit/directives/keyed.js';
 import { baseStyles } from '../../styles/base';
 import { iconStyles } from './icon.styles';
 import { scheduleEnsureSwimUiIconFontFace } from './icon-font-face';
@@ -9,14 +10,17 @@ scheduleEnsureSwimUiIconFontFace();
 
 /**
  * SwimIcon - Icon component matching @swimlane/ngx-ui design system.
- * Uses swim lit font icons only (via fontIcon + fontSet) or slotted content (e.g. another swim-icon).
+ * Uses a font icon (`fontIcon` + `fontSet`), an image (`src`), or slotted content.
+ * When `src` is set, the image is shown. If it fails to load, the font icon or slot is shown.
+ * A failed image with no font icon keeps the 1em box.
+ * Existing `font-icon` usage is unchanged when `src` is empty.
  *
  * Registers @font-face for SWIM_ICON_FONT_FAMILY when this module loads (CDN / bundled apps).
  * Hosts may still override with their own @font-face if they prefer a different asset URL.
  *
- * @slot - Default content when no fontIcon (e.g. slotted swim-icon or image)
+ * @slot - Default content when no fontIcon and no src (e.g. slotted swim-icon or image)
  *
- * @csspart icon - The icon element (i or span)
+ * @csspart icon - The icon element (img, i, or span)
  */
 const ICON_TAG = 'swim-icon';
 export class SwimIcon extends LitElement {
@@ -47,8 +51,18 @@ export class SwimIcon extends LitElement {
   @property({ type: String, attribute: 'icon-class' })
   iconClass = '';
 
+  /**
+   * Image URL. When set, the image replaces the font icon until it fails to load.
+   * Same role as `src` on `ngx-card-avatar` / `swim-card-avatar`, sized to the icon box.
+   */
+  @property({ type: String })
+  src = '';
+
   @state()
   private _cssClasses: string[] = [];
+
+  @state()
+  private _srcFailed = false;
 
   private _iconClassTokensOnHost: string[] = [];
 
@@ -57,13 +71,27 @@ export class SwimIcon extends LitElement {
     this._updateFontIcon();
   }
 
-  updated(changedProperties: Map<string, unknown>) {
-    super.updated(changedProperties);
+  willUpdate(changedProperties: PropertyValues<this>): void {
+    super.willUpdate(changedProperties);
     if (changedProperties.has('fontIcon') || changedProperties.has('fontSet')) {
       this._updateFontIcon();
     }
+    if (changedProperties.has('src')) {
+      this._srcFailed = false;
+    }
+  }
+
+  updated(changedProperties: PropertyValues<this>): void {
+    super.updated(changedProperties);
     if (changedProperties.has('iconClass')) {
       this._syncIconClassToHost();
+    }
+  }
+
+  /** Marks the image as failed only if the error belongs to the current `src`. */
+  private _onImgError(failedSrc: string): void {
+    if (failedSrc === (this.src?.trim() ?? '')) {
+      this._srcFailed = true;
     }
   }
 
@@ -104,12 +132,33 @@ export class SwimIcon extends LitElement {
 
     const iconClass = this.iconClass?.trim() ?? '';
     const iconClassAttr = iconClass ? ` ${iconClass}` : '';
+    const src = this.src?.trim() ?? '';
+
+    if (src && !this._srcFailed) {
+      // keyed: a new <img> per URL, so a late error from an earlier URL fires on the
+      // old element with the old URL captured and is ignored by _onImgError.
+      return keyed(
+        src,
+        html`
+          <img
+            part="icon"
+            class="swim-icon__img ${iconClass}"
+            src=${src}
+            alt=${hasAlt ? this.alt : ''}
+            draggable="false"
+            @error=${() => this._onImgError(src)}
+          />
+        `
+      );
+    }
 
     if (!classes || classes.length === 0) {
+      const fallbackClass = src ? 'swim-icon__fallback' : '';
+      const slotClass = [fallbackClass, iconClass].filter(Boolean).join(' ');
       return html`
         <span
           part="icon"
-          class="${iconClass}"
+          class="${slotClass}"
           role="${hasAlt ? 'img' : 'presentation'}"
           aria-label="${hasAlt ? this.alt : nothing}"
           aria-hidden="${hasAlt ? 'false' : 'true'}"
