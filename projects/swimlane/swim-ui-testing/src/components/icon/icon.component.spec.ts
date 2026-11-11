@@ -83,6 +83,23 @@ describe('swim-icon', () => {
       expect(el.shadowRoot?.querySelector('img')?.getAttribute('src')).toBe('assets/lit-logo.svg');
     });
 
+    it('ignores a late error from a previous src', async () => {
+      const el = await fixture<HTMLElement & { src: string; updateComplete: Promise<boolean> }>('swim-icon', {
+        fontIcon: 'user',
+        src: 'assets/old.svg'
+      });
+      const oldImg = el.shadowRoot?.querySelector('img');
+
+      el.src = 'assets/lit-logo.svg';
+      await el.updateComplete;
+      const newImg = el.shadowRoot?.querySelector('img');
+      expect(newImg).not.toBe(oldImg);
+
+      oldImg?.dispatchEvent(new Event('error'));
+      await el.updateComplete;
+      expect(el.shadowRoot?.querySelector('img')?.getAttribute('src')).toBe('assets/lit-logo.svg');
+    });
+
     it('changes alt after render', async () => {
       const el = await fixture<HTMLElement & { alt: string }>('swim-icon', { alt: 'Old' });
       el.alt = 'New';

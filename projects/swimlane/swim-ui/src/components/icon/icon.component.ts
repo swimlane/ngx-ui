@@ -1,5 +1,6 @@
 import { LitElement, html, nothing, type PropertyValues } from 'lit';
 import { property, state } from 'lit/decorators.js';
+import { keyed } from 'lit/directives/keyed.js';
 import { baseStyles } from '../../styles/base';
 import { iconStyles } from './icon.styles';
 import { scheduleEnsureSwimUiIconFontFace } from './icon-font-face';
@@ -87,6 +88,13 @@ export class SwimIcon extends LitElement {
     }
   }
 
+  /** Marks the image as failed only if the error belongs to the current `src`. */
+  private _onImgError(failedSrc: string): void {
+    if (failedSrc === (this.src?.trim() ?? '')) {
+      this._srcFailed = true;
+    }
+  }
+
   private _syncIconClassToHost(): void {
     const tokens = (this.iconClass?.trim() ?? '').split(/\s+/).filter(Boolean);
     this._iconClassTokensOnHost.forEach(c => this.classList.remove(c));
@@ -127,18 +135,21 @@ export class SwimIcon extends LitElement {
     const src = this.src?.trim() ?? '';
 
     if (src && !this._srcFailed) {
-      return html`
-        <img
-          part="icon"
-          class="swim-icon__img ${iconClass}"
-          src=${src}
-          alt=${hasAlt ? this.alt : ''}
-          draggable="false"
-          @error=${() => {
-            this._srcFailed = true;
-          }}
-        />
-      `;
+      // keyed: a new <img> per URL, so a late error from an earlier URL fires on the
+      // old element with the old URL captured and is ignored by _onImgError.
+      return keyed(
+        src,
+        html`
+          <img
+            part="icon"
+            class="swim-icon__img ${iconClass}"
+            src=${src}
+            alt=${hasAlt ? this.alt : ''}
+            draggable="false"
+            @error=${() => this._onImgError(src)}
+          />
+        `
+      );
     }
 
     if (!classes || classes.length === 0) {
