@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 1.1.0 (2026-11-11)
+
 - Feature (`swim-icon`): Added optional `src` to show an image in the icon box. If the image fails to load, `font-icon` or the slot is shown.
 
 ## 1.0.0 (2026-11-05)

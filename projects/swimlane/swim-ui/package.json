@@ -1,6 +1,6 @@
 {
   "name": "@swimlane/swim-ui",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Swim web component library matching Swimlane's ngx-ui design system",
   "type": "module",
   "main": "./dist/index.js",
