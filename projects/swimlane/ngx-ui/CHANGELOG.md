@@ -3,6 +3,7 @@
 ## HEAD (unreleased)
 
 - Feature (`ngx-date-range-picker`): Added optional `minDate` and `maxDate` inputs. Calendar days outside the range are disabled, presets that fall outside it are hidden, and typed dates outside it show a validation error.
+- Fix (`HotkeysService`): `deregister()` and `clear()` now remove the `document` keyboard listeners that `add()` attached for each hotkey. Before, every add and deregister cycle left three listeners on `document`, so keystrokes got slower over time. `deregister()` also no longer skips a component's second hotkey on the same combo.
 
 ## 53.5.0 (2026-10-26)
 
