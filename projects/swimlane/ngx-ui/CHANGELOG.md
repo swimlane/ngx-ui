@@ -5,6 +5,7 @@
 ## 53.6.0 (2026-11-10)
 
 - Feature (`ngx-date-range-picker`): Added optional `minDate` and `maxDate` inputs. Calendar days outside the range are disabled, presets that fall outside it are hidden, and typed dates outside it show a validation error.
+- Enhancement (`ngx-select`): Inline tagging with keyboard navigation. Left/Right arrows move between chips and edit in place; Enter, Tab, comma, semicolon, and blur commit; Escape reverts an in-progress edit. Single-click a chip to edit (caret at the click position; chips expand to full text; no blue outline). Paste splits on comma, semicolon, tab, and newline. Ctrl/Cmd+Z undoes chip changes; Ctrl/Cmd+Shift+Z or Ctrl/Cmd+Y redoes them. Optional `taggingValidator` (`SelectTaggingValidator`) applies to inline tagging only and shows the returned message as a validation error. Dropdown tagging uses `filterDebounce` (default 200ms) while typing; selecting an option replaces the edited chip. Chip label, tooltip, and invalid state are precomputed; tags render as plain text.
 
 ## 53.5.0 (2026-10-26)
 
@@ -14,7 +15,6 @@
 
 - Feature (`ngx-columns`): Added opt-in `scrollToEndOnExpand`. When a leaf expand causes horizontal overflow, the columns host scrolls to the end.
 - Feature (`ngx-date-time`): Added a new input `hideDisabledTimeUnits` to `ngx-date-time` which is by default `false`. When true it hides the time units that are disabled due to precision.
-- Enhancement (`ngx-select`): Inline tagging with keyboard navigation: Left/Right arrows move between chips and edit in-place; Enter/Tab/comma/blur commit; Escape reverts. Single-click a chip to edit (caret at click position; chips expand to full text; no blue outline). Paste splits on comma/semicolon/tab/newline. Optional `taggingValidator` for inline-only tagging. Dropdown tagging: `filterDebounce` (default 200ms) filters options while typing; selecting an option replaces the edited chip. Chip presentation (tooltip/invalid) is precomputed; tags render as plain text.
 
 ## 53.2.2 (2026-09-01)
 
