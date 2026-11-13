@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 53.6.0 (2026-11-10)
+
 - Feature (`ngx-date-range-picker`): Added optional `minDate` and `maxDate` inputs. Calendar days outside the range are disabled, presets that fall outside it are hidden, and typed dates outside it show a validation error.
 
 ## 53.5.0 (2026-10-26)
